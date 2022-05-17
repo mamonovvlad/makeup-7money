@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Status</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
+
+  <body>
+    <section id="app" :class="theme">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="main_layout text-copy-main bg-background-main">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="status_page grow bg-background-main">
+            <div class="main_text bg-background-descr">
+              <h1 class="title text-copy-descr gamesDaymariusv">
+                Проверить статус операции
+              </h1>
+            </div>
+            <div class="container">
+              <div class="status_page_box">
+                <form
+                  class="status_page_form bg-background-main shadow_btn_white"
+                  action
+                >
+                  <input type="hidden" :value="csrfToken" :name="csrfParam" />
+                  <label class="text-copy-descr" for="operation"
+                    >Введите номер операции</label
+                  >
+                  <div class="input_block shadow_btn_white_active">
+                    <input
+                      class=" bg-background-main"
+                      id="operation"
+                      type="number"
+                      placeholder="AP12345678"
+                      name="code"
+                    />
+                  </div>
+                  <button class="green_btn text-copy-btngreen">
+                    Проверить
+                  </button>
+                </form>
+                <div class="status_page_img">
+                  <figure>
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/status/status_img.svg"
+                      alt
+                    />
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer-main></footer-main>
+        </div>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
+</html>

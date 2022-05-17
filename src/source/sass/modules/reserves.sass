@@ -1,0 +1,67 @@
+//Reserves
+.reserves_box
+    border-radius: 10px
+    display: flex
+    padding: 20px 20px
+.reserves_block
+    position: relative
+    display: flex
+    flex-grow: 1
+    flex-direction: column
+    margin: 0 20px
+    max-width: 360px
+    width: 100%
+    &:after
+        content: ''
+        position: absolute
+        right: -20px
+        height: 100%
+        width: 2px
+        background: #DEE6EC
+    &:last-child::after
+        display: none
+.reserves_item
+    display: flex
+    width: 100%
+    justify-content: space-between
+    margin-bottom: 15px
+    &:last-child
+        margin-bottom: 0px
+    & .price
+        line-height: 15px
+        color: #4F4F4F
+        font-weight: 500
+        & span
+            font-size: 12px
+            font-weight: 400
+            color: #7F848C
+.reserves_name
+    display: flex
+    align-items: center
+    & .img
+        width: 16px
+        height: 16px
+        & span
+            width: 100%
+            height: 100%
+            display: block
+            background-size: cover
+    & p
+        line-height: 15px
+        font-size: 1.4rem
+        padding: 0px 0px 0px 10px
+@media screen and (max-width: 1024px)
+    .reserves_item .price
+        font-size: 1.4rem
+@media screen and (max-width: 992px)
+    .reserves_box
+        padding: 20px 10px
+    .reserves_block
+        margin: 0 10px
+        &:after
+            right: -10px
+    .reserves_name p,
+    .reserves_item .price
+        font-size: 1.2rem
+    .reserves_item
+        margin-bottom: 15px

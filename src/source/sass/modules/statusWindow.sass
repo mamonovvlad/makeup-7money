@@ -1,0 +1,69 @@
+.status_window
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+    display: flex
+    align-items: center
+    justify-content: center
+    background: hsla(0,0%,100%,.6)
+
+    z-index: 99
+    & .close
+        right: 8px
+        top: 5px
+        color: #363C46
+.status_window_box
+    position: relative
+    border-radius: 8px
+    padding: 0px 30px 0px 65px
+    margin: 10px
+    font-size: 1.8rem
+    height: 110px
+    min-width: 380px
+    max-width: 470px
+    display: flex
+    flex-direction: column
+    justify-content: center
+.status_window_title
+    font-weight: 500
+    text-decoration-line: underline
+.status_window_img
+    position: absolute
+    left: 0
+    top: 50%
+    transform: translate(-50%, -50%)
+    width: 90px
+    height: 90px
+.status_window_yellow
+    background: #F2C94C
+
+.status_window_blue,
+.status_window_red,
+.status_window_green,
+.status_window_grey
+    & p,
+    & .close
+        color: #e8edf1
+.status_window_blue
+    background: #2D9CDB
+.status_window_red
+    background: #EB5757
+.status_window_green
+    background: linear-gradient(109.62deg, #00B047 0%, #4CD784 100%)
+.status_window_grey
+    background: #7F848C
+
+@media screen and ( max-width: 768px  )
+    .status_window_box
+        height: 85px
+        padding: 0 30px 0 40px
+        margin: 10px
+        font-size: 1.2rem
+        min-width: 250px
+        max-width: 250px
+    .status_window_img
+        width: 50px
+        height: 50px

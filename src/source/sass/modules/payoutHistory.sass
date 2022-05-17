@@ -1,0 +1,110 @@
+.payout_history_box,
+.tabel_mobile
+    border-radius: 8px
+.tabel_title
+    border-radius: 8px 8px 0px 0px
+    & p
+        font-weight: 500
+        font-size: 1.8rem
+
+.tabel_title,
+.tabel_list
+    padding: 20px
+    display: flex
+    justify-content: space-between
+.tabel_list
+    border-bottom: 1px solid #D9E1E8
+    &:last-child
+        border-bottom: 0px solid #D9E1E8
+    & p
+        font-size: 1.4rem
+    & .tabel_status
+        color: #00B047
+.payout_history_tabel_mobile
+    & .tabel_status
+        color: #00B047
+.tabel_number
+    max-width: 130px
+    width: 100%
+.tabel_date
+    max-width: 130px
+    width: 100%
+.tabel_amount
+    max-width: 80px
+    width: 100%
+.tabel_score
+    max-width: 100px
+    width: 100%
+
+.tabel_status
+    width: 100%
+    max-width: 100px
+.payout_history_pagination
+    display: flex
+    align-items: flex-end
+    justify-content: space-between
+.page_number
+    height: 100%
+    display: flex
+    & a
+        display: block
+        text-decoration: none
+        position: relative
+        padding: 13px 15px
+        font-size: 1.8rem
+    & li
+        border-left: 1px solid #D9E1E8
+        &:first-child
+            border-left: 0px solid #D9E1E8
+.payout_history_pagination .payout_history_btn
+    margin: 30px 20px 0 0
+    max-width: 295px
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    & svg 
+        margin-right: 5px
+.tabel_mobile_info .info_block
+    display: flex
+    flex-direction: column
+    max-width: max-content
+    margin: 0px
+@media screen and (max-width: 1200px)
+    .tabel_title p
+        font-size: 1.4rem
+    .tabel_list p
+        font-size: 1.2rem
+    .tabel_number
+        max-width: 95px
+    .tabel_date
+        max-width: 100px
+    .payout_history_pagination .payout_history_btn
+        font-size: 1.5rem
+        padding: 17px 0
+
+@media screen and (max-width: 1024px)
+    .tabel_title p
+        font-size: 1.2rem
+    .tabel_status
+        max-width: 80px
+@media screen and (max-width: 992px)
+    .tabel_date,
+    .tabel_number,
+    .tabel_status,
+    .tabel_amount,
+    .tabel_score
+        max-width: 100%
+        width: auto
+    .payout_history_pagination .payout_history_btn
+        font-size: 1.4rem
+@media screen and (max-width: 576px)
+    .info_block
+        max-width: max-content
+        min-width: auto
+    .payout_history_pagination
+        flex-direction: column
+        align-items: center
+    .payout_history_pagination .payout_history_btn
+        margin: 20px 0 20px
+        padding: 18.5px 0

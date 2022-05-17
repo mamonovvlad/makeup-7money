@@ -62,7 +62,7 @@ module.exports = {
         loader: "vue-loader",
         options: {
           loader: {
-            scss: "vue-style-loader!css-loader!sass-loader",
+            sass: "vue-style-loader!css-loader!sass-loader"
           }
         }
       },
@@ -83,8 +83,8 @@ module.exports = {
         }
       },
       {
-        // scss
-        test: /\.scss$/,
+        // sass
+        test: /\.sass$/,
         use: [
           "style-loader",
           MiniCssExtractPlugin.loader,
@@ -149,8 +149,8 @@ module.exports = {
       filename: `${PATHS.assets}css/[name].css`
     }),
     new CopyWebpackPlugin([{
-        from: `${PATHS.src}/${PATHS.assets}images`,
-        to: `${PATHS.assets}images`
+        from: `${PATHS.src}/${PATHS.assets}image`,
+        to: `${PATHS.assets}image`
       },
       {
         from: `${PATHS.src}/${PATHS.assets}fonts`,

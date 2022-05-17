@@ -1,0 +1,539 @@
+.theme-light
+    //Header кнопка status
+    & .btn_status
+        box-shadow: 4px 2px 8px rgba(136, 165, 191, 0.54), -4px -2px 8px #BEFFD8
+    & .status,
+    & .green_btn
+        background: linear-gradient(124.83deg, #00B047 0%, #4CD784 100%)
+        &:active
+            background: linear-gradient(135.97deg, #00B047 0%, #4CD784 100%)
+            box-shadow: inset 3px 3px 12px #209E53, inset -3px -3px 12px #16C85D
+    //Header Активные кнопки 
+    & .burger_activ_btn,
+    & .account_activ_btn,
+    & .lang_activ_btn,
+    & .social_activ_btn,
+    & .active_personal_area
+        background: linear-gradient(96.02deg, #00B047 0%, #4CD784 100%)
+        box-shadow: inset 3px 3px 12px #209E53, inset -3px -3px 12px #26E171
+        & path
+            fill: #fff
+
+    //Внешняя тень
+    & .shadow_btn_white
+        box-shadow: 4px 2px 8px rgba(136, 165, 191, 0.54), -4px -2px 8px #FFFFFF
+        outline: 0
+    //Внутреняя тень
+    & .shadow_btn_white_active
+        box-shadow: inset 3px 3px 3px rgba(136, 165, 191, 0.48), inset -3px -3px 3px #FFFFFF
+    & .exchange svg
+        & path
+            fill: #7F848C
+        & .color-dark
+            fill: #D9E1E8
+    //Header Кнопки темы
+    & .btn_sum
+        box-shadow: inset 4px 2px 8px rgba(136, 165, 191, 0.54),inset -4px -2px 8px #FFFFFF
+    & .btn_moon
+        box-shadow: inset 4px 2px 8px rgba(136, 165, 191, 0.54), inset 4px -2px 8px #FFFFFF
+    & .activesun,
+    & .activedark
+        box-shadow: 3px 3px 6px rgba(136, 165, 191, 0.48),  -2px -1px 6px #FFFFFF
+        &:active
+            box-shadow: inset 2px 2px 3px rgba(136, 165, 191, 0.48), inset -1px -1px 3px #F5F5F5
+    //Home (info)
+    & .reviewsActiv .info_item,
+    & .newsActiw .info_item,
+    & .blogActiv .info_item
+        box-shadow: 4px 2px 8px rgba(136, 165, 191, 0.54), -4px -2px 8px #FFFFFF
+
+.theme-dark
+    //main_text, header
+    & .header,
+    & .main_text
+        background: #170c2a
+    //Home (info)
+    & .reviewsActiv .title_heading,
+    & .newsActiw .title_heading,
+    & .blogActiv .title_heading
+        color: #fff
+    & .info_block
+        & .title_heading:hover
+            color: #fff
+        & .reviews_title, .news_title, .blog_title
+            &:hover
+                color: #46FDDB
+    & .reviewsActiv,
+    & .newsActiw,
+    & .blogActiv
+        & .reviews_item, .news_item, .blog_item
+            box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+            background: #170D2B
+    & header .fon
+        display: none
+    & .success_box
+        & .success_block:hover
+            background: linear-gradient(91.67deg, #00F9C9 0%, #1EE3BF 100%)
+            box-shadow: inset 3px 3px 3px #34E2C1, inset -3px -3px 3px #46FDDB
+            color: #363C46
+        & .success_block:hover  p,
+        & .success_block:hover  i,
+        & .success_block:hover  .success_descr
+            color: #363C46
+    & .btn_status
+        box-shadow: inset 3px 3px 3px #34E2C1, inset -3px -3px 3px #46FDDB
+    & .status,
+    & .green_btn
+        background: linear-gradient(93.92deg, #00F9C9 0%, #1EE3BF 100%)
+        &:active
+            background: linear-gradient(93.92deg, #1EE3BF 0%, #00F9C9 100%)
+            box-shadow: inset 3px 3px 3px #34E2C1, inset -3px -3px 3px #46FDDB
+    //Header Активные кнопки 
+    & .burger_activ_btn,
+    & .account_activ_btn,
+    & .lang_activ_btn,
+    & .social_activ_btn,
+    & .active_personal_area
+        background: linear-gradient(93.92deg, #00F9C9 0%, #1EE3BF 100%)
+        box-shadow: inset 3px 3px 3px #34E2C1, inset -3px -3px 3px #46FDDB
+        & path
+            fill: #120A20
+    //Внешняя тень
+    & .shadow_btn_white
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+        outline: 0
+    & .shadow_btn_white_active
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173E
+    //Кнопки темы
+    & .icon-sum
+        color: #f2c94c9e
+    & .icon-moon
+        color: #FFFFFF
+    //Фон    
+    & .header_fon
+        background: transparent
+    & .home
+        & .bg-background-main
+            background: rgba(23, 13, 43,.7)
+        &:after
+            content: ''
+            position: absolute
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            background: url('../image/homeFonTwo.png') center no-repeat
+            background-size: cover
+            z-index: 0
+    & .btn_sum
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173e
+    & .btn_moon
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+    & .activeSun,
+    & .activeDark
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+        &:active
+            box-shadow: inset 2px 2px 3px #090513, inset -1px -1px 3px #22173E
+    & .currency_selection_block .line
+        background: #120A20
+    & .currency_selection_block .payment_system_list li:hover
+        background: #170D2B
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173E
+        color: #1EE3BF
+    & .currency_selection_block .payment_system_price p,
+    & .reserves_item .price
+        color: #D9E1E8
+        & #discount
+            background: #120A20
+            box-shadow: 0 0 0 #120A20, 0px 0px 0px #120A20
+            &:focus,
+            &:active
+                box-shadow: 0 0 0 #120A20, 0px 0px 0px #120A20
+    & .form_exchange .line
+        background: #120A20
+    & .currency_exchange .green_btn
+        box-shadow: inset 3px 3px 3px #34E2C1, inset -3px -3px 3px #46FDDB
+    & .reserves_block:after
+        background: #120A20
+    & .checkbox  .checkbox_inp
+        &:before,
+        &:after
+            background: #170D2B url('../image/check_grey.svg') center no-repeat
+            box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+        &:after
+            background: #1EE3BF url('../image/check.svg') center no-repeat
+    & .currency_selection .refresh
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+        background: linear-gradient(93.92deg, #00F9C9 0%, #1EE3BF 100%)
+        border: 4px solid #170D2B
+        & i
+            color: #363C46
+    & .btn_exchange p .course
+        color: #fff
+    //Payment    
+    & .time_box .timer_block:after
+        background: rgba(0, 0, 0, 0.3)
+    //Answers
+    & .open
+        & .answers_accordion
+            box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173E
+        & .accordion_title
+            color: #ffffff
+    //BlogArticle
+    & .article_popular_box:hover
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173E
+        & .popular_title
+            color: #1EE3BF
+
+    & .header_buttons .account_box .arrow
+        border-bottom: 10px solid #170c2a
+    //Active Links
+    & .cabinet_menu
+        & .link_active
+            color: #fff
+            box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+        & .link_active i
+            color: #1EE3BF
+    //Switched
+    & input[type="checkbox"]:before
+        background: linear-gradient(95.82deg, #00F9C9 0%, #1EE3BF 100%)
+    & .activeDiscountGive, .activeDiscountGet
+        color: #fff
+    & form .exchange i
+        background: #D9E1E8
+        color: #120A20
+    //Нижнее меню
+    & .cabinet_menu
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+    //line (CabinetLayout)
+    & .accounts, .affiliate, .operations_history, .payouthistory, .exchange_templates, .change_password, .post_reward
+        border-left: 2px solid #120A20
+    //Select
+    & form .select
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173E
+    & form .options
+        box-shadow: inset 4px -3px 8px #090513, inset -4px -1px 8px #22173E
+    ////btn
+    & .affiliate_block .btn_percent_history
+        border: 1px solid #00F9C9
+    //Line
+    & .table,
+    & .mobile_tabel .tabel_block,
+    & .tabel_list
+        border-bottom: 1px solid #120A20
+    & .tabel_list .tabel_status
+        color: #00F9C9
+    & .header_buttons .lang_activ_block
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+    //Scroll
+    & .header_buttons .btn_lang
+        box-shadow: 4px 5px 8px #090513, -4px 8px 8px #22173e
+    & .info_block .blog_item,
+    & .info_block .news_item,
+    & .info_block .reviews_item
+        border-bottom: 0px solid transparent
+        background: #110a20
+    & .changeLanguageHiddenMobile, .header .changeLanguageActiveMobile
+        box-shadow: inset 4px 2px 8px #090513, -4px -2px 8px #22173E,
+    & .article_list .green_dot
+        color: #00F9C9
+    & .reviews_btn button:nth-child(2)
+        background: rgba(0,0,0,0)
+        border: 2px solid #00F9C9
+        color: #00F9C9
+    & .status_check_text button
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+    & .currency_selection_block .payment_system_list .activeCurrencyGet, .currency_selection_block .payment_system_list .activeCurrencyGive
+        background: #120A20
+        box-shadow: inset 4px 2px 8px #090513, -4px -2px 8px #22173E
+    & .active_entrance, .active_registration
+        color: #fff
+    &  .home .lacks_block,
+    & .window_info
+        background: rgb(23,13,43)
+    & .inp_block .lacks_block p,
+    & .window_info  p
+        color: #D9E1E8
+    & .inp_block .lacks_block .arrow_lacks
+        background: linear-gradient(to right top,rgba(0,0,0,0) 41%,#120A20 0) 0/50% 100% no-repeat,linear-gradient(to left top,rgba(0,0,0,0) 50%,#120A20 0) 100%/50% 100% no-repeat
+    & .window_info .window_info_arrow
+        border-top: 10px solid #170D2B
+    & .reviews_box .active
+        color: #00F9C9
+    & .alert-success
+        color: #170D2B
+        background-color: #00F9C9
+    & .activeGroup
+        color: #00F9C9
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+    & .blogActive .blog_item, .blogActive .news_item, .blogActive .reviews_item,
+    & .newsActive .blog_item, .newsActive .news_item, .newsActive .reviews_item,
+    & .reviewsActive .blog_item, .reviewsActive .news_item,
+    & .reviewsActive .reviews_item
+        background: rgba(23,13,43,.7)
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+    & .currency_selection_block .payment_system_list .activeCurrency
+        background: rgba(0, 249, 201,.1)
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173E
+        color: #00F9C9
+    & .info_block .title_heading
+        color: rgba(217, 225, 232,.5)
+    & .blogActive .title_heading, .newsActive .title_heading, .reviewsActive .title_heading
+        color: #d9e1e8
+    & .preloader
+        background: rgba(0,0,0,.9)
+    & .dash
+        background: #00F9C9
+    & .btn_exchange svg rect
+        stroke: #00F9C9
+    & .mask
+        background: rgba(0,0,0,.95)
+    & .loader
+        border: 10px solid rgba(0, 249, 201,.5)
+        border-left-color: #00F9C9
+    & .payment_box  .close .close_btn .line
+        stroke: #00F9C9
+    & .active
+        color: #00F9C9
+    & .flip-clock-wrapper ul li a div div.inn
+        color: #3deac2
+        text-shadow: 0 1px 2px #170c2a
+        background-color: #170D2B
+    & .header_block .header_logo .logo
+        background: url('../image/darkLogo.svg') center no-repeat
+    & .checkbox .checkbox_inp a
+        color: #00F9C9
+    & .PMUSD,
+    & .PRUSD,
+    & .P24UAH,
+    & .BTC,
+    & .ADVCUSD,
+    & .YAMRUB,
+    & .LTC,
+    & .DASH,
+    & .EXMUSD,
+    & .EXMRUB,
+    & .ZEC,
+    & .MONOBUAH,
+    & .CARDUAH,
+    & .USDTERC20,
+    & .CASHUSD,
+    & .CASHRUB,
+    & .QWRUB,
+    & .ACRUB,
+    & .SBERRUB,
+    & .TCSBRUB,
+    & .TBRUB,
+    & .CARDRUB
+        box-shadow: 0px 0px 10px -1px #3fefc3
+        border-radius: 50%
+    & .alert-fon
+        background: transparent
+    & .partners-block
+        border: solid #3fefc3
+        background: #170b29
+    & .partner__link_site
+        background: #3fefc3
+    & .partner__link_comments
+        background: #305e41
+    & .popup_info
+        background: #170c2b
+        border: 1px solid #3fefc3
+    & .popup_info_arrow:after, .popup_info_arrow:before
+        background: #3fefc3
+    & .popup_info .popup_info_arrow
+        background: linear-gradient(to right top,rgba(0,0,0,0) 50%,#170c2b 0) 0/50% 100% no-repeat,linear-gradient(to left top,rgba(0,0,0,0) 50%,#170c2b 0) 100%/50% 100% no-repeat
+    & .popup_info p,
+    & .popup_info em
+        color: #fff
+        font-weight: 400
+    & .status--failed
+        color: #ff0065
+    & .noty_theme__bootstrap-v4.noty_type__error
+        background: #ff0065
+    & .status--new
+        color: #fff
+    & .min-height p,
+    & .min-height h1
+        color: #fff
+    & #reset-password-form input,
+    & #passwordresetrequestform-email input,
+    & .field-passwordresetrequestform-email input,
+    & .field-resetpasswordform-password_repeat input
+        background: #170d2b
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173e
+        color: #d9e1e8
+    & #reset-password-form input:active,
+    & #passwordresetrequestform-email input:active,
+    & .field-passwordresetrequestform-email input:active
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173e
+    & .payment_block_info em
+        color: #fff
+    & #resetpasswordform-password
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173e
+        background: #170c2b
+    & #resetpasswordform-password:active
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173e
+    & .noty_theme__bootstrap-v4.noty_type__success
+        background-color: #3fefc3!important
+        color: #fff!important
+        border-color: #3fefc3!important
+    & .noty_theme__bootstrap-v4 .noty_type__error
+        background-color: #ff0065!important
+        color: #fff!important
+        border-color: #ff0065!important
+    & .status--completed
+        color: #3fefc3
+    & .select:focus
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173e
+    & .select
+        background: linear-gradient(45deg,rgba(0,0,0,0) 50%,#3fefc3 0),linear-gradient(135deg,#3fefc3 50%,rgba(0,0,0,0) 0) !important
+        background-position: calc(100% - 21px) calc(1em + 2px), calc(100% - 16px) calc(1em + 2px), 100% 0 !important
+        background-size: 5px 5px, 5px 5px, 2.5em 2.5em !important
+        background-repeat: no-repeat !important
+    & input::placeholder
+        color: #a6b3c4
+    &  .b-check-amount__accounts
+        border: 1px dashed #ff0065
+    &  .b-check-amount__accounts p
+        color: #fff!important
+    & .payment_box .close .close_btn .ham
+        border: 1px solid #3ce6c0
+        border-radius: 5px
+    & .notification_text p
+        color: #fff
+    & .exmo_code_button
+        color: #3ce6c0
+        border: 1px solid #3ce6c0
+    & .verified_descr
+        color: #fff
+    & .verified_small
+        color: #fff
+    & .verified_confirm .confirm_inp,
+    & .close path
+        fill: #fff
+    & input:-webkit-autofill,
+    & input:-webkit-autofill:hover,
+    & input:-webkit-autofill:focus,
+    & input:-webkit-autofill:active
+        -webkit-box-shadow: inset 0 0 0 50px #170c2b
+        -webkit-text-fill-color: #fff
+        background-color: #170c2b
+    & .error_block .error_title,
+    & .successful_block .successful_title
+        color: #3ce6c0
+    & .form-group .inp_block .not_active
+        background: #120A20
+        & input
+            background: #120A20
+            color: #fff
+            &::placeholder
+                color: #fff
+    & .select
+        color: #fff
+        background: #170d2b !important
+    & .post_reward_form .select
+        color: #fff
+    & .inp_block .input_block
+        background: #170c2a
+        color: #fff
+    & .inp_block .input_block input
+        background: #170c2a
+        color: #fff
+    & .inp_block .not_active input::placeholder
+        color: #fff
+    & .inp_block .not_active input
+        color: #fff
+    & .payment .close button
+        border: 1px solid #3ce6c0
+    & .payment .close button span:first-child,
+    & .payment .close button span:nth-child(2),
+    & .payment .close button span:nth-child(3)
+        background: #3ce6c0
+    & .currency_exchange .disabled_form_btn
+        background: linear-gradient(124.83deg,#352f45,#170b29)
+        color: #fff
+        box-shadow: none
+    & .button_verified_mail
+        background: linear-gradient(93.92deg,#00f9c9,#1ee3bf)
+        color: #363c46
+    & .text-success
+        border: 1px dashed #3ce6c0
+    & .border
+        background: linear-gradient(90deg,#100a20 20%,#100a20 40%,#3de8c1 50%,#3ce7c0 55%,#100a20 70%,#100a20)
+        background-size: 200% auto
+    & .main-element
+        background: #110a20
+    & .scoreboard .scoreboard_box .scoreboard-active
+        border: 1px dashed #3ce6c0
+    & .currency-loader
+        background: rgba(23,13,43,.7)
+    & .checkbox .checkbox_inp p,
+    & .checkbox .checkbox_inp small
+        color: #fff !important
+    & .night_mode_box
+        background: #363C46
+    & .night_mode_title
+        color: #fff
+    & .night_mode_descr
+        color: #fff
+    & .night_mode_box .close
+        color: #fff
+    & .scoreboard .scoreboard_arrow
+        & i
+            color: #1ee3bf
+        &:active
+            box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173e
+    & #signupform-first_name,
+    & #signupform-email,
+    & #signupform-password,
+    & #signupform-referred_by
+        padding: 10px 38px 10px 20px
+        margin: 12px 0 18px
+        border-radius: 4px
+        max-width: 365px
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173e
+        background: #170d2b
+        color: #ffffffed
+    & #request-password-reset-form .button
+        background: #3ce6c0
+        color: #363c46
+    & #reset-password-form tr
+        color: #d9e1e8
+    & .min-height .btn, .min-height button
+        background: linear-gradient(93.92deg,#00f9c9,#1ee3bf)
+        color: #363c46
+    & .confirm-border
+        background: linear-gradient(90deg,#100a20 20%,#100a20 40%,#f25955 50%,#fa8989 55%,#100a20 70%,#100a20)
+        background-size: 200% auto
+        animation: shine 3s linear infinite
+    & .confirm
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173e
+    & .input_block:hover
+        box-shadow: 4px 2px 8px #090513, -4px -2px 8px #22173e
+    & .cabinet_menu .exit
+        background: #D9E1E8
+        color: #120A20
+    & .open
+        box-shadow: inset 4px 2px 8px #090513, inset -4px -2px 8px #22173e !important
+    & .page_number li
+        border-left: 1px solid #120a20
+    & .accounts, .affiliate, .change_password, .exchange_templates, .operations_history, .payout_history, .post_reward
+        border-left: 2px solid #120a20
+    //Svg color
+    & .article_share_text svg path
+        fill: #FFFFFF
+    & .refresh path,
+    & .currency_selection .refresh path
+        fill: #363c46
+    & .pagination_right path,
+    & .pagination_left path
+        fill: #7F848C
+    & .currency_info a, .currency_info span
+        color: #1ee3bf
+    & .__bar-is-vertical
+        background: linear-gradient(93.92deg,#00f9c9,#1ee3bf) !important
+@media screen and ( max-width: 768px )
+    .theme-dark
+        & .cabinet_menu
+            background: #170d2b

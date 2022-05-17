@@ -1,0 +1,53 @@
+.night_mode
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    align-items: center
+    display: flex
+    justify-content: center
+    background: hsla(0,0%,100%,.6)
+    z-index: 99
+.night_mode_box
+    position: relative
+    border-radius: 8px
+    max-width: 1240px
+    padding: 40px
+    margin: 10px
+    background: #e8edf1
+    & .close
+        color: #363c46
+        cursor: pointer
+.night_mode_info
+    display: flex
+    align-items: center
+.night_mode_img
+    max-width: 225px
+    min-width: 225px
+    margin-right: 20px
+    width: 100%
+    & imgs
+        width: 100%
+.night_mode_title
+    font-size: 2.4rem
+    margin-bottom: 15px
+    color: #363c46
+.night_mode_descr
+    font-size: 1.8rem
+    color: #363c46
+    &:last-child
+        margin-top: 20px
+
+@media screen and ( max-width: 768px )
+    .night_mode_box
+        padding: 30px 15px
+    .night_mode_img
+        display: none
+    .night_mode_title
+        font-size: 1.8rem
+        margin-bottom: 10px
+    .night_mode_descr
+        font-size: 1.4rem
+        &:last-child
+            margin-top: 10px

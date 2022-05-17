@@ -1,0 +1,200 @@
+.affiliate
+    margin-bottom: 30px
+    & .show
+        display: block
+.affiliate-tabel
+    margin-top: 20px
+.affiliate_pagination
+    justify-content: flex-end
+    margin-top: 20px
+.switch-table
+    margin-top: 20px
+    &  button
+        width: max-content
+        padding: 10px 20px
+        font-size: 14px
+.affiliate_title_table
+    font-weight: bold
+    font-size: 1.8rem
+    margin-top: 15px
+.affiliate_box
+    display: flex
+    flex-wrap: wrap
+    padding: 20px 30px
+    border-radius: 8px
+    & p
+        font-size: 1.8rem
+    & .affiliate_title
+        font-weight: bold
+        font-size: 1.8rem
+        margin-bottom: 15px
+    & .affiliate_descr
+        font-size: 1.4rem
+        margin-bottom: 25px
+    & .affiliate_link_text
+        margin-bottom: 15px
+    & .affiliate_copy
+        transform: translate(0px, -3px)
+        margin-left: 10px
+    & .reward_btn
+        text-decoration: none
+        font-size: 1.6rem
+        padding: 17.5px 10px
+        display: block
+        text-align: center
+.affiliate_info
+    width: calc( 70% - 30px )
+    margin-right: 30px
+
+.affiliate_img
+    width: 30%
+.reward
+    display: flex
+    border-radius: 8px
+    padding: 15px 20px
+    align-items: center
+    margin-bottom: 25px
+    & .reward_small
+        font-size: 1.6rem
+        margin-right: 20px
+    & .reward_title
+        font-weight: bold
+        font-size: 3.2rem
+        min-width: max-content
+.reward_line
+    margin: 30px 0
+    border: 2px dashed #D9E1E8
+    height: 2px
+    width: 100%
+.affiliate_percent
+    display: flex
+    margin-top: 40px
+    border-radius: 8px
+.affiliate_block
+    padding: 20px 20px
+    width: 50%
+    justify-content: center
+    display: flex
+    flex-direction: column
+    & .percent_text
+        display: flex
+        align-items: center
+        & p
+            font-size: 1.8rem
+        & .percent_text_percents
+            font-weight: bold
+            font-size: 4.8rem
+            margin-left: 20px
+    & button
+        border-radius: 4px
+        font-size: 1.4rem
+        max-width: 167px
+        width: calc(50% - 20px)
+        padding: 15px 0
+    & .btn_percent_bring_out
+        margin-right: 20px
+    & .btn_percent_history
+        border: 1px solid #00B047
+.affiliate_block_info
+    flex-direction: column
+    display: flex
+    & p
+        font-size: 1.6rem
+    & span
+        font-weight: 500
+.btns_percent
+    display: flex
+    align-items: center
+
+@media screen and (max-width: 1200px)
+    .reward
+        flex-direction: column
+        & .reward_small
+            margin-right: 0px
+            text-align: center
+    .affiliate_block
+        & .percent_text p
+            font-size: 1.6rem
+        & .percent_text .percent_text_percents
+            font-size: 3.4rem
+            margin-left: 10px
+    .reward_btn
+        font-size: 1.5rem
+
+@media screen and (max-width: 992px)
+    .affiliate_block_info p
+        font-size: 1.4rem
+        margin: 5px 0
+    .affiliate_box p
+        font-size: 1.6rem
+    .affiliate_img
+        display: none
+    .affiliate_info
+        width: 100%
+        margin-right: 0px
+    .btns_percent
+        flex-direction: column
+    .affiliate_block
+        & .btn_percent_bring_out
+            margin-right: 0px
+            margin-bottom: 10px
+        & .percent_text_percents
+            margin-left: 0px
+        & button
+            border-radius: 4px
+            font-size: 1.4rem
+            width: 100%
+        & .percent_text
+            flex-direction: column
+            &  p
+                font-size: 1.4rem
+                text-align: center
+
+@media screen and (max-width: 768px)
+    .affiliate_percent
+        flex-direction: column
+    .affiliate_block
+        width: 100%
+        & .percent_text
+            flex-direction: row
+            align-items: center
+            justify-content: space-between
+        & .btns_percent
+            flex-direction: row
+            align-items: baseline
+            justify-content: space-between
+        & .btn_percent_bring_out
+            margin-right: 10px
+            margin-bottom: 0px
+@media screen and (max-width: 576px)
+    .affiliate_box
+        padding: 20px 15px
+        & .affiliate_copy
+            transform: translate(0px, -2px)
+            margin-left: 5px
+        &  p
+            font-size: 1.4rem
+        & .affiliate_title
+            font-size: 1.6rem
+        & .affiliate_descr
+            margin-bottom: 20px
+        & .reward_btn
+            font-size: 1.3rem
+    .reward
+        padding: 10px 10px
+        & .reward_small
+            font-size: 1.3rem
+    .reward_line
+        margin: 20px 0
+    .affiliate_percent
+        margin-top: 30px
+    .affiliate_block
+        & .percent_text p
+            text-align: left
+        &  button
+            padding: 10px 0
+    .affiliate_block_info p
+        font-size: 1.2rem
+    .btns_percent
+        & button
+            font-size: 1.3rem

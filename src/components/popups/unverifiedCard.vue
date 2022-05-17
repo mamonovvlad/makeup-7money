@@ -1,0 +1,56 @@
+<template>
+  <div class="unverified_card">
+    <vuescroll>
+      <div class="unverified_card_box shadow_btn_white bg-background-main">
+        <div class="close">
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.0206 0.707107C12.4111 1.09763 12.4111 1.7308 12.0206 2.12132L2.12109 12.0208C1.73056 12.4113 1.0974 12.4113 0.706875 12.0208C0.316351 11.6303 0.31635 10.9971 0.706875 10.6066L10.6064 0.707107C10.9969 0.316582 11.6301 0.316582 12.0206 0.707107Z"
+              fill="#7F848C"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M0.707932 0.707107C1.09846 0.316582 1.73162 0.316582 2.12215 0.707107L12.0216 10.6066C12.4122 10.9971 12.4122 11.6303 12.0216 12.0208C11.6311 12.4113 10.998 12.4113 10.6074 12.0208L0.707932 2.12132C0.317408 1.7308 0.317408 1.09763 0.707932 0.707107Z"
+              fill="#7F848C"
+            />
+          </svg>
+        </div>
+        <div class="unverified_card_info">
+          <div class="unverified_card_img">
+            <img src="/source/image/UnverifiedCard/unverified_card.svg" alt />
+          </div>
+          <div class="unverified_card_text">
+            <div class="unverified_text_title">
+              <p class="unverified_card_title text-copy-descr">
+                {{ $t("unverifiedCardTextOne") }}
+              </p>
+              <img src="/source/image/UnverifiedCard/unverified_card.svg" alt />
+            </div>
+
+            <p class="unverified_card_descr">
+              {{ $t("unverifiedCardTextTwo") }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </vuescroll>
+  </div>
+</template>
+
+<script>
+import vuescroll from "vuescroll";
+export default {
+  components: {
+    vuescroll,
+  },
+};
+</script>

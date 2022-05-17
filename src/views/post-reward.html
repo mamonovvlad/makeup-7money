@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Post Reward</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
+
+  <body>
+    <section id="app" :class="theme" class="bg-background-main">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="cabinet_layout text-copy-main ">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="cabinet_info grow bg-background-main">
+            <div class="container">
+              <div class="cabinet_box">
+                <div class="post_reward grow bg-background-main">
+                  <h2 class="text-copy-descr">Вывеси вознаграждение</h2>
+                  <form
+                    class="post_reward_form"
+                    action="/profile/output"
+                    method="post"
+                  >
+                    <input type="hidden" :value="csrfToken" :name="csrfParam" />
+                    <div
+                      class="post_reward_box bg-background-main shadow_btn_white"
+                    >
+                      <label class="text-copy-descr" for="price">
+                        Сумма (USD)
+                        <div class="input_block shadow_btn_white_active">
+                          <input
+                            class="bg-background-main "
+                            name="UserOutput[amount]"
+                            id="price"
+                            type="number"
+                            placeholder="123"
+                          />
+                        </div>
+                        <div class="help-block">
+                          Необходимо заполнить «Сумма».
+                        </div>
+                      </label>
+                      <label class="text-copy-descr" for="new_password">
+                        Куда вывести
+                        <select
+                          class="select bg-background-main"
+                          name="UserOutput[currency_id]"
+                          id=""
+                        >
+                          <option value="">PerfectMoney USD</option>
+                          <option value="">Яндекс Деньги RUB</option>
+                        </select>
+                      </label>
+                      <label class="text-copy-descr" for="account">
+                        Ваш счёт
+                        <div class="input_block shadow_btn_white_active">
+                          <input
+                            class="bg-background-main "
+                            id="account"
+                            type="number"
+                            placeholder="2235215123512"
+                            name="UserOutput[target]"
+                          />
+                        </div>
+                        <div class="help-block">
+                          Необходимо заполнить «Сумма».
+                        </div>
+                      </label>
+                      <button
+                        type="submit"
+                        class="green_btn text-copy-btngreen form_btn"
+                      >
+                        Сохранить
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer-main class="bg-background-main"></footer-main>
+        </div>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
+</html>

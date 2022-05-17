@@ -1,0 +1,173 @@
+.info
+    margin-bottom: 60px
+    position: relative
+    z-index: 1
+    overflow: hidden
+.info .info_box
+    display: flex
+    padding: 10px 0
+.info_block
+    transition: 500ms ease
+    flex-grow: 1
+    min-width: 190px
+    max-width: 190px
+    &:nth-child(2)
+        margin: 0 15px
+    & .title_heading
+        cursor: pointer
+        transition: 0.3s ease
+        &:hover
+            transition: 0.3s ease
+            color: #363C46
+    & .line
+        display: none
+    // & .green_btn
+    //     display: none
+    & .btn_info
+        transition: 100ms
+        position: absolute
+        z-index: -1
+        opacity: 0
+        transition: 0ms
+        text-decoration: none
+    & .info_items
+        padding: 10px 15px
+        border-radius: 8px
+    & .reviews_item, .news_item, .blog_item
+        text-decoration: none
+        box-shadow: unset
+        background: transparent
+        border-bottom: 1px solid #C7D0D8
+        padding: 7px 0
+        margin: 0 0px 0 0px
+        border-radius: 0
+        &:last-child
+            border-bottom: 0px
+    & .item_box
+        margin-bottom: 0px
+    & .reviews_title, .news_title, .blog_title
+        font-size: 1.2rem
+        font-weight: 500
+        font-size: 1.1rem
+        margin-bottom: 5px
+        display: -webkit-box
+        overflow: hidden
+        -webkit-line-clamp: 1
+        -webkit-box-orient: vertical
+        // transition: 0.3s ease
+        cursor: pointer
+        &:hover
+            transition: 0.3s ease
+            color: #00B047
+    & .reviews_date, .news_date, .blog_date, .views, .blog_img
+        display: none
+    & .reviews_descr, .news_descr, .blog_descr
+        font-size: 1.1rem
+        display: -webkit-box
+        overflow: hidden
+        -webkit-line-clamp: 4
+        -webkit-box-orient: vertical
+
+.reviewsActive,
+.newsActive,
+.blogActive
+    margin: 0
+    transition: 500ms ease
+    max-width: 760px
+    width: 100%
+    position: relative
+    & .title_heading
+        color: #363C46
+    & .info_items
+        padding: 0
+        margin-right: 0px
+        border-radius: unset
+        display: flex
+        flex-wrap: wrap
+        justify-content: space-between
+        background: transparent
+        & .btn_info
+            transition: 1s
+            opacity: 1
+            bottom: 0
+            z-index: 1
+            text-align: center
+            font-size: 1.4rem
+            padding: 8px 0 8px
+
+    & .reviews_item, .news_item, .blog_item
+        text-decoration: none
+        width: calc(50% - 10px)
+        max-width: 390px
+        margin: 0 0px 20px 0
+        height: 170px
+        padding: 20px
+        border-radius: 10px
+        box-shadow: 4px 2px 8px rgba(136, 165, 191, 0.54), -4px -2px 8px #FFFFFF
+        background: #E8EDF1
+        border-bottom: 0px
+        display: flex
+        flex-direction: column
+        justify-content: center
+    & .reviews_title, .news_title, .blog_title
+        font-size: 2.4rem
+        font-weight: 500
+    & .reviews_date,
+    & .reviews_descr, .news_descr, .blog_descr
+        font-size: 1.8rem
+    & .reviews_descr, .news_descr, .blog_descr
+        display: -webkit-box
+        overflow: hidden
+        -webkit-line-clamp: 3
+        -webkit-box-orient: vertical
+    & .reviews_date,
+    & .green_btn
+        display: block
+    & .reviews_items, .news_list, .blog_items
+        width: 100%
+        justify-content: space-between
+@media screen and (max-width: 1200px)
+    .info_block .reviews_descr, .info_block .news_descr, .info_block .blog_descr
+        display: -webkit-box
+        overflow: hidden
+        -webkit-line-clamp: 3
+    .reviewsActive,
+    .newsActive,
+    .blogActive
+        & .reviews_item, .news_item, .blog_item
+            margin: 0 0px 16px 0
+            padding: 15px
+            height: auto
+        & .reviews_title, .news_title, .blog_title
+            font-size: 2rem
+        & .reviews_date,
+        & .reviews_descr, .news_descr, .blog_descr
+            font-size: 1.6rem
+    .info .green_btn
+        padding: 18px 0 14px
+        font-size: 1.5rem
+@media screen and (max-width: 992px)
+    .info_block
+        transition: 500ms ease
+        flex-grow: 1
+        min-width: 140px
+        & .reviews_descr, .news_descr, .blog_descr
+            display: -webkit-box
+            overflow: hidden
+            -webkit-line-clamp: 2
+        & .info_items
+            padding: 7px 9px
+    .reviewsActive,
+    .newsActive,
+    .blogActive
+        & .info_items
+            padding: 0
+        & .reviews_item, .news_item, .blog_item
+            margin: 0 0px 16px 0
+            padding: 15px
+        & .reviews_title, .news_title, .blog_title
+            font-size: 1.8rem
+            margin-bottom: 3px
+        & .reviews_date,
+        & .reviews_descr, .news_descr, .blog_descr
+            font-size: 1.4rem

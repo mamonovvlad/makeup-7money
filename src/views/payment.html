@@ -7,174 +7,531 @@
   <title>Payment</title>
   <meta name="csrf-param" content="_csrf" />
   <meta name="csrf-token" content="He8Y" />
+  <link
+    rel="stylesheet"
+    href="https://api.chipware.co.za/css/flipclock.css"
+  />
 </head>
 
 <body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-header @call-back-theme="definitionTheme" class="background"></the-header>
-    <main class="payment">
+<section id="app" v-cloak :class="theme">
+  <preloader></preloader>
+  <vuescroll>
+    <div class="main_layout text-copy-main bg-background-main">
+      <header-main
+        :openwindiwentrance="openwindiwentrance"
+        :openwindiwpersonalarea="openwindiwpersonalarea"
+        @darkchanged="themedark"
+        @sunchanged="updatetheme"
+      >
+      </header-main>
+      <div class="payment grow bg-background-main">
+        <div class="fon bg-background-descr"></div>
+        <div class="container">
+          <div class="close">
+            <div
+              class="close_btn shadow_btn_white bg-background-descr"
+              @click="showTimer"
+              :class="{activeBurger}"
+            >
+              <svg
+                class="ham hamRotate ham1"
+                viewBox="0 0 100 100"
+                width="50"
+                onclick="this.classList.toggle('active')"
+              >
+                <path
+                  class="line top"
+                  d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40"
+                />
+                <path class="line middle" d="m 30,50 h 40" />
+                <path
+                  class="line bottom"
+                  d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40"
+                />
+              </svg>
+            </div>
 
-      <div class="container">
-        <div class="stylish-wrapper">
-          <the-payment-counter data-seconds="1800">
-            <template #check-status>
-              <the-button tag="a" href="/">
-                <template #name>
+            <!-- <button @click="showTimer" :class="{activeBurger}" class="bg-background-descr">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button> -->
+          </div>
+          <div class="payment_box shadow_btn_white" >
+            <div
+              :class="{activeTimer}"
+              v-cloak
+              class="payment_block_time bg-background-descr scroll main_scroll" data-seconds="1800">
+              <vuescroll>
+                <button class="green_btn text-copy-btngreen payment_btn">
                   Проверить статус операции в новом окне
-                </template>
-              </the-button>
-            </template>
-            <template #information>
-              <div class="line"></div>
-              <div class="info">
-                <h4>
-                  Данные заявки
-                </h4>
-                <div class="info__wrapper">
-                  <span>Номер заявки:</span>
-                  <strong>2423812357</strong>
-                </div>
-                <div class="info__wrapper">
-                  <span>Создана:</span>
-                  <strong>16.03.2022 17:01:35</strong>
-                </div>
-                <div class="info__wrapper">
-                  <span>По курсу:</span>
-                  <strong>1.00000 = 62.2928</strong>
-                </div>
-                <div class="info__wrapper">
-                  <span>E-mail:</span>
-                  <strong>tolik.wwwww@ukr.net</strong>
-                </div>
-                <div class="info__wrapper">
-                  <span>Телефон:</span>
-                  <strong>+380687250152</strong>
-                </div>
-              </div>
-              <div class="line"></div>
-              <div class="info">
-                <h4>
-                  Отдаю <span class="PMUSD"></span>
-                </h4>
-                <div class="info__wrapper">
-                  <span>PerfectMoney USD:</span>
-                  <strong>80:21 USD</strong>
-                </div>
-                <div class="info__wrapper">
-                  <span>С кошелька:</span>
-                  <strong>234123581235</strong>
-                </div>
-              </div>
-              <div class="line"></div>
-              <div class="info">
-                <h4>
-                  Получаю <span class="YAMRUB"></span>
-                </h4>
-                <div class="info__wrapper">
-                  <span>Яндекс Деньги RUB:</span>
-                  <strong>5000.24 RUB</strong>
-                </div>
-                <div class="info__wrapper">
-                  <span>На кошелёк:</span>
-                  <strong>41124012409</strong>
-                </div>
-              </div>
-            </template>
-            <template #cancel-operation>
-              <the-button class="close button--transparent" tag="button">
-                <template #name>
-                  Отменить операцию
-                </template>
-              </the-button>
-            </template>
-          </the-payment-counter>
-          <div class="payment__details">
-            <the-steps :payment="true"></the-steps>
-            <h4>
-              Порядок действий
-            </h4>
-            <p>
-              После нажатия на кнопку «Перейти к оплате» Вас перенаправит на мерчант платежной системы, для оплаты
-              заявки.
-              После успешной оплаты Вы сможете посмотреть статус платежа по вашей заявке.
-            </p>
-            <p class="attention">
-              Практически всегда зачисление средств со стороны
-              PerfectMoney происходит сразу, кроме случаев
-              дополнительной проверки со стороны их Службы Безопасности
-              (hold). Как только средства будут нами получены, заявка
-              будет выполнена максимально быстро.
-            </p>
-            <the-time-processing>
-              Время обработки заявки занимает от 5 до 30-ти минут
-            </the-time-processing>
-            <div class="buttons">
-              <the-button tag="button">
-                <template #name>
-                  Перейти к оплате
-                </template>
-              </the-button>
-            </div>
-
-            <div class="application-status__info">
-              <div class="block">
-                <div class="operation-info">
-                  <h2 class="text--green">Завершена</h2>
-                  <span>Номер операции: <strong>AP0059aee775</strong><the-copy-text
-                    copy-text="AP0059aee775"></the-copy-text></span>
-                  <span>Дата заявки: <strong>18 янв. 2021 г., 17:27:58</strong></span>
-                  <span>Статус операции: <strong>Ваша Заявка оплачена</strong></span>
-                </div>
-                <div class="operations">
-                  <div class="items">
-                    <span class="name">
-                      <span class="icon BTC"></span>
-                      Отдаю:
-                    </span>
-                    <strong>
-                      0.0284927 BTC
-                    </strong>
-                  </div>
-                  <div class="items">
-                    <span class="name">
-                      <span class="icon BTC"></span>
-                      Получаю:
-                    </span>
-                    <strong>
-                      0.0284927 BTC
-                    </strong>
+                </button>
+                <div class="time_box">
+                  <p class="text-copy-descr gamesDaymariusv">
+                    Осталось времени на оплату
+                  </p>
+                  <div class="payment_timer">
+                    <div class="clock"></div>
                   </div>
                 </div>
-              </div>
+                <div class="line"></div>
+                <div class="payment_data">
+                  <p
+                    class="gamesDaymariusv payment_data_title text-copy-descr"
+                  >
+                    Данные заявки
+                  </p>
+                  <div class="data_box">
+                    <div class="data_block">
+                      <div class="title_data">Номер заявки:</div>
+                      <div class="title_descr text-copy-descr">
+                        2423812357
+                      </div>
+                    </div>
+
+                    <div class="data_block">
+                      <div class="title_data">Создана:</div>
+                      <div class="title_descr text-copy-descr">
+                        16.03.2022 17:01:35
+                      </div>
+                    </div>
+
+                    <div class="data_block">
+                      <div class="title_data">По курсу:</div>
+                      <div class="title_descr text-copy-descr">
+                        1.00000 = 62.2928
+                      </div>
+                    </div>
+
+                    <div class="data_block">
+                      <div class="title_data">E-mail:</div>
+                      <div class="title_descr text-copy-descr">
+                        tolik.wwwww@ukr.net
+                      </div>
+                    </div>
+
+                    <div class="data_block">
+                      <div class="title_data">Телефон:</div>
+                      <div class="title_descr text-copy-descr">
+                        +380687250152
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="payment_data">
+                  <p
+                    class="gamesDaymariusv payment_data_title  text-copy-descr"
+                  >
+                    Отдаю <span class="PMUSD image_payment "></span>
+                  </p>
+                  <div class="data_box">
+                    <div class="data_block">
+                      <div class="title_data">PerfectMoney USD:</div>
+                      <div class="title_descr text-copy-descr">
+                        80:21 USD
+                      </div>
+                    </div>
+
+                    <div class="data_block">
+                      <div class="title_data">С кошелька:</div>
+                      <div class="title_descr text-copy-descr">
+                        234123581235
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="payment_data">
+                  <p
+                    class="gamesDaymariusv payment_data_title text-copy-descr"
+                  >
+                    Получаю <span class="image_payment YAMRUB"></span>
+                  </p>
+                  <div class="data_box">
+                    <div class="data_block">
+                      <div class="title_data">Яндекс Деньги RUB:</div>
+                      <div class="title_descr text-copy-descr">
+                        5000.24 RUB
+                      </div>
+                    </div>
+
+                    <div class="data_block">
+                      <div class="title_data">На кошелёк:</div>
+                      <div class="title_descr text-copy-descr">
+                        41124012409
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="cancel_btn">Отменить операцию</button>
+              </vuescroll>
             </div>
 
-            <div class="line"></div>
-            <div class="operation-info">
-              <span>Выплата поступила в размере: <strong>0.0284927 BTC</strong></span>
-              <span>Подтверждения в сети Bitcoin: <strong>1 из 1 требуемого</strong></span>
-              <span>Ваш TXID: <a href="/" class="line-break"><strong>f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74</strong></a>
-                <the-copy-text
-                  copy-text="f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74"></the-copy-text></span>
-              <span>Обычно выплата производится в течении <strong>5-30 минут</strong> после 1-го подтверждения</span>
+            <div class=" payment_block_info bg-background-main bg-background-main dn">
+              <div class="mobile__time_box time_box">
+                <p class="text-copy-descr gamesDaymariusv">
+                  Осталось времени на оплату
+                </p>
+                <div class="payment_timer">
+                  <div class="countdown-timer"></div>
+                </div>
+              </div>
+              <div class="scoreboard bg-background-descr">
+                <div class="scoreboard_box">
+                  <div class="bg-background-descr">
+                    <svg
+                      class="datainput"
+                      width="30"
+                      height="31"
+                      viewBox="0 0 30 31"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M15.8393 10.6729H4.45709C4.21439 10.6729 4.01758 10.8696 4.01758 11.1124C4.01758 11.3551 4.21434 11.5519 4.45709 11.5519H15.8393C16.0821 11.5519 16.2788 11.3551 16.2788 11.1124C16.2788 10.8696 16.0821 10.6729 15.8393 10.6729Z"
+                        fill="#7F848C"
+                      />
+
+                      <path
+                        d="M15.8393 13.5562H4.45709C4.21439 13.5562 4.01758 13.7529 4.01758 13.9957C4.01758 14.2384 4.21434 14.4352 4.45709 14.4352H15.8393C16.0821 14.4352 16.2788 14.2384 16.2788 13.9957C16.2788 13.7529 16.0821 13.5562 15.8393 13.5562Z"
+                        fill="#7F848C"
+                      />
+
+                      <path
+                        d="M15.8393 16.4385H4.45709C4.21439 16.4385 4.01758 16.6352 4.01758 16.878C4.01758 17.1207 4.21434 17.3175 4.45709 17.3175H15.8393C16.0821 17.3175 16.2788 17.1207 16.2788 16.878C16.2788 16.6352 16.0821 16.4385 15.8393 16.4385Z"
+                        fill="#7F848C"
+                      />
+
+                      <path
+                        d="M29.1742 5.48196C29.7915 4.36827 29.4114 2.9544 28.3079 2.30448L27.8526 2.03641C26.731 1.376 25.2813 1.75106 24.6209 2.8726L20.2984 10.2131V8.04913C20.2984 7.93745 20.2549 7.82395 20.1702 7.73887C20.17 7.7387 20.1699 7.73846 20.1697 7.73829C20.0439 7.61248 14.4929 2.06155 14.3671 1.93575C14.2878 1.85635 14.1739 1.80702 14.0563 1.80702H11.1792C10.9365 1.80702 10.7397 2.00377 10.7397 2.24653C10.7397 2.48928 10.9365 2.68604 11.1792 2.68604H13.6168V7.37336C13.6168 7.98831 14.1172 8.48858 14.7321 8.48858H19.4194V13.1546L15.7879 19.3214H4.45799C4.21529 19.3214 4.01848 19.5182 4.01848 19.7609C4.01848 20.0036 4.21523 20.2004 4.45799 20.2004H15.2701C14.9356 20.7684 14.7397 21.1012 14.3983 21.681C14.2751 21.8901 14.2408 22.1348 14.3016 22.3697C14.3375 22.5087 14.4049 22.6339 14.4966 22.7389L13.6373 24.1982C13.3092 24.7554 13.4956 25.4756 14.0527 25.8037L14.2165 25.9002C14.773 26.2278 15.4941 26.0417 15.8221 25.4847L16.6791 24.0295C16.8239 24.0625 16.9654 24.0581 17.1005 24.0231C17.3314 23.9634 17.5253 23.8172 17.6464 23.6116L19.4193 20.601V28.1746C19.4193 28.3026 19.3111 28.4107 19.1831 28.4107H1.11521C0.987188 28.4107 0.879023 28.3026 0.879023 28.1746V3.30625C0.879023 2.96424 1.15723 2.68604 1.49924 2.68604H9.1282C9.3709 2.68604 9.56771 2.48928 9.56771 2.24653C9.56771 2.00377 9.37096 1.80702 9.1282 1.80702H1.49924C0.672539 1.80707 0 2.47961 0 3.30625V28.1746C0 28.7895 0.500332 29.2898 1.11521 29.2898H19.183C19.798 29.2898 20.2983 28.7895 20.2983 28.1746V19.1085L21.2285 17.5288C21.3517 17.3197 21.282 17.0502 21.0728 16.9271C20.8638 16.804 20.5944 16.8736 20.4711 17.0828C20.0715 17.7613 17.3191 22.4352 16.9205 23.112C16.8988 23.1487 16.8519 23.1603 16.8158 23.139C16.7687 23.1112 15.2423 22.2123 15.2218 22.2002C15.1771 22.1739 15.1621 22.116 15.1885 22.0713C15.3623 21.776 20.5669 12.9379 20.8506 12.4562L22.5918 13.4815L21.5132 15.3132C21.39 15.5223 21.4597 15.7918 21.6688 15.9149C21.878 16.0381 22.1474 15.9684 22.2706 15.7592L23.359 13.911C23.4555 13.9439 23.5553 13.9598 23.6544 13.9598C23.9707 13.9598 24.2793 13.7972 24.4512 13.5054L28.712 6.27004C29.1792 6.82493 29.262 7.63223 28.8805 8.27998L25.9491 13.2579C25.8259 13.4671 25.8956 13.7365 26.1047 13.8597C26.3138 13.9827 26.5832 13.9132 26.7065 13.704L29.638 8.72606C30.2643 7.66223 30.0579 6.31112 29.1742 5.48196ZM14.7321 7.60961C14.604 7.60961 14.4958 7.50145 14.4958 7.37342V3.3076L18.7978 7.60955H14.7321V7.60961ZM15.2302 23.2256L15.9002 23.6201L15.0647 25.0388C14.9839 25.1759 14.7998 25.2236 14.6625 25.1429L14.4987 25.0464C14.3616 24.9656 14.3139 24.7815 14.3947 24.6442L15.2302 23.2256ZM28.3866 5.0902L23.6936 13.0595C23.6813 13.0803 23.6544 13.0873 23.6335 13.0751L20.6899 11.3416C20.6871 11.34 20.6788 11.3351 20.6756 11.3226C20.6723 11.3102 20.6772 11.3018 20.6789 11.299L25.3783 3.31862C25.7929 2.61455 26.7029 2.37942 27.4065 2.79379L27.8618 3.06192C28.5657 3.47635 28.8011 4.38631 28.3866 5.0902Z"
+                        fill="#7F848C"
+                      />
+
+                      <path
+                        d="M12.6981 24.1012L11.6217 23.272C11.3865 23.0908 11.0518 23.0992 10.8262 23.2919L10.1613 23.8594L8.73996 22.5223C8.47031 22.2687 8.05465 22.2587 7.77305 22.4989L5.87883 24.1151C5.6942 24.2726 5.67223 24.55 5.82979 24.7347C5.98735 24.9194 6.26467 24.9412 6.44936 24.7837L8.2384 23.2573L9.646 24.5814C9.92344 24.8425 10.3512 24.8528 10.641 24.6056L11.2442 24.0907L12.1617 24.7975C12.3541 24.9457 12.6299 24.9097 12.7781 24.7176C12.9261 24.5253 12.8903 24.2493 12.6981 24.1012Z"
+                        fill="#7F848C"
+                      />
+                    </svg>
+                    <p class="text-copy-main">Ввод данных</p>
+                  </div>
+                  <div class="bg-background-descr scoreboard-active">
+                    <svg
+                      class="payment"
+                      width="31"
+                      height="31"
+                      viewBox="0 0 31 31"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M25.4545 5.797V3C25.4528 1.62 24.3142 0.50175 22.9091 0.5H2.54545C1.14036 0.50175 0.00178182 1.62 0 3V14C0.00394546 15.2769 0.989418 16.3448 2.28276 16.4743L4.19644 21.3531C4.70196 22.6414 6.17502 23.2831 7.48682 22.7873L19.4371 18.266C18.6113 20.3844 18.8463 22.7608 20.0712 24.6836L20.3636 25.143V30C20.3636 30.2763 20.5915 30.5 20.8727 30.5H30.0364C30.3176 30.5 30.5455 30.2763 30.5455 30V13.4956C30.5406 11.7665 29.8397 10.1098 28.595 8.88688L25.4545 5.797ZM25.4545 8.78725L26.9996 12.7265C27.3024 13.4998 26.91 14.3674 26.1229 14.665L25.2397 15C25.3807 14.6848 25.4538 14.344 25.4545 14V8.78725ZM1.01818 14V3C1.01818 2.17175 1.70215 1.5 2.54545 1.5H22.9091C23.7524 1.5 24.4364 2.17175 24.4364 3V6.178H24.4319L24.4364 6.18938V14C24.4324 14.0873 24.4208 14.1738 24.4017 14.259L19.7385 9.6785C18.6903 8.67275 17.0192 8.665 15.9615 9.66025C14.9036 10.6561 14.8401 12.2961 15.8185 13.3674L17.8065 15.5H2.54545C1.70215 15.5 1.01818 14.8283 1.01818 14ZM7.54015 16.5L3.92 17.8689L3.38444 16.5H7.54015ZM7.12065 21.8539C6.3336 22.1519 5.44969 21.7665 5.1464 20.9935L4.28756 18.8L10.3646 16.5V16.497H18.7396L19.4013 17.2055L7.12065 21.8539ZM29.5273 29.5H21.3818V25.5H29.5273V29.5ZM29.5273 24.5H21.1553L20.9345 24.1535C19.6932 22.2053 19.6438 19.7445 20.8055 17.75C20.9155 17.5613 20.8885 17.3243 20.7388 17.164L16.567 12.694C15.9449 12.0253 15.9799 10.9914 16.6459 10.365C17.3121 9.7385 18.3653 9.74875 19.0185 10.3878L27.131 18.3535L27.8508 17.6465L25.9672 15.7965L26.4895 15.5965C27.8002 15.0999 28.4533 13.6544 27.9491 12.3664L26.2259 7.97188L27.8751 9.595C28.929 10.6298 29.5232 12.032 29.5273 13.4956V24.5Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M5.80438 7.5C6.53544 7.5 7.12802 6.918 7.12802 6.2V3.8C7.12802 3.082 6.53544 2.5 5.80438 2.5H3.36075C2.62969 2.5 2.03711 3.082 2.03711 3.8V6.2C2.03711 6.918 2.62969 7.5 3.36075 7.5H5.80438ZM3.05529 6.2V5.5H4.07347V4.5H3.05529V3.8C3.05529 3.63438 3.19211 3.5 3.36075 3.5H5.80438C5.97302 3.5 6.10984 3.63438 6.10984 3.8V4.5H5.09166V5.5H6.10984V6.2C6.10984 6.36563 5.97302 6.5 5.80438 6.5H3.36075C3.19211 6.5 3.05529 6.36563 3.05529 6.2Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M2.54492 9H4.58129V10H2.54492V9Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M2.54492 12H4.58129V13H2.54492V12Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M11.709 12H13.7453V13H11.709V12Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M5.59961 9H7.63597V10H5.59961V9Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M8.6543 9H10.6907V10H8.6543V9Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M11.709 9H13.7453V10H11.709V9Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M21.3828 3H22.401V4.5H21.3828V3Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M19.3457 3H20.3639V4.5H19.3457V3Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M17.3086 3H18.3268V4.5H17.3086V3Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M15.2734 3H16.2916V4.5H15.2734V3Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M22.4004 26.5H23.4186V27.5H22.4004V26.5Z"
+                        fill="#7F848C"
+                      />
+                    </svg>
+                    <p class="text-copy-main">Оплата</p>
+                  </div>
+                  <div class="bg-background-descr">
+                    <svg
+                      class="completion"
+                      width="30"
+                      height="31"
+                      viewBox="0 0 30 31"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M14.9994 2.84473C14.6749 2.84473 14.4141 3.10605 14.4141 3.43008C14.4141 3.73166 14.6409 3.98262 14.9408 4.01238C15.288 4.04683 15.5848 3.77643 15.5848 3.43008C15.5848 3.10559 15.3234 2.84473 14.9994 2.84473Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M26.7188 4.01562C25.1033 4.01562 23.7891 2.70137 23.7891 1.08594C23.7891 0.762383 23.5267 0.5 23.2031 0.5H6.79688C6.47332 0.5 6.21094 0.762383 6.21094 1.08594C6.21094 2.70137 4.89668 4.01562 3.28125 4.01562C2.9577 4.01562 2.69531 4.27801 2.69531 4.60156V14.1635C2.69531 21.6153 7.55244 28.2925 14.8317 30.4753C14.8866 30.4917 14.9433 30.5 15 30.5C15.0567 30.5 15.1135 30.4917 15.1683 30.4753C22.2899 28.339 27.3047 21.7783 27.3047 14.1635V4.60156C27.3047 4.27801 27.0423 4.01562 26.7188 4.01562ZM26.1328 14.1635C26.1328 21.1624 21.6667 27.2236 15 29.3013C8.38641 27.2401 3.86719 21.1241 3.86719 14.1635V5.14578C5.6608 4.88809 7.0834 3.46549 7.34109 1.67188H22.6589C22.9166 3.46549 24.3392 4.88809 26.1328 5.14578V14.1635Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M24.6101 5.91934C23.3882 5.3842 22.4205 4.41652 21.8854 3.19461C21.792 2.98145 21.5814 2.84375 21.3486 2.84375H17.3426C17.019 2.84375 16.7566 3.10613 16.7566 3.42969C16.7566 3.75324 17.019 4.01563 17.3426 4.01563H20.9781C21.5972 5.2274 22.5773 6.20744 23.7891 6.82654V14.1635C23.7891 19.8976 20.3467 24.8453 15 26.8258C9.65326 24.8452 6.21094 19.8976 6.21094 14.1635V6.82654C7.42271 6.20744 8.40275 5.2274 9.02186 4.01563H12.6574C12.981 4.01563 13.2434 3.75324 13.2434 3.42969C13.2434 3.10613 12.981 2.84375 12.6574 2.84375H8.65137C8.41863 2.84375 8.20805 2.9815 8.11465 3.19461C7.57951 4.41652 6.61184 5.3842 5.38992 5.91934C5.17682 6.01273 5.03906 6.22338 5.03906 6.45605V14.1635C5.03906 20.4455 8.92447 25.9205 14.8045 28.0013C14.8678 28.0237 14.9338 28.0349 15 28.0349C15.0662 28.0349 15.1322 28.0237 15.1955 28.0013C21.0706 25.9222 24.9609 20.4506 24.9609 14.1635V6.45605C24.9609 6.22332 24.8232 6.01273 24.6101 5.91934Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M15 9.05469C12.0922 9.05469 9.72656 11.4204 9.72656 14.3281C9.72656 17.2359 12.0922 19.6016 15 19.6016C17.9078 19.6016 20.2734 17.2359 20.2734 14.3281C20.2734 11.4204 17.9078 9.05469 15 9.05469ZM15 18.4297C12.7384 18.4297 10.8984 16.5897 10.8984 14.3281C10.8984 12.0665 12.7384 10.2266 15 10.2266C17.2616 10.2266 19.1016 12.0665 19.1016 14.3281C19.1016 16.5897 17.2616 18.4297 15 18.4297Z"
+                        fill="#7F848C"
+                      />
+                      <path
+                        d="M17.7581 12.7419C17.5292 12.5131 17.1583 12.5131 16.9294 12.7419L14.4141 15.2572L13.6565 14.4997C13.4277 14.271 13.0568 14.271 12.8279 14.4997C12.599 14.7286 12.599 15.0996 12.8279 15.3284L13.9997 16.5003C14.1142 16.6146 14.2641 16.6719 14.4141 16.6719C14.5641 16.6719 14.714 16.6146 14.8284 16.5003L17.7581 13.5706C17.9869 13.3418 17.9869 12.9707 17.7581 12.7419Z"
+                        fill="#7F848C"
+                      />
+                    </svg>
+                    <p class="text-copy-main">Завершение</p>
+                  </div>
+                </div>
+              </div>
+              <div class="info_box text-copy-descr">
+                <p class="info_title gamesDaymariusv text-copy-descr">
+                  Порядок действий
+                </p>
+                <p class="info_descr">
+                  После нажатия на кнопку
+                  <span>“Перейти к оплате”</span> Вас перенаправит на
+                  мерчант платежной системы, для оплаты заявки.
+                </p>
+                <p class="info_descr">
+                  После успешной оплаты Вы сможете посмотреть статус платежа
+                  по вашей заявке Оплату с нашей стороны мы производим в
+                  ручном режиме, время оплаты от 3 до 30 минут.
+                </p>
+                <p class="text_border">
+                  Практически всегда зачисление средств со стороны
+                  PerfectMoney происходит сразу, кроме случаев
+                  дополнительной проверки со стороны их Службы Безопасности
+                  (hold). Как только средства будут нами получены, заявка
+                  будет выполнена максимально быстро.
+                </p>
+                <form class="payment_form" action>
+                  <input
+                    type="hidden"
+                    :value="csrfToken"
+                    :name="csrfParam"
+                  />
+                  <label for
+                  >Введите EXMO code RUB для осуществления оплаты Вашей
+                    заявки</label
+                  >
+                  <div class="form_box">
+                    <input
+                      class="bg-background-main shadow_btn_white_active ex_code"
+                      type="text"
+                      placeholder="EX-code"
+                    />
+                    <button
+                      class="green_btn text-copy-btngreen payment_btn"
+                    >
+                      Ввести код
+                    </button>
+                  </div>
+                  <div
+                    class="processing_time bg-background-main shadow_btn_white"
+                  >
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/payment/clock.svg"
+                      alt
+                    />
+                    <div class="processing_time_box">
+                      <p class="processing_time_title">
+                        Время обработки заявки занимает от 5 до 30-ти минут
+                      </p>
+                    </div>
+                  </div>
+                  <div class="box_btn">
+                    <button class="green_btn text-copy-btngreen">
+                      Перейти к оплате
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-            <the-leave-feedback :second-option="true"></the-leave-feedback>
+            <div class=" completed bg-background-main ">
+              <div class="completed_info">
+                <div class="completed_info_text">
+                  <p
+                    class="completed_info_title gamesDaymariusv text-copy-green"
+                  >
+                    Ваша Заявка Выполнена
+                  </p>
+                  <div class="completed_info_request">
+                    <p>
+                      Статус операции:
+                      <span class="text-copy-descr"
+                      >Ваша Заявка оплачена</span
+                      >
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="completed_info_currency shadow_btn_white_active"
+                >
+                  <ul>
+                    <li>
+                      <div class="completed_currency_name">
+                        <img
+                          class="lazyload"
+                          data-src="/source/image/home/currency/24UAH.svg"
+                          alt
+                        />
+                        <p>Отдаю:</p>
+                      </div>
+                      <div class="completed_currency_text text-copy-descr">
+                        0.015 BTC
+                      </div>
+                    </li>
+                    <li>
+                      <div class="completed_currency_name">
+                        <img
+                          class="lazyload"
+                          data-src="/source/image/home/currency/exmo.svg"
+                          alt
+                        />
+                        <p>Получаю:</p>
+                      </div>
+                      <div class="completed_currency_text text-copy-descr">
+                        9 124537,29 ₽
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="exmo_code">
+                <button class="exmo_code_button">
+                  Показать EXMO code:
+                </button>
+                <div class="exmo_code_block ">
+                  <p class=" text-copy-main">Ваш EXMO code:</p>
+                  <div class="exmo_code_box">
+                    <p class="text-copy-descr" id="text_exmo_code">
+                      EX-CODE_5368199_USDe0d3e7aafd9a6ca832c0bd6808b62e4129fcf489
+                    </p>
+                    <button
+                      class="icon-vector text-copy-green"
+                      @click="copyToClipboard('text_exmo_code')"
+                    ></button>
+                  </div>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="completed_text">
+                <p>
+                  Выплата поступила в размере:
+                  <span class="text-copy-descr">0.015 BTC</span>
+                </p>
+                <p>
+                  Подтверждения в сети Bitcoin:
+                  <span class="text-copy-descr">1 из 1 требуемого</span>
+                </p>
+                <p>
+                  Ваш TXID:
+                  <span class="text-copy-descr" id="TXID"
+                  >sdfasdhfashdgalskjdhgaslkjghaslk</span
+                  >
+                  <button
+                    @click="copyToClipboard('TXID')"
+                    class="icon-vector text-copy-green"
+                  ></button>
+                </p>
+                <p class="text-copy-descr">
+                  Обычно выплата производится в течении
+                  <span>5-30 минут</span> после 1-го подтверждения
+                </p>
+              </div>
+              <div
+                class="completed_thanks bg-background-main shadow_btn_white_active"
+              >
+                <div class="thanks_text">
+                  <p>
+                    <span class="text-copy-descr">Благодарим</span> за
+                    использование нашего сервиса! Уважаемый клиент, если Вам
+                    понравилось обслуживание нашего сервиса, Вы можете
+                    <span class="text-copy-descr"
+                    >оставить отзыв здесь:</span
+                    >
+                  </p>
+                  <img
+                    class="lazyload"
+                    data-src="/source/image/payment/thanks.svg"
+                    alt
+                  />
+                </div>
+                <div class="box_btn thanks_btn">
+                  <button class="green_btn text-copy-btngreen">
+                    Оставить отзыв на BESTCHANGE
+                  </button>
+                  <button class="cancel_btn">Либо на нашем сайте</button>
+                  <button class="btn_create green_btn text-copy-btngreen">
+                    Создать еще одну заявку
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
+      <footer-main></footer-main>
+    </div>
+  </vuescroll>
+</section>
 <input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="ua" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const counter = document.querySelector(".counter");
-    let time = counter.getAttribute("data-seconds");
-    let clock = $(".clock").FlipClock({
+<input type="hidden" id="language" value="en" />
+<input type="hidden" value="" name="copyInfo" />
+<script
+  type="text/javascript"
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"
+></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var clock;
+    var countdownTimer;
+    let time = $(".payment_block_time").attr("data-seconds");
+    clock = $(".clock").FlipClock({
+      clockFace: "DailyCounter",
+      autoStart: false,
+      callbacks: {
+        stop: function() {
+        },
+      },
+    });
+    countdownTimer = $(".countdown-timer").FlipClock({
       clockFace: "DailyCounter",
       autoStart: false,
       callbacks: {
@@ -185,6 +542,9 @@
     clock.setTime(+time); //Устанавливаем нужное время в секундах
     clock.setCountdown(true); //Устанавливаем отсчет времени назад
     clock.start(); //Запускаем отсчет
+    countdownTimer.setTime(+time); //Устанавливаем нужное время в секундах
+    countdownTimer.setCountdown(true); //Устанавливаем отсчет времени назад
+    countdownTimer.start(); //Запускаем отсчет
   });
 </script>
 </body>

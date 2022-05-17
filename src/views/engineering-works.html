@@ -1,34 +1,47 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Engineering Works</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Engineering Works</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <main class="engineering-works">
-      <div class="container">
-        <div class="wrapper">
-          <the-title tag="h1" class="heading">Ведутся технические работы</the-title>
-          <p>
-            Мы приносим прощение за неудобства, мы скоро вернёмся) Если
-            у вас есть вопросы, вы можете задать им нам на почту
-            hello@7money.co
-          </p>
+  <body>
+    <section id="app">
+      <vuescroll>
+        <div class="cabinet_layout text-copy-main ">
+          <div class="engineering grow bg-background-main">
+            <div class="container">
+              <div class="engineering_box">
+                <div class="engineering_text">
+                  <p class="engineering_title gamesDaymariusv text-copy-descr">
+                    Ведутся техничекие работы
+                  </p>
+                  <p class="engineering_descr">
+                    Мы приносим прощение за неудобства, мы скоро вернёмся) Если
+                    у вас есть вопросы, вы можете задать им нам на почту
+                    hello@7money.co
+                  </p>
+                  <div class="engineering_img">
+                    <figure>
+                      <img
+                        class="lazyload"
+                        data-src="/source/image/EngineeringWorks/EngineeringWorks.svg"
+                        alt
+                      />
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      <icon-engineering-works :theme="theme"></icon-engineering-works>
-    </main>
-  </div>
-</div>
-
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>
