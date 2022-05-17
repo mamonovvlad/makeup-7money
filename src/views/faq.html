@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>FAQ</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme">
+    <the-public-information>
+      Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$, нужно
+      всего лишь совершить обмен и оставить отзыв
+      <a href="/">подробнее тут</a>
+    </the-public-information>
+    <the-header @call-back-theme="definitionTheme"></the-header>
+    <main class="answers">
+      <the-title-big>
+        <template #title>Вопрос-Ответ</template>
+      </the-title-big>
+      <div class="container">
+        <div class="wrapper">
+          <div class="answers__list">
+            <the-answers></the-answers>
+          </div>
+          <div class="no-answer">
+            <the-title tag="h2" class="title">
+              Не нашли ответ?
+            </the-title>
+            <p>
+              Напишите нам на email и мы в ближайшее время ответим на все
+              ваши вопросы
+            </p>
+            <icon-mail :theme="theme"></icon-mail>
+            <p>
+              Отправить сообщение на e-mail <a href="mail:hello@7money.co" class="text--green">hello@7money.co</a>
+            </p>
+            <p>
+              Либо напишите нам в online чат, который находится справа
+              внизу
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="en" />
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Reviews</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme">
+    <the-header @call-back-theme="definitionTheme"></the-header>
+    <div class="reviews">
+      <the-title-big>
+        <template #title>Отзывы про обменник 7Money.co</template>
+      </the-title-big>
+      <div class="container">
+        <form
+          action="/reviews/create"
+          method="post"
+          class="reviews__form">
+          <input type="hidden" :value="csrfToken" :name="csrfParam" />
+          <the-title tag="h2" class="subtitle">Опубликовать отзыв</the-title>
+          <div class="field-list">
+            <label class="field">
+              <input
+                class="field"
+                type="text"
+                name="ReviewForm[name]"
+                placeholder="Имя"
+                required
+              />
+              <span class="field-error">Текст отзыва не может быть пустым</span>
+            </label>
+            <label class="field">
+              <input
+                class="field"
+                type="email"
+                name="ReviewForm[email]"
+                placeholder="Email"
+                required
+              />
+              <span class="field-error">Текст отзыва не может быть пустым</span>
+            </label>
+            <label class="field">
+              <textarea
+                name="ReviewForm[content]"
+                placeholder="Ваш отзыв"
+                aria-required="true"
+                aria-invalid="false">
+            </textarea>
+              <span class="field-error">Текст отзыва не может быть пустым</span>
+            </label>
+          </div>
+          <div class="captcha">
+            <div class="g-recaptcha"></div>
+            <the-button tag="button" type="submit">
+              <template #name> Оставить отзыв</template>
+            </the-button>
+          </div>
+        </form>
+        <div class="list-wrapper">
+          <div class="items">
+            <div class="item stylish-wrapper">
+              <div class="info">
+                <h4>
+                  Гарик
+                </h4>
+                <span>12.01.2022</span>
+              </div>
+              <p>
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+              </p>
+
+            </div>
+            <div class="item stylish-wrapper">
+              <div class="info">
+                <h4>
+                  Гарик
+                </h4>
+                <span>12.01.2022</span>
+              </div>
+              <p>
+                Начало текста статьи Начало
+                текста статьи.
+              </p>
+
+            </div>
+          </div>
+          <div class="buttons">
+            <the-button tag="button">
+              <template #image>
+                <icon-refresh></icon-refresh>
+              </template>
+              <template #name>Показать ещё (15)</template>
+            </the-button>
+
+            <ul class="pagination">
+              <li class="pagination__button">
+                <a href="#">
+                  <icon-arrow></icon-arrow>
+                </a>
+              </li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li class="pagination__button">
+                <a href="#">
+                  <icon-arrow class="arrow--right"></icon-arrow>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="ru" />
+</body>
+</html>

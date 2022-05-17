@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Вывести вознаграждение</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme">
+    <the-header @call-back-theme="definitionTheme"></the-header>
+    <main class="personal-area">
+      <div class="container">
+        <div class="wrapper">
+          <the-account-navigation>
+            <template #links>
+              <a class="active" href="/">
+                <icon-personal-data></icon-personal-data>
+                Счета и персональные данные
+              </a>
+              <a href="/">
+                <icon-history></icon-history>
+                История операций
+              </a>
+              <a href="/">
+                <icon-partner></icon-partner>
+                Партнёрская программа
+              </a>
+              <a href="/">
+                <icon-withdraw-reward></icon-withdraw-reward>
+                Вывеси вознаграждение
+              </a>
+              <a href="/">
+                <icon-buy></icon-buy>
+                История выплат
+              </a>
+              <a href="/">
+                <icon-padlock></icon-padlock>
+                Изменение пароля
+              </a>
+              <a href="/">
+                <icon-random></icon-random>
+                Заявки рефералов
+              </a>
+              <a href="/">
+                <icon-create></icon-create>
+                Создать заявку
+              </a>
+              <a href="/">
+                <icon-verification></icon-verification>
+                Верификация заявок
+              </a>
+              <a href="/">
+                <icon-search></icon-search>
+                Поиск заявок
+              </a>
+            </template>
+            <template #buttons>
+              <a href="/">Выход</a>
+              <a href="/">Выход со всех устройств</a>
+            </template>
+          </the-account-navigation>
+          <div class="wrapper-account">
+            <the-title tag="h2" class="subtitle">Вывести вознаграждение</the-title>
+            <p class="balance">Баланс: 0.157319 PerfectMoney USD</p>
+            <form action="/profile/output" method="post">
+              <input type="hidden" :value="csrfToken" :name="csrfParam" />
+              <div class="stylish-wrapper">
+                <div class="field-list">
+                  <the-field
+                    name-placeholder="Сумма (USD)"
+                    name-id="changepasswordform-password"
+                    name="ChangePasswordForm[password]" type="password"
+                    :required="true"
+                    :show-error="true">
+                    <template #label>Сумма (USD)</template>
+                    <template #error>Сумма обязателен для заполнения!</template>
+                  </the-field>
+                  <the-field name="CreateOrder[course_id]" :select="true">
+                    <option value="93">PerfectMoney USD</option>
+                    <option value="47">Bitcoin</option>
+                    <option value="11">PAYEER USD</option>
+                  </the-field>
+                  <the-field
+                    name-placeholder="Ваш счёт"
+                    name-id="changepasswordform-confirm_new_password"
+                    name="ChangePasswordForm[confirm_new_password]" type="password"
+                    :required="true">
+                    <template #label>Ваш счёт</template>
+                  </the-field>
+                  <the-button tag="button">
+                    <template #name>Сохранить</template>
+                  </the-button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="en" />
+</body>
+</html>

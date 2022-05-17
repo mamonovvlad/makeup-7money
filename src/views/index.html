@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+  <title>7money</title>
+  <meta content="_csrfferv" name="csrf-param" />
+  <meta content="He8fewfewfgewyfgweyufgewyuf" name="csrf-token" />
+  <meta content="7money" name="description" />
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme">
+    <the-public-information>
+      Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$, нужно
+      всего лишь совершить обмен и оставить отзыв
+      <a href="/">подробнее тут</a>
+    </the-public-information>
+    <the-header @call-back-theme="definitionTheme" class="background"></the-header>
+    <main class="container main__wrapper">
+      <input
+        id="inputHiddenLastSellId"
+        name="last_sell_id"
+        type="hidden"
+        value="1"
+      />
+      <input
+        id="inputHiddenLastBuyId"
+        name="last_buy_id"
+        type="hidden"
+        value="2"
+      />
+      <div class="currencies">
+        <div class="currencies-column stylish-wrapper" v-if="Object.keys(allCurrencies).length !==0"
+             :class="{'currencies-hide': !currenciesHideSell}">
+          <template v-if="currenciesHideSell">
+            <the-title tag="h2" class="subtitle">
+              Отдаю
+            </the-title>
+            <ul class="filters">
+              <li
+                :class="{active : sellCurrencyGroupId === null}"
+                @click="resetCurrencyGroup('sell')">
+                ALL
+              </li>
+              <li
+                v-for="(group, i) in currencyGroups"
+                :key="i"
+                :class=" {active : group.id === sellCurrencyGroupId} "
+                @click="setCurrencyGroup('sell', i)"
+              >
+                {{ group.name }}
+              </li>
+            </ul>
+            <div class="line"></div>
+          </template>
+          <the-currencies-list
+            :currency-group="sellCurrencyGroup.name"
+            :currencies-hide="currenciesHideSell"
+            :currencies="allCurrencies"
+            :currency-id="sell_currency_id"
+            currency-name="sell"
+            :active-currency="setActiveCurrency">
+          </the-currencies-list>
+
+        </div>
+
+        <div class="currencies-column stylish-wrapper" v-if="Object.keys(buyCurrencies).length !==0"
+             :class="{'currencies-hide': !currenciesHideBuy}">
+          <template v-if="currenciesHideBuy">
+            <div class="title__wrapper">
+              <the-title tag="h2" class="subtitle">
+                Получаю
+              </the-title>
+              <div class="buttons">
+                <button>
+                  Курс
+                </button>
+                <button>
+                  Резервы
+                </button>
+              </div>
+
+            </div>
+            <ul class="filters">
+              <li
+                :class="{active : buyCurrencyGroupId === null}"
+                @click="resetCurrencyGroup('buy')">
+                ALL
+              </li>
+              <li
+                v-for="(group, i) in currencyGroups"
+                :key="i"
+                :class=" {active : group.id === buyCurrencyGroupId }"
+                @click="setCurrencyGroup('buy', i)"
+              >
+                {{ group.name }}
+              </li>
+            </ul>
+            <div class="line"></div>
+          </template>
+          <the-refresh v-if="!currenciesHideBuy" @click="refresh"></the-refresh>
+          <the-currencies-list
+            :currency-group="buyCurrencyGroup.name"
+            :currencies-hide="currenciesHideBuy"
+            :currencies="buyCurrencies"
+            :currency-id="buy_currency_id"
+            currency-name="buy"
+            :active-currency="setActiveCurrency">
+          </the-currencies-list>
+        </div>
+        <transition name="details-hide">
+          <div class="details">
+            <div class="details__wrapper stylish-wrapper">
+              <div class="title__wrapper">
+                <the-title tag="h1" class="subtitle">{{ course.title_ru }}</the-title>
+                <the-current-time
+                  :current-time="currentTime"
+                  :course-sell="course.sell"
+                  :course-buy="course.buy">
+                </the-current-time>
+              </div>
+              <the-steps @button="trashClick" :show-button="true" :data-input="true"></the-steps>
+              <!--Форма-->
+              <form action class="form-exchange">
+                <input
+                  :name="csrfParam"
+                  :value="csrfToken"
+                  type="hidden"
+                />
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-sell_amount"
+                      name="OrderForm[sell_amount]"
+                      :aria-invalid="true">
+                      <template #label>
+                        Отдаю
+                      </template>
+                      <template #icon>
+                        <span class="PMUSD"></span>
+                      </template>
+                    </the-field>
+                    <div class="min__max">
+                      <span>
+                        Min:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                      <span>
+                        Max:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                    </div>
+                    <the-checkbox name-id="orderf">
+                      Мой кошелёк Perfect Money верифицирован
+                      Для не верифицированных кошельков комиссия больше на 1.5%
+                    </the-checkbox>
+                  </div>
+                  <div class="item">
+                    <the-field
+                      class="item__lacks"
+                      name-type="text"
+                      name-id="orderform-buy_amount"
+                      name="OrderForm[buy_amount]"
+                      :aria-invalid="false">
+                      <template #label>
+                        Получаю
+                        <strong @click.prevent>Не хватает</strong>
+                        <the-lacks></the-lacks>
+                      </template>
+                      <template #icon>
+                        <span class="PMUSD"></span>
+                      </template>
+                    </the-field>
+                    <div class="min__max">
+                      <span>
+                        Min:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                      <span>
+                        Max:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-buy_target"
+                      name="OrderForm[buy_target]">
+                      <template #label>
+                        Зачислить на этот адрес
+                      </template>
+                    </the-field>
+                  </div>
+                  <div class="item">
+                    <the-checkbox name-id="orderform-of_exchange">
+                      Отправляю с биржи
+                    </the-checkbox>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="exchange_mail"
+                      name-placeholder="you@gmail.com"
+                      :required="true"
+                      :aria-required="true"
+                      name="OrderForm[email]">
+                      <template #label>
+                        Электронная почта
+                      </template>
+                    </the-field>
+                  </div>
+                </div>
+                <the-agreement></the-agreement>
+                <the-button id="order-submit" tag="button" class="disabled" disabled="disabled">
+                  <template #name>
+                    Обменять
+                  </template>
+                </the-button>
+              </form>
+              <!--Конец Формы-->
+            </div>
+            <the-information
+              v-if="calculateData.course_seo_text"
+              v-html="calculateData.course_seo_text">
+            </the-information>
+          </div>
+        </transition>
+      </div>
+
+
+      <!--Success-->
+      <the-achievements v-if="blockHide"></the-achievements>
+      <!--Reserves-->
+      <the-reserves v-if="blockHide"></the-reserves>
+      <!--End Reserves-->
+      <the-slider v-if="blockHide"></the-slider>
+      <!--Info-->
+      <the-information v-if="blockHide">
+        <h1>Криптообменник №1</h1>
+        <p>Выбирая криптообменник, пользователь заинтересован в предоставлении обширной экосистемы кошельков.
+          Интерфейс
+          системы должен иметь конвертируемую криптовалюту, с возможностью быстрого проведения транзакции. С учетом
+          допустимой комиссии и начисленными бонусами на каждую сделку.
+          Сайт по покупке и продаже имеет следующие преимущества:</p>
+        <ul>
+          <li>Проведение обмена криптовалют возможно без регистрации на сайте;</li>
+          <li>В личном кабинете доступна история всех транзакций;</li>
+          <li>Большая часть транзакций может быть выполнена без комиссий банку.</li>
+        </ul>
+        <h2>Направления обмена криптовалют на 7MONEY</h2>
+        <p>Обменный пункт предлагает только ликвидные курсы. При выборе направления, обратите внимание на резерв
+          валют.
+          Здесь указана сумма допустимого предложения на текущий операционный день по лучшему курсу в сети.
+          В онлайн-обменнике криптовалют предоставлены пары исходя из следующих параметров:</p>
+        <ul>
+          <li>Ликвидность курса – динамичный спрос и предложения по проводимым транзакциям;</li>
+          <li>Актуальность направления - присутствуют все самые востребованные монеты;</li>
+        </ul>
+        <p>Мы постоянно добавляем на сервис новые криптовалютные пары - рекомендуем добавить сайт в закладки и следить
+          за
+          обновлениями, также это поможет заходить на него с помощью одного клика.</p>
+        <h2>7Money - сервис №1 по покупке и продаже криптовалюты</h2> <strong>Наш обменник крипты выделяется среди
+        множества остальных такими преимуществами:</strong>
+        <ul>
+          <li><strong>Автоматический обмен.
+          </strong>Все транзакции проводятся в автоматическом режиме - исключено влияние человеческого фактора,
+            система
+            мгновенно рассматривает и обрабатывает заявки.
+          </li>
+          <li><strong>Оперативная поддержка клиентов.
+          </strong>В период с 8:00 утра до 23:00 вечера мы готовы помочь в онлайн-чате по любым вопросам, связанным с
+            использованием сервиса.
+          </li>
+          <li><strong>Безопасность платежей.
+          </strong>Наш сайт использует SSL-сертификат, что гарантирует защиту от перехвата любых данных
+            интернет-хакерами,
+            Ваши данные надежно защищены и полностью конфиденциальны. Детальнее про безопасность обмена криптовалюты
+            на
+            7MONEY - <a href="https://7money.co/page/security">по ссылке</a>.
+          </li>
+          <li><strong>Выгодные курсы обмена.
+          </strong>На каждой странице направления в правом верхнем углу отображается актуальный курс. Обновление
+            производится каждую минуту.
+          </li>
+          <li><strong>Программа лояльности.
+          </strong>Зарегистрированные пользователи получают доступ к уникальной системе лояльности – стоимость каждой
+            последующей сделки будет снижена для пользователя сайта.
+          </li>
+        </ul>
+        <p>В любой момент можно <a href="https://7money.co/order/status">проверить статус операции</a> - просто
+          введите №
+          в соответствующее поле и Вы получите необходимую информацию актуальную на текущий момент. Прочитать отзывы
+          про
+          онлайн-обменник 7Money - <a href="https://7money.co/reviews">можно тут</a>.</p>
+        <h3>Партнерская программа - зарабатывайте на обменах других пользователей</h3>
+        <p>Если хотите получать дополнительный доход - можно настроить в личном кабинете опцию реферальной программы.
+          Вы
+          можете получать доход от курсового обмена привлеченных участников. Доход каждой сделки может составлять до
+          25%
+          от суммы комиссии. Предложение действует неограниченный срок. Даже не инвестируя в актив, можно зарабатывать
+          значительные средства только от привлечения других пользователей.</p>
+      </the-information>
+      <!--links-->
+      <the-links v-if="blockHide"></the-links>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input id="login" type="hidden" value="0" />
+<input id="language" type="hidden" value="ru" />
+<script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
+</body>
+</html>

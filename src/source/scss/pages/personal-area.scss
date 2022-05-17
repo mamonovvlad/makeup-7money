@@ -1,0 +1,81 @@
+.personal-area {
+
+  & h2 {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    @include _768 {
+      margin-top: 40px;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  & .wrapper-account {
+    flex-grow: 1;
+
+    & .balance {
+      margin-bottom: 15px;
+      color: var(--quaternary);
+    }
+
+    & .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 30px;
+      @include _992 {
+        flex-direction: column;
+        row-gap: 20px;
+        & .button {
+          width: 100%;
+        }
+      }
+      @include _768 {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  & .line {
+    margin: 20px 0;
+  }
+
+  & .wrapper {
+    display: flex;
+    padding: 40px 0;
+    column-gap: 20px;
+    @include _768 {
+      column-gap: 0;
+    }
+  }
+
+  & .stylish-wrapper {
+    padding: 30px 20px;
+  }
+
+  & .field-list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: flex-end;
+    @include _992 {
+      grid-template-columns: repeat(1, 1fr);
+
+    }
+  }
+
+}
+
+.accounts {
+  &__button {
+    position: sticky;
+    bottom: 0;
+    margin-top: 20px;
+
+    & .button {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "name": "7money",
+  "version": "1.0.0",
+  "description": "My template",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --open --config ./build/webpack.dev.conf.js",
+    "build": "webpack --config ./build/webpack.build.conf.js"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 3 version"
+  ],
+  "author": "Mamonov Vlad",
+  "keywords": [
+    "webpack",
+    "webpack4",
+    "merge",
+    "bable",
+    "bable7",
+    "sass",
+    "vue"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "autoprefixer": "^9.8.8",
+    "axios": "^0.26.0",
+    "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "^5.1.2",
+    "css-loader": "^3.6.0",
+    "cssnano": "^4.1.11",
+    "file-loader": "^5.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^8.0.2",
+    "style-loader": "^1.3.0",
+    "vue": "^2.6.14",
+    "vue-debounce": "^2.6.0",
+    "vue-i18n": "^8.27.0",
+    "vue-loader": "^15.9.8",
+    "vue-style-loader": "^4.1.3",
+    "vue-template-compiler": "^2.6.14",
+    "vuex": "^3.6.2",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.3",
+    "webpack-merge": "^4.2.2"
+  }
+}

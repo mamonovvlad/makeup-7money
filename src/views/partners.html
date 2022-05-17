@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Партнеры нашего сервиса</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme" >
+    <the-header @call-back-theme="definitionTheme"></the-header>
+    <main class="partners">
+      <the-title-big>
+        <template #title>Партнеры нашего сервиса</template>
+        <template #description>Мы представлены на разных мониторингах сервиса обмена электронных валют:</template>
+      </the-title-big>
+      <div class="container">
+        <div class="list-wrapper">
+          <div class="items">
+            <div class="item stylish-wrapper">
+              <figure>
+                <img
+                  loading="lazy"
+                  src="./source/images/temp/bestchange.webp"
+                  alt="bestchange"
+                />
+              </figure>
+              <p>Мониторинг</p>
+              <p>BestChange</p>
+              <div class="partners__links">
+                <the-button tag="a" href="https://www.bestchange.ru">
+                  <template #name>Перейти</template>
+                </the-button>
+                <the-button tag="a" href="https://www.bestchange.ru">
+                  <template #image>
+                    <icon-chat></icon-chat>
+                  </template>
+                </the-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="en" />
+</body>
+</html>

@@ -1,0 +1,213 @@
+[v-cloak] {
+  display: none;
+}
+
+.status--completed,
+.text--green {
+  color: var(--primary);
+}
+
+.text--black-white {
+  color: var(--quaternary);
+}
+
+.text--blue {
+  color: var(--blue);
+}
+
+
+.status--failed,
+.text--red {
+  color: var(--red);
+}
+
+.line-break {
+  word-break: break-all;
+
+}
+
+.attention {
+  border: 1px dashed var(--red);
+  border-radius: var(--radius-eigh);
+  padding: 15px;
+}
+
+.stylish-wrapper {
+  background: var(--seventh);
+  border-radius: var(--radius-ten);
+  box-shadow: var(--shadow);
+}
+
+.information-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: var(--quaternary);
+}
+
+.information-wrapper,
+.list-wrapper {
+  padding: 60px 0;
+  @include _768 {
+    padding: 40px 0;
+  }
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  border: 1px solid var(--secondary);
+}
+
+//darkening
+.darkening {
+  &:before {
+    content: "";
+    position: fixed;
+    background: var(--seventh);
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+    z-index: 3;
+  }
+}
+
+.background {
+  &:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    top: 100%;
+    height: 200px;
+    background: var(--secondary);
+    z-index: 1;
+  }
+}
+
+[data-theme="dark"] {
+  .header {
+    border-bottom-width: 0;
+    background-color: var(--transparent);
+  }
+
+  .background:before {
+    display: none;
+  }
+}
+
+
+.animate-right-enter-active, .animate-right-leave-active {
+  transition: var(--transition);
+}
+
+.animate-right-enter, .animate-right-leave-to {
+  transform: translateX(-100px);
+  opacity: 0;
+}
+
+//Icons
+.PMUSD {
+  background: url("/source/images/currencies/PMUSD.svg") no-repeat;
+}
+
+.PRUSD,
+.PRRUB {
+  background: url("/source/images/currencies/PR.svg") no-repeat;
+}
+
+.P24UAH {
+  background: url("/source/images/currencies/P24UAH.svg") no-repeat;
+}
+
+.BTC {
+  background: url("/source/images/currencies/BTC.svg") no-repeat;
+}
+
+.ADVCUSD,
+.ADVCRUB {
+  background: url("/source/images/currencies/ADVC.svg") no-repeat;
+}
+
+.YAMRUB {
+  background: url("/source/images/currencies/YAMRUB.svg") no-repeat;
+}
+
+.LTC {
+  background: url("/source/images/currencies/LTC.svg") no-repeat;
+}
+
+.DASH {
+  background: url("/source/images/currencies/DASH.svg") no-repeat;
+}
+
+.ZEC {
+  background: url("/source/images/currencies/ZEC.svg") no-repeat;
+}
+
+.MONOBUAH {
+  background: url("/source/images/currencies/MONOB.svg") no-repeat;
+}
+
+.CARDUAH,
+.CARDRUB {
+  background: url("/source/images/currencies/CARD.svg") no-repeat;
+}
+
+.USDTERC20,
+.USDTOMNI,
+.USDTTRC20 {
+  background: url("/source/images/currencies/TETHER.svg") no-repeat;
+}
+
+.CASHUSD,
+.CASHRUB {
+  background: url("/source/images/currencies/USD.svg") no-repeat;
+}
+
+.QWRUB {
+  background: url("/source/images/currencies/QWRUB.svg") no-repeat;
+}
+
+.ACRUB {
+  background: url("/source/images/currencies/ACRUB.svg") no-repeat;
+}
+
+.SBERRUB {
+  background: url("/source/images/currencies/SBERRUB.svg") no-repeat;
+}
+
+.TCSBRUB {
+  background: url("/source/images/currencies/TCSBRUB.svg") no-repeat;
+}
+
+.TBRUB {
+  background: url("/source/images/currencies/TBRUB.svg") no-repeat;
+}
+
+.ETH {
+  background: url("/source/images/currencies/ETH.svg") no-repeat;
+}
+
+.DOGE {
+  background: url("/source/images/currencies/DOGE.svg") no-repeat;
+}
+
+.OSDBUAH {
+  background: url("/source/images/currencies/OSDBUAH.svg") no-repeat;
+}
+
+.USBUAH {
+  background: url("/source/images/currencies/USBUAH.svg") no-repeat;
+}
+
+.RFBUAH {
+  background: url("/source/images/currencies/RFBUAH.svg") no-repeat;
+}
+
+.PMBBUAH {
+  background: url("/source/images/currencies/PMBBUAH.svg") no-repeat;
+}
+
+.TRX {
+  background: url("/source/images/currencies/TRX.svg") no-repeat;
+}

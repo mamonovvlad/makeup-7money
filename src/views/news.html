@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>News</title>
+  <meta name="csrf-param" content="_csrf">
+  <meta name="csrf-token" content="He8Y">
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme">
+    <the-header @call-back-theme="definitionTheme"></the-header>
+    <main class="news">
+      <the-title-big>
+        <template #title>Новости</template>
+      </the-title-big>
+      <div class="container">
+        <div class="list-wrapper">
+          <div class="items">
+            <a href="#" class="item stylish-wrapper">
+              <h4>
+                Почему 7Money лучшая обменка?
+              </h4>
+              <span>12.01.2022</span>
+              <span class="line"></span>
+              <p>
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+              </p>
+
+            </a>
+            <a href="#" class="item stylish-wrapper">
+              <h4>
+                Почему 7Money лучшая обменка?
+              </h4>
+              <span>12.01.2022</span>
+              <span class="line"></span>
+              <p>
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+              </p>
+
+            </a>
+            <a href="#" class="item stylish-wrapper">
+              <h4>
+                Почему 7Money лучшая обменка?
+              </h4>
+              <span>12.01.2022</span>
+              <span class="line"></span>
+              <p>
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+              </p>
+
+            </a>
+            <a href="#" class="item stylish-wrapper">
+              <h4>
+                Почему 7Money лучшая обменка?
+              </h4>
+              <span>12.01.2022</span>
+              <span class="line"></span>
+              <p>
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+                Начало текста статьи Начало текста статьи Начало текста
+                статьи.Начало текста статьи Начало текста статьи Начало
+                текста статьи.
+              </p>
+
+            </a>
+          </div>
+          <div class="buttons">
+            <the-button tag="button">
+              <template #image>
+                <icon-refresh></icon-refresh>
+              </template>
+              <template #name>Показать ещё (15)</template>
+            </the-button>
+
+            <ul class="pagination">
+              <li class="pagination__button">
+                <a href="#">
+                  <icon-arrow></icon-arrow>
+                </a>
+              </li>
+              <li class="active"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li class="pagination__button">
+                <a href="#">
+                  <icon-arrow class="arrow--right"></icon-arrow>
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="en" />
+</body>
+
+</html>

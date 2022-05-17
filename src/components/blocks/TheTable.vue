@@ -1,0 +1,198 @@
+<template>
+  <table class="table">
+    <thead>
+    <tr class="head">
+      <slot name="head"></slot>
+    </tr>
+    </thead>
+    <tbody class="body">
+    <slot name="body"></slot>
+    </tbody>
+  </table>
+</template>
+
+<script>
+export default {
+  name: "TheTable",
+};
+</script>
+
+<style lang="scss">
+@import "../../source/scss/utils/mixin";
+
+.table {
+  border-radius: var(--radius-ten);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  color: var(--quaternary);
+  width: 100%;
+
+  & a {
+    text-decoration: none;
+  }
+
+  & .icon {
+    display: inline-flex;
+    width: 15px;
+    height: 15px;
+    background-size: cover;
+    vertical-align: middle;
+  }
+
+  & .head,
+  & .body tr {
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    @include _768 {
+      padding: 20px 15px;
+    }
+  }
+
+
+  & .head {
+    background-color: var(--secondary);
+    @include _992 {
+      display: none;
+    }
+
+    & td {
+      font-weight: 600;
+      font-size: 18px;
+    }
+  }
+
+  & .body {
+    font-size: 14px;
+
+    & .arrow {
+      transform: rotate(-90deg);
+      margin: 0 auto;
+    }
+
+    & .bid {
+      color: var(--blue);
+    }
+
+    & .name {
+      display: none;
+      color: var(--ternary);
+      margin-bottom: 5px;
+      @include _992 {
+        display: block;
+
+      }
+    }
+
+    & tr {
+      border-bottom: 1px solid var(--secondary);
+
+      &:last-child {
+        border-width: 0;
+      }
+    }
+
+    & td {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+    }
+
+    & .first-cell {
+      grid-area: first-cell;
+    }
+
+    & .second-cell {
+      grid-area: second-cell;
+    }
+
+    & .third-cell {
+      grid-area: third-cell;
+    }
+
+    & .fourth-cell {
+      grid-area: fourth-cell;
+    }
+
+    & .fifth-cell {
+      grid-area: fifth-cell;
+    }
+  }
+
+  &--auto {
+    & .head,
+    & .body tr {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+  }
+
+  &--create-order {
+    & .head,
+    & .body tr {
+      grid-template-columns: 100px 100px 1fr 90px;
+    }
+
+    & .body tr {
+      grid-template-areas:
+        "first-cell second-cell third-cell fourth-cell";
+      @include _992 {
+        grid-template-areas:
+        "first-cell second-cell"
+        "third-cell third-cell"
+        "fourth-cell fourth-cell";
+      }
+    }
+  }
+
+  &--payment-history {
+    & .head,
+    & .body tr {
+      grid-template-columns: repeat(2, 115px 1fr) 110px;
+    }
+
+    & .body tr {
+      grid-template-areas:
+        "first-cell second-cell third-cell fourth-cell fifth-cell";
+      @include _992 {
+        grid-template-areas:
+        "first-cell second-cell"
+        "third-cell fourth-cell"
+        "fifth-cell fifth-cell";
+      }
+    }
+  }
+
+  &--referral-applications {
+    & .head,
+    & .body tr {
+      grid-template-columns: 100px 100px 1fr 80px 90px;
+    }
+
+    & .body tr {
+      grid-template-areas:
+        "first-cell second-cell third-cell fourth-cell fifth-cell";
+      @include _992 {
+        grid-template-areas:
+        "first-cell second-cell"
+        "third-cell third-cell"
+        "fourth-cell fifth-cell";
+      }
+    }
+  }
+
+  &--referral-applications,
+  &--payment-history,
+  &--create-order {
+    & .body tr {
+      @include _992 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @include _576 {
+        grid-template-columns: repeat(1, 100px);
+      }
+    }
+  }
+
+}
+
+</style>

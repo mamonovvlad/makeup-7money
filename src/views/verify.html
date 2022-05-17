@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Верификация заявок</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme">
+    <the-header @call-back-theme="definitionTheme"></the-header>
+    <main class="personal-area">
+      <div class="container">
+        <div class="wrapper">
+          <the-account-navigation>
+            <template #links>
+              <a class="active" href="/">
+                <icon-personal-data></icon-personal-data>
+                Счета и персональные данные
+              </a>
+              <a href="/">
+                <icon-history></icon-history>
+                История операций
+              </a>
+              <a href="/">
+                <icon-partner></icon-partner>
+                Партнёрская программа
+              </a>
+              <a href="/">
+                <icon-withdraw-reward></icon-withdraw-reward>
+                Вывеси вознаграждение
+              </a>
+              <a href="/">
+                <icon-buy></icon-buy>
+                История выплат
+              </a>
+              <a href="/">
+                <icon-padlock></icon-padlock>
+                Изменение пароля
+              </a>
+              <a href="/">
+                <icon-random></icon-random>
+                Заявки рефералов
+              </a>
+              <a href="/">
+                <icon-create></icon-create>
+                Создать заявку
+              </a>
+              <a href="/">
+                <icon-verification></icon-verification>
+                Верификация заявок
+              </a>
+              <a href="/">
+                <icon-search></icon-search>
+                Поиск заявок
+              </a>
+            </template>
+            <template #buttons>
+              <a href="/">Выход</a>
+              <a href="/">Выход со всех устройств</a>
+            </template>
+          </the-account-navigation>
+          <div class="wrapper-account change-password">
+            <the-title tag="h2" class="subtitle">Верификация заявок</the-title>
+            <div class="stylish-wrapper">
+              <div class="field-list">
+                <the-field
+                  name-placeholder="APEHGF5H6"
+                  name-id="1"
+                  name="1" type="text"
+                  :required="true"
+                  :show-error="true">
+                  <template #label>Поиск по коду заявки</template>
+                  <template #error>Пароль обязателен для заполнения!</template>
+                </the-field>
+                <the-field
+                  name-placeholder="2435445345432354"
+                  name-id="2"
+                  name="2" type="text"
+                  :required="true">
+                  <template #label>Поиск по номеру карты</template>
+                </the-field>
+                <the-field
+                  name-placeholder="email@gmail.com"
+                  name-id="3"
+                  name="ChangePasswordForm[confirm_new_password]" type="password"
+                  :required="true">
+                  <template #label>Поиск по email</template>
+                </the-field>
+                <the-field
+                  name-placeholder="127.0.0.0"
+                  name-id="4"
+                  name="4" type="text"
+                  :required="true">
+                  <template #label>Поиск по ip</template>
+                </the-field>
+              </div>
+            </div>
+            <the-title tag="h2" class="subtitle">История верификаций</the-title>
+            <the-table class="table--auto">
+              <template #head>
+                <td>Заявка №</td>
+                <td>Карта</td>
+                <td>Статус верификации</td>
+                <td>Действия</td>
+              </template>
+              <template #body>
+                <tr>
+                  <td class="text--blue">
+                    AP242f967ea8
+                    29 мар. 2022 г., 15:19:51
+                  </td>
+                  <td>
+                    <span>СБЕРБАНК RUB</span>
+                    <span>4279380683026399</span>
+                  </td>
+                  <td class="text--green">Новая</td>
+                  <td>
+                    <a href="" class="text--green">Новая</a>
+                    <a href="" class="text--red">Отклонить</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="text--blue">
+                    AP242f967ea8
+                    29 мар. 2022 г., 15:19:51
+                  </td>
+                  <td>
+                    <span>СБЕРБАНК RUB</span>
+                    <span>4279380683026399</span>
+                  </td>
+                  <td class="text--red">Отклонено</td>
+                  <td>
+                    <a href="" class="text--green">Новая</a>
+                    <a href="" class="text--red">Отклонить</a>
+                  </td>
+                </tr>
+              </template>
+            </the-table>
+            <div class="buttons">
+              <the-button tag="button">
+                <template #image>
+                  <icon-refresh></icon-refresh>
+                </template>
+                <template #name>Показать ещё (15)</template>
+              </the-button>
+
+              <ul class="pagination">
+                <li class="pagination__button">
+                  <a href="#">
+                    <icon-arrow></icon-arrow>
+                  </a>
+                </li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li class="pagination__button">
+                  <a href="#">
+                    <icon-arrow class="arrow--right"></icon-arrow>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="en" />
+</body>
+</html>

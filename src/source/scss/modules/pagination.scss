@@ -1,0 +1,38 @@
+.pagination {
+  display: flex;
+  box-shadow: var(--shadow);
+  border-radius: var(--radius-four);
+  height: 50px;
+  width: max-content;
+  overflow: hidden;
+
+  &__button {
+    background: var(--secondary);
+  }
+
+  & li {
+    width: 45px;
+    height: 100%;
+    border-right: 1px solid var(--secondary);
+    border-left: 1px solid var(--secondary);
+    transition: var(--transition);
+
+    &:hover a {
+      color: var(--primary);
+    }
+  }
+
+  & a {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+  }
+
+  & .active a {
+    color: var(--primary);
+  }
+}

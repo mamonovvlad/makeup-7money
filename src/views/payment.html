@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Payment</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
+
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="theme">
+    <the-header @call-back-theme="definitionTheme" class="background"></the-header>
+    <main class="payment">
+
+      <div class="container">
+        <div class="stylish-wrapper">
+          <the-payment-counter data-seconds="1800">
+            <template #check-status>
+              <the-button tag="a" href="/">
+                <template #name>
+                  Проверить статус операции в новом окне
+                </template>
+              </the-button>
+            </template>
+            <template #information>
+              <div class="line"></div>
+              <div class="info">
+                <h4>
+                  Данные заявки
+                </h4>
+                <div class="info__wrapper">
+                  <span>Номер заявки:</span>
+                  <strong>2423812357</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>Создана:</span>
+                  <strong>16.03.2022 17:01:35</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>По курсу:</span>
+                  <strong>1.00000 = 62.2928</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>E-mail:</span>
+                  <strong>tolik.wwwww@ukr.net</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>Телефон:</span>
+                  <strong>+380687250152</strong>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="info">
+                <h4>
+                  Отдаю <span class="PMUSD"></span>
+                </h4>
+                <div class="info__wrapper">
+                  <span>PerfectMoney USD:</span>
+                  <strong>80:21 USD</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>С кошелька:</span>
+                  <strong>234123581235</strong>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="info">
+                <h4>
+                  Получаю <span class="YAMRUB"></span>
+                </h4>
+                <div class="info__wrapper">
+                  <span>Яндекс Деньги RUB:</span>
+                  <strong>5000.24 RUB</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>На кошелёк:</span>
+                  <strong>41124012409</strong>
+                </div>
+              </div>
+            </template>
+            <template #cancel-operation>
+              <the-button class="close button--transparent" tag="button">
+                <template #name>
+                  Отменить операцию
+                </template>
+              </the-button>
+            </template>
+          </the-payment-counter>
+          <div class="payment__details">
+            <the-steps :payment="true"></the-steps>
+            <h4>
+              Порядок действий
+            </h4>
+            <p>
+              После нажатия на кнопку «Перейти к оплате» Вас перенаправит на мерчант платежной системы, для оплаты
+              заявки.
+              После успешной оплаты Вы сможете посмотреть статус платежа по вашей заявке.
+            </p>
+            <p class="attention">
+              Практически всегда зачисление средств со стороны
+              PerfectMoney происходит сразу, кроме случаев
+              дополнительной проверки со стороны их Службы Безопасности
+              (hold). Как только средства будут нами получены, заявка
+              будет выполнена максимально быстро.
+            </p>
+            <the-time-processing>
+              Время обработки заявки занимает от 5 до 30-ти минут
+            </the-time-processing>
+            <div class="buttons">
+              <the-button tag="button">
+                <template #name>
+                  Перейти к оплате
+                </template>
+              </the-button>
+            </div>
+
+            <div class="application-status__info">
+              <div class="block">
+                <div class="operation-info">
+                  <h2 class="text--green">Завершена</h2>
+                  <span>Номер операции: <strong>AP0059aee775</strong><the-copy-text
+                    copy-text="AP0059aee775"></the-copy-text></span>
+                  <span>Дата заявки: <strong>18 янв. 2021 г., 17:27:58</strong></span>
+                  <span>Статус операции: <strong>Ваша Заявка оплачена</strong></span>
+                </div>
+                <div class="operations">
+                  <div class="items">
+                    <span class="name">
+                      <span class="icon BTC"></span>
+                      Отдаю:
+                    </span>
+                    <strong>
+                      0.0284927 BTC
+                    </strong>
+                  </div>
+                  <div class="items">
+                    <span class="name">
+                      <span class="icon BTC"></span>
+                      Получаю:
+                    </span>
+                    <strong>
+                      0.0284927 BTC
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="line"></div>
+            <div class="operation-info">
+              <span>Выплата поступила в размере: <strong>0.0284927 BTC</strong></span>
+              <span>Подтверждения в сети Bitcoin: <strong>1 из 1 требуемого</strong></span>
+              <span>Ваш TXID: <a href="/" class="line-break"><strong>f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74</strong></a>
+                <the-copy-text
+                  copy-text="f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74"></the-copy-text></span>
+              <span>Обычно выплата производится в течении <strong>5-30 минут</strong> после 1-го подтверждения</span>
+            </div>
+            <the-leave-feedback :second-option="true"></the-leave-feedback>
+          </div>
+        </div>
+      </div>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="ua" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counter = document.querySelector(".counter");
+    let time = counter.getAttribute("data-seconds");
+    let clock = $(".clock").FlipClock({
+      clockFace: "DailyCounter",
+      autoStart: false,
+      callbacks: {
+        stop: function() {
+        },
+      },
+    });
+    clock.setTime(+time); //Устанавливаем нужное время в секундах
+    clock.setCountdown(true); //Устанавливаем отсчет времени назад
+    clock.start(); //Запускаем отсчет
+  });
+</script>
+</body>
+</html>
