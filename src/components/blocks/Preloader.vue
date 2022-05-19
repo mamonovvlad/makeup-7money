@@ -34,7 +34,7 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
-    background: var(--primary);
+    background: var(--primary-background);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +44,7 @@ export default {
     position: absolute;
     border-radius: 50%;
     border-bottom: 2px solid var(--transparent);
-    border-bottom-color: var(--primary);
+    border-bottom-color: var(--primary-color);
     &:nth-child(1) {
       width: 25px;
       height: 25px;

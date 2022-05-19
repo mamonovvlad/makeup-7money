@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Blog Article</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
+
+  <body>
+    <section id="app" :class="theme">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="main_layout text-copy-main bg-background-main">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="article grow ">
+            <div class="main_text bg-background-descr">
+              <div class="container article_header">
+                <div class="article_header_text">
+                  <h1 class="title text-copy-descr gamesDaymariusv">
+                    Что такое майнинг биткоина?
+                  </h1>
+                  <div class="header_text_small">
+                    <p class="text_small_date">31.09.2019</p>
+                    <p class="text_small_views">Просмотров: 2 921</p>
+                  </div>
+                </div>
+                <div class="article_header_img">
+                  <img
+                    class="lazyload"
+                    data-src="/source/image/blog/item_img.png"
+                    alt
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="container">
+              <div class="article_box">
+                <div class="article_info">
+                  <p class="article_title text-copy-descr gamesDaymariusv">
+                    Процесс майнинга Биткоина
+                  </p>
+                  <p class="text-copy-descr article_descr">
+                    Суть Биткоин майнинга состоит в следующем: устройства,
+                    расположенные в разных уголках мира, решают вычислительные
+                    задачи, результат которых – виртуальные
+                    <span>монеты Bitcoin.</span> Безопасность процесса
+                    обеспечивается за счет распределенности, нет какого-то
+                    одного центра, контролирующего майнинг.
+                  </p>
+                  <p class="text-copy-descr article_descr">
+                    Все осуществляющиеся в сети операции вносятся в своеобразный
+                    лог и по очереди передаются майнерам, чья задача – найти
+                    среди миллионов возможных комбинаций определенный «хэш»,
+                    который подойдет ко всем транзакциям, совершенным за
+                    последнее время, и особому секретному ключу. Нахождение
+                    такого хэша обеспечивает майнеру награду (на текущий момент
+                    это 12,5 BTC). получить вознаграждение не так просто, ведь
+                    за него одновременно борются тысячи людей. Когда хэш
+                    отгадан, блок транзакций закрывается и очередь переходит к
+                    последующему.
+                  </p>
+                  <ul class="text-copy-descr article_list">
+                    <li>В состав хэша блока входят:</li>
+                    <li>
+                      <span class="green_dot">•</span> хэш предыдущего блока;
+                    </li>
+                    <li>
+                      <span class="green_dot">•</span> суммарный хэш операций,
+                      совершенных пользователями за последние десять минут;
+                    </li>
+                    <li>
+                      <span class="green_dot">•</span> случайное число,
+                      изменяемое для того, чтобы результат соответствовал
+                      выставленным системой условиям.
+                    </li>
+                  </ul>
+                  <div class="article_gallery">
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/blog/item_img.png"
+                      alt
+                    />
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/blog/item_img.png"
+                      alt
+                    />
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/blog/item_img.png"
+                      alt
+                    />
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/blog/item_img.png"
+                      alt
+                    />
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/blog/item_img.png"
+                      alt
+                    />
+                  </div>
+                  <p class="article_title text-copy-descr gamesDaymariusv">
+                    Где продать добытые Биткоины
+                  </p>
+                  <ul class="text-copy-descr article_list">
+                    <li>
+                      С добытыми монетами BTC можно поступить по своему
+                      усмотрению:
+                    </li>
+                    <li>
+                      <span>1.</span> Накапливать и ждать следующего роста
+                      криптовалюты. Инвестиционная стратегия, рассчитанная на
+                      несколько месяцев или лет.
+                    </li>
+                    <li>
+                      <span>2.</span> Сразу продавать и выводить в фиат.
+                      Фиксировать доход полученный от майнинга.
+                    </li>
+                    <li>
+                      <span>3.</span> Увеличить количество коинов, торгуя
+                      Биткоином на бирже.
+                    </li>
+                  </ul>
+                  <div
+                    class="article_attention text-copy-descr bg-background-main shadow_btn_white"
+                  >
+                    <p>
+                      Здесь будет отображаться инфа, на которую нужно пределить
+                      внимания, Здесь будет отображаться инфа, на которую нужно
+                      пределить особенное внимание, Здесь будет отображаться
+                      инфа, на которую нужно пределить особенное
+                    </p>
+                  </div>
+                  <ul class="text-copy-descr article_list">
+                    <li>
+                      С первым вариантом всё понятно: накапливаем криптовалюту в
+                      кошельке и ждём «туземун». Хранить намайненное лучше на
+                      холодных кошельках, например, Ledger или Trezor. Во втором
+                      случае, нужно найти способ как продать Биткоины. Сделать
+                      это можно через:
+                    </li>
+                    <li><span>1.</span> Криптобиржи.</li>
+                    <li><span>2.</span> Обменники Биткоина.</li>
+                  </ul>
+                  <div
+                    class="article_share bg-background-main shadow_btn_white"
+                  >
+                    <div class="article_share_text">
+                      <svg
+                        class="social-svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M22.2343 3.99994C22.2343 5.79492 20.7793 7.25006 18.9843 7.25006C17.1893 7.25006 15.7344 5.79492 15.7344 3.99994C15.7344 2.20514 17.1893 0.75 18.9843 0.75C20.7793 0.75 22.2343 2.20514 22.2343 3.99994Z"
+                          fill="#7F848C"
+                        />
+                        <path
+                          d="M18.9843 8.00006C16.7783 8.00006 14.9844 6.20599 14.9844 3.99994C14.9844 1.79407 16.7783 0 18.9843 0C21.1904 0 22.9843 1.79407 22.9843 3.99994C22.9843 6.20599 21.1904 8.00006 18.9843 8.00006ZM18.9843 1.5C17.6053 1.5 16.4844 2.62207 16.4844 3.99994C16.4844 5.37799 17.6053 6.50006 18.9843 6.50006C20.3633 6.50006 21.4843 5.37799 21.4843 3.99994C21.4843 2.62207 20.3633 1.5 18.9843 1.5Z"
+                          fill="#7F848C"
+                        />
+                        <path
+                          d="M22.2343 20.0001C22.2343 21.7949 20.7793 23.2501 18.9843 23.2501C17.1893 23.2501 15.7344 21.7949 15.7344 20.0001C15.7344 18.2051 17.1893 16.75 18.9843 16.75C20.7793 16.75 22.2343 18.2051 22.2343 20.0001Z"
+                          fill="#7F848C"
+                        />
+                        <path
+                          d="M18.9843 24.0001C16.7783 24.0001 14.9844 22.206 14.9844 20.0001C14.9844 17.7941 16.7783 16 18.9843 16C21.1904 16 22.9843 17.7941 22.9843 20.0001C22.9843 22.206 21.1904 24.0001 18.9843 24.0001ZM18.9843 17.5C17.6053 17.5 16.4844 18.6221 16.4844 20.0001C16.4844 21.378 17.6053 22.5001 18.9843 22.5001C20.3633 22.5001 21.4843 21.378 21.4843 20.0001C21.4843 18.6221 20.3633 17.5 18.9843 17.5Z"
+                          fill="#7F848C"
+                        />
+                        <path
+                          d="M8.23444 11.9999C8.23444 13.7949 6.7793 15.2499 4.98431 15.2499C3.18951 15.2499 1.73438 13.7949 1.73438 11.9999C1.73438 10.205 3.18951 8.75 4.98431 8.75C6.7793 8.75 8.23444 10.205 8.23444 11.9999Z"
+                          fill="#7F848C"
+                        />
+                        <path
+                          d="M4.98431 15.9999C2.77844 15.9999 0.984375 14.206 0.984375 11.9999C0.984375 9.79388 2.77844 8 4.98431 8C7.19037 8 8.98444 9.79388 8.98444 11.9999C8.98444 14.206 7.19037 15.9999 4.98431 15.9999ZM4.98431 9.5C3.60535 9.5 2.48438 10.6219 2.48438 11.9999C2.48438 13.378 3.60535 14.4999 4.98431 14.4999C6.36346 14.4999 7.48444 13.378 7.48444 11.9999C7.48444 10.6219 6.36346 9.5 4.98431 9.5Z"
+                          fill="#7F848C"
+                        />
+                        <path
+                          d="M7.3467 11.5198C6.99862 11.5198 6.6606 11.3387 6.47658 11.0148C6.20357 10.5358 6.37166 9.92475 6.85067 9.65065L16.1295 4.36073C16.6085 4.0857 17.2196 4.2538 17.4937 4.73463C17.7667 5.21363 17.5986 5.82466 17.1196 6.09877L7.84054 11.3887C7.68453 11.4777 7.51461 11.5198 7.3467 11.5198Z"
+                          fill="#7F848C"
+                        />
+                        <path
+                          d="M16.6236 19.7701C16.4555 19.7701 16.2856 19.728 16.1296 19.639L6.85053 14.3491C6.37153 14.0761 6.20362 13.465 6.47663 12.9849C6.74854 12.505 7.36048 12.336 7.84058 12.611L17.1196 17.9009C17.5986 18.174 17.7665 18.785 17.4935 19.2651C17.3086 19.589 16.9706 19.7701 16.6236 19.7701Z"
+                          fill="#7F848C"
+                        />
+                      </svg>
+                      <p class="text-copy-descr">
+                        Поделиться с друзяьми в соц сетях:
+                      </p>
+                    </div>
+                    <div class="article_share_social_network">
+                      <social-network></social-network>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="article_sidebar shadow_btn_white bg-background-main"
+                >
+                  <h4 class="text-copy-descr">Популярные статьи</h4>
+                  <div class="article_popular text-copy-main">
+                    <div class="article_popular_box">
+                      <p class="popular_title">Что такое майнинг биткоина?</p>
+                      <div class="popular_box">
+                        <p class="popular_date">31.09.2019</p>
+                        <p class="popular_views">
+                          Просмотров:
+                          <span>2 921</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="article_popular text-copy-main">
+                    <div class="article_popular_box">
+                      <p class="popular_title">Что такое майнинг биткоина?</p>
+                      <div class="popular_box">
+                        <p class="popular_date">31.09.2019</p>
+                        <p class="popular_views">
+                          Просмотров:
+                          <span>2 921</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="article_popular text-copy-main">
+                    <div class="article_popular_box">
+                      <p class="popular_title">Что такое майнинг биткоина?</p>
+                      <div class="popular_box">
+                        <p class="popular_date">31.09.2019</p>
+                        <p class="popular_views">
+                          Просмотров:
+                          <span>2 921</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="article_slider">
+                <p class="article_title text-copy-descr gamesDaymariusv">
+                  Вам также будет интересно
+                </p>
+                <swiper class="swiper swiper_block" :options="swiperOption">
+                  <swiper-slide>
+                    <div class="article">
+                      <div
+                        class="blog_item bg-background-main shadow_btn_white"
+                      >
+                        <figure class="blog_img">
+                          <img
+                            class="lazyload"
+                            data-src="/source/image/blog/item_img.png"
+                            alt
+                          />
+                        </figure>
+                        <div class="item_box">
+                          <p class="blog_date">31.09.2019</p>
+                          <p class="views">
+                            Просмотров:
+                            <span>2 921</span>
+                          </p>
+                        </div>
+                        <p class="blog_title text-copy-descr gamesDaymariusv">
+                          Почему 7Money лучшая обменка?
+                        </p>
+                        <p class="blog_descr">
+                          Начало текста статьи Начало текста статьи Начало
+                          текста статьи.Начало текста статьи Начало текста
+                          статьи Начало текста статьи
+                        </p>
+                      </div>
+                    </div>
+                  </swiper-slide>
+                </swiper>
+                <div class="swiper-button_box">
+                  <div
+                    class="swiper-button-next shadow_btn_white"
+                    slot="button-next"
+                  ></div>
+                  <div
+                    class="swiper-button-prev shadow_btn_white"
+                    slot="button-prev"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer-main></footer-main>
+        </div>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
+</html>

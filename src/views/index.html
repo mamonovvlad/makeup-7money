@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -11,315 +11,2883 @@
 </head>
 
 <body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-public-information>
-      Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$, нужно
-      всего лишь совершить обмен и оставить отзыв
-      <a href="/">подробнее тут</a>
-    </the-public-information>
-    <the-header @call-back-theme="definitionTheme" class="background"></the-header>
-    <main class="container main__wrapper">
-      <input
-        id="inputHiddenLastSellId"
-        name="last_sell_id"
-        type="hidden"
-        value="1"
-      />
-      <input
-        id="inputHiddenLastBuyId"
-        name="last_buy_id"
-        type="hidden"
-        value="2"
-      />
-      <div class="currencies">
-        <div class="currencies-column stylish-wrapper" v-if="Object.keys(allCurrencies).length !==0"
-             :class="{'currencies-hide': !currenciesHideSell}">
-          <template v-if="currenciesHideSell">
-            <the-title tag="h2" class="subtitle">
-              Отдаю
-            </the-title>
-            <ul class="filters">
-              <li
-                :class="{active : sellCurrencyGroupId === null}"
-                @click="resetCurrencyGroup('sell')">
-                ALL
-              </li>
-              <li
-                v-for="(group, i) in currencyGroups"
-                :key="i"
-                :class=" {active : group.id === sellCurrencyGroupId} "
-                @click="setCurrencyGroup('sell', i)"
-              >
-                {{ group.name }}
-              </li>
-            </ul>
-            <div class="line"></div>
-          </template>
-          <the-currencies-list
-            :currency-group="sellCurrencyGroup.name"
-            :currencies-hide="currenciesHideSell"
-            :currencies="allCurrencies"
-            :currency-id="sell_currency_id"
-            currency-name="sell"
-            :active-currency="setActiveCurrency">
-          </the-currencies-list>
-
-        </div>
-
-        <div class="currencies-column stylish-wrapper" v-if="Object.keys(buyCurrencies).length !==0"
-             :class="{'currencies-hide': !currenciesHideBuy}">
-          <template v-if="currenciesHideBuy">
-            <div class="title__wrapper">
-              <the-title tag="h2" class="subtitle">
-                Получаю
-              </the-title>
-              <div class="buttons">
-                <button>
-                  Курс
-                </button>
-                <button>
-                  Резервы
-                </button>
-              </div>
-
-            </div>
-            <ul class="filters">
-              <li
-                :class="{active : buyCurrencyGroupId === null}"
-                @click="resetCurrencyGroup('buy')">
-                ALL
-              </li>
-              <li
-                v-for="(group, i) in currencyGroups"
-                :key="i"
-                :class=" {active : group.id === buyCurrencyGroupId }"
-                @click="setCurrencyGroup('buy', i)"
-              >
-                {{ group.name }}
-              </li>
-            </ul>
-            <div class="line"></div>
-          </template>
-          <the-refresh v-if="!currenciesHideBuy" @click="refresh"></the-refresh>
-          <the-currencies-list
-            :currency-group="buyCurrencyGroup.name"
-            :currencies-hide="currenciesHideBuy"
-            :currencies="buyCurrencies"
-            :currency-id="buy_currency_id"
-            currency-name="buy"
-            :active-currency="setActiveCurrency">
-          </the-currencies-list>
-        </div>
-        <transition name="details-hide">
-          <div class="details">
-            <div class="details__wrapper stylish-wrapper">
-              <div class="title__wrapper">
-                <the-title tag="h1" class="subtitle">{{ course.title_ru }}</the-title>
-                <the-current-time
-                  :current-time="currentTime"
-                  :course-sell="course.sell"
-                  :course-buy="course.buy">
-                </the-current-time>
-              </div>
-              <the-steps @button="trashClick" :show-button="true" :data-input="true"></the-steps>
-              <!--Форма-->
-              <form action class="form-exchange">
-                <input
-                  :name="csrfParam"
-                  :value="csrfToken"
-                  type="hidden"
-                />
-                <div class="items__wrapper">
-                  <div class="item">
-                    <the-field
-                      name-type="text"
-                      name-id="orderform-sell_amount"
-                      name="OrderForm[sell_amount]"
-                      :aria-invalid="true">
-                      <template #label>
-                        Отдаю
-                      </template>
-                      <template #icon>
-                        <span class="PMUSD"></span>
-                      </template>
-                    </the-field>
-                    <div class="min__max">
-                      <span>
-                        Min:
-                        <strong>0.004 BTC</strong>
-                      </span>
-                      <span>
-                        Max:
-                        <strong>0.004 BTC</strong>
-                      </span>
-                    </div>
-                    <the-checkbox name-id="orderf">
-                      Мой кошелёк Perfect Money верифицирован
-                      Для не верифицированных кошельков комиссия больше на 1.5%
-                    </the-checkbox>
-                  </div>
-                  <div class="item">
-                    <the-field
-                      class="item__lacks"
-                      name-type="text"
-                      name-id="orderform-buy_amount"
-                      name="OrderForm[buy_amount]"
-                      :aria-invalid="false">
-                      <template #label>
-                        Получаю
-                        <strong @click.prevent>Не хватает</strong>
-                        <the-lacks></the-lacks>
-                      </template>
-                      <template #icon>
-                        <span class="PMUSD"></span>
-                      </template>
-                    </the-field>
-                    <div class="min__max">
-                      <span>
-                        Min:
-                        <strong>0.004 BTC</strong>
-                      </span>
-                      <span>
-                        Max:
-                        <strong>0.004 BTC</strong>
-                      </span>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="line"></div>
-                <div class="items__wrapper">
-                  <div class="item">
-                    <the-field
-                      name-type="text"
-                      name-id="orderform-buy_target"
-                      name="OrderForm[buy_target]">
-                      <template #label>
-                        Зачислить на этот адрес
-                      </template>
-                    </the-field>
-                  </div>
-                  <div class="item">
-                    <the-checkbox name-id="orderform-of_exchange">
-                      Отправляю с биржи
-                    </the-checkbox>
-                  </div>
-                </div>
-                <div class="line"></div>
-                <div class="items__wrapper">
-                  <div class="item">
-                    <the-field
-                      name-type="text"
-                      name-id="exchange_mail"
-                      name-placeholder="you@gmail.com"
-                      :required="true"
-                      :aria-required="true"
-                      name="OrderForm[email]">
-                      <template #label>
-                        Электронная почта
-                      </template>
-                    </the-field>
-                  </div>
-                </div>
-                <the-agreement></the-agreement>
-                <the-button id="order-submit" tag="button" class="disabled" disabled="disabled">
-                  <template #name>
-                    Обменять
-                  </template>
-                </the-button>
-              </form>
-              <!--Конец Формы-->
-            </div>
-            <the-information
-              v-if="calculateData.course_seo_text"
-              v-html="calculateData.course_seo_text">
-            </the-information>
-          </div>
-        </transition>
+<section id="app" :class="theme" class="">
+  <preloader></preloader>
+  <vuescroll v-cloak>
+    <div class="main_layout text-copy-main bg-background-main">
+      <div class="pop_up">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
+          alias provident sunt eligendi quam hic impedit quaerat facere
+          nesciunt expedita excepturi tempore, non ipsa consectetur. Beatae
+          odio culpa obcaecati minima?
+        </p>
       </div>
+      <header-main
+        :openwindiwentrance="openwindiwentrance"
+        :openwindiwpersonalarea="openwindiwpersonalarea"
+        @darkchanged="themedark"
+        @sunchanged="updatetheme"
+      >
+      </header-main>
+      <div class="home grow">
+        <div class="fon header_fon"></div>
+        <!--Exchange-->
+        <section class="exchange">
+          <div class="container">
+            <div class="exchange_box">
+              <input
+                id="inputHiddenLastSellId"
+                name="last_sell_id"
+                type="hidden"
+                value="1"
+              />
+              <input
+                id="inputHiddenLastBuyId"
+                name="last_buy_id"
+                type="hidden"
+                value="2"
+              />
+              <!--Currency Selection-->
+              <div
+                v-if="tabelShowSelection"
+                :class="{currencySelectionActive}"
+                class="currency_selection"
+              >
+                <transition name="currency-show">
+                  <div
+                    v-if="hideGiveBlock"
+                    class="
+                          currency_selection_block
+                          shadow_btn_white
+                          bg-background-main
+                          give
+                        "
+                  >
+                    <h2
+                      v-if="selectionBlocksActive"
+                      class="
+                            title_section title_currency
+                            text-copy-descr
+                            gamesDaymariusv
+                          "
+                    >
+                      Отдаёте
+                    </h2>
+                    <div class="currency">
+                      <ul
+                        v-if="selectionBlocksActive"
+                        class="list_currency"
+                      >
+                        <li
+                          :class="{activeGroup : sellCurrencyGroupId === null}"
+                          @click="resetCurrencyGroup('sell')"
+                        >
+                          ALL
+                        </li>
+                        <li
+                          v-for="(group, i) in currencyGroups"
+                          :key="i"
+                          :class=" {activeGroup : group.id === sellCurrencyGroupId} "
+                          @click="setCurrencyGroup('sell', i)"
+                        >
+                          {{ group.name }}
+                        </li>
+                      </ul>
+                    </div>
+                    <div v-if="selectionBlocksActive" class="line"></div>
+                    <ul
+                      :data-filter="sellCurrencyGroup.name"
+                      class="payment_system_list"
+                    >
+                      <li
+                        v-for="(currency, i) in allCurrencies"
+                        :key="currency.id"
+                        :class="{activeCurrency : currency.id === sell_currency_id }"
+                        :data-alias="currency.code"
+                        :data-group="currency.group.name"
+                        :data-id="currency.id"
+                        class="list_item"
+                        @click="setActiveCurrency('sell', currency.id)"
+                      >
+                        <div class="payment_system_name">
+                          <span :class="currency.code"></span>
+                          <p v-if="selectionBlocksActive">
+                            {{ currency.name_ru }}
+                          </p>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </transition>
+                <transition name="currency-show">
+                  <div
+                    v-if="hideGetBlock"
+                    class="
+                          currency_selection_block
+                          shadow_btn_white
+                          bg-background-main
+                          get
+                        "
+                  >
+                    <h2
+                      v-if="selectionBlocksActive"
+                      class="
+                            title_section title_currency
+                            text-copy-descr
+                            gamesDaymariusv
+                          "
+                    >
+                      Получаете
+                      <div class="currency_selection_btns text-copy-descr">
+                        <button
+                          @click="toggleCurrencyButton"
+                          :class="{ active: activeCurrencyButton === true}"
+                        >
+                          Курс
+                        </button>
+                        <button
+                          @click="toggleCurrencyButton"
+                          :class="{ active: activeCurrencyButton === false}"
+                        >
+                          Резервы
+                        </button>
+                      </div>
+                    </h2>
+                    <div class="currency">
+                      <ul
+                        v-if="selectionBlocksActive"
+                        class="list_currency"
+                      >
+                        <li
+                          :class="{activeGroup : buyCurrencyGroupId === null}"
+                          @click="resetCurrencyGroup('buy')"
+                        >
+                          ALL
+                        </li>
+                        <li
+                          v-for="(group, i) in currencyGroups"
+                          :key="i"
+                          :class=" {activeGroup : group.id === buyCurrencyGroupId }"
+                          @click="setCurrencyGroup('buy', i)"
+                        >
+                          {{ group.name }}
+                        </li>
+                      </ul>
+                      <div v-if="selectionBlocksActive" class="line"></div>
+
+                      <ul
+                        :data-filter="buyCurrencyGroup.name"
+                        class="payment_system_list"
+                      >
+                        <li
+                          v-for="(currency, i) in buyCurrencies"
+                          :key="currency.id"
+                          :class="{activeCurrency : currency.id === buy_currency_id}"
+                          :data-alias="currency.code"
+                          :data-group="currency.group.name"
+                          :data-id="currency.id"
+                          class="list_item"
+                          @click="setActiveCurrency('buy', currency.id)"
+                        >
+                          <div class="payment_system_name">
+                            <span :class="currency.code"></span>
+                            <p v-if="selectionBlocksActive">
+                              {{ currency.name_ru }}
+                            </p>
+                          </div>
+                          <div
+                            v-if="currency.max_buy_amount && selectionBlocksActive"
+                            class="payment_system_price"
+                          >
+                            <p>
+                              {{ currency.max_buy_amount }}
+                              <span>{{ currency.symbol }}</span>
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </transition>
+                <div class="refresh" @click="refresh">
+                  <svg
+                    class="refresh-icon"
+                    fill="none"
+                    height="20"
+                    viewBox="0 0 21 20"
+                    width="21"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M19.9948 2.50008C20.455 2.50008 20.8281 2.87318 20.8281 3.33342V8.33342C20.8281 8.79365 20.455 9.16675 19.9948 9.16675H14.9948C14.5346 9.16675 14.1615 8.79365 14.1615 8.33342C14.1615 7.87318 14.5346 7.50008 14.9948 7.50008H19.1615V3.33342C19.1615 2.87318 19.5346 2.50008 19.9948 2.50008Z"
+                      fill="white"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      clip-rule="evenodd"
+                      d="M0.828128 11.6667C0.828128 11.2065 1.20122 10.8334 1.66146 10.8334H6.66146C7.1217 10.8334 7.49479 11.2065 7.49479 11.6667C7.49479 12.127 7.1217 12.5001 6.66146 12.5001H2.49479V16.6667C2.49479 17.127 2.1217 17.5001 1.66146 17.5001C1.20122 17.5001 0.828128 17.127 0.828128 16.6667V11.6667Z"
+                      fill="white"
+                      fill-rule="evenodd"
+                    />
+                    <path
+                      clip-rule="evenodd"
+                      d="M12.6759 3.59594C11.5941 3.28303 10.4507 3.24926 9.35227 3.49778C8.25388 3.7463 7.23635 4.26902 6.39462 5.01716C5.5529 5.76529 4.9144 6.71447 4.53872 7.77611C4.38519 8.20998 3.909 8.43724 3.47513 8.28371C3.04126 8.13017 2.814 7.65399 2.96753 7.22011C3.43713 5.89306 4.23525 4.7066 5.28741 3.77143C6.33957 2.83626 7.61148 2.18286 8.98446 1.8722C10.3574 1.56155 11.7867 1.60376 13.139 1.9949C14.487 2.3848 15.7146 3.10875 16.708 4.09952L20.5654 7.72415C20.9008 8.03931 20.9172 8.56669 20.6021 8.90209C20.2869 9.23749 19.7595 9.2539 19.4241 8.93874L15.5575 5.3054C15.5511 5.29944 15.5449 5.29338 15.5387 5.28722C14.7426 4.49071 13.7577 3.90885 12.6759 3.59594ZM1.05417 11.0941C1.36933 10.7587 1.89671 10.7423 2.23211 11.0575L6.09877 14.6908C6.10512 14.6968 6.11137 14.7028 6.11753 14.709C6.91364 15.5055 7.89855 16.0874 8.98035 16.4003C10.0622 16.7132 11.2056 16.747 12.304 16.4984C13.4024 16.2499 14.4199 15.7272 15.2616 14.9791C16.1034 14.2309 16.7418 13.2818 17.1175 12.2201C17.2711 11.7862 17.7472 11.559 18.1811 11.7125C18.615 11.866 18.8423 12.3422 18.6887 12.7761C18.2191 14.1032 17.421 15.2896 16.3688 16.2248C15.3167 17.16 14.0448 17.8134 12.6718 18.124C11.2988 18.4347 9.86951 18.3925 8.51725 18.0013C7.16929 17.6114 5.94168 16.8875 4.94821 15.8967L1.09081 12.2721C0.755414 11.9569 0.739007 11.4295 1.05417 11.0941Z"
+                      fill="white"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <!--End Currency Selection-->
+              <!--Eurrency Exchange-->
+              <transition name="currency-show">
+                <div class="">
+                  <div
+                    v-if="calculateData,showCurrencyExchange"
+                    :class="{currencySelectionActive}"
+                    class="
+                          currency_exchange
+                          shadow_btn_white
+                          bg-background-main
+                        "
+                  >
+                    <div class="currency-loader">
+                      <div class="loader"></div>
+                      <p class="currency-loader_text text-copy-green">
+                        {{ $t("textCurrencyLoader") }}
+                      </p>
+                    </div>
+                    <div class="exchange_title">
+                      <h1
+                        class="
+                              title_section
+                              text-copy-descr
+                              gamesDaymariusv
+                            "
+                      >
+                        {{ course.title_ru }}
+                      </h1>
+                      <div
+                        v-if="exchangeBlocksActive"
+                        class="currency_exchange_buttons"
+                      >
+                        <button class="btn_exchange shadow_btn_white">
+                          <div class="border"></div>
+                          <div class="main-element">
+                            <p>
+                                  <span class="time text-copy-green"
+                                  >{{ currentTime }}</span
+                                  >
+                              Курс:
+
+                              <span class="course"
+                              >{{ course.sell }} к {{ course.buy }}</span
+                              >
+                            </p>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      v-if="exchangeBlocksActive"
+                      class="scoreboard bg-background-descr"
+                    >
+                      <button
+                        class="
+                              scoreboard_arrow
+                              shadow_btn_white
+                              bg-background-descr
+                            "
+                        @click="trashClick"
+                      >
+                        <svg
+                          fill="none"
+                          height="18"
+                          viewBox="0 0 10 18"
+                          width="10"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M9.63388 17.3844C9.14573 17.8725 8.35427 17.8725 7.86612 17.3844L0.366117 9.88437C-0.122038 9.39622 -0.122038 8.60476 0.366117 8.1166L7.86612 0.616606C8.35427 0.128448 9.14573 0.128448 9.63388 0.616606C10.122 1.10476 10.122 1.89622 9.63388 2.38437L3.01777 9.00049L9.63388 15.6166C10.122 16.1048 10.122 16.8962 9.63388 17.3844Z"
+                            fill="#7F848C"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                      </button>
+                      <div class="scoreboard_box">
+                        <div class="bg-background-descr scoreboard-active">
+                          <svg
+                            class="datainput"
+                            fill="none"
+                            height="31"
+                            viewBox="0 0 30 31"
+                            width="30"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M15.8393 10.6729H4.45709C4.21439 10.6729 4.01758 10.8696 4.01758 11.1124C4.01758 11.3551 4.21434 11.5519 4.45709 11.5519H15.8393C16.0821 11.5519 16.2788 11.3551 16.2788 11.1124C16.2788 10.8696 16.0821 10.6729 15.8393 10.6729Z"
+                              fill="#7F848C"
+                            />
+
+                            <path
+                              d="M15.8393 13.5562H4.45709C4.21439 13.5562 4.01758 13.7529 4.01758 13.9957C4.01758 14.2384 4.21434 14.4352 4.45709 14.4352H15.8393C16.0821 14.4352 16.2788 14.2384 16.2788 13.9957C16.2788 13.7529 16.0821 13.5562 15.8393 13.5562Z"
+                              fill="#7F848C"
+                            />
+
+                            <path
+                              d="M15.8393 16.4385H4.45709C4.21439 16.4385 4.01758 16.6352 4.01758 16.878C4.01758 17.1207 4.21434 17.3175 4.45709 17.3175H15.8393C16.0821 17.3175 16.2788 17.1207 16.2788 16.878C16.2788 16.6352 16.0821 16.4385 15.8393 16.4385Z"
+                              fill="#7F848C"
+                            />
+
+                            <path
+                              d="M29.1742 5.48196C29.7915 4.36827 29.4114 2.9544 28.3079 2.30448L27.8526 2.03641C26.731 1.376 25.2813 1.75106 24.6209 2.8726L20.2984 10.2131V8.04913C20.2984 7.93745 20.2549 7.82395 20.1702 7.73887C20.17 7.7387 20.1699 7.73846 20.1697 7.73829C20.0439 7.61248 14.4929 2.06155 14.3671 1.93575C14.2878 1.85635 14.1739 1.80702 14.0563 1.80702H11.1792C10.9365 1.80702 10.7397 2.00377 10.7397 2.24653C10.7397 2.48928 10.9365 2.68604 11.1792 2.68604H13.6168V7.37336C13.6168 7.98831 14.1172 8.48858 14.7321 8.48858H19.4194V13.1546L15.7879 19.3214H4.45799C4.21529 19.3214 4.01848 19.5182 4.01848 19.7609C4.01848 20.0036 4.21523 20.2004 4.45799 20.2004H15.2701C14.9356 20.7684 14.7397 21.1012 14.3983 21.681C14.2751 21.8901 14.2408 22.1348 14.3016 22.3697C14.3375 22.5087 14.4049 22.6339 14.4966 22.7389L13.6373 24.1982C13.3092 24.7554 13.4956 25.4756 14.0527 25.8037L14.2165 25.9002C14.773 26.2278 15.4941 26.0417 15.8221 25.4847L16.6791 24.0295C16.8239 24.0625 16.9654 24.0581 17.1005 24.0231C17.3314 23.9634 17.5253 23.8172 17.6464 23.6116L19.4193 20.601V28.1746C19.4193 28.3026 19.3111 28.4107 19.1831 28.4107H1.11521C0.987188 28.4107 0.879023 28.3026 0.879023 28.1746V3.30625C0.879023 2.96424 1.15723 2.68604 1.49924 2.68604H9.1282C9.3709 2.68604 9.56771 2.48928 9.56771 2.24653C9.56771 2.00377 9.37096 1.80702 9.1282 1.80702H1.49924C0.672539 1.80707 0 2.47961 0 3.30625V28.1746C0 28.7895 0.500332 29.2898 1.11521 29.2898H19.183C19.798 29.2898 20.2983 28.7895 20.2983 28.1746V19.1085L21.2285 17.5288C21.3517 17.3197 21.282 17.0502 21.0728 16.9271C20.8638 16.804 20.5944 16.8736 20.4711 17.0828C20.0715 17.7613 17.3191 22.4352 16.9205 23.112C16.8988 23.1487 16.8519 23.1603 16.8158 23.139C16.7687 23.1112 15.2423 22.2123 15.2218 22.2002C15.1771 22.1739 15.1621 22.116 15.1885 22.0713C15.3623 21.776 20.5669 12.9379 20.8506 12.4562L22.5918 13.4815L21.5132 15.3132C21.39 15.5223 21.4597 15.7918 21.6688 15.9149C21.878 16.0381 22.1474 15.9684 22.2706 15.7592L23.359 13.911C23.4555 13.9439 23.5553 13.9598 23.6544 13.9598C23.9707 13.9598 24.2793 13.7972 24.4512 13.5054L28.712 6.27004C29.1792 6.82493 29.262 7.63223 28.8805 8.27998L25.9491 13.2579C25.8259 13.4671 25.8956 13.7365 26.1047 13.8597C26.3138 13.9827 26.5832 13.9132 26.7065 13.704L29.638 8.72606C30.2643 7.66223 30.0579 6.31112 29.1742 5.48196ZM14.7321 7.60961C14.604 7.60961 14.4958 7.50145 14.4958 7.37342V3.3076L18.7978 7.60955H14.7321V7.60961ZM15.2302 23.2256L15.9002 23.6201L15.0647 25.0388C14.9839 25.1759 14.7998 25.2236 14.6625 25.1429L14.4987 25.0464C14.3616 24.9656 14.3139 24.7815 14.3947 24.6442L15.2302 23.2256ZM28.3866 5.0902L23.6936 13.0595C23.6813 13.0803 23.6544 13.0873 23.6335 13.0751L20.6899 11.3416C20.6871 11.34 20.6788 11.3351 20.6756 11.3226C20.6723 11.3102 20.6772 11.3018 20.6789 11.299L25.3783 3.31862C25.7929 2.61455 26.7029 2.37942 27.4065 2.79379L27.8618 3.06192C28.5657 3.47635 28.8011 4.38631 28.3866 5.0902Z"
+                              fill="#7F848C"
+                            />
+
+                            <path
+                              d="M12.6981 24.1012L11.6217 23.272C11.3865 23.0908 11.0518 23.0992 10.8262 23.2919L10.1613 23.8594L8.73996 22.5223C8.47031 22.2687 8.05465 22.2587 7.77305 22.4989L5.87883 24.1151C5.6942 24.2726 5.67223 24.55 5.82979 24.7347C5.98735 24.9194 6.26467 24.9412 6.44936 24.7837L8.2384 23.2573L9.646 24.5814C9.92344 24.8425 10.3512 24.8528 10.641 24.6056L11.2442 24.0907L12.1617 24.7975C12.3541 24.9457 12.6299 24.9097 12.7781 24.7176C12.9261 24.5253 12.8903 24.2493 12.6981 24.1012Z"
+                              fill="#7F848C"
+                            />
+                          </svg>
+                          <p class="text-copy-main">
+                            {{ $t("dataInput") }}
+                          </p>
+                        </div>
+                        <div class="bg-background-descr">
+                          <svg
+                            class="payment"
+                            fill="none"
+                            height="31"
+                            viewBox="0 0 31 31"
+                            width="31"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M25.4545 5.797V3C25.4528 1.62 24.3142 0.50175 22.9091 0.5H2.54545C1.14036 0.50175 0.00178182 1.62 0 3V14C0.00394546 15.2769 0.989418 16.3448 2.28276 16.4743L4.19644 21.3531C4.70196 22.6414 6.17502 23.2831 7.48682 22.7873L19.4371 18.266C18.6113 20.3844 18.8463 22.7608 20.0712 24.6836L20.3636 25.143V30C20.3636 30.2763 20.5915 30.5 20.8727 30.5H30.0364C30.3176 30.5 30.5455 30.2763 30.5455 30V13.4956C30.5406 11.7665 29.8397 10.1098 28.595 8.88688L25.4545 5.797ZM25.4545 8.78725L26.9996 12.7265C27.3024 13.4998 26.91 14.3674 26.1229 14.665L25.2397 15C25.3807 14.6848 25.4538 14.344 25.4545 14V8.78725ZM1.01818 14V3C1.01818 2.17175 1.70215 1.5 2.54545 1.5H22.9091C23.7524 1.5 24.4364 2.17175 24.4364 3V6.178H24.4319L24.4364 6.18938V14C24.4324 14.0873 24.4208 14.1738 24.4017 14.259L19.7385 9.6785C18.6903 8.67275 17.0192 8.665 15.9615 9.66025C14.9036 10.6561 14.8401 12.2961 15.8185 13.3674L17.8065 15.5H2.54545C1.70215 15.5 1.01818 14.8283 1.01818 14ZM7.54015 16.5L3.92 17.8689L3.38444 16.5H7.54015ZM7.12065 21.8539C6.3336 22.1519 5.44969 21.7665 5.1464 20.9935L4.28756 18.8L10.3646 16.5V16.497H18.7396L19.4013 17.2055L7.12065 21.8539ZM29.5273 29.5H21.3818V25.5H29.5273V29.5ZM29.5273 24.5H21.1553L20.9345 24.1535C19.6932 22.2053 19.6438 19.7445 20.8055 17.75C20.9155 17.5613 20.8885 17.3243 20.7388 17.164L16.567 12.694C15.9449 12.0253 15.9799 10.9914 16.6459 10.365C17.3121 9.7385 18.3653 9.74875 19.0185 10.3878L27.131 18.3535L27.8508 17.6465L25.9672 15.7965L26.4895 15.5965C27.8002 15.0999 28.4533 13.6544 27.9491 12.3664L26.2259 7.97188L27.8751 9.595C28.929 10.6298 29.5232 12.032 29.5273 13.4956V24.5Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M5.80438 7.5C6.53544 7.5 7.12802 6.918 7.12802 6.2V3.8C7.12802 3.082 6.53544 2.5 5.80438 2.5H3.36075C2.62969 2.5 2.03711 3.082 2.03711 3.8V6.2C2.03711 6.918 2.62969 7.5 3.36075 7.5H5.80438ZM3.05529 6.2V5.5H4.07347V4.5H3.05529V3.8C3.05529 3.63438 3.19211 3.5 3.36075 3.5H5.80438C5.97302 3.5 6.10984 3.63438 6.10984 3.8V4.5H5.09166V5.5H6.10984V6.2C6.10984 6.36563 5.97302 6.5 5.80438 6.5H3.36075C3.19211 6.5 3.05529 6.36563 3.05529 6.2Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M2.54492 9H4.58129V10H2.54492V9Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M2.54492 12H4.58129V13H2.54492V12Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M11.709 12H13.7453V13H11.709V12Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M5.59961 9H7.63597V10H5.59961V9Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M8.6543 9H10.6907V10H8.6543V9Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M11.709 9H13.7453V10H11.709V9Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M21.3828 3H22.401V4.5H21.3828V3Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M19.3457 3H20.3639V4.5H19.3457V3Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M17.3086 3H18.3268V4.5H17.3086V3Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M15.2734 3H16.2916V4.5H15.2734V3Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M22.4004 26.5H23.4186V27.5H22.4004V26.5Z"
+                              fill="#7F848C"
+                            />
+                          </svg>
+                          <p class="text-copy-main">{{ $t("payment") }}</p>
+                        </div>
+                        <div class="bg-background-descr">
+                          <svg
+                            class="completion"
+                            fill="none"
+                            height="31"
+                            viewBox="0 0 30 31"
+                            width="30"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M14.9994 2.84473C14.6749 2.84473 14.4141 3.10605 14.4141 3.43008C14.4141 3.73166 14.6409 3.98262 14.9408 4.01238C15.288 4.04683 15.5848 3.77643 15.5848 3.43008C15.5848 3.10559 15.3234 2.84473 14.9994 2.84473Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M26.7188 4.01562C25.1033 4.01562 23.7891 2.70137 23.7891 1.08594C23.7891 0.762383 23.5267 0.5 23.2031 0.5H6.79688C6.47332 0.5 6.21094 0.762383 6.21094 1.08594C6.21094 2.70137 4.89668 4.01562 3.28125 4.01562C2.9577 4.01562 2.69531 4.27801 2.69531 4.60156V14.1635C2.69531 21.6153 7.55244 28.2925 14.8317 30.4753C14.8866 30.4917 14.9433 30.5 15 30.5C15.0567 30.5 15.1135 30.4917 15.1683 30.4753C22.2899 28.339 27.3047 21.7783 27.3047 14.1635V4.60156C27.3047 4.27801 27.0423 4.01562 26.7188 4.01562ZM26.1328 14.1635C26.1328 21.1624 21.6667 27.2236 15 29.3013C8.38641 27.2401 3.86719 21.1241 3.86719 14.1635V5.14578C5.6608 4.88809 7.0834 3.46549 7.34109 1.67188H22.6589C22.9166 3.46549 24.3392 4.88809 26.1328 5.14578V14.1635Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M24.6101 5.91934C23.3882 5.3842 22.4205 4.41652 21.8854 3.19461C21.792 2.98145 21.5814 2.84375 21.3486 2.84375H17.3426C17.019 2.84375 16.7566 3.10613 16.7566 3.42969C16.7566 3.75324 17.019 4.01563 17.3426 4.01563H20.9781C21.5972 5.2274 22.5773 6.20744 23.7891 6.82654V14.1635C23.7891 19.8976 20.3467 24.8453 15 26.8258C9.65326 24.8452 6.21094 19.8976 6.21094 14.1635V6.82654C7.42271 6.20744 8.40275 5.2274 9.02186 4.01563H12.6574C12.981 4.01563 13.2434 3.75324 13.2434 3.42969C13.2434 3.10613 12.981 2.84375 12.6574 2.84375H8.65137C8.41863 2.84375 8.20805 2.9815 8.11465 3.19461C7.57951 4.41652 6.61184 5.3842 5.38992 5.91934C5.17682 6.01273 5.03906 6.22338 5.03906 6.45605V14.1635C5.03906 20.4455 8.92447 25.9205 14.8045 28.0013C14.8678 28.0237 14.9338 28.0349 15 28.0349C15.0662 28.0349 15.1322 28.0237 15.1955 28.0013C21.0706 25.9222 24.9609 20.4506 24.9609 14.1635V6.45605C24.9609 6.22332 24.8232 6.01273 24.6101 5.91934Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M15 9.05469C12.0922 9.05469 9.72656 11.4204 9.72656 14.3281C9.72656 17.2359 12.0922 19.6016 15 19.6016C17.9078 19.6016 20.2734 17.2359 20.2734 14.3281C20.2734 11.4204 17.9078 9.05469 15 9.05469ZM15 18.4297C12.7384 18.4297 10.8984 16.5897 10.8984 14.3281C10.8984 12.0665 12.7384 10.2266 15 10.2266C17.2616 10.2266 19.1016 12.0665 19.1016 14.3281C19.1016 16.5897 17.2616 18.4297 15 18.4297Z"
+                              fill="#7F848C"
+                            />
+                            <path
+                              d="M17.7581 12.7419C17.5292 12.5131 17.1583 12.5131 16.9294 12.7419L14.4141 15.2572L13.6565 14.4997C13.4277 14.271 13.0568 14.271 12.8279 14.4997C12.599 14.7286 12.599 15.0996 12.8279 15.3284L13.9997 16.5003C14.1142 16.6146 14.2641 16.6719 14.4141 16.6719C14.5641 16.6719 14.714 16.6146 14.8284 16.5003L17.7581 13.5706C17.9869 13.3418 17.9869 12.9707 17.7581 12.7419Z"
+                              fill="#7F848C"
+                            />
+                          </svg>
+                          <p class="text-copy-main">
+                            {{ $t("completion") }}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <!--Форма-->
+                    <form action class="form_exchange">
+                      <input
+                        :name="csrfParam"
+                        :value="csrfToken"
+                        type="hidden"
+                      />
 
 
-      <!--Success-->
-      <the-achievements v-if="blockHide"></the-achievements>
-      <!--Reserves-->
-      <the-reserves v-if="blockHide"></the-reserves>
-      <!--End Reserves-->
-      <the-slider v-if="blockHide"></the-slider>
-      <!--Info-->
-      <the-information v-if="blockHide">
-        <h1>Криптообменник №1</h1>
-        <p>Выбирая криптообменник, пользователь заинтересован в предоставлении обширной экосистемы кошельков.
-          Интерфейс
-          системы должен иметь конвертируемую криптовалюту, с возможностью быстрого проведения транзакции. С учетом
-          допустимой комиссии и начисленными бонусами на каждую сделку.
-          Сайт по покупке и продаже имеет следующие преимущества:</p>
-        <ul>
-          <li>Проведение обмена криптовалют возможно без регистрации на сайте;</li>
-          <li>В личном кабинете доступна история всех транзакций;</li>
-          <li>Большая часть транзакций может быть выполнена без комиссий банку.</li>
-        </ul>
-        <h2>Направления обмена криптовалют на 7MONEY</h2>
-        <p>Обменный пункт предлагает только ликвидные курсы. При выборе направления, обратите внимание на резерв
-          валют.
-          Здесь указана сумма допустимого предложения на текущий операционный день по лучшему курсу в сети.
-          В онлайн-обменнике криптовалют предоставлены пары исходя из следующих параметров:</p>
-        <ul>
-          <li>Ликвидность курса – динамичный спрос и предложения по проводимым транзакциям;</li>
-          <li>Актуальность направления - присутствуют все самые востребованные монеты;</li>
-        </ul>
-        <p>Мы постоянно добавляем на сервис новые криптовалютные пары - рекомендуем добавить сайт в закладки и следить
-          за
-          обновлениями, также это поможет заходить на него с помощью одного клика.</p>
-        <h2>7Money - сервис №1 по покупке и продаже криптовалюты</h2> <strong>Наш обменник крипты выделяется среди
-        множества остальных такими преимуществами:</strong>
-        <ul>
-          <li><strong>Автоматический обмен.
-          </strong>Все транзакции проводятся в автоматическом режиме - исключено влияние человеческого фактора,
-            система
-            мгновенно рассматривает и обрабатывает заявки.
-          </li>
-          <li><strong>Оперативная поддержка клиентов.
-          </strong>В период с 8:00 утра до 23:00 вечера мы готовы помочь в онлайн-чате по любым вопросам, связанным с
-            использованием сервиса.
-          </li>
-          <li><strong>Безопасность платежей.
-          </strong>Наш сайт использует SSL-сертификат, что гарантирует защиту от перехвата любых данных
-            интернет-хакерами,
-            Ваши данные надежно защищены и полностью конфиденциальны. Детальнее про безопасность обмена криптовалюты
-            на
-            7MONEY - <a href="https://7money.co/page/security">по ссылке</a>.
-          </li>
-          <li><strong>Выгодные курсы обмена.
-          </strong>На каждой странице направления в правом верхнем углу отображается актуальный курс. Обновление
-            производится каждую минуту.
-          </li>
-          <li><strong>Программа лояльности.
-          </strong>Зарегистрированные пользователи получают доступ к уникальной системе лояльности – стоимость каждой
-            последующей сделки будет снижена для пользователя сайта.
-          </li>
-        </ul>
-        <p>В любой момент можно <a href="https://7money.co/order/status">проверить статус операции</a> - просто
-          введите №
-          в соответствующее поле и Вы получите необходимую информацию актуальную на текущий момент. Прочитать отзывы
-          про
-          онлайн-обменник 7Money - <a href="https://7money.co/reviews">можно тут</a>.</p>
-        <h3>Партнерская программа - зарабатывайте на обменах других пользователей</h3>
-        <p>Если хотите получать дополнительный доход - можно настроить в личном кабинете опцию реферальной программы.
-          Вы
-          можете получать доход от курсового обмена привлеченных участников. Доход каждой сделки может составлять до
-          25%
-          от суммы комиссии. Предложение действует неограниченный срок. Даже не инвестируя в актив, можно зарабатывать
-          значительные средства только от привлечения других пользователей.</p>
-      </the-information>
-      <!--links-->
-      <the-links v-if="blockHide"></the-links>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
+                      <div class="inp_wrapper inp_block">
+                        <div class=" text-copy-descr">
+                          <div class="label_text">
+                            <label for="give">Отдаёте</label>
+                          </div>
+                          <div
+                            v-if="showPopupInfoSellAmount"
+                            class="popup_info shadow_btn_white"
+                          >
+                            <p class>
+                              Внимание!!! Не указывайте "Логин" при создании
+                              кода в бирже. Такой код на нашем сайте применить
+                              невозможно!
+                            </p>
+                            <div class="popup_info_arrow"></div>
+                          </div>
+                          <div class="inp_img">
+                            <div class="give_inp">
+                              <div
+                                id="field-sell-amount"
+                                class="field-orderform-sell_amount"
+                              >
+                                <div
+                                  class="input_block shadow_btn_white_active"
+                                >
+                                  <input
+                                    id="orderform-sell_amount"
+                                    id="give"
+                                    v-model="sell_amount"
+                                    v-debounce="updateSellAmount"
+                                    class="bg-background-main text-copy-descr"
+                                    type="text"
+                                    @blur="hidePopupInfo"
+                                    @focus="openPopupInfoSellAmount"
+                                  />
+                                </div>
+
+                                <div class="help-block">
+                                  Максимальная сумма продажи 50000 USD!
+                                </div>
+                                <div class="min_max">
+                                  <div class="min">
+                                    <p>
+                                      Min:
+                                      <span class="text-copy-descr"
+                                      >{{ calculateData.min_sell_amount
+                                        }}</span
+                                      >
+                                    </p>
+                                  </div>
+                                  <div class="max">
+                                    <p>
+                                      Max:
+                                      <span class="text-copy-descr"
+                                      >{{ calculateData.max_sell_amount
+                                        }}</span
+                                      >
+                                    </p>
+                                  </div>
+                                </div>
+                                <div class="commission_text text-copy-main">
+                                  Комиссия Приват 24 UAH =
+                                  <span class="text-copy-descr"
+                                  >0.5% (число UAH)</span
+                                  >
+                                </div>
+                              </div>
+                              <span class="icon PRUSD"></span>
+                            </div>
+                          </div>
+                          <div v-if="exchangeBlocksActive" class="checkbox">
+                            <input
+                              id="checkbox"
+                              type="checkbox"
+                              @click="setIsVerified($event)"
+                            />
+                            <label class="checkbox_inp" for="checkbox"
+                            >Мой кошелёк Perfect Money верифицирован</label
+                            >
+                          </div>
+                        </div>
+                        <div class="commission">
+                          <div class="commission_block">
+                            <div class="inp_block text-copy-descr">
+                              <div class="label_text">
+                                <label
+                                  for="orderform-buy_amount_with_discount"
+                                >
+                                  Со скидкой
+                                </label>
+                              </div>
+                              <div
+                                class="
+                                    form-group
+                                    field-orderform-buy_amount_with_discount
+                                  "
+                              >
+                                <div
+                                  class="
+                                      not_active
+                                      input_block
+                                      shadow_btn_white_active
+                                    "
+                                >
+                                  <input
+                                    id="orderform-buy_amount_with_discount"
+                                    class="bg-background-main text-copy-descr"
+                                    disabled="disabled"
+                                    name="OrderForm[buy_amount_with_discount]"
+                                    placeholder="787"
+                                    readonly="readonly"
+                                    type="text"
+                                  />
+                                </div>
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="inp_wrapper inp_block">
+                        <div class=" text-copy-descr">
+                          <div class="label_text">
+                            <label for="orderform-buy_amount">Получаю</label>
+                            <div class="lacks_texts text-copy-main">
+                              <p class="lacks_text">Не хватает?</p>
+                              <div
+                                class="
+                                    lacks_block
+                                    bg-background-main
+                                    shadow_btn_white
+                                  "
+                              >
+                                <p>
+                                  Максимальная сумма получения
+                                  <strong class="maxBuyAmountText"
+                                  >5 USD</strong
+                                  >
+                                  PAYEER USD.
+                                </p>
+                                <button
+                                  class="green_btn text-copy-btngreen"
+                                  type="button"
+                                  @click="openLacks"
+                                >
+                                  Не хватает?
+                                </button>
+                                <div class="arrow_lacks"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="get_inp">
+                            <div class="inp_img">
+                              <div
+                                id="field-buy-amount"
+                                class="field-orderform-buy_amount"
+                              >
+                                <div
+                                  class="input_block shadow_btn_white_active"
+                                >
+                                  <input
+                                    id="orderform-buy_amount"
+                                    v-model="buy_amount"
+                                    v-debounce="updateBuyAmount"
+                                    class="bg-background-main text-copy-descr"
+                                    name="OrderForm[buy_amount]"
+                                    type="text"
+                                  />
+                                </div>
+                                <div class="help-block">
+                                  Максимальная сумма продажи 50000 USD!
+                                </div>
+                                <div class="min_max">
+                                  <div class="min">
+                                    <p>
+                                      Min:
+                                      <span
+                                        class="
+                                            text-copy-descr
+                                            minBuyAmountText
+                                          "
+                                      >50 USD</span
+                                      >
+                                    </p>
+                                  </div>
+                                  <div class="max">
+                                    <p>
+                                      Max:
+                                      <span
+                                        class="
+                                            text-copy-descr
+                                            maxBuyAmountText
+                                          "
+                                      >5 USD</span
+                                      >
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <span
+                                id="exchange-ddl-to"
+                                class="icon PRUSD"
+                              ></span>
+                            </div>
+                          </div>
+                          <!---->
+                        </div>
+                        <p class="error__text">
+                          Обращаем Ваше внимание, что данный метод оплаты
+                          не позволяет оплатить суммарно больше 250тыс.
+                          грн за один календарный месяц. Также обращаем
+                          Ваше внимание, что для успешной оплаты на Вашей
+                          карте должен быть установлен допустимый интернет
+                          лимит(оплата в интернете)!!!
+                        </p>
+                        <div class="commission">
+                          <div class="commission_block">
+                            <div class="inp_block text-copy-descr">
+                              <div class="label_text">
+                                <label
+                                  for="orderform-buy_amount_with_discount"
+                                >
+                                  Со скидкой
+                                </label>
+                              </div>
+                              <div
+                                class="
+                                    form-group
+                                    field-orderform-buy_amount_with_discount
+                                  "
+                              >
+                                <div
+                                  class="
+                                      not_active
+                                      input_block
+                                      shadow_btn_white_active
+                                    "
+                                >
+                                  <input
+                                    id="orderform-buy_amount_with_discount"
+                                    class="bg-background-main text-copy-descr"
+                                    disabled="disabled"
+                                    name="OrderForm[buy_amount_with_discount]"
+                                    placeholder="787"
+                                    readonly="readonly"
+                                    type="text"
+                                  />
+                                </div>
+
+                                <div class="help-block"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <!--Линия-->
+                      <div class="line"></div>
+                      <!--Конец Линии-->
+                      <div class="inp_block text-copy-descr">
+                        <div class="label_text">
+                          <label for="this_account"
+                          >Заплатить с этого счёта</label
+                          >
+                        </div>
+                        <div class="inp_img">
+                          <div class="input_block shadow_btn_white_active">
+                            <input
+                              id="orderform-sell_source"
+                              class="bg-background-main text-copy-descr"
+                              placeholder="120122442432"
+                              type="number"
+                              @blur="hidePopupInfo"
+                              @focus="openPopupInfoThisAccount"
+                            />
+                          </div>
+                          <div class="help-block">
+                            Неверный формат счёта Payeer USD
+                          </div>
+                          <span class="BTC"></span>
+                        </div>
+<!--                        <div class="popup_info ">-->
+<!--                          <p class>-->
+<!--                            Обращаем Ваше внимание, что данный метод оплаты-->
+<!--                            не позволяет оплатить суммарно больше 250тыс.-->
+<!--                            грн за один календарный месяц. Также обращаем-->
+<!--                            Ваше внимание, что для успешной оплаты на Вашей-->
+<!--                            карте должен быть установлен допустимый интернет-->
+<!--                            лимит(оплата в интернете)!!!-->
+<!--                          </p>-->
+<!--                        </div>-->
+                      </div>
+                      <div class="inp_block text-copy-descr">
+                        <div class="label_text">
+                          <label for="to_account"
+                          >Зачислить на этот счет</label
+                          >
+                        </div>
+                        <div class="inp_img">
+                          <div class="input_block shadow_btn_white_active">
+                            <input
+                              id="orderform-buy_target"
+                              class="text-copy-descr bg-background-main"
+                              placeholder="1201205225"
+                              type="number"
+                              @blur="hidePopupInfo"
+                              @focus="openPopupInfoToAccount"
+                            />
+                          </div>
+                          <span class="BTC"></span>
+                        </div>
+                        <!-- <div class="popup_info shadow_btn_white">
+                      <p class>
+                        Уважаемые клиенты, если в заявке Вы указываете
+                        карту ПриватБанка"Для Выплат" то на Вашу карту
+                        поступит сумма на 0,5% меньше,чем сумма
+                        указанная в заявке. На одну карту Вы можете
+                        осуществить не более 5 операций в сутки!!!
+                        Уважаемые клиенты, если в заявке Вы указываете
+                        карту ПриватБанка"Для Выплат" то на Вашу карту
+                        поступит сумма на 0,5% меньше,чем сумма
+                        указанная в заявке. На одну карту Вы можете
+                        осуществить не более 5 операций в сутки!!!
+                      </p>
+                      <div class="popup_info_arrow"></div>
+                    </div>
+                    <div class="popup_info shadow_btn_white ">
+                      <p class>
+                        Внимание!!! Оплата на анонимные кошельки
+                        Яндекс.Деньги поступает "замороженной", после
+                        получении оплаты Вам нужно будет пройти
+                        идентификацию в системе Яндекс.Денег. Либо
+                        воздержитесь от обмена на анонимные кошельки.
+                        Лимиты Яндекс Денег можете узнать в онлайн чате.
+                      </p>
+                      <div class="popup_info_arrow"></div>
+                    </div> -->
+                        <!-- <div class="popup_info shadow_btn_white">
+                                        <p class>
+                                          На одну карту Вы можете осуществить не более 5 операций в сутки!!!
+                                        </p>
+                                        <div class="popup_info_arrow">
+                                        </div>
+                                      </div> -->
+                      </div>
+                      <div
+                        v-if="exchangeBlocksActive && currencyModel.isCrypt(sellCurrency.id)"
+                        class="inp_block text-copy-descr stock_exchange"
+                      >
+                        <div class="checkbox">
+                          <input
+                            id="orderform-of_exchange"
+                            name="OrderForm[of_exchange]"
+                            type="checkbox"
+                            @click="setOfExchange($event)"
+                          />
+
+                          <label
+                            class="checkbox_inp"
+                            for="orderform-of_exchange"
+                          >Вывожу с биржи</label
+                          >
+                        </div>
+                      </div>
+                      <div v-if="exchangeBlocksActive" class="line"></div>
+                      <div class="inp_block text-copy-descr">
+                        <div class="label_text">
+                          <label for="orderform-telegram">Город</label>
+                        </div>
+                        <select
+                          class="select bg-background-main"
+                          name="UserOutput[currency_id]"
+                          @change="setCityId($event)"
+                        >
+                          <option value="">-- Выберите город --</option>
+                          <option value="1">Киев</option>
+                          <option value="4">Москва</option>
+                        </select>
+                      </div>
+                      <div
+                        v-if="exchangeBlocksActive && (currencyModel.isUahBank(sellCurrency.id) || currencyModel.isUahBank(buyCurrency.id))"
+                        class="inp_block text-copy-descr"
+                      >
+                        <div class="label_text">
+                          <label for="exchange_name"
+                          >Имя держателя карты</label
+                          >
+                        </div>
+                        <div class="input_block shadow_btn_white_active">
+                          <input
+                            id="exchange_name"
+                            class="text-copy-descr bg-background-main"
+                            placeholder="Василий"
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        v-if="exchangeBlocksActive && (currencyModel.isUahBank(sellCurrency.id) || currencyModel.isUahBank(buyCurrency.id))"
+                        class="inp_block text-copy-descr"
+                      >
+                        <div class="label_text">
+                          <label for="exchange_surname"
+                          >Фамилия держателя карты</label
+                          >
+                        </div>
+                        <div class="input_block shadow_btn_white_active">
+                          <input
+                            id="surname"
+                            class="text-copy-descr bg-background-main"
+                            placeholder="Петров"
+                            type="text"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        v-if="exchangeBlocksActive && (currencyModel.isCash(sellCurrency.id) || currencyModel.isCash(buyCurrency.id))"
+                        class="inp_block text-copy-descr"
+                      >
+                        <div class="label_text">
+                          <label for="orderform-telegram">Telegram</label>
+                        </div>
+                        <div class="input_block shadow_btn_white_active">
+                          <input
+                            id="orderform-telegram"
+                            class="text-copy-descr bg-background-main"
+                            name="OrderForm[telegram]"
+                            placeholder="@nickname"
+                            type="tel"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        v-if="
+                              exchangeBlocksActive &&
+                              (
+                                (currencyModel.isUahBank(sellCurrency.id) || currencyModel.isUahBank(buyCurrency.id))
+                                ||
+                                (currencyModel.isCash(sellCurrency.id) || currencyModel.isCash(buyCurrency.id))
+                              )"
+                        class="inp_block text-copy-descr"
+                      >
+                        <div class="label_text">
+                          <label for="orderform-phone"
+                          >Номер телефона</label
+                          >
+                        </div>
+                        <div class="input_block shadow_btn_white_active">
+                          <input
+                            id="orderform-phone"
+                            class="text-copy-descr bg-background-main"
+                            name="OrderForm[phone]"
+                            placeholder="+38 (068) 72 50 152"
+                            type="tel"
+                          />
+                        </div>
+                      </div>
+                      <div
+                        v-if="exchangeBlocksActive"
+                        class="inp_block text-copy-descr"
+                      >
+                        <div class="label_text">
+                          <label for="exchange_mail"
+                          >Электронная почта</label
+                          >
+                        </div>
+                        <div class="input_block shadow_btn_white_active">
+                          <input
+                            id="exchange_mail"
+                            class="text-copy-descr bg-background-main"
+                            placeholder="tolik.wwwww@ukr.net"
+                            type="mail"
+                          />
+                        </div>
+                        <!-- <div class="send_letter" v-if="send_letter">
+                                          <button @click.prevent="checkEmailExmo" class="button_verified_mail">Отправить письмо</button>
+                                        </div> -->
+                        <!-- <div class="error_verified dn">
+                                          <div class="help-block">Ваш E-mail не верифицирован</div>
+                                          <button @click.prevent="show_modal_verified = true" class="button_verified_mail"
+                                            type="text">Ввести
+                                            код
+                                            вручную?</button>
+                                        </div> -->
+                        <div
+                          v-if="showPopupVerified"
+                          class="popup_info shadow_btn_white"
+                        >
+                          <p class>
+                            Мы отправим на вашу E-mail письмо с кодом
+                            активации. Введите его чтоб продолжить операцию
+                          </p>
+                          <div class="popup_info_arrow"></div>
+                        </div>
+                      </div>
+                      <div
+                        v-if="exchangeBlocksActive"
+                        class="checkbox confirm"
+                      >
+                        <div
+                          id="border-active"
+                          class="confirm-border"
+                        ></div>
+                        <div id="confirm-active" class="main-element">
+                          <input
+                            id="orderform-agree"
+                            type="checkbox"
+                            @click="confirmChecked"
+                          />
+                          <label class="checkbox_inp" for="orderform-agree">
+                            <p class="text-copy-descr">
+                              Нажимая на кнопку, я подтверждаю, что я
+                              ознакомился и согласен с условиями
+                              <a
+                                href="https://makeup.7money.co/page/security"
+                              >
+                                Безопасности
+                              </a>
+                              и
+                              <a
+                                href="https://makeup.7money.co/page/agreement"
+                              >
+                                Соглашением сайта
+                              </a>
+                            </p>
+                          </label>
+                        </div>
+                      </div>
+                      <button
+                        id="order-submit"
+                        class="
+                              green_btn
+                              text-copy-btngreen
+                              form_btn
+                              disabled_form_btn
+                            "
+                        disabled
+                        type="submit"
+                        @click="checkEmailExmo"
+                      >
+                        Обменять
+                      </button>
+                    </form>
+                    <!--Конец Формы-->
+                  </div>
+                  <div v-if="currencyInfo" class="">
+                    <div
+                      v-if="calculateData.course_seo_text"
+                      class="
+                            currency_info
+                            shadow_btn_white
+                            bg-background-main
+                          "
+                    >
+                      <p
+                        class="text-copy-descr"
+                        v-html="calculateData.course_seo_text"
+                      ></p>
+                    </div>
+                  </div>
+                  <div v-if="currencyInfo" class="links">
+                    <div class="container" v-if="homeSeoText">
+                      <div
+                        class="
+                              links-box
+                              shadow_btn_white
+                              bg-background-main
+                            "
+                      >
+                        <div
+                          class="links-items"
+                          :class="{active: showLinks}"
+                        >
+                          <vuescroll>
+                            <div class="links-items-box">
+                              <div class="block-link">
+                                <a href="" class="text-copy-green">
+                                  Яндекс Деньги RUB => Advanced Cash USD</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >QIWI RUB => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Яндекс Деньги RUB => Advanced Cash USD</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >QIWI RUB => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Яндекс Деньги RUB => Advanced Cash USD</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >QIWI RUB => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Яндекс Деньги RUB => Advanced Cash USD</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >QIWI RUB => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Яндекс Деньги RUB => Advanced Cash USD</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >QIWI RUB => Bitcoin</a
+                                >
+                              </div>
+                              <div class="block-link">
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Яндекс Деньги RUB => Advanced Cash USD</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Приват 24 UAH => Advanced Cash USD</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                              </div>
+                              <div class="block-link">
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green">
+                                  Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Visa/MasterCard UAH => Bitcoin</a
+                                >
+                                <a href="" class="text-copy-green"
+                                >Exmo USD => Bitcoin</a
+                                >
+                              </div>
+                            </div>
+                          </vuescroll>
+                        </div>
+                        <a
+                          class="show-link text-copy-descr"
+                          href="#!"
+                          @click.prevent="showLinks = !showLinks"
+                        >{{ $t("showMore") }}</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </transition>
+              <!--End Eurrency Exchange-->
+
+              <script
+                id="preloadGroupsAndCurrencies"
+                type="application/json"
+              >
+                {
+                  "groups": [
+                    {
+                      "id": 1,
+                      "name": "CRYPT"
+                    },
+                    {
+                      "id": 2,
+                      "name": "USD"
+                    },
+                    {
+                      "id": 3,
+                      "name": "RUB"
+                    },
+                    {
+                      "id": 4,
+                      "name": "UAH"
+                    },
+                    {
+                      "id": 5,
+                      "name": "CASH"
+                    }
+                  ],
+                  "buyCurrencies": [
+                    {
+                      "id": "4",
+                      "group_id": "1",
+                      "code": "BTC",
+                      "name_ru": "Bitcoin",
+                      "name_en": "Bitcoin",
+                      "symbol": "BTC",
+                      "example": "",
+                      "amount": "0.1117",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "19",
+                      "group_id": "1",
+                      "code": "LTC",
+                      "name_ru": "Litecoin",
+                      "name_en": "Litecoin",
+                      "symbol": "LTC",
+                      "example": "",
+                      "amount": "40.1010",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "20",
+                      "group_id": "1",
+                      "code": "DASH",
+                      "name_ru": "Dash",
+                      "name_en": "Dash",
+                      "symbol": "DASH",
+                      "example": "",
+                      "amount": "18.0829",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "21",
+                      "group_id": "1",
+                      "code": "ZEC",
+                      "name_ru": "Zcash",
+                      "name_en": "Zcash",
+                      "symbol": "ZEC",
+                      "example": "",
+                      "amount": "12.8271",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "9",
+                      "group_id": "3",
+                      "code": "YAMRUB",
+                      "name_ru": "Яндекс Деньги RUB",
+                      "name_en": "Yandex Money RUB",
+                      "symbol": "RUB",
+                      "example": "410011111111111",
+                      "amount": "112608.9150",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "3",
+                        "name": "RUB"
+                      }
+                    },
+                    {
+                      "id": "23",
+                      "group_id": "3",
+                      "code": "EXMRUB",
+                      "name_ru": "Exmo RUB",
+                      "name_en": "Exmo RUB",
+                      "symbol": "RUB",
+                      "example": "",
+                      "amount": "122930.0900",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": null,
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": null,
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "3",
+                        "name": "RUB"
+                      }
+                    },
+                    {
+                      "id": "1",
+                      "group_id": "2",
+                      "code": "PMUSD",
+                      "name_ru": "PerfectMoney USD",
+                      "name_en": "PerfectMoney USD",
+                      "symbol": "USD",
+                      "example": "U012345678",
+                      "amount": "76678.7681",
+                      "is_sell_verified": "1",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0.5",
+                      "sell_verified_text_ru": "<p class=\"inline\">Мой кошелёк Perfect Money верифицирован<br /><small style=\"color: #737373\">Для неверифицированных кошельков комиссия больше на 1.5%</small></p>",
+                      "sell_verified_text_en": "<p class=\"inline\">My purse Perfect Money is verified<br /><small style=\"color: #737373\">For the unverified purses commission is more on 1.5%</small></p>",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "8",
+                      "group_id": "2",
+                      "code": "ADVCUSD",
+                      "name_ru": "Advanced Cash USD",
+                      "name_en": "Advanced Cash USD",
+                      "symbol": "USD",
+                      "example": " U123456789123",
+                      "amount": "21392.6700",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "2",
+                      "group_id": "2",
+                      "code": "PRUSD",
+                      "name_ru": "PAYEER USD",
+                      "name_en": "PAYEER USD",
+                      "symbol": "USD",
+                      "example": "P01234567",
+                      "amount": "5814.4917",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "12",
+                      "group_id": "2",
+                      "code": "EXMUSD",
+                      "name_ru": "Exmo USD",
+                      "name_en": "Exmo USD",
+                      "symbol": "USD",
+                      "example": "",
+                      "amount": "2816.3520",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": null,
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": null,
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "3",
+                      "group_id": "4",
+                      "code": "P24UAH",
+                      "name_ru": "Приват 24 UAH",
+                      "name_en": "Privat 24 UAH",
+                      "symbol": "UAH",
+                      "example": "5168 0001 2345 6789",
+                      "amount": "73980.1800",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "4",
+                        "name": "UAH"
+                      }
+                    },
+                    {
+                      "id": "26",
+                      "group_id": "4",
+                      "code": "CARDUAH",
+                      "name_ru": "Visa/MasterCard UAH",
+                      "name_en": "Visa/MasterCard UAH",
+                      "symbol": "UAH",
+                      "example": "4314 1402 0012 1155",
+                      "amount": "57080.1800",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": null,
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": null,
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "4",
+                        "name": "UAH"
+                      }
+                    },
+                    {
+                      "id": "35",
+                      "group_id": "4",
+                      "code": "MONOBUAH",
+                      "name_ru": "Монобанк UAH",
+                      "name_en": "Monobank UAH",
+                      "symbol": "UAH",
+                      "example": "5375 4114 0033 0152",
+                      "amount": "103106.0500",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "4",
+                        "name": "UAH"
+                      }
+                    },
+                    {
+                      "id": "30",
+                      "group_id": "5",
+                      "code": "CASHUSD",
+                      "name_ru": "Наличные USD Киев",
+                      "name_en": "Cash USD Kyiv",
+                      "symbol": "USD",
+                      "example": "",
+                      "amount": "347200.0000",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "5",
+                        "name": "CASH"
+                      }
+                    },
+                    {
+                      "id": "36",
+                      "group_id": "5",
+                      "code": "CASHUSD",
+                      "name_ru": "Наличные USD Москва",
+                      "name_en": "Cash USD Moscow",
+                      "symbol": "USD",
+                      "example": "",
+                      "amount": "347200.0000",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "5",
+                        "name": "CASH"
+                      }
+                    }
+                  ],
+                  "allCurrencies": [
+                    {
+                      "id": "4",
+                      "group_id": "1",
+                      "code": "BTC",
+                      "name_ru": "Bitcoin",
+                      "name_en": "Bitcoin",
+                      "symbol": "BTC",
+                      "example": "",
+                      "amount": "0.1117",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "19",
+                      "group_id": "1",
+                      "code": "LTC",
+                      "name_ru": "Litecoin",
+                      "name_en": "Litecoin",
+                      "symbol": "LTC",
+                      "example": "",
+                      "amount": "40.1010",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "20",
+                      "group_id": "1",
+                      "code": "DASH",
+                      "name_ru": "Dash",
+                      "name_en": "Dash",
+                      "symbol": "DASH",
+                      "example": "",
+                      "amount": "18.0829",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "21",
+                      "group_id": "1",
+                      "code": "ZEC",
+                      "name_ru": "Zcash",
+                      "name_en": "Zcash",
+                      "symbol": "ZEC",
+                      "example": "",
+                      "amount": "12.8271",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "1",
+                        "name": "CRYPT"
+                      }
+                    },
+                    {
+                      "id": "9",
+                      "group_id": "3",
+                      "code": "YAMRUB",
+                      "name_ru": "Яндекс Деньги RUB",
+                      "name_en": "Yandex Money RUB",
+                      "symbol": "RUB",
+                      "example": "410011111111111",
+                      "amount": "112608.9150",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "3",
+                        "name": "RUB"
+                      }
+                    },
+                    {
+                      "id": "23",
+                      "group_id": "3",
+                      "code": "EXMRUB",
+                      "name_ru": "Exmo RUB",
+                      "name_en": "Exmo RUB",
+                      "symbol": "RUB",
+                      "example": "",
+                      "amount": "122930.0900",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": null,
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": null,
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "3",
+                        "name": "RUB"
+                      }
+                    },
+                    {
+                      "id": "1",
+                      "group_id": "2",
+                      "code": "PMUSD",
+                      "name_ru": "PerfectMoney USD",
+                      "name_en": "PerfectMoney USD",
+                      "symbol": "USD",
+                      "example": "U012345678",
+                      "amount": "76678.7681",
+                      "is_sell_verified": "1",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0.5",
+                      "sell_verified_text_ru": "<p class=\"inline\">Мой кошелёк Perfect Money верифицирован<br /><small style=\"color: #737373\">Для неверифицированных кошельков комиссия больше на 1.5%</small></p>",
+                      "sell_verified_text_en": "<p class=\"inline\">My purse Perfect Money is verified<br /><small style=\"color: #737373\">For the unverified purses commission is more on 1.5%</small></p>",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "8",
+                      "group_id": "2",
+                      "code": "ADVCUSD",
+                      "name_ru": "Advanced Cash USD",
+                      "name_en": "Advanced Cash USD",
+                      "symbol": "USD",
+                      "example": " U123456789123",
+                      "amount": "21392.6700",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "2",
+                      "group_id": "2",
+                      "code": "PRUSD",
+                      "name_ru": "PAYEER USD",
+                      "name_en": "PAYEER USD",
+                      "symbol": "USD",
+                      "example": "P01234567",
+                      "amount": "5814.4917",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "12",
+                      "group_id": "2",
+                      "code": "EXMUSD",
+                      "name_ru": "Exmo USD",
+                      "name_en": "Exmo USD",
+                      "symbol": "USD",
+                      "example": "",
+                      "amount": "2816.3520",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": null,
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": null,
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "2",
+                        "name": "USD"
+                      }
+                    },
+                    {
+                      "id": "3",
+                      "group_id": "4",
+                      "code": "P24UAH",
+                      "name_ru": "Приват 24 UAH",
+                      "name_en": "Privat 24 UAH",
+                      "symbol": "UAH",
+                      "example": "5168 0001 2345 6789",
+                      "amount": "73980.1800",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "4",
+                        "name": "UAH"
+                      }
+                    },
+                    {
+                      "id": "26",
+                      "group_id": "4",
+                      "code": "CARDUAH",
+                      "name_ru": "Visa/MasterCard UAH",
+                      "name_en": "Visa/MasterCard UAH",
+                      "symbol": "UAH",
+                      "example": "4314 1402 0012 1155",
+                      "amount": "57080.1800",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": null,
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": null,
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "4",
+                        "name": "UAH"
+                      }
+                    },
+                    {
+                      "id": "35",
+                      "group_id": "4",
+                      "code": "MONOBUAH",
+                      "name_ru": "Монобанк UAH",
+                      "name_en": "Monobank UAH",
+                      "symbol": "UAH",
+                      "example": "5375 4114 0033 0152",
+                      "amount": "103106.0500",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "4",
+                        "name": "UAH"
+                      }
+                    },
+                    {
+                      "id": "30",
+                      "group_id": "5",
+                      "code": "CASHUSD",
+                      "name_ru": "Наличные USD Киев",
+                      "name_en": "Cash USD Kyiv",
+                      "symbol": "USD",
+                      "example": "",
+                      "amount": "347200.0000",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "5",
+                        "name": "CASH"
+                      }
+                    },
+                    {
+                      "id": "36",
+                      "group_id": "5",
+                      "code": "CASHUSD",
+                      "name_ru": "Наличные USD Москва",
+                      "name_en": "Cash USD Moscow",
+                      "symbol": "USD",
+                      "example": "",
+                      "amount": "347200.0000",
+                      "is_sell_verified": "0",
+                      "is_buy_verified": "0",
+                      "sell_verified_comission": "0",
+                      "sell_verified_text_ru": "",
+                      "sell_verified_text_en": "",
+                      "buy_verified_comission": "0",
+                      "buy_verified_text_ru": "",
+                      "buy_verified_text_en": "",
+                      "is_show_for_all": "1",
+                      "group": {
+                        "id": "5",
+                        "name": "CASH"
+                      }
+                    }
+                  ]
+                }
+              </script>
+            </div>
+          </div>
+        </section>
+        <!--End Exchange-->
+        <div v-if="currencyInfo" class="container">
+          <!-- <div class="html_link">
+                <div  class="currency_info shadow_btn_white bg-background-main">
+                    cfytvytv
+                  </div>
+              </div> -->
+        </div>
+        <!--Success-->
+        <section v-if="homeSuccess" class="success">
+          <div class="container">
+            <div class="success_box bg-background-main shadow_btn_white">
+              <div class="success_block">
+                <svg
+                  fill="none"
+                  height="45"
+                  viewBox="0 0 41 45"
+                  width="41"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M12.0194 10.3121C12.0194 13.0188 9.81668 15.2216 7.10963 15.2216C4.40261 15.2216 2.2002 13.0188 2.2002 10.3121C2.2002 7.60507 4.40262 5.40234 7.10963 5.40234C9.81667 5.40234 12.0194 7.60509 12.0194 10.3121ZM9.88511 10.3121C9.88511 8.78124 8.64061 7.53631 7.10963 7.53631C5.57903 7.53631 4.33416 8.78122 4.33416 10.3121C4.33416 11.8427 5.57905 13.0876 7.10963 13.0876C8.64058 13.0876 9.88511 11.8427 9.88511 10.3121Z"
+                    fill="#00B047"
+                    stroke="#E8EDF1"
+                    stroke-width="0.5"
+                  />
+                  <path
+                    d="M26.0934 6.14649C26.0934 9.39734 23.4481 12.0426 20.1969 12.0426C16.9461 12.0426 14.3008 9.39735 14.3008 6.14649C14.3008 2.89528 16.9461 0.25 20.1969 0.25C23.4481 0.25 26.0934 2.89529 26.0934 6.14649ZM23.9591 6.14649C23.9591 4.07174 22.2717 2.38431 20.1969 2.38431C18.1222 2.38431 16.4347 4.07174 16.4347 6.14649C16.4347 8.22088 18.1222 9.90867 20.1969 9.90867C22.2717 9.90867 23.9591 8.22088 23.9591 6.14649Z"
+                    fill="#00B047"
+                    stroke="#E8EDF1"
+                    stroke-width="0.5"
+                  />
+                  <path
+                    d="M28.2499 17.3768L28.3466 17.6014L28.5732 17.5098C28.9385 17.3621 29.3369 17.2801 29.7543 17.2801H37.157C38.9007 17.2801 40.32 18.6991 40.32 20.4431V27.2899C40.32 28.4657 39.6806 29.5051 38.7047 30.0503L38.5766 30.1219V30.2686V40.2149C38.5766 40.804 38.0987 41.2819 37.5096 41.2819H29.4017C28.8126 41.2819 28.3347 40.804 28.3347 40.2149V30.2686V30.1219L28.2067 30.0504C28.1144 29.9987 28.0243 29.9402 27.9336 29.8767L27.7522 29.7496L27.6042 29.9144C27.2948 30.2588 26.9206 30.5452 26.4976 30.7545L26.3585 30.8233V30.9786V43.6832C26.3585 44.2723 25.8806 44.7502 25.2915 44.7502H15.102C14.5126 44.7502 14.0351 44.2723 14.0351 43.6832V30.9786V30.8233L13.8958 30.7544C13.5019 30.5597 13.1502 30.2975 12.8541 29.984L12.7113 29.8328L12.5367 29.9456C12.4794 29.9826 12.4218 30.0176 12.3632 30.0504L12.2352 30.1219V30.2686V40.2149C12.2352 40.804 11.7573 41.2819 11.1683 41.2819H3.06037C2.47129 41.2819 1.99339 40.804 1.99339 40.2149V30.2686V30.1219L1.86529 30.0503C0.889103 29.5051 0.25 28.4657 0.25 27.2899V20.4431C0.25 18.6991 1.66927 17.2801 3.41296 17.2801H10.8153C11.1806 17.2801 11.5307 17.3427 11.8571 17.4569L12.0737 17.5327L12.1677 17.3234C12.7474 16.0332 14.0433 15.1333 15.5453 15.1333H24.8482C26.3708 15.1333 27.6822 16.058 28.2499 17.3768ZM11.8439 27.3033H11.844V27.2999V20.4338H11.844L11.844 20.4308C11.8372 19.869 11.3791 19.4141 10.8157 19.4141H3.41296C2.84525 19.4141 2.38431 19.8756 2.38431 20.4431V27.2899C2.38431 27.7863 2.75057 28.2203 3.23963 28.304L3.23982 28.304C3.75238 28.3914 4.12735 28.8358 4.12735 29.3557V38.8976V39.1476H4.37735H9.85093H10.1009V38.8976V29.3557C10.1009 28.8358 10.4759 28.3914 10.9885 28.304L10.9885 28.304C11.4739 28.2212 11.8371 27.7937 11.8439 27.3033ZM23.9745 42.6159H24.2245V42.3659V30.0358C24.2245 29.5157 24.5994 29.0714 25.1122 28.9838C25.8568 28.8568 26.4152 28.1944 26.4152 27.4393V18.8342C26.4152 17.9701 25.7124 17.2673 24.8482 17.2673H15.5453C14.6808 17.2673 13.9779 17.97 13.9779 18.8342V20.4245C13.9779 20.4306 13.9781 20.4358 13.9783 20.4396L13.9786 20.4468V27.2833L13.9784 27.2864C13.9782 27.2906 13.9779 27.2966 13.9779 27.3036V27.4393C13.9779 28.1945 14.5368 28.8568 15.2814 28.9838C15.7941 29.0714 16.169 29.5157 16.169 30.0358V42.3659V42.6159H16.419H23.9745ZM13.979 27.2781L13.9789 27.2794L13.979 27.2781ZM37.3302 28.304L37.3303 28.304C37.7351 28.2347 38.0557 27.9256 38.1542 27.5396H38.186V27.2896V20.4431C38.186 19.8755 37.7246 19.4141 37.157 19.4141H29.7547C29.1871 19.4141 28.7257 19.8755 28.7257 20.4431V27.2899C28.7257 27.7864 29.092 28.2203 29.5814 28.304L29.5815 28.304C30.0941 28.3914 30.469 28.8358 30.469 29.3557V38.8976V39.1476H30.719H36.1926H36.4426V38.8976V29.3557C36.4426 28.8355 36.8176 28.3914 37.3302 28.304Z"
+                    fill="#00B047"
+                    stroke="#E8EDF1"
+                    stroke-width="0.5"
+                  />
+                  <path
+                    d="M38.3661 10.3121C38.3661 13.0188 36.1634 15.2216 33.4563 15.2216C30.7496 15.2216 28.5469 13.0188 28.5469 10.3121C28.5469 7.60508 30.7496 5.40234 33.4563 5.40234C36.1633 5.40234 38.3661 7.60509 38.3661 10.3121ZM36.2321 10.3121C36.2321 8.7812 34.9872 7.53631 33.4563 7.53631C31.9257 7.53631 30.6808 8.78122 30.6808 10.3121C30.6808 11.8427 31.9257 13.0876 33.4563 13.0876C34.9872 13.0876 36.2321 11.8427 36.2321 10.3121Z"
+                    fill="#00B047"
+                    stroke="#E8EDF1"
+                    stroke-width="0.5"
+                  />
+                </svg>
+                <div class="success_text">
+                  <p class="success_title gamesDaymariusv text-copy-descr">
+                    8766
+                  </p>
+                  <p class="success_descr">Человек нам доверяют</p>
+                </div>
+              </div>
+              <div class="success_block">
+                <svg
+                  fill="none"
+                  height="45"
+                  viewBox="0 0 45 45"
+                  width="45"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M22.5 0C10.0937 0 0 10.0937 0 22.5C0 34.9063 10.0937 45 22.5 45C34.9063 45 45 34.9063 45 22.5C45 10.0937 34.9063 0 22.5 0ZM22.5 42.1875C11.6441 42.1875 2.81251 33.3559 2.81251 22.5C2.81251 11.6441 11.6441 2.81251 22.5 2.81251C33.3559 2.81251 42.1875 11.6441 42.1875 22.5C42.1875 33.3559 33.3559 42.1875 22.5 42.1875V42.1875Z"
+                    fill="#00B047"
+                  />
+                  <path
+                    d="M23.9063 9.84376C23.9063 9.0671 23.2767 8.4375 22.5 8.4375V8.4375C21.7234 8.4375 21.0938 9.0671 21.0938 9.84376V21.8396C21.0938 22.6352 21.4098 23.3983 21.9724 23.9609L28.949 30.9375C29.4981 31.4866 30.3884 31.4866 30.9375 30.9375V30.9375C31.4866 30.3883 31.4866 29.498 30.9375 28.9489L24.7849 22.7964C24.2223 22.2338 23.9063 21.4707 23.9063 20.675V9.84376Z"
+                    fill="#00B047"
+                  />
+                </svg>
+                <div class="success_text">
+                  <p class="success_title gamesDaymariusv text-copy-descr">
+                    7:03
+                  </p>
+                  <p class="success_descr">Среднее время обмена</p>
+                </div>
+              </div>
+              <div class="success_block">
+                <svg
+                  class="arrow"
+                  fill="none"
+                  height="47"
+                  viewBox="0 0 52 47"
+                  width="52"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M20.9465 31.726L22.4848 29.2442C22.854 28.6494 22.6694 27.8803 22.0746 27.5111C21.4901 27.1419 20.7107 27.3265 20.3415 27.9213L18.8032 30.4031C16.0137 34.9052 12.0347 37.4895 7.87104 37.4895H2.25115C1.55379 37.4895 1 38.0535 1 38.7509C1 39.4482 1.56404 40.0123 2.25115 40.0123H7.8813C12.9372 39.9918 17.6956 36.9767 20.9465 31.726Z"
+                    fill="url(#paint0_linear)"
+                    stroke="#7F848C"
+                    stroke-width="0.2"
+                  />
+                  <path
+                    d="M50.8829 7.56459L44.7913 1.4627C44.299 0.970442 43.5094 0.970442 43.0171 1.4627C42.5249 1.95495 42.5249 2.74461 43.0171 3.23686L46.9757 7.1954C46.9654 7.1954 46.9654 7.1954 46.9552 7.1954H41.1404C36.0948 7.1954 31.3261 10.2105 28.0752 15.4612L27.1317 16.9892C26.7625 17.584 26.9471 18.3532 27.5419 18.7223C27.747 18.8454 27.9726 18.9069 28.1982 18.9069C28.6187 18.9069 29.0289 18.6916 29.2648 18.3121L30.2083 16.7841C32.9977 12.282 36.9768 9.70795 41.1404 9.70795H46.9449C46.9552 9.70795 46.9552 9.70795 46.9654 9.70795L43.0069 13.6665C42.5146 14.1587 42.5146 14.9484 43.0069 15.4407C43.253 15.6868 43.5709 15.8098 43.8991 15.8098C44.2273 15.8098 44.5452 15.6868 44.7913 15.4407L50.8932 9.33876C51.3752 8.8465 51.3752 8.04659 50.8829 7.56459ZM48.2063 8.46706C48.2063 8.4568 48.2063 8.4568 48.2063 8.44655C48.2063 8.43629 48.2063 8.43629 48.2063 8.42604L48.2268 8.44655L48.2063 8.46706Z"
+                    fill="url(#paint1_linear)"
+                    stroke="#7F848C"
+                    stroke-width="0.2"
+                  />
+                  <path
+                    d="M43.0057 45.7242C43.2518 45.9703 43.5697 46.0934 43.8979 46.0934C44.226 46.0934 44.5439 45.9703 44.7901 45.7242L50.892 39.6223C51.3842 39.13 51.3842 38.3404 50.892 37.8481L44.7901 31.7565C44.2978 31.2642 43.5082 31.2642 43.0159 31.7565C42.5237 32.2487 42.5237 33.0384 43.0159 33.5306L46.9744 37.4892C46.9642 37.4892 46.9642 37.4892 46.9539 37.4892H41.3238C37.1704 37.4892 33.1811 34.9049 30.3917 30.4028L21.1414 15.4608C17.8905 10.1999 13.1217 7.19507 8.07615 7.19507H2.25114C1.55379 7.19507 1 7.75911 1 8.45647C1 9.15383 1.56404 9.71787 2.25114 9.71787H8.06589C12.2193 9.71787 16.2086 12.3022 18.998 16.794L28.2483 31.736C31.4992 36.9969 36.2679 40.012 41.3135 40.012H46.9437C46.9539 40.012 46.9539 40.012 46.9642 40.012L43.0057 43.9705C42.5237 44.4423 42.5237 45.2319 43.0057 45.7242ZM48.2051 38.7198L48.2256 38.7403L48.2051 38.7608C48.2051 38.7506 48.2051 38.7506 48.2051 38.7403C48.2051 38.7301 48.2051 38.7301 48.2051 38.7198Z"
+                    fill="url(#paint2_linear)"
+                    stroke="#7F848C"
+                    stroke-width="0.2"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear"
+                      gradientUnits="userSpaceOnUse"
+                      x1="1"
+                      x2="24.2078"
+                      y1="27.3208"
+                      y2="31.4989"
+                    >
+                      <stop stop-color="#00B047" />
+                      <stop offset="1" stop-color="#4CD784" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint1_linear"
+                      gradientUnits="userSpaceOnUse"
+                      x1="26.9414"
+                      x2="53.2713"
+                      y1="1.09351"
+                      y2="4.8816"
+                    >
+                      <stop stop-color="#00B047" />
+                      <stop offset="1" stop-color="#4CD784" />
+                    </linearGradient>
+                    <linearGradient
+                      id="paint2_linear"
+                      gradientUnits="userSpaceOnUse"
+                      x1="1"
+                      x2="55.5474"
+                      y1="7.19507"
+                      y2="14.6248"
+                    >
+                      <stop stop-color="#00B047" />
+                      <stop offset="1" stop-color="#4CD784" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div class="success_text">
+                  <p class="success_title gamesDaymariusv text-copy-descr">
+                    116644
+                  </p>
+                  <p class="success_descr">Успешных обменов</p>
+                </div>
+              </div>
+              <div class="success_block">
+                <svg
+                  class="comments"
+                  fill="none"
+                  height="45"
+                  viewBox="0 0 50 45"
+                  width="50"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M6.48595 32.725V32.375H6.13595H4.09063C2.02795 32.375 0.35 30.6971 0.35 28.6344V4.09063C0.35 2.02795 2.02795 0.35 4.09063 0.35H44.9969C47.0596 0.35 48.7376 2.02795 48.7376 4.09063V28.6344C48.7376 30.6971 47.0596 32.375 44.9969 32.375H23.3166H23.1766L23.0753 32.4716L11.0396 43.9304L11.0385 43.9314C11.0197 43.9495 10.9989 43.968 10.9761 43.9873L10.9741 43.989C10.4647 44.4266 9.84296 44.65 9.21312 44.65C8.82884 44.65 8.44011 44.5678 8.069 44.3968L8.06882 44.3967C7.09049 43.9466 6.48595 43.003 6.48595 41.9269V32.725ZM44.9969 28.9844H45.3469V28.6344V4.09063V3.74063H44.9969H4.09063H3.74063V4.09063V28.6344V28.9844H4.09063H8.18126C9.11698 28.9844 9.87658 29.744 9.87658 30.6797V39.539V40.3554L10.4679 39.7925L21.3295 29.4524L21.3299 29.4521C21.645 29.1514 22.0626 28.9844 22.4985 28.9844H44.9969Z"
+                    fill="url(#paint0_linear)"
+                    stroke="#E8EDF1"
+                    stroke-width="0.7"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear"
+                      gradientUnits="userSpaceOnUse"
+                      x1="0"
+                      x2="53.554"
+                      y1="0"
+                      y2="6.15814"
+                    >
+                      <stop stop-color="#00B047" />
+                      <stop offset="1" stop-color="#4CD784" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+
+                <div class="success_text">
+                  <p class="success_title gamesDaymariusv text-copy-descr">
+                    689
+                  </p>
+                  <p class="success_descr">Отзывов BESTCHANGE</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--End Success-->
+        <!--Reserves-->
+        <section v-if="homeReserves" class="reserves">
+          <div class="container">
+            <h2 class="title_heading text-copy-descr gamesDaymariusv">
+              Резервы валют
+            </h2>
+            <div class="reserves_box bg-background-main shadow_btn_white">
+              <div class="reserves_block">
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="bitcoin"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/bitcoin.svg"
+                      />
+                    </div>
+                    <p>Bitcoin</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <span class="BTC"></span>
+                    </div>
+                    <p>Litecoin</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Zcash"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/zcash.svg"
+                      />
+                    </div>
+                    <p>Zcash</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Dash"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/bash.svg"
+                      />
+                    </div>
+                    <p>Dash</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Яндекс Деньги RUB"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/ya.svg"
+                      />
+                    </div>
+                    <p>Яндекс Деньги RUB</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+              </div>
+              <div class="reserves_block">
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Exmo RUB"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/exmo.svg"
+                      />
+                    </div>
+                    <p>Exmo RUB</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="PerfectMoney USD"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/PerfectMoney.svg"
+                      />
+                    </div>
+                    <p>PerfectMoney USD</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Advanced Cash USD"
+                        class="lazyload"
+                        data-class="lazyload"
+                        src="/source/image/home/currency/advanced.svg"
+                      />
+                    </div>
+                    <p>Advanced Cash USD</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Payeer USD"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/payeer.svg"
+                      />
+                    </div>
+                    <p>Payeer USD</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+              </div>
+              <div class="reserves_block">
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Exmo RUB"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/exmo.svg"
+                      />
+                    </div>
+                    <p>Exmo RUB</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Приват 24 UAH"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/24UAH.svg"
+                      />
+                    </div>
+                    <p>Приват 24 UAH</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Tether ERC20"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/tether.svg"
+                      />
+                    </div>
+                    <p>Tether ERC20</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+                <div class="reserves_item">
+                  <div class="reserves_name">
+                    <div class="img">
+                      <img
+                        alt="Наличные USD"
+                        class="lazyload"
+                        data-src="/source/image/home/currency/usd.svg"
+                      />
+                    </div>
+                    <p>Наличные USD</p>
+                  </div>
+                  <p class="price">
+                    24 900
+                    <span>rub</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--End Reserves-->
+        <!--Info-->
+        <section v-if="homeInfo" class="info">
+          <div class="container">
+            <div class="info_box">
+              <div :class="{reviewsActive}" class="info_block">
+                <h2
+                  class="title_heading gamesDaymariusv text-copy-main"
+                  @click="reviewsToggle"
+                >
+                  Отзывы
+                </h2>
+                <div class="info_list">
+                  <div class="info_items bg-background-descr">
+                    <div class="reviews_items">
+                      <a class="reviews_item bg-background-main" href="#">
+                        <div class="item_box">
+                          <p
+                            class="
+                                  reviews_title
+                                  text-copy-descr
+                                  gamesDaymariusv
+                                "
+                          >
+                            Антон
+                          </p>
+                          <p class="reviews_date">2 дня назад</p>
+                        </div>
+                        <p class="reviews_descr">
+                          Благодарен сервису за успешно и быстро проведенный
+                          обмен. Однозначно рекомендую
+                        </p>
+                      </a>
+                      <a class="reviews_item bg-background-main" href="#">
+                        <div class="item_box">
+                          <p
+                            class="
+                                  reviews_title
+                                  text-copy-descr
+                                  gamesDaymariusv
+                                "
+                          >
+                            Антон
+                          </p>
+                          <p class="reviews_date">2 дня назад</p>
+                        </div>
+                        <p class="reviews_descr">
+                          Благодарен сервису за успешно и быстро проведенный
+                          обмен. Однозначно рекомендую
+                        </p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn_info green_btn text-copy-btngreen"
+                      href="#"
+                    >Читать все отзывы</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div :class="{newsActive}" class="info_block">
+                <h2
+                  class="title_heading gamesDaymariusv text-copy-main"
+                  @click="newsToggle"
+                >
+                  Новости
+                </h2>
+                <div class="info_list">
+                  <div class="info_items bg-background-descr">
+                    <div class="news_list">
+                      <a class="news_item bg-background-main" href="#">
+                        <p
+                          class="news_title text-copy-descr gamesDaymariusv"
+                        >
+                          С Наступающим 2019 годом
+                        </p>
+                        <p class="news_date">31.09.2019</p>
+                        <div class="line"></div>
+                        <p class="news_descr text-copy-descr">
+                          Здравствуйте Уважаемые клиенты и посетители нашего
+                          сайта! Поздравляем Вас с Наступающим Новым Годом и
+                          Рождеством Христовым!!! Примите наши искренние
+                          поздравления. Желаем Вам в Новом 2019 году всего
+                          самого наилучшего: здоровья, любви, тепла, мира и
+                          уюта в Ваших домах, достатка и благополучия ,а
+                          также что бы В Новом Году Ваши финансовые
+                          возможности всегда опережали Ваши желания))) С
+                          Праздиками Вас
+                        </p>
+                      </a>
+                      <a class="news_item bg-background-main" href="#">
+                        <p
+                          class="news_title text-copy-descr gamesDaymariusv"
+                        >
+                          С Наступающим 2019 годом
+                        </p>
+                        <p class="news_date">31.09.2019</p>
+                        <div class="line"></div>
+                        <p class="news_descr text-copy-descr">
+                          Здравствуйте Уважаемые клиенты и посетители нашего
+                          сайта! Поздравляем Вас с Наступающим Новым Годом и
+                          Рождеством Христовым!!! Примите наши искренние
+                          поздравления. Желаем Вам в Новом 2019 году всего
+                          самого наилучшего: здоровья, любви, тепла, мира и
+                          уюта в Ваших домах, достатка и благополучия ,а
+                          также что бы В Новом Году Ваши финансовые
+                          возможности всегда опережали Ваши желания))) С
+                          Праздиками Вас
+                        </p>
+                      </a>
+                    </div>
+                    <a
+                      class="btn_info green_btn text-copy-btngreen"
+                      href="#"
+                    >Читать все отзывы</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div :class="{blogActive}" class="info_block">
+                <h2
+                  class="title_heading gamesDaymariusv text-copy-main"
+                  @click="blogToggle"
+                >
+                  Блог
+                </h2>
+                <div class="info_list">
+                  <div class="info_items bg-background-descr">
+                    <div class="blog_items">
+                      <a class="blog_item bg-background-main" href="#">
+                        <figure class="blog_img">
+                          <img
+                            alt
+                            class="lazyload"
+                            data-src="/source/image/blog/item_img.png"
+                          />
+                        </figure>
+                        <div class="item_box">
+                          <p class="blog_date">12.01.2022</p>
+                          <p class="views">
+                            Просмотров:
+                            <span>10</span>
+                          </p>
+                        </div>
+                        <p
+                          class="blog_title text-copy-descr gamesDaymariusv"
+                        >
+                          Почему 7Money лучшая обменка?
+                        </p>
+                        <p class="blog_descr">
+                          Начало текста статьи Начало текста статьи Начало
+                          текста статьи.Начало текста статьи Начало текста
+                          статьи Начало текста статьи.
+                        </p>
+                      </a>
+                      <a class="blog_item bg-background-main" href="#">
+                        <figure class="blog_img">
+                          <img
+                            alt
+                            class="lazyload"
+                            data-src="/source/image/blog/item_img.png"
+                          />
+                        </figure>
+                        <div class="item_box">
+                          <p class="blog_date">12.01.2022</p>
+                          <p class="views">
+                            Просмотров:
+                            <span>10</span>
+                          </p>
+                        </div>
+                        <p
+                          class="blog_title text-copy-descr gamesDaymariusv"
+                        >
+                          Почему 7Money лучшая обменка?
+                        </p>
+                        <p class="blog_descr">
+                          Начало текста статьи Начало текста статьи Начало
+                          текста статьи.Начало текста статьи Начало текста
+                          статьи Начало текста статьи.
+                        </p>
+                      </a>
+                    </div>
+                    <a
+                      class="
+                            btn_info
+                            shadow_btn_white
+                            green_btn
+                            text-copy-btngreen
+                          "
+                      href="#"
+                    >Читать все отзывы</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!--End Info-->
+        <!--Text Seo-->
+        <div v-if="homeSeoText" class="home_seo_text">
+          <div
+            class="
+                  container
+                  currency_info
+                  shadow_btn_white
+                  bg-background-main
+                  text-copy-descr
+                "
+          >
+            <h1>Криптообменник №1</h1>
+            <p>
+              Выбирая крптообменник, пользователь заинтересован в
+              предоставлении обширной экосистемы кошельков. Интерфейс
+              системы должен иметь конвертируемую криптовалюту, с
+              возможностью быстрого проведения транзакции. С учетом
+              допустимой комиссии и начисленными бонусами на каждую сделку.
+              Сайт по покупке и продаже имеет следующие преимущества:
+            </p>
+            <ul class="">
+              <li>
+                Проведение обмена криптовалют возможно без регистрации на
+                сайте;
+              </li>
+              <li>В личном кабинете доступна история всех транзакций;</li>
+              <li>
+                Большая часть транзакций может быть выполнена без комиссий
+                банку.
+              </li>
+            </ul>
+            <h2>Направления обмена криптовалют на 7MONEY</h2>
+            <p>
+              Обменный пункт предлагает только ликвидные курсы. При выборе
+              направления, обратите внимание на резерв валют. Здесь указана
+              сумма допустимого предложения на текущий операционный день по
+              лучшему курсу в сети. В онлайн-обменнике криптовалют
+              предоставлены пары исходя из следующих параметров:
+            </p>
+            <ul>
+              <li>
+                Ликвидность курса – динамичный спрос и предложения по
+                проводимым транзакциям;
+              </li>
+              <li>
+                Актуальность направления - присутствуют все самые
+                востребованные монеты;
+              </li>
+            </ul>
+            <p>
+              Мы постоянно добавляем на сервис новые криптовалютные пары -
+              рекомендуем добавить сайт в закладки и следить за
+              обновлениями, также это поможет заходить на него с помощью
+              одного клика.
+            </p>
+            <h2>7Money - сервис №1 по покупке и продаже криптовалюты</h2>
+            <strong
+            >Наш обменник крипты выделяется среди множества остальных
+              такими преимуществами:</strong
+            >
+            <ul>
+              <li>
+                <strong>Автоматический обмен. </strong>Все транзакции
+                проводятся в автоматическом режиме - исключено влияние
+                человеческого фактора, система мгновенно рассматривает и
+                обрабатывает заявки.
+              </li>
+              <li>
+                <strong>Оперативная поддержка клиентов. </strong>В период с
+                8:00 утра до 23:00 вечера мы готовы помочь в онлайн-чате по
+                любым вопросам, связанным с использованием сервиса.
+              </li>
+              <li>
+                <strong>Безопасность платежей. </strong>Наш сайт использует
+                SSL-сертификат, что гарантирует защиту от перехвата любых
+                данных интернет-хакерами, Ваши данные надежно защищены и
+                полностью конфиденциальны. Детальнее про безопасность обмена
+                криптовалюты на 7MONEY -
+                <a href="https://7money.co/page/security">по ссылке</a>.
+              </li>
+              <li>
+                <strong>Выгодные курсы обмена. </strong>На каждой странице
+                направления в правом верхнем углу отображается актуальный
+                курс. Обновление производится каждую минуту.
+              </li>
+              <li>
+                <strong>Программа лояльности. </strong>Зарегистрированные
+                пользователи получают доступ к уникальной системе лояльности
+                – стоимость каждой последующей сделки будет снижена для
+                пользователя сайта.
+              </li>
+            </ul>
+            В любой момент можно
+            <a href="https://7money.co/order/status"
+            >проверить статус операции</a
+            >
+            <p>
+              - просто введите № в соответствующее поле и Вы получите
+              необходимую информацию актуальную на текущий момент. Прочитать
+              отзывы про онлайн-обменник 7Money -
+            </p>
+            <a href="https://7money.co/reviews">можно тут</a>.
+            <h3>
+              Партнерская программа - зарабатывайте на обменах других
+              пользователей
+            </h3>
+            <p>
+              Если хотите получать дополнительный доход - можно настроить в
+              личном кабинете опцию реферальной программы. Вы можете
+              получать доход от курсового обмена привлеченных участников.
+              Доход каждой сделки может составлять до 25% от суммы комиссии.
+              Предложение действует неограниченный срок. Даже не инвестируя
+              в актив, можно зарабатывать значительные средства только от
+              привлечения других пользователей.
+            </p>
+          </div>
+        </div>
+        <!--End Text Seo-->
+      </div>
+      <footer-main></footer-main>
+    </div>
+    <div v-if="showLacks" class="lacks">
+      <div class="lacks_box shadow_btn_white bg-background-main">
+        <button class="close" @click="showLacks = !showLacks">
+          <svg
+            fill="none"
+            height="13"
+            viewBox="0 0 13 13"
+            width="13"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M12.0206 0.707107C12.4111 1.09763 12.4111 1.7308 12.0206 2.12132L2.12109 12.0208C1.73056 12.4113 1.0974 12.4113 0.706875 12.0208C0.316351 11.6303 0.31635 10.9971 0.706875 10.6066L10.6064 0.707107C10.9969 0.316582 11.6301 0.316582 12.0206 0.707107Z"
+              fill="#7F848C"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M0.707932 0.707107C1.09846 0.316582 1.73162 0.316582 2.12215 0.707107L12.0216 10.6066C12.4122 10.9971 12.4122 11.6303 12.0216 12.0208C11.6311 12.4113 10.998 12.4113 10.6074 12.0208L0.707932 2.12132C0.317408 1.7308 0.317408 1.09763 0.707932 0.707107Z"
+              fill="#7F848C"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </button>
+        <p class="lacks_title text-copy-descr">{{ $t("lacks") }}</p>
+        <p class="lacks_descr text-copy-descr">{{ $t("lacksTextOne") }}</p>
+        <p class="lacks_descr text-copy-descr">{{ $t("lacksTextTwo") }}</p>
+        <p class="lacks_descr text-copy-descr">{{ $t("lacksThankYou") }}</p>
+        <form action class="post_reward_form">
+          <input :name="csrfParam" :value="csrfToken" type="hidden" />
+          <div class="post_reward_box">
+            <label class="text-copy-descr" for>
+              {{ $t("currency") }}
+              <select
+                class="select bg-background-main"
+                name="ReserveNotification[currency_id]"
+              >
+                <option
+                  v-for="(currency) in allCurrencies"
+                  :key="currency.id"
+                >
+                  {{ currency.name_ru }}
+                </option>
+              </select>
+            </label>
+            <label class="text-copy-descr" for="email">
+              Email
+              <div class="input_block shadow_btn_white_active">
+                <input
+                  id="email"
+                  class="bg-background-main"
+                  name="ReserveNotification[email]"
+                  placeholder="example@mail.com"
+                  type="email"
+                />
+              </div>
+            </label>
+            <label class="text-copy-descr" for="price">
+              {{ $t("amount") }}
+
+              <div class="input_block shadow_btn_white_active">
+                <input
+                  id="price"
+                  class="bg-background-main"
+                  name="ReserveNotification[amount]"
+                  placeholder="1000, 00"
+                  type="number"
+                />
+                <div class="help-block">Необходимо заполнить «Сумма».</div>
+              </div>
+            </label>
+            <button
+              class="green_btn text-copy-btngreen form_btn"
+              type="submit"
+            >
+              {{ $t("request") }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="verified" v-show="show_modal_verified">
+      <div class="verified_box shadow_btn_white bg-background-main">
+        <div class="close" @click="show_modal_verified = false">
+          <svg
+            fill="none"
+            height="13"
+            viewBox="0 0 13 13"
+            width="13"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M12.0206 0.707107C12.4111 1.09763 12.4111 1.7308 12.0206 2.12132L2.12109 12.0208C1.73056 12.4113 1.0974 12.4113 0.706875 12.0208C0.316351 11.6303 0.31635 10.9971 0.706875 10.6066L10.6064 0.707107C10.9969 0.316582 11.6301 0.316582 12.0206 0.707107Z"
+              fill="#7F848C"
+              fill-rule="evenodd"
+            />
+            <path
+              clip-rule="evenodd"
+              d="M0.707932 0.707107C1.09846 0.316582 1.73162 0.316582 2.12215 0.707107L12.0216 10.6066C12.4122 10.9971 12.4122 11.6303 12.0216 12.0208C11.6311 12.4113 10.998 12.4113 10.6074 12.0208L0.707932 2.12132C0.317408 1.7308 0.317408 1.09763 0.707932 0.707107Z"
+              fill="#7F848C"
+              fill-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <p class="verified_title text-copy-descr">{{ $t("verified") }}</p>
+        <p class="verified_descr">{{ $t("verifiedText") }}</p>
+        <div class="verified_confirm">
+          <input :name="csrfParam" :value="csrfToken" type="hidden" />
+          <div class="verified-block">
+            <input
+              id="verified_input"
+              class="confirm_inp bg-background-main shadow_btn_white_active"
+              placeholder="121412"
+              type="number"
+            />
+            <p class="help-block help-verified-code dn">
+              {{ $t("verificationСode") }}
+            </p>
+          </div>
+          <button
+            class="green_btn text-copy-btngreen"
+            @click="checkCodeExmo"
+          >
+            {{ $t("confirm") }}
+          </button>
+        </div>
+        <small class="resend_email_result text-copy-green dn"
+        >{{ $t("codeMessage") }}</small
+        >
+        <a class="verified_small" href="#" @click="resendEmailExmo"
+        >{{ $t("emailNotReceived") }}</a
+        >
+        <p class="text-copy-descr sending_code dn">
+          {{ $t("sendingCode") }} <span>{{ verifiedTime }}</span>
+        </p>
+      </div>
+    </div>
+    <!-- <div class="night_mode">
+      <div class="night_mode_box shadow_btn_white bg-background-main">
+        <div class="close close_modal_night" onclick="document.querySelector('.night_mode').style.display='none'">
+          <i class="icon-cancel"></i>
+        </div>
+        <div class="night_mode_info">
+          <div class="night_mode_img">
+            <img
+              class="lazyload"
+              data-src="/source/image/NightMode/nightmode.svg"
+              alt
+            />
+          </div>
+          <div class="night_mode_text">
+            <p class="night_mode_title text-copy-descr">
+              {{$t('nightModeTextOne')}}
+            </p>
+            <p class="night_mode_descr">{{$t('nightModeTextTwo')}}</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="text_seo dn">
+      <h1>{{ course.title_ru }}</h1>
+      <p></p>
+    </div>
+  </vuescroll>
+</section>
 <input id="login" type="hidden" value="0" />
 <input id="language" type="hidden" value="ru" />
-<script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
+<script
+  async
+  defer
+  src="//www.google.com/recaptcha/api.js?hl=ru"
+  type="text/javascript"
+></script>
 </body>
 </html>

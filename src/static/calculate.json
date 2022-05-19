@@ -1,0 +1,116 @@
+{
+    "city_id": null,
+    "min_sell_amount": 50,
+    "min_buy_amount": 50,
+    "isBackExchange": 1,
+    "actionBackExchange": "/exchange/PRUSD-to-PMUSD",
+    "sell_currency_id": 1,
+    "sellCurrency": {
+        "id": 1,
+        "code": "PMUSD",
+        "name_ru": "PerfectMoney USD",
+        "name_en": "PerfectMoney USD",
+        "symbol": "USD"
+    },
+    "buyCurrency": {
+        "id": 2,
+        "code": "PRUSD",
+        "name_ru": "PAYEER USD",
+        "name_en": "PAYEER USD",
+        "symbol": "USD"
+    },
+    "buy_currency_id": 2,
+    "sell_amount": 50,
+    "sell_amount_with_comission": 51,
+    "sell_amount_with_discount": 50,
+    "sell_comission": 2,
+    "sell_percent": "2.00",
+    "buy_percent": "0.00",
+    "sell_amount_comission": 1,
+    "discount": 0,
+    "buy_amount": 49.51,
+    "buy_amount_with_comission": 49.51,
+    "buy_amount_with_discount": 49.51,
+    "buy_amount_comission": 0,
+    "course": {
+        "sell": "1.009990",
+        "buy": "1.000000"
+    },
+    "reserve": 11069,
+    "sellCurrencies": {
+        "4": {
+            "code": "BTC"
+        },
+        "19": {
+            "code": "LTC"
+        },
+        "20": {
+            "code": "DASH"
+        },
+        "21": {
+            "code": "ZEC"
+        },
+        "9": {
+            "code": "YAMRUB"
+        },
+        "23": {
+            "code": "EXMRUB"
+        },
+        "1": {
+            "code": "PMUSD"
+        },
+        "8": {
+            "code": "ADVCUSD"
+        },
+        "12": {
+            "code": "EXMUSD"
+        },
+        "3": {
+            "code": "P24UAH"
+        },
+        "26": {
+            "code": "CARDUAH"
+        },
+        "35": {
+            "code": "MONOBUAH"
+        }
+    },
+    "buyCurrencies": {
+        "4": {
+            "code": "BTC"
+        },
+        "19": {
+            "code": "LTC"
+        },
+        "20": {
+            "code": "DASH"
+        },
+        "21": {
+            "code": "ZEC"
+        },
+        "9": {
+            "code": "YAMRUB"
+        },
+        "23": {
+            "code": "EXMRUB"
+        },
+        "8": {
+            "code": "ADVCUSD"
+        },
+        "2": {
+            "code": "PRUSD"
+        },
+        "12": {
+            "code": "EXMUSD"
+        },
+        "3": {
+            "code": "P24UAH"
+        },
+        "26": {
+            "code": "CARDUAH"
+        },
+        "35": {
+            "code": "MONOBUAH"
+        }
+    }
+}

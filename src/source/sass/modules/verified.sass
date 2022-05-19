@@ -1,0 +1,77 @@
+.verified
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+    display: flex
+    align-items: center
+    justify-content: center
+    background: hsla(0,0%,100%,.6)
+
+    z-index: 99
+.verified_box
+    position: relative
+    border-radius: 8px
+    max-width: 480px
+    width: 100%
+    padding: 40px
+    margin: 10px
+.verified-block
+    margin-right: 20px
+.verified_title
+    font-weight: bold
+    font-size: 2.4rem
+    margin-bottom: 10px
+.verified_descr
+    font-weight: normal
+    font-size: 1.8rem
+    margin-bottom: 30px
+.verified_confirm
+    display: flex
+    margin-bottom: 15px
+    & .confirm_inp
+        padding: 12px
+        border-radius: 4px
+        font-weight: bold
+        font-size: 2.4rem
+        width: 100%
+        min-width: 200px
+
+.verified_small
+    font-size: 14px
+    text-decoration-line: underline
+.close
+    position: absolute
+    right: 20px
+    top: 12px
+    cursor: pointer
+.verified_confirm .green_btn
+    padding: 15px 0 15px
+    height: max-content
+.help-verified-code
+    margin: 5px 0
+.sending_code
+    font-size: 1.4rem
+.disabled
+    pointer-events: none
+
+@media screen and ( max-width: 768px )
+    .verified_box
+        padding: 15px
+        text-align: center
+    .verified_title
+        font-size: 1.8rem
+    .verified_descr
+        font-size: 1.4rem
+        margin-bottom: 20px
+    .verified_confirm
+        flex-direction: column
+        margin-bottom: 20px
+        & .confirm_inp
+            margin: 0 0px 15px 0
+            font-size: 1.8rem
+    .close
+        right: 10px
+        top: 4px

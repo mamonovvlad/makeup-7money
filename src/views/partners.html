@@ -1,55 +1,718 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Партнеры нашего сервиса</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Партнеры нашего сервиса</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme" >
-    <the-header @call-back-theme="definitionTheme"></the-header>
-    <main class="partners">
-      <the-title-big>
-        <template #title>Партнеры нашего сервиса</template>
-        <template #description>Мы представлены на разных мониторингах сервиса обмена электронных валют:</template>
-      </the-title-big>
-      <div class="container">
-        <div class="list-wrapper">
-          <div class="items">
-            <div class="item stylish-wrapper">
-              <figure>
-                <img
-                  loading="lazy"
-                  src="./source/images/temp/bestchange.webp"
-                  alt="bestchange"
-                />
-              </figure>
-              <p>Мониторинг</p>
-              <p>BestChange</p>
-              <div class="partners__links">
-                <the-button tag="a" href="https://www.bestchange.ru">
-                  <template #name>Перейти</template>
-                </the-button>
-                <the-button tag="a" href="https://www.bestchange.ru">
-                  <template #image>
-                    <icon-chat></icon-chat>
-                  </template>
-                </the-button>
+  <body>
+    <section id="app" :class="theme">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="main_layout text-copy-main bg-background-main">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="partners grow bg-background-main">
+            <div class="main_text bg-background-descr">
+              <h1 class="title text-copy-descr gamesDaymariusv">
+                Партнеры нашего сервиса
+              </h1>
+              <p class="descr text-copy-main">
+                Ты представлены на разных мониторингах сервиса обмена
+                электронных валют:
+              </p>
+            </div>
+            <div class="container">
+              <div class="partners-box">
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/bestchange.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">BestChange</p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="https://www.bestchange.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://www.bestchange.ru/7money-exchanger.html"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/kurses.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Kurses</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="http://kurses.com.ua"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="http://kurses.com.ua/exchangers/7money.co"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/kurs.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">KursExpert</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://kurs.expert"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://kurs.expert/ru/obmennik/7money.co/feedbacks.html"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/okchanger.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">OKchanger</p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="https://www.okchanger.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://www.okchanger.ru/exchangers/7money-co"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/kurse.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Курс</p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="http://kurs.com.ua/webmoney"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="http://kurs.com.ua/webmoney"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/udifo.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Udifo</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://udifo.com"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://udifo.com/reviews/7money"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/glazok.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Glazok</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="http://glazok.org"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://glazok.org/exchange/?details=384"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/exchengermon.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Exchangersmonitor</p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="https://ru.exchangersmonitor.com/"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://ru.exchangersmonitor.com/"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Монитор.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">
+                    Monitoring-obmennikov-24.ru
+                  </p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="http://monitoring-obmennikov-24.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="http://monitoring-obmennikov-24.ru/monitoring-obmennikov/?details=194"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/египет.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Getecurrency</p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="https://getecurrency.net"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://getecurrency.net/7money/"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Screenshot_3.png"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Exchangers</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://exchangers.io/"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://exchangers.io/"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Screensho.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Polchange.ru</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://polchange.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://polchange.ru/exchangers/7moneyco"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Ascoin.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Ascoin.com</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://askoin.com"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://askoin.com/7money"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Changeinfo.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Changeinfo.ru</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://changeinfo.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://changeinfo.ru/review/7money"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/ChangeGid.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">ChangeGid</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://changegid.com"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://changegid.com/exchangers/7money"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/ExchangeRates.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">ExchangeRates.Pro</p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="https://exchangerates.pro/ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://exchangerates.pro/ru/exchanges/7money/"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Pro-Obmen.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Pro-Obmen.ru</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://pro-obmen.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://pro-obmen.ru/7money"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Chexch.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Chexch.com</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://chexch.com"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://chexch.com/reviews/7money/"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/OKKU.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">OKKU.RU</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://okku.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://okku.ru/?details=325"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Fincompas.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Fincompas.ru</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://fincompas.ru"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://fincompas.ru"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Allchange.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Allchange</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://allchange.org/"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://allchange.org/"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/BitsMedia.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">BitsMedia</p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="https://bits.media/exchanger"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://bits.media/exchanger/7money/"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Kursoff.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Kursoff</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://kursoff.com"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://kursoff.com/exchange/7money"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/Pro-ex.club.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">Pro-ex.club</p>
+                  <div class="partner__links">
+                    <a class="partner__link_site" href="https://pro-ex.club"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://pro-ex.club/exchangers/7money"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
+                <div class="partners-block">
+                  <figure class="partner__img">
+                    <img
+                      class="lazyload"
+                      data-src="../source/image/partners/bitcoinmarket.webp"
+                      alt=""
+                    />
+                  </figure>
+                  <p class="text-copy-descr partner_title">Мониторинг</p>
+                  <p class="text-copy-descr partner_descr">
+                    bitcoinmarket.globa
+                  </p>
+                  <div class="partner__links">
+                    <a
+                      class="partner__link_site"
+                      href="https://bitcoinmarket.global/"
+                      >Перейти</a
+                    >
+                    <a
+                      class="partner__link_comments"
+                      href="https://bitcoinmarket.global/exchangers.php?id=1"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="../source/image/partners/chat.svg"
+                        alt=""
+                      />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <footer-main></footer-main>
         </div>
-      </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>

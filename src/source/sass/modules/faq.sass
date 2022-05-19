@@ -1,0 +1,114 @@
+.answers
+    padding-bottom: 60px
+.answers_box
+    margin-top: 60px
+    display: flex
+.answers_items
+    margin-right: 40px
+    width: 100%
+.no_answer
+    min-width: 420px
+    & h2
+        font-weight: bold
+        font-size: 3.6rem
+        margin-bottom: 10px
+    & p
+        font-size: 1.7rem
+        margin-bottom: 15px
+    & figure
+        margin-bottom: 50px
+    & .faq_btn
+        margin-bottom: 15px
+        display: flex
+        font-weight: 500
+        font-size: 1.8rem
+        width: 100%
+//Companents FAQ
+.answers_accordion
+    padding: 20px
+    margin-bottom: 20px
+    border-radius: 8px
+    cursor: pointer
+    & .accordion_title
+        position: relative
+        font-weight: normal
+        font-size: 2rem
+        padding-right: 25px
+        transition: all 0.4s linear
+        &:after
+            content: ''
+
+            position: absolute
+            top: 50%
+            right: 0
+            transform: translateY(-50%) rotate(0deg)
+
+            width: 20px
+            height: 20px
+            background: url('../image/arrow.svg') center no-repeat
+            transition: all 0.4s linear
+
+    & .accordion_descr
+        font-size: 1.8rem
+        opacity: 0
+        max-height: 0px
+        overflow-y: hidden
+        transition: all 0.4s ease
+.open
+    box-shadow: inset 3px 3px 3px rgba(136, 165, 191, 0.48), inset -3px -3px 3px #FFFFFF !important
+    & .accordion_title
+        margin-bottom: 15px
+        color: #363C46
+        &:after
+            transform: translateY(-50%) rotate(180deg)
+    & .accordion_descr
+        opacity: 1
+        max-height: 1800px
+        transition: all 0.4s ease
+@media screen and (max-width: 992px)
+    .answers .fon
+        height: 250px
+    .no_answer
+        min-width: 320px
+        &  h2
+            font-size: 3rem
+        & p
+            font-size: 1.6rem
+    .answers_accordion
+        padding: 15px 20px
+        & .accordion_title
+            font-size: 2rem
+@media screen and (max-width: 768px)
+    .answers_box
+        flex-direction: column
+    .no_answer
+        max-width: 100%
+        min-width: 100%
+        text-align: center
+        & h2
+            font-size: 2.4rem
+        &  p
+            font-size: 1.4rem
+    .answers_box
+        & .answers_accordion
+            padding: 12px 12px
+        & .answers_items
+            margin-right: 0px
+        & .accordion_title
+            font-size: 1.4rem
+        & .accordion_descr
+            font-size: 1.2rem
+    .open .accordion_title
+        margin-bottom: 10px
+@media screen and (max-width: 576px)
+    .answers_box
+        margin-top: 40px
+    .no_answer
+        & h2
+            font-size: 1.8rem
+        &  p
+            font-size: 1.2rem
+        & button
+            display: none
+        & figure
+            margin-bottom: 30px

@@ -1,0 +1,125 @@
+{
+    "faqs": [{
+        "id": 1,
+        "question_ru": "Чем занимается Ваш сервис?",
+        "question_en": "What does your service do?",
+        "answer_ru": "<p>У нас Вы можете осуществить обмен электронных валют Payeer USD, Perfect Money USD, Advanced Cash USD, Яндекс Деньги и QIWI. Купить или продать через Приват24(UAH), ПУМБ Online(UAH). А также обменять по доступным направлениям Крипто Валюту BITCOIN</p>",
+        "answer_en": "<p>You can exchange electronic currencies Payeer USD, Perfect Money USD, Advanced Cash USD, Yandex Money and QIWI. Buy or sell through Privat24(UAH), PUMB Online(UAH). And exchange in the available areas of BITCOIN</p>",
+        "created_at": 1533815090,
+        "updated_at": 1533821401
+    }, {
+        "id": 2,
+        "question_ru": "Обязательна ли регистрация на нашем сервисе?",
+        "question_en": "Does our service require registration?",
+        "answer_ru": "<p>Нет, регистрация на сайте не является обязательной. Но если Вы зарегистрируетесь, то сможете участвовать в накопительной и реферальной программе, получая дополнительные скидки и бонусы.</p>",
+        "answer_en": "<p>No, our service doesn't require registration. But if you sing up, you can take part in and referral programs, getting extra discounts and bonuses.</p>",
+        "created_at": 1533815153,
+        "updated_at": 1536429793
+    }, {
+        "id": 3,
+        "question_ru": "Сколько у меня есть времени на оплату?",
+        "question_en": "How much time do I have for payment?",
+        "answer_ru": "<p>На оплату дается 20 минут, по истечению времени заявка закрывается.</p>",
+        "answer_en": "<p>You have 20 minutes, after your request will be invalid.</p>",
+        "created_at": 1533815438,
+        "updated_at": 1536430076
+    }, {
+        "id": 5,
+        "question_ru": "Я оплатил заявку, но случайно закрыл окно \"статуса заявки\". Как мне быть?",
+        "question_en": "I have paid request, but accidentally have closed request's status window. What am I to do?",
+        "answer_ru": "<p>Если вы зарегистрированный пользователь, зайдите в личный кабинет раздел \"История Операций\". Письмо с ссылкой на статус заявки приходит на почту указанную в заявке. Также можно ввести код операции в шапке сайта пункт \"Проверить Статус Операции\". Не переживайте ваши средства никуда не денутся. В любом случае вы можете написать нам в Онлайн Чат и мы вам поможем.</p>",
+        "answer_en": "<p>If you are registered user, enter your personal account in section \" Operations history\". Letter with a link to the application status will be sent to the e-mail, which is specified in your application. Also you can enter operation code in the site head in item \"Check the status of the operation\". Don't worry, your money won't be gone anywhere. In any case you can write to us in Online Chat and we will help you.</p>",
+        "created_at": 1533816610,
+        "updated_at": 1536431085
+    }, {
+        "id": 6,
+        "question_ru": "Если я перевел Биткоины, но свои средства не получил?",
+        "question_en": "I sent you Bitcoins, but I haven't received my funds?",
+        "answer_ru": "<p>Операции по обмену биткоина проходят только после получения 1-го подтверждения от системы. Верифицируется это через blockchain.info.</p>",
+        "answer_en": "<p>Bitcoin exchange operations take place only after receiving the 1st confirmation from the system. It is verified through blockchain.info.</p>",
+        "created_at": 1533816719,
+        "updated_at": 1536431197
+    }, {
+        "id": 7,
+        "question_ru": "Каким образом производится обмен?",
+        "question_en": "How do exchange happen?",
+        "answer_ru": "<p>Процедура обмена очень простая и быстрая. Вам достаточно указать какую валюту Вы собираетесь обменять, какую получить и нажать кнопку Обменять. После этого ввести сумму для обмена. Вам будет показан текущий курс и резерв нашего обменного пункта. Внизу появятся поля, которые необходимо обязательно заполнить: номера кошельков, карт и e-mail.</p>\r\n<p>&nbsp;</p>",
+        "answer_en": "<p>Transferring operation is very simple and quick. All you need is select currency which you want to exchange, currency which you want to get and click to the button \"Exchange\". After this enter amount for exchange. You will see current exchange rate and our exchanging point's reserve. Below will appear fields, which you neccesary need to fill: purse numbers, cards&nbsp; and email.</p>",
+        "created_at": 1533816782,
+        "updated_at": 1555164970
+    }, {
+        "id": 8,
+        "question_ru": "Обязательно ли указывать примечание к платежу?",
+        "question_en": "Is it obligatory to specify the payment note?",
+        "answer_ru": "<p>При оформлении заявки Вы получите точные инструкции, какое назначение платежа является обязательным для совершения обменной операции (Приват 24, ПУМБ Online). Если по какой либо причине назначение платежа было не указанно, то сайт оставляет за собой право вернуть сумму на указанные в заявке реквизиты. Данная процедура может занять до 6 рабочих дней. <strong><em>При возникновении такой ситуации все комиссии возлагаются на клиента</em>.</strong> Если вы вдруг забыли указать назначение платежа и хотите исправить ситуацию, то Вам нужно отправить на тот же (который был в вашей изначальной заявке) счет - 10 копеек, но уже с указанным в заявке назначением(комментарием к платежу)&nbsp;и мы&nbsp;с радостью переведем Вам ваши средства.</p>\r\n<p>&nbsp;</p>",
+        "answer_en": "<p>When you making a request, you get accurate instructions, what purpose of the payment is mandatory for transferring operation(Privat 24, Pumb Online). If for some reason purpose of payment wasn't speccified, site reserves the right return the amount to requsits which specified on request. This procedure can take up to 6 working days. If this situation occur all comission fix the client. If you forget speccified purpose of payment and want to change situation, you can send 10 cents to account, which was specified on request, but with specified on request(like payment note) and we with pleasure will transfer your money to you.</p>",
+        "created_at": 1533818251,
+        "updated_at": 1535700926
+    }, {
+        "id": 9,
+        "question_ru": "У вас есть накопительная Скидка?",
+        "question_en": "Have you saving discount?",
+        "answer_ru": "<p>Любой пользователь, который зарегистрировался на нашем сайте, совершая обмен, автоматически участвует в формировании своих накопительных бонусов. После достижения любого из 4-х&nbsp;этапов нашей Программы для Постоянных Клиентов Вы получаете 5% скидки( от нашей чистой прибыли), которая применяется к формированию более выгодного курса обмена именно для Вас при каждом следующем обмене. То есть, Вы получаете скидку на любой обмен в любом направлении. С более детальной информацией Вы можете ознакомиться после регистрации в своем Личном кабинете либо во вкладке \"Партнерская Программа\"</p>\r\n<p>&nbsp;</p>",
+        "answer_en": "<p>Any user, who registered on our site, when making the exchange, during exchange, automatically take a part in formation of his saving bonuses. After achieving any of the 4 stages of our program for regular customers you get a 5% discount will be applied to the formation of a more favorable exchange rate for you every time you exchange. That is, you get a discount on any exchange in any direction. More detailed information is available after registration in your Dashboard or in the \"Affiliate Program\"</p>\r\n<p>&nbsp;</p>",
+        "created_at": 1533818462,
+        "updated_at": 1533821663
+    }, {
+        "id": 10,
+        "question_ru": "Какие условия у Вас по Партнерской программе?",
+        "question_en": "What are your terms of Partner programm?",
+        "answer_ru": "<p>Условия партнерской программе весьма просты, по ней Вы можете получать 25% от нашего заработка за обмены, которые совершают пользователи, привлеченные Вами в наш сервис. Выплаты осуществляются от 1 PM USD. В своем кабинете Вы в режиме online можете отслеживать операции, которые осуществили Ваши рефералы. С более детальной информацией Вы можете ознакомиться после регистрации в своем Личном кабинете.</p>",
+        "answer_en": "<p>The terms of partner programm are very simple, according to it you can get 25% of our earnings for exchanges, which users, who was allure to you in our service, implement. Payments are made from 1 PM USD. In your account you can in online mode to track operations, which maded by your referals. You can see more information after registration in your personal account.</p>",
+        "created_at": 1533818541,
+        "updated_at": 1535701340
+    }, {
+        "id": 11,
+        "question_ru": "Как считаются Партнерские отчисления?",
+        "question_en": "How count Partner revenues?",
+        "answer_ru": "<p>Простыми словами. Берется наш курс, из него вычитается официальный Реальный Обратный Рыночный Курс и от этой разницы сумм считается партнерский процент.Каждый день Курсы и Обратный Реальный Рыночный Курс колеблятся и принимают другие значения. Поэтому если ваш Реферал поменяет ту же сумму в другой день. Отчисления могут отличаться, а стало быть могут быть как больше,так и меньше предыдущих отчислений.</p>",
+        "answer_en": "<p>In simple terms. Taken our course, substract from it official Real Market Rate and count partner percent. Every day Rates and Selling the Real Market Rate range and make different values. So, if our referal exchange same amount in other day, revenues can be different, it can be more or less than previous revenues</p>\r\n<p>&nbsp;</p>",
+        "created_at": 1533818620,
+        "updated_at": 1535701112
+    }, {
+        "id": 12,
+        "question_ru": "В какой промежуток времени средства будут зачислены на указанные мною реквизиты?",
+        "question_en": "In what period of time founds will be enrolle to speccified by me requests?",
+        "answer_ru": "<p>Если все сервисы работают нормально, то деньги на ваш счет зачисляются в течении 1-10 минут. Что касается электронных кошельков Perfect Money, PAYEER, Advanced Cash USD, Яндекс Деньги, QIWI, то средства зачисляются мгновенно. Если переживаете по поводу поступления денег на счет, пишите нам в Онлайн Чат нашего сайта. Мы всегда ответим на все Ваши вопросы.</p>\r\n<p>&nbsp;</p>",
+        "answer_en": "<p>If all services are working fine, the money is credited to your account within 1-10 minutes. As for e-wallets Perfect Money, PAYEER, Advanced Cash USD, Yandex Money, QIWI, the funds are credited instantly. If you are worried about the receipt of money to the account, please contact us in the Online Chat of our site. We will always answer all Your questions.</p>\r\n<p>&nbsp;</p>",
+        "created_at": 1533818735,
+        "updated_at": 1555165378
+    }, {
+        "id": 13,
+        "question_ru": "Возможно ли, отменить обмен, если заявка уже оплачена?",
+        "question_en": "Is it possible, to cancel exchange, if request already paid?",
+        "answer_ru": "<p>К сожалению нет. Если заявка была оплачена отказаться уже нельзя. При возникновении такой ситуации, Вы можете сделать обратную операцию, но в этом случае все комиссии покрываются за счет клиента.</p>",
+        "answer_en": "<p>Unfortunately, no, if request has been paid, you can't cancel it. In this case, you can make reverse operation, but all commisions is financed by client.</p>",
+        "created_at": 1533818793,
+        "updated_at": 1535701000
+    }, {
+        "id": 14,
+        "question_ru": "Ко мне обратились через Skype, Viber, Почту, телефон и предлагают совершить обмен от имени вашего сервиса?",
+        "question_en": "I was approached through Skype, Viber, Email, telephone and offers make an exchange on behalf of your service?",
+        "answer_ru": "<p>Мы никогда не совершаем обмены через средства коммуникации не связанные с нашим сайтом, и никогда не присылаем с нашего официального эмейла <strong>hello@7money.co</strong> запросы с предложениями на обмен средств. Все транзакции происходят исключительно на нашем сайте и исключительно по желанию пользователя! А коммуникация сайта происходит только Через Онлайн Чат нашего сайта. Осторожность превыше всего!</p>",
+        "answer_en": "<p>We never make exchange through communications unrelated with our site, and never send from our official email <strong>hello@7money.co</strong> requests with offers to founds exchange. All transactions take place exclusively on our website and exclusively at the request of the user! And website communication take place only through Online Chat of our website. Safety first!</p>\r\n<p>&nbsp;</p>",
+        "created_at": 1533818884,
+        "updated_at": 1533822001
+    }, {
+        "id": 15,
+        "question_ru": "Мною были указаны неправильно реквизиты и средства не пришли, что делать?",
+        "question_en": "I had entered the wrong details and the money didn't come, what to do?",
+        "answer_ru": "<p>К сожалению, в данной ситуации мы можем только сообщить реквизиты, на которые ошибочно ушли Ваши средства.</p>\r\n<p><strong><em><span style=\"color: #ff0000;\">!!! Уважаемые Клиенты будьте внимательны при заполнении своих реквизитов!!!</span></em></strong></p>",
+        "answer_en": "<p>Unfortunately, in this situation we can only report the details that accidentally got your money.<br /><span style=\"color: #ff0000;\"><em><strong>!!! Respected clients, be carefull filling your requests !!!</strong></em></span></p>",
+        "created_at": 1533818931,
+        "updated_at": 1533818931
+    }, {
+        "id": 16,
+        "question_ru": "У Вас есть файлы экспорта курсов?",
+        "question_en": "have you files of export of the rates?",
+        "answer_ru": "<ul>\r\n<li><a title=\"Xml - формат\" href=\"https://7money.co/utils/export?type=xml\" target=\"_blank\" rel=\"noopener noreferrer\">Xml - формат</a></li>\r\n<li><a title=\"CSV - формат\" href=\"https://7money.co/utils/export?type=csv\" target=\"_blank\" rel=\"noopener noreferrer\">CSV - формат</a></li>\r\n<li><a title=\"JSON - формат\" href=\"https://7money.co/utils/export?type=json\" target=\"_blank\" rel=\"noopener noreferrer\">JSON - формат</a></li>\r\n</ul>",
+        "answer_en": "<ul>\r\n<li><a title=\"Xml - format\" href=\"https://7money.co/utils/export?type=xml\" target=\"_blank\" rel=\"noopener noreferrer\">Xml - format</a></li>\r\n<li><a title=\"CSV - format\" href=\"https://7money.co/utils/export?type=csv\" target=\"_blank\" rel=\"noopener noreferrer\">CSV - format</a></li>\r\n<li><a title=\"JSON - format\" href=\"https://7money.co/utils/export?type=json\" target=\"_blank\" rel=\"noopener noreferrer\">JSON - format</a></li>\r\n</ul>",
+        "created_at": 1533819013,
+        "updated_at": 1533819013
+    }],
+    "field_question": "question_ru",
+    "field_answer": "answer_ru"
+}

@@ -1,0 +1,107 @@
+.post_reward_box
+    display: flex
+    flex-wrap: wrap
+    padding: 20px 15px 10px
+    border-radius: 8px
+.post_reward_form
+    & label
+        display: flex
+        flex-direction: column
+        margin: 0 15px
+        width: calc(50% - 30px)
+        font-size: 1.4rem
+        font-weight: 500
+        position: relative
+    & .input_block
+        padding: 10px 38px 10px 20px
+        margin: 12px 0 18px
+        border-radius: 4px
+    & input
+        font-size: 1.8rem
+        width: 100%
+        & [type='number']
+            -moz-appearance: textfield
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button
+            -webkit-appearance: none
+        &::placeholder
+            transform: translate(0px, 2px)
+    & .form_btn
+        width: calc(50% - 30px)
+        padding: 10px
+        display: flex
+        align-self: flex-end
+        justify-content: center
+        margin: 0 15px 20px
+    & .select
+        border-radius: 4px
+        color: #000
+        padding: 5px 15px
+        margin: 15px 0 20px
+        box-shadow: inset 3px 3px 3px rgba(136, 165, 191, 0.48), inset -3px -3px 3px #FFFFFF
+    & .select_items,
+    & .select_item
+        display: flex
+        align-items: center
+        cursor: pointer
+        & img
+            width: 20px
+            height: 20px
+            margin-right: 6px
+        & .options_title
+            font-size: 1.8rem
+            font-weight: normal
+            padding-top: 4px
+            margin: 0
+    & .select_items
+        margin: 10px 0
+    & .select_item
+        height: 31px
+        position: relative
+        &:after
+            content: ''
+
+            position: absolute
+            top: 50%
+            right: 0
+            transform: translateY(-50%) rotate(0deg)
+
+            width: 20px
+            height: 20px
+            transition: .5s ease
+            background: url(../image/arrow.svg) center no-repeat
+    & .options
+        position: absolute
+        left: 0
+        right: 0
+        border-radius: 4px
+        padding: 5px 15px
+        box-shadow: inset 3px -1px 3px rgba(136, 165, 191, 0.48), inset -3px 0px 3px #FFFFFF
+        z-index: 10
+    & .arrowActive:after
+        transform: translateY(-50%) rotate(180deg)
+        transition: .5s ease
+.fade-enter-active, .fade-leave-active
+    transition: .5s
+.fade-enter, .fade-leave-to
+    opacity: 0
+@media screen and (max-width: 1200px)
+    .post_reward_form
+        & .form_btn
+            font-size: 1.5rem
+@media screen and (max-width: 992px)
+    .post_reward_form
+        & label
+            width: calc(100% - 30px)
+        & .form_btn
+            width: 100%
+@media screen and (max-width: 576px)
+    .post_reward_box
+        padding: 20px 0px 10px
+        &  label
+            font-size: 1.2rem
+        & input,
+        & .form_btn,
+        & .select_items .options_title,
+        & .select_item .options_title
+            font-size: 1.4rem

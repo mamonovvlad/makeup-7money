@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Exchange Templates</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
+
+  <body>
+    <section id="app" :class="theme" class="bg-background-main">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="cabinet_layout text-copy-main ">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="cabinet_info grow bg-background-main">
+            <div class="container">
+              <div class="cabinet_box">
+                <div class="exchange_templates grow bg-background-main">
+                  <h2 class="text-copy-descr">Шаблоны обменов</h2>
+                  <div
+                    class="patterns_box bg-background-main shadow_btn_white pc_version"
+                  >
+                    <div class="table_title bg-background-descr">
+                      <p class="tabel_course text-copy-descr">Курс</p>
+                      <p class="tabel_amount text-copy-descr">Сумма</p>
+                      <p class="tabel_type text-copy-descr">Тип</p>
+                      <p class="tabel_sending text-copy-descr">
+                        Кошелёк отправки
+                      </p>
+                      <p class="tabel_get text-copy-descr">Кошелёк получения</p>
+                    </div>
+                    <div
+                      class="table"
+                      v-for="tabelText in tabelText"
+                      :key="tabelText.id"
+                    >
+                      <div class="tabel_course text-copy-descr">
+                        <p>
+                          <span class="text-copy-main">Отдаю:</span>
+                          {{tabelText.titleGetCourse}}
+                        </p>
+                        <p>
+                          <span class="text-copy-main">Получаю:</span>
+                          {{tabelText.titleGiveCourse}}
+                        </p>
+                      </div>
+                      <p class="tabel_amount text-copy-descr">
+                        {{tabelText.titleAmoun}}
+                      </p>
+                      <p class="tabel_type text-copy-descr">
+                        {{tabelText.titleType}}
+                      </p>
+                      <p class="tabel_sending text-copy-descr">
+                        {{tabelText.titleGive}}
+                      </p>
+                      <p class="tabel_get text-copy-descr">
+                        {{tabelText.titleGet}}
+                        <button class="icon-trash"></button>
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="patterns_box mobile bg-background-main shadow_btn_white mobile_version"
+                  >
+                    <div class="mobile_tabel">
+                      <div
+                        class="tabel_block"
+                        v-for="tabelText in tabelText"
+                        :key="tabelText.id"
+                      >
+                        <p class="text-copy-descr">
+                          <span class="text-copy-main">Отдаю:</span>
+                          {{tabelText.titleGetCourse}}
+                          <button
+                            class="icon-trash bg-background-main shadow_btn_white"
+                          ></button>
+                        </p>
+                        <p class="text-copy-descr">
+                          <span class="text-copy-main">Получаю:</span>
+                          {{tabelText.titleGiveCourse}}
+                        </p>
+                        <p class="text-copy-descr">
+                          <span class="text-copy-main">Сумма:</span>
+                          {{tabelText.titleAmoun}}
+                        </p>
+                        <p class="text-copy-descr">
+                          <span class="text-copy-main">Тип:</span>
+                          {{tabelText.titleType}}
+                        </p>
+                        <p class="text-copy-descr">
+                          <span class="text-copy-main">Кошелёк отправки:</span>
+                          {{tabelText.titleGive}}
+                        </p>
+                        <p class="text-copy-descr">
+                          <span class="text-copy-main">Кошелёк получеия:</span>
+                          {{tabelText.titleGet}}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <h2 class="text-copy-descr">Создать шаблон обмена</h2>
+                  <form
+                    class="exchange_templates_form"
+                    action="/profile/exchange-templates"
+                    method="post"
+                  >
+                    <input type="hidden" :value="csrfToken" :name="csrfParam" />
+                    <div
+                      class="exchange_templates_box bg-background-main shadow_btn_white"
+                    >
+                      <label class="text-copy-descr" for>
+                        Отдаю
+                        <select
+                          v-model="selectFirst"
+                          class="select bg-background-main"
+                          v-model="firstOption"
+                          name="UserExchangeTemplate[type]"
+                          v-if="firstOption"
+                        >
+                          <option
+                            :value="sellСurrencies.id"
+                            v-for="sellСurrencies in sellСurrencies"
+                            :key="sellСurrencies.id"
+                          >
+                            {{sellСurrencies.name_ru}}
+                          </option>
+                        </select>
+                      </label>
+                      <label class="text-copy-descr" for>
+                        Получаю
+                        <select
+                          v-model="selectSecond"
+                          class="select bg-background-main"
+                          name="UserExchangeTemplate[course_id]"
+                          v-model="secondOption"
+                        >
+                          <option
+                            :value="buyСurrencies.id"
+                            v-for="buyСurrencies in buyСurrencies"
+                            :key="buyСurrencies.id"
+                          >
+                            {{buyСurrencies.name_ru}}
+                          </option>
+                        </select>
+                      </label>
+                      <label class="text-copy-descr" for="amount">
+                        Сумма
+                        <input
+                          class="bg-background-main shadow_btn_white_active"
+                          id="amount"
+                          type="number"
+                          name="UserExchangeTemplate[amount]"
+                        />
+                      </label>
+                      <label class="text-copy-descr" for>
+                        Тип
+                        <select
+                          class="select bg-background-main"
+                          name="UserExchangeTemplate[type]"
+                          id=""
+                        >
+                          <option value="">Отдаю</option>
+                          <option value="">Получаю</option>
+                        </select>
+                      </label>
+                      <label class="text-copy-descr" for="sending">
+                        Кошелёк отправки
+                        <input
+                          class="bg-background-main shadow_btn_white_active"
+                          id="sending"
+                          type="number"
+                          name="UserExchangeTemplate[sell_source]"
+                        />
+                      </label>
+                      <label class="text-copy-descr" for="receiving">
+                        Кошелёк получения
+                        <input
+                          class="bg-background-main shadow_btn_white_active"
+                          id="receiving"
+                          type="number"
+                          name="UserExchangeTemplate[buy_target]"
+                        />
+                      </label>
+                      <button
+                        type="submit"
+                        class="green_btn text-copy-btngreen form_btn"
+                      >
+                        Создать
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer-main class="bg-background-main"></footer-main>
+        </div>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
+</html>

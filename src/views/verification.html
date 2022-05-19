@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Verification</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+    <link
+      rel="stylesheet"
+      href="https://api.chipware.co.za/css/flipclock.css"
+    />
+  </head>
+
+  <body>
+    <section id="app" :class="theme">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="main_layout text-copy-main bg-background-main">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="payment grow bg-background-main">
+            <div class="fon bg-background-descr"></div>
+            <div class="container">
+              <div class="payment_box shadow_btn_white">
+                <div
+                  class="payment_block_time bg-background-descr"
+                  :class="{activeTimer}"
+                >
+                  <vuescroll>
+                    <div class="btn_show">
+                      <div class="close">
+                        <div
+                          class="close_btn shadow_btn_white bg-background-descr"
+                          @click="showTimer"
+                        >
+                          <svg
+                            class="ham hamRotate ham1"
+                            viewBox="0 0 100 100"
+                            width="50"
+                            onclick="this.classList.toggle('active')"
+                          >
+                            <path
+                              class="line top"
+                              d="m 30,33 h 40 c 0,0 9.044436,-0.654587 9.044436,-8.508902 0,-7.854315 -8.024349,-11.958003 -14.89975,-10.85914 -6.875401,1.098863 -13.637059,4.171617 -13.637059,16.368042 v 40"
+                            />
+                            <path class="line middle" d="m 30,50 h 40" />
+                            <path
+                              class="line bottom"
+                              d="m 30,67 h 40 c 12.796276,0 15.357889,-11.717785 15.357889,-26.851538 0,-15.133752 -4.786586,-27.274118 -16.667516,-27.274118 -11.88093,0 -18.499247,6.994427 -18.435284,17.125656 l 0.252538,40"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="green_btn text-copy-btngreen payment_btn">
+                      Проверить статус операции в новом окне
+                    </button>
+                    <div class="time_box">
+                      <p class="text-copy-descr gamesDaymariusv">
+                        Осталось времени на оплату
+                      </p>
+                      <div class="payment_timer">
+                        <div class="clock"></div>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="payment_data">
+                      <p class="gamesDaymariusv text-copy-descr">
+                        Данные заявки
+                      </p>
+                      <div class="data_box">
+                        <div class="data_block">
+                          <div class="title_data">Номер заявки:</div>
+                          <div class="title_descr text-copy-descr">
+                            2423812357
+                          </div>
+                        </div>
+
+                        <div class="data_block">
+                          <div class="title_data">Создана:</div>
+                          <div class="title_descr text-copy-descr">
+                            16.03.2022 17:01:35
+                          </div>
+                        </div>
+
+                        <div class="data_block">
+                          <div class="title_data">По курсу:</div>
+                          <div class="title_descr text-copy-descr">
+                            1.00000 = 62.2928
+                          </div>
+                        </div>
+
+                        <div class="data_block">
+                          <div class="title_data">E-mail:</div>
+                          <div class="title_descr text-copy-descr">
+                            tolik.wwwww@ukr.net
+                          </div>
+                        </div>
+
+                        <div class="data_block">
+                          <div class="title_data">Телефон:</div>
+                          <div class="title_descr text-copy-descr">
+                            +380687250152
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="payment_data">
+                      <p class="gamesDaymariusv text-copy-descr">Отдаю</p>
+                      <div class="data_box">
+                        <div class="data_block">
+                          <div class="title_data">PerfectMoney USD:</div>
+                          <div class="title_descr text-copy-descr">
+                            80:21 USD
+                          </div>
+                        </div>
+
+                        <div class="data_block">
+                          <div class="title_data">С кошелька:</div>
+                          <div class="title_descr text-copy-descr">
+                            234123581235
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="payment_data">
+                      <p class="gamesDaymariusv text-copy-descr">Получаю</p>
+                      <div class="data_box">
+                        <div class="data_block">
+                          <div class="title_data">Яндекс Деньги RUB:</div>
+                          <div class="title_descr text-copy-descr">
+                            5000.24 RUB
+                          </div>
+                        </div>
+
+                        <div class="data_block">
+                          <div class="title_data">На кошелёк:</div>
+                          <div class="title_descr text-copy-descr">
+                            41124012409
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </vuescroll>
+                </div>
+                <div
+                  class="payment_block_info bg-background-main bg-background-main"
+                >
+                  <div class="scoreboard bg_thank">
+                    <p class=" text-copy-descr">Спасибо за заявку</p>
+                  </div>
+                  <div class="instruction_block">
+                    <p class=" gamesDaymariusv text-copy-descr">
+                      Инструкция «Верификация платежной карты Visa/MasterCard
+                      UAH»
+                    </p>
+                  </div>
+
+                  <div v-if="instruction" class=" info_box text-copy-descr">
+                    <p class="info_descr">
+                      Верификацию нужно <span>будет пройти всего 1 раз</span> ,
+                      все последующие обмены с участием верифицированной карты,
+                      будут осуществляться без необходимости проверки карты!
+                    </p>
+                    <br />
+                    <p class="info_descr">
+                      Если ранее Вы совершали у нас обмены, но с другим номером
+                      Вашей карты, то сообщите нам об этом в наш онлайн чат.
+                    </p>
+                    <br />
+                    <p class="info_bold_text">
+                      Уважаемый клиент, для подтверждения вашей карты Вам нужно
+                      совершить несколько простых шагов:
+                    </p>
+
+                    <ul class="info_descr">
+                      <li>
+                        1. Вам нужно приложить лицевую сторону карты, с которой
+                        осуществляете платеж к монитору (разрешается закрыть
+                        номер карты, кроме последних 4-х цифр)
+                      </li>
+                      <li>
+                        2. Сделать фото Вашей карты на фоне страницы «Спасибо за
+                        Заявку» (на фото должно быть хорошо видно Вашу карту и
+                        номер заявки)
+                        <a class="text-copy-green" href="#">ПРИМЕР</a>
+                      </li>
+                      <li>
+                        3. Отправьте фото нашему специалисту в online-чат
+                        (справа внизу), сообщив номер заявки. Либо отправьте
+                        фото на нашу почту <span>hello@7money.co</span>. Если Вы
+                        отправили фото на почту нажмите кнопку
+                        <a class="text-copy-green" href="#"
+                          >«Я отправил на почту»</a
+                        >
+                      </li>
+                    </ul>
+                    <br />
+                    <p class="info_bold_text">
+                      Второй метод для пользователей совершающих обмен через
+                      мобильное устройство:
+                    </p>
+                    <ul class="info_descr">
+                      <li>
+                        1. Написать на Листочке –
+                        <span
+                          >"Я совершаю обмен на 7money.co Visa/MasterCard UAH на
+                          PerfectMoney USD OP8bc6c3e250"
+                        </span>
+                      </li>
+                      <li>
+                        2. Приложить к листочку Вашу карту и сделайте фото.
+                        <a class="text-copy-green" href="#">ПРИМЕР</a>
+                        (разрешается закрыть номер карты, кроме последних 4-х
+                        цифр)
+                      </li>
+                      <li>
+                        3. Отправьте фото нашему специалисту в online-чат
+                        (справа внизу), сообщив номер заявки. Либо отправьте
+                        фото на нашу почту <span>hello@7money.co</span>. Если Вы
+                        отправили фото на почту нажмите кнопку
+                        <a class="text-copy-green" href="#"
+                          >«Я отправил на почту»</a
+                        >
+                      </li>
+                    </ul>
+                    <br />
+                    <div
+                      class="processing_time bg-background-main shadow_btn_white"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="/source/image/payment/clock.svg"
+                        alt
+                      />
+                      <div class="processing_time_box">
+                        <p class="processing_time_title">
+                          Время обработки заявки занимает от 5 до 30-ти минут
+                        </p>
+                      </div>
+                    </div>
+                    <div class="box_btn">
+                      <button class="cancel_btn">Я отправил на почту</button>
+                      <button class="green_btn text-copy-btngreen">
+                        Перейти к оплате
+                      </button>
+                    </div>
+                  </div>
+                  <div v-if="waitingСard" class=" info_box text-copy-descr">
+                    <p class="info_title gamesDaymariusv text-copy-descr">
+                      Карта ожидает верификации, обычно это занимает от 1-й до
+                      10 минут
+                    </p>
+                    <p class="info_wating">
+                      Внимание!!! Если вы отправили фото на верификацию по
+                      истечению срока заявки в 20 минут, либо не успеваете
+                      оплатить заявку за оставшееся время в 20 минут. После
+                      одобрения Вашей карты Вы можете создать заявку снова,
+                      повторная верификация не потребуется, она проводится едино
+                      разово для одной карты
+                    </p>
+                    <br />
+                    <div
+                      class="processing_time bg-background-main shadow_btn_white"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="/source/image/payment/clock.svg"
+                        alt
+                      />
+                      <div class="processing_time_box">
+                        <p class="processing_time_title">
+                          Время обработки заявки занимает от 5 до 30-ти минут
+                        </p>
+                      </div>
+                    </div>
+                    <div class="box_btn">
+                      <button class="cancel_btn">Отправить снова</button>
+                      <button class="green_btn text-copy-btngreen">
+                        Перейти к оплате
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    v-if="verificationRejected"
+                    class=" info_box text-copy-descr"
+                  >
+                    <p class="info_title gamesDaymariusv text-copy-descr">
+                      Верификация карты отклонена, для решения ситуации
+                      обратитесь пожалуйста в online-чат нашего сервиса!
+                      Возможные причины отказа:
+                    </p>
+                    <ul>
+                      <li>
+                        1. Последние 4ре цифры карты на фото неразличимы
+                        визуально.
+                      </li>
+                      <li>2. Фото карты не на фоне "статуса заявки"</li>
+                      <li>
+                        3. Фото карты не на фоне "приложенного в заявке текста"
+                        написанного на листочке
+                      </li>
+                      <li>4. Фото от Вас не поступило</li>
+                      <li>
+                        5. Другие причины, уточните у оператора онлайн чата
+                      </li>
+                    </ul>
+                    <br />
+                    <div
+                      class="processing_time bg-background-main shadow_btn_white"
+                    >
+                      <img
+                        class="lazyload"
+                        data-src="/source/image/payment/clock.svg"
+                        alt
+                      />
+                      <div class="processing_time_box">
+                        <p class="processing_time_title">
+                          Время обработки заявки занимает от 5 до 30-ти минут
+                        </p>
+                      </div>
+                    </div>
+                    <div>
+                      <button class=" green_btn text-copy-btngreen">
+                        Перейти к оплате
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer-main></footer-main>
+        </div>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="ru" />
+
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"
+    ></script>
+    <script type="text/javascript">
+      var clock;
+      $(document).ready(function() {
+        var clock;
+        clock = $(".clock").FlipClock({
+          clockFace: "DailyCounter",
+          autoStart: false,
+          callbacks: {
+            stop: function() {},
+          },
+        });
+        clock.setTime(1200); //Устанавливаем нужное время в секундах
+        clock.setCountdown(true); //Устанавливаем отсчет времени назад
+        clock.start(); //Запускаем отсчет
+      });
+    </script>
+  </body>
+</html>

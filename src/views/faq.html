@@ -1,56 +1,243 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>FAQ</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>FAQ</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-public-information>
-      Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$, нужно
-      всего лишь совершить обмен и оставить отзыв
-      <a href="/">подробнее тут</a>
-    </the-public-information>
-    <the-header @call-back-theme="definitionTheme"></the-header>
-    <main class="answers">
-      <the-title-big>
-        <template #title>Вопрос-Ответ</template>
-      </the-title-big>
-      <div class="container">
-        <div class="wrapper">
-          <div class="answers__list">
-            <the-answers></the-answers>
+  <body>
+    <section id="app" :class="theme">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="main_layout text-copy-main bg-background-main">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="answers grow bg-background-main">
+            <div class="main_text bg-background-descr">
+              <h1 class="title text-copy-descr gamesDaymariusv">
+                Вопрос-Ответ
+              </h1>
+            </div>
+            <div class="container">
+              <div class="answers_box ">
+                <div class="answers_items">
+                  <div
+                    v-for="(faq, i) in dataFaq.faqs"
+                    :key="i"
+                    @click="toggleopen(i)"
+                    :class="{ open : i === answersNum }"
+                    class="answers_accordion bg-background-main shadow_btn_white"
+                  >
+                    <div
+                      class="accordion_title"
+                      v-html="faq[dataFaq.field_question]"
+                    ></div>
+                    <div
+                      class="accordion_descr text-copy-descr"
+                      v-html="faq[dataFaq.field_answer]"
+                    ></div>
+                  </div>
+                  <!-- <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Чем занимается Ваш сервис?</div>
+                                    <div class="accordion_descr text-copy-descr">У нас Вы можете осуществить обмен
+                                        электронных валют Payeer USD, Perfect Money USD, Advanced Cash USD, Яндекс
+                                        Деньги и QIWI. Купить или продать через Приват24(UAH), ПУМБ Online(UAH). А также
+                                        обменять по доступным направлениям Крипто Валюту BITCOIN</div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Обязательна ли регистрация на нашем сервисе?</div>
+                                    <div class="accordion_descr text-copy-descr">Нет, регистрация на сайте не является
+                                        обязательной. Но если Вы зарегистрируетесь, то сможете участвовать в
+                                        накопительной и реферальной программе, получая дополнительные скидки и бонусы.
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Сколько у меня есть времени на оплату?</div>
+                                    <div class="accordion_descr text-copy-descr">На оплату дается 20 минут, по истечению
+                                        времени заявка закрывается.</div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Я оплатил заявку, но случайно закрыл окно "статуса
+                                        заявки". Как мне быть?</div>
+                                    <div class="accordion_descr text-copy-descr">Если вы зарегистрированный
+                                        пользователь, зайдите в личный кабинет раздел "История Операций". Письмо с
+                                        ссылкой на статус заявки приходит на почту указанную в заявке. Также можно
+                                        ввести код операции в шапке сайта пункт "Проверить Статус Операции". Не
+                                        переживайте ваши средства никуда не денутся. В любом случае вы можете написать
+                                        нам в Онлайн Чат и мы вам поможем.</div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Я оплатил заявку, но случайно закрыл окно "статуса
+                                        заявки". Как мне быть?</div>
+                                    <div class="accordion_descr text-copy-descr">Если вы зарегистрированный
+                                        пользователь, зайдите в личный кабинет раздел "История Операций". Письмо с
+                                        ссылкой на статус заявки приходит на почту указанную в заявке. Также можно
+                                        ввести код операции в шапке сайта пункт "Проверить Статус Операции". Не
+                                        переживайте ваши средства никуда не денутся. В любом случае вы можете написать
+                                        нам в Онлайн Чат и мы вам поможем.</div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Если я перевел Биткоины, но свои средства не получил?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">Операции по обмену биткоина проходят
+                                        только после получения 1-го подтверждения от системы. Верифицируется это через
+                                        blockchain.info.</div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Каким образом производится обмен?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">Процедура обмена очень простая и
+                                        быстрая. Вам достаточно указать какую валюту Вы собираетесь обменять, какую
+                                        получить и нажать кнопку Обменять. После этого ввести сумму для обмена. Вам
+                                        будет показан текущий курс и резерв нашего обменного пункта. Внизу появятся
+                                        поля, которые необходимо обязательно заполнить: номера кошельков, карт и e-mail.
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Обязательно ли указывать примечание к платежу?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">При оформлении заявки Вы получите
+                                        точные инструкции, какое назначение платежа является обязательным для совершения
+                                        обменной операции (Приват 24, ПУМБ Online). Если по какой либо причине
+                                        назначение платежа было не указанно, то сайт оставляет за собой право вернуть
+                                        сумму на указанные в заявке реквизиты. Данная процедура может занять до 6
+                                        рабочих дней. При возникновении такой ситуации все комиссии возлагаются на
+                                        клиента. Если вы вдруг забыли указать назначение платежа и хотите исправить
+                                        ситуацию, то Вам нужно отправить на тот же (который был в вашей изначальной
+                                        заявке) счет - 10 копеек, но уже с указанным в заявке назначением(комментарием к
+                                        платежу) и мы с радостью переведем Вам ваши средства.
+
+
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">У вас есть накопительная Скидка?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">Любой пользователь, который
+                                        зарегистрировался на нашем сайте, совершая обмен, автоматически участвует в
+                                        формировании своих накопительных бонусов. После достижения любого из 4-х этапов
+                                        нашей Программы для Постоянных Клиентов Вы получаете 5% скидки( от нашей чистой
+                                        прибыли), которая применяется к формированию более выгодного курса обмена именно
+                                        для Вас при каждом следующем обмене. То есть, Вы получаете скидку на любой обмен
+                                        в любом направлении. С более детальной информацией Вы можете ознакомиться после
+                                        регистрации в своем Личном кабинете либо во вкладке "Партнерская Программа"
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Какие условия у Вас по Партнерской программе?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">Условия партнерской программе весьма
+                                        просты, по ней Вы можете получать 25% от нашего заработка за обмены, которые
+                                        совершают пользователи, привлеченные Вами в наш сервис. Выплаты осуществляются
+                                        от 1 PM USD. В своем кабинете Вы в режиме online можете отслеживать операции,
+                                        которые осуществили Ваши рефералы. С более детальной информацией Вы можете
+                                        ознакомиться после регистрации в своем Личном кабинете.
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Как считаются Партнерские отчисления?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">Простыми словами. Берется наш курс, из
+                                        него вычитается официальный Реальный Обратный Рыночный Курс и от этой разницы
+                                        сумм считается партнерский процент.Каждый день Курсы и Обратный Реальный
+                                        Рыночный Курс колеблятся и принимают другие значения. Поэтому если ваш Реферал
+                                        поменяет ту же сумму в другой день. Отчисления могут отличаться, а стало быть
+                                        могут быть как больше,так и меньше предыдущих отчислений.
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">В какой промежуток времени средства будут зачислены на
+                                        указанные мною реквизиты?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">Если все сервисы работают нормально, то
+                                        деньги на ваш счет зачисляются в течении 1-10 минут. Что касается электронных
+                                        кошельков Perfect Money, PAYEER, Advanced Cash USD, Яндекс Деньги, QIWI, то
+                                        средства зачисляются мгновенно. Если переживаете по поводу поступления денег на
+                                        счет, пишите нам в Онлайн Чат нашего сайта. Мы всегда ответим на все Ваши
+                                        вопросы.
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Возможно ли, отменить обмен, если заявка уже оплачена?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">К сожалению нет. Если заявка была
+                                        оплачена отказаться уже нельзя. При возникновении такой ситуации, Вы можете
+                                        сделать обратную операцию, но в этом случае все комиссии покрываются за счет
+                                        клиента.
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Ко мне обратились через Skype, Viber, Почту, телефон и
+                                        предлагают совершить обмен от имени вашего сервиса?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">Мы никогда не совершаем обмены через
+                                        средства коммуникации не связанные с нашим сайтом, и никогда не присылаем с
+                                        нашего официального эмейла hello@7money.co запросы с предложениями на обмен
+                                        средств. Все транзакции происходят исключительно на нашем сайте и исключительно
+                                        по желанию пользователя! А коммуникация сайта происходит только Через Онлайн Чат
+                                        нашего сайта. Осторожность превыше всего!
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">Мною были указаны неправильно реквизиты и средства не
+                                        пришли, что делать?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">К сожалению, в данной ситуации мы можем
+                                        только сообщить реквизиты, на которые ошибочно ушли Ваши средства.
+
+                                        !!! Уважаемые Клиенты будьте внимательны при заполнении своих реквизитов!!!
+                                    </div>
+                                </div>
+                                <div @click="toggleopen" class="answers_accordion bg-background-main shadow_btn_white">
+                                    <div class="accordion_title">У Вас есть файлы экспорта курсов?
+                                    </div>
+                                    <div class="accordion_descr text-copy-descr">
+                                        <a href="https://7money.co/utils/export?type=xml">Xml - формат</a>
+                                        <a href="https://7money.co/utils/export?type=csv">CSV - формат</a>
+                                        <a href="https://7money.co/utils/export?type=json">JSON - формат</a>
+                                    </div>
+                                </div> -->
+                </div>
+                <div class="no_answer">
+                  <h2 class="text-copy-descr gamesDaymariusv">
+                    Не нашли ответ?
+                  </h2>
+                  <p>
+                    Напишите нам на email и мы в ближайшее время ответим на все
+                    ваши вопросы
+                  </p>
+                  <figure>
+                    <img
+                      class="lazyload"
+                      data-src="/source/image/answers/mail.png"
+                      alt
+                    />
+                  </figure>
+                  <p class="text-copy-descr faq_btn">
+                    Отправить собщение на e-mail hello@7money.co
+                  </p>
+                  <p>
+                    Либо напишите нам в online чат, который находится справа
+                    внизу
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="no-answer">
-            <the-title tag="h2" class="title">
-              Не нашли ответ?
-            </the-title>
-            <p>
-              Напишите нам на email и мы в ближайшее время ответим на все
-              ваши вопросы
-            </p>
-            <icon-mail :theme="theme"></icon-mail>
-            <p>
-              Отправить сообщение на e-mail <a href="mail:hello@7money.co" class="text--green">hello@7money.co</a>
-            </p>
-            <p>
-              Либо напишите нам в online чат, который находится справа
-              внизу
-            </p>
-          </div>
+          <footer-main></footer-main>
         </div>
-      </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>

@@ -1,0 +1,746 @@
+//Импорты утилит
+@import "utils/vars"
+@import "utils/reset"
+@import "utils/animate"
+@import "utils/fonts"
+@import "modules/theme"
+
+//Импорты страниц 
+@import "modules/resetPassword"
+@import "modules/404"
+@import "modules/about"
+@import "modules/faq"
+@import "modules/affiliateProgram"
+@import "modules/blog"
+@import "modules/blogArticle"
+@import "modules/engineeringWorks"
+@import "modules/errorPayment"
+@import "modules/news"
+@import "modules/payment"
+@import "modules/reviews"
+@import "modules/status"
+@import "modules/statusCheck"
+@import "modules/index"
+@import "modules/successfulPayment"
+@import "modules/personalArea"
+
+//Импорты компоненты
+@import "modules/header"
+@import "modules/scoreboard"
+@import "modules/completed"
+@import "modules/paymentBlockInfo"
+@import "modules/exchange"
+@import "modules/reserves"
+@import "modules/info"
+@import "modules/success"
+@import "modules/currencySelection"
+@import "modules/currencyExchange"
+@import "modules/accounts"
+@import "modules/switched"
+@import "modules/operationsHistory"
+@import "modules/pagination"
+@import "modules/postReward"
+@import "modules/affiliate"
+@import "modules/payoutHistory"
+@import "modules/exchangeTemplates"
+@import "modules/changePassword"
+@import "modules/verified"
+@import "modules/nightMode"
+@import "modules/unverifieCard"
+@import "modules/statusWindow"
+@import "modules/fraudWarning"
+@import "modules/lacks"
+@import "modules/authorization"
+@import "modules/entrance"
+@import "modules/registration"
+@import "modules/passwordRecovery"
+@import "modules/footer"
+@import "modules/preloader"
+@import "modules/verification"
+@import "modules/partners"
+
+//Основные стили 
+html
+  font-size: 10px
+  height: 100%
+
+body
+  margin: 0
+  padding: 0
+  font-family: 'Lato', sans-serif
+  font-size: 1.6rem
+  font-weight: 400
+  height: 100%
+  letter-spacing: .8px
+
+*,
+*:before,
+*:after
+  box-sizing: border-box
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  margin: 0
+
+
+.text_border
+  border: 1px dashed red
+  border-radius: 4px
+  padding: 5px
+  margin: 5px 0
+
+.error__text
+  border: 1px solid red
+  font-size: 10px
+  padding: 6px
+  margin: 5px 0
+  border-radius: 4px
+
+ul,
+li
+  margin: 0
+  padding: 0
+  list-style-type: none
+
+.dn
+  display: none
+
+.db
+  display: block
+
+.break-all
+  word-break: break-all
+
+.showPopupInfoToAccount,
+.showPopupInfoSellAmount,
+.showPopupInfoThisAccount
+  display: block
+
+.container
+  width: 100%
+  margin: 0 auto
+  max-width: 1240px
+  padding: 0 10px
+  box-sizing: border-box
+
+#app
+  min-height: 100%
+  height: 100%
+  max-width: 100%
+  width: 100%
+  position: relative
+  display: flex
+  flex-direction: column
+
+.show_entrance
+  display: flex
+
+.authorization_toggle .active_registration:before
+  left: 28px
+
+.active_registration,
+.active_entrance
+  color: #363C46
+
+.app_fon
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  opacity: 0
+  z-index: -1
+  transition: 500ms ease
+  background: rgb(255, 255, 255)
+
+.header_fon
+  background: #D9E1E8
+  margin-top: -5px
+
+.appActiveFon
+  z-index: 90
+  opacity: 0.6
+  transition: 500ms ease
+
+.home .exchange
+  z-index: 1
+
+.main_layout,
+.cabinet_layout
+  display: flex
+  flex-direction: column
+  position: relative
+  min-height: 100vh
+//btn
+.green_btn
+  overflow: hidden
+  position: relative
+  border-radius: 4px
+  padding: 17.5px 0
+  width: 100%
+  text-transform: uppercase
+  font-size: 1.8rem
+  text-decoration: none
+
+  &:after
+    content: ''
+    position: absolute
+    width: 30px
+    height: 100%
+    background: #FFFFFF
+    transform: skewX(-20deg)
+    left: 0
+    bottom: 0
+    top: 0
+    animation: btn_hover 2s infinite ease
+    opacity: 0
+    transition: 500ms ease
+
+  &:hover:after
+    opacity: 0.2
+    transition: 500ms ease
+
+.grow
+  position: relative
+  flex-grow: 1
+// z-index: 1
+//text
+.title
+  font-weight: bold
+  font-size: 6.4rem
+  text-align: center
+  padding: 30px 0 19px 0
+  margin: 0px 0 10px
+
+.descr
+  font-size: 1.8rem
+  text-align: center
+  padding-bottom: 30px
+//fon
+.fon
+  top: 0px
+  left: 0
+  right: 0
+  height: 200px
+  position: absolute
+  z-index: 0
+//main_text
+.main_text
+  border-top: 1px solid #C8D1DA
+  padding: 0 10px
+
+.link-btn
+  text-decoration: none
+//button
+.show_more
+  padding: 17px 20px 15px
+  max-width: 380px
+  width: 100%
+  display: flex
+  align-items: center
+  justify-content: center
+  border-radius: 8px
+
+  & svg
+    margin-right: 5px
+//Scroll
+.accounts,
+.affiliate,
+.operations_history,
+.payout_history,
+.exchange_templates,
+.change_password,
+.post_reward
+  padding-left: 30px
+  border-left: 2px solid #D9E1E8
+
+  & h2
+    font-weight: bold
+    font-size: 2.4rem
+    margin-bottom: 20px
+
+.box_button
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.pc_version
+  display: block
+
+.mobile_version
+  display: none
+
+.alert-success
+  color: #E8EDF1
+  background-color: #00b047
+
+.alert
+  position: relative
+  padding: .75rem 1.25rem
+  margin-bottom: 1rem
+  border: 1px solid transparent
+  border-radius: .25rem
+  margin: 10px 0
+
+.status-failed
+  color: #ae4e4c
+
+.status-new
+  color: #468cad
+
+.in-progress
+  color: #fee699
+
+.status-expectation
+  color: #2cb5b9
+
+.active
+  color: #4cd784
+
+// .status_check_error
+//   color: #ed3444
+// .status_check_expectation
+//   color: #32bf9d
+// .status_check_waiting_payment
+//   color: #7f848c
+.alert-danger
+  color: red
+  text-align: center
+
+.status--new
+  color: #7f848c
+
+.status--crypto--check
+  color: #468cad
+
+.status--in-progress
+  color: #2cb5b9
+
+.status--completed
+  color: #4cd784
+
+.status--failed
+  color: #ed3444
+
+.text-danger
+  border: 1px dashed #ed3444
+
+.text-success
+  border: 1px dashed #4cd784
+
+.text-info
+  border: 1px dashed #468cad
+
+.text-primary
+  border: 1px dashed #7f848c
+
+.noty_theme__bootstrap-v4.noty_type__error
+  background-color: #ed3444 !important
+  color: #fff !important
+  border-color: #ed3444 !important
+
+.noty_theme__bootstrap-v4.noty_type__info,
+.noty_theme__bootstrap-v4.noty_type__information
+  background-color: #2cb5b9 !important
+  color: #fff !important
+  border-color: #2cb5b9 !important
+
+.noty_theme__bootstrap-v4.noty_type__success
+  background-color: #4cd784 !important
+  color: #fff !important
+  border-color: #4cd784 !important
+
+.payment_system_list[data-filter=CRYPT] li
+  display: none
+
+.payment_system_list[data-filter=CRYPT] li[data-group=CRYPT]
+  display: flex
+
+.payment_system_list[data-filter=USD] li
+  display: none
+
+.payment_system_list[data-filter=USD] li[data-group=USD]
+  display: flex
+
+.payment_system_list[data-filter=RUB] li
+  display: none
+
+.payment_system_list[data-filter=RUB] li[data-group=RUB]
+  display: flex
+
+.payment_system_list[data-filter=UAH] li
+  display: none
+
+.payment_system_list[data-filter=UAH] li[data-group=UAH]
+  display: flex
+
+.payment_system_list[data-filter=CASH] li
+  display: none
+
+.payment_system_list[data-filter=CASH] li[data-group=CASH]
+  display: flex
+
+.countdown-timer ul:nth-child(1),
+.countdown-timer ul:nth-child(2),
+.countdown-timer ul:nth-child(3),
+.countdown-timer ul:nth-child(4),
+.countdown-timer ul:nth-child(5),
+.countdown-timer ul:nth-child(6)
+  display: none
+
+.flip-clock-divider.days,
+.flip-clock-divider.hours,
+.flip-clock-divider.minutes,
+.flip-clock-label,
+.clock ul:nth-child(1),
+.clock ul:nth-child(2),
+.clock ul:nth-child(3),
+.clock ul:nth-child(4),
+.clock ul:nth-child(5),
+.clock ul:nth-child(6),
+.clock ul:nth-child(1),
+.clock ul:nth-child(2),
+.clock ul:nth-child(3),
+.clock ul:nth-child(4),
+.clock ul:nth-child(5),
+.clock ul:nth-child(6)
+  display: none
+
+.clock
+  display: flex
+
+.flip-clock-wrapper ul li a div div.inn
+  font-size: 50px
+
+.flip-clock-wrapper ul
+  width: 50px
+  height: 80px
+
+.flip-clock-wrapper ul li
+  line-height: 78px
+
+.pop_up
+  background: #2cb5b9
+  color: #fff
+  text-align: center
+
+.alert
+  margin: 0px 0
+
+.alert-fon
+  background: #d9e1e8
+  min-width: 100%
+
+.b-alert__message
+  text-align: left
+  margin: 10px 0 20px
+
+#payment-form
+  width: 100%
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active
+  -webkit-box-shadow: inset 0 0 0 50px #e8edf1
+  -webkit-text-fill-color: #363c46
+  background-color: #fff
+
+[v-cloak]
+  display: none
+
+.b-profile
+  padding: 20px
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  min-height: 60vh
+  height: -webkit-fill-available
+
+.b-profile__header
+  margin-bottom: 10px
+
+.b-apply-code p
+  border: 0px dashed #4cd784
+  border-radius: 4px
+
+
+.inp_wrapper
+  & .inp_block
+    width: 100%
+    margin: 0
+
+  & .commission
+    margin-top: 10px
+
+
+.main-element
+  position: relative
+  height: 90%
+  margin: 0 19px
+  padding: 2px 7px 3px
+  width: 98.5%
+  margin: auto
+  -ms-flex-item-align: center
+  align-self: center
+  background: #e8edf1
+  z-index: 1
+
+.checkbox .main-element
+  height: 100%
+  width: 100%
+  padding: 10px
+
+.border
+  position: absolute
+  display: block
+  top: -50%
+  left: -60%
+  height: 617%
+  width: 165%
+  z-index: -9
+  display: block
+  transform: rotate(-45deg)
+  overflow: hidden
+  background: linear-gradient(90deg, #e8edf1 20%, #e8edf1 40%, #41d079 50%, #3ccc73 55%, #e8edf1 70%, #e8edf1)
+  background-size: 200% auto
+  animation: shine 3s linear infinite
+
+.confirm-border
+  position: absolute
+  display: block
+  top: -20px
+  left: -30px
+  height: 260%
+  width: 270%
+  z-index: -9
+  display: block
+  border-right: 2px
+  transform: rotate(0deg)
+  overflow: hidden
+  background: linear-gradient(90deg, #e8edf1 20%, #e8edf1 40%, #f25955 50%, #fa8989 55%, #e8edf1 70%, #e8edf1)
+  background-size: 200% auto
+  animation: shine 3s linear infinite
+
+#confirm-active .checkbox_inp:after
+  left: 9px
+  transform: translateY(-50%)
+
+.currency-loader
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+
+  border-radius: 10px
+  background: rgba(255, 255, 255, .7)
+
+  display: none
+  align-items: center
+  justify-content: center
+  flex-direction: column
+
+  z-index: -10
+
+.currency-loader-active
+  display: flex
+
+  z-index: 5
+
+.currency-loader_text
+  font-size: 1.8rem
+  margin-top: 10px
+
+.view
+  width: 20px
+
+  & img
+    width: 100%
+
+.input_block
+  transition: 500ms ease
+
+  &:hover
+    transition: 500ms ease
+    box-shadow: -4px -2px 8px #FFFFFF, 4px 2px 8px rgba(136, 165, 191, 0.54)
+
+.table
+  display: flex
+  justify-content: space-between
+  flex-direction: column
+  border-radius: 8px
+  padding: 0
+  overflow: hidden
+  margin: 10px 0
+  border: none
+
+  & .header,
+  & .row
+    display: flex
+    padding: 15px
+    justify-content: space-between
+
+  & .row-block,
+  & .header-block
+    flex-grow: 1
+    width: 100%
+    padding: 5px
+
+  & .header-block
+    & p
+      font-weight: 500
+      font-size: calc(14px + 4 * ((100vw - 320px) / (1280 - 320)))
+
+  & .row-block
+    & p
+      font-size: calc(12px + 2 * ((100vw - 320px) / (1280 - 320)))
+
+    & .text-blue
+      color: #2f80ed
+
+    & .text-green
+      color: #00b047
+
+.links
+  position: relative
+  z-index: 1
+
+  &-box
+    padding: 10px 20px
+    border-radius: 10px
+    margin: 20px 0
+
+  &-items
+
+    margin-bottom: 10px
+    height: 75px
+    overflow: hidden
+    transition: 500ms ease
+
+    &-box
+      display: flex
+      justify-content: space-between
+
+  & .block-link
+    display: flex
+    flex-direction: column
+    margin: 10px
+
+  & .show-link
+    display: flex
+    justify-content: center
+    text-decoration: none
+    padding-top: 5px
+
+  & a
+    font-size: calc(10px + 2 * ((100vw - 320px) / (1280 - 320)))
+    text-decoration: none
+    margin: 2px 0
+    display: -webkit-box
+    -webkit-line-clamp: 1
+    -webkit-box-orient: vertical
+    overflow: hidden
+
+  & .active
+    height: 400px
+    transition: 500ms ease
+    overflow: hidden
+
+@media screen and (max-width: 992px)
+  .cabinet_layout,
+  .main_layout
+    z-index: 1
+  .title
+    font-size: 3.5rem
+  .descr
+    font-size: 1.6rem
+  .pc_version
+    display: none
+  .mobile_version
+    display: block
+
+@media screen and (max-width: 768px)
+
+  .table
+    justify-content: start
+
+    & .header, .row
+      flex-direction: column
+      padding: 8px
+  .fon
+    height: 100px
+  .descr
+    font-size: 1.8rem
+    padding-bottom: 20px
+  .title
+    font-size: 3rem
+    padding: 20px 0 9px 0
+  .accounts,
+  .affiliate,
+  .operations_history,
+  .payout_history,
+  .exchange_templates,
+  .change_password,
+  .post_reward
+    padding-left: 0px
+    border-left: 0px solid #D9E1E8
+  .box_button
+    flex-direction: column
+
+    & .pagination
+      margin-top: 10px
+
+@media screen and (max-width: 576px)
+  .links .links-items-box
+    flex-direction: column
+  .accounts,
+  .affiliate,
+  .operations_history,
+  .payout_history,
+  .exchange_templates,
+  .change_password,
+  .post_reward
+    & h2
+      font-size: 1.8rem
+  .title
+    font-size: 2.4rem
+  .descr
+    font-size: 1.4rem
+  .green_btn
+    font-size: 1.3rem
+  #confirm-active .checkbox_inp:after
+    transform: translateY(-50%)
+  .green_btn
+    padding: 10px 0
+    font-size: 1.4rem
+
+.__view
+  width: 100% !important
+
+.home_seo_text
+  margin-bottom: 20px
+
+.iframe__video
+  width: 100%
+  margin-top: 5px
+  min-height: 350px
+  border-radius: 8px
+
+.notification
+  border: 1px solid #00B047
+  padding: 10px
+  border-radius: 4px
+  margin: 10px
+  width: 100%
+  font-size: 14px
+  box-shadow: 4px 2px 8px rgba(136, 165, 191, .54), -4px -2px 8px #fff
+
+@media screen and (max-width: 567px)
+  .notification
+    margin: 0

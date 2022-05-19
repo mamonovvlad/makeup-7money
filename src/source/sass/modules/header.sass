@@ -1,0 +1,456 @@
+.header_box
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 30px 0
+    position: relative
+    z-index: 2
+.header_block
+    display: flex
+    align-items: center
+    & .header_logo
+        max-width: 97px
+        width: 100%
+        margin-right: 20px
+    & .logo
+        background: url("../image/header/logo.svg") center no-repeat
+        width: 97px
+        margin-right: 20px
+        display: block
+        height: 50px
+        background-size: cover
+    & .header_time
+        & p
+            font-size: 1.4rem
+.header_buttons
+    display: flex
+    align-items: center
+
+    & .btn_status
+        position: relative
+        overflow: hidden
+        border-radius: 4px
+        margin-left: 20px
+        &:after
+            content: ''
+            position: absolute
+            width: 30px
+            height: 100%
+            background: #FFFFFF
+            transform: skewX(-20deg)
+            left: 0
+            bottom: 0
+            top: 0
+            animation: btn_hover 2s infinite ease
+            opacity: 0
+        &:hover:after
+            opacity: 0.2
+        & .status
+            border-radius: 4px
+            padding: 11.5px 33px
+            display: flex
+            font-size: 1.8rem
+            cursor: pointer
+            text-decoration: none
+    & .icon
+        border-radius: 4px
+        margin-left: 20px
+        display: flex
+        align-items: center
+        justify-content: center
+        position: relative
+        & .btn_icon
+            cursor: pointer
+            outline: none
+            width: 50px
+            height: 50px
+            border-radius: 4px
+        &:active
+            display: block
+            border-radius: 4px
+    & .btn_svg
+        width: 50px
+        height: 50px
+        display: flex
+        align-items: center
+        justify-content: center
+    & .lang span
+        position: absolute
+        left: 50%
+        top: 50%
+        text-shadow: 0px 1px 2px rgba(0,0,0,0.4), 0px 8px 13px rgba(0,0,0,0.1), 0px 18px 23px rgba(0,0,0,0.1);
+        font-size: 22px
+        line-height: 1
+        transform: translate(-50%,-50%)
+        color: #7f848c
+        font-weight: bold
+    & .lang_box
+        position: absolute
+        top: 0px
+        opacity: 0
+        display: none
+        z-index: -10
+        outline: none
+    & .btn_icon
+        position: relative
+        z-index: 2
+    & .link
+        display: flex
+        flex-direction: column
+        align-items: center
+        position: absolute
+        width: 100%
+        max-height: 350px
+        left: 0
+        top: 50px
+        z-index: -12
+        opacity: 0
+        display: none
+    // transition: 100ms ease
+        top: 50px
+        left: 0
+        & a
+            margin: -13px 0
+            opacity: 0
+            transition: 200ms ease
+    & .social_activ,
+    & .social_activ_btn
+        transition: 250ms ease
+        opacity: 1
+        z-index: 3
+        display: flex
+        border-radius: 0  0 4px 4px
+        & a
+            margin: 6px 0
+            opacity: 1
+            & img
+                min-width: 25px
+                max-width: 25px
+    & .social_activ
+        border-radius: 0  0 4px 4px
+    & .social_activ_btn
+        border-radius: 4px 4px 0 0
+    & .account_box
+        position: absolute
+        bottom: -90px
+        display: none
+        right: 0px
+        flex-direction: column
+        border-radius: 4px
+        opacity: 0
+        z-index: -3
+        transition: 250ms ease
+        & .account_box_block
+            display: flex
+            align-items: flex-start
+            flex-direction: column
+        & .arrow
+            position: absolute
+            right: 15px
+            top: -18px
+            border: 8px solid transparent
+            border-bottom: 10px solid #e8edf1
+        & a,
+        & button
+            width: max-content
+            outline: none
+            display: block
+            line-height: unset
+            padding: 8px 20px
+            text-decoration: none
+            &:first-child
+                padding-bottom: 0px
+    & .account_active
+        opacity: 1
+        z-index: 3
+        display: flex
+    & .lang_activ_block
+        top: 49px
+        opacity: 1
+        z-index: 3
+        height: 0px
+        display: flex
+        flex-direction: column
+
+    & .btn_lang
+        position: relative
+        outline: none
+        width: 50px
+        min-height: 50px
+        box-shadow: inset 3px 3px 3px rgba(136, 165, 191, 0.48), inset -3px -3px 3px #FFFFFF
+        & a
+            width: 35px
+            height: 35px
+            outline: none
+            display: block
+.show_icon
+    & span
+        display: none
+    & .active
+        display: block
+
+//Burger
+.burger
+    position: fixed
+    right: -1000px
+    top: 0
+    justify-content: space-between
+    display: flex
+    flex-direction: column
+    bottom: 0
+    background:
+    max-width: 500px
+    width: 100%
+    background: linear-gradient(134.83deg, #363C46 0%, #1D2531 100%)
+    transition: 250ms ease
+    z-index: -100
+    & .scroll
+        display: flex
+        flex-direction: column
+        height: 100%
+    & .burger_content
+        padding: 30px 20px 0
+    & .burger_toggle
+        display: none
+    & .burger_menu
+        display: flex
+        flex-direction: column
+        margin-top: 80px
+        & a
+            font-size: 2rem
+            padding: 8px 20px
+            width: max-content
+            text-decoration: none
+            transition: 250ms ease
+            &:hover
+                color: #00B047
+                box-shadow: 4px 2px 6px #1B2027, -4px -2px 6px #3E4551
+                border-radius: 4px
+                transition: 250ms ease
+    & .close
+        position: absolute
+        top: 30px
+        left: 40px
+        width: 50px
+        height: 50px
+        border-radius: 4px
+        box-shadow: 4px 2px 6px #1B2027, -4px -2px 6px #3E4551
+        & .close_btn
+            cursor: pointer
+            display: flex
+            align-items: center
+            justify-content: center
+            width: 50px
+            height: 50px
+            & span:nth-child(1),
+            & span:nth-child(2)
+                position: absolute
+                transform: rotate(135deg)
+                width: 30px
+                height: 2px
+                background: #7F848C
+            & span:nth-child(2)
+                transform: rotate(45deg)
+            &:active
+                box-shadow: inset 2px 2px 3px #1B2027, inset -1px -1px 3px #3E4551
+                border-radius: 4px
+    & .burger_social
+        flex-grow: 1
+        align-items: flex-end
+        margin: 30px 0px 60px 40px
+.burger_activ
+    right: 0
+    transition: 250ms ease
+    z-index: 110
+.header .show_entrance
+    display: flex
+//Social
+.burger_social
+    display: flex
+    margin: 30px 0 0 20px
+    & a
+        width: 30px
+        height: 30px
+        margin-right: 25px
+        transition: 500ms ease
+        filter: grayscale(100%)
+        &:hover
+            transition: 500ms ease
+            filter: grayscale(0%)
+    & img
+        width: 100%
+//Toggle
+.header_toggle
+    margin-right: 20px
+    display: flex
+    & .btn_sum,
+    & .btn_moon
+        border-radius: 8px 0px 0px 8px
+        padding: 8px 8px
+        cursor: pointer
+        outline: none
+        transition: 250ms ease
+    & .btn_moon
+        border-radius: 0px 8px 8px 0px
+        transition: 500ms ease
+        & .activesun,
+        & .activedark
+            transition: 500ms ease
+    & .sun path
+        fill: #F2C94C
+    & .moon path
+        fill: #7F848C
+.changeLanguageActive-enter-active,
+.changeLanguageActive-leave-active
+    transition: opacity 0.2s
+
+.changeLanguageActive-enter,
+.changeLanguageActive-leave-to
+    transition: 0.2s
+    opacity: 0
+.change_language_hidden
+    display: none
+.theme-dark
+    & .burger
+        background: rgba(18, 10, 32, 1)
+        &  .close
+            box-shadow: 4px 2px 8px 0px rgba(9, 5, 19, 0.54) , -2px -1px 2px 0px rgba(34, 23, 62, 1)
+        & .btn_moon, .btn_sum
+            background: #120A20
+            box-shadow: 4px 2px 8px 0px rgba(9, 5, 19, 0.54) , -2px -1px 2px 0px rgba(34, 23, 62, 1)
+        & .activedark
+            box-shadow: 4px 2px 8px 0px rgba(9, 5, 19, 0.54) , -2px -1px 2px 0px rgba(34, 23, 62, 1)
+
+@media screen and (max-width: 1200px)
+    .header_buttons .btn_status,
+    .header_buttons .icon
+        margin-left: 10px
+    .header_block .header_time p
+        font-size: 1.2rem
+    .header_buttons .btn_status .status
+        font-size: 1.4rem
+@media screen and (max-width: 1024px)
+    .header_buttons .account_box
+        & button
+            font-size: 1.4rem
+    .header_block .header_logo
+        max-width: 80px
+    .header_buttons .icon .btn_icon,
+    .header_buttons .btn_lang
+        width: 40px
+        max-height: 40px
+        min-height: 40px
+        & i
+            font-size: 2rem
+    .header_buttons .btn_status .status
+        font-size: 1.2rem
+        padding: 12px 20px
+    .header_block .header_time p
+        font-size: 1rem
+    .header_buttons .lang_activ_block
+        top: 35px
+        box-shadow: inset 3px 3px 3px rgba(136, 165, 191, 0.48), inset -3px -3px 3px #FFFFFF
+    .header_buttons .social_activ a img, .header_buttons .social_activ_btn a img
+        width: 20px
+    .header_buttons .social_activ a, .header_buttons .social_activ_btn a
+        margin: 4px 0
+    .header_buttons .link
+        top: 40px
+@media screen and (max-width: 992px)
+    .header_toggle .btn_moon, .header_toggle .btn_sum
+        padding: 6px
+    .header_block .header_logo
+        margin-right: 10px
+        max-width: 70px
+    .header_buttons .btn_status .status
+        font-size: 1rem
+        padding: 9px 8px
+    .header_buttons .link
+        top: 35px
+    .header_buttons .lang_activ_block
+        top: 34px
+    .account_active
+        & a
+            font-size: 1.4rem
+    .header_block .logo
+        background: url(../image/header/logo.svg) 50% no-repeat
+        width: 70px
+        margin-right: 20px
+        display: block
+        height: 50px
+        background-size: contain
+    .header_buttons .lang img
+        width: 25px
+        height: 25px
+@media screen and (max-width: 768px)
+    .header_buttons .account_box
+        position: absolute
+        bottom: -80px
+    .header .changeLanguageActiveMobile
+        box-shadow: inset 3px 3px 3px rgba(136, 165, 191, 0.48), inset -3px -3px 3px #FFFFFF
+    .changeLanguageHiddenMobile
+        box-shadow: inset 3px 3px 3px rgba(136, 165, 191, 0.48), inset -3px -3px 3px #FFFFFF
+    .header_buttons .btn_status,
+    .header_buttons  .social,
+
+    .header_toggle
+        display: none
+
+    //Бургер меню
+    .burger
+        max-width: 300px
+        & .burger_content
+            padding: 30px 8px 0px 8px
+        & .burger_social
+            margin: 15px 0px 0px 18px
+        & .header_toggle
+            display: flex
+            margin-right: 0
+            margin-left: 13px
+        & .btn_sum,
+        & .btn_moon
+            background: #2E3540
+            box-shadow: inset 3px 3px 6px #1E232D, inset -2px -1px 6px #424853
+            border-radius: 8px 0px 0px 8px
+            overflow: hidden
+        & .btn_moon
+            border-radius: 0px 8px 8px 0px
+        & .activesun
+            box-shadow: 4px 2px 6px #1B2027, -4px -2px 6px #3E4551
+
+        & .close
+            width: 36px
+            height: 36px
+    .burger_social
+        flex-wrap: wrap
+        margin: 20px 0 0 12px
+        align-items: flex-end
+        & a
+            width: 25px
+            margin-right: 15px
+            margin-bottom: 15px
+    .burger .burger_menu
+        margin-top: 20px
+        & a
+            font-size: 1.4rem
+            padding: 7px 13px
+    .burger .close
+    .burger .burger_menu a:hover
+        padding: 7px 13px
+    .burger .close
+        left: auto
+        right: 16px
+        & .close_btn
+            width: 36px
+            height: 36px
+        & span:nth-child(1),
+        & span:nth-child(2)
+            width: 25px
+@media screen and (max-width: 490px)
+    .header_box
+        padding: 40px 0 30px
+    .header_time
+        position: absolute
+        top: 6px
+        text-align: center
+        width: 100%

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Affiliate</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
+
+  <body>
+    <section id="app" :class="theme" class="bg-background-main">
+      <preloader></preloader>
+      <vuescroll>
+        <div class="cabinet_layout text-copy-main ">
+          <header-main
+            :openwindiwentrance="openwindiwentrance"
+            :openwindiwpersonalarea="openwindiwpersonalarea"
+            @darkchanged="themedark"
+            @sunchanged="updatetheme"
+          >
+          </header-main>
+          <div class="cabinet_info grow bg-background-main">
+            <div class="container">
+              <div class="cabinet_box">
+                <div class="affiliate grow bg-background-main">
+                  <h2 class="text-copy-descr">Партнёрская программа</h2>
+                  <div
+                    class="affiliate_box bg-background-main shadow_btn_white"
+                  >
+                    <div class="affiliate_info">
+                      <p class="affiliate_title text-copy-descr">
+                        У нас действует партнёрская программа.
+                      </p>
+                      <p class="affiliate_descr">
+                        Если пользователь зарегистрируется по вашей реферальной
+                        ссылке и совершит обмен, вы получите вознаграждение.
+                        Вознаграждение составляет 25% нашей чистой прибыли.
+                        Детальнее с условиями вы можете ознакомиться в разделе
+                        "Партнерская программа".
+                      </p>
+                      <div
+                        class="reward bg-background-main shadow_btn_white_active"
+                      >
+                        <p class="reward_small">
+                          Вознагражение выводим на счёт Perfect Money.
+                        </p>
+                        <p class="reward_title text-copy-green">Минимум 1$</p>
+                      </div>
+                      <button class="green_btn text-copy-btngreen reward_btn">
+                        Создать счёт PerfectMoney
+                      </button>
+                    </div>
+                    <div class="affiliate_img">
+                      <img
+                        class="lazyload"
+                        data-src="/source/image/pig.svg"
+                        alt
+                      />
+                    </div>
+                    <div class="reward_line"></div>
+                    <p class="affiliate_link_text">
+                      Реферальная ссылка:
+                      <span id="referralLink" class="text-copy-descr"
+                        >https://7money.co/?rid=8856</span
+                      >
+                      <button
+                        @click="copyToClipboard('referralLink')"
+                        class="icon-vector affiliate_copy text-copy-green"
+                      ></button>
+                    </p>
+                    <p>
+                      HTML код для добавления на сайт или форум:
+                      <span id="htmlCode" class="text-copy-descr"
+                        >a href="https://7money.co/?rid=8856"
+                        target="_blank"</span
+                      >
+                      <button
+                        @click="copyToClipboard('htmlCode')"
+                        class="affiliate_copy icon-vector text-copy-green"
+                      ></button>
+                    </p>
+                  </div>
+                  <div
+                    class="affiliate_percent bg-background-main shadow_btn_white"
+                  >
+                    <div class="affiliate_block">
+                      <div class="percent_text">
+                        <p class="text-copy-descr">
+                          Ваш процент партнёрской прибыли
+                        </p>
+                        <p class="text-copy-descr percent_text_percents">25%</p>
+                      </div>
+                      <div class="btns_percent">
+                        <button
+                          class="btn_percent_bring_out text-copy-btngreen green_btn"
+                        >
+                          Вывести
+                        </button>
+                        <button class="btn_percent_history text-copy-green">
+                          История выплат
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      class="affiliate_block affiliate_block_info bg-background-descr"
+                    >
+                      <p>
+                        Текущий баланс:
+                        <span class="text-copy-descr">100$</span>
+                      </p>
+                      <p>
+                        Уровень программы лояльности:
+                        <span class="text-copy-descr">2</span>
+                      </p>
+                      <p>
+                        Обменов:
+                        <span class="text-copy-descr">0</span>
+                      </p>
+                      <p>
+                        Суммарные обмены за все время:
+                        <span class="text-copy-descr">0$</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p class="affiliate_title_table text-copy-descr">
+                    Мои Рефералы
+                  </p>
+                  <div class="table bg-background-main shadow_btn_white">
+                    <div class="header bg-background-descr">
+                      <div class="header-block">
+                        <p class="text-copy-descr">Заявка №</p>
+                      </div>
+                      <div class="header-block">
+                        <p class="text-copy-descr">Дата</p>
+                      </div>
+                      <div class="header-block">
+                        <p class="text-copy-descr">Первод</p>
+                      </div>
+                      <div class="header-block">
+                        <p class="text-copy-descr">Статус</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="row-block"><p class="text-blue">Null</p></div>
+                      <div class="row-block">
+                        <p class="text-copy-descr">Null</p>
+                      </div>
+                      <div class="row-block">
+                        <p>
+                          Отдал с: <span class="text-copy-descr">Null</span>
+                        </p>
+                        <p>
+                          Получил на: <span class="text-copy-descr">Null</span>
+                        </p>
+                      </div>
+                      <div class="row-block">
+                        <p class="text-green">Null</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="row-block"><p class="text-blue">Null</p></div>
+                      <div class="row-block">
+                        <p class="text-copy-descr">Null</p>
+                      </div>
+                      <div class="row-block">
+                        <p>
+                          Отдал с: <span class="text-copy-descr">Null</span>
+                        </p>
+                        <p>
+                          Получил на: <span class="text-copy-descr">Null</span>
+                        </p>
+                      </div>
+                      <div class="row-block">
+                        <p class="text-green">Null</p>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="affiliate_title_table text-copy-descr">
+                    Обмены Рефералов
+                  </p>
+                  <div class="table bg-background-main shadow_btn_white">
+                    <div class="header bg-background-descr">
+                      <div class="header-block">
+                        <p class="text-copy-descr">Рефералы №</p>
+                      </div>
+                      <div class="header-block">
+                        <p class="text-copy-descr">Дата</p>
+                      </div>
+                      <div class="header-block">
+                        <p class="text-copy-descr">Первод</p>
+                      </div>
+                      <div class="header-block">
+                        <p class="text-copy-descr">Статус</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="row-block"><p class="text-blue">Null</p></div>
+                      <div class="row-block">
+                        <p class="text-copy-descr">Null</p>
+                      </div>
+                      <div class="row-block">
+                        <p>
+                          Отдал с: <span class="text-copy-descr">Null</span>
+                        </p>
+                        <p>
+                          Получил на: <span class="text-copy-descr">Null</span>
+                        </p>
+                      </div>
+                      <div class="row-block">
+                        <p class="text-green">Null</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="row-block"><p class="text-blue">Null</p></div>
+                      <div class="row-block">
+                        <p class="text-copy-descr">Null</p>
+                      </div>
+                      <div class="row-block">
+                        <p>
+                          Отдал с: <span class="text-copy-descr">Null</span>
+                        </p>
+                        <p>
+                          Получил на: <span class="text-copy-descr">Null</span>
+                        </p>
+                      </div>
+                      <div class="row-block">
+                        <p class="text-green">Null</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <footer-main class="bg-background-main"></footer-main>
+        </div>
+      </vuescroll>
+    </section>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="ru" />
+    <input type="hidden" value="" name="copyInfo" />
+  </body>
+</html>

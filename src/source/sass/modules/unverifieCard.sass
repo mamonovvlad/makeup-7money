@@ -1,0 +1,63 @@
+.unverified_card
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+    display: flex
+    justify-content: center
+
+    background: hsla(0,0%,100%,.6)
+
+    z-index: 99
+.unverified_card_box
+    position: relative
+    border-radius: 8px
+    max-width: 1030px
+    padding: 40px
+    margin: 10px
+    background: #363C46
+    & .close
+        color: #D9E1E8
+.unverified_card_info
+    display: flex
+    align-items: center
+.unverified_card_img
+    max-width: 190px
+    min-width: 190px
+    margin-right: 20px
+    width: 100%
+    & img
+        width: 100%
+.unverified_card_title
+    font-weight: bold
+    font-size: 2.4rem
+    margin-bottom: 15px
+    color: #fff
+.unverified_text_title
+    display: flex
+    align-items: center
+    & img
+        width: 50px
+        height: 50px
+        margin-left: 10px
+        display: none
+.unverified_card_descr
+    font-size: 1.8rem
+    color: #fff
+
+@media screen and ( max-width: 768px )
+    .unverified_card_box
+        padding: 30px 15px
+    .unverified_card_img
+        display: none
+    .unverified_card_title
+        font-size: 1.8rem
+        margin-bottom: 0px
+    .unverified_card_descr
+        font-size: 1.4rem
+    .unverified_text_title
+        margin-bottom: 10px
+        & img
+            display: block

@@ -1,0 +1,45 @@
+.lacks
+    position: fixed
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+
+    display: flex
+    justify-content: center
+    background: hsla(0,0%,100%,.6)
+
+    z-index: 99
+    & .green_btn
+        padding: 12px 0 12px
+    // & .post_reward_form .form_btn
+        
+.lacks_box
+    position: relative
+    border-radius: 8px
+    max-width: 960px
+    padding: 30px 15px 12px 15px
+    margin: 10px
+    & .input_block
+        padding: 10px 38px 10px 20px
+        margin: 12px 0 18px
+        border-radius: 4px
+    & input
+        width: 100%
+        font-size: 1.8rem
+    & .post_reward_box
+        padding: 20px 0 0 0
+.lacks_title
+    font-weight: bold
+    font-size: 2.4rem
+    margin: 0 15px 18px
+.lacks_descr
+    margin: 0 15px 10px
+    font-size: 1.6rem
+@media screen and ( max-width: 768px )
+    .lacks_box
+        padding: 20px 0px 0px 0px
+    .lacks_title
+        font-size: 1.8rem
+    .lacks_descr
+        font-size: 1.2rem

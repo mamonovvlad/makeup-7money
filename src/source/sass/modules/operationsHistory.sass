@@ -1,0 +1,111 @@
+.operations_history_box,
+.tabel_mobile
+    border-radius: 8px
+.tabel_title
+    border-radius: 8px 8px 0px 0px
+    & p
+        font-weight: 500
+        font-size: 1.8rem
+
+.tabel_title,
+.tabel_list
+    padding: 20px
+    display: flex
+.tabel_list
+    border-bottom: 1px solid #D9E1E8
+    &:last-child
+        border-bottom: 0px solid #D9E1E8
+    & p
+        font-size: 1.4rem
+    & .tabel_status
+        color: #00B047
+    & .tabel_number
+        color: #2F80ED
+.operations_history_tabel_mobile
+    & .tabel_status
+        color: #00B047
+    & .tabel_number
+        color: #2F80ED
+.tabel_number
+    max-width: 130px
+    width: 100%
+    & a
+        text-decoration: none
+.tabel_date
+    max-width: 100px
+    width: 100%
+.tabel_give
+    width: 100%
+    max-width: 445px
+.tabel_status
+    width: 100%
+    max-width: 100px
+.operations_history_pagination
+    display: flex
+    align-items: flex-end
+    justify-content: space-between
+.operations_history_btn
+    margin: 30px 20px 0 0
+    max-width: 295px
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: center
+    & svg
+        margin-right: 5px
+.tabel_price
+    max-width: 85px
+    width: 100%
+.create_request_pagin
+    margin-bottom: 15px
+@media screen and (max-width: 1200px)
+    .tabel_title p
+        font-size: 1.4rem
+    .tabel_list p
+        font-size: 1.2rem
+    .tabel_number
+        max-width: 95px
+    .tabel_date
+        max-width: 80px
+    .operations_history_pagination
+        & .operations_history_btn
+            font-size: 1.5rem
+            padding: 17px 0
+@media screen and (max-width: 1024px)
+    .tabel_title, .tabel_list
+        padding: 20px 15px
+    .tabel_title p
+        font-size: 1.2rem
+    .tabel_status
+        max-width: 80px
+@media screen and (max-width: 992px)
+    .tabel_mobile_info
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin-bottom: 10px
+    .tabel_mobile_block
+        padding: 20px 15px
+        border-bottom: 1px solid #D9E1E8
+        &:last-child
+            border-bottom: 0px solid #D9E1E8
+    .tabel_give
+        margin-bottom: 10px
+    .tabel_date,
+    .tabel_number,
+    .tabel_give,
+    .tabel_status,
+    .tabel_price
+        max-width: 100%
+        width: auto
+    .operations_history_pagination .operations_history_btn
+        font-size: 1.4rem
+@media screen and (max-width: 576px)
+    .tabel_mobile_block
+        font-size: 1.4rem
+    .operations_history_pagination
+        flex-direction: column
+        align-items: center
+    .operations_history_pagination .operations_history_btn
+        margin: 20px 0 20px
+        padding: 18.5px 0

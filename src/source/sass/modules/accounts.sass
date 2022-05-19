@@ -1,0 +1,139 @@
+.accounts_box
+    display: flex
+    flex-wrap: wrap
+    padding: 20px 15px 10px
+    border-radius: 8px
+    & label span
+        display: contents
+.accounts_form
+    & .input_block
+        border-radius: 4px
+        margin: 15px 0 20px
+        width: 100%
+        padding: 10px 38px 10px 20px
+        background-position-y: center
+        background-position-x: 97%
+    & input
+        width: 100%
+        font-size: 1.8rem
+        & [type='number']
+            -moz-appearance: textfield
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button
+            -webkit-appearance: none
+        &::placeholder
+            transform: translate(0px, 2px)
+
+    & .accounts_input
+        position: relative
+        margin: 15px 0 20px
+        & span
+            position: absolute
+            width: 16px
+            height: 16px
+            display: block
+            background-size: contain
+            top: 50%
+            transform: translate(0px, -50%)
+            right: 16px
+        &  input
+            margin: 0
+    & .number
+        margin-top: 60px
+    & label
+        display: flex
+        flex-direction: column
+        margin: 0 15px
+        width: calc(50% - 30px)
+        font-size: 1.4rem
+        font-weight: 500
+        position: relative
+    & .line
+        width: 100%
+        height: 2px
+        margin: 0 15px
+    & .discount
+        position: relative
+        display: flex
+        padding: 20px 0
+        margin: 0 15px
+        align-items: flex-end
+        & input
+            margin: 0 20px
+        & p
+            font-size: 1.5rem
+            cursor: pointer
+    & .exchange
+        display: flex
+        align-items: center
+        font-size: 1.6rem
+        margin: 20px 15px  10px
+        & svg
+            min-width: 44px
+            margin-right: 15px
+    & .inp_img
+        position: absolute
+        right: 12px
+        bottom: 30px
+        & img
+            width: 20px
+            height: 20px
+    & .form_btn
+        margin: 30px 0 0 0
+.activeDiscountGive,
+.activeDiscountGet
+    color: #363C46
+    font-weight: 500
+    transition: .5s ease
+.discount .activeDiscountGet:before
+    left: 28px
+@media screen and (max-width: 1200px)
+    .accounts_form
+        & .discount
+            flex-direction: column
+            align-items: flex-start
+            & p
+                margin-left: 40px
+                padding: 2px 0px
+        & input[type="checkbox"]
+            position: absolute
+            left: 0
+            margin: 0
+            top: 50%
+            transform: translateY(-50%)
+            width: 25px
+            height: 80px
+            padding: 0
+            &:before
+                width: 19px
+                height: 25px
+                top: 15px
+        & .form_btn
+            font-size: 1.5rem
+    .accounts_box .discount .activeDiscountGet:before
+        left: 3px
+        top: 65px
+@media screen and (max-width: 992px)
+    .accounts_form
+        & label
+            width: calc(100% - 30px)
+@media screen and (max-width: 576px)
+    .accounts_box
+        padding: 20px 0px 10px
+        &  label
+            font-size: 1.2rem
+        & input,
+        & .discount  p
+            font-size: 1.4rem
+        & .exchange
+            & svg
+                display: none
+            & p
+                font-size: 1.4rem
+    .accounts_form input[type=checkbox]
+        height: 60px
+    .accounts_form .form_btn
+        margin-top: 20px
+        font-size: 1.4rem
+    .accounts_box .discount .activeDiscountGet:before
+        top: 44px

@@ -1,0 +1,39 @@
+.entrance
+    position: relative
+    & label
+        font-size: 1.4rem
+        font-weight: 500
+        margin: 0
+    & .input_block
+        padding: 10px 20px 10px 20px
+        margin: 12px 0 18px
+        border-radius: 4px
+        max-width: 365px
+        display: flex
+        align-items: center
+    & input
+        width: 100%
+        font-size: 1.8rem
+    & #entrance_password::placeholder
+        transform: translate(0px, 4px)
+    & .forgot
+        font-size: 1.4rem
+        outline: none
+    & .form_btn
+        margin: 18px 0 0 0
+
+    & .fade-enter-active, .fade-leave-active
+        transition: opacity .5s
+        transition: .5s
+
+    & .fade-enter, .fade-leave-to
+        opacity: 0
+        transition: opacity .5s
+        transition: .5s
+
+@media screen and (max-width: 768px)
+    .entrance
+        & label, .forgot
+            font-size: 1.2rem
+        & input
+            font-size: 1.4rem
