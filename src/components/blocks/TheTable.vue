@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../source/scss/utils/mixin";
+@import "../../assets/scss/utils/mixin";
 
 .table {
   border-radius: var(--radius-ten);

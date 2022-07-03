@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../source/scss/utils/mixin.scss";
+@import "../../assets/scss/utils/mixin";
 
 .title--big {
   padding: 30px 0;

@@ -22,7 +22,7 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "../../source/scss/utils/mixin";
+@import "../../assets/scss/utils/mixin";
 
 .button {
   display: flex;
@@ -65,7 +65,7 @@ export default {
   }
 
   &:active {
-    box-shadow: var(--shadow-inset-primary);
+    box-shadow: var(--shadow-primary-inset);
   }
 
   & svg,

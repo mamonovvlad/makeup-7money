@@ -1,8 +1,8 @@
 //Импорты утилит
 @import "utils/reset";
+@import "utils/mixin";
 @import "utils/fonts";
 @import "utils/vars";
-@import "utils/mixin";
 @import "utils/animate";
 @import "utils/helpers";
 
@@ -45,7 +45,7 @@ body {
   font-family: var(--font-family);
   scrollbar-color: var(--light-green) var(--transparent);
   scrollbar-width: thin;
-
+  //
   &::-webkit-scrollbar {
     width: 6px;
   }

@@ -39,7 +39,7 @@ export default {
       min-width: 25px;
       height: 25px;
       background-color: var(--seventh);
-      background-image: url("../../source/images/icon/check-grey.svg");
+      background-image: url("../../assets/images/icon/check-grey.svg");
       background-repeat: no-repeat;
       background-position: center;
       background-size: 16px;
@@ -61,7 +61,7 @@ export default {
   & input:checked + .label:before {
     box-shadow: var(--shadow-primary);
     background-color: var(--primary);
-    background-image: url("../../source/images/icon/check.svg");
+    background-image: url("../../assets/images/icon/check.svg");
   }
 
 }

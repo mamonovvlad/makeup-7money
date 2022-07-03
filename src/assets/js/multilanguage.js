@@ -1,11 +1,8 @@
-window.Vue = require("vue");
-import VueI18n from "vue-i18n";
-Vue.use(VueI18n);
+import { createI18n } from 'vue-i18n/index'
 
-export const i18n = new VueI18n({
+const i18n = createI18n({
   locale: "ru",
   fallbackLocale: "en",
-  //fallbackLocale: "ua",
   messages: {
     ru: {
       logIn: "Вход",
@@ -258,3 +255,4 @@ export const i18n = new VueI18n({
     },
   },
 });
+export default i18n;

@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../source/scss/utils/mixin";
+@import "../../assets/scss/utils/mixin";
 
 .warning {
   display: flex;

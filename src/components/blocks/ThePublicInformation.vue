@@ -10,10 +10,12 @@
   background: var(--light-green);
   text-align: center;
   padding: 5px;
+
   & p,
   & a {
     color: var(--white);
   }
+
   & a {
     font-weight: 600;
   }

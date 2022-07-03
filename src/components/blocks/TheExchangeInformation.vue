@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../source/scss/utils/mixin";
+@import "../../assets/scss/utils/mixin";
 .exchange-information {
   display: flex;
   align-items: center;

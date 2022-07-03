@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../source/scss/utils/mixin";
+@import "../../assets/scss/utils/mixin";
 
 .side-panel {
   border-right: 2px solid var(--secondary);

@@ -19,7 +19,7 @@
 
 
 <style lang="scss">
-@import "../../source/scss/utils/mixin.scss";
+@import "../../assets/scss/utils/mixin";
 
 .footer {
   background-color: var(--secondary);

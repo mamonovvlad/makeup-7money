@@ -1,31 +1,18 @@
-import Vue from "vue";
-import { Captcha } from "./source/js/captcha.js";
-import { i18n } from "./source/js/multilanguage.js";
+import { createApp } from "vue";
 
-//если понадобится
+//Js
+import { Captcha } from "./assets/js/captcha.js";
+import i18n from "./assets/js/multilanguage.js";
+import { Support } from "./assets/js/support.js";
+import { CurrencyModel } from "./assets/js/main.js";
+
+const qs = require("querystring-es3");
 import axios from "axios";
 
-const qs = require("querystring");
 
-// Не знаю что это
-import dateFilter from "./filters/date.filter";
-import { CurrencyModel } from "./source/js/main.js";
-import { Support } from "./source/js/support.js";
-import vueDebounce from "vue-debounce";
+//Style
+import "./assets/scss/main.scss";
 
-Vue.use(vueDebounce, {
-  lock: false,
-  listenTo: ["keyup", "paste"],
-  defaultTime: "1500ms",
-  fireOnEmpty: false,
-});
-
-//Header data
-Vue.filter("date", dateFilter);
-
-
-// Style
-import "./source/scss/main.scss";
 
 //Sections
 import TheHeader from "./components/sections/TheHeader.vue";
@@ -35,13 +22,13 @@ import TheSlider from "./components/sections/TheSlider.vue";
 import TheReserves from "./components/sections/TheCurrencyReserves.vue";
 import TheAchievements from "./components/sections/TheAchievements.vue";
 //Blocks
-
+import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
 import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
 import TheWarning from "./components/blocks/TheWarning.vue";
 import TheAccountNavigation from "./components/blocks/TheAccountNavigation.vue";
-import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
+
 import TheTitle from "./components/blocks/TheTitle.vue";
 import TheTitleBig from "./components/blocks/TheTitleBig.vue";
 import TheSteps from "./components/blocks/TheSteps.vue";
@@ -85,10 +72,8 @@ import IconVerification from "./components/icons/IconVerification.vue";
 import IconSearch from "./components/icons/IconSearch.vue";
 import IconRandom from "./components/icons/IconRandom.vue";
 
-new Vue({
-  i18n,
-  el: "#app",
 
+createApp({
   data() {
     return {
       captcha: Captcha,
@@ -109,7 +94,7 @@ new Vue({
       sellCurrencyGroupId: null,
       buyCurrencyGroup: {},
       buyCurrencyGroupId: null,
-
+      
       // form vars
       sell_currency_id: null,
       buy_currency_id: null,
@@ -122,7 +107,7 @@ new Vue({
       is_verified: 0,
       of_exchange: 0,
       city_id: null,
-
+      
       // calculate data
       course: {},
       sellCurrency: {},
@@ -147,10 +132,10 @@ new Vue({
     TheInformation,
     TheLinks,
     //Blocks
+    ThePublicInformation,
     ThePaymentCounter,
     TheShareSocialNetworks,
     TheTitleBig,
-    ThePublicInformation,
     TheTitle,
     TheSteps,
     TheAnswers,
@@ -194,7 +179,6 @@ new Vue({
     IconSearch,
     IconRandom,
   },
-
   computed: {
     getApiHost() {
       if (this.getLanguage === "en") {
@@ -248,16 +232,16 @@ new Vue({
     },
     getUrlWithoutLanguage() {
       let link = location.pathname;
-
+      
       if (link[0] === "/") {
         link = link.substr(1);
       }
-
+      
       let segments = link.split("/");
       if (segments.length > 0 && segments[0].length === 2) {
         segments.shift();
       }
-
+      
       return segments.join("/");
     },
     startTimer() {
@@ -269,7 +253,7 @@ new Vue({
       clearTimeout(this.timer);
       this.currentTime = 60;
     },
-
+    
     //Exchange Templates
     trashClick() {
       this.deleteAllHistory();
@@ -284,7 +268,7 @@ new Vue({
     hideBlocks() {
       let Give = this.sell_currency_id !== null;
       let Get = this.buy_currency_id !== null;
-
+      
       if (Give && Get) {
         this.startTimer();
         this.currenciesHideSell = false;
@@ -303,7 +287,7 @@ new Vue({
     buyHideBlock() {
       this.hideBlocks();
     },
-
+    
     refresh() {
       if (!this.calculateData || this.calculateData.isBackExchange !== 1) {
         return false;
@@ -398,12 +382,12 @@ new Vue({
         return true;
       }
       let json = JSON.parse(data.innerHTML);
-
+      
       this.currencyGroups = json.groups;
       this.allCurrencies = json.allCurrencies;
       this.sellCurrencies = json.allCurrencies;
       this.buyCurrencies = json.buyCurrencies;
-
+      
       this.checkLastCurrencies();
       this.checkQueryParameters();
     },
@@ -440,9 +424,8 @@ new Vue({
         }
       }
     },
-
+    
     calculateForm(type = "default", refresh = false) {
-      ;
       let self = this;
       document
         .querySelectorAll(".form-exchange .field-error")
@@ -487,11 +470,11 @@ new Vue({
             response.data.buy_amount_with_comission;
           if (refresh) self.sell_source = response.data.sell_source;
           if (refresh) self.buy_target = response.data.buy_target;
-
+          
           self.setDocumentTitle();
         });
     },
-
+    
     setCurrencyGroup(type, i) {
       this.stopTimer();
       this[type + "CurrencyGroup"] = this.currencyGroups[i];
@@ -538,7 +521,6 @@ new Vue({
     this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
     this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
   },
-
   created() {
     this.fetchGroupsAndCurrenciesFromPage();
   },
@@ -551,4 +533,5 @@ new Vue({
       }
     },
   },
-}).$mount("#app");
+}).use(i18n).mount("#app");
+
