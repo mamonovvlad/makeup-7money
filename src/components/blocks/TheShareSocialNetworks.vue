@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import IconShare from "../icons/IconShare.vue";
 import TheSocialNetwork from "./TheSocialNetwork.vue";
-
+//Icons
+import IconShare from "../icons/IconShare.vue";
 export default {
   name: "TheShareSocialNetworks",
   components: {

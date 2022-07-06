@@ -82,7 +82,14 @@
   }
 }
 
-/////////////
+
+//Header
+.animation-from-right-enter-active, .animation-from-right-leave-active {
+  transform: translateX(10px);
+  opacity: 0;
+
+}
+
 .show-enter-active, .show-leave-active {
   transition: var(--transition);
   opacity: 1;
@@ -109,9 +116,8 @@
 }
 
 
-
 .currencies-hide-enter-active, .currencies-hide-leave-active {
-  transition: 1s ease;
+  transition: 0.4s ease-in-out;
 }
 
 .currencies-hide-enter, .currencies-hide-leave-to {
@@ -126,11 +132,4 @@
   opacity: 0;
 }
 
-.burger-enter-active, .burger-leave-active {
-  transition: var(--transition);
-}
 
-.burger-enter, .burger-leave-to {
-  transform: translateX(100px);
-  opacity: 0;
-}

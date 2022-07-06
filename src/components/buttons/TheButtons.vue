@@ -1,12 +1,16 @@
 <template>
-  <button class="button--small" :class="{'active': visible}"
+  <button class="button--small"
+          :class="{'active': visible}"
           @click="open">
     <span class="icon" :class="className">
       <slot name="icon"></slot>
       <transition :name="animate">
-        <slot name="block" v-if="visible"></slot>
+        <slot name="block" v-if="visible">
+
+        </slot>
       </transition>
     </span>
+
   </button>
 </template>
 
@@ -37,23 +41,19 @@ export default {
   },
   methods: {
     open() {
-      if (this.visible) {
-        this.isAccordion.active = null;
-      } else {
-        this.isAccordion.active = this.index;
-      }
-    },
-    activeAccount() {
-      let login = document.getElementById("login");
-      let buttonAccount = document.querySelector(".button__account");
-      if (login.value === "1") {
-        buttonAccount.classList.add("account--active");
-      }
+      this.visible !== this.visible;
 
+      // if (this.className) {
+      //   this.isAccordion.active = null;
+      // }
+      // if (this.visible) {
+      //   this.isAccordion.active = null;
+      // } else {
+      //   this.isAccordion.active = this.index;
+      // }
     },
   },
-  mounted() {
-    this.activeAccount();
+  created() {
     this.index = this.isAccordion.count++;
   },
 };
@@ -110,6 +110,7 @@ export default {
     & svg {
       color: var(--seventh);
     }
+
     &:hover {
       box-shadow: var(--shadow-primary-inset);
     }
@@ -127,6 +128,7 @@ export default {
     & .button__languages {
       height: 135px;
     }
+
     & .account--active {
       box-shadow: var(--shadow-primary-inset);
     }

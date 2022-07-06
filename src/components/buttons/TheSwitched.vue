@@ -1,14 +1,14 @@
 <template>
   <div class="switched">
-    <span @click="$emit('toggleText', 0)" :class="{active: number === 0}">
+    <span @click="$emit('toggleText', 0)" :class="{active: this.number === 0}">
       <slot name="first-title"></slot>
     </span>
     <input
       @click="$emit('toggleInput')"
-      :class="{'active--left':number === 0,'active--right':number === 1}"
+      :class="{'active--left':number === 0,'active--right': this.number === 1}"
       type="checkbox"
     />
-    <span @click="$emit('toggleText', 1)"  :class="{active: number === 1}">
+    <span @click="$emit('toggleText', 1)"  :class="{active: this.number === 1}">
        <slot name="second-title"></slot>
     </span>
 

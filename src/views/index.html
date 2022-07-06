@@ -11,14 +11,18 @@
 </head>
 
 <body>
+
+
 <div id="app" v-cloak>
   <div class="app" :data-theme="theme">
+    <!--    <button class="toggle__them" >fwefwef</button>-->
     <the-public-information>
       Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$, нужно
       всего лишь совершить обмен и оставить отзыв
       <a href="/">подробнее тут</a>
     </the-public-information>
-    <the-header @call-back-theme="definitionTheme" class="background"></the-header>
+
+    <the-header @call-back-theme="definitionTheme" class=""></the-header>
     <main class="container main__wrapper">
       <input
         id="inputHiddenLastSellId"
@@ -145,14 +149,14 @@
                       </template>
                     </the-field>
                     <div class="min__max">
+                            <span>
+                              Min:
+                              <strong>0.004 BTC</strong>
+                            </span>
                       <span>
-                        Min:
-                        <strong>0.004 BTC</strong>
-                      </span>
-                      <span>
-                        Max:
-                        <strong>0.004 BTC</strong>
-                      </span>
+                              Max:
+                              <strong>0.004 BTC</strong>
+                            </span>
                     </div>
                     <the-checkbox name-id="orderf">
                       Мой кошелёк Perfect Money верифицирован
@@ -176,14 +180,14 @@
                       </template>
                     </the-field>
                     <div class="min__max">
+                            <span>
+                              Min:
+                              <strong>0.004 BTC</strong>
+                            </span>
                       <span>
-                        Min:
-                        <strong>0.004 BTC</strong>
-                      </span>
-                      <span>
-                        Max:
-                        <strong>0.004 BTC</strong>
-                      </span>
+                              Max:
+                              <strong>0.004 BTC</strong>
+                            </span>
                     </div>
                   </div>
 
@@ -246,7 +250,7 @@
       <!--End Reserves-->
       <the-slider v-if="blockHide"></the-slider>
       <!--Info-->
-      <the-information v-if="blockHide">
+      <the-information>
         <h1>Криптообменник №1</h1>
         <p>Выбирая криптообменник, пользователь заинтересован в предоставлении обширной экосистемы кошельков.
           Интерфейс
@@ -313,8 +317,10 @@
       </the-information>
       <!--links-->
       <the-links v-if="blockHide"></the-links>
+      <div class="canvas-wrapper"></div>
     </main>
     <the-footer></the-footer>
+
   </div>
 </div>
 <input id="login" type="hidden" value="0" />

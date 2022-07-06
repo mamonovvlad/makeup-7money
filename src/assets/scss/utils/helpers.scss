@@ -2,6 +2,7 @@
   display: none;
 }
 
+
 .status--completed,
 .text--green {
   color: var(--primary);
@@ -84,16 +85,16 @@
   }
 }
 
-[data-theme="dark"] {
-  .header {
-    border-bottom-width: 0;
-    background-color: var(--transparent);
-  }
-
-  .background:before {
-    display: none;
-  }
-}
+//[data-theme="dark"] {
+//  .header {
+//    border-bottom-width: 0;
+//    background-color: var(--transparent);
+//  }
+//
+//  .background:before {
+//    background: transparent;
+//  }
+//}
 
 
 .animate-right-enter-active, .animate-right-leave-active {

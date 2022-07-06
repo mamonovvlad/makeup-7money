@@ -5,7 +5,6 @@
         <the-toggle-theme></the-toggle-theme>
         <the-burger-close></the-burger-close>
       </div>
-
       <nav>
         <a :href="$t('menuNews')">{{ $t("news") }}</a>
         <a :href="$t('menuFaq')">FAQ</a>
@@ -26,17 +25,11 @@
 
 <script>
 import TheSocialNetwork from "./TheSocialNetwork.vue";
+import TheToggleTheme from "../buttons/TheToggleTheme.vue";
+//Buttons
 import TheBurgerClose from "../buttons/TheBurgerClose.vue";
-import TheToggleTheme from "./TheToggleTheme.vue";
 
 export default {
-  // props: {
-  //   close: {
-  //     type: Function,
-  //     default: () => {
-  //     },
-  //   },
-  // },
   name: "TheBurger",
   components: {
     TheSocialNetwork,
@@ -55,6 +48,7 @@ export default {
   right: 0;
   bottom: 0;
   background: var(--secondary);
+  transition: var(--transition);
   max-width: 500px;
   width: 100%;
   padding: 30px 20px;
@@ -121,6 +115,8 @@ export default {
       height: 30px;
       filter: grayscale(100%);
       transition: var(--transition);
+      border-radius: 8px;
+      overflow: hidden;
 
       &:hover {
         filter: grayscale(0);

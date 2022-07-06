@@ -42,7 +42,7 @@
 
       </slot>
     </span>
-    <transition name="burger">
+    <transition name="animation-from-right">
       <span v-show="this.$slots.error && showError" class="field-error">
       <slot name="error"></slot>
     </span>

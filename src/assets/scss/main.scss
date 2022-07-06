@@ -34,7 +34,7 @@ html {
 *,
 :after,
 :before {
-  transition: background 400ms ease 0s, box-shadow 400ms ease 0s;
+  transition: background 400ms ease-in-out 0s, box-shadow 400ms ease-in-out 0s;
 }
 
 body {
@@ -81,8 +81,8 @@ textarea {
   min-height: 100vh;
   background: var(--seventh);
   color: var(--ternary);
-
 }
+
 
 main {
   position: relative;
@@ -113,4 +113,14 @@ main {
   @include _576 {
     max-width: 320px;
   }
+}
+
+.canvasWrapper,
+.canvas-wrapper {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
