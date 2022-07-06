@@ -8,7 +8,7 @@
   >
     <input type="hidden" :value="csrfToken" :name="csrfParam" />
     <label class="text-copy-descr" for="registration_name"
-      >{{ $t("name") }}*</label
+    >{{ $t("name") }}*</label
     >
     <div class="input_block shadow_btn_white_active">
       <input
@@ -32,7 +32,7 @@
     </div>
     <p class="help-block help-signupform-email"></p>
     <label class="text-copy-descr" for="registration_password"
-      >{{ $t("password") }}*</label
+    >{{ $t("password") }}*</label
     >
     <div class="input_block shadow_btn_white_active">
       <input
@@ -45,7 +45,7 @@
     </div>
     <p class="help-block help-signupform-password"></p>
     <label class="text-copy-descr" for="registration_сonfirm_password"
-      >{{ $t("сonfirmPassword") }}*</label
+    >{{ $t("сonfirmPassword") }}*</label
     >
     <div class="input_block shadow_btn_white_active">
       <input
@@ -58,14 +58,16 @@
     </div>
     <p class="help-block help-signupform-confirm_password"></p>
     <label class="text-copy-descr" for="registration_link">{{
-      $t("referralID")
-    }}</label>
+        $t("referralID")
+      }}</label>
     <div class="input_block shadow_btn_white_active">
       <input
         id="registration_link"
         class="bg-background-main text-copy-descr"
         type="text"
         name="SignupForm[referred_by]"
+        :value="referralId"
+
       />
     </div>
     <p class="help-block help-signupform-referred_by"></p>
@@ -84,11 +86,13 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
       csrfToken: null,
       csrfParam: null,
+      referralId: "",
     };
   },
   methods: {
@@ -117,6 +121,37 @@ export default {
         }
       });
     },
+    getReferral() {
+      let paramsString = window.location.search;
+      let searchParams = new URLSearchParams(paramsString);
+      if (searchParams.has("rid")) {
+        let value;
+        let name;
+        for (let rid of searchParams.entries()) {
+          name = rid[0];
+          value = rid[1];
+        }
+        this.setCookie(name, value, 1, "/");
+      }
+      this.getCookies();
+    },
+    setCookie(name, value, days, path = "/") {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=" + path;
+    },
+    getCookies() {
+      if (document.cookie.length > 0) {
+        let cookieStart = document.cookie.indexOf(name + "=");
+        if (cookieStart !== -1) {
+          cookieStart = cookieStart + name.length + 1;
+          let cookieEnd = document.cookie.indexOf(";", cookieStart);
+          if (cookieEnd === -1) {
+            cookieEnd = document.cookie.length;
+          }
+          this.referralId = document.cookie.substring(cookieStart, cookieEnd);
+        }
+      }
+    },
   },
   computed: {
     getHost() {
@@ -132,11 +167,14 @@ export default {
     },
   },
   mounted() {
-    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
+    this.getReferral();
+    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
+    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
   },
 };
 </script>
+
+
 <style>
 .grecaptcha-badge {
   position: relative !important;
@@ -149,6 +187,7 @@ export default {
   background: #d3d3d3 !important;
   margin: 0 auto;
 }
+
 #registration iframe {
   border: 0;
   width: 100%;
