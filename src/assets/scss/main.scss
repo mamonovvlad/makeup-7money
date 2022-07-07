@@ -115,7 +115,7 @@ main {
   }
 }
 
-.canvasWrapper,
+
 .canvas-wrapper {
   position: fixed;
   display: none;
@@ -123,4 +123,5 @@ main {
   left: 0;
   width: 100vw;
   height: 100vh;
+  z-index: 10;
 }
