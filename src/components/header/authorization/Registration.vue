@@ -126,12 +126,12 @@ export default {
       let searchParams = new URLSearchParams(paramsString);
       if (searchParams.has("rid")) {
         let value;
-        let name;
+        let name = "_rid";
         for (let rid of searchParams.entries()) {
-          name = rid[0];
+          // name = rid[0];
           value = rid[1];
         }
-        this.setCookie(name, value, 1, "/");
+        this.setCookie(name, value, 1);
       }
       this.getCookies();
     },
@@ -140,6 +140,7 @@ export default {
       document.cookie = name + "=" + encodeURIComponent(value) + "; expires=" + expires + "; path=" + path;
     },
     getCookies() {
+      let name = "_rid";
       if (document.cookie.length > 0) {
         let cookieStart = document.cookie.indexOf(name + "=");
         if (cookieStart !== -1) {
@@ -148,7 +149,7 @@ export default {
           if (cookieEnd === -1) {
             cookieEnd = document.cookie.length;
           }
-          this.referralId = document.cookie.substring(cookieStart, cookieEnd);
+          this.referralId = unescape(document.cookie.substring(cookieStart, cookieEnd));
         }
       }
     },
