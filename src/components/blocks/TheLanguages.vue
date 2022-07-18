@@ -1,8 +1,8 @@
 <template>
-  <div class="languages">
-    <a v-for="link in languages" :href="link.url"
-       @click.prevent="defineLanguage(link.name)" :class="{'active': getLanguage === link.name }">{{ link.name }}</a>
-  </div>
+
+  <a v-for="link in languages" :href="link.url"
+     @click.prevent="defineLanguage(link.name)" :class="{'active': getLanguage === link.name }">{{ link.name }}</a>
+
 </template>
 
 <script>
@@ -77,10 +77,12 @@ export default {
 </script>
 
 <style lang="scss">
-.languages {
+.languages .btn {
   display: flex;
   flex-direction: column;
+  align-items: center;
   row-gap: 15px;
+
 
   & a {
     display: flex;

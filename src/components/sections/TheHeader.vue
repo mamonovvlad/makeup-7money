@@ -20,41 +20,22 @@
           <the-button tag="a" :href="$t('checkStatus')">
             <template #name>{{ $t("checkOpSt") }}</template>
           </the-button>
-          <the-buttons
-            v-for="(button,idx) in buttons"
-            :key="idx"
-            :className="button.className"
-            :animate="button.animate">
-            <template #icon>
-              <component :is="button.icon"></component>
-            </template>
-            <template #block>
-              <component @open="openAuthorization" :is="button.block"></component>
-            </template>
-          </the-buttons>
+          <the-buttons></the-buttons>
         </div>
       </div>
     </div>
-    <the-authorization @open="openPasswordRecovery"></the-authorization>
+    <the-authorization @openPasswordRecovery="openPasswordRecovery"></the-authorization>
     <the-password-recovery @close="hidePasswordRecovery" v-if="isPasswordRecovery"></the-password-recovery>
   </header>
 </template>
 
 <script>
-//Images
-import IconAccount from "../icons/IconAccount.vue";
-import IconShare from "../icons/IconShare.vue";
-import IconBurger from "../icons/IconBurger.vue";
 //Buttons
 import TheButton from "../buttons/TheButton.vue";
 import TheButtons from "../buttons/TheButtons.vue";
 import TheToggleTheme from "../buttons/TheToggleTheme.vue";
 //Blocks
 import TheLogo from "../blocks/TheLogo.vue";
-import TheLanguages from "../blocks/TheLanguages.vue";
-import TheAuthorizationButtons from "../blocks/TheAuthorizationButtons.vue";
-import TheSocialNetwork from "../blocks/TheSocialNetwork.vue";
-import TheBurger from "../blocks/TheBurger.vue";
 //Popups
 import TheAuthorization from "../popups/TheAuthorization.vue";
 import ThePasswordRecovery from "../popups/ThePasswordRecovery.vue";
@@ -65,39 +46,12 @@ export default {
   data() {
     return {
       isPasswordRecovery: false,
-      number: -1,
       isAuthorization: {
         index: -1,
         isOpen: false,
       },
-      isAccordion: {
-        count: 0,
-        active: null,
-      },
       theme: "light",
-      interval: null,
-      buttons: [
-        {
-          icon: "the-languages",
-          className: "button__languages",
-        },
-        {
-          icon: "icon-account",
-          block: "the-authorization-buttons",
-          animate: "authorization-buttons",
-          className: "button__account",
-        },
-        {
-          icon: "icon-share",
-          block: "the-social-network",
-          className: "button__share",
-        },
-        {
-          icon: "icon-burger",
-          block: "the-burger",
-          animate: "animation-from-right",
-        },
-      ],
+
     };
   },
   methods: {
@@ -148,23 +102,15 @@ export default {
     TheLogo,
     TheButton,
     TheButtons,
-    TheBurger,
     TheToggleTheme,
-    TheLanguages,
-    TheAuthorizationButtons,
-    TheSocialNetwork,
     TheAuthorization,
     ThePasswordRecovery,
-    IconAccount,
-    IconShare,
-    IconBurger,
   },
   mounted() {
     this.activeAccount();
   },
   provide() {
     return {
-      isAccordion: this.isAccordion,
       isAuthorization: this.isAuthorization,
     };
   },
@@ -177,7 +123,6 @@ export default {
 .header {
   position: relative;
   padding: 30px 0;
-  //background: var(--secondary);
   @include _576 {
     padding-top: 50px;
   }

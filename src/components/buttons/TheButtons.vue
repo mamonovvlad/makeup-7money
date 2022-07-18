@@ -1,60 +1,111 @@
 <template>
-  <button class="button--small"
-          :class="{'active': visible}"
-          @click="open">
-    <span class="icon" :class="className">
-      <slot name="icon"></slot>
-      <transition :name="animate">
-        <slot name="block" v-if="visible">
-
-        </slot>
-      </transition>
-    </span>
-
-  </button>
+  <div v-for="(button, idx) in buttons" :key="idx"
+       class="button--small"
+       :class="{'active' :button.isActive}">
+      <span class="icon" :class="button.className">
+        <button class="btn" @click="openMenu(idx)">
+          <component :is="button.icon"></component>
+        </button>
+        <transition :name="button.animate">
+          <component :is="button.block"
+                     @open="$emit('openPasswordRecovery',idx)"
+                     @hideBurger="hideBurger(idx)"
+                     v-if="button.isActive">
+          </component>
+        </transition>
+      </span>
+  </div>
 </template>
 
 <script>
+//Images
+import IconAccount from "../icons/IconAccount.vue";
+import IconShare from "../icons/IconShare.vue";
+import IconBurger from "../icons/IconBurger.vue";
+//Block
+import TheLanguages from "../blocks/TheLanguages.vue";
+import TheAuthorizationButtons from "../blocks/TheAuthorizationButtons.vue";
+import TheSocialNetwork from "../blocks/TheSocialNetwork.vue";
+import TheBurger from "../blocks/TheBurger.vue";
 
 export default {
-  props: {
-    animate: {
-      type: String,
-      default: "",
-    },
-    className: {
-      type: String,
-      default: "",
-    },
-  },
-  inject: ["isAccordion"],
   name: "TheButtons",
   data() {
     return {
-      index: -1,
+      index: null,
+      buttons: [
+        {
+          id: 0,
+          icon: "the-languages",
+          className: "languages",
+          isActive: false,
+        },
+        {
+          id: 1,
+          icon: "icon-account",
+          block: "the-authorization-buttons",
+          animate: "authorization-buttons",
+          className: "button__account",
+          isActive: false,
+        },
+        {
+          id: 2,
+          icon: "icon-share",
+          block: "the-social-network",
+          className: "button__share",
+          isActive: false,
+        },
+        {
+          id: 3,
+          icon: "icon-burger",
+          block: "the-burger",
+          animate: "animation-from-right",
+          isActive: false,
+        },
+      ],
     };
   },
-  computed: {
-    visible() {
-      return this.index === this.isAccordion.active;
-    },
+  components: {
+    IconAccount,
+    IconShare,
+    IconBurger,
+    TheLanguages,
+    TheAuthorizationButtons,
+    TheSocialNetwork,
+    TheBurger,
   },
   methods: {
-    open() {
-      this.visible !== this.visible;
+    openMenu(idx) {
+      for (let i = 0; i < this.buttons.length; i++) {
+        this.buttons[i].isActive = false;
+      }
 
-      // if (this.className) {
-      //   this.isAccordion.active = null;
-      // }
-      // if (this.visible) {
-      //   this.isAccordion.active = null;
-      // } else {
-      //   this.isAccordion.active = this.index;
-      // }
+      if (this.index === idx) {
+        this.buttons[idx].isActive = false;
+        this.index = null;
+      } else {
+        this.buttons[idx].isActive = true;
+        this.index = idx;
+      }
+    },
+
+    hideBurger(idx) {
+      this.buttons[idx].isActive = false;
+      this.index = null;
+    },
+    hideMenu(e) {
+      let target = e.target;
+      if (!target.classList.contains("btn")) {
+        for (let i = 0; i < this.buttons.length; i++) {
+          if (i !== 3) {
+            this.buttons[i].isActive = false;
+          }
+        }
+      }
     },
   },
-  created() {
-    this.index = this.isAccordion.count++;
+  mounted() {
+    document.addEventListener("click", this.hideMenu);
   },
 };
 </script>
@@ -64,12 +115,9 @@ export default {
 
 .button--small {
   position: relative;
-  cursor: pointer;
   width: 50px;
   height: 50px;
   z-index: 2;
-  background: var(--transparent);
-  transition: var(--transition);
   @include _768 {
     width: 40px;
     height: 40px;
@@ -81,7 +129,6 @@ export default {
     }
   }
 
-
   & .icon {
     position: absolute;
     display: block;
@@ -89,18 +136,46 @@ export default {
     border-radius: var(--radius-four);
     width: 100%;
     height: 100%;
-    padding: 12px;
-    top: 0;
-    background: var(--secondary);
+    background: var(--seventh);
     transition: var(--transition);
+
+  }
+
+  & .btn {
+    cursor: pointer;
+    width: 100%;
+    padding: 12px;
+    background: transparent;
     @include _768 {
       padding: 9px;
+    }
+
+    &:after {
+      content: "";
+      background: transparent;
+      position: absolute;
+      height: 50px;
+      width: 100%;
+      left: 0;
+      top: 0;
     }
   }
 
   & .button__share,
-  & .button__languages {
+  & .languages {
     overflow: hidden;
+  }
+
+  & .button__share .social-network {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 15px;
+    margin-top: 10px;
+
+    & img {
+      height: 25px;
+    }
   }
 
   & .account--active {
@@ -125,7 +200,7 @@ export default {
       height: 300px;
     }
 
-    & .button__languages {
+    & .languages {
       height: 135px;
     }
 
@@ -133,14 +208,7 @@ export default {
       box-shadow: var(--shadow-primary-inset);
     }
   }
-
-  .button__share .social-network {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15px;
-    margin-top: 20px;
-    transition: var(--transition);
-  }
 }
+
 
 </style>

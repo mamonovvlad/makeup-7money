@@ -3,7 +3,7 @@
     <div class="burger__wrapper">
       <div class="buttons">
         <the-toggle-theme></the-toggle-theme>
-        <the-burger-close></the-burger-close>
+        <the-burger-close @click="$emit('hideBurger')"></the-burger-close>
       </div>
       <nav>
         <a :href="$t('menuNews')">{{ $t("news") }}</a>
@@ -47,23 +47,29 @@ export default {
   top: 0;
   right: 0;
   bottom: 0;
-  background: var(--secondary);
+  display: flex;
+  justify-content: flex-end;
+  background: var(--secondary-transparent);
   transition: var(--transition);
-  max-width: 500px;
   width: 100%;
-  padding: 30px 20px;
-  overflow: auto;
   z-index: 4;
-  @include _768 {
-    padding: 25px 10px;
-    max-width: 320px;
-  }
+
 
   &__wrapper {
     display: flex;
     flex-direction: column;
+    background: var(--secondary);
+    box-shadow: var(--shadow);
     height: 100%;
+    max-width: 500px;
+    width: 100%;
+    padding: 30px 20px;
     row-gap: 40px;
+    overflow: auto;
+    @include _768 {
+      padding: 25px 10px;
+      max-width: 320px;
+    }
   }
 
   & nav {
