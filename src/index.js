@@ -31,6 +31,9 @@ Vue.use(vueDebounce, {
 
 Vue.filter("date", dateFilter);
 
+
+
+Vue.component("TheCounter", require("./components/TheCounter.vue").default);
 Vue.component("preloader", require("./components/preloader.vue").default);
 
 Vue.component(
@@ -234,7 +237,7 @@ const app = new Vue({
   components: {
     Swiper,
     SwiperSlide,
-    vuescroll
+    vuescroll,
   },
 
   methods: {
