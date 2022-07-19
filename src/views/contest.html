@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Конкурс</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+  <script src="//www.google.com/recaptcha/api.js?hl=ru" defer async></script>
+</head>
+
+<body>
+<section id="app" :class="theme">
+  <vuescroll>
+    <div class="main_layout text-copy-main bg-background-main">
+      <div class="pop_up">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae
+          alias provident sunt eligendi quam hic impedit quaerat facere
+          nesciunt expedita excepturi tempore, non ipsa consectetur. Beatae
+          odio culpa obcaecati minima?
+        </p>
+      </div>
+      <header-main
+        :openwindiwentrance="openwindiwentrance"
+        :openwindiwpersonalarea="openwindiwpersonalarea"
+        @darkchanged="themedark"
+        @sunchanged="updatetheme"
+      >
+      </header-main>
+      <div class="grow">
+        <div class="main_text bg-background-descr">
+          <div class="contest-title  title">
+            <h1 class="text-copy-descr">Розыгрыш денежного приза 100$</h1>
+            <p>Дорогие Друзья, мы проводим небольшой конкурс и разыграем денежный приз в размере 100$</p>
+          </div>
+        </div>
+        <div class="container">
+          <div class="wrapper">
+            <div class="contest-advantages shadow_btn_white bg-background-main">
+              <div class="contest-advantages__item contest-advantages__budget">
+                <h2 class="text-copy-descr">100$</h2>
+                <span class="text-copy-descr bg-background-descr">Банк конкурса</span>
+              </div>
+              <div class="contest-advantages__item contest-advantages__counter">
+                <h2 class="text-copy-descr">3:30:30:20</h2>
+                <span class="text-copy-descr bg-background-descr">Осталось до окончания конкурса</span>
+              </div>
+            </div>
+            <div class="contest-rules shadow_btn_white bg-background-main">
+              <div class="contest-rules__terms text-copy-descr bg-background-descr">
+                Подробные условия конкурса:
+              </div>
+              <ul>
+                <li>
+                  <span class="text-copy-descr">1.</span>
+                  Совершите обмен на нашем сайте
+                </li>
+                <li>
+                  <span class="text-copy-descr">2.</span>
+                  Напишите Ваш отзыв на
+                  <a href="https://www.bestchange.ru/7money-exchanger.html" class="green_btn text-copy-btngreen"
+                     target="_blank">
+                    Bestchange.ru ссылка
+                  </a>
+                  тут указав номер заявки. Отзыв оставляете в день совершения обмена
+                </li>
+                <li>
+                  <span class="text-copy-descr">3.</span>
+                  Войдите в Вашу почту и откройте письмо от Bestchange.ru, кликнув по ссылке из письма активируйте Ваш
+                  отзыв.
+                </li>
+                <li>
+                  <span class="text-copy-descr">4.</span>
+                  Подпишитесь на
+                  <a href="tg://resolve?domain=seven_money" class="green_btn text-copy-btngreen " target="blank">
+                    наш телеграм канал ссылка
+                  </a> и нажмите " Я Участвую"
+                </li>
+                <li>
+                  <span class="text-copy-descr">5.</span>
+                  Победитель будет определен автоматически в телеграме с помощью бота @1chanceBot <strong
+                  class="text-copy-descr"> 18.08.2022 в 12:00 по GMT+3</strong>
+                </li>
+                <li>
+                  <span class="text-copy-descr">6.</span>
+                  Участвовать и победить могут только те, кто выполнил все вышеперечисленные условия конкурса до
+                  <strong class="text-copy-descr"> 12:00 по GMT+3 18.08.2022</strong>
+                </li>
+              </ul>
+            </div>
+            <h3 class="contest-motivation text-copy-descr shadow_btn_white bg-background-main">
+              Выгодных обменов с <a class="text-copy-green" href="https://7money.co/">7money.co</a>
+            </h3>
+          </div>
+        </div>
+      </div>
+      <footer-main></footer-main>
+    </div>
+  </vuescroll>
+</section>
+<input id="login" type="hidden" value="0" />
+<input id="language" type="hidden" value="ru" />
+<script
+  async
+  defer
+  src="//www.google.com/recaptcha/api.js?hl=ru"
+  type="text/javascript"
+></script>
+</body>
+</html>
