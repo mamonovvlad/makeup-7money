@@ -26,16 +26,15 @@
 @import "pages/payment";
 @import "pages/partner";
 
-
 html {
   overflow: hidden;
 }
 
-*,
-:after,
-:before {
-  transition: background 400ms ease-in-out 0s, box-shadow 400ms ease-in-out 0s;
-}
+//*,
+//:after,
+//:before {
+//  transition: background 400ms ease-in-out 0s, box-shadow 400ms ease-in-out 0s;
+//}
 
 body {
   font-size: 14px;
@@ -67,13 +66,16 @@ a {
   color: var(--ternary);
 }
 
+button {
+  background: transparent;
+}
+
 button,
 input,
 textarea {
   font-family: var(--font-family);
   color: var(--ternary);
 }
-
 
 .app {
   display: flex;
@@ -82,7 +84,6 @@ textarea {
   background: var(--seventh);
   color: var(--ternary);
 }
-
 
 main {
   position: relative;
@@ -97,6 +98,7 @@ main {
 }
 
 .container {
+  position: relative;
   margin: 0 auto;
   padding: 0 10px;
   width: 100%;
@@ -114,7 +116,6 @@ main {
     max-width: 320px;
   }
 }
-
 
 .canvas-wrapper {
   position: fixed;

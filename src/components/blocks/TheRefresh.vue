@@ -20,7 +20,7 @@ export default {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  left: -10px;
+  left: 62px;
   background: var(--gradient);
   border: 4px solid var(--seventh);
   box-shadow: var(--shadow);
@@ -30,7 +30,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translate(-50%);
+  transform: translateY(-50%);
+  z-index: 1;
 
   &:hover .icon {
     animation: rotation 1s linear infinite;

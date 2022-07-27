@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>404</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-  <script src="//www.google.com/recaptcha/api.js?hl=ru" defer async></script>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>404</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+    <script src="//www.google.com/recaptcha/api.js?hl=ru" defer async></script>
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-public-information>
-      Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
-      нужно всего лишь совершить обмен и оставить отзыв
-      <a href="/">подробнее тут</a>
-    </the-public-information>
-    <the-header @call-back-theme="definitionTheme"></the-header>
-    <main class="error">
-      <div class="container">
-        <div class="wrapper">
-          <h1 class="title">
-            Страница не найдена, но мы хотим вам
-            <span class="text--green">предложить</span>
-          </h1>
-          <p>
-            Зарегистрируйтесь в личном кабинеты чтобы в дальнейшем получать
-            <strong class="text--green">скидки</strong> на следующие
-            операции
-          </p>
-          <icon-error :theme="theme"></icon-error>
-          <the-error-buttons></the-error-buttons>
-        </div>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="theme">
+        <the-public-information>
+          Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
+          нужно всего лишь совершить обмен и оставить отзыв
+          <a href="/">подробнее тут</a>
+        </the-public-information>
+        <the-header @call-back-theme="definitionTheme"></the-header>
+        <main class="error">
+          <div class="container">
+            <div class="wrapper">
+              <h1 class="title">
+                Страница не найдена, но мы хотим вам
+                <span class="text--green">предложить</span>
+              </h1>
+              <p>
+                Зарегистрируйтесь в личном кабинеты чтобы в дальнейшем получать
+                <strong class="text--green">скидки</strong> на следующие
+                операции
+              </p>
+              <icon-error :theme="theme"></icon-error>
+              <the-error-buttons></the-error-buttons>
+            </div>
+          </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="ru" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="ru" />
+  </body>
 </html>

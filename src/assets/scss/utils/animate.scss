@@ -8,12 +8,10 @@
   }
 }
 
-
 @keyframes border {
   100% {
     stroke-dashoffset: 0;
   }
-
 }
 
 @keyframes shine {
@@ -21,7 +19,6 @@
     background-position: 200% center;
   }
 }
-
 
 //counter
 @keyframes asd {
@@ -54,7 +51,6 @@
   }
 }
 
-
 @keyframes show {
   0% {
     opacity: 0;
@@ -64,7 +60,6 @@
     opacity: 1;
   }
 }
-
 
 @keyframes hide {
   0% {
@@ -82,54 +77,40 @@
   }
 }
 
-
-//Header
-.animation-from-right-enter-active, .animation-from-right-leave-active {
+//default
+.animation-from-right-enter-active,
+.animation-from-right-leave-active {
   transform: translateX(10px);
   opacity: 0;
-
 }
 
-.show-enter-active, .show-leave-active {
-  transition: var(--transition);
-  opacity: 1;
-}
-
-.show-enter, .show-leave-to {
-  position: absolute !important;
-  z-index: -3;
-  transform: translateX(150px);
+.animation-from-top-enter-active,
+.animation-from-top-leave-active {
+  transform: translateY(-10px);
   opacity: 0;
-
-
 }
 
-.details-hide-enter-active, .details-hide-leave-active {
+//index
+
+.details-hide-enter-active,
+.details-hide-leave-active {
   max-width: 100%;
+  opacity: 1;
   transition: var(--transition);
 }
 
-.details-hide-enter, .details-hide-leave-to {
-  opacity: 0;
+.details-hide-enter,
+.details-hide-leave-to {
   max-width: 0;
-  transition: var(--transition);
+  opacity: 0;
 }
 
-
-.currencies-hide-enter-active, .currencies-hide-leave-active {
+.currencies-hide-enter-active,
+.currencies-hide-leave-active {
   transition: 0.4s ease-in-out;
 }
 
-.currencies-hide-enter, .currencies-hide-leave-to {
+.currencies-hide-enter,
+.currencies-hide-leave-to {
   opacity: 0;
 }
-
-.authorization-buttons-enter-active, .authorization-buttons-leave-active {
-  transition: var(--transition);
-}
-
-.authorization-buttons-enter, .authorization-buttons-leave-to {
-  opacity: 0;
-}
-
-

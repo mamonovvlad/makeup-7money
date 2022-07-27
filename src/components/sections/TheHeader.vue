@@ -20,11 +20,11 @@
           <the-button tag="a" :href="$t('checkStatus')">
             <template #name>{{ $t("checkOpSt") }}</template>
           </the-button>
-          <the-buttons></the-buttons>
+          <the-buttons @authorization="openAuthorization"></the-buttons>
         </div>
       </div>
     </div>
-    <the-authorization @openPasswordRecovery="openPasswordRecovery"></the-authorization>
+    <the-authorization @open="openPasswordRecovery"></the-authorization>
     <the-password-recovery @close="hidePasswordRecovery" v-if="isPasswordRecovery"></the-password-recovery>
   </header>
 </template>

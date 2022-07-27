@@ -12,19 +12,19 @@
         :name="name"
         :placeholder="namePlaceholder"
         :required="required"
-        :value="nameValue"
         :autocomplete="autocomplete"
         :aria-invalid="ariaInvalid"
         :aria-required="ariaRequired"
+        @input="$emit('update:modelValue', $event.target.value)"
       />
       <select
         v-else-if="select"
         class="field"
         :id="nameId"
         :name="name"
-        :required="required">
-        <slot>
-        </slot>
+        :required="required"
+      >
+        <slot> </slot>
       </select>
       <textarea
         v-else-if="textarea"
@@ -33,21 +33,18 @@
         :name="name"
         :placeholder="namePlaceholder"
         :required="required"
-        :value="nameValue"
+        :value="value"
         :aria-invalid="ariaInvalid"
         :aria-required="ariaRequired"
       >
       </textarea>
-      <slot name="icon">
-
-      </slot>
+      <slot name="icon"> </slot>
     </span>
     <transition name="animation-from-right">
       <span v-show="this.$slots.error && showError" class="field-error">
-      <slot name="error"></slot>
-    </span>
+        <slot name="error"></slot>
+      </span>
     </transition>
-
   </div>
 </template>
 
@@ -69,19 +66,12 @@ export default {
     },
     namePlaceholder: {
       type: String,
-      default: "",
-    },
-    nameValue: {
-      type: String,
-      default: "",
     },
     nameId: {
       type: String,
-      default: "",
     },
     name: {
       type: String,
-      default: "",
     },
     nameType: {
       type: String,
@@ -92,14 +82,14 @@ export default {
       default: false,
     },
     ariaInvalid: {
-      type: Boolean
+      type: Boolean,
     },
     ariaRequired: {
-      type: Boolean
+      type: Boolean,
     },
     autocomplete: {
       type: String,
-      default: 'off',
+      default: "off",
     },
   },
 };
@@ -120,6 +110,7 @@ export default {
     position: relative;
     font-size: 14px;
     color: var(--quaternary);
+    font-weight: 500;
   }
 
   &-wrapper {
@@ -166,6 +157,5 @@ export default {
     bottom: -15px;
     font-size: 12px;
   }
-
 }
 </style>

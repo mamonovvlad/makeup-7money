@@ -1,19 +1,22 @@
 <template>
-  <div v-for="(button, idx) in buttons" :key="idx"
-       class="button--small"
-       :class="{'active' :button.isActive}">
+  <div class="block">
+    <div v-for="(button, idx) in buttons"
+         :key="idx"
+         class="button--small"
+         :class="{'active' :button.isActive}">
       <span class="icon" :class="button.className">
         <button class="btn" @click="openMenu(idx)">
           <component :is="button.icon"></component>
         </button>
         <transition :name="button.animate">
           <component :is="button.block"
-                     @open="$emit('openPasswordRecovery',idx)"
+                     @open="indexTransfer"
                      @hideBurger="hideBurger(idx)"
-                     v-if="button.isActive">
+                     v-show="button.isActive">
           </component>
         </transition>
       </span>
+    </div>
   </div>
 </template>
 
@@ -24,7 +27,7 @@ import IconShare from "../icons/IconShare.vue";
 import IconBurger from "../icons/IconBurger.vue";
 //Block
 import TheLanguages from "../blocks/TheLanguages.vue";
-import TheAuthorizationButtons from "../blocks/TheAuthorizationButtons.vue";
+import TheAuthorizationButtons from "./TheAuthorizationButtons.vue";
 import TheSocialNetwork from "../blocks/TheSocialNetwork.vue";
 import TheBurger from "../blocks/TheBurger.vue";
 
@@ -44,7 +47,7 @@ export default {
           id: 1,
           icon: "icon-account",
           block: "the-authorization-buttons",
-          animate: "authorization-buttons",
+          animate: "animation-from-top",
           className: "button__account",
           isActive: false,
         },
@@ -75,6 +78,9 @@ export default {
     TheBurger,
   },
   methods: {
+    indexTransfer(idx) {
+      this.$emit("authorization", idx);
+    },
     openMenu(idx) {
       for (let i = 0; i < this.buttons.length; i++) {
         this.buttons[i].isActive = false;
@@ -99,6 +105,7 @@ export default {
         for (let i = 0; i < this.buttons.length; i++) {
           if (i !== 3) {
             this.buttons[i].isActive = false;
+            this.index = null;
           }
         }
       }
@@ -112,6 +119,7 @@ export default {
 
 <style lang="scss">
 @import "../../assets/scss/utils/mixin";
+
 
 .button--small {
   position: relative;

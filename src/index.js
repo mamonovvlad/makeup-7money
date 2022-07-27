@@ -9,10 +9,8 @@ import { CurrencyModel } from "./assets/js/main.js";
 const qs = require("querystring-es3");
 import axios from "axios";
 
-
 //Style
 import "./assets/scss/main.scss";
-
 
 //Sections
 import TheHeader from "./components/sections/TheHeader.vue";
@@ -53,7 +51,7 @@ import TheLeaveFeedback from "./components/popups/TheLeaveFeedback.vue";
 import TheLacks from "./components/popups/TheLacks.vue";
 //Icons
 import IconPig from "./components/icons/IconPig.vue";
-import IconError from "./components/icons/IconError.vue";
+
 import IconEngineeringWorks from "./components/icons/IconEngineeringWorks.vue";
 import IconErrorPayment from "./components/icons/IconErrorPayment.vue";
 import IconMail from "./components/icons/IconMail.vue";
@@ -71,11 +69,12 @@ import IconCreate from "./components/icons/IconCreate.vue";
 import IconVerification from "./components/icons/IconVerification.vue";
 import IconSearch from "./components/icons/IconSearch.vue";
 import IconRandom from "./components/icons/IconRandom.vue";
-
+import IconError from "./components/icons/IconError.vue";
 
 createApp({
   data() {
     return {
+      testNumber: "",
       captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
@@ -83,6 +82,7 @@ createApp({
       currentTime: 60,
       csrfToken: null,
       csrfParam: null,
+      showCurrencyExchange: false,
       currenciesHideSell: false,
       currenciesHideBuy: false,
       blockHide: false,
@@ -94,7 +94,7 @@ createApp({
       sellCurrencyGroupId: null,
       buyCurrencyGroup: {},
       buyCurrencyGroupId: null,
-      
+
       // form vars
       sell_currency_id: null,
       buy_currency_id: null,
@@ -107,7 +107,7 @@ createApp({
       is_verified: 0,
       of_exchange: 0,
       city_id: null,
-      
+
       // calculate data
       course: {},
       sellCurrency: {},
@@ -122,6 +122,7 @@ createApp({
       myHistory: [],
     };
   },
+
   components: {
     //Sections
     TheHeader,
@@ -205,7 +206,7 @@ createApp({
     setDocumentTitle() {
       document.title = this.calculateData.course_title;
       document
-        .querySelector("meta[name=\"description\"]")
+        .querySelector('meta[name="description"]')
         .setAttribute("content", this.calculateData.course_description);
     },
     setUrl() {
@@ -227,21 +228,21 @@ createApp({
     deleteAllHistory() {
       history.pushState(false, document.title, "/");
       document
-        .querySelector("meta[name=\"description\"]")
+        .querySelector('meta[name="description"]')
         .setAttribute("content", "");
     },
     getUrlWithoutLanguage() {
       let link = location.pathname;
-      
+
       if (link[0] === "/") {
         link = link.substr(1);
       }
-      
+
       let segments = link.split("/");
       if (segments.length > 0 && segments[0].length === 2) {
         segments.shift();
       }
-      
+
       return segments.join("/");
     },
     startTimer() {
@@ -253,10 +254,11 @@ createApp({
       clearTimeout(this.timer);
       this.currentTime = 60;
     },
-    
+
     //Exchange Templates
     trashClick() {
       this.deleteAllHistory();
+      this.showCurrencyExchange = false;
       this.currenciesHideSell = true;
       this.currenciesHideBuy = true;
       this.blockHide = true;
@@ -268,9 +270,10 @@ createApp({
     hideBlocks() {
       let Give = this.sell_currency_id !== null;
       let Get = this.buy_currency_id !== null;
-      
+
       if (Give && Get) {
         this.startTimer();
+        this.showCurrencyExchange = true;
         this.currenciesHideSell = false;
         this.currenciesHideBuy = false;
         this.blockHide = false;
@@ -287,7 +290,7 @@ createApp({
     buyHideBlock() {
       this.hideBlocks();
     },
-    
+
     refresh() {
       if (!this.calculateData || this.calculateData.isBackExchange !== 1) {
         return false;
@@ -302,24 +305,30 @@ createApp({
     fetchSellCurrencies() {
       let self = this;
       axios
-        .get("http://proxy.local/" + this.getApiHost + "/json/get-sell-currencies", {
-          params: {
-            buy_currency_id: this.buy_currency_id,
-          },
-        })
-        .then(function(response) {
+        .get(
+          "http://proxy.local/" + this.getApiHost + "/json/get-sell-currencies",
+          {
+            params: {
+              buy_currency_id: this.buy_currency_id,
+            },
+          }
+        )
+        .then(function (response) {
           self.sellCurrencies = response.data;
         });
     },
     fetchBuyCurrencies() {
       let self = this;
       axios
-        .get("http://proxy.local/" + this.getApiHost + "/json/get-buy-currencies", {
-          params: {
-            sell_currency_id: this.sell_currency_id,
-          },
-        })
-        .then(function(response) {
+        .get(
+          "http://proxy.local/" + this.getApiHost + "/json/get-buy-currencies",
+          {
+            params: {
+              sell_currency_id: this.sell_currency_id,
+            },
+          }
+        )
+        .then(function (response) {
           self.buyCurrencies = response.data;
         });
     },
@@ -339,7 +348,7 @@ createApp({
       let params = this.getQueryParameters();
       let curFrom = params.get("cur_from");
       if (curFrom !== undefined) {
-        Object.values(this.sellCurrencies).forEach(function(sellCurrency) {
+        Object.values(this.sellCurrencies).forEach(function (sellCurrency) {
           if (sellCurrency.code === curFrom) {
             self.setActiveCurrency("sell", sellCurrency.id);
             return sellCurrency.code === curFrom;
@@ -352,7 +361,7 @@ createApp({
       let params = this.getQueryParameters();
       let curTo = params.get("cur_to");
       if (curTo !== undefined) {
-        Object.values(self.buyCurrencies).forEach(async function(buyCurrency) {
+        Object.values(self.buyCurrencies).forEach(async function (buyCurrency) {
           if (buyCurrency.code === curTo) {
             await self.setActiveCurrency("buy", buyCurrency.id, true, false);
             return buyCurrency.code === curTo;
@@ -363,14 +372,18 @@ createApp({
     async fetchGroupsAndCurrencies() {
       let self = this;
       await axios
-        .get("http://proxy.local/" + this.getApiHost + "/json/get-groups-and-currencies")
-        .then(function(response) {
+        .get(
+          "http://proxy.local/" +
+            this.getApiHost +
+            "/json/get-groups-and-currencies"
+        )
+        .then(function (response) {
           self.currencyGroups = response.data.groups;
           self.allCurrencies = response.data.allCurrencies;
           self.sellCurrencies = response.data.allCurrencies;
           self.buyCurrencies = response.data.buyCurrencies;
         })
-        .then(function(response) {
+        .then(function (response) {
           self.checkLastCurrencies();
           self.checkQueryParameters();
         });
@@ -382,12 +395,12 @@ createApp({
         return true;
       }
       let json = JSON.parse(data.innerHTML);
-      
+
       this.currencyGroups = json.groups;
       this.allCurrencies = json.allCurrencies;
       this.sellCurrencies = json.allCurrencies;
       this.buyCurrencies = json.buyCurrencies;
-      
+
       this.checkLastCurrencies();
       this.checkQueryParameters();
     },
@@ -396,7 +409,7 @@ createApp({
       id,
       isCalculate = true,
       isTrash = true,
-      isSetUrl = true,
+      isSetUrl = true
     ) {
       if (type === "sell" && isTrash) {
         this.trashClick();
@@ -418,18 +431,18 @@ createApp({
         this.calculateForm(this.getType, true);
         if (isSetUrl) {
           let self = this;
-          setTimeout(function() {
+          setTimeout(function () {
             self.setUrl();
           }, 1000);
         }
       }
     },
-    
+
     calculateForm(type = "default", refresh = false) {
       let self = this;
       document
         .querySelectorAll(".form-exchange .field-error")
-        .forEach(function(el, i) {
+        .forEach(function (el, i) {
           el.innerHTML = "";
         });
       const config = {
@@ -451,9 +464,9 @@ createApp({
             lang: self.getLanguage,
             refresh: refresh,
           }),
-          config,
+          config
         )
-        .then(function(response) {
+        .then(function (response) {
           self.sellCurrencies = response.data.sellCurrencies;
           self.sell_currency_id = response.data.sell_currency_id;
           self.sellCurrency = response.data.sellCurrency;
@@ -470,11 +483,11 @@ createApp({
             response.data.buy_amount_with_comission;
           if (refresh) self.sell_source = response.data.sell_source;
           if (refresh) self.buy_target = response.data.buy_target;
-          
+
           self.setDocumentTitle();
         });
     },
-    
+
     setCurrencyGroup(type, i) {
       this.stopTimer();
       this[type + "CurrencyGroup"] = this.currencyGroups[i];
@@ -490,10 +503,10 @@ createApp({
     },
     checkLastCurrencies() {
       let inputHiddenLastSellId = document.getElementById(
-        "inputHiddenLastSellId",
+        "inputHiddenLastSellId"
       );
       let inputHiddenLastBuyId = document.getElementById(
-        "inputHiddenLastBuyId",
+        "inputHiddenLastBuyId"
       );
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
         if (inputHiddenLastSellId.value > 0) {
@@ -502,7 +515,7 @@ createApp({
             parseInt(inputHiddenLastSellId.value),
             true,
             false,
-            false,
+            false
           );
         }
         if (inputHiddenLastBuyId.value > 0) {
@@ -511,15 +524,15 @@ createApp({
             parseInt(inputHiddenLastBuyId.value),
             true,
             false,
-            false,
+            false
           );
         }
       }
     },
   },
   mounted() {
-    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
-    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
   created() {
     this.fetchGroupsAndCurrenciesFromPage();
@@ -533,5 +546,6 @@ createApp({
       }
     },
   },
-}).use(i18n).mount("#app");
-
+})
+  .use(i18n)
+  .mount("#app");

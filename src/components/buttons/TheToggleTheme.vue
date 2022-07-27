@@ -43,7 +43,7 @@ export default {
     html2canvas,
   },
   methods: {
-    //Написанно в перемешку, так как некорорые функции не срабабывают на vue
+    //Написанно в перемешку
     async toggle(idx, e) {
       const canvas = await html2canvas(document.documentElement);
       const ctx = canvas.getContext("2d");
@@ -57,7 +57,7 @@ export default {
         this.x = e.clientX;
         this.y = e.clientY;
         ctx.globalCompositeOperation = "destination-out";
-        // ctx.fillColor = "white";
+        ctx.fillColor = "white";
         const render = () => {
           const diff = Date.now() - startDate;
           const progress = diff / this.duration;

@@ -1,55 +1,85 @@
 <template>
-  <div class="authorization" v-if="view">
+  <div class="authorization popup-wrapper" v-if="view">
     <div class="wrapper">
       <button class="close" @click="close">
         <icon-close></icon-close>
       </button>
-      <the-switched @toggleText="toggleText" @toggleInput="toggleInput" :number="indexActive">
+      <the-switched
+        @toggleText="toggleText"
+        @toggleInput="toggleInput"
+        :number="indexActive"
+      >
         <template #first-title>Вход</template>
         <template #second-title>Регистрация</template>
       </the-switched>
-      <form method="post" :action="`${indexActive === 0 ? $t('entranceAction') : $t('registrationAction') }`"
-            @submit.prevent="validate">
+      <form
+        method="post"
+        :action="`${
+          indexActive === 0 ? $t('entranceAction') : $t('registrationAction')
+        }`"
+        @submit.prevent="validate"
+      >
         <input type="hidden" :value="csrfToken" :name="csrfParam" />
-        <transition-group name="show" tag="div" class="inputs">
+        <div class="inputs">
           <template v-if="indexActive === 0">
-            <the-field v-for="(input, idx) in entrance" :key="idx" :name-placeholder="input.placeholder" :data-idx="idx"
-                       :class="input.className"
-                       :name-type="input.type" :name-id="input.id" :name="input.name" :autocomplete="input.autocomplete"
-                       :show-error="input.error">
+            <the-field
+              v-for="(input, idx) in entrance"
+              :key="idx"
+              :name-placeholder="input.placeholder"
+              :data-idx="idx"
+              :class="input.className"
+              :name-type="input.type"
+              :name-id="input.id"
+              :name="input.name"
+              :autocomplete="input.autocomplete"
+              :show-error="input.error"
+            >
               <template #label>{{ input.label }}</template>
               <template #icon>
-              <span class="show-password" v-if="input.type === 'password'" @click="viewPassword(idx)">
+                <span
+                  class="show-password"
+                  v-if="input.type === 'password'"
+                  @click="viewPassword(idx)"
+                >
                   <component is="icon-eye"></component>
                 </span>
               </template>
             </the-field>
           </template>
           <template v-else>
-            <the-field v-for="(input, idx) in registration" :key="idx" :data-idx="idx" :class="input.className"
-                       :name-placeholder="input.placeholder"
-                       :name-type="input.type" :name-id="input.id" :name="input.name" :autocomplete="input.autocomplete"
-                       :show-error="input.error" :required="input.required">
+            <the-field
+              v-for="(input, idx) in registration"
+              :key="idx"
+              :data-idx="idx"
+              :class="input.className"
+              :name-placeholder="input.placeholder"
+              :name-type="input.type"
+              :name-id="input.id"
+              :name="input.name"
+              :autocomplete="input.autocomplete"
+              :show-error="input.error"
+              :required="input.required"
+            >
               <template #label>{{ input.label }}</template>
               <template #icon>
-                <span class="show-password" v-if="input.type === 'password'" @click="viewPassword(idx)">
+                <span
+                  class="show-password"
+                  v-if="input.type === 'password'"
+                  @click="viewPassword(idx)"
+                >
                   <component is="icon-eye"></component>
                 </span>
               </template>
             </the-field>
           </template>
-        </transition-group>
-      </form>
-      <transition name="show">
-        <div class="captcha" v-show="indexActive === 1">
-          <div class="g-recaptcha"></div>
         </div>
-      </transition>
-      <transition name="show">
-        <button @click="$emit('open')" v-if="indexActive === 0" class="forgot">
-          {{ $t("remind") }}
-        </button>
-      </transition>
+      </form>
+      <div class="captcha" v-if="indexActive === 1">
+        <div class="g-recaptcha"></div>
+      </div>
+      <button @click="$emit('open')" v-if="indexActive === 0" class="forgot">
+        {{ $t("remind") }}
+      </button>
       <the-button tag="button" type="submit">
         <template #name v-if="indexActive === 0">
           {{ $t("logIn") }}
@@ -152,10 +182,10 @@ export default {
   },
   computed: {
     view() {
-      return this.isShow = this.isAuthorization.isOpen;
+      return (this.isShow = this.isAuthorization.isOpen);
     },
     indexActive() {
-      return this.index = this.isAuthorization.index;
+      return (this.index = this.isAuthorization.index);
     },
   },
   methods: {
@@ -182,11 +212,11 @@ export default {
         },
       };
 
-      document.querySelectorAll(".field-error").forEach(function(el, i) {
+      document.querySelectorAll(".field-error").forEach(function (el, i) {
         el.innerHTML = "";
       });
 
-      axios.post(action, formData, config).then(function(response) {
+      axios.post(action, formData, config).then(function (response) {
         if (Object.keys(response.data).length) {
           let data = response.data;
           console.log(data);
@@ -203,7 +233,7 @@ export default {
     },
     viewPassword(idx) {
       let pas = document.querySelectorAll(".password");
-      pas.forEach(item => {
+      pas.forEach((item) => {
         if (item.getAttribute("data-idx") === String(idx)) {
           let inp = item.querySelector("input");
           if (inp.getAttribute("type") === "password") {
@@ -213,12 +243,11 @@ export default {
           }
         }
       });
-
     },
   },
   mounted() {
-    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
-    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
 };
 </script>
@@ -231,10 +260,7 @@ export default {
   top: 50%;
   left: 50%;
   overflow: hidden;
-  box-shadow: var(--shadow);
   transform: translate(-50%, -50%);
-  border-radius: var(--radius-eigh);
-  outline: 1px solid var(--ternary);
   z-index: 3;
 
   & .show-password {
@@ -279,7 +305,6 @@ export default {
     margin-top: 20px;
     width: 100%;
   }
-
 }
 
 .captcha {
@@ -298,7 +323,6 @@ export default {
     height: auto !important;
     background: #d3d3d3 !important;
     margin: 0 auto;
-
 
     & iframe {
       border: 0;
