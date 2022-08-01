@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Status</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Status</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-header @call-back-theme="definitionTheme"></the-header>
-    <main class="check-status">
-      <the-title-big>
-        <template #title>
-          Проверить статус операции
-        </template>
-      </the-title-big>
-      <div class="container">
-        <div class="wrapper">
-          <form class="stylish-wrapper" action>
-            <input type="hidden" :value="csrfToken" :name="csrfParam" />
-            <the-title class="title" tag="h2">Введите номер операции</the-title>
-            <label class="field">
-              <input
-                id="operation"
-                type="number"
-                placeholder="AP12345678"
-                name="code"
-              />
-            </label>
-            <the-button tag="button">
-              <template #name> Проверить</template>
-            </the-button>
-          </form>
-          <icon-check-status :theme="theme"></icon-check-status>
-        </div>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-header></the-header>
+        <main class="check-status">
+          <the-title-big>
+            <template #title> Проверить статус операции </template>
+          </the-title-big>
+          <div class="container">
+            <div class="wrapper">
+              <form class="stylish-wrapper" action>
+                <input type="hidden" :value="csrfToken" :name="csrfParam" />
+                <the-title class="title" tag="h2"
+                  >Введите номер операции</the-title
+                >
+                <label class="field">
+                  <input
+                    id="operation"
+                    type="number"
+                    placeholder="AP12345678"
+                    name="code"
+                  />
+                </label>
+                <the-button tag="button">
+                  <template #name> Проверить</template>
+                </the-button>
+              </form>
+              <icon-check-status></icon-check-status>
+            </div>
+          </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>

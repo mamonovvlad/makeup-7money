@@ -32,7 +32,7 @@
       :active-currency="callbackActiveCurrency"
     >
     </the-currencies-list>
-    <!--    <the-refresh v-if="!currenciesHideBuy" @click="refresh"></the-refresh>-->
+    <the-refresh v-if="!hide" @click="$emit('refresh')"></the-refresh>
   </div>
 </template>
 

@@ -78,12 +78,9 @@ import IconError from "./components/icons/IconError.vue";
 createApp({
   data() {
     return {
-      inputGive: "120",
-      inputGet: "100",
       captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
-      theme: "light",
 
       currentTime: 60,
       showCurrencyExchange: false,
@@ -111,13 +108,7 @@ createApp({
       sellCurrency: {},
       buyCurrency: {},
       calculateData: {},
-      // sellCurrencies: {},
-      // buyCurrencies: {},
-      // allCurrencies: {},
-      // allCurrency: {},
-      counter: 0,
       type: "default",
-      myHistory: [],
     };
   },
 
@@ -180,7 +171,7 @@ createApp({
     IconRandom,
   },
   computed: {
-    ...mapGetters(["getLang"]),
+    ...mapGetters(["getLang", "colorSpectrum"]),
 
     getLanguage() {
       return document.getElementById("language").value;
@@ -214,9 +205,6 @@ createApp({
         console.log("2");
         this.inputGive = this.inputGet / this.course.buy;
       }
-    },
-    definitionTheme(theme) {
-      this.theme = theme;
     },
 
     setDocumentTitle() {

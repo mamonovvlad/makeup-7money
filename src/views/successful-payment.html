@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Successful Payment</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Successful Payment</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-header @call-back-theme="definitionTheme"></the-header>
-    <main class="completed-payment">
-      <div class="container">
-        <div class="stylish-wrapper">
-          <the-steps :completion="true"></the-steps>
-          <div class="wrapper">
-            <div class="text">
-              <the-title tag="a" href="https://makeup.7money.co/order/status/" class="subtitle">MKf4ceb10b7a</the-title>
-              <p>
-                Поздравляем, перевод средств успешно завершен. Ожидайте оплату с нашей стороны
-              </p>
-              <the-button tag="a" href="/">
-                <template #name>Создать новую заявку</template>
-              </the-button>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-header></the-header>
+        <main class="completed-payment">
+          <div class="container">
+            <div class="stylish-wrapper">
+              <the-steps :completion="true"></the-steps>
+              <div class="wrapper">
+                <div class="text">
+                  <the-title
+                    tag="a"
+                    href="https://makeup.7money.co/order/status/"
+                    class="subtitle"
+                    >MKf4ceb10b7a</the-title
+                  >
+                  <p>
+                    Поздравляем, перевод средств успешно завершен. Ожидайте
+                    оплату с нашей стороны
+                  </p>
+                  <the-button tag="a" href="/">
+                    <template #name>Создать новую заявку</template>
+                  </the-button>
+                </div>
+                <icon-successful-payment></icon-successful-payment>
+              </div>
             </div>
-            <icon-successful-payment :theme="theme"></icon-successful-payment>
           </div>
-        </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>

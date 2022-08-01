@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Error Payment</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Error Payment</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-header @call-back-theme="definitionTheme" class="background"></the-header>
-    <main class="completed-payment">
-      <div class="container">
-        <div class="stylish-wrapper">
-          <the-steps :completion="true"></the-steps>
-          <div class="wrapper">
-            <div class="text">
-              <the-title tag="a" href="https://makeup.7money.co/order/status/" class="subtitle">MKf4ceb10b7a</the-title>
-              <p>
-                Ошибка, оплата не прошла. При оплате с Вашей стороны, что-то
-                пошло не так. Напишите нам в онлайн чат, либо создайте новую
-                заявку
-              </p>
-              <the-button tag="a" href="/">
-                <template #name>Создать новую заявку</template>
-              </the-button>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-header class="background"></the-header>
+        <main class="completed-payment">
+          <div class="container">
+            <div class="stylish-wrapper">
+              <the-steps :completion="true"></the-steps>
+              <div class="wrapper">
+                <div class="text">
+                  <the-title
+                    tag="a"
+                    href="https://makeup.7money.co/order/status/"
+                    class="subtitle"
+                    >MKf4ceb10b7a</the-title
+                  >
+                  <p>
+                    Ошибка, оплата не прошла. При оплате с Вашей стороны, что-то
+                    пошло не так. Напишите нам в онлайн чат, либо создайте новую
+                    заявку
+                  </p>
+                  <the-button tag="a" href="/">
+                    <template #name>Создать новую заявку</template>
+                  </the-button>
+                </div>
+                <icon-error-payment></icon-error-payment>
+              </div>
             </div>
-            <icon-error-payment :theme="theme"></icon-error-payment>
           </div>
-        </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>

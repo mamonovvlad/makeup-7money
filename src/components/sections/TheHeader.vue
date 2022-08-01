@@ -3,8 +3,8 @@
     <div class="container">
       <div class="header__wrapper">
         <div class="block">
-          <the-logo :theme="theme"></the-logo>
-          <the-toggle-theme @callback="callBackIndex"></the-toggle-theme>
+          <the-logo></the-logo>
+          <the-toggle-theme></the-toggle-theme>
           <div class="time">
             <p>
               {{ $t("schedule") }}
@@ -25,7 +25,10 @@
       </div>
     </div>
     <the-authorization @open="openPasswordRecovery"></the-authorization>
-    <the-password-recovery @close="hidePasswordRecovery" v-if="isPasswordRecovery"></the-password-recovery>
+    <the-password-recovery
+      @close="hidePasswordRecovery"
+      v-if="isPasswordRecovery"
+    ></the-password-recovery>
   </header>
 </template>
 
@@ -40,7 +43,6 @@ import TheLogo from "../blocks/TheLogo.vue";
 import TheAuthorization from "../popups/TheAuthorization.vue";
 import ThePasswordRecovery from "../popups/ThePasswordRecovery.vue";
 
-
 export default {
   name: "TheHeader",
   data() {
@@ -50,8 +52,6 @@ export default {
         index: -1,
         isOpen: false,
       },
-      theme: "light",
-
     };
   },
   methods: {
@@ -79,15 +79,6 @@ export default {
     openAuthorization(idx) {
       this.isAuthorization.isOpen = true;
       this.isAuthorization.index = idx;
-    },
-    //Передача значения темы
-    callBackIndex(index) {
-      if (index === 0) {
-        this.theme = "light";
-      } else {
-        this.theme = "dark";
-      }
-      this.$emit("call-back-theme", this.theme);
     },
     //Проверка авторизации
     activeAccount() {

@@ -12,13 +12,13 @@
 
   <body>
     <div id="app" v-cloak>
-      <div class="app" :data-theme="theme">
+      <div class="app" :data-theme="colorSpectrum">
         <the-public-information>
           Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
           нужно всего лишь совершить обмен и оставить отзыв
           <a href="/">подробнее тут</a>
         </the-public-information>
-        <the-header @call-back-theme="definitionTheme" class=""></the-header>
+        <the-header></the-header>
         <main class="container main__wrapper">
           <input
             id="inputHiddenLastSellId"
@@ -37,6 +37,7 @@
               :hide="currenciesHideSell"
               :callback-currency-id="sell_currency_id"
               :callback-active-currency="setActiveCurrency"
+              @refresh="refresh"
             ></the-currencies-column-sell>
             <the-currencies-column-buy
               :hide="currenciesHideBuy"
@@ -59,7 +60,6 @@
                     <div class="item">
                       <the-field
                         @input="calculationGive"
-                        v-model="inputGive"
                         name-type="text"
                         name-id="orderform-sell_amount"
                         name="OrderForm[sell_amount]"
@@ -88,7 +88,6 @@
                     <div class="item">
                       <the-field
                         @input="calculationGet"
-                        v-model="inputGet"
                         class="item__lacks"
                         name-id="orderform-buy_amount"
                         name="OrderForm[buy_amount]"

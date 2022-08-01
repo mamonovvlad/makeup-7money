@@ -1,12 +1,19 @@
 <template>
   <figure>
-    <svg v-if="theme === 'light'" viewBox="0 0 718 530" fill="none"
-         xmlns="http://www.w3.org/2000/svg">
+    <svg
+      v-if="colorSpectrum === 'light'"
+      viewBox="0 0 718 530"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M539.253 476.632H120.242V479.949H539.253V476.632Z"
         fill="#7F848C"
       />
-      <path d="M717.634 476.632H693.98V479.949H717.634V476.632Z" fill="#8F999E" />
+      <path
+        d="M717.634 476.632H693.98V479.949H717.634V476.632Z"
+        fill="#8F999E"
+      />
       <path
         d="M147.238 425.651L150.833 478.29H208.013L204.17 421.754L147.238 425.651Z"
         fill="#7F848C"
@@ -56,7 +63,10 @@
         d="M165.972 503.681H130.855V506.998H165.972V503.681Z"
         fill="#8F999E"
       />
-      <path d="M554.903 503.681H539.25V506.998H554.903V503.681Z" fill="#8F999E" />
+      <path
+        d="M554.903 503.681H539.25V506.998H554.903V503.681Z"
+        fill="#8F999E"
+      />
       <path
         d="M641.866 503.681H573.836V506.998H641.866V503.681Z"
         fill="#8F999E"
@@ -250,12 +260,20 @@
         </filter>
       </defs>
     </svg>
-    <svg v-else viewBox="0 0 718 530" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      v-else
+      viewBox="0 0 718 530"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         d="M539.253 476.632H120.242V479.949H539.253V476.632Z"
         fill="#A08EC1"
       />
-      <path d="M717.634 476.632H693.98V479.949H717.634V476.632Z" fill="#A08EC1" />
+      <path
+        d="M717.634 476.632H693.98V479.949H717.634V476.632Z"
+        fill="#A08EC1"
+      />
       <path
         d="M147.238 425.651L150.833 478.29H208.013L204.17 421.754L147.238 425.651Z"
         fill="#BCABDB"
@@ -305,7 +323,10 @@
         d="M165.972 503.681H130.855V506.998H165.972V503.681Z"
         fill="#CFC0EC"
       />
-      <path d="M554.903 503.681H539.25V506.998H554.903V503.681Z" fill="#CFC0EC" />
+      <path
+        d="M554.903 503.681H539.25V506.998H554.903V503.681Z"
+        fill="#CFC0EC"
+      />
       <path
         d="M641.866 503.681H573.836V506.998H641.866V503.681Z"
         fill="#CFC0EC"
@@ -500,17 +521,15 @@
       </defs>
     </svg>
   </figure>
-
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "IconError",
-  props: {
-    theme: {
-      type: String,
-      default: "light",
-    },
+  computed: {
+    ...mapGetters(["colorSpectrum"]),
   },
 };
 </script>

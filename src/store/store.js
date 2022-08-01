@@ -3,6 +3,7 @@ import axios from "axios";
 
 const store = createStore({
   state: {
+    theme: "light",
     allCurrencies: {},
     sellCurrencies: {},
     buyCurrencies: {},
@@ -15,7 +16,14 @@ const store = createStore({
     //
   }, //Хранения данных
   mutations: {
-    setGroupsAndCurrencies: (state, response) => {
+    setDefinitionTheme(state, index) {
+      if (index === 0) {
+        state.theme = "light";
+      } else {
+        state.theme = "dark";
+      }
+    },
+    setGroupsAndCurrencies(state, response) {
       state.currencyGroups = response.data.groups;
       state.allCurrencies = response.data.allCurrencies;
       state.sellCurrencies = response.data.allCurrencies;
@@ -82,6 +90,9 @@ const store = createStore({
     },
     buyCurrencies(state) {
       return state.buyCurrencies;
+    },
+    colorSpectrum(state) {
+      return state.theme;
     },
   }, // Получения state
 });

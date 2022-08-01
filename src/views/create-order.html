@@ -1,111 +1,126 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Создание заявки</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Создание заявки</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-header @call-back-theme="definitionTheme"></the-header>
-    <main class="personal-area">
-      <div class="container">
-        <div class="wrapper">
-          <the-account-navigation>
-            <template #links>
-              <a class="active" href="/">
-                <icon-personal-data></icon-personal-data>
-                Счета и персональные данные
-              </a>
-              <a href="/">
-                <icon-history></icon-history>
-                История операций
-              </a>
-              <a href="/">
-                <icon-partner></icon-partner>
-                Партнёрская программа
-              </a>
-              <a href="/">
-                <icon-withdraw-reward></icon-withdraw-reward>
-                Вывеси вознаграждение
-              </a>
-              <a href="/">
-                <icon-buy></icon-buy>
-                История выплат
-              </a>
-              <a href="/">
-                <icon-padlock></icon-padlock>
-                Изменение пароля
-              </a>
-              <a href="/">
-                <icon-random></icon-random>
-                Заявки рефералов
-              </a>
-              <a href="/">
-                <icon-create></icon-create>
-                Создать заявку
-              </a>
-              <a href="/">
-                <icon-verification></icon-verification>
-                Верификация заявок
-              </a>
-              <a href="/">
-                <icon-search></icon-search>
-                Поиск заявок
-              </a>
-            </template>
-            <template #buttons>
-              <a href="/">Выход</a>
-              <a href="/">Выход со всех устройств</a>
-            </template>
-          </the-account-navigation>
-          <div class="wrapper-account create-order">
-            <the-title tag="h2" class="subtitle">Создание заявки</the-title>
-            <form action="/profile/create-order" method="post">
-              <input type="hidden" name="_csrf"
-                     value="FFDH14dN5x1vYB1rY3OoRQhJEPb0OG1P2rtyaDN--_96Fr2e1Q7SUS4XSQACCvxoZhl4g7JuLnmYwj8_BCquuA==">
-              <div class="stylish-wrapper">
-                <div class="field-list">
-                  <the-field name-placeholder="Сумма получения" name="CreateOrder[sell_amount]" :required="true"
-                             :show-error="true">
-                    <template #label>Сумма получения</template>
-                    <template #error>Текст отзыва не может быть пустым</template>
-                  </the-field>
-                  <the-field name-placeholder="Кошелёк получения" name="CreateOrder[sell_source]" :required="true">
-                    <template #label>Кошелёк получения</template>
-                  </the-field>
-                  <the-field name-placeholder="Контакт" name="CreateOrder[contact]" :required="true">
-                    <template #label>Контакт</template>
-                  </the-field>
-                  <the-field name="CreateOrder[course_id]" :select="true">
-                    <template #label>
-                      Направление
-                    </template>
-                    <option value="93">QIWI RUB =&gt; Bitcoin</option>
-                    <option value="47">Advanced Cash USD =&gt; Bitcoin</option>
-                    <option value="11">PAYEER USD =&gt; Bitcoin</option>
-                  </the-field>
-                  <the-button tag="button">
-                    <template #name>
-                      Сохранить
-                    </template>
-                  </the-button>
-                </div>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-header></the-header>
+        <main class="personal-area">
+          <div class="container">
+            <div class="wrapper">
+              <the-account-navigation>
+                <template #links>
+                  <a class="active" href="/">
+                    <icon-personal-data></icon-personal-data>
+                    Счета и персональные данные
+                  </a>
+                  <a href="/">
+                    <icon-history></icon-history>
+                    История операций
+                  </a>
+                  <a href="/">
+                    <icon-partner></icon-partner>
+                    Партнёрская программа
+                  </a>
+                  <a href="/">
+                    <icon-withdraw-reward></icon-withdraw-reward>
+                    Вывеси вознаграждение
+                  </a>
+                  <a href="/">
+                    <icon-buy></icon-buy>
+                    История выплат
+                  </a>
+                  <a href="/">
+                    <icon-padlock></icon-padlock>
+                    Изменение пароля
+                  </a>
+                  <a href="/">
+                    <icon-random></icon-random>
+                    Заявки рефералов
+                  </a>
+                  <a href="/">
+                    <icon-create></icon-create>
+                    Создать заявку
+                  </a>
+                  <a href="/">
+                    <icon-verification></icon-verification>
+                    Верификация заявок
+                  </a>
+                  <a href="/">
+                    <icon-search></icon-search>
+                    Поиск заявок
+                  </a>
+                </template>
+                <template #buttons>
+                  <a href="/">Выход</a>
+                  <a href="/">Выход со всех устройств</a>
+                </template>
+              </the-account-navigation>
+              <div class="wrapper-account create-order">
+                <the-title tag="h2" class="subtitle">Создание заявки</the-title>
+                <form action="/profile/create-order" method="post">
+                  <input
+                    type="hidden"
+                    name="_csrf"
+                    value="FFDH14dN5x1vYB1rY3OoRQhJEPb0OG1P2rtyaDN--_96Fr2e1Q7SUS4XSQACCvxoZhl4g7JuLnmYwj8_BCquuA=="
+                  />
+                  <div class="stylish-wrapper">
+                    <div class="field-list">
+                      <the-field
+                        name-placeholder="Сумма получения"
+                        name="CreateOrder[sell_amount]"
+                        :required="true"
+                        :show-error="true"
+                      >
+                        <template #label>Сумма получения</template>
+                        <template #error
+                          >Текст отзыва не может быть пустым</template
+                        >
+                      </the-field>
+                      <the-field
+                        name-placeholder="Кошелёк получения"
+                        name="CreateOrder[sell_source]"
+                        :required="true"
+                      >
+                        <template #label>Кошелёк получения</template>
+                      </the-field>
+                      <the-field
+                        name-placeholder="Контакт"
+                        name="CreateOrder[contact]"
+                        :required="true"
+                      >
+                        <template #label>Контакт</template>
+                      </the-field>
+                      <the-field name="CreateOrder[course_id]" :select="true">
+                        <template #label> Направление </template>
+                        <option value="93">QIWI RUB =&gt; Bitcoin</option>
+                        <option value="47">
+                          Advanced Cash USD =&gt; Bitcoin
+                        </option>
+                        <option value="11">PAYEER USD =&gt; Bitcoin</option>
+                      </the-field>
+                      <the-button tag="button">
+                        <template #name> Сохранить </template>
+                      </the-button>
+                    </div>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           </div>
-        </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>

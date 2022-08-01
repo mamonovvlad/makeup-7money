@@ -1,78 +1,96 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Status Check</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Status Check</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="theme">
-    <the-header @call-back-theme="definitionTheme"></the-header>
-    <the-title-big>
-      <template #title>
-        Статус операции AP0059aee775
-      </template>
-    </the-title-big>
-    <main class="application-status">
-      <div class="container">
-        <div class="wrapper">
-          <div class="application-status__info">
-            <div class="stylish-wrapper">
-              <div class="block">
-                <div class="operation-info">
-                  <h2 class="text--green">Завершена</h2>
-                  <span>Номер операции: <strong>AP0059aee775</strong><the-copy-text
-                    copy-text="AP0059aee775"></the-copy-text></span>
-                  <span>Дата заявки: <strong>18 янв. 2021 г., 17:27:58</strong></span>
-                  <span>Статус операции: <strong>Ваша Заявка оплачена</strong></span>
-                </div>
-                <div class="operations">
-                  <div class="items">
-                    <span class="name">
-                      <span class="icon BTC"></span>
-                      Отдаю:
-                    </span>
-                    <strong>
-                      0.0284927 BTC
-                    </strong>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-header></the-header>
+        <the-title-big>
+          <template #title> Статус операции AP0059aee775 </template>
+        </the-title-big>
+        <main class="application-status">
+          <div class="container">
+            <div class="wrapper">
+              <div class="application-status__info">
+                <div class="stylish-wrapper">
+                  <div class="block">
+                    <div class="operation-info">
+                      <h2 class="text--green">Завершена</h2>
+                      <span
+                        >Номер операции: <strong>AP0059aee775</strong
+                        ><the-copy-text copy-text="AP0059aee775"></the-copy-text
+                      ></span>
+                      <span
+                        >Дата заявки:
+                        <strong>18 янв. 2021 г., 17:27:58</strong></span
+                      >
+                      <span
+                        >Статус операции:
+                        <strong>Ваша Заявка оплачена</strong></span
+                      >
+                    </div>
+                    <div class="operations">
+                      <div class="items">
+                        <span class="name">
+                          <span class="icon BTC"></span>
+                          Отдаю:
+                        </span>
+                        <strong> 0.0284927 BTC </strong>
+                      </div>
+                      <div class="items">
+                        <span class="name">
+                          <span class="icon BTC"></span>
+                          Получаю:
+                        </span>
+                        <strong> 0.0284927 BTC </strong>
+                      </div>
+                    </div>
                   </div>
-                  <div class="items">
-                    <span class="name">
-                      <span class="icon BTC"></span>
-                      Получаю:
-                    </span>
-                    <strong>
-                      0.0284927 BTC
-                    </strong>
+                  <div class="line"></div>
+                  <the-warning>
+                    По заявке был произведен перерасчет, время отведенное на
+                    подтверждение от сети 1 час
+                  </the-warning>
+                  <div class="operation-info">
+                    <span
+                      >Выплата поступила в размере:
+                      <strong>0.0284927 BTC</strong></span
+                    >
+                    <span
+                      >Подтверждения в сети Bitcoin:
+                      <strong>1 из 1 требуемого</strong></span
+                    >
+                    <span
+                      >Ваш TXID:
+                      <a href="/" class="line-break"
+                        ><strong
+                          >f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74</strong
+                        ></a
+                      ><the-copy-text copy-text="few"></the-copy-text
+                    ></span>
+                    <span
+                      >Обычно выплата производится в течении
+                      <strong>5-30 минут</strong> после 1-го подтверждения</span
+                    >
                   </div>
                 </div>
               </div>
-              <div class="line"></div>
-              <the-warning>
-                По заявке был произведен перерасчет, время отведенное на подтверждение от сети 1 час
-              </the-warning>
-              <div class="operation-info">
-                <span>Выплата поступила в размере: <strong>0.0284927 BTC</strong></span>
-                <span>Подтверждения в сети Bitcoin: <strong>1 из 1 требуемого</strong></span>
-                <span>Ваш TXID: <a href="/" class="line-break"><strong>f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74</strong></a><the-copy-text
-                  copy-text="few"></the-copy-text></span>
-                <span>Обычно выплата производится в течении <strong>5-30 минут</strong> после 1-го подтверждения</span>
-              </div>
+              <the-leave-feedback></the-leave-feedback>
             </div>
           </div>
-          <the-leave-feedback></the-leave-feedback>
-        </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="ru" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="ru" />
+  </body>
 </html>

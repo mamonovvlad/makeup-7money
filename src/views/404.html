@@ -12,13 +12,13 @@
 
   <body>
     <div id="app" v-cloak>
-      <div class="app" :data-theme="theme">
+      <div class="app" :data-theme="colorSpectrum">
         <the-public-information>
           Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
           нужно всего лишь совершить обмен и оставить отзыв
           <a href="/">подробнее тут</a>
         </the-public-information>
-        <the-header @call-back-theme="definitionTheme"></the-header>
+        <the-header></the-header>
         <main class="error">
           <div class="container">
             <div class="wrapper">
@@ -31,7 +31,7 @@
                 <strong class="text--green">скидки</strong> на следующие
                 операции
               </p>
-              <icon-error :theme="theme"></icon-error>
+              <icon-error></icon-error>
               <the-error-buttons></the-error-buttons>
             </div>
           </div>

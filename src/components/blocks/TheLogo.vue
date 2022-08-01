@@ -1,6 +1,6 @@
 <template>
   <a :href="$t('linkLogo')" class="logo" @click.prevent="clearHistory">
-    <icon-logo :theme="theme"></icon-logo>
+    <icon-logo></icon-logo>
   </a>
 </template>
 
@@ -10,15 +10,9 @@ import IconLogo from "../icons/IconLogo.vue";
 
 export default {
   name: "TheLogo",
-  props: {
-    theme: {
-      type: String,
-    },
-  },
   components: { IconLogo },
 
   methods: {
-
     clearHistory() {
       axios
         .get("https://7money.co/site/clear-last-ids")
