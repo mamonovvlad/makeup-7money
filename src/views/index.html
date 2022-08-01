@@ -33,213 +33,130 @@
             value="2"
           />
           <div class="currencies">
-            <div
-              class="currencies-column stylish-wrapper"
-              :class="{'currencies-hide': !currenciesHideSell}"
+            <the-currencies-column-sell
+              :hide="currenciesHideSell"
+              :callback-currency-id="sell_currency_id"
+              :callback-active-currency="setActiveCurrency"
+            ></the-currencies-column-sell>
+            <the-currencies-column-buy
+              :hide="currenciesHideBuy"
+              :callback-currency-id="buy_currency_id"
+              :callback-active-currency="setActiveCurrency"
             >
-              <template v-if="currenciesHideSell">
-                <the-title tag="h2" class="subtitle"> Отдаю</the-title>
-                <ul class="filters">
-                  <li
-                    :class="{active : sellCurrencyGroupId === null}"
-                    @click="resetCurrencyGroup('sell')"
-                  >
-                    ALL
-                  </li>
-                  <li
-                    v-for="(group, i) in currencyGroups"
-                    :key="i"
-                    :class=" {active : group.id === sellCurrencyGroupId} "
-                    @click="setCurrencyGroup('sell', i)"
-                  >
-                    {{ group.name }}
-                  </li>
-                </ul>
-                <div class="line"></div>
-              </template>
-              <the-currencies-list
-                :currency-group="sellCurrencyGroup.name"
-                :currencies-hide="currenciesHideSell"
-                :currencies="allCurrencies"
-                :currency-id="sell_currency_id"
-                currency-name="sell"
-                :active-currency="setActiveCurrency"
-              >
-              </the-currencies-list>
-              <the-refresh
-                v-if="!currenciesHideBuy"
-                @click="refresh"
-              ></the-refresh>
-            </div>
-            <div
-              class="currencies-column stylish-wrapper"
-              :class="{'currencies-hide': !currenciesHideBuy}"
-            >
-              <template v-if="currenciesHideBuy">
-                <div class="title__wrapper">
-                  <the-title tag="h2" class="subtitle"> Получаю</the-title>
-                  <div class="buttons">
-                    <button>Курс</button>
-                    <button>Резервы</button>
-                  </div>
-                </div>
-                <ul class="filters">
-                  <li
-                    :class="{active : buyCurrencyGroupId === null}"
-                    @click="resetCurrencyGroup('buy')"
-                  >
-                    ALL
-                  </li>
-                  <li
-                    v-for="(group, i) in currencyGroups"
-                    :key="i"
-                    :class=" {active : group.id === buyCurrencyGroupId }"
-                    @click="setCurrencyGroup('buy', i)"
-                  >
-                    {{ group.name }}
-                  </li>
-                </ul>
-                <div class="line"></div>
-              </template>
-              <the-currencies-list
-                :currency-group="buyCurrencyGroup.name"
-                :currencies-hide="currenciesHideBuy"
-                :currencies="buyCurrencies"
-                :currency-id="buy_currency_id"
-                currency-name="buy"
-                :active-currency="setActiveCurrency"
-              >
-              </the-currencies-list>
-            </div>
+            </the-currencies-column-buy>
 
             <transition name="details-hide">
-              <div class="details" v-if="showCurrencyExchange">
-                <div class="details__wrapper stylish-wrapper">
-                  <div class="title__wrapper">
-                    <the-title tag="h1" class="subtitle">
-                      {{ course.title_ru }}
-                    </the-title>
-                    <the-current-time
-                      :current-time="currentTime"
-                      :course-sell="course.sell"
-                      :course-buy="course.buy"
-                    >
-                    </the-current-time>
-                  </div>
-                  <the-steps
-                    @button="trashClick"
-                    :show-button="true"
-                    :data-input="true"
-                  ></the-steps>
-                  <!--Форма-->
-                  <form action class="form-exchange">
-                    <input :name="csrfParam" :value="csrfToken" type="hidden" />
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <the-field
-                          v-model="testNumber"
-                          name-type="text"
-                          name-id="orderform-sell_amount"
-                          name="OrderForm[sell_amount]"
-                          :aria-invalid="true"
-                        >
-                          <template #label> Отдаю </template>
-                          <template #icon>
-                            <span class="PMUSD"></span>
-                          </template>
-                        </the-field>
-                        <div class="min__max">
-                          <span>
-                            Min:{{ testNumber }}
-                            <strong>0.004 BTC</strong>
-                          </span>
-                          <span>
-                            Max:
-                            <strong>0.004 BTC</strong>
-                          </span>
-                        </div>
-                        <the-checkbox name-id="orderf">
-                          Мой кошелёк Perfect Money верифицирован Для не
-                          верифицированных кошельков комиссия больше на 1.5%
-                        </the-checkbox>
-                      </div>
-                      <div class="item">
-                        <the-field
-                          class="item__lacks"
-                          name-id="orderform-buy_amount"
-                          name="OrderForm[buy_amount]"
-                          :aria-invalid="false"
-                        >
-                          <template #label>
-                            Получаю
-                            <the-lacks></the-lacks>
-                          </template>
-                          <template #icon>
-                            <span class="PMUSD"></span>
-                          </template>
-                        </the-field>
-                        <div class="min__max">
-                          <span>
-                            Min:
-                            <strong>0.004 BTC</strong>
-                          </span>
-                          <span>
-                            Max:
-                            <strong>0.004 BTC</strong>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <the-field
-                          name-type="text"
-                          name-id="orderform-buy_target"
-                          name="OrderForm[buy_target]"
-                        >
-                          <template #label> Зачислить на этот адрес</template>
-                        </the-field>
-                      </div>
-                      <div class="item">
-                        <the-checkbox name-id="orderform-of_exchange">
-                          Отправляю с биржи
-                        </the-checkbox>
-                      </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <the-field
-                          name-type="text"
-                          name-id="exchange_mail"
-                          name-placeholder="you@gmail.com"
-                          :required="true"
-                          :aria-required="true"
-                          name="OrderForm[email]"
-                        >
-                          <template #label> Электронная почта</template>
-                        </the-field>
-                      </div>
-                    </div>
-                    <the-agreement></the-agreement>
-                    <the-button
-                      id="order-submit"
-                      tag="button"
-                      class="disabled"
-                      disabled="disabled"
-                    >
-                      <template #name> Обменять</template>
-                    </the-button>
-                  </form>
-                  <!--Конец Формы-->
-                </div>
-                <the-information
-                  v-if="calculateData.course_seo_text"
-                  v-html="calculateData.course_seo_text"
+              <template v-if="showCurrencyExchange">
+                <the-details
+                  @come-back="trashClick"
+                  :title="course.title_ru"
+                  :current-time="currentTime"
+                  :course-sell="course.sell"
+                  :course-buy="course.buy"
+                  :calculate-data-course-text="calculateData.course_seo_text"
                 >
-                </the-information>
-              </div>
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <the-field
+                        @input="calculationGive"
+                        v-model="inputGive"
+                        name-type="text"
+                        name-id="orderform-sell_amount"
+                        name="OrderForm[sell_amount]"
+                        :aria-invalid="true"
+                      >
+                        <template #label> Отдаю</template>
+                        <template #icon>
+                          <span class="PMUSD"></span>
+                        </template>
+                      </the-field>
+                      <div class="min__max">
+                        <span>
+                          Min:
+                          <strong>0.004 BTC</strong>
+                        </span>
+                        <span>
+                          Max:
+                          <strong>0.004 BTC</strong>
+                        </span>
+                      </div>
+                      <the-checkbox name-id="orderf">
+                        Мой кошелёк Perfect Money верифицирован Для не
+                        верифицированных кошельков комиссия больше на 1.5%
+                      </the-checkbox>
+                    </div>
+                    <div class="item">
+                      <the-field
+                        @input="calculationGet"
+                        v-model="inputGet"
+                        class="item__lacks"
+                        name-id="orderform-buy_amount"
+                        name="OrderForm[buy_amount]"
+                        :aria-invalid="false"
+                      >
+                        <template #label>
+                          Получаю
+                          <the-lacks></the-lacks>
+                        </template>
+                        <template #icon>
+                          <span class="PMUSD"></span>
+                        </template>
+                      </the-field>
+                      <div class="min__max">
+                        <span>
+                          Min:
+                          <strong>0.004 BTC</strong>
+                        </span>
+                        <span>
+                          Max:
+                          <strong>0.004 BTC</strong>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <the-field
+                        name-type="text"
+                        name-id="orderform-buy_target"
+                        name="OrderForm[buy_target]"
+                      >
+                        <template #label> Зачислить на этот адрес</template>
+                      </the-field>
+                    </div>
+                    <div class="item">
+                      <the-checkbox name-id="orderform-of_exchange">
+                        Отправляю с биржи
+                      </the-checkbox>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <the-field
+                        name-type="text"
+                        name-id="exchange_mail"
+                        name-placeholder="you@gmail.com"
+                        :required="true"
+                        :aria-required="true"
+                        name="OrderForm[email]"
+                      >
+                        <template #label> Электронная почта</template>
+                      </the-field>
+                    </div>
+                  </div>
+                  <the-agreement></the-agreement>
+                  <the-button
+                    id="order-submit"
+                    tag="button"
+                    class="disabled"
+                    disabled="disabled"
+                  >
+                    <template #name> Обменять</template>
+                  </the-button>
+                </the-details>
+              </template>
             </transition>
           </div>
 

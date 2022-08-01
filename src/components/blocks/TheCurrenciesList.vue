@@ -1,18 +1,21 @@
 <template>
   <div class="currencies-list" ref="currenciesList">
-    <ul class="currencies__wrapper" ref="currenciesWrapper" :data-filter="currencyGroup"
-        :class="{'active': !currenciesHide}">
+    <ul
+      class="currencies__wrapper"
+      ref="currenciesWrapper"
+      :data-filter="currencyGroup"
+      :class="{ active: !currenciesHide }"
+    >
       <li
         v-for="(currency, i) in currencies"
         :key="currency.id"
-        :class="{'active-currency' : currency.id == currencyId }"
+        :class="{ 'active-currency': currency.id == currencyId }"
         :data-alias="currency.code"
         :data-group="currency.group.name"
         :data-id="currency.id"
         class="item"
-        @click="activeCurrency(currencyName, currency.id);"
+        @click="activeCurrency(currencyName, currency.id)"
       >
-
         <div class="name">
           <span :class="currency.code"></span>
           <transition name="currencies-hide">
@@ -28,7 +31,10 @@
         </transition>
       </li>
     </ul>
-    <the-show-more-currencies @click.native="toggle" v-if="isShow && currenciesHide">
+    <the-show-more-currencies
+      @click.native="toggle"
+      v-if="isShow && currenciesHide"
+    >
       {{ nameTitle }}
     </the-show-more-currencies>
   </div>
@@ -61,8 +67,7 @@ export default {
     },
     activeCurrency: {
       type: Function,
-      default: () => {
-      },
+      default: () => {},
     },
   },
   name: "TheCurrenciesList",
@@ -88,13 +93,11 @@ export default {
         currenciesList.style.maxHeight = "";
         this.nameTitle = "Показать еще";
       }
-
     },
     hideButton() {
       let currenciesWrapper = this.$refs.currenciesWrapper;
       this.isShow = currenciesWrapper.clientHeight >= 535;
     },
-
   },
   updated() {
     this.hideButton();
@@ -150,26 +153,24 @@ export default {
       font-size: 12px;
       font-weight: 600;
     }
-
   }
 
   &__wrapper {
-    &[data-filter=CASH] li,
-    &[data-filter=UAH] li,
-    &[data-filter=RUB] li,
-    &[data-filter=CRYPT] li,
-    &[data-filter=USD] li {
+    &[data-filter="CASH"] li,
+    &[data-filter="UAH"] li,
+    &[data-filter="RUB"] li,
+    &[data-filter="CRYPT"] li,
+    &[data-filter="USD"] li {
       display: none;
     }
 
-    &[data-filter=CASH] li[data-group=CASH],
-    &[data-filter=UAH] li[data-group=UAH],
-    &[data-filter=RUB] li[data-group=RUB],
-    &[data-filter=CRYPT] li[data-group=CRYPT],
-    &[data-filter=USD] li[data-group=USD] {
-      display: flex
+    &[data-filter="CASH"] li[data-group="CASH"],
+    &[data-filter="UAH"] li[data-group="UAH"],
+    &[data-filter="RUB"] li[data-group="RUB"],
+    &[data-filter="CRYPT"] li[data-group="CRYPT"],
+    &[data-filter="USD"] li[data-group="USD"] {
+      display: flex;
     }
   }
-
 }
 </style>

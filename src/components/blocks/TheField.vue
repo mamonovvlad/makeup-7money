@@ -6,7 +6,9 @@
     <span class="field-wrapper">
       <input
         v-if="!textarea && !select"
+        @input="$emit('update:modelValue', $event.target.value)"
         class="field"
+        :value="modelValue"
         :id="nameId"
         :type="nameType"
         :name="name"
@@ -15,7 +17,6 @@
         :autocomplete="autocomplete"
         :aria-invalid="ariaInvalid"
         :aria-required="ariaRequired"
-        @input="$emit('update:modelValue', $event.target.value)"
       />
       <select
         v-else-if="select"
@@ -33,9 +34,9 @@
         :name="name"
         :placeholder="namePlaceholder"
         :required="required"
-        :value="value"
         :aria-invalid="ariaInvalid"
         :aria-required="ariaRequired"
+        :value="modelValue"
       >
       </textarea>
       <slot name="icon"> </slot>
@@ -69,6 +70,9 @@ export default {
     },
     nameId: {
       type: String,
+    },
+    modelValue: {
+      type: [String, Number],
     },
     name: {
       type: String,

@@ -5,9 +5,12 @@ import { Captcha } from "./assets/js/captcha.js";
 import i18n from "./assets/js/multilanguage.js";
 import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/main.js";
+import store from "./store/store.js";
 
 const qs = require("querystring-es3");
 import axios from "axios";
+
+import { mapActions, mapGetters } from "vuex";
 
 //Style
 import "./assets/scss/main.scss";
@@ -26,7 +29,7 @@ import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
 import TheWarning from "./components/blocks/TheWarning.vue";
 import TheAccountNavigation from "./components/blocks/TheAccountNavigation.vue";
-
+import TheDetails from "./components/blocks/TheDetails.vue";
 import TheTitle from "./components/blocks/TheTitle.vue";
 import TheTitleBig from "./components/blocks/TheTitleBig.vue";
 import TheSteps from "./components/blocks/TheSteps.vue";
@@ -36,10 +39,11 @@ import TheExchangeInformation from "./components/blocks/TheExchangeInformation.v
 import TheCopyText from "./components/blocks/TheCopyText.vue";
 import TheTable from "./components/blocks/TheTable.vue";
 import TheDiscount from "./components/blocks/TheDiscount.vue";
-import TheCurrentTime from "./components/blocks/TheCurrentTime.vue";
+import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
+import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
+
 import TheInformation from "./components/blocks/TheInformation.vue";
 import TheAgreement from "./components/blocks/TheAgreement.vue";
-import TheRefresh from "./components/blocks/TheRefresh.vue";
 import TheCheckbox from "./components/blocks/TheCheckbox.vue";
 //Buttons
 import TheButton from "./components/buttons/TheButton.vue";
@@ -74,26 +78,20 @@ import IconError from "./components/icons/IconError.vue";
 createApp({
   data() {
     return {
-      testNumber: "",
+      inputGive: "120",
+      inputGet: "100",
       captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
       theme: "light",
+
       currentTime: 60,
-      csrfToken: null,
-      csrfParam: null,
       showCurrencyExchange: false,
       currenciesHideSell: false,
       currenciesHideBuy: false,
       blockHide: false,
       detailsHide: false,
-      ///
-      // groups
-      currencyGroups: {},
-      sellCurrencyGroup: {},
-      sellCurrencyGroupId: null,
-      buyCurrencyGroup: {},
-      buyCurrencyGroupId: null,
+      //
 
       // form vars
       sell_currency_id: null,
@@ -113,10 +111,10 @@ createApp({
       sellCurrency: {},
       buyCurrency: {},
       calculateData: {},
-      sellCurrencies: {},
-      buyCurrencies: {},
-      allCurrencies: {},
-      allCurrency: {},
+      // sellCurrencies: {},
+      // buyCurrencies: {},
+      // allCurrencies: {},
+      // allCurrency: {},
       counter: 0,
       type: "default",
       myHistory: [],
@@ -133,6 +131,7 @@ createApp({
     TheInformation,
     TheLinks,
     //Blocks
+    TheDetails,
     ThePublicInformation,
     ThePaymentCounter,
     TheShareSocialNetworks,
@@ -148,12 +147,12 @@ createApp({
     TheCopyText,
     TheTable,
     TheTimeProcessing,
-    TheCurrentTime,
     TheAgreement,
     TheCurrenciesList,
-    TheRefresh,
     TheErrorButtons,
     TheCheckbox,
+    TheCurrenciesColumnSell,
+    TheCurrenciesColumnBuy,
     //Buttons
     TheButton,
     //Popups
@@ -181,14 +180,8 @@ createApp({
     IconRandom,
   },
   computed: {
-    getApiHost() {
-      if (this.getLanguage === "en") {
-        return "/en";
-      } else if (this.getLanguage === "ua") {
-        return "/ua";
-      }
-      return "";
-    },
+    ...mapGetters(["getLang"]),
+
     getLanguage() {
       return document.getElementById("language").value;
     },
@@ -200,9 +193,32 @@ createApp({
     },
   },
   methods: {
+    ...mapActions(["fetchGroupsAndCurrencies"]),
+
+    calculationGive() {
+      console.log(typeof this.course.sell);
+      if (this.course.sell !== "1" && this.course.sell !== 1) {
+        console.log("1");
+        this.inputGet = this.inputGive * this.course.sell;
+      } else {
+        console.log("2");
+        this.inputGet = this.inputGive * this.course.buy;
+      }
+    },
+    calculationGet() {
+      console.log(typeof this.course.sell);
+      if (this.course.sell !== "1" && this.course.sell !== 1) {
+        console.log("1");
+        this.inputGive = this.inputGet / this.course.sell;
+      } else {
+        console.log("2");
+        this.inputGive = this.inputGet / this.course.buy;
+      }
+    },
     definitionTheme(theme) {
       this.theme = theme;
     },
+
     setDocumentTitle() {
       document.title = this.calculateData.course_title;
       document
@@ -245,6 +261,7 @@ createApp({
 
       return segments.join("/");
     },
+
     startTimer() {
       this.timer = setInterval(() => {
         this.currentTime--;
@@ -306,7 +323,7 @@ createApp({
       let self = this;
       axios
         .get(
-          "http://proxy.local/" + this.getApiHost + "/json/get-sell-currencies",
+          "http://proxy.local/" + this.getLang + "/json/get-sell-currencies",
           {
             params: {
               buy_currency_id: this.buy_currency_id,
@@ -314,14 +331,14 @@ createApp({
           }
         )
         .then(function (response) {
-          self.sellCurrencies = response.data;
+          self.$store.state.sellCurrencies = response.data;
         });
     },
     fetchBuyCurrencies() {
       let self = this;
       axios
         .get(
-          "http://proxy.local/" + this.getApiHost + "/json/get-buy-currencies",
+          "http://proxy.local/" + this.getLang + "/json/get-buy-currencies",
           {
             params: {
               sell_currency_id: this.sell_currency_id,
@@ -329,7 +346,7 @@ createApp({
           }
         )
         .then(function (response) {
-          self.buyCurrencies = response.data;
+          self.$store.state.buyCurrencies = response.data;
         });
     },
     getQueryParameters() {
@@ -348,7 +365,9 @@ createApp({
       let params = this.getQueryParameters();
       let curFrom = params.get("cur_from");
       if (curFrom !== undefined) {
-        Object.values(this.sellCurrencies).forEach(function (sellCurrency) {
+        Object.values(this.$store.state.sellCurrencies).forEach(function (
+          sellCurrency
+        ) {
           if (sellCurrency.code === curFrom) {
             self.setActiveCurrency("sell", sellCurrency.id);
             return sellCurrency.code === curFrom;
@@ -361,7 +380,9 @@ createApp({
       let params = this.getQueryParameters();
       let curTo = params.get("cur_to");
       if (curTo !== undefined) {
-        Object.values(self.buyCurrencies).forEach(async function (buyCurrency) {
+        Object.values(self.$store.state.buyCurrencies).forEach(async function (
+          buyCurrency
+        ) {
           if (buyCurrency.code === curTo) {
             await self.setActiveCurrency("buy", buyCurrency.id, true, false);
             return buyCurrency.code === curTo;
@@ -369,37 +390,23 @@ createApp({
         });
       }
     },
-    async fetchGroupsAndCurrencies() {
+
+    fetchGroupsAndCurrenciesFromPage() {
       let self = this;
-      await axios
-        .get(
-          "http://proxy.local/" +
-            this.getApiHost +
-            "/json/get-groups-and-currencies"
-        )
-        .then(function (response) {
-          self.currencyGroups = response.data.groups;
-          self.allCurrencies = response.data.allCurrencies;
-          self.sellCurrencies = response.data.allCurrencies;
-          self.buyCurrencies = response.data.buyCurrencies;
-        })
-        .then(function (response) {
+      let data = document.getElementById("preloadGroupsAndCurrencies");
+      if (!data) {
+        this.fetchGroupsAndCurrencies().then(function (response) {
           self.checkLastCurrencies();
           self.checkQueryParameters();
         });
-    },
-    fetchGroupsAndCurrenciesFromPage() {
-      let data = document.getElementById("preloadGroupsAndCurrencies");
-      if (!data) {
-        this.fetchGroupsAndCurrencies();
         return true;
       }
       let json = JSON.parse(data.innerHTML);
 
-      this.currencyGroups = json.groups;
-      this.allCurrencies = json.allCurrencies;
-      this.sellCurrencies = json.allCurrencies;
-      this.buyCurrencies = json.buyCurrencies;
+      this.$store.state.currencyGroups = json.groups;
+      this.$store.state.allCurrencies = json.allCurrencies;
+      this.$store.state.sellCurrencies = json.allCurrencies;
+      this.$store.state.buyCurrencies = json.buyCurrencies;
 
       this.checkLastCurrencies();
       this.checkQueryParameters();
@@ -452,7 +459,7 @@ createApp({
       };
       axios
         .post(
-          "http://proxy.local/" + this.getApiHost + "/json/calculate",
+          "http://proxy.local/" + this.getLang + "/json/calculate",
           qs.stringify({
             sell_currency_id: self.sell_currency_id,
             buy_currency_id: self.buy_currency_id,
@@ -467,10 +474,10 @@ createApp({
           config
         )
         .then(function (response) {
-          self.sellCurrencies = response.data.sellCurrencies;
+          self.$store.state.sellCurrencies = response.data.sellCurrencies;
           self.sell_currency_id = response.data.sell_currency_id;
           self.sellCurrency = response.data.sellCurrency;
-          self.buyCurrencies = response.data.buyCurrencies;
+          self.$store.state.buyCurrencies = response.data.buyCurrencies;
           self.buy_currency_id = response.data.buy_currency_id;
           self.buyCurrency = response.data.buyCurrency;
           self.course = response.data.course;
@@ -488,19 +495,10 @@ createApp({
         });
     },
 
-    setCurrencyGroup(type, i) {
-      this.stopTimer();
-      this[type + "CurrencyGroup"] = this.currencyGroups[i];
-      this[type + "CurrencyGroupId"] = this.currencyGroups[i].id;
-    },
-    resetCurrencyGroup(type) {
-      this.stopTimer();
-      this[type + "CurrencyGroup"] = {};
-      this[type + "CurrencyGroupId"] = null;
-    },
     callbackTimerFinish() {
       this.calculateForm(this.getType);
     },
+
     checkLastCurrencies() {
       let inputHiddenLastSellId = document.getElementById(
         "inputHiddenLastSellId"
@@ -548,4 +546,5 @@ createApp({
   },
 })
   .use(i18n)
+  .use(store)
   .mount("#app");

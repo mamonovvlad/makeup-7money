@@ -21,6 +21,7 @@
 
 <script>
 import axios from "axios";
+import { mapGetters } from "vuex";
 
 export default {
   name: "TheAnswers",
@@ -30,24 +31,16 @@ export default {
     };
   },
   computed: {
-    getLanguage() {
-      return document.getElementById("language").value;
-    },
-    getApiHost() {
-      if (this.getLanguage === "en") {
-        return "/en/";
-      } else if (this.getLanguage === "ua") {
-        return "/ua/";
-      }
-      return "";
-    },
+    ...mapGetters(["getLang"]),
   },
   methods: {
     fetchAnswers() {
       const self = this;
-      axios.get("http://proxy.local/" + this.getApiHost + "/json/faq").then((res) => {
-        self.answers = res.data;
-      });
+      axios
+        .get("http://proxy.local/" + this.getLang + "/json/faq")
+        .then((res) => {
+          self.answers = res.data;
+        });
     },
   },
   mounted() {
@@ -58,6 +51,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
