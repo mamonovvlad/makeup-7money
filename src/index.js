@@ -7,10 +7,7 @@ import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/main.js";
 import store from "./store/store.js";
 
-const qs = require("querystring-es3");
-import axios from "axios";
-
-import { mapActions, mapGetters } from "vuex";
+import { mapMutations, mapActions, mapGetters } from "vuex";
 
 //Style
 import "./assets/scss/main.scss";
@@ -81,34 +78,7 @@ createApp({
       captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
-
       currentTime: 60,
-      showCurrencyExchange: false,
-      currenciesHideSell: false,
-      currenciesHideBuy: false,
-      blockHide: false,
-      detailsHide: false,
-      //
-
-      // form vars
-      sell_currency_id: null,
-      buy_currency_id: null,
-      sell_amount: 0,
-      sell_amount_with_commission: 0,
-      buy_amount: 0,
-      buy_amount_with_commission: 0,
-      sell_source: "",
-      buy_target: "",
-      is_verified: 0,
-      of_exchange: 0,
-      city_id: null,
-
-      // calculate data
-      course: {},
-      sellCurrency: {},
-      buyCurrency: {},
-      calculateData: {},
-      type: "default",
     };
   },
 
@@ -171,84 +141,11 @@ createApp({
     IconRandom,
   },
   computed: {
-    ...mapGetters(["getLang", "colorSpectrum"]),
-
-    getLanguage() {
-      return document.getElementById("language").value;
-    },
-    getType() {
-      if (this.type !== "default" && this.type !== "revert") {
-        return "default";
-      }
-      return this.type;
-    },
+    ...mapGetters(["getLang", "colorSpectrum", "getType"]),
   },
   methods: {
-    ...mapActions(["fetchGroupsAndCurrencies"]),
-
-    calculationGive() {
-      console.log(typeof this.course.sell);
-      if (this.course.sell !== "1" && this.course.sell !== 1) {
-        console.log("1");
-        this.inputGet = this.inputGive * this.course.sell;
-      } else {
-        console.log("2");
-        this.inputGet = this.inputGive * this.course.buy;
-      }
-    },
-    calculationGet() {
-      console.log(typeof this.course.sell);
-      if (this.course.sell !== "1" && this.course.sell !== 1) {
-        console.log("1");
-        this.inputGive = this.inputGet / this.course.sell;
-      } else {
-        console.log("2");
-        this.inputGive = this.inputGet / this.course.buy;
-      }
-    },
-
-    setDocumentTitle() {
-      document.title = this.calculateData.course_title;
-      document
-        .querySelector('meta[name="description"]')
-        .setAttribute("content", this.calculateData.course_description);
-    },
-    setUrl() {
-      let url = "";
-      if (this.getLanguage !== "ru") {
-        url += "/" + this.getLanguage;
-      }
-      if (this.calculateData.length === 0) {
-        history.pushState(false, document.title, url);
-      } else {
-        url +=
-          "/exchange/" +
-          this.sellCurrency.code.toLowerCase() +
-          "/" +
-          this.buyCurrency.code.toLowerCase();
-        history.pushState({}, document.title, url);
-      }
-    },
-    deleteAllHistory() {
-      history.pushState(false, document.title, "/");
-      document
-        .querySelector('meta[name="description"]')
-        .setAttribute("content", "");
-    },
-    getUrlWithoutLanguage() {
-      let link = location.pathname;
-
-      if (link[0] === "/") {
-        link = link.substr(1);
-      }
-
-      let segments = link.split("/");
-      if (segments.length > 0 && segments[0].length === 2) {
-        segments.shift();
-      }
-
-      return segments.join("/");
-    },
+    ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
+    ...mapMutations(["callbackTimerFinish"]),
 
     startTimer() {
       this.timer = setInterval(() => {
@@ -261,268 +158,13 @@ createApp({
     },
 
     //Exchange Templates
-    trashClick() {
-      this.deleteAllHistory();
-      this.showCurrencyExchange = false;
-      this.currenciesHideSell = true;
-      this.currenciesHideBuy = true;
-      this.blockHide = true;
-      this.detailsHide = false;
-      this.sell_currency_id = null;
-      this.buy_currency_id = null;
-      this.stopTimer();
-    },
-    hideBlocks() {
-      let Give = this.sell_currency_id !== null;
-      let Get = this.buy_currency_id !== null;
-
-      if (Give && Get) {
-        this.startTimer();
-        this.showCurrencyExchange = true;
-        this.currenciesHideSell = false;
-        this.currenciesHideBuy = false;
-        this.blockHide = false;
-        this.detailsHide = true;
-      } else if (Give === false) {
-        this.sell_currency_id = null;
-      } else if (Get === false) {
-        this.buy_currency_id = null;
-      }
-    },
-    sellHideBlock() {
-      this.hideBlocks();
-    },
-    buyHideBlock() {
-      this.hideBlocks();
-    },
-
-    refresh() {
-      if (!this.calculateData || this.calculateData.isBackExchange !== 1) {
-        return false;
-      }
-      let tempId = this.buy_currency_id;
-      this.buy_currency_id = this.sell_currency_id;
-      this.sell_currency_id = tempId;
-      if (this.sell_currency_id !== null && this.buy_currency_id !== null) {
-        this.calculateForm(this.getType, true);
-      }
-    },
-    fetchSellCurrencies() {
-      let self = this;
-      axios
-        .get(
-          "http://proxy.local/" + this.getLang + "/json/get-sell-currencies",
-          {
-            params: {
-              buy_currency_id: this.buy_currency_id,
-            },
-          }
-        )
-        .then(function (response) {
-          self.$store.state.sellCurrencies = response.data;
-        });
-    },
-    fetchBuyCurrencies() {
-      let self = this;
-      axios
-        .get(
-          "http://proxy.local/" + this.getLang + "/json/get-buy-currencies",
-          {
-            params: {
-              sell_currency_id: this.sell_currency_id,
-            },
-          }
-        )
-        .then(function (response) {
-          self.$store.state.buyCurrencies = response.data;
-        });
-    },
-    getQueryParameters() {
-      let uri = window.location.search.substring(1);
-      return new URLSearchParams(uri);
-    },
-    checkQueryParameters() {
-      let isSetFrom = this.checkQueryFromParameter();
-      let isSetTo = this.checkQueryToParameter();
-      if (isSetFrom && isSetTo) {
-        this.calculateForm("default");
-      }
-    },
-    checkQueryFromParameter() {
-      let self = this;
-      let params = this.getQueryParameters();
-      let curFrom = params.get("cur_from");
-      if (curFrom !== undefined) {
-        Object.values(this.$store.state.sellCurrencies).forEach(function (
-          sellCurrency
-        ) {
-          if (sellCurrency.code === curFrom) {
-            self.setActiveCurrency("sell", sellCurrency.id);
-            return sellCurrency.code === curFrom;
-          }
-        });
-      }
-    },
-    checkQueryToParameter() {
-      let self = this;
-      let params = this.getQueryParameters();
-      let curTo = params.get("cur_to");
-      if (curTo !== undefined) {
-        Object.values(self.$store.state.buyCurrencies).forEach(async function (
-          buyCurrency
-        ) {
-          if (buyCurrency.code === curTo) {
-            await self.setActiveCurrency("buy", buyCurrency.id, true, false);
-            return buyCurrency.code === curTo;
-          }
-        });
-      }
-    },
-
-    fetchGroupsAndCurrenciesFromPage() {
-      let self = this;
-      let data = document.getElementById("preloadGroupsAndCurrencies");
-      if (!data) {
-        this.fetchGroupsAndCurrencies().then(function (response) {
-          self.checkLastCurrencies();
-          self.checkQueryParameters();
-        });
-        return true;
-      }
-      let json = JSON.parse(data.innerHTML);
-
-      this.$store.state.currencyGroups = json.groups;
-      this.$store.state.allCurrencies = json.allCurrencies;
-      this.$store.state.sellCurrencies = json.allCurrencies;
-      this.$store.state.buyCurrencies = json.buyCurrencies;
-
-      this.checkLastCurrencies();
-      this.checkQueryParameters();
-    },
-    setActiveCurrency(
-      type,
-      id,
-      isCalculate = true,
-      isTrash = true,
-      isSetUrl = true
-    ) {
-      if (type === "sell" && isTrash) {
-        this.trashClick();
-      }
-      this.stopTimer();
-      this[type + "_currency_id"] = id;
-      this[type + "HideBlock"]();
-      if (this.sell_currency_id === null && this.buy_currency_id !== null) {
-        this.fetchSellCurrencies();
-      }
-      if (this.sell_currency_id !== null && this.buy_currency_id === null) {
-        this.fetchBuyCurrencies();
-      }
-      if (
-        isCalculate &&
-        this.sell_currency_id !== null &&
-        this.buy_currency_id !== null
-      ) {
-        this.calculateForm(this.getType, true);
-        if (isSetUrl) {
-          let self = this;
-          setTimeout(function () {
-            self.setUrl();
-          }, 1000);
-        }
-      }
-    },
-
-    calculateForm(type = "default", refresh = false) {
-      let self = this;
-      document
-        .querySelectorAll(".form-exchange .field-error")
-        .forEach(function (el, i) {
-          el.innerHTML = "";
-        });
-      const config = {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      };
-      axios
-        .post(
-          "http://proxy.local/" + this.getLang + "/json/calculate",
-          qs.stringify({
-            sell_currency_id: self.sell_currency_id,
-            buy_currency_id: self.buy_currency_id,
-            sell_amount: self.sell_amount,
-            buy_amount: self.buy_amount,
-            is_verified: self.is_verified,
-            type: type,
-            city_id: self.city_id,
-            lang: self.getLanguage,
-            refresh: refresh,
-          }),
-          config
-        )
-        .then(function (response) {
-          self.$store.state.sellCurrencies = response.data.sellCurrencies;
-          self.sell_currency_id = response.data.sell_currency_id;
-          self.sellCurrency = response.data.sellCurrency;
-          self.$store.state.buyCurrencies = response.data.buyCurrencies;
-          self.buy_currency_id = response.data.buy_currency_id;
-          self.buyCurrency = response.data.buyCurrency;
-          self.course = response.data.course;
-          self.calculateData = response.data;
-          self.sell_amount = response.data.sell_amount;
-          self.sell_amount_with_commission =
-            response.data.sell_amount_with_comission;
-          self.buy_amount = response.data.buy_amount;
-          self.buy_amount_with_commission =
-            response.data.buy_amount_with_comission;
-          if (refresh) self.sell_source = response.data.sell_source;
-          if (refresh) self.buy_target = response.data.buy_target;
-
-          self.setDocumentTitle();
-        });
-    },
-
-    callbackTimerFinish() {
-      this.calculateForm(this.getType);
-    },
-
-    checkLastCurrencies() {
-      let inputHiddenLastSellId = document.getElementById(
-        "inputHiddenLastSellId"
-      );
-      let inputHiddenLastBuyId = document.getElementById(
-        "inputHiddenLastBuyId"
-      );
-      if (inputHiddenLastSellId && inputHiddenLastBuyId) {
-        if (inputHiddenLastSellId.value > 0) {
-          this.setActiveCurrency(
-            "sell",
-            parseInt(inputHiddenLastSellId.value),
-            true,
-            false,
-            false
-          );
-        }
-        if (inputHiddenLastBuyId.value > 0) {
-          this.setActiveCurrency(
-            "buy",
-            parseInt(inputHiddenLastBuyId.value),
-            true,
-            false,
-            false
-          );
-        }
-      }
-    },
   },
   mounted() {
-    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
-  },
-  created() {
     this.fetchGroupsAndCurrenciesFromPage();
+    // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    // this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
+  created() {},
   watch: {
     currentTime(time) {
       if (time === 0) {

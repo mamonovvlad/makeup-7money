@@ -14,7 +14,7 @@
         :data-group="currency.group.name"
         :data-id="currency.id"
         class="item"
-        @click="activeCurrency(currencyName, currency.id)"
+        @click="setActive(currencyName, currency.id)"
       >
         <div class="name">
           <span :class="currency.code"></span>
@@ -43,6 +43,7 @@
 <script>
 import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
 import TheRefresh from "./TheRefresh.vue";
+import { mapMutations } from "vuex";
 
 export default {
   props: {
@@ -65,10 +66,6 @@ export default {
       type: String,
       default: "",
     },
-    activeCurrency: {
-      type: Function,
-      default: () => {},
-    },
   },
   name: "TheCurrenciesList",
   data() {
@@ -82,6 +79,10 @@ export default {
     TheRefresh,
   },
   methods: {
+    ...mapMutations(["setActiveCurrency"]),
+    setActive(currencyName, id) {
+      this.setActiveCurrency([currencyName, id]);
+    },
     toggle() {
       let currenciesList = this.$refs.currenciesList;
       let currenciesWrapper = this.$refs.currenciesWrapper;

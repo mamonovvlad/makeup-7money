@@ -3,17 +3,17 @@
     <div class="details__wrapper stylish-wrapper">
       <div class="title__wrapper">
         <the-title tag="h1" class="subtitle">
-          {{ title }}
+          {{ course.title_ru }}
         </the-title>
         <the-current-time
           :current-time="currentTime"
-          :course-sell="courseSell"
-          :course-buy="courseBuy"
+          :course-sell="course.sell"
+          :course-buy="course.buy"
         >
         </the-current-time>
       </div>
       <the-steps
-        @button="comeBack"
+        @button="trashClick"
         :show-button="true"
         :data-input="true"
       ></the-steps>
@@ -25,8 +25,8 @@
       <!--Конец Формы-->
     </div>
     <the-information
-      v-if="calculateDataCourseText"
-      v-html="calculateDataCourseText"
+      v-if="courseText.course_seo_text"
+      v-html="courseText.course_seo_text"
     >
     </the-information>
   </div>
@@ -37,27 +37,14 @@ import TheSteps from "./TheSteps.vue";
 import TheTitle from "./TheTitle.vue";
 import TheCurrentTime from "./TheCurrentTime.vue";
 import TheInformation from "./TheInformation.vue";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "TheDetails",
   props: {
-    courseSell: {
-      type: [Number, String],
-      default: 0,
-    },
-    courseBuy: {
-      type: [Number, String],
-      default: 0,
-    },
     currentTime: {
       type: [Number, String],
       default: 0,
-    },
-    title: {
-      type: String,
-    },
-    calculateDataCourseText: {
-      type: String,
     },
   },
   data() {
@@ -72,10 +59,11 @@ export default {
     TheTitle,
     TheSteps,
   },
+  computed: {
+    ...mapGetters(["courseText", "course"]),
+  },
   methods: {
-    comeBack() {
-      this.$emit("comeBack");
-    },
+    ...mapMutations(["trashClick"]),
   },
 };
 </script>

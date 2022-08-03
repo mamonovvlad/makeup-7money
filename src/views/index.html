@@ -34,139 +34,124 @@
           />
           <div class="currencies">
             <the-currencies-column-sell
-              :hide="currenciesHideSell"
-              :callback-currency-id="sell_currency_id"
-              :callback-active-currency="setActiveCurrency"
-              @refresh="refresh"
+              :hide="$store.state.currenciesHideSell"
             ></the-currencies-column-sell>
-            <the-currencies-column-buy
-              :hide="currenciesHideBuy"
-              :callback-currency-id="buy_currency_id"
-              :callback-active-currency="setActiveCurrency"
-            >
+            <the-currencies-column-buy :hide="$store.state.currenciesHideBuy">
             </the-currencies-column-buy>
 
             <transition name="details-hide">
-              <template v-if="showCurrencyExchange">
-                <the-details
-                  @come-back="trashClick"
-                  :title="course.title_ru"
-                  :current-time="currentTime"
-                  :course-sell="course.sell"
-                  :course-buy="course.buy"
-                  :calculate-data-course-text="calculateData.course_seo_text"
+              <the-details
+                v-if="$store.state.showCurrencyExchange"
+                :current-time="currentTime"
+              >
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-sell_amount"
+                      name="OrderForm[sell_amount]"
+                      :aria-invalid="true"
+                    >
+                      <template #label> Отдаю</template>
+                      <template #icon>
+                        <span class="PMUSD"></span>
+                      </template>
+                    </the-field>
+                    <div class="min__max">
+                      <span>
+                        Min:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                      <span>
+                        Max:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                    </div>
+                    <the-checkbox name-id="orderf">
+                      Мой кошелёк Perfect Money верифицирован Для не
+                      верифицированных кошельков комиссия больше на 1.5%
+                    </the-checkbox>
+                  </div>
+                  <div class="item">
+                    <the-field
+                      class="item__lacks"
+                      name-id="orderform-buy_amount"
+                      name="OrderForm[buy_amount]"
+                      :aria-invalid="false"
+                    >
+                      <template #label>
+                        Получаю
+                        <the-lacks></the-lacks>
+                      </template>
+                      <template #icon>
+                        <span class="PMUSD"></span>
+                      </template>
+                    </the-field>
+                    <div class="min__max">
+                      <span>
+                        Min:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                      <span>
+                        Max:
+                        <strong>0.004 BTC</strong>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-buy_target"
+                      name="OrderForm[buy_target]"
+                    >
+                      <template #label> Зачислить на этот адрес</template>
+                    </the-field>
+                  </div>
+                  <div class="item">
+                    <the-checkbox name-id="orderform-of_exchange">
+                      Отправляю с биржи
+                    </the-checkbox>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="exchange_mail"
+                      name-placeholder="you@gmail.com"
+                      :required="true"
+                      :aria-required="true"
+                      name="OrderForm[email]"
+                    >
+                      <template #label> Электронная почта</template>
+                    </the-field>
+                  </div>
+                </div>
+                <the-agreement></the-agreement>
+                <the-button
+                  id="order-submit"
+                  tag="button"
+                  class="disabled"
+                  disabled="disabled"
                 >
-                  <div class="items__wrapper">
-                    <div class="item">
-                      <the-field
-                        @input="calculationGive"
-                        name-type="text"
-                        name-id="orderform-sell_amount"
-                        name="OrderForm[sell_amount]"
-                        :aria-invalid="true"
-                      >
-                        <template #label> Отдаю</template>
-                        <template #icon>
-                          <span class="PMUSD"></span>
-                        </template>
-                      </the-field>
-                      <div class="min__max">
-                        <span>
-                          Min:
-                          <strong>0.004 BTC</strong>
-                        </span>
-                        <span>
-                          Max:
-                          <strong>0.004 BTC</strong>
-                        </span>
-                      </div>
-                      <the-checkbox name-id="orderf">
-                        Мой кошелёк Perfect Money верифицирован Для не
-                        верифицированных кошельков комиссия больше на 1.5%
-                      </the-checkbox>
-                    </div>
-                    <div class="item">
-                      <the-field
-                        @input="calculationGet"
-                        class="item__lacks"
-                        name-id="orderform-buy_amount"
-                        name="OrderForm[buy_amount]"
-                        :aria-invalid="false"
-                      >
-                        <template #label>
-                          Получаю
-                          <the-lacks></the-lacks>
-                        </template>
-                        <template #icon>
-                          <span class="PMUSD"></span>
-                        </template>
-                      </the-field>
-                      <div class="min__max">
-                        <span>
-                          Min:
-                          <strong>0.004 BTC</strong>
-                        </span>
-                        <span>
-                          Max:
-                          <strong>0.004 BTC</strong>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="line"></div>
-                  <div class="items__wrapper">
-                    <div class="item">
-                      <the-field
-                        name-type="text"
-                        name-id="orderform-buy_target"
-                        name="OrderForm[buy_target]"
-                      >
-                        <template #label> Зачислить на этот адрес</template>
-                      </the-field>
-                    </div>
-                    <div class="item">
-                      <the-checkbox name-id="orderform-of_exchange">
-                        Отправляю с биржи
-                      </the-checkbox>
-                    </div>
-                  </div>
-                  <div class="line"></div>
-                  <div class="items__wrapper">
-                    <div class="item">
-                      <the-field
-                        name-type="text"
-                        name-id="exchange_mail"
-                        name-placeholder="you@gmail.com"
-                        :required="true"
-                        :aria-required="true"
-                        name="OrderForm[email]"
-                      >
-                        <template #label> Электронная почта</template>
-                      </the-field>
-                    </div>
-                  </div>
-                  <the-agreement></the-agreement>
-                  <the-button
-                    id="order-submit"
-                    tag="button"
-                    class="disabled"
-                    disabled="disabled"
-                  >
-                    <template #name> Обменять</template>
-                  </the-button>
-                </the-details>
-              </template>
+                  <template #name> Обменять</template>
+                </the-button>
+              </the-details>
             </transition>
           </div>
 
           <!--Success-->
-          <the-achievements v-if="blockHide"></the-achievements>
+          <the-achievements v-if="$store.state.blockHide"></the-achievements>
           <!--Reserves-->
-          <the-reserves v-if="blockHide"></the-reserves>
+          <the-reserves v-if="$store.state.blockHide"></the-reserves>
           <!--End Reserves-->
-          <the-slider v-if="blockHide"></the-slider>
+          <the-slider v-if="$store.state.blockHide"></the-slider>
           <!--Info-->
-          <the-information v-if="blockHide">
+          <the-information v-if="$store.state.blockHide">
             <h1>Криптообменник №1</h1>
             <p>
               Выбирая криптообменник, пользователь заинтересован в
@@ -270,13 +255,13 @@
             </p>
           </the-information>
           <!--links-->
-          <the-links v-if="blockHide"></the-links>
+          <the-links v-if="$store.state.blockHide"></the-links>
         </main>
         <the-footer></the-footer>
       </div>
     </div>
     <input id="login" type="hidden" value="0" />
-    <input id="language" type="hidden" value="ru" />
+    <input id="language" type="hidden" value="en" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>
 </html>

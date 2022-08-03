@@ -27,12 +27,11 @@
       :currencies-hide="hide"
       :currency-group="getSellCurrencyGroup.name"
       :currencies="allCurrencies"
-      :currency-id="callbackCurrencyId"
+      :currency-id="sellCurrencyId"
       currency-name="sell"
-      :active-currency="callbackActiveCurrency"
     >
     </the-currencies-list>
-    <the-refresh v-if="!hide" @click="$emit('refresh')"></the-refresh>
+    <the-refresh v-if="!hide" @click="refresh"></the-refresh>
   </div>
 </template>
 
@@ -49,14 +48,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    callbackActiveCurrency: {
-      type: Function,
-      default: () => {},
-    },
-    callbackCurrencyId: {
-      type: [String, Number],
-      default: "",
-    },
   },
   components: {
     TheTitle,
@@ -69,15 +60,23 @@ export default {
       "allCurrencies",
       "getSellCurrencyGroup",
       "getSellCurrencyGroupId",
+      "sellCurrencyId",
     ]),
   },
   methods: {
-    ...mapMutations(["setCurrencyGroup", "setResetCurrencyGroup"]),
+    ...mapMutations([
+      "setCurrencyGroup",
+      "setResetCurrencyGroup",
+      "setRefresh",
+    ]),
     setGroup(type, idx) {
       this.setCurrencyGroup([type, idx]);
     },
     setResetGrout(type) {
       this.setResetCurrencyGroup(type);
+    },
+    refresh() {
+      this.setRefresh();
     },
   },
 };

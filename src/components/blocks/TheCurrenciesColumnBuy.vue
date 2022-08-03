@@ -33,9 +33,8 @@
       :currencies-hide="hide"
       :currency-group="getBuyCurrencyGroup.name"
       :currencies="buyCurrencies"
-      :currency-id="callbackCurrencyId"
+      :currency-id="buyCurrencyId"
       currency-name="buy"
-      :active-currency="callbackActiveCurrency"
     >
     </the-currencies-list>
   </div>
@@ -54,14 +53,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    callbackActiveCurrency: {
-      type: Function,
-      default: () => {},
-    },
-    callbackCurrencyId: {
-      type: [String, Number],
-      default: "",
-    },
   },
   components: {
     TheTitle,
@@ -74,16 +65,15 @@ export default {
       "buyCurrencies",
       "getBuyCurrencyGroup",
       "getBuyCurrencyGroupId",
+      "buyCurrencyId",
     ]),
   },
   methods: {
     ...mapMutations(["setCurrencyGroup", "setResetCurrencyGroup"]),
     setGroup(type, idx) {
-      console.log(type);
       this.setCurrencyGroup([type, idx]);
     },
     setResetGrout(type) {
-      console.log(type);
       this.setResetCurrencyGroup(type);
     },
   },
