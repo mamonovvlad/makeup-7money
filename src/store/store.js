@@ -175,6 +175,8 @@ const store = createStore({
       }
     },
     setActiveCurrency(state, arr) {
+      console.log(arr);
+      console.log(arr[0], "sell" && arr[3]);
       if (arr[0] === "sell" && arr[3]) {
         this.commit("trashClick");
       }
