@@ -33,17 +33,11 @@
             value="2"
           />
           <div class="currencies">
-            <the-currencies-column-sell
-              :hide="$store.state.currenciesHideSell"
-            ></the-currencies-column-sell>
-            <the-currencies-column-buy :hide="$store.state.currenciesHideBuy">
-            </the-currencies-column-buy>
+            <the-currencies-column-sell> </the-currencies-column-sell>
+            <the-currencies-column-buy> </the-currencies-column-buy>
 
             <transition name="details-hide">
-              <the-details
-                v-if="$store.state.showCurrencyExchange"
-                :current-time="currentTime"
-              >
+              <the-details>
                 <div class="items__wrapper">
                   <div class="item">
                     <the-field
@@ -261,7 +255,7 @@
       </div>
     </div>
     <input id="login" type="hidden" value="0" />
-    <input id="language" type="hidden" value="en" />
+    <input id="language" type="hidden" value="ru" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>
 </html>

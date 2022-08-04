@@ -78,7 +78,6 @@ createApp({
       captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
-      currentTime: 60,
     };
   },
 
@@ -146,33 +145,11 @@ createApp({
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
     ...mapMutations(["callbackTimerFinish"]),
-
-    startTimer() {
-      this.timer = setInterval(() => {
-        this.currentTime--;
-      }, 1000);
-    },
-    stopTimer() {
-      clearTimeout(this.timer);
-      this.currentTime = 60;
-    },
-
-    //Exchange Templates
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
     // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     // this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
-  },
-  created() {},
-  watch: {
-    currentTime(time) {
-      if (time === 0) {
-        this.stopTimer();
-        this.startTimer();
-        this.callbackTimerFinish();
-      }
-    },
   },
 })
   .use(i18n)

@@ -3,32 +3,33 @@
     <div class="wrapper">
       <strong class="time">{{ currentTime }}</strong>
       Курс:
-      <strong class="course">{{ courseSell }} к {{ courseBuy }}</strong>
+      <strong class="course">{{ course.sell }} к {{ course.buy }}</strong>
     </div>
   </the-animation-border>
 </template>
-
 <script>
 import TheAnimationBorder from "./TheAnimationBorder.vue";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
-  props: {
-    courseSell: {
-      type: [Number, String],
-      default: 0,
-    },
-    courseBuy: {
-      type: [Number, String],
-      default: 0,
-    },
-    currentTime: {
-      type: [Number, String],
-      default: 0,
-    },
-  },
   name: "TheCurrentTime",
   components: {
     TheAnimationBorder,
+  },
+  computed: {
+    ...mapGetters(["currentTime", "course"]),
+  },
+  methods: {
+    ...mapMutations(["startTimer", "stopTimer", "callbackTimerFinish"]),
+  },
+  watch: {
+    currentTime(time) {
+      if (time === 0) {
+        this.stopTimer();
+        this.startTimer();
+        this.callbackTimerFinish();
+      }
+    },
   },
 };
 </script>
@@ -37,7 +38,7 @@ export default {
 .current-time {
   max-width: max-content;
   width: 100%;
-  & .wrapper{
+  & .wrapper {
     display: flex;
     align-items: center;
     column-gap: 10px;
@@ -53,6 +54,4 @@ export default {
     color: var(--primary);
   }
 }
-
-
 </style>

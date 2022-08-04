@@ -1,16 +1,11 @@
 <template>
-  <div class="details">
+  <div class="details" v-if="showCurrencyExchange">
     <div class="details__wrapper stylish-wrapper">
       <div class="title__wrapper">
         <the-title tag="h1" class="subtitle">
           {{ course.title_ru }}
         </the-title>
-        <the-current-time
-          :current-time="currentTime"
-          :course-sell="course.sell"
-          :course-buy="course.buy"
-        >
-        </the-current-time>
+        <the-current-time></the-current-time>
       </div>
       <the-steps
         @button="trashClick"
@@ -41,12 +36,6 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "TheDetails",
-  props: {
-    currentTime: {
-      type: [Number, String],
-      default: 0,
-    },
-  },
   data() {
     return {
       csrfToken: null,
@@ -60,7 +49,7 @@ export default {
     TheSteps,
   },
   computed: {
-    ...mapGetters(["courseText", "course"]),
+    ...mapGetters(["courseText", "course", "showCurrencyExchange"]),
   },
   methods: {
     ...mapMutations(["trashClick"]),

@@ -37,8 +37,19 @@ const store = createStore({
     currenciesHideBuy: false,
     blockHide: false,
     detailsHide: false,
+    currentTime: 60,
+    timer: null,
   }, //Хранения данных
   mutations: {
+    startTimer(state) {
+      state.timer = setInterval(() => {
+        state.currentTime--;
+      }, 1000);
+    },
+    stopTimer(state) {
+      clearTimeout(state.timer);
+      state.currentTime = 60;
+    },
     setDocumentTitle(state) {
       document.title = state.calculateData.course_title;
       document
@@ -94,13 +105,13 @@ const store = createStore({
       state.sellCurrencies = response.data;
     },
     setCurrencyGroup(state, payload) {
-      // this.stopTimer();
+      this.commit("stopTimer");
       state[payload[0] + "CurrencyGroup"] = state.currencyGroups[payload[1]];
       state[payload[0] + "CurrencyGroupId"] =
         state.currencyGroups[payload[1]].id;
     },
     setResetCurrencyGroup(state, payload) {
-      // this.stopTimer();
+      this.commit("stopTimer");
       state[payload + "CurrencyGroup"] = {};
       state[payload + "CurrencyGroupId"] = null;
     },
@@ -174,15 +185,16 @@ const store = createStore({
         });
       }
     },
-    setActiveCurrency(state, arr) {
-      console.log(arr);
-      console.log(arr[0], "sell" && arr[3]);
-      if (arr[0] === "sell" && arr[3]) {
+    setActiveCurrency(
+      state,
+      [type, id, isCalculate = true, isTrash = true, isSetUrl = true]
+    ) {
+      if (type === "sell" && isTrash) {
         this.commit("trashClick");
       }
-      // this.stopTimer();
-      state[arr[0] + "_currency_id"] = arr[1];
-      this.commit(`${arr[0]}HideBlock`);
+      this.commit("stopTimer");
+      state[type + "_currency_id"] = id;
+      this.commit(`${type}HideBlock`);
       if (state.sell_currency_id === null && state.buy_currency_id !== null) {
         this.dispatch("fetchSellCurrencies");
       }
@@ -190,32 +202,16 @@ const store = createStore({
         this.dispatch("fetchBuyCurrencies");
       }
       if (
-        arr[2] &&
+        isCalculate &&
         state.sell_currency_id !== null &&
         state.buy_currency_id !== null
       ) {
         this.dispatch("calculateForm", [store.getters.getType, true]);
-        if (arr[4]) {
-          setTimeout(function () {
-            this.commit("setUrl");
+        if (isSetUrl) {
+          setTimeout(() => {
+            this.commit("setGetUrl");
           }, 1000);
         }
-      }
-    },
-    setUrl(state, getters) {
-      let url = "";
-      if (getters.getLanguage !== "ru") {
-        url += "/" + getters.getLanguage;
-      }
-      if (state.calculateData.length === 0) {
-        history.pushState(false, document.title, url);
-      } else {
-        url +=
-          "/exchange/" +
-          state.sellCurrency.code.toLowerCase() +
-          "/" +
-          state.buyCurrency.code.toLowerCase();
-        history.pushState({}, document.title, url);
       }
     },
     setRefresh(state) {
@@ -241,14 +237,14 @@ const store = createStore({
       state.detailsHide = false;
       state.sell_currency_id = null;
       state.buy_currency_id = null;
-      // this.stopTimer();
+      this.commit("stopTimer");
     },
     hideBlocks(state) {
       let Give = state.sell_currency_id !== null;
       let Get = state.buy_currency_id !== null;
 
       if (Give && Get) {
-        // this.startTimer();
+        this.commit("startTimer");
         state.showCurrencyExchange = true;
         state.currenciesHideSell = false;
         state.currenciesHideBuy = false;
@@ -272,9 +268,28 @@ const store = createStore({
         .querySelector('meta[name="description"]')
         .setAttribute("content", "");
     },
+    setGetUrl(state) {
+      let url = "";
+      if (store.getters.getLanguage !== "ru") {
+        url += "/" + store.getters.getLanguage;
+      }
+      if (state.calculateData.length === 0) {
+        history.pushState(false, document.title, url);
+      } else {
+        url +=
+          "/exchange/" +
+          state.sellCurrency.code.toLowerCase() +
+          "/" +
+          state.buyCurrency.code.toLowerCase();
+        history.pushState({}, document.title, url);
+      }
+    },
   }, //Функция для изменения state
   actions: {
-    calculateForm({ state, commit, getters }, arr) {
+    calculateForm(
+      { state, commit, getters },
+      [type = "default", refresh = false]
+    ) {
       document
         .querySelectorAll(".form-exchange .field-error")
         .forEach(function (el, i) {
@@ -294,15 +309,15 @@ const store = createStore({
             sell_amount: state.sell_amount,
             buy_amount: state.buy_amount,
             is_verified: state.is_verified,
-            type: arr[0],
+            type: type,
             city_id: state.city_id,
             lang: getters.getLanguage,
-            refresh: arr[1],
+            refresh: refresh,
           }),
           config
         )
         .then(function (response) {
-          commit("setCalculateForm", response, arr[1]);
+          commit("setCalculateForm", response, refresh);
         });
     },
     fetchGroupsAndCurrencies({ commit, getters }) {
@@ -407,6 +422,18 @@ const store = createStore({
     },
     course(state) {
       return state.course;
+    },
+    currentTime(state) {
+      return state.currentTime;
+    },
+    currenciesHideSell(state) {
+      return state.currenciesHideSell;
+    },
+    currenciesHideBuy(state) {
+      return state.currenciesHideBuy;
+    },
+    showCurrencyExchange(state) {
+      return state.showCurrencyExchange;
     },
   }, // Получения state
 });

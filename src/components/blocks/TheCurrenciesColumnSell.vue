@@ -1,9 +1,9 @@
 <template>
   <div
     class="currencies-column stylish-wrapper"
-    :class="{ 'currencies-hide': !hide }"
+    :class="{ 'currencies-hide': !currenciesHideSell }"
   >
-    <template v-if="hide">
+    <template v-if="currenciesHideSell">
       <the-title tag="h2" class="subtitle"> Отдаю</the-title>
       <ul class="filters">
         <li
@@ -24,14 +24,14 @@
       <div class="line"></div>
     </template>
     <the-currencies-list
-      :currencies-hide="hide"
+      :currencies-hide="currenciesHideSell"
       :currency-group="getSellCurrencyGroup.name"
       :currencies="allCurrencies"
       :currency-id="sellCurrencyId"
       currency-name="sell"
     >
     </the-currencies-list>
-    <the-refresh v-if="!hide" @click="refresh"></the-refresh>
+    <the-refresh v-if="!currenciesHideSell" @click="refresh"></the-refresh>
   </div>
 </template>
 
@@ -43,12 +43,6 @@ import { mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "TheCurrenciesColumn",
-  props: {
-    hide: {
-      type: Boolean,
-      default: false,
-    },
-  },
   components: {
     TheTitle,
     TheRefresh,
@@ -61,6 +55,7 @@ export default {
       "getSellCurrencyGroup",
       "getSellCurrencyGroupId",
       "sellCurrencyId",
+      "currenciesHideSell",
     ]),
   },
   methods: {
