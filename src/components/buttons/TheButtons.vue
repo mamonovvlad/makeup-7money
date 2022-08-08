@@ -1,18 +1,22 @@
 <template>
   <div class="block">
-    <div v-for="(button, idx) in buttons"
-         :key="idx"
-         class="button--small"
-         :class="{'active' :button.isActive}">
+    <div
+      v-for="(button, idx) in buttons"
+      :key="idx"
+      class="button--small"
+      :class="{ active: button.isActive }"
+    >
       <span class="icon" :class="button.className">
         <button class="btn" @click="openMenu(idx)">
           <component :is="button.icon"></component>
         </button>
         <transition :name="button.animate">
-          <component :is="button.block"
-                     @open="indexTransfer"
-                     @hideBurger="hideBurger(idx)"
-                     v-show="button.isActive">
+          <component
+            :is="button.block"
+            @open="indexTransfer"
+            @hideBurger="hideBurger(idx)"
+            v-show="button.isActive"
+          >
           </component>
         </transition>
       </span>
@@ -120,7 +124,6 @@ export default {
 <style lang="scss">
 @import "../../assets/scss/utils/mixin";
 
-
 .button--small {
   position: relative;
   width: 50px;
@@ -146,7 +149,6 @@ export default {
     height: 100%;
     background: var(--seventh);
     transition: var(--transition);
-
   }
 
   & .btn {
@@ -155,7 +157,7 @@ export default {
     padding: 12px;
     background: transparent;
     @include _768 {
-      padding: 9px;
+      padding: 8px;
     }
 
     &:after {
@@ -163,9 +165,13 @@ export default {
       background: transparent;
       position: absolute;
       height: 50px;
-      width: 100%;
+      width: 50px;
       left: 0;
       top: 0;
+      @include _768 {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 
@@ -209,7 +215,10 @@ export default {
     }
 
     & .languages {
-      height: 135px;
+      height: 130px;
+      @include _768 {
+        height: 115px;
+      }
     }
 
     & .account--active {
@@ -217,6 +226,4 @@ export default {
     }
   }
 }
-
-
 </style>

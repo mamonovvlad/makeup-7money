@@ -1,6 +1,6 @@
 <template>
   <div
-    class="currencies-column stylish-wrapper"
+    class="currencies-column stylish-wrapper column--buy"
     :class="{ 'currencies-hide': !currenciesHideBuy }"
   >
     <template v-if="currenciesHideBuy">
@@ -11,22 +11,7 @@
           <button>Резервы</button>
         </div>
       </div>
-      <ul class="filters">
-        <li
-          :class="{ active: getBuyCurrencyGroupId == null }"
-          @click="setResetGrout('buy')"
-        >
-          ALL
-        </li>
-        <li
-          v-for="(group, i) in getCurrencyGroups"
-          :key="i"
-          :class="{ active: group.id === getBuyCurrencyGroupId }"
-          @click="setGroup('buy', i)"
-        >
-          {{ group.name }}
-        </li>
-      </ul>
+      <the-filters :group-id="getBuyCurrencyGroupId" type="buy"></the-filters>
       <div class="line"></div>
     </template>
     <the-currencies-list
@@ -42,35 +27,41 @@
 
 <script>
 import TheTitle from "./TheTitle.vue";
-import TheRefresh from "./TheRefresh.vue";
+import TheFilters from "./TheFilters.vue";
 import TheCurrenciesList from "./TheCurrenciesList.vue";
-import { mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "TheCurrenciesColumn",
   components: {
     TheTitle,
-    TheRefresh,
+    TheFilters,
     TheCurrenciesList,
   },
   computed: {
     ...mapGetters([
-      "getCurrencyGroups",
       "buyCurrencies",
       "getBuyCurrencyGroup",
       "getBuyCurrencyGroupId",
       "buyCurrencyId",
       "currenciesHideBuy",
+      "getRateReserves",
     ]),
   },
   methods: {
-    ...mapMutations(["setCurrencyGroup", "setResetCurrencyGroup"]),
-    setGroup(type, idx) {
-      this.setCurrencyGroup([type, idx]);
-    },
-    setResetGrout(type) {
-      this.setResetCurrencyGroup(type);
-    },
+    ...mapActions(["fetchRateReserves"]),
+  },
+  mounted() {
+    this.fetchRateReserves();
   },
 };
 </script>
+
+<style lang="scss">
+//@import "../../assets/scss/utils/mixin";
+//.column--buy {
+//  @include _768 {
+//    display: none;
+//  }
+//}
+</style>

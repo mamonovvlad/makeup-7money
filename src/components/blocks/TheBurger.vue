@@ -54,7 +54,6 @@ export default {
   width: 100%;
   z-index: 4;
 
-
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -102,12 +101,12 @@ export default {
     @include _768 {
       margin: 0 10px;
     }
+  }
 
-    & .toggle__theme {
-      display: none;
-      @include _576 {
-        display: block;
-      }
+  & .toggle__theme {
+    display: none;
+    @include _768 {
+      display: block;
     }
   }
 
@@ -133,6 +132,5 @@ export default {
       width: 100%;
     }
   }
-
 }
 </style>

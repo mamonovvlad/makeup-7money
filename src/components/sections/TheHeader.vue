@@ -141,13 +141,7 @@ export default {
       }
     }
 
-    & .button__share {
-      @include _576 {
-        display: none;
-      }
-    }
-
-    & .toggle__theme {
+    & > .toggle__theme {
       @include _768 {
         display: none;
       }
@@ -161,7 +155,7 @@ export default {
     }
     @include _576 {
       position: absolute;
-      top: 5px;
+      top: -40px;
     }
 
     & span {

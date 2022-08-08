@@ -1,7 +1,9 @@
 <template>
   <div class="authorization__buttons">
     <template v-if="isShow">
-      <button v-for="(button ,idx) in buttons" @click="$emit('open',idx)"> {{ $t(`${button.name}`) }}</button>
+      <button v-for="(button, idx) in buttons" @click="$emit('open', idx)">
+        {{ $t(`${button.name}`) }}
+      </button>
     </template>
     <template v-else>
       <a :href="$t('personalAccountLink')">
@@ -43,8 +45,8 @@ export default {
 };
 </script>
 
-
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
 .authorization__buttons {
   position: absolute;
   background-color: var(--seventh);
@@ -56,6 +58,9 @@ export default {
   left: 0;
   text-align: left;
   z-index: 1;
+  @include _768 {
+    top: 55px;
+  }
 
   &:after {
     content: "";
@@ -66,7 +71,8 @@ export default {
     border-bottom: 14px solid var(--seventh);
   }
 
-  & button, a {
+  & button,
+  a {
     background-color: var(--transparent);
     font-size: 18px;
     font-weight: 600;
@@ -74,7 +80,9 @@ export default {
     text-decoration: none;
     width: max-content;
     line-height: 140%;
+    @include _768 {
+      font-size: 16px;
+    }
   }
-
 }
 </style>

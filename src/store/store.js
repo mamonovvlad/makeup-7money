@@ -14,6 +14,7 @@ const store = createStore({
     sellCurrencyGroupId: null,
     buyCurrencyGroup: {},
     buyCurrencyGroupId: null,
+    rateReserves: {},
     //form
     sell_currency_id: null,
     buy_currency_id: null,
@@ -284,6 +285,9 @@ const store = createStore({
         history.pushState({}, document.title, url);
       }
     },
+    setRateReserves(state, res) {
+      state.rateReserves = res;
+    },
   }, //Функция для изменения state
   actions: {
     calculateForm(
@@ -368,6 +372,19 @@ const store = createStore({
       let json = JSON.parse(data.innerHTML);
       commit("setGroupsAndCurrenciesFromPage", json);
     },
+    fetchRateReserves({ state, commit, getters }) {
+      axios
+        .get(
+          `https://proxy.local/v1/course/rate-reserves?sell_currency_id=3&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json`
+        )
+        .then((res) => {
+          console.log(res);
+          commit("setRateReserves", res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   }, //Функции асинхронные
   getters: {
     getType(state) {
@@ -401,6 +418,9 @@ const store = createStore({
     },
     getCurrencyGroups(state) {
       return state.currencyGroups;
+    },
+    getRateReserves(state) {
+      return state.rateReserves;
     },
     allCurrencies(state) {
       return state.allCurrencies;

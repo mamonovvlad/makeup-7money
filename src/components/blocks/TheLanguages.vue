@@ -1,8 +1,11 @@
 <template>
-
-  <a v-for="link in languages" :href="link.url"
-     @click.prevent="defineLanguage(link.name)" :class="{'active': getLanguage === link.name }">{{ link.name }}</a>
-
+  <a
+    v-for="link in languages"
+    :href="link.url"
+    @click.prevent="defineLanguage(link.name)"
+    :class="{ active: getLanguage === link.name }"
+    >{{ link.name }}</a
+  >
 </template>
 
 <script>
@@ -24,7 +27,6 @@ export default {
           url: "/en",
         },
       ],
-
     };
   },
   computed: {
@@ -54,8 +56,6 @@ export default {
       if (this.getLanguage !== name) {
         window.location = `/${name}/` + this.getUrlWithoutLanguage();
       }
-
-
     },
     language() {
       let language = document.getElementById("language");
@@ -77,12 +77,16 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
+
 .languages .btn {
   display: flex;
   flex-direction: column;
   align-items: center;
   row-gap: 15px;
-
+  @include _768 {
+    row-gap: 10px;
+  }
 
   & a {
     display: flex;
@@ -94,6 +98,9 @@ export default {
     font-weight: 600;
     order: 1;
     font-size: 20px;
+    @include _768 {
+      font-size: 18px;
+    }
   }
 
   & .active {
