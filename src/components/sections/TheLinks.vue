@@ -34,8 +34,8 @@
     </div>
     <button @click="showLinks = !showLinks">
       <strong>
-        <span v-if="!showLinks"> {{ $t("showLinks") }}</span>
-        <span v-else> {{ $t("hideLinks") }}</span>
+        <span v-if="!showLinks"> {{ $t("showMore") }}</span>
+        <span v-else> {{ $t("hide") }}</span>
       </strong>
     </button>
   </section>

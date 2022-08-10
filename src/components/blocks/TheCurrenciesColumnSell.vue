@@ -4,7 +4,7 @@
     :class="{ 'currencies-hide': !currenciesHideSell }"
   >
     <template v-if="currenciesHideSell">
-      <the-title tag="h2" class="subtitle"> Отдаю</the-title>
+      <the-title tag="h2" class="subtitle">{{ $t("theGive") }}</the-title>
       <the-filters :group-id="getSellCurrencyGroupId" type="sell"></the-filters>
       <div class="line"></div>
     </template>

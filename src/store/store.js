@@ -36,7 +36,7 @@ const store = createStore({
     detailsHide: false,
     currenciesHideSell: true,
     currenciesHideBuy: true,
-    blockHide: false,
+    blockHide: true,
     //timer
     currentTime: 60,
     timer: null,
@@ -200,11 +200,7 @@ const store = createStore({
       }
       this.commit("stopTimer");
       state[type + "_currency_id"] = id;
-      if (window.innerWidth <= 768 && type === "buy") {
-        this.commit(`${type}HideBlock`, false);
-      } else {
-        this.commit(`${type}HideBlock`, true);
-      }
+      this.commit(`${type}HideBlock`);
       this.commit(`${type}HideBlock`);
       if (state.sell_currency_id === null && state.buy_currency_id !== null) {
         this.dispatch("fetchSellCurrencies");
@@ -271,7 +267,7 @@ const store = createStore({
         state.buy_currency_id = null;
       }
     },
-    sellHideBlock(state, type) {
+    sellHideBlock(state) {
       if (
         window.innerWidth <= 768 &&
         state.sell_currency_id !== null &&
@@ -281,8 +277,8 @@ const store = createStore({
         state.currenciesHideBuy = true;
       }
     },
-    buyHideBlock(state, type) {
-      if (type === true) this.commit("hideBlocks");
+    buyHideBlock(state) {
+      this.commit("hideBlocks");
     },
     deleteAllHistory() {
       history.pushState(false, document.title, "/");

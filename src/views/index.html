@@ -33,8 +33,8 @@
             value="2"
           />
           <div class="currencies">
-            <the-currencies-column-sell> </the-currencies-column-sell>
-            <the-currencies-column-buy> </the-currencies-column-buy>
+            <the-currencies-column-sell></the-currencies-column-sell>
+            <the-currencies-column-buy></the-currencies-column-buy>
 
             <transition name="details-hide">
               <the-details>
@@ -46,7 +46,7 @@
                       name="OrderForm[sell_amount]"
                       :aria-invalid="true"
                     >
-                      <template #label> Отдаю</template>
+                      <template #label>{{ $t("theGive") }}</template>
                       <template #icon>
                         <span class="PMUSD"></span>
                       </template>
@@ -65,6 +65,17 @@
                       Мой кошелёк Perfect Money верифицирован Для не
                       верифицированных кошельков комиссия больше на 1.5%
                     </the-checkbox>
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-sell_amount_with_comission"
+                      name="OrderForm[sell_amount_with_comission]"
+                      :aria-invalid="true"
+                    >
+                      <template #label>
+                        С комиссией
+                        <span class="text--green">2% = 280.15 USD</span>
+                      </template>
+                    </the-field>
                   </div>
                   <div class="item">
                     <the-field
@@ -74,7 +85,7 @@
                       :aria-invalid="false"
                     >
                       <template #label>
-                        Получаю
+                        {{ $t("theGet") }}
                         <the-lacks></the-lacks>
                       </template>
                       <template #icon>
@@ -98,6 +109,78 @@
                   <div class="item">
                     <the-field
                       name-type="text"
+                      name-id="orderform-sell_source"
+                      name="OrderForm[sell_source]"
+                      name-placeholder="0000 0000 0000 0000"
+                    >
+                      <template #label>Заплатить с этой карты</template>
+                    </the-field>
+                  </div>
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-buy_target"
+                      name="OrderForm[buy_target]"
+                      name-placeholder="0000 0000 0000 0000"
+                    >
+                      <template #label>Зачислить на этот счёт</template>
+                    </the-field>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-first_name"
+                      name="OrderForm[first_name]"
+                      name-placeholder="Василий"
+                    >
+                      <template #label>Имя держателя карты</template>
+                    </the-field>
+                  </div>
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-last_name"
+                      name="OrderForm[last_name]"
+                      name-placeholder="Петров"
+                    >
+                      <template #label>Фамилия держателя карты</template>
+                    </the-field>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="orderform-phone"
+                      name="OrderForm[phone]"
+                      name-placeholder="+380500123456"
+                      :required="true"
+                    >
+                      <template #label>Номер телефона</template>
+                    </the-field>
+                  </div>
+                  <div class="item">
+                    <the-field
+                      name-type="text"
+                      name-id="exchange_mail"
+                      name-placeholder="you@gmail.com"
+                      :required="true"
+                      :aria-required="true"
+                      name="OrderForm[email]"
+                    >
+                      <template #label> Электронная почта</template>
+                    </the-field>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <the-field
+                      name-type="text"
                       name-id="orderform-buy_target"
                       name="OrderForm[buy_target]"
                     >
@@ -113,15 +196,20 @@
                 <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item">
+                    <the-field name="CreateOrder[course_id]" :select="true">
+                      <option value="93">Киев</option>
+                      <template #label>Город</template>
+                    </the-field>
+                  </div>
+                  <div class="item">
                     <the-field
                       name-type="text"
-                      name-id="exchange_mail"
-                      name-placeholder="you@gmail.com"
-                      :required="true"
-                      :aria-required="true"
-                      name="OrderForm[email]"
+                      name-id="orderform-telegram"
+                      name="OrderForm[telegram]"
+                      name-placeholder="@username"
+                      :required="true "
                     >
-                      <template #label> Электронная почта</template>
+                      <template #label>Telegram</template>
                     </the-field>
                   </div>
                 </div>
@@ -255,7 +343,7 @@
       </div>
     </div>
     <input id="login" type="hidden" value="0" />
-    <input id="language" type="hidden" value="ru" />
+    <input id="language" type="hidden" value="en" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>
 </html>

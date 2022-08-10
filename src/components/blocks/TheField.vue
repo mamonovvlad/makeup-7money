@@ -39,7 +39,7 @@
         :value="modelValue"
       >
       </textarea>
-      <slot name="icon"> </slot>
+      <slot name="icon"></slot>
     </span>
     <transition name="animation-from-right">
       <span v-show="this.$slots.error && showError" class="field-error">

@@ -5,7 +5,7 @@
   >
     <template v-if="currenciesHideBuy">
       <div class="title__wrapper">
-        <the-title tag="h2" class="subtitle"> Получаю</the-title>
+        <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
         <div class="buttons">
           <button>Курс</button>
           <button>Резервы</button>
