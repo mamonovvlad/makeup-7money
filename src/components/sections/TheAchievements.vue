@@ -1,5 +1,5 @@
 <template>
-  <section class="achievements">
+  <section class="achievements" v-if="showHideBlock">
     <div class="wrapper stylish-wrapper">
       <div v-for="(item, idx) in items" :key="idx" class="block">
         <component :is="item.icon" />
@@ -18,6 +18,7 @@ import IconSuccess from "../icons/IconSuccess.vue";
 import IconTime from "../icons/IconTime.vue";
 import IconReviews from "../icons/IconReviews.vue";
 import TheTitle from "../blocks/TheTitle.vue";
+import { mapGetters } from "vuex";
 
 const items = [
   {
@@ -49,6 +50,14 @@ export default {
       items,
     };
   },
+  computed: {
+    ...mapGetters(["blockHide"]),
+    showHideBlock() {
+      if (window.innerWidth > 992) {
+        return this.blockHide;
+      }
+    },
+  },
   components: {
     IconReviews,
     IconSuccess,
@@ -60,8 +69,9 @@ export default {
 </script>
 
 <style lang="scss">
-.achievements {
+@import "../../assets/scss/utils/mixin";
 
+.achievements {
   & .wrapper {
     display: grid;
     overflow: hidden;
@@ -99,6 +109,5 @@ export default {
     color: var(--primary);
     width: 45px;
   }
-
 }
 </style>

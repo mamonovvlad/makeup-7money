@@ -1,0 +1,90 @@
+.contest-advantages,
+.contest-rules {
+  margin-bottom: 20px;
+}
+
+.contest-rules,
+.contest-motivation,
+.contest-advantages {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.contest-rules {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 15px;
+  margin-bottom: 20px;
+
+  &__terms {
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: var(--quaternary);
+    background: var(--secondary);
+    @include _768 {
+      padding: 8px 14px;
+      font-size: 14px;
+    }
+  }
+
+  & ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+  }
+
+  & li {
+    display: block;
+    & strong {
+      color: var(--quaternary);
+    }
+  }
+
+  & span {
+    font-weight: 600;
+    margin-right: 5px;
+    color: var(--quaternary);
+  }
+
+  & a {
+    display: inline-flex;
+    width: auto;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 4px;
+    color: var(--secondary);
+    background: var(--gradient);
+    @include _768 {
+      font-size: 12px;
+    }
+  }
+}
+
+.contest-motivation {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--quaternary);
+  @include _768 {
+    font-size: 20px;
+  }
+
+  & a {
+    text-decoration: none;
+    color: var(--primary);
+  }
+}
+
+.contest-title,
+h1 {
+  font-weight: 600;
+}
+
+p {
+  font-size: 16px;
+  @include _768 {
+    font-size: 14px;
+  }
+}

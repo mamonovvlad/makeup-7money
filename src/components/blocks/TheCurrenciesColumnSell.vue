@@ -26,6 +26,7 @@ import TheRefresh from "./TheRefresh.vue";
 import TheCurrenciesList from "./TheCurrenciesList.vue";
 import TheFilters from "./TheFilters.vue";
 import { mapGetters, mapMutations } from "vuex";
+import store from "../../store/store";
 
 export default {
   name: "TheCurrenciesColumn",
@@ -54,6 +55,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
+
 .currencies {
   position: relative;
   display: flex;
@@ -78,6 +81,9 @@ export default {
     min-width: 76px;
     max-width: 76px;
     flex: 2;
+    @include _992 {
+      display: none;
+    }
 
     & .currencies-list {
       max-height: 100%;
@@ -86,11 +92,6 @@ export default {
 }
 
 .title__wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  column-gap: 20px;
-
   & .buttons {
     display: flex;
     column-gap: 10px;

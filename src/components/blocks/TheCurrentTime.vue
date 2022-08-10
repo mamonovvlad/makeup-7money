@@ -35,15 +35,22 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
+
 .current-time {
   max-width: max-content;
   width: 100%;
+  @include _768 {
+    align-self: flex-end;
+  }
+
   & .wrapper {
     display: flex;
     align-items: center;
     column-gap: 10px;
     padding: 6px 10px;
   }
+
   & .course {
     color: var(--quaternary);
     margin-left: auto;

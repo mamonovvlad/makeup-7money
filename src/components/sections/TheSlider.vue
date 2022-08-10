@@ -1,9 +1,21 @@
 <template>
-  <section class="slider" id="slider">
-    <div class="wrapper" v-for="(slider, idx) in infoSlider" :key="idx" :class="{active: isActive === idx}">
-      <the-title class="title" @click.native="isShowReviews(idx)" tag="button">{{ slider.title }}</the-title>
+  <section class="slider" id="slider" v-if="showHideBlock">
+    <div
+      class="wrapper"
+      v-for="(slider, idx) in infoSlider"
+      :key="idx"
+      :class="{ active: isActive === idx }"
+    >
+      <the-title class="title" @click.native="isShowReviews(idx)" tag="button"
+        >{{ slider.title }}
+      </the-title>
       <div class="items">
-        <a href="/1" class="item" v-for="(info,idx) in slider.information.slice(0, 4)" :key="idx">
+        <a
+          href="/1"
+          class="item"
+          v-for="(info, idx) in slider.information.slice(0, 4)"
+          :key="idx"
+        >
           <div class="box">
             <h3>{{ info.name }}</h3>
             <span class="date">{{ info.date }}</span>
@@ -12,9 +24,7 @@
         </a>
       </div>
       <the-button tag="button">
-        <template #name>
-          Читать {{ slider.title }}
-        </template>
+        <template #name> Читать {{ slider.title }}</template>
       </the-button>
     </div>
   </section>
@@ -23,6 +33,7 @@
 <script>
 import TheTitle from "../blocks/TheTitle.vue";
 import TheButton from "../buttons/TheButton.vue";
+import { mapGetters } from "vuex";
 
 const infoSlider = [
   {
@@ -134,12 +145,18 @@ export default {
       isActive: 0,
     };
   },
+  computed: {
+    ...mapGetters(["blockHide"]),
+    showHideBlock() {
+      if (window.innerWidth > 992) {
+        return this.blockHide;
+      }
+    },
+  },
   methods: {
     isShowReviews(idx) {
-      console.log("1");
       this.isActive = idx;
     },
-
   },
 };
 </script>
@@ -189,7 +206,7 @@ export default {
     position: relative;
 
     &:after {
-      content: '';
+      content: "";
       bottom: 0;
       height: 1px;
       background: var(--fifth);

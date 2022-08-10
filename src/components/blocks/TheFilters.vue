@@ -45,11 +45,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "../../assets/scss/utils/mixin";
+
 .filters {
   display: flex;
   justify-content: space-between;
   margin: 30px 0 0;
+  @include _768 {
+    margin: 20px 0 0;
+  }
 
   & li {
     font-size: 12px;
@@ -57,6 +62,7 @@ export default {
     cursor: pointer;
   }
 }
+
 .active--filters {
   box-shadow: var(--shadow);
   color: var(--primary);

@@ -1,5 +1,9 @@
 <template>
-  <section class="currency-reserves" id="currency-reserves">
+  <section
+    class="currency-reserves"
+    id="currency-reserves"
+    v-if="showHideBlock"
+  >
     <the-title class="title" tag="h2">Резервы валют</the-title>
     <div class="wrapper stylish-wrapper">
       <div class="block" v-for="block in 3" :key="block">
@@ -20,16 +24,24 @@
 
 <script>
 import TheTitle from "../blocks/TheTitle.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "TheCurrencyReserves",
+  computed: {
+    ...mapGetters(["blockHide"]),
+    showHideBlock() {
+      if (window.innerWidth > 992) {
+        return this.blockHide;
+      }
+    },
+  },
   components: { TheTitle },
 };
 </script>
 
 <style lang="scss">
 .currency-reserves {
-
   & .title {
     margin-bottom: 20px;
   }

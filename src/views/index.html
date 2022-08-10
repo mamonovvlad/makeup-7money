@@ -18,7 +18,7 @@
           нужно всего лишь совершить обмен и оставить отзыв
           <a href="/">подробнее тут</a>
         </the-public-information>
-        <the-header></the-header>
+        <the-header class="background"></the-header>
         <main class="container main__wrapper">
           <input
             id="inputHiddenLastSellId"
@@ -139,11 +139,11 @@
           </div>
 
           <!--Success-->
-          <the-achievements v-if="$store.state.blockHide"></the-achievements>
+          <the-achievements></the-achievements>
           <!--Reserves-->
-          <the-reserves v-if="$store.state.blockHide"></the-reserves>
+          <the-reserves></the-reserves>
           <!--End Reserves-->
-          <the-slider v-if="$store.state.blockHide"></the-slider>
+          <the-slider></the-slider>
           <!--Info-->
           <the-information v-if="$store.state.blockHide">
             <h1>Криптообменник №1</h1>
@@ -249,7 +249,7 @@
             </p>
           </the-information>
           <!--links-->
-          <the-links v-if="$store.state.blockHide"></the-links>
+          <the-links></the-links>
         </main>
         <the-footer></the-footer>
       </div>

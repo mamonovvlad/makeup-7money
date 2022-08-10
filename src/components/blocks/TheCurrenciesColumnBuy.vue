@@ -30,6 +30,7 @@ import TheTitle from "./TheTitle.vue";
 import TheFilters from "./TheFilters.vue";
 import TheCurrenciesList from "./TheCurrenciesList.vue";
 import { mapActions, mapGetters } from "vuex";
+import store from "../../store/store";
 
 export default {
   name: "TheCurrenciesColumn",
@@ -56,12 +57,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-//@import "../../assets/scss/utils/mixin";
-//.column--buy {
-//  @include _768 {
-//    display: none;
-//  }
-//}
-</style>

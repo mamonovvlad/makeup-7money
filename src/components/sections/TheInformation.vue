@@ -1,7 +1,7 @@
 <template>
-  <div class="information stylish-wrapper ">
+  <section class="information stylish-wrapper">
     <slot></slot>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -15,15 +15,23 @@ export default {
   padding: 20px;
   color: var(--quaternary);
 
-  & ol, ul {
+  & ol,
+  ul {
     margin-left: 30px;
   }
 
-  & h1, h2, h3 {
+  & h1,
+  h2,
+  h3 {
     font-weight: 600;
   }
 
-  & h1, h2, h3, p, ol, ul {
+  & h1,
+  h2,
+  h3,
+  p,
+  ol,
+  ul {
     margin-bottom: 10px;
   }
 
@@ -31,5 +39,4 @@ export default {
     color: var(--primary);
   }
 }
-
 </style>

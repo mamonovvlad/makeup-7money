@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Конкурс</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+    <script src="//www.google.com/recaptcha/api.js?hl=ru" defer async></script>
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-public-information>
+          Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
+          нужно всего лишь совершить обмен и оставить отзыв
+          <a href="/">подробнее тут</a>
+        </the-public-information>
+        <the-header class="background"></the-header>
+        <main class="contest">
+          <the-title-big>
+            <template #title>Розыгрыш денежного приза 100$</template>
+            <template #description>
+              Дорогие Друзья, мы проводим небольшой конкурс и разыграем денежный
+              приз в размере 100$
+            </template>
+          </the-title-big>
+          <div class="container">
+            <div class="contest-advantages stylish-wrapper">
+              <div class="contest-advantages__counter">
+                <the-title tag="h2" class="counter-title">100$</the-title>
+                <span class="description">Сумма розыгрыша</span>
+              </div>
+              <the-counter
+                :date="18"
+                :month="8"
+                :year="2022"
+                :hour="12"
+                :minute="0"
+                :second="0"
+              ></the-counter>
+            </div>
+            <div class="contest-rules stylish-wrapper">
+              <div class="contest-rules__terms">
+                Подробные условия конкурса:
+              </div>
+              <ul>
+                <li>
+                  <span class="">1.</span>
+                  Совершите обмен на нашем сайте
+                </li>
+                <li>
+                  <span class="">2.</span>
+                  Напишите Ваш отзыв на
+                  <a
+                    href="https://www.bestchange.ru/7money-exchanger.html"
+                    class=" "
+                    target="_blank"
+                  >
+                    Bestchange.ru ссылка
+                  </a>
+                  тут указав номер заявки. Отзыв оставляете в день совершения
+                  обмена
+                </li>
+                <li>
+                  <span class="">3.</span>
+                  Войдите в Вашу почту и откройте письмо от Bestchange.ru,
+                  кликнув по ссылке из письма активируйте Ваш отзыв.
+                </li>
+                <li>
+                  <span class="">4.</span>
+                  Подпишитесь на
+                  <a
+                    href="tg://resolve?domain=seven_money"
+                    class=""
+                    target="blank"
+                  >
+                    наш телеграм канал ссылка
+                  </a>
+                  и нажмите " Я Участвую"
+                </li>
+                <li>
+                  <span class="">5.</span>
+                  Победитель будет определен автоматически в телеграме с помощью
+                  бота @1chanceBot
+                  <strong class=""> 18.08.2022 в 12:00 по GMT+3</strong>
+                </li>
+                <li>
+                  <span class="">6.</span>
+                  Участвовать и победить могут только те, кто выполнил все
+                  вышеперечисленные условия конкурса до
+                  <strong class=""> 12:00 по GMT+3 18.08.2022</strong>
+                </li>
+              </ul>
+            </div>
+            <h3 class="contest-motivation stylish-wrapper">
+              Выгодных обменов с
+              <a class="" href="https://7money.co/">7money.co</a>
+            </h3>
+          </div>
+        </main>
+        <the-footer></the-footer>
+      </div>
+    </div>
+    <input id="login" type="hidden" value="0" />
+    <input id="language" type="hidden" value="ru" />
+  </body>
+</html>

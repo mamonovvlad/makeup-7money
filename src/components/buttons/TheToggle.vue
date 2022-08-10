@@ -4,7 +4,7 @@
       class="ham hamRotate ham1"
       viewBox="0 0 100 100"
       width="50"
-      :class="{active: isActive}"
+      :class="{ active: isActive }"
     >
       <path
         class="line top"
@@ -45,13 +45,12 @@ export default {
   display: none;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 46px;
+  height: 46px;
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
   background: var(--secondary);
   z-index: 2;
-
 
   & .ham {
     cursor: pointer;
@@ -61,11 +60,11 @@ export default {
   }
 
   & .hamRotate.active {
-    transform: rotate(45deg)
+    transform: rotate(45deg);
   }
 
   & .hamRotate180.active {
-    transform: rotate(180deg)
+    transform: rotate(180deg);
   }
 
   & .line {
@@ -91,7 +90,5 @@ export default {
   & .ham1.active .bottom {
     stroke-dashoffset: -138px;
   }
-
 }
-
 </style>

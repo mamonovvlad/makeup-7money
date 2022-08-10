@@ -32,12 +32,12 @@ const store = createStore({
     buyCurrency: {},
     calculateData: {},
     type: "default",
-    //
-    showCurrencyExchange: false,
-    currenciesHideSell: false,
-    currenciesHideBuy: false,
-    blockHide: false,
+    //hide blocks
     detailsHide: false,
+    currenciesHideSell: true,
+    currenciesHideBuy: true,
+    blockHide: false,
+    //timer
     currentTime: 60,
     timer: null,
   }, //Хранения данных
@@ -193,8 +193,18 @@ const store = createStore({
       if (type === "sell" && isTrash) {
         this.commit("trashClick");
       }
+      if (window.innerWidth <= 768) {
+        state.detailsHide = false;
+        state.currenciesHideSell = true;
+        state.currenciesHideBuy = false;
+      }
       this.commit("stopTimer");
       state[type + "_currency_id"] = id;
+      if (window.innerWidth <= 768 && type === "buy") {
+        this.commit(`${type}HideBlock`, false);
+      } else {
+        this.commit(`${type}HideBlock`, true);
+      }
       this.commit(`${type}HideBlock`);
       if (state.sell_currency_id === null && state.buy_currency_id !== null) {
         this.dispatch("fetchSellCurrencies");
@@ -230,26 +240,30 @@ const store = createStore({
       this.dispatch("calculateForm", [store.getters.getType]);
     },
     trashClick(state) {
-      this.commit("deleteAllHistory");
-      state.showCurrencyExchange = false;
+      state.detailsHide = false;
       state.currenciesHideSell = true;
       state.currenciesHideBuy = true;
       state.blockHide = true;
-      state.detailsHide = false;
+      this.commit("stopTimer");
       state.sell_currency_id = null;
       state.buy_currency_id = null;
-      this.commit("stopTimer");
+      this.commit("deleteAllHistory");
+      if (window.innerWidth < 768) {
+        state.detailsHide = false;
+        state.currenciesHideSell = true;
+        state.currenciesHideBuy = false;
+        state.blockHide = true;
+        this.commit("stopTimer");
+      }
     },
     hideBlocks(state) {
       let Give = state.sell_currency_id !== null;
       let Get = state.buy_currency_id !== null;
-
       if (Give && Get) {
         this.commit("startTimer");
-        state.showCurrencyExchange = true;
+        state.blockHide = false;
         state.currenciesHideSell = false;
         state.currenciesHideBuy = false;
-        state.blockHide = false;
         state.detailsHide = true;
       } else if (Give === false) {
         state.sell_currency_id = null;
@@ -257,11 +271,18 @@ const store = createStore({
         state.buy_currency_id = null;
       }
     },
-    sellHideBlock() {
-      this.commit("hideBlocks");
+    sellHideBlock(state, type) {
+      if (
+        window.innerWidth <= 768 &&
+        state.sell_currency_id !== null &&
+        state.buy_currency_id === null
+      ) {
+        state.currenciesHideSell = false;
+        state.currenciesHideBuy = true;
+      }
     },
-    buyHideBlock() {
-      this.commit("hideBlocks");
+    buyHideBlock(state, type) {
+      if (type === true) this.commit("hideBlocks");
     },
     deleteAllHistory() {
       history.pushState(false, document.title, "/");
@@ -378,11 +399,7 @@ const store = createStore({
           `https://proxy.local/v1/course/rate-reserves?sell_currency_id=3&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json`
         )
         .then((res) => {
-          console.log(res);
           commit("setRateReserves", res);
-        })
-        .catch((err) => {
-          console.log(err);
         });
     },
   }, //Функции асинхронные
@@ -452,8 +469,11 @@ const store = createStore({
     currenciesHideBuy(state) {
       return state.currenciesHideBuy;
     },
-    showCurrencyExchange(state) {
-      return state.showCurrencyExchange;
+    detailsHide(state) {
+      return state.detailsHide;
+    },
+    blockHide(state) {
+      return state.blockHide;
     },
   }, // Получения state
 });

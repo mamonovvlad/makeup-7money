@@ -1,5 +1,5 @@
 <template>
-  <div class="details" v-if="showCurrencyExchange">
+  <div class="details" v-if="detailsHide">
     <div class="details__wrapper stylish-wrapper">
       <div class="title__wrapper">
         <the-title tag="h1" class="subtitle">
@@ -31,7 +31,7 @@
 import TheSteps from "./TheSteps.vue";
 import TheTitle from "./TheTitle.vue";
 import TheCurrentTime from "./TheCurrentTime.vue";
-import TheInformation from "./TheInformation.vue";
+import TheInformation from "../sections/TheInformation.vue";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
@@ -49,7 +49,7 @@ export default {
     TheSteps,
   },
   computed: {
-    ...mapGetters(["courseText", "course", "showCurrencyExchange"]),
+    ...mapGetters(["courseText", "course", "detailsHide"]),
   },
   methods: {
     ...mapMutations(["trashClick"]),
@@ -58,6 +58,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
+
 .details {
   display: flex;
   flex-direction: column;
@@ -74,6 +76,14 @@ export default {
   & .stylish-wrapper {
     overflow: hidden;
   }
+
+  & .title__wrapper {
+    @include _768 {
+      gap: 15px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 }
 
 .form-exchange {
@@ -89,6 +99,9 @@ export default {
 .items__wrapper {
   display: flex;
   gap: 20px;
+  @include _768 {
+    flex-direction: column;
+  }
 
   & .item {
     display: flex;

@@ -38,8 +38,9 @@ import TheTable from "./components/blocks/TheTable.vue";
 import TheDiscount from "./components/blocks/TheDiscount.vue";
 import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
 import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
+import TheCounter from "./components/blocks/TheCounter.vue";
 
-import TheInformation from "./components/blocks/TheInformation.vue";
+import TheInformation from "./components/sections/TheInformation.vue";
 import TheAgreement from "./components/blocks/TheAgreement.vue";
 import TheCheckbox from "./components/blocks/TheCheckbox.vue";
 //Buttons
@@ -113,6 +114,7 @@ createApp({
     TheCheckbox,
     TheCurrenciesColumnSell,
     TheCurrenciesColumnBuy,
+    TheCounter,
     //Buttons
     TheButton,
     //Popups
