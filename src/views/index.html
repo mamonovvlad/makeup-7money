@@ -41,15 +41,20 @@
                 <div class="items__wrapper">
                   <div class="item">
                     <div class="field">
-                      <label> {{ $t("theGive") }} </label>
+                      <label for="orderform-sell_amount">
+                        {{ $t("theGive") }}
+                      </label>
                       <span class="field-wrapper">
-                        <input type="text" />
+                        <input
+                          type="text"
+                          id="orderform-sell_amount"
+                          name="OrderForm[sell_amount]"
+                          aria-invalid="true"
+                        />
 
                         <span class="PMUSD"></span>
                       </span>
-                      <transition name="animation-from-right">
-                        <span class="field-error"></span>
-                      </transition>
+                      <span class="field-error">Error</span>
                     </div>
                     <div class="min__max">
                       <span>
@@ -66,34 +71,40 @@
                       верифицированных кошельков комиссия больше на 1.5%
                     </the-checkbox>
                     <div class="field">
-                      <label>
+                      <label for="orderform-sell_amount_with_comission">
                         С комиссией
                         <span class="text--green">2% = 280.15 USD</span>
                       </label>
                       <span class="field-wrapper">
-                        <input type="text" />
+                        <input
+                          type="text"
+                          id="orderform-sell_amount_with_comission"
+                          name="OrderForm[sell_amount_with_comission]"
+                          aria-invalid="true"
+                        />
 
                         <span class="PMUSD"></span>
                       </span>
-                      <transition name="animation-from-right">
-                        <span class="field-error"></span>
-                      </transition>
+                      <span class="field-error">Error</span>
                     </div>
                   </div>
                   <div class="item">
                     <div class="field item__lacks">
-                      <label>
+                      <label for="orderform-buy_amount">
                         {{ $t("theGet") }}
                         <the-lacks></the-lacks>
                       </label>
                       <span class="field-wrapper">
-                        <input type="text" />
+                        <input
+                          class="item__lacks"
+                          id="orderform-buy_amount"
+                          name="OrderForm[buy_amount]"
+                          aria-invalid="false"
+                        />
 
                         <span class="PMUSD"></span>
                       </span>
-                      <transition name="animation-from-right">
-                        <span class="field-error"></span>
-                      </transition>
+                      <span class="field-error"></span>
                     </div>
                     <div class="min__max">
                       <span>
@@ -111,28 +122,162 @@
                 <div class="items__wrapper">
                   <div class="item">
                     <div class="field">
-                      <label> Заплатить с этой карты</label>
+                      <label for="orderform-sell_source">
+                        Заплатить с этой карты
+                      </label>
                       <span class="field-wrapper">
-                        <input type="text" />
-
+                        <input
+                          type="text"
+                          id="orderform-sell_source"
+                          name="OrderForm[sell_source]"
+                          placeholder="0000 0000 0000 0000"
+                        />
                         <span class="PMUSD"></span>
                       </span>
-                      <transition name="animation-from-right">
-                        <span class="field-error"></span>
-                      </transition>
+                      <span class="field-error"></span>
                     </div>
                   </div>
                   <div class="item">
                     <div class="field">
-                      <label>Зачислить на этот счёт</label>
+                      <label for="orderform-buy_target">
+                        Зачислить на этот счёт
+                      </label>
                       <span class="field-wrapper">
-                        <input type="text" />
-
+                        <input
+                          type="text"
+                          id="orderform-buy_target"
+                          name="OrderForm[buy_target]"
+                          placeholder="0000 0000 0000 0000"
+                        />
                         <span class="PMUSD"></span>
                       </span>
-                      <transition name="animation-from-right">
-                        <span class="field-error"></span>
-                      </transition>
+                      <span class="field-error"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-first_name">
+                        Имя держателя карты
+                      </label>
+                      <span class="field-wrapper">
+                        <input
+                          type="text"
+                          id="orderform-first_name"
+                          name="OrderForm[first_name]"
+                          placeholder="Василий"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="field-error"></span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-first_name">
+                        Фамилия держателя карты
+                      </label>
+                      <span class="field-wrapper">
+                        <input
+                          type="text"
+                          id="orderform-last_name"
+                          name="OrderForm[last_name]"
+                          placeholder="Петров"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="field-error"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-phone"> Номер телефона </label>
+                      <span class="field-wrapper">
+                        <input
+                          type="text"
+                          id="orderform-phone"
+                          name="OrderForm[phone]"
+                          placeholder="+380500123456"
+                          required
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="field-error"></span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="field">
+                      <label for="exchange_mail"> Электронная почта </label>
+                      <span class="field-wrapper">
+                        <input
+                          type="text"
+                          id="exchange_mail"
+                          name="OrderForm[email]"
+                          placeholder="you@gmail.com"
+                          required
+                          aria-required="true"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="field-error"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-buy_target"
+                        >Зачислить на этот адрес</label
+                      >
+                      <span class="field-wrapper">
+                        <input
+                          type="text"
+                          id="orderform-buy_target"
+                          name="OrderForm[buy_target]"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="field-error"></span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <the-checkbox name-id="orderform-of_exchange">
+                      Отправляю с биржи
+                    </the-checkbox>
+                  </div>
+                </div>
+                <div class="line"></div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label>Город</label>
+                      <span class="field-wrapper">
+                        <select name="CreateOrder[course_id]">
+                          <option value="93">Киев</option>
+                        </select>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-telegram">Telegram</label>
+                      <span class="field-wrapper">
+                        <input
+                          type="text"
+                          id="orderform-telegram"
+                          name="OrderForm[telegram]"
+                          placeholder="@username"
+                          required
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="field-error"></span>
                     </div>
                   </div>
                 </div>

@@ -24,10 +24,14 @@
             </p>
           </transition>
         </div>
-        <div class="price" v-if="currency.rate && currenciesHide">
-          <!--          <span> {{ currency.rate }}</span>-->
-          <span> {{ currency.amount }}</span>
-        </div>
+        <div class="price" :data-id="currency.id" v-if="currenciesHide"></div>
+        <!--        <div class="price" v-if="currency.rate && currenciesHide">-->
+        <!--          <span> {{ currency.rate }}</span>\\-->
+        <!--          <span> {{ currency.amount }}</span>-->
+        <!--        </div>-->
+        <!--        <div class="price" :data-id="currency.id" v-if="currenciesHide">-->
+        <!--          <span>{{ getIdPrice }}</span>-->
+        <!--        </div>-->
       </li>
     </ul>
     <the-show-more-currencies
@@ -78,20 +82,36 @@ export default {
   components: {
     TheShowMoreCurrencies,
   },
-  computed: {
-    getIdPrice() {
-      let price = document.querySelectorAll(".price");
-      let id;
-      return price.forEach((item) => {
-        if (item.getAttribute("data-id") !== null) {
-          id = item.getAttribute("data-id");
-        }
-        console.log(id);
-        return id;
-      });
-    },
-  },
+  computed: {},
   methods: {
+    showCourse(id) {
+      let price = document.querySelectorAll(".price");
+      price.forEach((item) => {
+        if (item.getAttribute("data-id") !== null) {
+        }
+      });
+
+      console.log(this.currencies);
+      // console.log(rateReserve.buyCurrency.id);
+      console.log(id);
+      // if (rateReserve.buyCurrency.id === id) {
+      //   // console.log(rateReserve.buyCurrency.id);
+      //   return rateReserve.buyCurrency.id;
+      // }
+
+      // if (
+      //   typeof rateReserve.buyCurrency.id === "string" &&
+      //   typeof rateReserve.buyCurrency.id !== "null"
+      // ) {
+      //   price.forEach((item) => {
+      //     // console.log(item.getAttribute("data-id"));
+      //     if (item.getAttribute("data-id") === rateReserve.buyCurrency.id) {
+      //       // console.log(rateReserve);
+      //       // return rateReserve.amount;
+      //     }
+      //   });
+      // }
+    },
     ...mapMutations(["setActiveCurrency"]),
     setActive(currencyName, id) {
       this.setActiveCurrency([currencyName, id]);
