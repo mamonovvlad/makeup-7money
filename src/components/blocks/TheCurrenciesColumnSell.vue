@@ -8,6 +8,7 @@
       <the-filters :group-id="getSellCurrencyGroupId" type="sell"></the-filters>
       <div class="line"></div>
     </template>
+
     <the-currencies-list
       :currencies-hide="currenciesHideSell"
       :currency-group="getSellCurrencyGroup.name"

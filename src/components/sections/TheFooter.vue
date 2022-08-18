@@ -8,15 +8,17 @@
         <div class="footer__block">
           <a href="mailto:hello@7money.co">hello@7money.co</a>
           <a :href="$t('footerLink')" target="_blank">BESTCHANGE</a>
-          <a href="https://kurs.expert/ru/obmennik/7money.co/feedbacks.html#reputation"
-             target="_blank">
-            {{ $t("nameKursExpert") }}</a>
+          <a
+            href="https://kurs.expert/ru/obmennik/7money.co/feedbacks.html#reputation"
+            target="_blank"
+          >
+            {{ $t("nameKursExpert") }}</a
+          >
         </div>
       </div>
     </div>
   </footer>
 </template>
-
 
 <style lang="scss">
 @import "../../assets/scss/utils/mixin";
@@ -27,7 +29,7 @@
   padding: 40px 0;
   position: relative;
   @include _768 {
-    padding: 20px 0
+    padding: 20px 0;
   }
 
   &__wrapper {
@@ -36,7 +38,7 @@
     align-items: center;
     gap: 20px;
     @include _768 {
-      flex-direction: column
+      flex-direction: column;
     }
     @include _576 {
       gap: 10px;
@@ -50,7 +52,7 @@
       justify-content: space-between;
       width: 100%;
       flex-wrap: wrap;
-      gap: 10px
+      gap: 10px;
     }
 
     & a {
@@ -58,10 +60,9 @@
       transition: var(--transition);
 
       &:hover {
-        color: var(--primary)
+        color: var(--primary);
       }
     }
-
   }
 }
 </style>

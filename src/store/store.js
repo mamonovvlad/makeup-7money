@@ -268,6 +268,7 @@ const store = createStore({
       }
     },
     sellHideBlock(state) {
+      this.dispatch("fetchRateReserves", state.sell_currency_id);
       if (
         window.innerWidth <= 768 &&
         state.sell_currency_id !== null &&
@@ -277,7 +278,7 @@ const store = createStore({
         state.currenciesHideBuy = true;
       }
     },
-    buyHideBlock(state) {
+    buyHideBlock() {
       this.commit("hideBlocks");
     },
     deleteAllHistory() {
@@ -303,7 +304,7 @@ const store = createStore({
       }
     },
     setRateReserves(state, res) {
-      state.rateReserves = res;
+      state.rateReserves = res.data;
     },
   }, //Функция для изменения state
   actions: {
@@ -323,7 +324,7 @@ const store = createStore({
       };
       axios
         .post(
-          "http://proxy.local/" + getters.getLang + "/json/calculate",
+          "http://proxy2.local/" + getters.getLang + "/json/calculate",
           qs.stringify({
             sell_currency_id: state.sell_currency_id,
             buy_currency_id: state.buy_currency_id,
@@ -344,7 +345,7 @@ const store = createStore({
     fetchGroupsAndCurrencies({ commit, getters }) {
       return axios
         .get(
-          "http://proxy.local/" +
+          "http://proxy2.local/" +
             getters.getLang +
             "/json/get-groups-and-currencies"
         )
@@ -355,7 +356,7 @@ const store = createStore({
     fetchBuyCurrencies({ commit, getters, state }) {
       axios
         .get(
-          "http://proxy.local/" + getters.getLang + "/json/get-buy-currencies",
+          "http://proxy2.local/" + getters.getLang + "/json/get-buy-currencies",
           {
             params: {
               sell_currency_id: state.sell_currency_id,
@@ -369,7 +370,9 @@ const store = createStore({
     fetchSellCurrencies({ commit, getters, state }) {
       axios
         .get(
-          "http://proxy.local/" + getters.getLang + "/json/get-sell-currencies",
+          "http://proxy2.local/" +
+            getters.getLang +
+            "/json/get-sell-currencies",
           {
             params: {
               buy_currency_id: state.buy_currency_id,
@@ -389,10 +392,10 @@ const store = createStore({
       let json = JSON.parse(data.innerHTML);
       commit("setGroupsAndCurrenciesFromPage", json);
     },
-    fetchRateReserves({ state, commit, getters }) {
+    fetchRateReserves({ commit, state }, id) {
       axios
         .get(
-          `https://proxy.local/v1/course/rate-reserves?sell_currency_id=3&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json`
+          `http://proxy.local/v1/course/rate-reserves?sell_currency_id=${id}&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json`
         )
         .then((res) => {
           commit("setRateReserves", res);

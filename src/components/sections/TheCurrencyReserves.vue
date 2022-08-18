@@ -4,7 +4,7 @@
     id="currency-reserves"
     v-if="showHideBlock"
   >
-    <the-title class="title" tag="h2">Резервы валют</the-title>
+    <the-title class="title" tag="h2">{{ $t("currencyReserves") }}</the-title>
     <div class="wrapper stylish-wrapper">
       <div class="block" v-for="block in 3" :key="block">
         <div v-for="item in 5" class="item">

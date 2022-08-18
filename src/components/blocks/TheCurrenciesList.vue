@@ -1,5 +1,5 @@
 <template>
-  <div class="currencies-list" ref="currenciesList">
+  <div class="currencies-list">
     <ul
       class="currencies__wrapper"
       ref="currenciesWrapper"
@@ -24,11 +24,10 @@
             </p>
           </transition>
         </div>
-        <transition name="currencies-hide">
-          <span class="price" v-if="currency.rate && currenciesHide">
-            {{ currency.rate }}
-          </span>
-        </transition>
+        <div class="price" v-if="currency.rate && currenciesHide">
+          <!--          <span> {{ currency.rate }}</span>-->
+          <span> {{ currency.amount }}</span>
+        </div>
       </li>
     </ul>
     <the-show-more-currencies
@@ -42,7 +41,6 @@
 
 <script>
 import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
-import TheRefresh from "./TheRefresh.vue";
 import { mapMutations } from "vuex";
 
 export default {
@@ -56,6 +54,9 @@ export default {
       default: "",
     },
     currencies: {
+      type: [Object, Array],
+    },
+    rateReserves: {
       type: [Object, Array],
     },
     currenciesHide: {
@@ -76,7 +77,19 @@ export default {
   },
   components: {
     TheShowMoreCurrencies,
-    TheRefresh,
+  },
+  computed: {
+    getIdPrice() {
+      let price = document.querySelectorAll(".price");
+      let id;
+      return price.forEach((item) => {
+        if (item.getAttribute("data-id") !== null) {
+          id = item.getAttribute("data-id");
+        }
+        console.log(id);
+        return id;
+      });
+    },
   },
   methods: {
     ...mapMutations(["setActiveCurrency"]),

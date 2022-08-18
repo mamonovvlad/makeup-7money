@@ -66,10 +66,11 @@ const i18n = createI18n({
       hide: "Скрыть",
       nameKursExpert: "КурсЭксперт",
       about: "О нас",
-      theAgreement:
-        "Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями",
       theGive: "Отдаю",
       theGet: "Получаю",
+      currencyReserves: "Резервы валют",
+      course: "Курс",
+      reserves: "Резервы",
       //link
       passwordRecoveryAction: "/auth/request-password-reset",
       entranceAction: "/auth/login",
@@ -154,10 +155,11 @@ const i18n = createI18n({
       hide: "Заховати",
       nameKursExpert: "КурсЭксперт",
       about: "Про нас",
-      theAgreement:
-        "Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями",
       theGive: "Віддаю",
       theGet: "Отримую",
+      currencyReserves: "Резерви валют",
+      course: "Курс",
+      reserves: "Резерв",
       //link
       passwordRecoveryAction: "/ua/auth/request-password-reset",
       entranceAction: "/ua/auth/login",
@@ -242,10 +244,11 @@ const i18n = createI18n({
       hide: "Hide",
       nameKursExpert: "KursExpert",
       about: "About us",
-      theAgreement:
-        "Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями",
       theGive: "I give",
       theGet: "I get",
+      currencyReserves: "Currency reserves",
+      course: "Course",
+      reserves: "Reserves",
       //link
       passwordRecoveryAction: "/en/auth/request-password-reset",
       entranceAction: "/en/auth/login",

@@ -42,7 +42,6 @@ const items = [
     icon: "IconReviews",
   },
 ];
-
 export default {
   name: "Achievements",
   data() {
