@@ -1,25 +1,11 @@
 <template>
   <div class="checkbox">
-    <input
-      :id="nameId"
-      type="checkbox"
-      @click="$emit('check')"
-
-    />
-    <label class="label" :for="nameId">
-      <slot></slot>
-    </label>
+    <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: {
-    nameId: {
-      type: String,
-      default: "",
-    },
-  },
   name: "TheCheckbox",
 };
 </script>
@@ -63,6 +49,5 @@ export default {
     background-color: var(--primary);
     background-image: url("../../assets/images/icon/check.svg");
   }
-
 }
 </style>

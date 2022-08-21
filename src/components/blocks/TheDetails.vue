@@ -1,9 +1,9 @@
 <template>
-  <div class="details" v-if="detailsHide">
+  <div class="details" v-if="detailsHide && calculateData">
     <div class="details__wrapper stylish-wrapper">
       <div class="title__wrapper">
         <the-title tag="h1" class="subtitle">
-          {{ course.title_ru }}
+          {{ calculateData.course_h1 }}
         </the-title>
         <the-current-time></the-current-time>
       </div>
@@ -13,15 +13,12 @@
         :data-input="true"
       ></the-steps>
       <!--Форма-->
-      <form action class="form-exchange">
-        <input :name="csrfParam" :value="csrfToken" type="hidden" />
-        <slot></slot>
-      </form>
+      <slot name="form"></slot>
       <!--Конец Формы-->
     </div>
     <the-information
-      v-if="courseText.course_seo_text"
-      v-html="courseText.course_seo_text"
+      v-if="calculateData.course_seo_text"
+      v-html="calculateData.course_seo_text"
     >
     </the-information>
   </div>
@@ -49,7 +46,7 @@ export default {
     TheSteps,
   },
   computed: {
-    ...mapGetters(["courseText", "course", "detailsHide"]),
+    ...mapGetters(["calculateData", "course", "detailsHide"]),
   },
   methods: {
     ...mapMutations(["trashClick"]),
@@ -96,6 +93,12 @@ export default {
   }
 }
 
+.commission {
+  & strong {
+    color: var(--quaternary);
+  }
+}
+
 .items__wrapper {
   display: flex;
   gap: 20px;
@@ -106,6 +109,7 @@ export default {
   & .item {
     display: flex;
     flex-direction: column;
+    position: relative;
     row-gap: 15px;
     max-width: 100%;
     width: 100%;

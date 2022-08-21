@@ -14,6 +14,7 @@
   "author": "Mamonov Vlad",
   "license": "MIT",
   "dependencies": {
+    "v-debounce": "^0.2.0",
     "vue": "^3.2.31",
     "vuex": "^4.0.2"
   },

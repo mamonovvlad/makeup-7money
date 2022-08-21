@@ -42,6 +42,30 @@ const store = createStore({
     timer: null,
   }, //Хранения данных
   mutations: {
+    setIsVerified(state, e) {
+      state.is_verified = e.target.checked ? true : false;
+      this.dispatch("calculateForm", ["revert"]);
+    },
+    updateBuyAmount(state, val) {
+      state.type = "revert";
+      if (
+        state.buy_amount.length <= 0 ||
+        state.buy_amount === 0 ||
+        state.buy_amount === ""
+      ) {
+        return;
+      }
+
+      let float = parseFloat(String(state.buy_amount).replace(/,/g, "."));
+      if (float <= 0) {
+        float = 0;
+        state.buy_amount = float;
+      }
+
+      if (state.buy_amount > 0) {
+        this.dispatch("calculateForm", ["revert"]);
+      }
+    },
     startTimer(state) {
       state.timer = setInterval(() => {
         state.currentTime--;
@@ -450,10 +474,16 @@ const store = createStore({
     sellCurrencyId(state) {
       return state.sell_currency_id;
     },
+    sellCurrency(state) {
+      return state.sellCurrency;
+    },
+    buyCurrency(state) {
+      return state.buyCurrency;
+    },
     colorSpectrum(state) {
       return state.theme;
     },
-    courseText(state) {
+    calculateData(state) {
       return state.calculateData;
     },
     course(state) {
@@ -473,6 +503,9 @@ const store = createStore({
     },
     blockHide(state) {
       return state.blockHide;
+    },
+    sellAmount(state) {
+      return state.sell_amount;
     },
   }, // Получения state
 });

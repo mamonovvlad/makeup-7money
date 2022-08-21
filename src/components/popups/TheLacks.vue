@@ -1,11 +1,10 @@
 <template>
   <div class="lacks">
-    <span>Не хватает</span>
+    <span>{{ $t("lacks") }}</span>
     <div class="popup-wrapper">
-      <p>Максимальная сумма получения</p>
-      <strong>0.00057 Bitcoin</strong>
+      <slot></slot>
       <the-button tag="button">
-        <template #name>Не Хватает ?</template>
+        <template #name>{{ $t("lacks") }}</template>
       </the-button>
     </div>
   </div>
@@ -30,9 +29,11 @@ export default {
 <style lang="scss">
 .lacks {
   transition: var(--transition);
+
   .popup-wrapper {
     position: absolute;
     bottom: 25px;
+    max-width: 300px;
     right: 0;
     padding: 20px;
     opacity: 0;

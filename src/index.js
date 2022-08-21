@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 
 //Js
+import vueDebounce from "vue-debounce";
 import { Captcha } from "./assets/js/captcha.js";
 import i18n from "./assets/js/multilanguage.js";
 import { Support } from "./assets/js/support.js";
@@ -51,6 +52,7 @@ import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheLeaveFeedback from "./components/popups/TheLeaveFeedback.vue";
 import TheLacks from "./components/popups/TheLacks.vue";
+import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 //Icons
 import IconPig from "./components/icons/IconPig.vue";
 
@@ -120,6 +122,7 @@ createApp({
     //Popups
     TheLeaveFeedback,
     TheLacks,
+    TheRecoveryInformation,
     //Icons
     IconPig,
     IconError,
@@ -142,11 +145,34 @@ createApp({
     IconRandom,
   },
   computed: {
-    ...mapGetters(["getLang", "colorSpectrum", "getType"]),
+    ...mapGetters([
+      "getLang",
+      "colorSpectrum",
+      "getType",
+      "sellCurrency",
+      "buyCurrency",
+      "sellAmount",
+      "calculateData",
+      "detailsHide",
+    ]),
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
-    ...mapMutations(["callbackTimerFinish"]),
+    ...mapMutations([
+      "callbackTimerFinish",
+      "updateBuyAmount",
+      "setIsVerified",
+    ]),
+    getValueByLanguage(object, field) {
+      let nameWithLang = field.replace(
+        "?",
+        document.getElementById("language").value
+      );
+      if (object[nameWithLang] !== undefined) {
+        return object[nameWithLang];
+      }
+      return "undefined " + nameWithLang;
+    },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
@@ -156,4 +182,10 @@ createApp({
 })
   .use(i18n)
   .use(store)
+  .use(vueDebounce, {
+    lock: false,
+    listenTo: ["keyup", "paste"],
+    defaultTime: "1500ms",
+    fireOnEmpty: false,
+  })
   .mount("#app");
