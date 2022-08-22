@@ -1,12 +1,13 @@
 const path = require("path");
 const fs = require("fs");
+const dotenv = require("dotenv");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {
   VueLoaderPlugin,
 } = require("vue-loader");
-
+dotenv.config();
 // Main const. Feel free to change it
 const PATHS = {
   src: path.join(__dirname, "../src"),
@@ -110,7 +111,6 @@ module.exports = {
       filename: `${PATHS.source}css/[name].css`,
     }),
     
-    
     ...PAGES.map(
       page =>
         new HtmlWebpackPlugin({
@@ -122,6 +122,10 @@ module.exports = {
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
+    }),
+    
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
     }),
   ],
 };

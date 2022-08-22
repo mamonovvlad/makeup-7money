@@ -4,6 +4,8 @@ import qs from "querystring-es3";
 
 const store = createStore({
   state: {
+    proxy: process.env.PR0XY,
+    proxy2: process.env.PR0XY2,
     theme: "light",
     allCurrencies: {},
     sellCurrencies: {},
@@ -142,7 +144,7 @@ const store = createStore({
       state[payload + "CurrencyGroupId"] = null;
     },
     checkLastCurrencies() {
- 
+      
       let inputHiddenLastSellId = document.getElementById(
         "inputHiddenLastSellId",
       );
@@ -335,7 +337,7 @@ const store = createStore({
   }, //Функция для изменения state
   actions: {
     calculateForm(
-      { state, commit, getters },
+      { state, commit, getters, process },
       [type = "default", refresh = false],
     ) {
       document
@@ -350,7 +352,7 @@ const store = createStore({
       };
       axios
         .post(
-          "http://proxy.local/" + getters.getLang + "/json/calculate",
+          state.proxy + getters.getLang + "/json/calculate",
           qs.stringify({
             sell_currency_id: state.sell_currency_id,
             buy_currency_id: state.buy_currency_id,
@@ -368,10 +370,10 @@ const store = createStore({
           commit("setCalculateForm", response, refresh);
         });
     },
-    fetchGroupsAndCurrencies({ commit, getters }) {
+    fetchGroupsAndCurrencies({ state, commit, getters }) {
       return axios
         .get(
-          "http://proxy.local/" +
+          state.proxy +
           getters.getLang +
           "/json/get-groups-and-currencies",
         )
@@ -382,7 +384,7 @@ const store = createStore({
     fetchBuyCurrencies({ commit, getters, state }) {
       axios
         .get(
-          "http://proxy.local/" + getters.getLang + "/json/get-buy-currencies",
+          state.proxy + getters.getLang + "/json/get-buy-currencies",
           {
             params: {
               sell_currency_id: state.sell_currency_id,
@@ -396,7 +398,7 @@ const store = createStore({
     fetchSellCurrencies({ commit, getters, state }) {
       axios
         .get(
-          "http://proxy.local/" +
+          state.proxy +
           getters.getLang +
           "/json/get-sell-currencies",
           {
@@ -410,7 +412,7 @@ const store = createStore({
         });
     },
     fetchGroupsAndCurrenciesFromPage({ commit }) {
-   
+      
       let data = document.getElementById("preloadGroupsAndCurrencies");
       if (!data) {
         this.dispatch("fetchGroupsAndCurrencies");
@@ -422,7 +424,7 @@ const store = createStore({
     fetchRateReserves({ commit, state }, id) {
       axios
         .get(
-          `http://proxy2.local/v1/course/rate-reserves?sell_currency_id=${id}&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json`,
+          `${state.proxy2}/v1/course/rate-reserves?sell_currency_id=${id}&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json`,
         )
         .then((res) => {
           commit("setRateReserves", res);
