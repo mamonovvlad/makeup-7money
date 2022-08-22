@@ -7,8 +7,10 @@
       <div class="title__wrapper">
         <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
         <div class="buttons">
-          <button>{{ $t("course") }}</button>
-          <button>Резервы</button>
+          <button v-for="(button, idx) in buttons" :key="idx" :class="{'active--filters':index === idx}"
+                  @click="toggleInformation(idx)">
+            {{ button.name }}
+          </button>
         </div>
       </div>
       <the-filters :group-id="getBuyCurrencyGroupId" type="buy"></the-filters>
@@ -34,6 +36,19 @@ import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "TheCurrenciesColumn",
+  data() {
+    return {
+      index: 0,
+      buttons: [
+        {
+          name: "Курсы",
+        },
+        {
+          name: "Резервы",
+        },
+      ],
+    };
+  },
   components: {
     TheTitle,
     TheFilters,
@@ -49,6 +64,11 @@ export default {
       "currenciesHideBuy",
       "getRateReserves",
     ]),
+  },
+  methods: {
+    toggleInformation(idx) {
+      this.index = idx;
+    },
   },
 };
 </script>

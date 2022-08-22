@@ -1,9 +1,7 @@
 <template>
   <div class="authorization popup-wrapper" v-if="view">
     <div class="wrapper">
-      <button class="close" @click="close">
-        <icon-close></icon-close>
-      </button>
+      <the-close @close="close"></the-close>
       <the-switched
         @toggleText="toggleText"
         @toggleInput="toggleInput"
@@ -93,10 +91,10 @@
 </template>
 
 <script>
+import TheClose from "../buttons/TheClose.vue";
 import TheSwitched from "../buttons/TheSwitched.vue";
 import TheButton from "../buttons/TheButton.vue";
 import TheField from "../blocks/TheField.vue";
-import IconClose from "../icons/IconClose.vue";
 import IconEye from "../icons/IconEye.vue";
 import axios from "axios";
 
@@ -177,7 +175,7 @@ export default {
     TheButton,
     TheSwitched,
     TheField,
-    IconClose,
+    TheClose,
     IconEye,
   },
   computed: {
@@ -212,11 +210,11 @@ export default {
         },
       };
 
-      document.querySelectorAll(".field-error").forEach(function (el, i) {
+      document.querySelectorAll(".field-error").forEach(function(el, i) {
         el.innerHTML = "";
       });
 
-      axios.post(action, formData, config).then(function (response) {
+      axios.post(action, formData, config).then(function(response) {
         if (Object.keys(response.data).length) {
           let data = response.data;
           console.log(data);
@@ -246,8 +244,8 @@ export default {
     },
   },
   mounted() {
-    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
+    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
+    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
   },
 };
 </script>
@@ -256,23 +254,8 @@ export default {
 @import "../../assets/scss/utils/mixin";
 
 .authorization {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  overflow: hidden;
-  transform: translate(-50%, -50%);
-  z-index: 3;
-
   & .show-password {
     cursor: pointer;
-  }
-
-  & .close {
-    position: absolute;
-    width: 15px;
-    top: 10px;
-    right: 10px;
-    background: transparent;
   }
 
   & .forgot {

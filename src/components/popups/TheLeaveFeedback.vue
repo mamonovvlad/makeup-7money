@@ -1,9 +1,7 @@
 <template>
   <div class="leave-feedback" :class="{'first-option':secondOption === false}" v-if="isShow">
     <div v-if="!secondOption" class="stylish-wrapper">
-      <button class="close" @click="isHideBlock">
-        <icon-close></icon-close>
-      </button>
+      <the-close @close="isHideBlock"></the-close>
       <icon-thanks></icon-thanks>
       <p>
         <strong class="text--black-white">Благодарим</strong> за
@@ -52,7 +50,7 @@
 <script>
 import TheButton from "../buttons/TheButton.vue";
 import IconThanks from "../icons/IconThanks.vue";
-import IconClose from "../icons/IconClose.vue";
+import TheClose from "../buttons/TheClose.vue";
 
 export default {
   name: "TheLeaveFeedback",
@@ -70,7 +68,7 @@ export default {
   components: {
     TheButton,
     IconThanks,
-    IconClose,
+    TheClose,
   },
   methods: {
     getCookie(name) {

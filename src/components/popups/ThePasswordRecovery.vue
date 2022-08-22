@@ -1,9 +1,7 @@
 <template>
-  <div class="authorization password-recovery">
+  <div class="authorization popup-wrapper password-recovery">
     <div class="wrapper">
-      <button class="close" @click="$emit('close')">
-        <icon-close></icon-close>
-      </button>
+      <the-close @close="hideBlock"></the-close>
       <h3>
         {{ $t("passwordRecovery") }}
       </h3>
@@ -27,7 +25,7 @@
 </template>
 
 <script>
-import IconClose from "../icons/IconClose.vue";
+import TheClose from "../buttons/TheClose.vue";
 import TheButton from "../buttons/TheButton.vue";
 import TheField from "../blocks/TheField.vue";
 
@@ -40,9 +38,14 @@ export default {
     };
   },
   components: {
-    IconClose,
+    TheClose,
     TheButton,
     TheField,
+  },
+  methods: {
+    hideBlock() {
+      this.$emit("close");
+    },
   },
 };
 </script>

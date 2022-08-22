@@ -53,6 +53,7 @@ import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 import TheLeaveFeedback from "./components/popups/TheLeaveFeedback.vue";
 import TheLacks from "./components/popups/TheLacks.vue";
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
+import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
 //Icons
 import IconPig from "./components/icons/IconPig.vue";
 
@@ -123,6 +124,7 @@ createApp({
     TheLeaveFeedback,
     TheLacks,
     TheRecoveryInformation,
+    TheLacksWindow,
     //Icons
     IconPig,
     IconError,
@@ -155,6 +157,9 @@ createApp({
       "calculateData",
       "detailsHide",
     ]),
+    isSellSource(){
+      return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id)
+    }
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),

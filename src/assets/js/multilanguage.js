@@ -71,6 +71,10 @@ const i18n = createI18n({
       currencyReserves: "Резервы валют",
       course: "Курс",
       reserves: "Резервы",
+      //
+      lacksWindow_first: 'Если текущая сумма резерва меньше, чем Вам нужно, то оставьте желаемое значение и Ваш электронный адрес и мы сообщим, когда будем иметь нужную сумму.',
+      lacksWindow_second: 'В том случае, если Вы получили уведомление, но до Вашего визита резерв вновь уменьшился, то разместите заявку, пожалуйста снова.',
+      lacksWindow_third: 'Спасибо за выбор нашего сервиса!',
       //link
       passwordRecoveryAction: "/auth/request-password-reset",
       entranceAction: "/auth/login",
@@ -160,6 +164,10 @@ const i18n = createI18n({
       currencyReserves: "Резерви валют",
       course: "Курс",
       reserves: "Резерв",
+      //
+      lacksWindow_first: 'Якщо поточна сума резерву менше, ніж Вам потрібно, то залиште бажане значення і Вашу електронну адресу і ми повідомимо, коли будемо мати потрібну суму.',
+      lacksWindow_second: 'У тому випадку, якщо Ви отримали повідомлення, але до Вашого візиту резерв знову зменшився, то розмістіть заявку, будь ласка знову.',
+      lacksWindow_third: 'Дякуємо за вибір нашого сервісу!',
       //link
       passwordRecoveryAction: "/ua/auth/request-password-reset",
       entranceAction: "/ua/auth/login",
@@ -249,6 +257,10 @@ const i18n = createI18n({
       currencyReserves: "Currency reserves",
       course: "Course",
       reserves: "Reserves",
+      //
+      lacksWindow_first: 'If the current reserve amount is lesser than you need, leave the desired sum and your email address and we will inform you about appearance of the given sum.',
+      lacksWindow_second: 'If you received a notification, but the reserve was reduced before your visit, please place your request again.',
+      lacksWindow_third: 'Thank you for choosing our service!',
       //link
       passwordRecoveryAction: "/en/auth/request-password-reset",
       entranceAction: "/en/auth/login",

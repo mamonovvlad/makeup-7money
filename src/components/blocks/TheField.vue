@@ -108,6 +108,7 @@ export default {
   row-gap: 8px;
   width: 100%;
   max-width: 100%;
+  min-width: 225px;
   position: relative;
 
   & label {

@@ -1,7 +1,7 @@
 <template>
   <div class="lacks">
     <span>{{ $t("lacks") }}</span>
-    <div class="popup-wrapper">
+    <div class="wrapper">
       <slot></slot>
       <the-button tag="button">
         <template #name>{{ $t("lacks") }}</template>
@@ -30,13 +30,17 @@ export default {
 .lacks {
   transition: var(--transition);
 
-  .popup-wrapper {
+  & .wrapper {
     position: absolute;
     bottom: 25px;
     max-width: 300px;
     right: 0;
     padding: 20px;
     opacity: 0;
+    background: var(--seventh);
+    border-radius: var(--radius-four);
+    box-shadow: var(--shadow);
+    outline: 1px solid var(--ternary);
     z-index: -5;
 
     & button {
@@ -54,7 +58,7 @@ export default {
   }
 
   &:hover {
-    & .popup-wrapper {
+    & .wrapper {
       opacity: 1;
       z-index: 2;
     }

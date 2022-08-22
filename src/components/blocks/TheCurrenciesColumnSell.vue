@@ -90,6 +90,13 @@ export default {
       max-height: 100%;
     }
   }
+
+  & .buttons {
+    & button {
+      transition: box-shadow 400ms ease;
+      padding: 6px;
+    }
+  }
 }
 
 .title__wrapper {
