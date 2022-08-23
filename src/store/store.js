@@ -4,8 +4,8 @@ import qs from "querystring-es3";
 
 const store = createStore({
   state: {
-    proxy: process.env.IS_PROXY,
-    proxy2: process.env.IS_PROXY2,
+    proxy: process.env.PROXY,
+    proxy2: process.env.PROXY2,
     theme: "light",
     allCurrencies: {},
     sellCurrencies: {},

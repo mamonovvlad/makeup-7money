@@ -13,8 +13,8 @@ module.exports = merge(common, {
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
-        IS_PROXY: `'${process.env.IS_PROXY_PROD}'`,
-        IS_PROXY2: `'${process.env.IS_PROXY2_PROD}'`,
+        PROXY: `'${process.env.PROXY_PROD}'`,
+        PROXY2: `'${process.env.PROXY2_PROD}'`,
       },
     }),
   ],
