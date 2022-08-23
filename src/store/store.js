@@ -4,8 +4,8 @@ import qs from "querystring-es3";
 
 const store = createStore({
   state: {
-    proxy: process.env.PR0XY,
-    proxy2: process.env.PR0XY2,
+    proxy: process.env.IS_PROXY,
+    proxy2: process.env.IS_PROXY2,
     theme: "light",
     allCurrencies: {},
     sellCurrencies: {},
@@ -44,6 +44,9 @@ const store = createStore({
     timer: null,
   }, //Хранения данных
   mutations: {
+    test(q){
+      console.log(q);
+    },
     setIsVerified(state, e) {
       state.is_verified = e.target.checked ? true : false;
       this.dispatch("calculateForm", ["revert"]);

@@ -1,7 +1,6 @@
 // Development config:
 const { merge } = require("webpack-merge");
 const common = require("./webpack.common.js");
-
 module.exports = merge(common, {
   // DEVELOPMENT MODE
   mode: "development",
@@ -15,3 +14,4 @@ module.exports = merge(common, {
     hot: true,
   },
 });
+

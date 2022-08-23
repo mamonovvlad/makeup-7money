@@ -159,6 +159,9 @@ createApp({
     ]),
     isSellSource(){
       return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id)
+    },
+    isProxy(){
+    
     }
   },
   methods: {
@@ -182,7 +185,7 @@ createApp({
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
     // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    // this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
+    // this.csrfParam = document.querySelector('meta[name="csrf-param"]').content
   },
 })
   .use(i18n)
