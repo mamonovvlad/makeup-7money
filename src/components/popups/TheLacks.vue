@@ -3,7 +3,7 @@
     <span>{{ $t("lacks") }}</span>
     <div class="wrapper">
       <slot></slot>
-      <the-button tag="button">
+      <the-button type="button" @click.native="$emit('openWindow')" tag="button" >
         <template #name>{{ $t("lacks") }}</template>
       </the-button>
     </div>

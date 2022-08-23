@@ -82,6 +82,11 @@ createApp({
       captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
+      ///
+      showLacks: false,
+      showPopupInfoThisAccount: false,
+      showPopupInfoToAccount: false,
+      showPopupVerified: false,
     };
   },
 

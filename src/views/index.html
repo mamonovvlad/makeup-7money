@@ -14,7 +14,8 @@
 <div id="app" v-cloak>
   <div class="app" :data-theme="colorSpectrum">
     <the-lacks-window
-      @close=""
+      v-if="showLacks"
+      @close="showLacks=false"
     >
       <form class="form">
         <div class="items__wrapper">
@@ -202,13 +203,14 @@
                     <div class="field item__lacks">
                       <label for="orderform-buy_amount">
                         {{ $t("theGet") }}
-                        <the-lacks>
+                        <the-lacks @open-window="showLacks = true">
                           <p>
                             Максимальная сумма получения {{
                               calculateData.max_buy_amount }} {{
                               buyCurrency.symbol }}
                             <strong>
-                              {{ getValueByLanguage(buyCurrency, "name_?")
+                              {{
+                                getValueByLanguage(buyCurrency, "name_?")
                               }}
                             </strong>
                           </p>
@@ -253,8 +255,8 @@
                 <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item" v-if="isSellSource">
-                    <the-recovery-information>
-                      <p></p>
+                    <the-recovery-information
+                      v-if="currencyModel.isUahBank(sellCurrency.id) && showPopupInfoThisAccount">
                       Внимание!!! Не указывайте "Логин" при создании кода в
                       бирже. Такой код на нашем сайте применить невозможно!
                     </the-recovery-information>
@@ -264,6 +266,8 @@
                       </label>
                       <span class="field-wrapper">
                             <input
+                              @focus="showPopupInfoThisAccount = true"
+                              @blur="showPopupInfoThisAccount = false"
                               type="text"
                               id="orderform-sell_source"
                               name="OrderForm[sell_source]"
@@ -275,17 +279,24 @@
                     </div>
                   </div>
                   <div class="item">
+                    <the-recovery-information
+                      v-if="buyCurrency.id === currencyModel.PRIVAT_BANK_ID && showPopupInfoToAccount">
+                      Внимание!!! Не указывайте "Логин" при создании кода в
+                      бирже. Такой код на нашем сайте применить невозможно!
+                    </the-recovery-information>
                     <div class="field">
                       <label for="orderform-buy_target">
                         Зачислить на этот счёт
                       </label>
                       <span class="field-wrapper">
-                            <input
-                              type="text"
-                              id="orderform-buy_target"
-                              name="OrderForm[buy_target]"
-                              placeholder="0000 0000 0000 0000"
-                            />
+                        <input
+                          @focus="showPopupInfoToAccount = true"
+                          @blur="showPopupInfoToAccount = false"
+                          type="text"
+                          id="orderform-buy_target"
+                          name="OrderForm[buy_target]"
+                          placeholder="0000 0000 0000 0000"
+                        />
                             <span class="PMUSD"></span>
                           </span>
                       <span class="field-error"></span>
@@ -295,12 +306,19 @@
                 <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item">
+                    <the-recovery-information
+                      v-if="showPopupVerified">
+                      Внимание!!! Не указывайте "Логин" при создании кода в
+                      бирже. Такой код на нашем сайте применить невозможно!
+                    </the-recovery-information>
                     <div class="field">
                       <label for="orderform-first_name">
                         Имя держателя карты
                       </label>
                       <span class="field-wrapper">
                             <input
+                              @focus="showPopupVerified = true"
+                              @blur="showPopupVerified = false"
                               type="text"
                               id="orderform-first_name"
                               name="OrderForm[first_name]"
