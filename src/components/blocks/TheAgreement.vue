@@ -1,11 +1,12 @@
 <template>
   <the-animation-border class="checkbox__agreement" :border-red="error">
-    <the-checkbox @check="confirmChecked" name-id="orderform-agree">
-       <span>
-          Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями
-          <a href="https://makeup.7money.co/page/security">Безопасности</a> и
-          <a href="https://makeup.7money.co/page/agreement">Соглашением сайта</a>
-        </span>
+    <the-checkbox name-id="orderform-of_exchange">
+      <input type="checkbox" name="OrderForm[agree]" id="orderform-agree" @click="confirmChecked" />
+      <label class="label" for="orderform-agree">
+        Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями
+        <a href="https://makeup.7money.co/page/security">Безопасности</a> и
+        <a href="https://makeup.7money.co/page/agreement">Соглашением сайта</a>
+      </label>
     </the-checkbox>
   </the-animation-border>
 

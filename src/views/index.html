@@ -150,10 +150,8 @@
                           @click="setIsVerified($event)"
                         />
                         <label class="label" for="isSellVerified">
-                              <span
-                                v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"
-                              ></span
-                              ></label>
+                          <span v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"></span>
+                        </label>
                       </the-checkbox>
                     </transition>
                     <transition name="fade">
@@ -401,9 +399,14 @@
                       <span class="field-error"></span>
                     </div>
                   </div>
-                  <div class="item">
+                  <div class="item" v-if="currencyModel.isCrypt(sellCurrency.id)">
                     <the-checkbox name-id="orderform-of_exchange">
-                      Отправляю с биржи
+                      <input
+                        type="checkbox" id="orderform-of_exchange" name="OrderForm[of_exchange]" value="1"
+                        @click="setOfExchange($event)" />
+                      <label class="label" for="orderform-of_exchange">
+                        Отправляю с биржи
+                      </label>
                     </the-checkbox>
                   </div>
                 </div>

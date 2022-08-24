@@ -11,6 +11,9 @@ npm run serve
 
 # Output will be at dist
 npm run build
+
+# Output will be at dist (prod)
+npm run build-prod
 ```
 
 
@@ -27,6 +30,37 @@ npm run build
     - views
     - index.js
 ```
+## Pages:
+```bash
+404.html
+about.html
+accounts.html
+affiliate-program.html
+application-status.html
+article.html
+blog.html
+change-password.html
+check-status.html
+contest.html
+create-order.html
+engineering-works.html
+error-payment.html
+faq.html
+history.html
+history-payment.html
+index.html
+news.html
+output.html
+partner.html
+partner-orders.html
+partners.html
+payment.html
+reviews.html
+search.html
+successful-payment.html
+verify.html
+```
+
 - `src/assets/fonts` - put fonts here.
 - `src/assets/images` - put images here.
 - `src/assets/js` - put JavaScript here.

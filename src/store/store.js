@@ -27,6 +27,7 @@ const store = createStore({
     sell_source: "",
     buy_target: "",
     is_verified: 0,
+    of_exchange: 0,
     city_id: null,
     // calculate data
     course: {},
@@ -44,11 +45,11 @@ const store = createStore({
     timer: null,
   }, //Хранения данных
   mutations: {
-    test(q){
-      console.log(q);
+    setOfExchange(state,e) {
+      state.of_exchange = !!e.target.checked;
     },
     setIsVerified(state, e) {
-      state.is_verified = e.target.checked ? true : false;
+      state.is_verified = !!e.target.checked;
       this.dispatch("calculateForm", ["revert"]);
     },
     updateBuyAmount(state, val) {

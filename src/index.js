@@ -165,9 +165,6 @@ createApp({
     isSellSource(){
       return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id)
     },
-    isProxy(){
-    
-    }
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
@@ -175,6 +172,7 @@ createApp({
       "callbackTimerFinish",
       "updateBuyAmount",
       "setIsVerified",
+      "setOfExchange",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(

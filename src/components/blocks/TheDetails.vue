@@ -120,6 +120,12 @@ export default {
         justify-content: space-between;
       }
     }
+
+    & .checkbox {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
   }
 
   & .min__max {
