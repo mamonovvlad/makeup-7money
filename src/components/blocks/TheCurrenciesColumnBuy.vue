@@ -6,7 +6,7 @@
     <template v-if="currenciesHideBuy">
       <div class="title__wrapper">
         <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
-        <div class="buttons">
+        <div class="buttons" v-if="sellCurrencyId !== null">
           <button v-for="(button, idx) in buttons" :key="idx" :class="{'active--filters':index === idx}"
                   @click="toggleInformation(idx)">
             {{ button.name }}
@@ -23,6 +23,7 @@
       :currency-id="buyCurrencyId"
       currency-name="buy"
       :rate-reserves="getRateReserves"
+      :index="index"
     >
     </the-currencies-list>
   </div>
