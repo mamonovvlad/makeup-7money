@@ -1,36 +1,11 @@
 <template>
   <section class="links stylish-wrapper" v-if="showHideBlock">
     <div class="items" :class="{ active: showLinks }">
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
-      <a href="">Visa/MasterCard UAH => Bitcoin</a>
-      <a href="">QIWI RUB => Bitcoin</a>
-      <a href="">Яндекс Деньги RUB => Advanced Cash USD</a>
+      <a v-for="(link,idx) in links" :key="idx" :href="link.url">
+        <span v-if="getLanguage === 'en'">{{ link.name_en }}</span>
+        <span v-else-if="getLanguage === 'ua'">{{ link.name_ua }}</span>
+        <span v-else>{{ link.name_ru }}</span>
+      </a>
     </div>
     <button @click="showLinks = !showLinks">
       <strong>
@@ -43,19 +18,31 @@
 
 <script>
 import { mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
   name: "TheLinks",
   data() {
     return {
+      links: [],
       showLinks: false,
     };
   },
   computed: {
-    ...mapGetters(["blockHide"]),
+    ...mapGetters(["blockHide", "getLanguage"]),
     showHideBlock() {
       return this.blockHide;
     },
+  },
+  methods: {
+    getLinks() {
+      axios.get(process.env.PROXY2 + "/v1/course/links?access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json").then((res) => {
+        this.links = res.data;
+      });
+    },
+  },
+  mounted() {
+    this.getLinks();
   },
 };
 </script>
@@ -74,7 +61,7 @@ export default {
     grid-template-columns: repeat(3, 1fr);
     transition: var(--transition);
     overflow: hidden;
-    max-height: 60px;
+    max-height: 65px;
     gap: 8px;
     @include _768 {
       grid-template-columns: repeat(3, 1fr);
@@ -104,7 +91,8 @@ export default {
   }
 
   & .active {
-    max-height: 1400px;
+    max-height: 800px;
+    overflow-y: auto;
   }
 }
 </style>

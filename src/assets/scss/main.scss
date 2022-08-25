@@ -31,18 +31,7 @@ html {
   overflow: hidden;
 }
 
-//*,
-//:after,
-//:before {
-//  transition: background 400ms ease-in-out 0s, box-shadow 400ms ease-in-out 0s;
-//}
-
-body {
-  font-size: 14px;
-  font-weight: 400;
-  height: 100vh;
-  overflow-y: auto;
-  font-family: var(--font-family);
+* {
   scrollbar-color: var(--light-green) var(--transparent);
   scrollbar-width: thin;
   //
@@ -57,6 +46,14 @@ body {
   &::-webkit-scrollbar-track {
     background: var(--transparent);
   }
+}
+
+body {
+  font-size: 14px;
+  font-weight: 400;
+  height: 100vh;
+  overflow-y: auto;
+  font-family: var(--font-family);
 
   @include _768 {
     font-size: 12px;

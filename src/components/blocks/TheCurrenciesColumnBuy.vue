@@ -33,7 +33,7 @@
 import TheTitle from "./TheTitle.vue";
 import TheFilters from "./TheFilters.vue";
 import TheCurrenciesList from "./TheCurrenciesList.vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "TheCurrenciesColumn",
