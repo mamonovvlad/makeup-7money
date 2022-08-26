@@ -31,12 +31,7 @@
         </div>
       </li>
     </ul>
-    <the-show-more-currencies
-      @click.native="toggle"
-      v-if="isShow && currenciesHide"
-    >
-      {{ nameTitle }}
-    </the-show-more-currencies>
+
   </div>
 </template>
 
@@ -68,10 +63,10 @@ export default {
       type: String,
       default: "",
     },
-    index:{
+    index: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
   },
   name: "TheCurrenciesList",
   data() {
@@ -89,26 +84,11 @@ export default {
     setActive(currencyName, id) {
       this.setActiveCurrency([currencyName, id]);
     },
-    toggle() {
-      let currenciesList = this.$refs.currenciesList;
-      let currenciesWrapper = this.$refs.currenciesWrapper;
 
-      if (currenciesList.clientHeight === 535) {
-        currenciesList.style.maxHeight = currenciesWrapper.clientHeight + "px";
-        this.nameTitle = "Скрыть";
-      } else {
-        currenciesList.style.maxHeight = "";
-        this.nameTitle = "Показать еще";
-      }
-    },
-    hideButton() {
-      let currenciesWrapper = this.$refs.currenciesWrapper;
-      this.isShow = currenciesWrapper.clientHeight >= 535;
-    },
   },
-  updated() {
-    this.hideButton();
-  },
+  // updated() {
+  //   this.hideButton();
+  // },
 };
 </script>
 

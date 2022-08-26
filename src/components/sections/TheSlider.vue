@@ -1,7 +1,6 @@
 <template>
   <section class="slider" id="slider" v-if="showHideBlock">
-    <div
-      class="wrapper"
+    <div class="wrapper"
       v-for="(slider, idx) in infoSlider"
       :key="idx"
       :class="{ active: isActive === idx }"

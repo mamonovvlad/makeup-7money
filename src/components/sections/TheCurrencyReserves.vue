@@ -1,19 +1,16 @@
 <template>
   <section
-    class="currency-reserves"
-    id="currency-reserves"
-    v-if="showHideBlock"
-  >
+    class="currency-reserves" id="currency-reserves" v-if="showHideBlock">
     <the-title class="title" tag="h2">{{ $t("currencyReserves") }}</the-title>
     <div class="wrapper stylish-wrapper">
-      <div class="block" v-for="block in 3" :key="block">
-        <div v-for="item in 5" class="item">
+      <div class="block" v-for="column in columns">
+        <div v-for="currency in column" class="item">
           <div class="name">
-            <span class="BTC"></span>
-            <p>Bitcoin</p>
+            <span :class="currency.code"></span>
+            <p>{{ currency.name_ru }}</p>
           </div>
           <div class="price">
-            <p>210</p>
+            <p>{{ Number(currency.amount).toFixed(2) }}</p>
             <span>BTC</span>
           </div>
         </div>
@@ -25,18 +22,44 @@
 <script>
 import TheTitle from "../blocks/TheTitle.vue";
 import { mapGetters } from "vuex";
+import axios from "axios";
 
 export default {
   name: "TheCurrencyReserves",
+  data() {
+    return {
+      currencies: [],
+      cols: 3,
+    };
+  },
   computed: {
     ...mapGetters(["blockHide"]),
+    columns() {
+      let columns = [];
+      let mid = Math.ceil(this.currencies.length / this.cols);
+      for (let col = 0; col < this.cols; col++) {
+        columns.push(this.currencies.slice(col * mid, col * mid + mid));
+      }
+      return columns;
+    },
     showHideBlock() {
       if (window.innerWidth > 992) {
         return this.blockHide;
       }
     },
+
   },
   components: { TheTitle },
+  methods: {
+    getCurrencies() {
+      axios.get(process.env.PROXY2 + "/v1/currency?active=1&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json").then((res) => {
+        this.currencies = res.data;
+      });
+    },
+  },
+  mounted() {
+    this.getCurrencies();
+  },
 };
 </script>
 
@@ -82,6 +105,7 @@ export default {
       height: 16px;
       margin-right: 5px;
       margin-bottom: 2px;
+      background-size: cover;
     }
   }
 

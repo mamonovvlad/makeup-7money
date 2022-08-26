@@ -17,6 +17,7 @@
       currency-name="sell"
     >
     </the-currencies-list>
+<!--    <the-show-more-currencies></the-show-more-currencies>-->
     <the-refresh v-if="!currenciesHideSell" @click="refresh"></the-refresh>
   </div>
 </template>
@@ -26,8 +27,8 @@ import TheTitle from "./TheTitle.vue";
 import TheRefresh from "./TheRefresh.vue";
 import TheCurrenciesList from "./TheCurrenciesList.vue";
 import TheFilters from "./TheFilters.vue";
+import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
 import { mapGetters, mapMutations } from "vuex";
-import store from "../../store/store";
 
 export default {
   name: "TheCurrenciesColumn",
@@ -36,6 +37,7 @@ export default {
     TheRefresh,
     TheFilters,
     TheCurrenciesList,
+    TheShowMoreCurrencies
   },
   computed: {
     ...mapGetters([

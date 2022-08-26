@@ -86,7 +86,7 @@ export default {
 .form-exchange {
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
+  row-gap: 40px;
 
   & .button {
     width: 100%;
@@ -100,10 +100,24 @@ export default {
 }
 
 .items__wrapper {
+  position: relative;
   display: flex;
   gap: 20px;
   @include _768 {
     flex-direction: column;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    background: var(--secondary);
+    height: 2px;
+    width: 100%;
+    bottom: -22px;
+
+    &:last-child {
+      display: none;
+    }
   }
 
   & .item {

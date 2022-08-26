@@ -3,9 +3,11 @@
     <the-checkbox name-id="orderform-of_exchange">
       <input type="checkbox" name="OrderForm[agree]" id="orderform-agree" @click="confirmChecked" />
       <label class="label" for="orderform-agree">
-        Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями
-        <a href="https://makeup.7money.co/page/security">Безопасности</a> и
-        <a href="https://makeup.7money.co/page/agreement">Соглашением сайта</a>
+        <span>
+          Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями
+          <a href="https://makeup.7money.co/page/security">Безопасности</a> и
+          <a href="https://makeup.7money.co/page/agreement">Соглашением сайта</a>
+        </span>
       </label>
     </the-checkbox>
   </the-animation-border>

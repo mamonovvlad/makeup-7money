@@ -78,20 +78,18 @@
                       <span class="field-error">Error</span>
                     </div>
                     <div class="min__max">
-                          <span v-show="calculateData.min_sell_amount > 0">
-                            Min:
-                            <strong>
-                              {{ `${calculateData.min_sell_amount}
-                              ${sellCurrency.symbol}` }}
-                            </strong>
-                          </span>
+                      <span v-show="calculateData.min_sell_amount > 0">
+                        Min:
+                        <strong>
+                          {{ `${calculateData.min_sell_amount} ${sellCurrency.symbol}` }}
+                        </strong>
+                      </span>
                       <span v-show="calculateData.max_sell_amount > 0">
-                            Max:
-                            <strong>
-                              {{ `${calculateData.max_sell_amount}
-                              ${sellCurrency.symbol}` }}
-                            </strong>
-                          </span>
+                        Max:
+                        <strong>
+                          {{ `${calculateData.max_sell_amount} ${sellCurrency.symbol}` }}
+                        </strong>
+                      </span>
                     </div>
                     <transition name="fade">
                       <the-checkbox v-if="sellCurrency.is_sell_verified">
@@ -168,42 +166,39 @@
                         </the-lacks>
                       </label>
                       <span class="field-wrapper">
-                            <input
-                              class="item__lacks"
-                              id="orderform-buy_amount"
-                              name="OrderForm[buy_amount]"
-                              aria-invalid="false"
-                              v-model="$store.state.buy_amount"
-                              v-debounce="updateBuyAmount"
-                            />
-
-                            <span
-                              :class="buyCurrency.code"
-                              id="exchange-ddl-to"
-                              :data-alias="buyCurrency.code"
-                            ></span>
-                          </span>
+                        <input
+                          class="item__lacks"
+                          id="orderform-buy_amount"
+                          name="OrderForm[buy_amount]"
+                          aria-invalid="false"
+                          v-model="$store.state.buy_amount"
+                          v-debounce="updateBuyAmount"
+                        />
+                        <span
+                          :class="buyCurrency.code"
+                          id="exchange-ddl-to"
+                          :data-alias="buyCurrency.code"
+                        >
+                        </span>
+                      </span>
                       <span class="field-error"></span>
                     </div>
                     <div class="min__max">
-                          <span v-show="calculateData.min_buy_amount > 0">
-                            Min:
-                            <strong>
-                              {{ calculateData.min_buy_amount }} {{
-                                buyCurrency.symbol }}
-                            </strong>
+                      <span v-show="calculateData.min_buy_amount > 0">
+                        Min:
+                        <strong>
+                          {{ calculateData.min_buy_amount }} {{ buyCurrency.symbol }}
+                        </strong>
                           </span>
                       <span v-show="calculateData.max_buy_amount > 0">
-                            Max:
-                            <strong>
-                              {{ calculateData.max_buy_amount }} {{
-                                buyCurrency.symbol }}
-                            </strong>
-                          </span>
+                        Max:
+                        <strong>
+                          {{ calculateData.max_buy_amount }} {{ buyCurrency.symbol }}
+                        </strong>
+                      </span>
                     </div>
                   </div>
                 </div>
-                <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item" v-if="isSellSource">
                     <the-recovery-information
@@ -216,14 +211,14 @@
                         Заплатить с этой карты
                       </label>
                       <span class="field-wrapper">
-                            <input
-                              @focus="showPopupInfoThisAccount = true"
-                              @blur="showPopupInfoThisAccount = false"
-                              type="text"
-                              id="orderform-sell_source"
-                              name="OrderForm[sell_source]"
-                              placeholder="0000 0000 0000 0000"
-                            />
+                        <input
+                          @focus="showPopupInfoThisAccount = true"
+                          @blur="showPopupInfoThisAccount = false"
+                          type="text"
+                          id="orderform-sell_source"
+                          name="OrderForm[sell_source]"
+                          placeholder="0000 0000 0000 0000"
+                        />
                             <span class="PMUSD"></span>
                           </span>
                       <span class="field-error"></span>
@@ -254,7 +249,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item">
                     <the-recovery-information
@@ -298,7 +292,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item">
                     <div class="field">
@@ -334,7 +327,6 @@
                     </div>
                   </div>
                 </div>
-                <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item">
                     <div class="field">
@@ -363,7 +355,6 @@
                     </the-checkbox>
                   </div>
                 </div>
-                <div class="line"></div>
                 <div class="items__wrapper">
                   <div class="item">
                     <div class="field">

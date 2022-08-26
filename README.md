@@ -13,7 +13,7 @@ npm run serve
 npm run build
 
 # Output will be at dist (prod)
-npm run build-prod
+npm run prod
 ```
 
 
