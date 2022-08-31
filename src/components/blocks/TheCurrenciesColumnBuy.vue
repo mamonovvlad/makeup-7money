@@ -26,7 +26,6 @@
       :index="index"
     >
     </the-currencies-list>
-<!--    <the-show-more-currencies></the-show-more-currencies>-->
   </div>
 </template>
 
@@ -34,7 +33,6 @@
 import TheTitle from "./TheTitle.vue";
 import TheFilters from "./TheFilters.vue";
 import TheCurrenciesList from "./TheCurrenciesList.vue";
-import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -56,7 +54,6 @@ export default {
     TheTitle,
     TheFilters,
     TheCurrenciesList,
-    TheShowMoreCurrencies
   },
   computed: {
     ...mapGetters([

@@ -7,34 +7,16 @@
 <script>
 export default {
   name: "ShowMoreCurrencies",
-  methods:{
-    toggle() {
-      let currenciesList = this.$refs.currenciesList;
-      let currenciesWrapper = this.$refs.currenciesWrapper;
-
-      if (currenciesList.clientHeight === 535) {
-        currenciesList.style.maxHeight = currenciesWrapper.clientHeight + "px";
-        this.nameTitle = "Скрыть";
-      } else {
-        currenciesList.style.maxHeight = "";
-        this.nameTitle = "Показать еще";
-      }
-    },
-    hideButton() {
-      let currenciesWrapper = this.$refs.currenciesWrapper;
-      this.isShow = currenciesWrapper.clientHeight >= 535;
-    },
-  }
 };
 </script>
 
 <style lang="scss">
 .show-more__currencies{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   font-size: 14px;
+  padding-top: 5px;
   color: var(--primary);
+  background: var(--seventh);
   font-weight: 600;
+  width: 100%;
 }
 </style>

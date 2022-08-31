@@ -24,19 +24,26 @@
             </p>
           </transition>
         </div>
-
-        <div class="price" v-if="currency.rate && currenciesHide">
-          <span v-if="index === 0"> {{ currency.rate }}</span>
-          <span v-else> {{ currency.amount }}</span>
-        </div>
+        <transition name="currencies-hide">
+          <span class="price" v-if="currency.rate && currenciesHide">
+            {{ currency.rate }}
+          </span>
+        </transition>
       </li>
     </ul>
 
   </div>
+  <the-show-more-currencies
+    @click.native="toggle"
+    v-if="isShow && currenciesHide"
+  >
+    {{ nameTitle }}
+  </the-show-more-currencies>
 </template>
 
 <script>
 import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
+import TheRefresh from "./TheRefresh.vue";
 import { mapMutations } from "vuex";
 
 export default {
@@ -52,9 +59,6 @@ export default {
     currencies: {
       type: [Object, Array],
     },
-    rateReserves: {
-      type: [Object, Array],
-    },
     currenciesHide: {
       type: Boolean,
       default: false,
@@ -62,10 +66,6 @@ export default {
     currencyGroup: {
       type: String,
       default: "",
-    },
-    index: {
-      type: Number,
-      default: 0,
     },
   },
   name: "TheCurrenciesList",
@@ -77,18 +77,32 @@ export default {
   },
   components: {
     TheShowMoreCurrencies,
+    TheRefresh,
   },
-  computed: {},
   methods: {
     ...mapMutations(["setActiveCurrency"]),
     setActive(currencyName, id) {
       this.setActiveCurrency([currencyName, id]);
     },
-
+    toggle() {
+      let currenciesList = this.$refs.currenciesList;
+      let currenciesWrapper = this.$refs.currenciesWrapper;
+      if (currenciesList.clientHeight === 535) {
+        currenciesList.style.maxHeight = currenciesWrapper.clientHeight + 40 + "px";
+        this.nameTitle = "Скрыть";
+      } else {
+        currenciesList.style.maxHeight = "";
+        this.nameTitle = "Показать еще";
+      }
+    },
+    hideButton() {
+      let currenciesWrapper = this.$refs.currenciesWrapper;
+      this.isShow = currenciesWrapper.clientHeight >= 535;
+    },
   },
-  // updated() {
-  //   this.hideButton();
-  // },
+  updated() {
+    this.hideButton();
+  },
 };
 </script>
 
