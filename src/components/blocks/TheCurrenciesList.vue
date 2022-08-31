@@ -31,7 +31,6 @@
         </transition>
       </li>
     </ul>
-
   </div>
   <the-show-more-currencies
     @click.native="toggle"
