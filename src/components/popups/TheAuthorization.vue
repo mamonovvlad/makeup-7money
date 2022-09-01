@@ -71,21 +71,22 @@
             </the-field>
           </template>
         </div>
+
+        <div class="captcha" v-if="indexActive === 1">
+          <div class="g-recaptcha"></div>
+        </div>
+        <button @click="$emit('open')" v-if="indexActive === 0" class="forgot">
+          {{ $t("remind") }}
+        </button>
+        <the-button tag="button" type="submit">
+          <template #name v-if="indexActive === 0">
+            {{ $t("logIn") }}
+          </template>
+          <template #name v-else>
+            {{ $t("signUp") }}
+          </template>
+        </the-button>
       </form>
-      <div class="captcha" v-if="indexActive === 1">
-        <div class="g-recaptcha"></div>
-      </div>
-      <button @click="$emit('open')" v-if="indexActive === 0" class="forgot">
-        {{ $t("remind") }}
-      </button>
-      <the-button tag="button" type="submit">
-        <template #name v-if="indexActive === 0">
-          {{ $t("logIn") }}
-        </template>
-        <template #name v-else>
-          {{ $t("signUp") }}
-        </template>
-      </the-button>
     </div>
   </div>
 </template>
