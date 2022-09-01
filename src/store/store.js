@@ -52,6 +52,27 @@ const store = createStore({
       state.is_verified = !!e.target.checked;
       this.dispatch("calculateForm", ["revert"]);
     },
+    updateSellAmount(state,val) {
+      state.type = "default";
+      if (
+        state.sell_amount.length <= 0 ||
+        state.sell_amount === 0 ||
+        state.sell_amount === ""
+      ) {
+        return;
+      }
+      let float = state.sell_amount;
+      if (typeof state.sell_amount === "string") {
+        float = parseFloat(String(state.sell_amount).replace(/,/g, "."));
+        if (float <= 0) {
+          float = 0;
+        }
+      }
+      state.sell_amount = float;
+      if (state.sell_amount > 0) {
+        this.dispatch("calculateForm", ["default"]);
+      }
+    },
     updateBuyAmount(state, val) {
       state.type = "revert";
       if (
@@ -344,8 +365,6 @@ const store = createStore({
       { state, commit, getters },
       [type = "default", refresh = false],
     ) {
-      console.log(state.proxy);
-      console.log(getters.getLang);
       document
         .querySelectorAll(".form-exchange .field-error")
         .forEach(function(el, i) {

@@ -171,6 +171,7 @@ createApp({
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
     ...mapMutations([
       "callbackTimerFinish",
+      "updateSellAmount",
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
