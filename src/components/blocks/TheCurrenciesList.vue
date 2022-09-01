@@ -19,13 +19,13 @@
         <div class="name">
           <span :class="currency.code"></span>
           <transition name="currencies-hide">
-            <p v-if="currenciesHide">
+            <p v-if="currenciesHide ">
               {{ currency.name_ru }}
             </p>
           </transition>
         </div>
         <transition name="currencies-hide">
-          <span class="price" v-if="currency.rate && currenciesHide">
+          <span class="price" v-if="currency.rate && currenciesHide && activeIndex === 0">
             {{ currency.rate }}
           </span>
         </transition>
@@ -65,6 +65,10 @@ export default {
     currencyGroup: {
       type: String,
       default: "",
+    },
+    activeIndex: {
+      type: Number,
+      default: 0,
     },
   },
   name: "TheCurrenciesList",

@@ -1,14 +1,15 @@
 import { createApp } from "vue";
 
+
 //Js
 import vueDebounce from "vue-debounce";
+import store from "./store/store.js";
+import { mapMutations, mapActions, mapGetters } from "vuex";
+//js src
 import { Captcha } from "./assets/js/captcha.js";
 import i18n from "./assets/js/multilanguage.js";
 import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/main.js";
-import store from "./store/store.js";
-
-import { mapMutations, mapActions, mapGetters } from "vuex";
 
 //Style
 import "./assets/scss/main.scss";

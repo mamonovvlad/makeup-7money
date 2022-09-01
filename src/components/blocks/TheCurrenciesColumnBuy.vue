@@ -22,6 +22,7 @@
       :currencies="buyCurrencies"
       :currency-id="buyCurrencyId"
       currency-name="buy"
+      :active-index="index"
     >
     </the-currencies-list>
   </div>
@@ -37,6 +38,7 @@ export default {
   name: "TheCurrenciesColumn",
   data() {
     return {
+      index: 0,
       buttons: [
         {
           name: "Курсы",

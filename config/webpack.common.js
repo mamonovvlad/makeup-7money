@@ -29,14 +29,12 @@ module.exports = {
   //   hints: false,
   // },
   
+  externals: {
+    paths: PATHS,
+  },
   output: {
     filename: `${PATHS.source}js/[name].js`,
     path: PATHS.dist,
-  },
-  
-  externals: {
-    paths: PATHS,
-    
   },
   entry: {
     app: PATHS.src,
@@ -107,6 +105,11 @@ module.exports = {
   
   plugins: [
     new VueLoaderPlugin(),
+    new webpack.DefinePlugin({
+      "process.env": JSON.stringify(process.env),
+    }),
+    
+    
     new MiniCssExtractPlugin({
       filename: `${PATHS.source}css/[name].css`,
     }),
@@ -123,10 +126,7 @@ module.exports = {
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
     }),
-    
-    new webpack.DefinePlugin({
-      "process.env": JSON.stringify(process.env),
-    }),
+  
   
   ],
 };

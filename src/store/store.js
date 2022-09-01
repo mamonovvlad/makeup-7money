@@ -45,7 +45,7 @@ const store = createStore({
     timer: null,
   }, //Хранения данных
   mutations: {
-    setOfExchange(state,e) {
+    setOfExchange(state, e) {
       state.of_exchange = !!e.target.checked;
     },
     setIsVerified(state, e) {
@@ -341,9 +341,11 @@ const store = createStore({
   }, //Функция для изменения state
   actions: {
     calculateForm(
-      { state, commit, getters, process },
+      { state, commit, getters },
       [type = "default", refresh = false],
     ) {
+      console.log(state.proxy);
+      console.log(getters.getLang);
       document
         .querySelectorAll(".form-exchange .field-error")
         .forEach(function(el, i) {
@@ -445,11 +447,11 @@ const store = createStore({
     getLanguage() {
       return document.getElementById("language").value;
     },
-    getLang(getters) {
-      if (getters.getLanguage === "en") {
-        return "en";
-      } else if (getters.getLanguage === "ua") {
-        return "ua";
+    getLang() {
+      if (store.getters.getLanguage === "en") {
+        return "/en";
+      } else if (store.getters.getLanguage === "ua") {
+        return "/ua";
       }
       return "";
     },
