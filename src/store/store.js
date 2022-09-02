@@ -40,11 +40,18 @@ const store = createStore({
     currenciesHideSell: true,
     currenciesHideBuy: true,
     blockHide: true,
+    isPasswordRecovery: false,
     //timer
     currentTime: 60,
     timer: null,
   }, //Хранения данных
   mutations: {
+    hidePasswordRecovery(state) {
+      state.isPasswordRecovery = false;
+    },
+    showPasswordRecovery(state) {
+      state.isPasswordRecovery = true;
+    },
     setOfExchange(state, e) {
       state.of_exchange = !!e.target.checked;
     },
@@ -536,6 +543,9 @@ const store = createStore({
     },
     sellAmount(state) {
       return state.sell_amount;
+    },
+    passwordRecovery(state) {
+      return state.isPasswordRecovery;
     },
   }, // Получения state
 });

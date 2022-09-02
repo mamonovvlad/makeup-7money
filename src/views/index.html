@@ -53,7 +53,6 @@
                   name="OrderForm[select]"
                   value="sell"
                 />
-
                 <div class="items__wrapper">
                   <div class="item">
                     <div class="field">
@@ -264,16 +263,16 @@
                         Имя держателя карты
                       </label>
                       <span class="field-wrapper">
-                            <input
-                              @focus="showPopupVerified = true"
-                              @blur="showPopupVerified = false"
-                              type="text"
-                              id="orderform-first_name"
-                              name="OrderForm[first_name]"
-                              placeholder="Василий"
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
+                        <input
+                          @focus="showPopupVerified = true"
+                          @blur="showPopupVerified = false"
+                          type="text"
+                          id="orderform-first_name"
+                          name="OrderForm[first_name]"
+                          placeholder="Василий"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
                       <span class="field-error"></span>
                     </div>
                   </div>
@@ -386,7 +385,6 @@
                     </div>
                   </div>
                 </div>
-
                 <the-agreement></the-agreement>
                 <the-button
                   id="order-submit"
@@ -516,25 +514,24 @@
       <the-links></the-links>
     </main>
     <the-footer></the-footer>
-  </div>
-  <the-lacks-window
-    v-if="showLacks"
-    @close="showLacks=false"
-  >
-    <form class="form">
-      <div class="items__wrapper">
-        <div class="field">
-          <label>Город</label>
-          <span class="field-wrapper">
+    <the-lacks-window
+      v-if="showLacks"
+      @close="showLacks=false"
+    >
+      <form class="form">
+        <div class="items__wrapper">
+          <div class="field">
+            <label>Город</label>
+            <span class="field-wrapper">
                 <select name="ReserveNotification[currency_id]" id="reservenotification-currency_id">
                   <option value="93">Киев</option>
                 </select>
               </span>
 
-        </div>
-        <div class="field">
-          <label for="orderform-telegram">Email</label>
-          <span class="field-wrapper">
+          </div>
+          <div class="field">
+            <label for="orderform-telegram">Email</label>
+            <span class="field-wrapper">
                 <input
                   type="text"
                   id="reservenotification-email"
@@ -543,12 +540,12 @@
                   aria-required="true"
                   required />
               </span>
+          </div>
         </div>
-      </div>
-      <div class="items__wrapper">
-        <div class="field">
-          <label for="reservenotification-amount">Сума</label>
-          <span class="field-wrapper">
+        <div class="items__wrapper">
+          <div class="field">
+            <label for="reservenotification-amount">Сума</label>
+            <span class="field-wrapper">
               <input
                 type="text"
                 id="reservenotification-amount"
@@ -556,13 +553,32 @@
                 required="required" aria-required="true"
                 placeholder="62.3653" />
               </span>
+          </div>
+          <the-button tag="button" @click.native="">
+            <template #name>Сохранить</template>
+          </the-button>
         </div>
-        <the-button tag="button" @click.native="">
-          <template #name>Сохранить</template>
+      </form>
+    </the-lacks-window>
+    <the-password-recovery @close="hidePasswordRecovery" v-if="passwordRecovery">
+      <form :action="$t('passwordRecoveryAction')" method="post">
+        <input type="hidden" :value="csrfToken" :name="csrfParam" />
+        <the-field
+          name-type="mail" name-id="passwordRecovery_mail"
+          name="PasswordResetRequestForm[email]"
+          name-placeholder="tolik.wwwww@ukr.net">
+          <template #label>
+            E-mail
+          </template>
+        </the-field>
+        <the-button tag="button" type="submit">
+          <template #name>
+            {{ $t("send") }}
+          </template>
         </the-button>
-      </div>
-    </form>
-  </the-lacks-window>
+      </form>
+    </the-password-recovery>
+  </div>
 </div>
 <input id="login" type="hidden" value="0" />
 <input id="language" type="hidden" value="en" />

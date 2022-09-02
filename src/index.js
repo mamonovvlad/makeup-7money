@@ -55,6 +55,7 @@ import TheLeaveFeedback from "./components/popups/TheLeaveFeedback.vue";
 import TheLacks from "./components/popups/TheLacks.vue";
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
+import ThePasswordRecovery from "./components/popups/ThePasswordRecovery.vue";
 //Icons
 import IconPig from "./components/icons/IconPig.vue";
 
@@ -84,6 +85,8 @@ createApp({
       captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
+      csrfToken: null,
+      csrfParam: null,
       ///
       showLacks: false,
       showPopupInfoThisAccount: false,
@@ -91,7 +94,7 @@ createApp({
       showPopupVerified: false,
     };
   },
-
+  
   components: {
     //Sections
     TheHeader,
@@ -132,6 +135,7 @@ createApp({
     TheLacks,
     TheRecoveryInformation,
     TheLacksWindow,
+    ThePasswordRecovery,
     //Icons
     IconPig,
     IconError,
@@ -152,7 +156,7 @@ createApp({
     IconVerification,
     IconSearch,
     IconRandom,
-    IconRefresh
+    IconRefresh,
   },
   computed: {
     ...mapGetters([
@@ -164,10 +168,12 @@ createApp({
       "sellAmount",
       "calculateData",
       "detailsHide",
+      "passwordRecovery",
     ]),
-    isSellSource(){
-      return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id)
+    isSellSource() {
+      return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id);
     },
+    
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
@@ -177,22 +183,25 @@ createApp({
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
+      "hidePasswordRecovery",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",
-        document.getElementById("language").value
+        document.getElementById("language").value,
       );
       if (object[nameWithLang] !== undefined) {
         return object[nameWithLang];
       }
       return "undefined " + nameWithLang;
     },
+    //Закрыть окно "Забыли пароль?"
+ 
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
-    // this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    // this.csrfParam = document.querySelector('meta[name="csrf-param"]').content
+    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
+    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
   },
 })
   .use(i18n)

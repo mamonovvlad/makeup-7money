@@ -6,20 +6,7 @@
         {{ $t("passwordRecovery") }}
       </h3>
       <p>{{ $t("recoveryText") }}</p>
-      <form :action="$t('passwordRecoveryAction')" method="post">
-        <input type="hidden" :value="csrfToken" :name="csrfParam" />
-        <the-field name-type="mail" name-id="passwordRecovery_mail" name="PasswordResetRequestForm[email]"
-                   name-placeholder="tolik.wwwww@ukr.net">
-          <template #label>
-            E-mail
-          </template>
-        </the-field>
-        <the-button tag="button" type="submit">
-          <template #name>
-            {{ $t("send") }}
-          </template>
-        </the-button>
-      </form>
+      <slot></slot>
     </div>
   </div>
 </template>
