@@ -169,7 +169,6 @@ const store = createStore({
       state[payload + "CurrencyGroupId"] = null;
     },
     checkLastCurrencies() {
-      
       let inputHiddenLastSellId = document.getElementById(
         "inputHiddenLastSellId",
       );
@@ -255,6 +254,7 @@ const store = createStore({
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);
       this.commit(`${type}HideBlock`);
+      
       if (state.sell_currency_id === null && state.buy_currency_id !== null) {
         this.dispatch("fetchSellCurrencies");
       }

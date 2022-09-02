@@ -76,6 +76,7 @@ import IconVerification from "./components/icons/IconVerification.vue";
 import IconSearch from "./components/icons/IconSearch.vue";
 import IconRandom from "./components/icons/IconRandom.vue";
 import IconError from "./components/icons/IconError.vue";
+import IconRefresh from "./components/icons/IconRefresh.vue";
 
 createApp({
   data() {
@@ -151,6 +152,7 @@ createApp({
     IconVerification,
     IconSearch,
     IconRandom,
+    IconRefresh
   },
   computed: {
     ...mapGetters([

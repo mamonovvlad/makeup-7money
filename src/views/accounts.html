@@ -1,214 +1,222 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Профиль</title>
-    <meta name="csrf-param" content="_csrf" />
-    <meta name="csrf-param" content="_csrf" />
-    <meta name="csrf-token" content="He8Y" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Профиль</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
 
-  <body>
-    <div id="app" v-cloak>
-      <div class="app" :data-theme="colorSpectrum">
-        <the-header></the-header>
-        <main class="personal-area">
-          <div class="container">
-            <div class="wrapper">
-              <the-account-navigation>
-                <template #links>
-                  <a class="active" href="/">
-                    <icon-personal-data></icon-personal-data>
-                    Счета и персональные данные
-                  </a>
-                  <a href="/">
-                    <icon-history></icon-history>
-                    История операций
-                  </a>
-                  <a href="/">
-                    <icon-partner></icon-partner>
-                    Партнёрская программа
-                  </a>
-                  <a href="/">
-                    <icon-withdraw-reward></icon-withdraw-reward>
-                    Вывеси вознаграждение
-                  </a>
-                  <a href="/">
-                    <icon-buy></icon-buy>
-                    История выплат
-                  </a>
-                  <a href="/">
-                    <icon-padlock></icon-padlock>
-                    Изменение пароля
-                  </a>
-                  <a href="/">
-                    <icon-random></icon-random>
-                    Заявки рефералов
-                  </a>
-                  <a href="/">
-                    <icon-create></icon-create>
-                    Создать заявку
-                  </a>
-                  <a href="/">
-                    <icon-verification></icon-verification>
-                    Верификация заявок
-                  </a>
-                  <a href="/">
-                    <icon-search></icon-search>
-                    Поиск заявок
-                  </a>
-                </template>
-                <template #buttons>
-                  <a href="/">Выход</a>
-                  <a href="/">Выход со всех устройств</a>
-                </template>
-              </the-account-navigation>
-              <div class="wrapper-account accounts">
-                <the-title tag="h2" class="subtitle"
-                  >Персональные данные</the-title
-                >
-                <form action="/profile/update" method="POST">
-                  <input type="hidden" :value="csrfToken" :name="csrfParam" />
-                  <div class="stylish-wrapper">
-                    <div class="field-list">
-                      <the-field
-                        name-placeholder="Василий"
-                        name-id="first_name"
-                        name="first_name"
-                        :required="true"
-                        :show-error="true"
-                      >
-                        <template #label>Имя</template>
-                        <template #error
-                          >Текст отзыва не может быть пустым</template
-                        >
-                      </the-field>
-                      <the-field
-                        name-placeholder="Петров"
-                        name-id="last_name"
-                        name="last_name"
-                        :required="true"
-                      >
-                        <template #label>Фамилия</template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="Алексеевич"
-                        name-id="second_name"
-                        name="second_name"
-                      >
-                        <template #label>Отчество</template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="+38 (068) 72 50 152"
-                        name-type="tel"
-                        name-id="tel"
-                        name="phone"
-                      >
-                        <template #label>Номер телефона</template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="tolik.wwwww@ukr.net"
-                        name-type="email"
-                        name-id="mail"
-                        name="email"
-                        :required="true"
-                        :show-error="true"
-                      >
-                        <template #label>Электронная почта</template>
-                        <template #error
-                          >Текст отзыва не может быть пустым</template
-                        >
-                      </the-field>
-                    </div>
-                    <div class="line"></div>
-                    <the-discount></the-discount>
-                    <div class="line"></div>
-                    <the-exchange-information></the-exchange-information>
-                  </div>
-                  <the-title tag="h2" class="subtitle">Счета</the-title>
-
-                  <div class="stylish-wrapper">
-                    <div class="field-list">
-                      <the-field
-                        name-placeholder="U012345678"
-                        name-id="currency-PMUSD"
-                        name="UserCurrency[1]"
-                      >
-                        <template #label>PerfectMoney USD</template>
-                        <template #icon>
-                          <span class="PMUSD"></span>
-                        </template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="Василий"
-                        name-id="first_n"
-                        name="first_name"
-                      >
-                        <template #label>PAYEER USD</template>
-                        <template #icon>
-                          <span class="PRUSD"></span>
-                        </template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="U012345678"
-                        name-id="currency-PMU"
-                        name="UserCurrency[1]"
-                      >
-                        <template #label>PerfectMoney USD</template>
-                        <template #icon>
-                          <span class="PMUSD"></span>
-                        </template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="Василий"
-                        name-id="first_nam"
-                        name="first_name"
-                      >
-                        <template #label>PAYEER USD</template>
-                        <template #icon>
-                          <span class="PRUSD"></span>
-                        </template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="U012345678"
-                        name-id="currency-P"
-                        name="UserCurrency[1]"
-                      >
-                        <template #label>PerfectMoney USD</template>
-                        <template #icon>
-                          <span class="PMUSD"></span>
-                        </template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="Василий"
-                        name-id="first_na"
-                        name="first_name"
-                      >
-                        <template #label>PAYEER USD</template>
-                        <template #icon>
-                          <span class="PRUSD"></span>
-                        </template>
-                      </the-field>
-                    </div>
-                  </div>
-                  <div class="accounts__button">
-                    <the-button tag="button">
-                      <template #name> Сохранить изменения </template>
-                    </the-button>
-                  </div>
-                </form>
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="colorSpectrum">
+    <the-header></the-header>
+    <main class="personal-area">
+      <div class="container">
+        <input type="text">
+        <input type="text">
+        <div id="profile-content" class="wrapper">
+          <the-account-navigation>
+            <template #links>
+              <a class="active" href="/">
+                <icon-personal-data></icon-personal-data>
+                Счета и персональные данные
+              </a>
+              <a href="/">
+                <icon-history></icon-history>
+                История операций
+              </a>
+              <a href="/">
+                <icon-partner></icon-partner>
+                Партнёрская программа
+              </a>
+              <a href="/">
+                <icon-withdraw-reward></icon-withdraw-reward>
+                Вывеси вознаграждение
+              </a>
+              <a href="/">
+                <icon-buy></icon-buy>
+                История выплат
+              </a>
+              <a href="/">
+                <icon-padlock></icon-padlock>
+                Изменение пароля
+              </a>
+              <a href="/">
+                <icon-random></icon-random>
+                Заявки рефералов
+              </a>
+              <a href="/">
+                <icon-create></icon-create>
+                Создать заявку
+              </a>
+              <a href="/">
+                <icon-verification></icon-verification>
+                Верификация заявок
+              </a>
+              <a href="/">
+                <icon-search></icon-search>
+                Поиск заявок
+              </a>
+            </template>
+            <template #buttons>
+              <a href="/">Выход</a>
+              <a href="/">Выход со всех устройств</a>
+            </template>
+          </the-account-navigation>
+          <div class="wrapper-account accounts">
+            <the-title tag="h2" class="subtitle">Персональные данные</the-title>
+            <form action="/profile/update" method="POST">
+              <input type="hidden" :value="csrfToken" :name="csrfParam" />
+              <div class="stylish-wrapper">
+                <div class="field-list">
+                  <the-field
+                    name-placeholder="Василий"
+                    name-id="first_name"
+                    name="first_name"
+                    :required="true"
+                    :show-error="true"
+                  >
+                    <template #label>Имя</template>
+                    <template #error
+                    >Текст отзыва не может быть пустым
+                    </template
+                    >
+                  </the-field>
+                  <the-field
+                    name-placeholder="Петров"
+                    name-id="last_name"
+                    name="last_name"
+                    :required="true"
+                  >
+                    <template #label>Фамилия</template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="Алексеевич"
+                    name-id="second_name"
+                    name="second_name"
+                  >
+                    <template #label>Отчество</template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="+38 (068) 72 50 152"
+                    name-type="tel"
+                    name-id="tel"
+                    name="phone"
+                  >
+                    <template #label>Номер телефона</template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="tolik.wwwww@ukr.net"
+                    name-type="email"
+                    name-id="mail"
+                    name="email"
+                    :required="true"
+                    :show-error="true"
+                  >
+                    <template #label>Электронная почта</template>
+                    <template #error
+                    >Текст отзыва не может быть пустым
+                    </template
+                    >
+                  </the-field>
+                </div>
+                <div class="line"></div>
+                <the-discount></the-discount>
+                <div class="line"></div>
+                <the-exchange-information>
+                  При выборе первой кнопки, Ваша скидка по программе лояльности будет
+                  учитываться в сумме''Я ОТДАЮ''. При выборе второй кнопки, Ваша скидка по
+                  программе лояльности будет учитываться в сумме''Я ПОЛУЧАЮ''. При обмене
+                  bitcoin, скидка всегда будет насчитываться на вторую валюту, которая
+                  указана в заявке.
+                </the-exchange-information>
               </div>
-            </div>
+              <the-title tag="h2" class="subtitle">Счета</the-title>
+
+              <div class="stylish-wrapper">
+                <div class="field-list">
+                  <the-field
+                    name-placeholder="U012345678"
+                    name-id="currency-PMUSD"
+                    name="UserCurrency[1]"
+                  >
+                    <template #label>PerfectMoney USD</template>
+                    <template #icon>
+                      <span class="PMUSD"></span>
+                    </template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="Василий"
+                    name-id="first_n"
+                    name="first_name"
+                  >
+                    <template #label>PAYEER USD</template>
+                    <template #icon>
+                      <span class="PRUSD"></span>
+                    </template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="U012345678"
+                    name-id="currency-PMU"
+                    name="UserCurrency[1]"
+                  >
+                    <template #label>PerfectMoney USD</template>
+                    <template #icon>
+                      <span class="PMUSD"></span>
+                    </template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="Василий"
+                    name-id="first_nam"
+                    name="first_name"
+                  >
+                    <template #label>PAYEER USD</template>
+                    <template #icon>
+                      <span class="PRUSD"></span>
+                    </template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="U012345678"
+                    name-id="currency-P"
+                    name="UserCurrency[1]"
+                  >
+                    <template #label>PerfectMoney USD</template>
+                    <template #icon>
+                      <span class="PMUSD"></span>
+                    </template>
+                  </the-field>
+                  <the-field
+                    name-placeholder="Василий"
+                    name-id="first_na"
+                    name="first_name"
+                  >
+                    <template #label>PAYEER USD</template>
+                    <template #icon>
+                      <span class="PRUSD"></span>
+                    </template>
+                  </the-field>
+                </div>
+              </div>
+              <div class="accounts__button">
+                <the-button tag="button">
+                  <template #name> Сохранить изменения</template>
+                </the-button>
+              </div>
+            </form>
           </div>
-        </main>
-        <the-footer></the-footer>
+        </div>
       </div>
-    </div>
-    <input type="hidden" id="login" value="0" />
-    <input type="hidden" id="language" value="ru" />
-    <input type="hidden" id="switched" value="1" />
-    <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
-  </body>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="ru" />
+<input type="hidden" id="switched" value="1" />
+<script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
+</body>
 </html>

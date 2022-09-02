@@ -2,7 +2,7 @@
   <div class="side-panel">
     <transition name="animate-right">
       <nav class="account-navigation" v-if="isActive">
-        <div class="links">
+        <div class="side-panel__links">
           <slot name="links"></slot>
         </div>
         <div class="buttons">
@@ -61,6 +61,48 @@ export default {
       display: flex;
     }
   }
+
+  &__links,
+  & .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__links {
+    margin-bottom: 40px;
+    @include _992 {
+      margin-bottom: 20px;
+    }
+    @include _768 {
+      margin-bottom: 0;
+      row-gap: 15px;
+    }
+
+
+    & a {
+      display: flex;
+      border-radius: var(--radius-four);
+
+      & svg {
+        width: 17px;
+        margin-right: 10px;
+        color: var(--ternary);
+        @include _768 {
+          margin-right: 0;
+        }
+      }
+    }
+
+    & .active {
+      box-shadow: var(--shadow);
+      color: var(--quaternary);
+      font-weight: 600;
+
+      & svg {
+        color: var(--primary);
+      }
+    }
+  }
 }
 
 .account-navigation {
@@ -97,47 +139,6 @@ export default {
     }
   }
 
-  & .links,
-  & .buttons {
-    display: flex;
-    flex-direction: column;
-  }
-
-  & .links {
-    margin-bottom: 40px;
-    @include _992 {
-      margin-bottom: 20px;
-    }
-    @include _768 {
-      margin-bottom: 0;
-      row-gap: 15px;
-    }
-
-
-    & a {
-      display: flex;
-      border-radius: var(--radius-four);
-
-      & svg {
-        width: 17px;
-        margin-right: 10px;
-        color: var(--ternary);
-        @include _768 {
-          margin-right: 0;
-        }
-      }
-    }
-
-    & .active {
-      box-shadow: var(--shadow);
-      color: var(--quaternary);
-      font-weight: 600;
-
-      & svg {
-        color: var(--primary);
-      }
-    }
-  }
 
   & .buttons {
     text-transform: uppercase;

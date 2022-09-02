@@ -15,7 +15,7 @@ export default {
   methods: {
     clearHistory() {
       axios
-        .get("https://7money.co/site/clear-last-ids")
+        .get(`${process.env.PROXY}/site/clear-last-ids`)
         .then((response) => {
           let url = document.querySelector(".logo").href;
           document.location = url;
