@@ -13,7 +13,7 @@ export default {
   name: "TheDiscount",
   data() {
     return {
-      number: null,
+      number: 0,
       switched,
     };
   },

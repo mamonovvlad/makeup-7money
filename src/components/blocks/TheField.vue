@@ -3,7 +3,7 @@
     <label :for="nameId">
       <slot name="label"></slot>
     </label>
-    <span class="field-wrapper">
+    <span class="form-group">
       <input
         v-if="!textarea && !select"
         @input="$emit('update:modelValue', $event.target.value)"
@@ -42,9 +42,9 @@
       <slot name="icon"></slot>
     </span>
     <transition name="animation-from-right">
-      <span v-show="this.$slots.error && showError" class="field-error">
+      <div v-show="this.$slots.error && showError" class="help-block">
         <slot name="error"></slot>
-      </span>
+      </div>
     </transition>
   </div>
 </template>
@@ -118,7 +118,6 @@ export default {
     font-weight: 500;
   }
 
-  &-wrapper,
   & .form-group{
     position: relative;
 
@@ -162,8 +161,7 @@ export default {
   }
 }
 
-.help-block,
-.field-error {
+.help-block{
   color: var(--red);
   position: absolute;
   left: 6px;
