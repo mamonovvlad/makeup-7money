@@ -118,7 +118,8 @@ export default {
     font-weight: 500;
   }
 
-  &-wrapper {
+  &-wrapper,
+  & .form-group{
     position: relative;
 
     & span {
@@ -157,10 +158,16 @@ export default {
   }
 
   &-error {
-    color: var(--red);
-    position: absolute;
-    bottom: -15px;
-    font-size: 12px;
+
   }
+}
+
+.help-block,
+.field-error {
+  color: var(--red);
+  position: absolute;
+  left: 6px;
+  bottom: -15px;
+  font-size: 12px;
 }
 </style>

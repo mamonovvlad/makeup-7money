@@ -514,24 +514,25 @@
       <the-links></the-links>
     </main>
     <the-footer></the-footer>
-    <the-lacks-window
-      v-if="showLacks"
-      @close="showLacks=false"
-    >
-      <form class="form">
-        <div class="items__wrapper">
-          <div class="field">
-            <label>Город</label>
-            <span class="field-wrapper">
+  </div>
+  <the-lacks-window
+    v-if="showLacks"
+    @close="showLacks=false"
+  >
+    <form class="form">
+      <div class="items__wrapper">
+        <div class="field">
+          <label>Город</label>
+          <span class="field-wrapper">
                 <select name="ReserveNotification[currency_id]" id="reservenotification-currency_id">
                   <option value="93">Киев</option>
                 </select>
               </span>
 
-          </div>
-          <div class="field">
-            <label for="orderform-telegram">Email</label>
-            <span class="field-wrapper">
+        </div>
+        <div class="field">
+          <label for="orderform-telegram">Email</label>
+          <span class="field-wrapper">
                 <input
                   type="text"
                   id="reservenotification-email"
@@ -540,12 +541,12 @@
                   aria-required="true"
                   required />
               </span>
-          </div>
         </div>
-        <div class="items__wrapper">
-          <div class="field">
-            <label for="reservenotification-amount">Сума</label>
-            <span class="field-wrapper">
+      </div>
+      <div class="items__wrapper">
+        <div class="field">
+          <label for="reservenotification-amount">Сума</label>
+          <span class="field-wrapper">
               <input
                 type="text"
                 id="reservenotification-amount"
@@ -553,34 +554,13 @@
                 required="required" aria-required="true"
                 placeholder="62.3653" />
               </span>
-          </div>
-          <the-button tag="button" @click.native="">
-            <template #name>Сохранить</template>
-          </the-button>
         </div>
-      </form>
-    </the-lacks-window>
-    <the-password-recovery @close="hidePasswordRecovery" v-if="passwordRecovery">
-      <form :action="$t('passwordRecoveryAction')" method="post">
-        <input type="hidden" :value="csrfToken" :name="csrfParam" />
-        <div class="field">
-          <label for="passwordRecovery_mail">
-            E-mail
-          </label>
-          <span class="field-wrapper">
-            <input
-              type="mail"
-              id="passwordRecovery_mail"
-              name="PasswordResetRequestForm[email]"
-              placeholder="tolik.wwwww@ukr.net"
-            />
-          </span>
-          <span class="field-error">Error</span>
-        </div>
-        <button type="submit" class="button"> {{ $t("send") }}</button>
-      </form>
-    </the-password-recovery>
-  </div>
+        <the-button tag="button" @click.native="">
+          <template #name>Сохранить</template>
+        </the-button>
+      </div>
+    </form>
+  </the-lacks-window>
 </div>
 <input id="login" type="hidden" value="0" />
 <input id="language" type="hidden" value="en" />

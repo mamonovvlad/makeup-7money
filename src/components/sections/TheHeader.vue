@@ -25,6 +25,10 @@
       </div>
     </div>
     <the-authorization @open="openPasswordRecovery"></the-authorization>
+    <the-password-recovery
+      @close="hidePasswordRecovery"
+      v-if="isPasswordRecovery"
+    ></the-password-recovery>
   </header>
 </template>
 
@@ -38,12 +42,12 @@ import TheLogo from "../blocks/TheLogo.vue";
 //Popups
 import TheAuthorization from "../popups/TheAuthorization.vue";
 import ThePasswordRecovery from "../popups/ThePasswordRecovery.vue";
-import { mapMutations } from "vuex";
 
 export default {
   name: "TheHeader",
   data() {
     return {
+      isPasswordRecovery: false,
       isAuthorization: {
         index: -1,
         isOpen: false,
@@ -51,7 +55,6 @@ export default {
     };
   },
   methods: {
-    ...mapMutations(['showPasswordRecovery']),
     //Формат даты
     dateFilter(value, format = "date") {
       const options = {};
@@ -65,8 +68,12 @@ export default {
     },
     //Показать окно "Забыли пароль?"
     openPasswordRecovery() {
-      this.showPasswordRecovery();
+      this.isPasswordRecovery = true;
       this.isAuthorization.isOpen = false;
+    },
+    //Закрыть окно "Забыли пароль?"
+    hidePasswordRecovery() {
+      this.isPasswordRecovery = false;
     },
     //Отктыть окно "Вход || Реристрация"
     openAuthorization(idx) {
