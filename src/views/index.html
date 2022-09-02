@@ -563,19 +563,21 @@
     <the-password-recovery @close="hidePasswordRecovery" v-if="passwordRecovery">
       <form :action="$t('passwordRecoveryAction')" method="post">
         <input type="hidden" :value="csrfToken" :name="csrfParam" />
-        <the-field
-          name-type="mail" name-id="passwordRecovery_mail"
-          name="PasswordResetRequestForm[email]"
-          name-placeholder="tolik.wwwww@ukr.net">
-          <template #label>
+        <div class="field">
+          <label for="passwordRecovery_mail">
             E-mail
-          </template>
-        </the-field>
-        <the-button tag="button" type="submit">
-          <template #name>
-            {{ $t("send") }}
-          </template>
-        </the-button>
+          </label>
+          <span class="field-wrapper">
+            <input
+              type="mail"
+              id="passwordRecovery_mail"
+              name="PasswordResetRequestForm[email]"
+              placeholder="tolik.wwwww@ukr.net"
+            />
+          </span>
+          <span class="field-error">Error</span>
+        </div>
+        <button type="submit" class="button"> {{ $t("send") }}</button>
       </form>
     </the-password-recovery>
   </div>
