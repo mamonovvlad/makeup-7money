@@ -1,16 +1,3 @@
-<template>
-  <div class="checkbox">
-    <slot></slot>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "TheCheckbox",
-};
-</script>
-
-<style lang="scss">
 .checkbox {
   max-width: max-content;
   width: 100%;
@@ -50,4 +37,3 @@ export default {
     background-image: url("../../assets/images/icon/check.svg");
   }
 }
-</style>

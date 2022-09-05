@@ -75,7 +75,9 @@
   height: 1px;
   border: 1px solid var(--secondary);
 }
-
+.checkbox__agreement {
+  max-width: max-content;
+}
 //darkening
 .darkening {
   &:before {

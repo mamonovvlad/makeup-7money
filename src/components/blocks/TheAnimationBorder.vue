@@ -3,7 +3,6 @@
     <span class="border" :class="{'border--red': borderRed }"></span>
     <div class="box">
       <slot>
-
       </slot>
     </div>
   </div>

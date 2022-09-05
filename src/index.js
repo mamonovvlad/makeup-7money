@@ -43,8 +43,6 @@ import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.v
 import TheCounter from "./components/blocks/TheCounter.vue";
 
 import TheInformation from "./components/sections/TheInformation.vue";
-import TheAgreement from "./components/blocks/TheAgreement.vue";
-import TheCheckbox from "./components/blocks/TheCheckbox.vue";
 //Buttons
 import TheButton from "./components/buttons/TheButton.vue";
 import TheCurrenciesList from "./components/blocks/TheCurrenciesList.vue";
@@ -91,6 +89,7 @@ createApp({
       showPopupInfoThisAccount: false,
       showPopupInfoToAccount: false,
       showPopupVerified: false,
+      error: true,
     };
   },
   
@@ -120,10 +119,8 @@ createApp({
     TheCopyText,
     TheTable,
     TheTimeProcessing,
-    TheAgreement,
     TheCurrenciesList,
     TheErrorButtons,
-    TheCheckbox,
     TheCurrenciesColumnSell,
     TheCurrenciesColumnBuy,
     TheCounter,
@@ -192,7 +189,26 @@ createApp({
       return "undefined " + nameWithLang;
     },
     //Закрыть окно "Забыли пароль?"
- 
+    confirmChecked() {
+      let checkBox = document.getElementById("orderform-agree");
+      if (checkBox && checkBox.checked === true) {
+        this.enabled();
+      } else {
+        this.disabled();
+      }
+    },
+    enabled() {
+      let button = document.getElementById("order-submit");
+      button.removeAttribute("disabled");
+      button.classList.remove("disabled");
+      this.error = false;
+    },
+    disabled() {
+      let button = document.getElementById("order-submit");
+      button.setAttribute("disabled", "disabled");
+      button.classList.add("disabled");
+      this.error = true;
+    },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();

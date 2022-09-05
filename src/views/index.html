@@ -59,7 +59,7 @@
                       <label for="orderform-sell_amount">
                         {{ $t("theGive") }}
                       </label>
-                      <span class="field-wrapper">
+                      <span class="form-group">
                         <input
                           type="text"
                           id="orderform-sell_amount"
@@ -78,7 +78,7 @@
 
                         </span>
                       </span>
-                      <span class="field-error">Error</span>
+                      <span class="help-block">Error</span>
                     </div>
                     <div class="min__max">
                       <span v-show="calculateData.min_sell_amount > 0">
@@ -95,7 +95,7 @@
                       </span>
                     </div>
                     <transition name="fade">
-                      <the-checkbox v-if="sellCurrency.is_sell_verified">
+                      <div class="checkbox" v-if="sellCurrency.is_sell_verified">
                         <input
                           type="checkbox"
                           id="isSellVerified"
@@ -106,7 +106,7 @@
                         <label class="label" for="isSellVerified">
                           <span v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"></span>
                         </label>
-                      </the-checkbox>
+                      </div>
                     </transition>
                     <transition name="fade">
                       <p
@@ -136,9 +136,9 @@
                             >{{ calculateData.sell_comission }}</span
                             >% = {{ calculateData.sell_amount_comission }}
                                 {{ sellCurrency.symbol }}
-                              </span>
+                          </span>
                         </label>
-                        <span class="field-wrapper">
+                        <span class="form-group">
                           <input
                             id="orderform-buy_amount_with_discount"
                             disabled="disabled"
@@ -146,7 +146,7 @@
                             readonly="readonly"
                             type="text"
                           />
-                            </span>
+                        </span>
                       </div>
                     </transition>
                   </div>
@@ -167,7 +167,7 @@
                           </p>
                         </the-lacks>
                       </label>
-                      <span class="field-wrapper">
+                      <span class="form-group">
                         <input
                           class="item__lacks"
                           id="orderform-buy_amount"
@@ -183,7 +183,7 @@
                         >
                         </span>
                       </span>
-                      <span class="field-error"></span>
+                      <span class="help-block"></span>
                     </div>
                     <div class="min__max">
                       <span v-show="calculateData.min_buy_amount > 0">
@@ -212,7 +212,7 @@
                       <label for="orderform-sell_source">
                         Заплатить с этой карты
                       </label>
-                      <span class="field-wrapper">
+                      <span class="form-group">
                         <input
                           @focus="showPopupInfoThisAccount = true"
                           @blur="showPopupInfoThisAccount = false"
@@ -221,9 +221,9 @@
                           name="OrderForm[sell_source]"
                           placeholder="0000 0000 0000 0000"
                         />
-                            <span class="PMUSD"></span>
-                          </span>
-                      <span class="field-error"></span>
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                   <div class="item">
@@ -236,7 +236,7 @@
                       <label for="orderform-buy_target">
                         Зачислить на этот счёт
                       </label>
-                      <span class="field-wrapper">
+                      <span class="form-group">
                         <input
                           @focus="showPopupInfoToAccount = true"
                           @blur="showPopupInfoToAccount = false"
@@ -245,9 +245,9 @@
                           name="OrderForm[buy_target]"
                           placeholder="0000 0000 0000 0000"
                         />
-                            <span class="PMUSD"></span>
-                          </span>
-                      <span class="field-error"></span>
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                 </div>
@@ -262,7 +262,7 @@
                       <label for="orderform-first_name">
                         Имя держателя карты
                       </label>
-                      <span class="field-wrapper">
+                      <span class="form-group">
                         <input
                           @focus="showPopupVerified = true"
                           @blur="showPopupVerified = false"
@@ -273,7 +273,7 @@
                         />
                         <span class="PMUSD"></span>
                       </span>
-                      <span class="field-error"></span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                   <div class="item">
@@ -281,16 +281,16 @@
                       <label for="orderform-first_name">
                         Фамилия держателя карты
                       </label>
-                      <span class="field-wrapper">
-                            <input
-                              type="text"
-                              id="orderform-last_name"
-                              name="OrderForm[last_name]"
-                              placeholder="Петров"
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
-                      <span class="field-error"></span>
+                      <span class="form-group">
+                        <input
+                          type="text"
+                          id="orderform-last_name"
+                          name="OrderForm[last_name]"
+                          placeholder="Петров"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                 </div>
@@ -298,34 +298,34 @@
                   <div class="item">
                     <div class="field">
                       <label for="orderform-phone"> Номер телефона </label>
-                      <span class="field-wrapper">
-                            <input
-                              type="text"
-                              id="orderform-phone"
-                              name="OrderForm[phone]"
-                              placeholder="+380500123456"
-                              required
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
-                      <span class="field-error"></span>
+                      <span class="form-group">
+                        <input
+                          type="text"
+                          id="orderform-phone"
+                          name="OrderForm[phone]"
+                          placeholder="+380500123456"
+                          required
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                   <div class="item">
                     <div class="field">
                       <label for="exchange_mail"> Электронная почта </label>
-                      <span class="field-wrapper">
-                            <input
-                              type="text"
-                              id="exchange_mail"
-                              name="OrderForm[email]"
-                              placeholder="you@gmail.com"
-                              required
-                              aria-required="true"
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
-                      <span class="field-error"></span>
+                      <span class="form-group">
+                        <input
+                          type="text"
+                          id="exchange_mail"
+                          name="OrderForm[email]"
+                          placeholder="you@gmail.com"
+                          required
+                          aria-required="true"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                 </div>
@@ -335,65 +335,74 @@
                       <label for="orderform-buy_target">
                         Зачислить на этот адрес
                       </label>
-                      <span class="field-wrapper">
-                            <input
-                              type="text"
-                              id="orderform-buy_target"
-                              name="OrderForm[buy_target]"
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
-                      <span class="field-error"></span>
+                      <span class="form-group">
+                        <input
+                          type="text"
+                          id="orderform-buy_target"
+                          name="OrderForm[buy_target]"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                   <div class="item" v-if="currencyModel.isCrypt(sellCurrency.id)">
-                    <the-checkbox name-id="orderform-of_exchange">
+                    <div class="checkbox">
                       <input
                         type="checkbox" id="orderform-of_exchange" name="OrderForm[of_exchange]" value="1"
                         @click="setOfExchange($event)" />
                       <label class="label" for="orderform-of_exchange">
                         Отправляю с биржи
                       </label>
-                    </the-checkbox>
+                    </div>
                   </div>
                 </div>
                 <div class="items__wrapper">
                   <div class="item">
                     <div class="field">
                       <label>Город</label>
-                      <span class="field-wrapper">
-                            <select name="CreateOrder[course_id]">
-                              <option value="93">Киев</option>
-                            </select>
-                          </span>
+                      <span class="form-group">
+                        <select name="CreateOrder[course_id]">
+                          <option value="93">Киев</option>
+                        </select>
+                      </span>
                     </div>
                   </div>
                   <div class="item">
                     <div class="field">
                       <label for="orderform-telegram">Telegram</label>
-                      <span class="field-wrapper">
-                            <input
-                              type="text"
-                              id="orderform-telegram"
-                              name="OrderForm[telegram]"
-                              placeholder="@username"
-                              required
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
-                      <span class="field-error"></span>
+                      <span class="form-group">
+                        <input
+                          type="text"
+                          id="orderform-telegram"
+                          name="OrderForm[telegram]"
+                          placeholder="@username"
+                          required
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
+                      <span class="help-block"></span>
                     </div>
                   </div>
                 </div>
-                <the-agreement></the-agreement>
-                <the-button
-                  id="order-submit"
-                  tag="button"
-                  class="disabled"
-                  disabled="disabled"
-                >
-                  <template #name> Обменять</template>
-                </the-button>
+                <div class="animation-border">
+                  <span class="border" :class="{'border--red': error }"></span>
+                  <div class="box">
+                    <div class="checkbox" id="orderform-of_exchange">
+                      <input type="checkbox" name="OrderForm[agree]" id="orderform-agree" @click="confirmChecked" />
+                      <label class="label" for="orderform-agree">
+                      <span>
+                        Нажимая на кнопку, я подтверждаю, что я ознакомился и согласен с условиями
+                        <a href="https://makeup.7money.co/page/security">Безопасности</a> и
+                        <a href="https://makeup.7money.co/page/agreement">Соглашением сайта</a>
+                      </span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <button id="order-submit" class="button disabled" disabled="disabled">
+                  Обменять
+                </button>
               </form>
             </template>
           </the-details>
@@ -523,37 +532,36 @@
       <div class="items__wrapper">
         <div class="field">
           <label>Город</label>
-          <span class="field-wrapper">
-                <select name="ReserveNotification[currency_id]" id="reservenotification-currency_id">
-                  <option value="93">Киев</option>
-                </select>
-              </span>
-
+          <span class="form-group">
+            <select name="ReserveNotification[currency_id]" id="reservenotification-currency_id">
+              <option value="93">Киев</option>
+            </select>
+          </span>
         </div>
         <div class="field">
           <label for="orderform-telegram">Email</label>
-          <span class="field-wrapper">
-                <input
-                  type="text"
-                  id="reservenotification-email"
-                  name="ReserveNotification[email]"
-                  placeholder="@username"
-                  aria-required="true"
-                  required />
-              </span>
+          <span class="form-group">
+            <input
+              type="text"
+              id="reservenotification-email"
+              name="ReserveNotification[email]"
+              placeholder="@username"
+              aria-required="true"
+              required />
+          </span>
         </div>
       </div>
       <div class="items__wrapper">
         <div class="field">
           <label for="reservenotification-amount">Сума</label>
-          <span class="field-wrapper">
-              <input
-                type="text"
-                id="reservenotification-amount"
-                name="ReserveNotification[amount]"
-                required="required" aria-required="true"
-                placeholder="62.3653" />
-              </span>
+          <span class="form-group">
+            <input
+              type="text"
+              id="reservenotification-amount"
+              name="ReserveNotification[amount]"
+              required="required" aria-required="true"
+              placeholder="62.3653" />
+          </span>
         </div>
         <the-button tag="button" @click.native="">
           <template #name>Сохранить</template>
