@@ -71,56 +71,68 @@
               <input type="hidden" :value="csrfToken" :name="csrfParam" />
               <div class="stylish-wrapper">
                 <div class="field-list">
-                  <the-field
-                    name-placeholder="Василий"
-                    name-id="first_name"
-                    name="first_name"
-                    :required="true"
-                    :show-error="true"
-                  >
-                    <template #label>Имя</template>
-                    <template #error
-                    >Текст отзыва не может быть пустым
-                    </template
-                    >
-                  </the-field>
-                  <the-field
-                    name-placeholder="Петров"
-                    name-id="last_name"
-                    name="last_name"
-                    :required="true"
-                  >
-                    <template #label>Фамилия</template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="Алексеевич"
-                    name-id="second_name"
-                    name="second_name"
-                  >
-                    <template #label>Отчество</template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="+38 (068) 72 50 152"
-                    name-type="tel"
-                    name-id="tel"
-                    name="phone"
-                  >
-                    <template #label>Номер телефона</template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="tolik.wwwww@ukr.net"
-                    name-type="email"
-                    name-id="mail"
-                    name="email"
-                    :required="true"
-                    :show-error="true"
-                  >
-                    <template #label>Электронная почта</template>
-                    <template #error
-                    >Текст отзыва не может быть пустым
-                    </template
-                    >
-                  </the-field>
+                  <div class="field">
+                    <label for="first_name">Имя</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="first_name"
+                        name="first_name"
+                        placeholder="Василий"
+                        required
+                      />
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="last_name">Фамилия</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="last_name"
+                        name="last_name"
+                        placeholder="Петров"
+                        required
+                      />
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="second_name">Отчество</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="second_name"
+                        name="second_name"
+                        placeholder="Алексеевич"
+                      />
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="tel">Номер телефона</label>
+                    <div class="form-group">
+                      <input
+                        type="tel"
+                        id="tel"
+                        name="phone"
+                        placeholder="+38 (068) 72 50 152"
+                      />
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="mail">Электронная почта</label>
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        id="mail"
+                        name="email"
+                        placeholder="tolik.wwwww@ukr.net"
+                      />
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
                 </div>
                 <div class="line"></div>
                 <the-discount></the-discount>
@@ -134,75 +146,66 @@
                 </the-exchange-information>
               </div>
               <the-title tag="h2" class="subtitle">Счета</the-title>
-
               <div class="stylish-wrapper">
                 <div class="field-list">
-                  <the-field
-                    name-placeholder="U012345678"
-                    name-id="currency-PMUSD"
-                    name="UserCurrency[1]"
-                  >
-                    <template #label>PerfectMoney USD</template>
-                    <template #icon>
+                  <div class="field">
+                    <label for="currency-PMUSD">PerfectMoney USD</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="currency-PMUSD"
+                        name="UserCurrency[1]"
+                        placeholder="U012345678"
+                      />
                       <span class="PMUSD"></span>
-                    </template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="Василий"
-                    name-id="first_n"
-                    name="first_name"
-                  >
-                    <template #label>PAYEER USD</template>
-                    <template #icon>
-                      <span class="PRUSD"></span>
-                    </template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="U012345678"
-                    name-id="currency-PMU"
-                    name="UserCurrency[1]"
-                  >
-                    <template #label>PerfectMoney USD</template>
-                    <template #icon>
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="currency-PMUSD">PerfectMoney USD</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="currency-PMUSD"
+                        name="UserCurrency[1]"
+                        placeholder="U012345678"
+                      />
                       <span class="PMUSD"></span>
-                    </template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="Василий"
-                    name-id="first_nam"
-                    name="first_name"
-                  >
-                    <template #label>PAYEER USD</template>
-                    <template #icon>
-                      <span class="PRUSD"></span>
-                    </template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="U012345678"
-                    name-id="currency-P"
-                    name="UserCurrency[1]"
-                  >
-                    <template #label>PerfectMoney USD</template>
-                    <template #icon>
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="currency-PMUSD">PerfectMoney USD</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="currency-PMUSD"
+                        name="UserCurrency[1]"
+                        placeholder="U012345678"
+                      />
                       <span class="PMUSD"></span>
-                    </template>
-                  </the-field>
-                  <the-field
-                    name-placeholder="Василий"
-                    name-id="first_na"
-                    name="first_name"
-                  >
-                    <template #label>PAYEER USD</template>
-                    <template #icon>
-                      <span class="PRUSD"></span>
-                    </template>
-                  </the-field>
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label for="currency-PMUSD">PerfectMoney USD</label>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        id="currency-PMUSD"
+                        name="UserCurrency[1]"
+                        placeholder="U012345678"
+                      />
+                      <span class="PMUSD"></span>
+                      <div class="help-block"></div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="accounts__button">
-                <the-button tag="button">
-                  <template #name> Сохранить изменения</template>
-                </the-button>
+                <button type="submit" class="button">
+                  Сохранить данные
+                </button>
               </div>
             </form>
           </div>

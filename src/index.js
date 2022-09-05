@@ -55,7 +55,6 @@ import TheLeaveFeedback from "./components/popups/TheLeaveFeedback.vue";
 import TheLacks from "./components/popups/TheLacks.vue";
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
-import ThePasswordRecovery from "./components/popups/ThePasswordRecovery.vue";
 //Icons
 import IconPig from "./components/icons/IconPig.vue";
 
@@ -135,7 +134,6 @@ createApp({
     TheLacks,
     TheRecoveryInformation,
     TheLacksWindow,
-    ThePasswordRecovery,
     //Icons
     IconPig,
     IconError,
@@ -168,7 +166,6 @@ createApp({
       "sellAmount",
       "calculateData",
       "detailsHide",
-      "passwordRecovery",
     ]),
     isSellSource() {
       return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id);
@@ -183,7 +180,6 @@ createApp({
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
-      "hidePasswordRecovery",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
