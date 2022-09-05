@@ -1,11 +1,28 @@
 <template>
   <section class="achievements" v-if="showHideBlock">
     <div class="wrapper stylish-wrapper">
-      <div v-for="(item, idx) in items" :key="idx" class="block">
-        <component :is="item.icon" />
+      <div class="block">
+        <icon-people></icon-people>
         <div class="text">
-          <the-title class="title" tag="h4">{{ item.title }}</the-title>
-          <span>{{ item.description }}</span>
+          <slot name="people"></slot>
+        </div>
+      </div>
+      <div class="block">
+        <icon-success></icon-success>
+        <div class="text">
+          <slot name="success"></slot>
+        </div>
+      </div>
+      <div class="block">
+        <icon-time></icon-time>
+        <div class="text">
+          <slot name="time"></slot>
+        </div>
+      </div>
+      <div class="block">
+        <icon-reviews></icon-reviews>
+        <div class="text">
+          <slot name="reviews"></slot>
         </div>
       </div>
     </div>
@@ -20,35 +37,9 @@ import IconReviews from "../icons/IconReviews.vue";
 import TheTitle from "../blocks/TheTitle.vue";
 import { mapGetters } from "vuex";
 
-const items = [
-  {
-    title: "8766",
-    description: "Человек нам доверяют",
-    icon: "IconPeople",
-  },
-  {
-    title: "7:03",
-    description: "Среднее время обмена",
-    icon: "IconTime",
-  },
-  {
-    title: "116644",
-    description: "Успешных обменов",
-    icon: "IconSuccess",
-  },
-  {
-    title: "689",
-    description: "Отзывов BESTCHANGE",
-    icon: "IconReviews",
-  },
-];
+
 export default {
   name: "Achievements",
-  data() {
-    return {
-      items,
-    };
-  },
   computed: {
     ...mapGetters(["blockHide"]),
     showHideBlock() {
