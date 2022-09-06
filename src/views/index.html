@@ -431,7 +431,65 @@
       <!--Reserves-->
       <the-reserves></the-reserves>
       <!--End Reserves-->
-      <the-slider></the-slider>
+      <the-slider>
+        <template #reviews>
+          <div class="items">
+            <a
+              href="/1"
+              class="item"
+              v-for="(info, idx) of 4"
+              :key="idx"
+            >
+              <div class="box">
+                <h3>Гарик</h3>
+                <span class="date">2 дня назад</span>
+              </div>
+              <p>Благодарен сервису за успешно и быстро проведенный обмен.</p>
+            </a>
+          </div>
+          <the-button tag="button">
+            <template #name> Читать</template>
+          </the-button>
+        </template>
+        <template #news>
+          <div class="items">
+            <a
+              href="/1"
+              class="item"
+              v-for="(info, idx) of 4"
+              :key="idx"
+            >
+              <div class="box">
+                <h3>Гарик</h3>
+                <span class="date">2 дня назад</span>
+              </div>
+              <p>Благодарен сервису за успешно и быстро проведенный обмен.</p>
+            </a>
+          </div>
+          <the-button tag="button">
+            <template #name> Читать</template>
+          </the-button>
+        </template>
+        <template #blog>
+          <div class="items">
+            <a
+              href="/1"
+              class="item"
+              v-for="(info, idx) of 4"
+              :key="idx"
+            >
+              <div class="box">
+                <h3>Гарик</h3>
+                <span class="date">2 дня назад</span>
+              </div>
+              <p>Благодарен сервису за успешно и быстро проведенный обмен.</p>
+            </a>
+          </div>
+          <the-button tag="button">
+            <template #name> Читать</template>
+          </the-button>
+        </template>
+      </the-slider>
       <!--Info-->
       <the-information v-if="$store.state.blockHide">
         <h1>Криптообменник №1</h1>

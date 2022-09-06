@@ -1,30 +1,22 @@
 <template>
   <section class="slider" id="slider" v-if="showHideBlock">
-    <div class="wrapper"
-      v-for="(slider, idx) in infoSlider"
-      :key="idx"
-      :class="{ active: isActive === idx }"
-    >
-      <the-title class="title" @click.native="isShowReviews(idx)" tag="button"
-        >{{ slider.title }}
+    <div class="wrapper" :class="{active: isActive === 0}">
+      <the-title class="title" tag="button" @click="toggleBlock(0)">
+        отзывы
       </the-title>
-      <div class="items">
-        <a
-          href="/1"
-          class="item"
-          v-for="(info, idx) in slider.information.slice(0, 4)"
-          :key="idx"
-        >
-          <div class="box">
-            <h3>{{ info.name }}</h3>
-            <span class="date">{{ info.date }}</span>
-          </div>
-          <p>{{ info.text }}</p>
-        </a>
-      </div>
-      <the-button tag="button">
-        <template #name> Читать {{ slider.title }}</template>
-      </the-button>
+      <slot name="reviews"></slot>
+    </div>
+    <div class="wrapper" :class="{active: isActive === 1}">
+      <the-title class="title" tag="button" @click="toggleBlock(1)">
+        новости
+      </the-title>
+      <slot name="news"></slot>
+    </div>
+    <div class="wrapper" :class="{active: isActive === 2}">
+      <the-title class="title" tag="button" @click="toggleBlock(2)">
+        блог
+      </the-title>
+      <slot name="blog"></slot>
     </div>
   </section>
 </template>
@@ -34,113 +26,11 @@ import TheTitle from "../blocks/TheTitle.vue";
 import TheButton from "../buttons/TheButton.vue";
 import { mapGetters } from "vuex";
 
-const infoSlider = [
-  {
-    title: "отзывы",
-    information: [
-      {
-        name: "Гарик",
-        date: "2 дня назад",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен.",
-      },
-      {
-        name: "Гарик",
-        date: "27 окт. 2021 г.",
-        text: "Благодарен сервису за успешно и быстро проведенный",
-      },
-      {
-        name: "Гарик",
-        date: "27 окт. 2021 г.",
-        text: "Благодарен сервису за успешно",
-      },
-      {
-        name: "Гарик",
-        date: "27 окт. 2021 г.",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую.Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен.",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую.Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую",
-      },
-    ],
-  },
-  {
-    title: "новости",
-    information: [
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен.",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую.Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую",
-      },
-    ],
-  },
-  {
-    title: "блог",
-    information: [
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен.",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую.Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен.",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно",
-      },
-      {
-        name: "Гарик",
-        text: "Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую.Благодарен сервису за успешно и быстро проведенный обмен. Однозначно рекомендую",
-      },
-    ],
-  },
-];
 export default {
   name: "Slider",
   components: { TheTitle, TheButton },
   data() {
     return {
-      infoSlider,
       isActive: 0,
     };
   },
@@ -153,7 +43,7 @@ export default {
     },
   },
   methods: {
-    isShowReviews(idx) {
+    toggleBlock(idx) {
       this.isActive = idx;
     },
   },

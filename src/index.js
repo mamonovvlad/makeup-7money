@@ -167,7 +167,6 @@ createApp({
     isSellSource() {
       return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id);
     },
-    
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
