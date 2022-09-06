@@ -36,7 +36,6 @@ import TheAnswers from "./components/blocks/TheAnswers.vue";
 import TheField from "./components/blocks/TheField.vue";
 import TheExchangeInformation from "./components/blocks/TheExchangeInformation.vue";
 import TheCopyText from "./components/blocks/TheCopyText.vue";
-import TheTable from "./components/blocks/TheTable.vue";
 import TheDiscount from "./components/blocks/TheDiscount.vue";
 import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
 import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
@@ -117,7 +116,6 @@ createApp({
     TheAccountNavigation,
     TheWarning,
     TheCopyText,
-    TheTable,
     TheTimeProcessing,
     TheCurrenciesList,
     TheErrorButtons,

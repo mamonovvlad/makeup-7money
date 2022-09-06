@@ -23,7 +23,7 @@
     & .buttons {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin-top: 30px;
       @include _992 {
         flex-direction: column;
