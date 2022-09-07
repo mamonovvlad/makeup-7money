@@ -4,9 +4,7 @@ const dotenv = require("dotenv");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const {
-  VueLoaderPlugin,
-} = require("vue-loader");
+const { VueLoaderPlugin } = require("vue-loader");
 dotenv.config();
 // Main const. Feel free to change it
 const PATHS = {
@@ -16,19 +14,18 @@ const PATHS = {
   assets: "assets/",
 };
 
-
 // Pages const for HtmlWebpackPlugin
 const PAGES_DIR = `${PATHS.src}/views`;
 const PAGES = fs
   .readdirSync(PAGES_DIR)
-  .filter(fileName => fileName.endsWith(".html"));
+  .filter((fileName) => fileName.endsWith(".html"));
 
 module.exports = {
   //Увидомление об оптимизации
   // performance: {
   //   hints: false,
   // },
-  
+
   externals: {
     paths: PATHS,
   },
@@ -39,7 +36,7 @@ module.exports = {
   entry: {
     app: PATHS.src,
   },
-  
+
   optimization: {
     splitChunks: {
       cacheGroups: {
@@ -53,12 +50,13 @@ module.exports = {
     },
   },
   module: {
-    rules: [{
-      // JavaScript
-      test: /\.js$/,
-      loader: "babel-loader",
-      exclude: /node_modules/,
-    },
+    rules: [
+      {
+        // JavaScript
+        test: /\.js$/,
+        loader: "babel-loader",
+        exclude: /node_modules/,
+      },
       {
         // Vue
         test: /\.vue$/,
@@ -88,11 +86,7 @@ module.exports = {
       {
         // scss
         test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader",
-          "sass-loader",
-        ],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
     ],
   },
@@ -102,31 +96,32 @@ module.exports = {
       vue: "vue/dist/vue.esm-bundler.js",
     },
   },
-  
+
   plugins: [
     new VueLoaderPlugin(),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env),
     }),
-    
-    
+
     new MiniCssExtractPlugin({
       filename: `${PATHS.source}css/[name].css`,
     }),
-    
+
     ...PAGES.map(
-      page =>
+      (page) =>
         new HtmlWebpackPlugin({
           favicon: `./src/static/favicon.ico`,
           template: `${PAGES_DIR}/${page}`,
           filename: `./${page}`,
-        })),
-    
+          minify: {
+            collapseWhitespace: false,
+          },
+        })
+    ),
+
     new webpack.DefinePlugin({
       __VUE_OPTIONS_API__: true,
       __VUE_PROD_DEVTOOLS__: false,
     }),
-  
-  
   ],
 };
