@@ -13,7 +13,14 @@
         :data-input="true"
       ></the-steps>
       <!--Форма-->
-      <slot name="form"></slot>
+      <slot
+        v-if="calculateData.min_buy_amount < calculateData.max_buy_amount"
+        name="form"
+      >
+      </slot>
+      <strong v-else class="warning">
+        Выбранное вами направление обмена в данный момент недоступно
+      </strong>
       <!--Конец Формы-->
     </div>
     <the-information
@@ -62,6 +69,10 @@ export default {
   flex-direction: column;
   row-gap: 20px;
   flex: 1;
+
+  & .warning {
+    color: var(--quaternary);
+  }
 
   & .details__wrapper {
     display: flex;

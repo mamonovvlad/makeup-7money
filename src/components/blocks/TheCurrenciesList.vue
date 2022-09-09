@@ -19,14 +19,19 @@
         <div class="name">
           <span :class="currency.code"></span>
           <transition name="currencies-hide">
-            <p v-if="currenciesHide ">
+            <p v-if="currenciesHide">
               {{ currency.name_ru }}
             </p>
           </transition>
         </div>
         <transition name="currencies-hide">
-          <span class="price" v-if="currency.rate && currenciesHide && activeIndex === 0">
-            {{ currency.rate }}
+          <span class="price">
+            <span v-show="currenciesHide && activeIndex === 0">
+              {{ currency.rate }}
+            </span>
+            <span v-show="currenciesHide && activeIndex === 1">
+              {{ currency.amount }}
+            </span>
           </span>
         </transition>
       </li>
@@ -91,7 +96,8 @@ export default {
       let currenciesList = this.$refs.currenciesList;
       let currenciesWrapper = this.$refs.currenciesWrapper;
       if (currenciesList.clientHeight === 535) {
-        currenciesList.style.maxHeight = currenciesWrapper.clientHeight + 40 + "px";
+        currenciesList.style.maxHeight =
+          currenciesWrapper.clientHeight + 40 + "px";
         this.nameTitle = "Скрыть";
       } else {
         currenciesList.style.maxHeight = "";
