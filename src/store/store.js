@@ -45,6 +45,25 @@ const store = createStore({
     timer: null,
   }, //Хранения данных
   mutations: {
+    calculationAmount(state, val) {
+      if (Number(state.course.sell) !== 1) {
+        if (val === "sell") {
+          let res = state.sell_amount * state.course.sell;
+          state.buy_amount = res.toFixed(2);
+        } else if (val === "buy") {
+          let res = state.buy_amount / state.course.sell;
+          state.sell_amount = res.toFixed(2);
+        }
+      } else {
+        if (val === "sell") {
+          let res = state.sell_amount * state.course.buy;
+          state.buy_amount = res.toFixed(2);
+        } else if (val === "buy") {
+          let res = state.buy_amount / state.course.buy;
+          state.sell_amount = res.toFixed(2);
+        }
+      }
+    },
     setOfExchange(state, e) {
       state.of_exchange = !!e.target.checked;
     },

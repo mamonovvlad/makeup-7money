@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 
-
 //Js
 import vueDebounce from "vue-debounce";
 import store from "./store/store.js";
@@ -91,7 +90,7 @@ createApp({
       error: true,
     };
   },
-  
+
   components: {
     //Sections
     TheHeader,
@@ -163,7 +162,11 @@ createApp({
       "detailsHide",
     ]),
     isSellSource() {
-      return ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) && !this.currencyModel.isCash(this.sellCurrency.id) && !this.currencyModel.isCrypt(this.sellCurrency.id);
+      return (
+        ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) &&
+        !this.currencyModel.isCash(this.sellCurrency.id) &&
+        !this.currencyModel.isCrypt(this.sellCurrency.id)
+      );
     },
   },
   methods: {
@@ -171,6 +174,7 @@ createApp({
     ...mapMutations([
       "callbackTimerFinish",
       "updateSellAmount",
+      "calculationAmount",
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
@@ -178,7 +182,7 @@ createApp({
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",
-        document.getElementById("language").value,
+        document.getElementById("language").value
       );
       if (object[nameWithLang] !== undefined) {
         return object[nameWithLang];
@@ -206,11 +210,32 @@ createApp({
       button.classList.add("disabled");
       this.error = true;
     },
+
+    // calculationGive() {
+    //   console.log(typeof this.course.sell);
+    //   if (this.course.sell !== "1" && this.course.sell !== 1) {
+    //     console.log("1");
+    //     this.inputGet = this.inputGive * this.course.sell;
+    //   } else {
+    //     console.log("2");
+    //     this.inputGet = this.inputGive * this.course.buy;
+    //   }
+    // },
+    // calculationGet() {
+    //   console.log(typeof this.course.sell);
+    //   if (this.course.sell !== "1" && this.course.sell !== 1) {
+    //     console.log("1");
+    //     this.inputGive = this.inputGet / this.course.sell;
+    //   } else {
+    //     console.log("2");
+    //     this.inputGive = this.inputGet / this.course.buy;
+    //   }
+    // },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
-    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
-    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
 })
   .use(i18n)

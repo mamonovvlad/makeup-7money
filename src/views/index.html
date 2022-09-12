@@ -67,6 +67,7 @@
                               aria-invalid="true"
                               v-model="$store.state.sell_amount"
                               v-debounce="updateSellAmount"
+                              @input="calculationAmount('sell')"
                               pattern="[0-9]"
                             />
                             <span
@@ -180,6 +181,7 @@
                               aria-invalid="false"
                               v-model="$store.state.buy_amount"
                               v-debounce="updateBuyAmount"
+                              @input="calculationAmount('buy')"
                             />
                             <span
                               :class="buyCurrency.code"

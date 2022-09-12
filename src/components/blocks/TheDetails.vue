@@ -13,14 +13,13 @@
         :data-input="true"
       ></the-steps>
       <!--Форма-->
-      <slot
-        v-if="calculateData.min_buy_amount < calculateData.max_buy_amount"
-        name="form"
+      <strong
+        v-if="calculateData.min_buy_amount > calculateData.max_buy_amount"
+        class="warning"
       >
-      </slot>
-      <strong v-else class="warning">
         Выбранное вами направление обмена в данный момент недоступно
       </strong>
+      <slot v-else name="form"> </slot>
       <!--Конец Формы-->
     </div>
     <the-information
