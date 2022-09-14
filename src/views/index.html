@@ -134,7 +134,7 @@
                         <transition name="fade">
                           <div
                             class="field"
-                            v-if="calculateData.sell_comission > 0 && calculateData.sell_amount < calculateData.sell_amount_with_comission"
+                            v-if="calculateData.sell_comission >0"
                           >
                             <label for="orderform-buy_amount_with_discount">
                               С комиссией
@@ -147,11 +147,12 @@
                             </label>
                             <span class="form-group">
                               <input
-                                id="orderform-buy_amount_with_discount"
-                                disabled="disabled"
-                                name="OrderForm[buy_amount_with_discount]"
-                                readonly="readonly"
                                 type="text"
+                                id="orderform-sell_amount_with_comission"
+                                name="OrderForm[sell_amount_with_comission]"
+                                v-model="$store.state.sell_amount_with_commission"
+                                @input="calculationAmountCommission('sell')"
+                                v-debounce="calculationFormSellAmountCommission"
                               />
                             </span>
                           </div>
@@ -208,6 +209,23 @@
                             </strong>
                           </span>
                         </div>
+                        <transition name="fade">
+                          <div class="field">
+                            <label for="orderform-buy_amount_with_discount">
+                              Со скидкой
+                            </label>
+                            <span class="form-group">
+                              <input
+                                id="orderform-buy_amount_with_discount"
+                                name="OrderForm[buy_amount_with_discount]"
+                                type="text"
+                                v-model="$store.state.buy_amount_with_commission"
+                                @input="calculationAmountCommission('buy')"
+                                v-debounce="calculationFormBuyAmountCommission"
+                              />
+                            </span>
+                          </div>
+                        </transition>
                       </div>
                     </div>
                     <div class="line"></div>
@@ -681,7 +699,7 @@
       </the-lacks-window>
     </div>
     <input id="login" type="hidden" value="0" />
-    <input id="language" type="hidden" value="en" />
+    <input id="language" type="hidden" value="ru" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>
 </html>

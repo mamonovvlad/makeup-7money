@@ -175,6 +175,9 @@ createApp({
       "callbackTimerFinish",
       "updateSellAmount",
       "calculationAmount",
+      "calculationAmountCommission",
+      "calculationFormSellAmountCommission",
+      "calculationFormBuyAmountCommission",
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
@@ -210,27 +213,6 @@ createApp({
       button.classList.add("disabled");
       this.error = true;
     },
-
-    // calculationGive() {
-    //   console.log(typeof this.course.sell);
-    //   if (this.course.sell !== "1" && this.course.sell !== 1) {
-    //     console.log("1");
-    //     this.inputGet = this.inputGive * this.course.sell;
-    //   } else {
-    //     console.log("2");
-    //     this.inputGet = this.inputGive * this.course.buy;
-    //   }
-    // },
-    // calculationGet() {
-    //   console.log(typeof this.course.sell);
-    //   if (this.course.sell !== "1" && this.course.sell !== 1) {
-    //     console.log("1");
-    //     this.inputGive = this.inputGet / this.course.sell;
-    //   } else {
-    //     console.log("2");
-    //     this.inputGive = this.inputGet / this.course.buy;
-    //   }
-    // },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();

@@ -22,6 +22,8 @@ const store = createStore({
     buy_currency_id: null,
     sell_amount: 0,
     buy_amount: 0,
+    sell_percent: 0,
+    buy_percent: 0,
     sell_amount_with_commission: 0,
     buy_amount_with_commission: 0,
     sell_source: "",
@@ -45,6 +47,28 @@ const store = createStore({
     timer: null,
   }, //Хранения данных
   mutations: {
+    calculationFormSellAmountCommission() {
+      this.dispatch("calculateForm", ["default"]);
+    },
+    calculationFormBuyAmountCommission() {
+      this.dispatch("calculateForm", ["default"]);
+    },
+    calculationAmountCommission(state, val) {
+      if (val === "sell") {
+        let sell_commission = Number(state.sell_amount_with_commission);
+        let sell_percent = Number(state.sell_percent);
+        let res =
+          sell_commission -
+          (sell_commission * sell_percent) / (100 + sell_percent);
+        state.sell_amount = res.toFixed(2);
+      } else if (val === "buy") {
+        let buy_commission = Number(state.buy_amount_with_commission);
+        let buy_percent = Number(state.buy_percent);
+        let res =
+          buy_commission + (buy_commission * buy_percent) / (100 + buy_percent);
+        state.buy_amount = res.toFixed(2);
+      }
+    },
     calculationAmount(state, val) {
       if (Number(state.course.sell) !== 1) {
         if (val === "sell") {
@@ -136,6 +160,8 @@ const store = createStore({
       }
     },
     setCalculateForm(state, response, refresh) {
+      state.sell_percent = response.data.sell_percent;
+      state.buy_percent = response.data.buy_percent;
       state.sellCurrencies = response.data.sellCurrencies;
       state.sell_currency_id = response.data.sell_currency_id;
       state.buyCurrencies = response.data.buyCurrencies;
