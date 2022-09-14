@@ -75,6 +75,7 @@ const store = createStore({
           let res = state.sell_amount * state.course.sell;
           state.buy_amount = res.toFixed(2);
         } else if (val === "buy") {
+          console.log("w");
           let res = state.buy_amount / state.course.sell;
           state.sell_amount = res.toFixed(2);
         }
