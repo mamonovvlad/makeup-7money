@@ -1,127 +1,127 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>История операция</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>История операция</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="colorSpectrum">
-    <the-header></the-header>
-    <main class="personal-area">
-      <div class="container">
-        <div class="wrapper">
-          <the-account-navigation>
-            <template #links>
-              <a class="active" href="/">
-                <icon-personal-data></icon-personal-data>
-                Счета и персональные данные
-              </a>
-              <a href="/">
-                <icon-history></icon-history>
-                История операций
-              </a>
-              <a href="/">
-                <icon-partner></icon-partner>
-                Партнёрская программа
-              </a>
-              <a href="/">
-                <icon-withdraw-reward></icon-withdraw-reward>
-                Вывеси вознаграждение
-              </a>
-              <a href="/">
-                <icon-buy></icon-buy>
-                История выплат
-              </a>
-              <a href="/">
-                <icon-padlock></icon-padlock>
-                Изменение пароля
-              </a>
-              <a href="/">
-                <icon-random></icon-random>
-                Заявки рефералов
-              </a>
-              <a href="/">
-                <icon-create></icon-create>
-                Создать заявку
-              </a>
-              <a href="/">
-                <icon-verification></icon-verification>
-                Верификация заявок
-              </a>
-              <a href="/">
-                <icon-search></icon-search>
-                Поиск заявок
-              </a>
-            </template>
-            <template #buttons>
-              <a href="/">Выход</a>
-              <a href="/">Выход со всех устройств</a>
-            </template>
-          </the-account-navigation>
-          <div class="wrapper-account">
-            <the-title tag="h2" class="subtitle">
-              История операция
-            </the-title>
-            <table class="table table--create-order">
-              <thead>
-              <tr class="head">
-                <td>Заявка №</td>
-                <td>Дата</td>
-                <td>Перевод</td>
-                <td>Статус</td>
-              </tr>
-              </thead>
-              <tbody class="body">
-              <tr>
-                <td class="first-cell">
-                  <a href="/" class="text--blue">OPca0d5d96</a>
-                </td>
-                <td class="second-cell">31 мар. 2019 г.,17:59:37</td>
-                <td class="third-cell">
-                    <span>
-                      <span class="icon BTC"></span> Отдал с:
-                      <strong>Яндекс деньги RUB</strong>
-                    </span>
-                  <span>
-                      <span class="icon BTC"></span> Получил на:
-                      <strong>Advanced Cash USD (378.02 USD)</strong>
-                    </span>
-                </td>
-                <td class="fourth-cell text--green">Завершена</td>
-              </tr>
-              </tbody>
-            </table>
-            <div class="buttons">
-              <ul class="pagination">
-                <li class="pagination__button">
-                  <a href="#">
-                    <icon-arrow></icon-arrow>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-header></the-header>
+        <main class="personal-area">
+          <div class="container">
+            <div class="wrapper">
+              <the-account-navigation>
+                <template #links>
+                  <a class="active" href="/">
+                    <icon-personal-data></icon-personal-data>
+                    Счета и персональные данные
                   </a>
-                </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li class="pagination__button">
-                  <a href="#">
-                    <icon-arrow class="arrow--right"></icon-arrow>
+                  <a href="/">
+                    <icon-history></icon-history>
+                    История операций
                   </a>
-                </li>
-              </ul>
+                  <a href="/">
+                    <icon-partner></icon-partner>
+                    Партнёрская программа
+                  </a>
+                  <a href="/">
+                    <icon-withdraw-reward></icon-withdraw-reward>
+                    Вывеси вознаграждение
+                  </a>
+                  <a href="/">
+                    <icon-buy></icon-buy>
+                    История выплат
+                  </a>
+                  <a href="/">
+                    <icon-padlock></icon-padlock>
+                    Изменение пароля
+                  </a>
+                  <a href="/">
+                    <icon-random></icon-random>
+                    Заявки рефералов
+                  </a>
+                  <a href="/">
+                    <icon-create></icon-create>
+                    Создать заявку
+                  </a>
+                  <a href="/">
+                    <icon-verification></icon-verification>
+                    Верификация заявок
+                  </a>
+                  <a href="/">
+                    <icon-search></icon-search>
+                    Поиск заявок
+                  </a>
+                </template>
+                <template #buttons>
+                  <a href="/">Выход</a>
+                  <a href="/">Выход со всех устройств</a>
+                </template>
+              </the-account-navigation>
+              <div class="wrapper-account">
+                <the-title tag="h2" class="subtitle">
+                  История операция
+                </the-title>
+                <table class="table table--create-order">
+                  <thead>
+                    <tr class="head">
+                      <td>Заявка №</td>
+                      <td>Дата</td>
+                      <td>Перевод</td>
+                      <td>Статус</td>
+                    </tr>
+                  </thead>
+                  <tbody class="body">
+                    <tr>
+                      <td class="first-cell">
+                        <a href="/" class="text--blue">OPca0d5d96</a>
+                      </td>
+                      <td class="second-cell">31 мар. 2019 г.,17:59:37</td>
+                      <td class="third-cell">
+                        <span>
+                          <span class="icon BTC"></span> Отдал с:
+                          <strong>Яндекс деньги RUB</strong>
+                        </span>
+                        <span>
+                          <span class="icon BTC"></span> Получил на:
+                          <strong>Advanced Cash USD (378.02 USD)</strong>
+                        </span>
+                      </td>
+                      <td class="fourth-cell text--green">Завершена</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="buttons">
+                  <ul class="pagination">
+                    <li class="prev">
+                      <a href="#">
+                        <icon-arrow></icon-arrow>
+                      </a>
+                    </li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next">
+                      <a href="#">
+                        <icon-arrow class="arrow--right"></icon-arrow>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="en" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="en" />
+  </body>
 </html>

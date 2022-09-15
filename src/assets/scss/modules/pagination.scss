@@ -6,10 +6,10 @@
   width: max-content;
   overflow: hidden;
 
-  &__button {
+  & .prev,
+  & .next {
     background: var(--secondary);
   }
-
   & li {
     width: 45px;
     height: 100%;

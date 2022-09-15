@@ -1,8 +1,7 @@
 [v-cloak] {
   display: none;
 }
-
-.status--completed,
+.status-completed,
 .text--green {
   color: var(--primary);
 }
@@ -15,7 +14,7 @@
   color: var(--blue);
 }
 
-.status--failed,
+.status-failed,
 .text--red {
   color: var(--red);
 }

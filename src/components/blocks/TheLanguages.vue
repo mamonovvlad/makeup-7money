@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   name: "TheLanguages",
   data() {
@@ -30,9 +32,7 @@ export default {
     };
   },
   computed: {
-    getLanguage() {
-      return document.getElementById("language").value;
-    },
+    ...mapGetters(["getLanguage"]),
   },
   methods: {
     setLocate(locale) {
@@ -58,12 +58,11 @@ export default {
       }
     },
     language() {
-      let language = document.getElementById("language");
-      if (language.value === "ru") {
+      if (this.getLanguage === "ru") {
         this.setLocate("ru");
-      } else if (language.value === "ua") {
+      } else if (this.getLanguage === "ua") {
         this.setLocate("ua");
-      } else if (language.value === "en") {
+      } else if (this.getLanguage === "en") {
         this.setLocate("en");
       } else {
         return false;
