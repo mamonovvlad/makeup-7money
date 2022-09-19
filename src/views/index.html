@@ -37,8 +37,26 @@
             <the-currencies-column-buy></the-currencies-column-buy>
 
             <transition name="details-hide">
-              <the-details>
-                <template #form>
+              <div class="details" v-if="detailsHide && calculateData">
+                <div class="details__wrapper stylish-wrapper">
+                  <div class="title__wrapper">
+                    <the-title tag="h1" class="subtitle">
+                      {{ calculateData.course_h1 }}
+                    </the-title>
+                    <the-current-time></the-current-time>
+                  </div>
+                  <the-steps
+                    @button="trashClick"
+                    :show-button="true"
+                    :data-input="true"
+                  ></the-steps>
+                  <!--Форма-->
+                  <strong
+                    v-if="calculateData.min_buy_amount > calculateData.max_buy_amount"
+                    class="warning"
+                  >
+                    Выбранное вами направление обмена в данный момент недоступно
+                  </strong>
                   <form action class="form-exchange">
                     <input
                       type="hidden"
@@ -463,8 +481,14 @@
                       Обменять
                     </button>
                   </form>
-                </template>
-              </the-details>
+                  <!--Конец Формы-->
+                </div>
+                <the-information
+                  v-if="calculateData.course_seo_text"
+                  v-html="calculateData.course_seo_text"
+                >
+                </the-information>
+              </div>
             </transition>
           </div>
 

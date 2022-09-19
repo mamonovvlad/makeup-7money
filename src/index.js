@@ -27,7 +27,6 @@ import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
 import TheWarning from "./components/blocks/TheWarning.vue";
 import TheAccountNavigation from "./components/blocks/TheAccountNavigation.vue";
-import TheDetails from "./components/blocks/TheDetails.vue";
 import TheTitle from "./components/blocks/TheTitle.vue";
 import TheTitleBig from "./components/blocks/TheTitleBig.vue";
 import TheSteps from "./components/blocks/TheSteps.vue";
@@ -39,7 +38,7 @@ import TheDiscount from "./components/blocks/TheDiscount.vue";
 import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
 import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
 import TheCounter from "./components/blocks/TheCounter.vue";
-
+import TheCurrentTime from "./components/blocks/TheCurrentTime.vue";
 import TheInformation from "./components/sections/TheInformation.vue";
 //Buttons
 import TheButton from "./components/buttons/TheButton.vue";
@@ -101,7 +100,6 @@ createApp({
     TheInformation,
     TheLinks,
     //Blocks
-    TheDetails,
     ThePublicInformation,
     ThePaymentCounter,
     TheShareSocialNetworks,
@@ -121,6 +119,7 @@ createApp({
     TheCurrenciesColumnSell,
     TheCurrenciesColumnBuy,
     TheCounter,
+    TheCurrentTime,
     //Buttons
     TheButton,
     //Popups
@@ -160,6 +159,7 @@ createApp({
       "sellAmount",
       "calculateData",
       "detailsHide",
+      "course",
     ]),
     isSellSource() {
       return (
@@ -181,6 +181,7 @@ createApp({
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
+      "trashClick",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
