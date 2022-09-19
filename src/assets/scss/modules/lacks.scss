@@ -1,32 +1,3 @@
-<template>
-  <div class="lacks">
-    <span>{{ $t("lacks") }}</span>
-    <div class="wrapper">
-      <slot></slot>
-      <the-button type="button" @click.native="$emit('openWindow')" tag="button" >
-        <template #name>{{ $t("lacks") }}</template>
-      </the-button>
-    </div>
-  </div>
-</template>
-
-<script>
-import TheButton from "../buttons/TheButton.vue";
-
-export default {
-  name: "TheLacks",
-  data() {
-    return {
-      isShow: false,
-    };
-  },
-  components: {
-    TheButton,
-  },
-};
-</script>
-
-<style lang="scss">
 .lacks {
   transition: var(--transition);
 
@@ -64,4 +35,3 @@ export default {
     }
   }
 }
-</style>

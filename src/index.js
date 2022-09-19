@@ -47,7 +47,6 @@ import TheCurrenciesList from "./components/blocks/TheCurrenciesList.vue";
 import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheLeaveFeedback from "./components/popups/TheLeaveFeedback.vue";
-import TheLacks from "./components/popups/TheLacks.vue";
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
 //Icons
@@ -124,7 +123,6 @@ createApp({
     TheButton,
     //Popups
     TheLeaveFeedback,
-    TheLacks,
     TheRecoveryInformation,
     TheLacksWindow,
     //Icons
