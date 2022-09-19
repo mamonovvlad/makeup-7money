@@ -1,208 +1,207 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Партнёрская программа</title>
-  <meta name="csrf-param" content="_csrf" />
-  <meta name="csrf-token" content="He8Y" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Партнёрская программа</title>
+    <meta name="csrf-param" content="_csrf" />
+    <meta name="csrf-token" content="He8Y" />
+  </head>
 
-<body>
-<div id="app" v-cloak>
-  <div class="app" :data-theme="colorSpectrum">
-    <the-header></the-header>
-    <main class="personal-area">
-      <div class="container">
-        <div class="wrapper">
-          <the-account-navigation>
-            <template #links>
-              <a class="active" href="/">
-                <icon-personal-data></icon-personal-data>
-                Счета и персональные данные
-              </a>
-              <a href="/">
-                <icon-history></icon-history>
-                История операций
-              </a>
-              <a href="/">
-                <icon-partner></icon-partner>
-                Партнёрская программа
-              </a>
-              <a href="/">
-                <icon-withdraw-reward></icon-withdraw-reward>
-                Вывеси вознаграждение
-              </a>
-              <a href="/">
-                <icon-buy></icon-buy>
-                История выплат
-              </a>
-              <a href="/">
-                <icon-padlock></icon-padlock>
-                Изменение пароля
-              </a>
-              <a href="/">
-                <icon-random></icon-random>
-                Заявки рефералов
-              </a>
-              <a href="/">
-                <icon-create></icon-create>
-                Создать заявку
-              </a>
-              <a href="/">
-                <icon-verification></icon-verification>
-                Верификация заявок
-              </a>
-              <a href="/">
-                <icon-search></icon-search>
-                Поиск заявок
-              </a>
-            </template>
-            <template #buttons>
-              <a href="/">Выход</a>
-              <a href="/">Выход со всех устройств</a>
-            </template>
-          </the-account-navigation>
-          <div class="wrapper-account partner">
-            <the-title tag="h2" class="subtitle"
-            >Партнёрская программа
-            </the-title
-            >
-            <div class="stylish-wrapper">
-              <div class="info">
-                <div class="text">
-                  <h3>У нас действует партнёрская программа.</h3>
-                  <p>
-                    Если пользователь зарегистрируется по вашей реферальной
-                    ссылке и совершит обмен, вы получите вознаграждение.
-                    Вознаграждение составляет 25% нашей чистой прибыли.
-                    Детальнее с условиями вы можете ознакомиться в разделе
-                    "Партнерская программа".
-                  </p>
-                  <div class="reward">
-                    <p>Вознаграждение выводим на счёт Perfect Money.</p>
-                    <span>Минимум 1$</span>
+  <body>
+    <div id="app" v-cloak>
+      <div class="app" :data-theme="colorSpectrum">
+        <the-header class="background"></the-header>
+        <main class="personal-area">
+          <div class="container">
+            <div class="wrapper">
+              <the-account-navigation>
+                <template #links>
+                  <a class="active" href="/">
+                    <icon-personal-data></icon-personal-data>
+                    Счета и персональные данные
+                  </a>
+                  <a href="/">
+                    <icon-history></icon-history>
+                    История операций
+                  </a>
+                  <a href="/">
+                    <icon-partner></icon-partner>
+                    Партнёрская программа
+                  </a>
+                  <a href="/">
+                    <icon-withdraw-reward></icon-withdraw-reward>
+                    Вывеси вознаграждение
+                  </a>
+                  <a href="/">
+                    <icon-buy></icon-buy>
+                    История выплат
+                  </a>
+                  <a href="/">
+                    <icon-padlock></icon-padlock>
+                    Изменение пароля
+                  </a>
+                  <a href="/">
+                    <icon-random></icon-random>
+                    Заявки рефералов
+                  </a>
+                  <a href="/">
+                    <icon-create></icon-create>
+                    Создать заявку
+                  </a>
+                  <a href="/">
+                    <icon-verification></icon-verification>
+                    Верификация заявок
+                  </a>
+                  <a href="/">
+                    <icon-search></icon-search>
+                    Поиск заявок
+                  </a>
+                </template>
+                <template #buttons>
+                  <a href="/">Выход</a>
+                  <a href="/">Выход со всех устройств</a>
+                </template>
+              </the-account-navigation>
+              <div class="wrapper-account partner">
+                <the-title tag="h2" class="subtitle"
+                  >Партнёрская программа
+                </the-title>
+                <div class="stylish-wrapper">
+                  <div class="info">
+                    <div class="text">
+                      <h3>У нас действует партнёрская программа.</h3>
+                      <p>
+                        Если пользователь зарегистрируется по вашей реферальной
+                        ссылке и совершит обмен, вы получите вознаграждение.
+                        Вознаграждение составляет 25% нашей чистой прибыли.
+                        Детальнее с условиями вы можете ознакомиться в разделе
+                        "Партнерская программа".
+                      </p>
+                      <div class="reward">
+                        <p>Вознаграждение выводим на счёт Perfect Money.</p>
+                        <span>Минимум 1$</span>
+                      </div>
+                      <the-button tag="a" href="/">
+                        <template #name> Создать счёт PerfectMoney</template>
+                      </the-button>
+                    </div>
+                    <figure>
+                      <icon-pig></icon-pig>
+                    </figure>
                   </div>
-                  <the-button tag="a" href="/">
-                    <template #name> Создать счёт PerfectMoney</template>
-                  </the-button>
-                </div>
-                <figure>
-                  <icon-pig></icon-pig>
-                </figure>
-              </div>
-              <div class="line"></div>
-              <div class="operation-info">
+                  <div class="line"></div>
+                  <div class="operation-info">
                     <span
-                    >Реферальная ссылка:<strong
-                    >https://7money.co/?rid=8856</strong
-                    ><the-copy-text
-                      copy-text="https://7money.co/?rid=8856"
-                    ></the-copy-text
+                      >Реферальная ссылка:<strong
+                        >https://7money.co/?rid=8856</strong
+                      ><the-copy-text
+                        copy-text="https://7money.co/?rid=8856"
+                      ></the-copy-text
                     ></span>
-                <span>
+                    <span>
                       HTML код для добавления на сайт или форум:
                       <strong
-                      >&lt;a href='https://7money.co/?rid=8856'
+                        >&lt;a href='https://7money.co/?rid=8856'
                         target='_blank'>Обмен валют&lt;/a&gt;</strong
                       >
                       <the-copy-text
                         copy-text="<a href='https://7money.co/?rid=8856' target'_blank'>Обмен валют</a>"
                       ></the-copy-text>
                     </span>
+                  </div>
+                </div>
+                <div class="profit">
+                  <div class="block">
+                    <div class="text">
+                      <p>Ваш процент партнёрской прибыли</p>
+                      <span>25%</span>
+                    </div>
+                    <div class="box">
+                      <the-button tag="button">
+                        <template #name> Вывести</template>
+                      </the-button>
+                      <the-button tag="button" class="button--border">
+                        <template #name> История выплат</template>
+                      </the-button>
+                    </div>
+                  </div>
+                  <div class="block">
+                    <div class="operation-info">
+                      <span>Текущий баланс:<strong>100$</strong></span>
+                      <span
+                        >Уровень программы лояльности:<strong>2</strong></span
+                      >
+                      <span>Обменов:<strong>0</strong></span>
+                      <span
+                        >Суммарные обмены за все время:<strong>0$</strong></span
+                      >
+                    </div>
+                  </div>
+                </div>
+                <the-title tag="h2" class="subtitle">Вознаграждения</the-title>
+                <table class="table table--auto">
+                  <thead>
+                    <tr class="head">
+                      <td>Обмен</td>
+                      <td>Перевод</td>
+                      <td>Прибыль, в USD</td>
+                    </tr>
+                  </thead>
+                  <tbody class="body">
+                    <tr>
+                      <td>
+                        <span>Чешка</span>
+                        <span>23 ноября 2020 г., 16:17</span>
+                      </td>
+                      <td>
+                        <a class="text--blue" href="/">OPca0d5d96</a>
+                        <span>PerfectMoney: <strong>0.49 USD</strong></span>
+                        <icon-arrow class="arrow"></icon-arrow>
+                        <span>PerfectMoney USD: <strong>0.49 USD</strong></span>
+                      </td>
+                      <td class="text--green">Завершена</td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span>Чешка</span>
+                        <span>23 ноября 2020 г., 16:17</span>
+                      </td>
+                      <td>
+                        <a class="text--blue" href="/">OPca0d5d96</a>
+                        <span>PerfectMoney: <strong>0.49 USD</strong></span>
+                        <icon-arrow class="arrow"></icon-arrow>
+                        <span>PerfectMoney USD: <strong>0.49 USD</strong></span>
+                      </td>
+                      <td class="text--green">Завершена</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <the-title tag="h2" class="subtitle">Ваши рефералы</the-title>
+                <table class="table table--auto">
+                  <thead>
+                    <tr class="head">
+                      <td>Имя</td>
+                      <td>Добавлен</td>
+                    </tr>
+                  </thead>
+                  <tbody class="body">
+                    <tr>
+                      <td>Чешка</td>
+                      <td>23 ноября 2020 г., 16:10</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
-            <div class="profit">
-              <div class="block">
-                <div class="text">
-                  <p>Ваш процент партнёрской прибыли</p>
-                  <span>25%</span>
-                </div>
-                <div class="box">
-                  <the-button tag="button">
-                    <template #name> Вывести</template>
-                  </the-button>
-                  <the-button tag="button" class="button--border">
-                    <template #name> История выплат</template>
-                  </the-button>
-                </div>
-              </div>
-              <div class="block">
-                <div class="operation-info">
-                  <span>Текущий баланс:<strong>100$</strong></span>
-                  <span
-                  >Уровень программы лояльности:<strong>2</strong></span
-                  >
-                  <span>Обменов:<strong>0</strong></span>
-                  <span
-                  >Суммарные обмены за все время:<strong>0$</strong></span
-                  >
-                </div>
-              </div>
-            </div>
-            <the-title tag="h2" class="subtitle">Вознаграждения</the-title>
-            <table class="table table--auto">
-              <thead>
-              <tr class="head">
-                <td>Обмен</td>
-                <td>Перевод</td>
-                <td>Прибыль, в USD</td>
-              </tr>
-              </thead>
-              <tbody class="body">
-              <tr>
-                <td>
-                  <span>Чешка</span>
-                  <span>23 ноября 2020 г., 16:17</span>
-                </td>
-                <td>
-                  <a class="text--blue" href="/">OPca0d5d96</a>
-                  <span>PerfectMoney: <strong>0.49 USD</strong></span>
-                  <icon-arrow class="arrow"></icon-arrow>
-                  <span>PerfectMoney USD: <strong>0.49 USD</strong></span>
-                </td>
-                <td class="text--green">Завершена</td>
-              </tr>
-              <tr>
-                <td>
-                  <span>Чешка</span>
-                  <span>23 ноября 2020 г., 16:17</span>
-                </td>
-                <td>
-                  <a class="text--blue" href="/">OPca0d5d96</a>
-                  <span>PerfectMoney: <strong>0.49 USD</strong></span>
-                  <icon-arrow class="arrow"></icon-arrow>
-                  <span>PerfectMoney USD: <strong>0.49 USD</strong></span>
-                </td>
-                <td class="text--green">Завершена</td>
-              </tr>
-              </tbody>
-            </table>
-            <the-title tag="h2" class="subtitle">Ваши рефералы</the-title>
-            <table class="table table--auto">
-              <thead>
-              <tr class="head">
-                <td>Имя</td>
-                <td>Добавлен</td>
-              </tr>
-              </thead>
-              <tbody class="body">
-              <tr>
-                <td>Чешка</td>
-                <td>23 ноября 2020 г., 16:10</td>
-              </tr>
-              </tbody>
-            </table>
           </div>
-        </div>
+        </main>
+        <the-footer></the-footer>
       </div>
-    </main>
-    <the-footer></the-footer>
-  </div>
-</div>
-<input type="hidden" id="login" value="0" />
-<input type="hidden" id="language" value="ru" />
-<input type="hidden" value="" name="copyInfo" />
-</body>
+    </div>
+    <input type="hidden" id="login" value="0" />
+    <input type="hidden" id="language" value="ru" />
+    <input type="hidden" value="" name="copyInfo" />
+  </body>
 </html>

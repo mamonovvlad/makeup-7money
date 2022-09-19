@@ -12,7 +12,7 @@
   <body>
     <div id="app" v-cloak>
       <div class="app" :data-theme="colorSpectrum">
-        <the-header></the-header>
+        <the-header class="background"></the-header>
         <div class="reviews">
           <the-title-big>
             <template #title>Отзывы про обменник 7Money.co</template>
@@ -63,10 +63,10 @@
               </div>
               <div class="captcha">
                 <div class="g-recaptcha"></div>
-                <the-button tag="button" type="submit">
-                  <template #name> Оставить отзыв</template>
-                </the-button>
               </div>
+              <the-button tag="button" type="submit">
+                <template #name> Оставить отзыв</template>
+              </the-button>
             </form>
             <div class="list-wrapper">
               <div class="items">
