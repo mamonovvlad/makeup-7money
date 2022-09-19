@@ -571,6 +571,9 @@ const store = createStore({
     sellAmount(state) {
       return state.sell_amount;
     },
+    proxy(state) {
+      return state.proxy;
+    },
   }, // Получения state
 });
 export default store;

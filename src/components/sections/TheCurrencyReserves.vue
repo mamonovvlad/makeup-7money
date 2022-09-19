@@ -1,6 +1,9 @@
 <template>
   <section
-    class="currency-reserves" id="currency-reserves" v-if="showHideBlock">
+    class="currency-reserves"
+    id="currency-reserves"
+    v-if="showHideBlock"
+  >
     <the-title class="title" tag="h2">{{ $t("currencyReserves") }}</the-title>
     <div class="wrapper stylish-wrapper">
       <div class="block" v-for="column in columns">
@@ -11,7 +14,7 @@
           </div>
           <div class="price">
             <p>{{ Number(currency.amount).toFixed(2) }}</p>
-            <span>BTC</span>
+            <span>{{ currency.code }}</span>
           </div>
         </div>
       </div>
@@ -47,14 +50,18 @@ export default {
         return this.blockHide;
       }
     },
-
   },
   components: { TheTitle },
   methods: {
     getCurrencies() {
-      axios.get(process.env.PROXY2 + "/v1/currency?active=1&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json").then((res) => {
-        this.currencies = res.data;
-      });
+      axios
+        .get(
+          process.env.PROXY2 +
+            "/v1/currency?active=1&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json"
+        )
+        .then((res) => {
+          this.currencies = res.data;
+        });
     },
   },
   mounted() {

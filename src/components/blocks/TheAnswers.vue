@@ -1,54 +1,108 @@
 <template>
-  <div>
-    <!--    v-for="(faq, i) in dataFaq.faqs"-->
-    <!--    :key="i"-->
-    <!--    @click="toggleopen(i)"-->
-    <!--    :class="{ open : i === answersNum }"-->
-    <!--    class=""-->
-    <!--  >-->
-    <!--    <div-->
-    <!--      class="accordion_title"-->
-    <!--      v-html="faq[dataFaq.field_question]"-->
-    <!--    ></div>-->
-    <!--    <div-->
-    <!--      class=""-->
-    <!--      v-html="faq[dataFaq.field_answer]"-->
-    <!--    ></div>-->
-    <h1>6543</h1>
-    {{ answers }}
+  <div class="answers__list">
+    <div
+      v-for="(faq, i) in faqs"
+      :key="i"
+      :class="{ active: i === index }"
+      class="answer"
+    >
+      <div class="answer__title">
+        <h2>{{ faq.question_ru }}</h2>
+        <button class="arrow" @click="openAnswer(i)">
+          <icon-arrow></icon-arrow>
+        </button>
+      </div>
+      <div
+        class="answer__text"
+        v-show="i === index"
+        v-html="faq.answer_ru"
+      ></div>
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
+import IconArrow from "../icons/IconArrow.vue";
 
 export default {
   name: "TheAnswers",
   data() {
     return {
-      answers: {},
+      faqs: [],
+      isShow: false,
+      index: -1,
     };
   },
+  components: {
+    IconArrow,
+  },
   computed: {
-    ...mapGetters(["getLang"]),
+    ...mapGetters(["getLang", "proxy"]),
   },
   methods: {
+    openAnswer(i) {
+      this.index = i;
+    },
     fetchAnswers() {
       const self = this;
-      axios
-        .get("http://proxy.local/" + this.getLang + "/json/faq")
-        .then((res) => {
-          self.answers = res.data;
-        });
+      axios.get(this.proxy + this.getLang + "/json/faq").then((res) => {
+        self.faqs = res.data.faqs;
+      });
     },
   },
   mounted() {
-    if (document.querySelector(".answers")) {
-      this.fetchAnswers();
-    }
+    this.fetchAnswers();
   },
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import "../../assets/scss/utils/mixin";
+.answers__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+
+  & .answer {
+    position: relative;
+    padding: 20px;
+    border-radius: var(--radius-eigh);
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+
+    &__title {
+      position: relative;
+      padding-right: 26px;
+      & h2 {
+        @include _768 {
+          font-size: 16px;
+        }
+      }
+    }
+    &__text {
+      margin-top: 10px;
+      font-size: 16px;
+      @include _768 {
+        font-size: 14px;
+      }
+    }
+  }
+
+  & .arrow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    width: 25px;
+    height: 25px;
+  }
+  & .active {
+    box-shadow: var(--shadow-inset);
+    color: var(--quaternary);
+  }
+}
+</style>
