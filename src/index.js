@@ -166,6 +166,9 @@ createApp({
         !this.currencyModel.isCrypt(this.sellCurrency.id)
       );
     },
+    isDetails() {
+      return this.detailsHide;
+    },
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),

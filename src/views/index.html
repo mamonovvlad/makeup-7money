@@ -37,7 +37,11 @@
             <the-currencies-column-buy></the-currencies-column-buy>
 
             <transition name="details-hide">
-              <div class="details" v-if="detailsHide && calculateData">
+              <div class="details" v-if="isDetails === true && calculateData">
+                <!--              <div-->
+                <!--                class="details"-->
+                <!--                v-if="$store.state.detailsHide === true && calculateData"-->
+                <!--              >-->
                 <div class="details__wrapper stylish-wrapper">
                   <div class="title__wrapper">
                     <the-title tag="h1" class="subtitle">
