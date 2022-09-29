@@ -186,7 +186,7 @@ export default {
     align-items: center;
     row-gap: 15px;
     margin-top: 10px;
-
+    transition: var(--transition);
     & img {
       height: 25px;
     }

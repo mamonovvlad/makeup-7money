@@ -38,10 +38,6 @@
 
             <transition name="details-hide">
               <div class="details" v-if="isDetails === true && calculateData">
-                <!--              <div-->
-                <!--                class="details"-->
-                <!--                v-if="$store.state.detailsHide === true && calculateData"-->
-                <!--              >-->
                 <div class="details__wrapper stylish-wrapper">
                   <div class="title__wrapper">
                     <the-title tag="h1" class="subtitle">
@@ -55,13 +51,11 @@
                     :data-input="true"
                   ></the-steps>
                   <!--Форма-->
-                  <strong
-                    v-if="calculateData.min_buy_amount > calculateData.max_buy_amount"
-                    class="warning"
+                  <form
+                    v-if="calculateData.min_buy_amount < calculateData.max_buy_amount"
+                    action
+                    class="form-exchange"
                   >
-                    Выбранное вами направление обмена в данный момент недоступно
-                  </strong>
-                  <form action class="form-exchange">
                     <input
                       type="hidden"
                       id="orderform-type"
@@ -495,6 +489,9 @@
                       Обменять
                     </button>
                   </form>
+                  <strong v-else class="warning">
+                    Выбранное вами направление обмена в данный момент недоступно
+                  </strong>
                   <!--Конец Формы-->
                 </div>
                 <the-information

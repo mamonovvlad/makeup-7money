@@ -7,8 +7,12 @@
       <div class="title__wrapper">
         <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
         <div class="buttons" v-if="sellCurrencyId !== null">
-          <button v-for="(button, idx) in buttons" :key="idx" :class="{'active--filters':index === idx}"
-                  @click="toggleInformation(idx)">
+          <button
+            v-for="(button, idx) in buttons"
+            :key="idx"
+            :class="{ 'active--filters': index === idx }"
+            @click="toggleInformation(idx)"
+          >
             {{ button.name }}
           </button>
         </div>
@@ -38,7 +42,7 @@ export default {
   name: "TheCurrenciesColumn",
   data() {
     return {
-      index: 0,
+      index: 1,
       buttons: [
         {
           name: "Курсы",

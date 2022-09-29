@@ -118,7 +118,7 @@ export default {
     font-weight: 500;
   }
 
-  & .form-group{
+  & .form-group {
     position: relative;
 
     & span {
@@ -157,14 +157,13 @@ export default {
   }
 
   &-error {
-
   }
 }
 
-.help-block{
+.help-block {
   color: var(--red);
   position: absolute;
-  left: 6px;
+  left: 0;
   bottom: -15px;
   font-size: 12px;
 }

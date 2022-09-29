@@ -50,7 +50,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   background: var(--secondary-transparent);
-  transition: var(--transition);
+  transition: all 200ms ease;
   width: 100%;
   z-index: 4;
 

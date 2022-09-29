@@ -8,7 +8,7 @@
     >
       <component :is="button.icon"></component>
     </button>
-    <div class="canvas-wrapper"></div>
+    <div ref="canvasWrapper" class="canvas-wrapper"></div>
   </div>
 </template>
 
@@ -32,52 +32,54 @@ export default {
     return {
       buttons,
       index: 0,
-      //Canvas
-      duration: 300,
-      x: 0,
-      y: 0,
     };
   },
   components: {
     IconSun,
     IconMoon,
-    html2canvas,
   },
   methods: {
     ...mapMutations(["setDefinitionTheme"]),
     //Написанно в перемешку
     async toggle(idx, e) {
-      const canvas = await html2canvas(document.documentElement);
-      const ctx = canvas.getContext("2d");
-      let startDate = Date.now();
+      let duration = 400;
+      let x = e.clientX;
+      let y = e.clientY;
       let canvasWrapper = document.querySelector(".canvas-wrapper");
-      const { clientWidth, clientHeight } = document.body;
-      const finalRadius = Math.sqrt(
-        clientWidth * clientWidth,
-        clientHeight * clientHeight
-      );
-      if (localStorage.getItem("theme") !== String(idx)) {
-        canvasWrapper.appendChild(canvas);
-        canvasWrapper.style.display = "block";
-        this.x = e.clientX;
-        this.y = e.clientY;
-        ctx.globalCompositeOperation = "destination-out";
-        ctx.fillColor = "white";
-        const render = () => {
-          const diff = Date.now() - startDate;
-          const progress = diff / this.duration;
-          const radius = finalRadius * progress;
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, radius, 0, 2 * Math.PI);
-          ctx.fill();
-          if (progress < 1) requestAnimationFrame(render);
-        };
-        requestAnimationFrame(render);
+      if (this.index !== idx) {
+        await html2canvas(document.documentElement, {
+          type: "view",
+        }).then(function (canvas) {
+          const ctx = canvas.getContext("2d");
+          let startDate = Date.now();
+          const { clientWidth, clientHeight } = document.body;
+          const finalRadius = Math.sqrt(
+            clientWidth * clientWidth,
+            clientHeight * clientHeight
+          );
+          canvasWrapper.appendChild(canvas);
+          canvasWrapper.style.display = "block";
+          ctx.globalCompositeOperation = "destination-out";
+          ctx.fillColor = "white";
+
+          const render = () => {
+            const diff = Date.now() - startDate;
+            const progress = diff / duration;
+            const radius = finalRadius * progress;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+            ctx.fill();
+            if (progress < 1) requestAnimationFrame(render);
+          };
+          requestAnimationFrame(render);
+        });
         this.index = idx;
         setTimeout(() => {
-          canvasWrapper.removeChild(canvasWrapper.querySelector("canvas"));
-          canvasWrapper.style.display = "none";
-        }, this.duration);
+          this.$refs.canvasWrapper.removeChild(
+            this.$refs.canvasWrapper.querySelector("canvas")
+          );
+          this.$refs.canvasWrapper.style.display = "none";
+        }, duration);
 
         localStorage.setItem("theme", this.index);
 
