@@ -57,8 +57,10 @@
     flex-direction: column;
     position: relative;
     row-gap: 15px;
-    max-width: 100%;
-    width: 100%;
+    width: calc(50% - 10px);
+    @include _768 {
+      width: 100%;
+    }
 
     &__lacks {
       & label {

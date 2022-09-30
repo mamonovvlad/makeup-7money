@@ -52,7 +52,7 @@
                   ></the-steps>
                   <!--Форма-->
                   <form
-                    v-if="calculateData.min_buy_amount < calculateData.max_buy_amount"
+                    v-if="calculateData.max_buy_amount > calculateData.min_buy_amount"
                     action
                     class="form-exchange"
                   >
