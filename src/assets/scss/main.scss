@@ -36,7 +36,7 @@ html {
 }
 
 * {
-  scrollbar-color: var(--light-green) var(--transparent);
+  scrollbar-color: var(--light-green);
   scrollbar-width: thin;
   //
   &::-webkit-scrollbar {
@@ -45,6 +45,7 @@ html {
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--light-green);
+    border-radius: 12px;
   }
 
   &::-webkit-scrollbar-track {

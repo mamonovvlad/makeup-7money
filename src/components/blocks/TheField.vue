@@ -165,6 +165,6 @@ export default {
   position: absolute;
   left: 0;
   bottom: -15px;
-  font-size: 12px;
+  font-size: 11px;
 }
 </style>

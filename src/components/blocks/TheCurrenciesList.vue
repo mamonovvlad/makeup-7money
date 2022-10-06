@@ -37,16 +37,9 @@
       </li>
     </ul>
   </div>
-  <the-show-more-currencies
-    @click.native="toggle"
-    v-if="isShow && currenciesHide"
-  >
-    {{ nameTitle }}
-  </the-show-more-currencies>
 </template>
 
 <script>
-import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
 import TheRefresh from "./TheRefresh.vue";
 import { mapMutations } from "vuex";
 
@@ -80,11 +73,9 @@ export default {
   data() {
     return {
       isShow: false,
-      nameTitle: "Показать еще",
     };
   },
   components: {
-    TheShowMoreCurrencies,
     TheRefresh,
   },
   methods: {
@@ -92,25 +83,6 @@ export default {
     setActive(currencyName, id) {
       this.setActiveCurrency([currencyName, id]);
     },
-    toggle() {
-      let currenciesList = this.$refs.currenciesList;
-      let currenciesWrapper = this.$refs.currenciesWrapper;
-      if (currenciesList.clientHeight === 535) {
-        currenciesList.style.maxHeight =
-          currenciesWrapper.clientHeight + 40 + "px";
-        this.nameTitle = "Скрыть";
-      } else {
-        currenciesList.style.maxHeight = "";
-        this.nameTitle = "Показать еще";
-      }
-    },
-    hideButton() {
-      let currenciesWrapper = this.$refs.currenciesWrapper;
-      this.isShow = currenciesWrapper.clientHeight >= 535;
-    },
-  },
-  updated() {
-    this.hideButton();
   },
 };
 </script>
@@ -120,8 +92,11 @@ export default {
   &-list {
     position: relative;
     max-height: 535px;
-    overflow: hidden;
+    overflow-y: scroll;
     transition: var(--transition);
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
 
     & .item {
       display: flex;
