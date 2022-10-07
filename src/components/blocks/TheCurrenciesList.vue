@@ -37,9 +37,19 @@
       </li>
     </ul>
   </div>
+  <the-show-more-currencies
+    @click.native="toggle"
+    v-if="isShow && currenciesHide"
+  >
+    <span v-if="toggleText">
+      {{ $t("showMore") }}
+    </span>
+    <span v-else>{{ $t("hide") }}</span>
+  </the-show-more-currencies>
 </template>
 
 <script>
+import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
 import TheRefresh from "./TheRefresh.vue";
 import { mapMutations } from "vuex";
 
@@ -73,16 +83,35 @@ export default {
   data() {
     return {
       isShow: false,
+      toggleText: true,
     };
   },
   components: {
     TheRefresh,
+    TheShowMoreCurrencies,
   },
   methods: {
     ...mapMutations(["setActiveCurrency"]),
     setActive(currencyName, id) {
       this.setActiveCurrency([currencyName, id]);
     },
+    toggle() {
+      let currenciesList = this.$refs.currenciesList;
+      let currenciesWrapper = this.$refs.currenciesWrapper;
+      if (currenciesList.clientHeight === 535) {
+        currenciesList.style.maxHeight =
+          currenciesWrapper.clientHeight + 40 + "px";
+        this.toggleText = false;
+      } else {
+        currenciesList.style.maxHeight = "";
+        this.toggleText = true;
+      }
+    },
+  },
+
+  updated() {
+    let currenciesWrapper = this.$refs.currenciesWrapper;
+    this.isShow = currenciesWrapper.clientHeight >= 535;
   },
 };
 </script>
@@ -94,6 +123,7 @@ export default {
     max-height: 535px;
     overflow-y: scroll;
     transition: var(--transition);
+
     &::-webkit-scrollbar {
       width: 4px;
     }
