@@ -258,7 +258,7 @@
                     <div class="items__wrapper">
                       <div class="item" v-if="isSellSource">
                         <the-recovery-information
-                          v-if="currencyModel.isUahBank(sellCurrency.id) && showPopupInfoThisAccount"
+                          v-if="currencyModel.isUahBank(sellCurrency.id) && isShowPopup"
                         >
                           Внимание!!! Не указывайте "Логин" при создании кода в
                           бирже. Такой код на нашем сайте применить невозможно!
@@ -269,8 +269,8 @@
                           </label>
                           <span class="form-group">
                             <input
-                              @focus="showPopupInfoThisAccount = true"
-                              @blur="showPopupInfoThisAccount = false"
+                              @focus="onFocus"
+                              @blur="onBlur"
                               type="text"
                               id="orderform-sell_source"
                               name="OrderForm[sell_source]"
@@ -283,7 +283,7 @@
                       </div>
                       <div class="item">
                         <the-recovery-information
-                          v-if="buyCurrency.id === currencyModel.PRIVAT_BANK_ID && showPopupInfoToAccount"
+                          v-if="buyCurrency.id === currencyModel.PRIVAT_BANK_ID && isShowPopup"
                         >
                           Внимание!!! Не указывайте "Логин" при создании кода в
                           бирже. Такой код на нашем сайте применить невозможно!
@@ -294,8 +294,8 @@
                           </label>
                           <span class="form-group">
                             <input
-                              @focus="showPopupInfoToAccount = true"
-                              @blur="showPopupInfoToAccount = false"
+                              @focus="onFocus"
+                              @blur="onBlur"
                               type="text"
                               id="orderform-buy_target"
                               name="OrderForm[buy_target]"
@@ -310,7 +310,7 @@
                     <div class="line"></div>
                     <div class="items__wrapper">
                       <div class="item">
-                        <the-recovery-information v-if="showPopupVerified">
+                        <the-recovery-information v-if="isShowPopup">
                           Внимание!!! Не указывайте "Логин" при создании кода в
                           бирже. Такой код на нашем сайте применить невозможно!
                         </the-recovery-information>
@@ -320,8 +320,8 @@
                           </label>
                           <span class="form-group">
                             <input
-                              @focus="showPopupVerified = true"
-                              @blur="showPopupVerified = false"
+                              @focus="onFocus"
+                              @blur="onBlur"
                               type="text"
                               id="orderform-first_name"
                               name="OrderForm[first_name]"
