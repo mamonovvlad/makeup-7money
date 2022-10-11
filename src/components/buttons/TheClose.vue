@@ -1,5 +1,5 @@
 <template>
-  <button class="close" @click="$emit('close')">
+  <button class="button-close" @click="$emit('close')">
     <icon-close></icon-close>
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-.close {
+.button-close {
   position: absolute;
   width: 15px;
   top: 10px;

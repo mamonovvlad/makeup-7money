@@ -75,12 +75,17 @@
                   </div>
                 </template>
                 <template #cancel-operation>
-                  <the-button class="close button--transparent" tag="button">
-                    <template #name> Отменить операцию </template>
+                  <the-button
+                    href="/"
+                    class="close button--transparent"
+                    tag="a"
+                  >
+                    <template #name> Отменить операцию</template>
                   </the-button>
                 </template>
               </the-payment-counter>
-              <div class="payment__details">
+
+              <div class="payment__details procedure">
                 <the-steps :payment="true"></the-steps>
                 <h4>Порядок действий</h4>
                 <p>
@@ -95,23 +100,25 @@
                   будут нами получены, заявка будет выполнена максимально
                   быстро.
                 </p>
-                <the-time-processing>
-                  Время обработки заявки занимает от 5 до 30-ти минут
-                </the-time-processing>
-                <div class="buttons">
-                  <the-button tag="button">
-                    <template #name> Перейти к оплате </template>
-                  </the-button>
+                <div class="time-processing">
+                  <figure>
+                    <icon-time-processing></icon-time-processing>
+                  </figure>
+                  <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
                 </div>
-
+                <div class="buttons">
+                  <a href="/" class="button">Перейти к оплате</a>
+                </div>
+              </div>
+              <div class="payment__details operation-status dn">
                 <div class="application-status__info">
                   <div class="block">
                     <div class="operation-info">
                       <h2 class="text--green">Завершена</h2>
                       <span
-                        >Номер операции: <strong>AP0059aee775</strong
-                        ><the-copy-text copy-text="AP0059aee775"></the-copy-text
-                      ></span>
+                        >Номер операции: <strong>AP0059aee775</strong>
+                        <the-copy-text copy-text="AP0059aee775"></the-copy-text>
+                      </span>
                       <span
                         >Дата заявки:
                         <strong>18 янв. 2021 г., 17:27:58</strong></span
@@ -139,34 +146,64 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="line"></div>
                 <div class="operation-info">
                   <span
                     >Выплата поступила в размере:
-                    <strong>0.0284927 BTC</strong></span
-                  >
+                    <strong>0.0284927 BTC</strong>
+                  </span>
                   <span
                     >Подтверждения в сети Bitcoin:
-                    <strong>1 из 1 требуемого</strong></span
-                  >
+                    <strong>1 из 1 требуемого</strong>
+                  </span>
                   <span
                     >Ваш TXID:
-                    <a href="/" class="line-break"
-                      ><strong
-                        >f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74</strong
-                      ></a
-                    >
+                    <a href="/" class="line-break">
+                      <strong>
+                        f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
+                      </strong>
+                    </a>
                     <the-copy-text
                       copy-text="f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74"
-                    ></the-copy-text
-                  ></span>
-                  <span
-                    >Обычно выплата производится в течении
-                    <strong>5-30 минут</strong> после 1-го подтверждения</span
-                  >
+                    ></the-copy-text>
+                  </span>
+                  <span>
+                    Обычно выплата производится в течении
+                    <strong>5-30 минут</strong>
+                    после 1-го подтверждения
+                  </span>
                 </div>
-                <the-leave-feedback :second-option="true"></the-leave-feedback>
+                <div class="leave-feedback">
+                  <div class="wrapper">
+                    <div class="info">
+                      <p>
+                        <strong class="text--black-white">Благодарим</strong>
+                        за использование нашего сервиса! Уважаемый клиент, если
+                        Вам понравилось обслуживание нашего сервиса, Вы можете
+                        <strong class="text--black-white">
+                          оставить отзыв здесь:
+                        </strong>
+                      </p>
+                      <icon-thanks></icon-thanks>
+                    </div>
+                    <div class="buttons">
+                      <a
+                        href="//www.bestchange.ru/7money-exchanger.html"
+                        class="button"
+                        target="_blank"
+                      >
+                        Оставить отзыв на BESTCHANGE
+                      </a>
+                      <a
+                        href="/reviews"
+                        class="button button--transparent"
+                        target="_blank"
+                      >
+                        Либо на нашем сайте
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,48 +1,26 @@
 <template>
-  <div class="leave-feedback" :class="{'first-option':secondOption === false}" v-if="isShow">
-    <div v-if="!secondOption" class="stylish-wrapper">
+  <div class="leave-feedback first-option" v-if="isShow">
+    <div class="stylish-wrapper">
       <the-close @close="isHideBlock"></the-close>
       <icon-thanks></icon-thanks>
       <p>
-        <strong class="text--black-white">Благодарим</strong> за
-        использование нашего сервиса! Уважаемый клиент, если Вам
-        понравилось обслуживание нашего сервиса, Вы можете
+        <strong class="text--black-white">Благодарим</strong> за использование
+        нашего сервиса! Уважаемый клиент, если Вам понравилось обслуживание
+        нашего сервиса, Вы можете
         <strong class="text--black-white">оставить отзыв здесь:</strong>
       </p>
 
-      <the-button tag="a" target="_blank" href="//www.bestchange.ru/7money-exchanger.html">
-        <template #name>
-          Оставить отзыв
-        </template>
+      <the-button
+        tag="a"
+        target="_blank"
+        href="//www.bestchange.ru/7money-exchanger.html"
+      >
+        <template #name> Оставить отзыв </template>
       </the-button>
       <p>
         Либо на нашем
         <a href="/reviews"><strong class="text--green">сайте</strong></a>
       </p>
-
-    </div>
-    <div v-else class="wrapper">
-      <div class="info">
-        <p>
-          <strong class="text--black-white">Благодарим</strong> за
-          использование нашего сервиса! Уважаемый клиент, если Вам
-          понравилось обслуживание нашего сервиса, Вы можете
-          <strong class="text--black-white">оставить отзыв здесь:</strong>
-        </p>
-        <icon-thanks></icon-thanks>
-      </div>
-      <div class="buttons">
-        <the-button tag="a" href="//www.bestchange.ru/7money-exchanger.html" target="_blank">
-          <template #name>
-            Оставить отзыв на BESTCHANGE
-          </template>
-        </the-button>
-        <the-button class="button--transparent" tag="a" href="/reviews" target="_blank">
-          <template #name>
-            Либо на нашем сайте
-          </template>
-        </the-button>
-      </div>
     </div>
   </div>
 </template>
@@ -75,9 +53,9 @@ export default {
       let matches = document.cookie.match(
         new RegExp(
           "(?:^|; )" +
-          name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-          "=([^;]*)",
-        ),
+            name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+            "=([^;]*)"
+        )
       );
       return matches ? decodeURIComponent(matches[1]) : undefined;
     },
@@ -124,7 +102,6 @@ export default {
         this.isShow = this.getCookie("first-option") === undefined;
       }
     },
-
   },
   mounted() {
     this.isShowBlock();
@@ -176,7 +153,6 @@ export default {
 
   & a {
     text-decoration: none;
-
   }
 
   & .wrapper {
@@ -202,7 +178,6 @@ export default {
         }
       }
     }
-
   }
 }
 </style>

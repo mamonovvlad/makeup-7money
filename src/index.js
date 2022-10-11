@@ -23,7 +23,6 @@ import TheAchievements from "./components/sections/TheAchievements.vue";
 //Blocks
 import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
-import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
 import TheWarning from "./components/blocks/TheWarning.vue";
 import TheAccountNavigation from "./components/blocks/TheAccountNavigation.vue";
@@ -51,7 +50,7 @@ import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.v
 import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
 //Icons
 import IconPig from "./components/icons/IconPig.vue";
-
+import IconTimeProcessing from "./components/icons/IconTimeProcessing.vue";
 import IconEngineeringWorks from "./components/icons/IconEngineeringWorks.vue";
 import IconErrorPayment from "./components/icons/IconErrorPayment.vue";
 import IconMail from "./components/icons/IconMail.vue";
@@ -71,6 +70,7 @@ import IconSearch from "./components/icons/IconSearch.vue";
 import IconRandom from "./components/icons/IconRandom.vue";
 import IconError from "./components/icons/IconError.vue";
 import IconRefresh from "./components/icons/IconRefresh.vue";
+import IconThanks from "./components/icons/IconThanks.vue";
 
 createApp({
   data() {
@@ -110,7 +110,6 @@ createApp({
     TheAccountNavigation,
     TheWarning,
     TheCopyText,
-    TheTimeProcessing,
     TheCurrenciesList,
     TheErrorButtons,
     TheCurrenciesColumnSell,
@@ -125,6 +124,8 @@ createApp({
     TheLacksWindow,
     //Icons
     IconPig,
+    IconThanks,
+    IconTimeProcessing,
     IconError,
     IconEngineeringWorks,
     IconErrorPayment,
