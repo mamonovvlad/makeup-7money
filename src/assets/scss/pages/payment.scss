@@ -32,16 +32,26 @@
     }
   }
 
+  & h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--quaternary);
+  }
+
   & .steps {
     margin-bottom: 10px;
   }
+
   &__details {
     padding: 20px;
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-
-    & p {
+    @include _768 {
+      row-gap: 14px;
+    }
+    & p,
+    & li {
       color: var(--quaternary);
     }
 
@@ -56,6 +66,11 @@
         width: 100%;
       }
     }
+
+    & ul {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+    }
   }
 }
-

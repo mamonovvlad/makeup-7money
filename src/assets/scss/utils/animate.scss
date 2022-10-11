@@ -90,12 +90,13 @@
   opacity: 0;
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 
-
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
@@ -121,5 +122,17 @@
 
 .currencies-hide-enter,
 .currencies-hide-leave-to {
+  opacity: 0;
+}
+
+.animation-from-right-enter-active,
+.animation-from-right-leave-active {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.animate-right-enter-active,
+.animate-right-leave-active {
+  transform: translateX(-10px);
   opacity: 0;
 }

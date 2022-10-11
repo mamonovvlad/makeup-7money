@@ -4,9 +4,7 @@
       <div class="wrapper" v-show="isActive">
         <slot name="check-status"></slot>
         <div class="countdown">
-          <h4>
-            Осталось времени на оплату
-          </h4>
+          <h4>Осталось времени на оплату</h4>
           <div class="clock"></div>
         </div>
         <slot name="information"></slot>
@@ -55,6 +53,7 @@ export default {
   }
 
   & .wrapper {
+    transition: all 200ms ease;
     background: var(--secondary);
     padding: 20px;
     height: 100%;
@@ -232,9 +231,7 @@ export default {
   &:first-child {
     width: 0;
   }
-
 }
-
 
 .flip-clock-dot {
   display: block;
@@ -255,18 +252,15 @@ export default {
   }
 }
 
-
 .flip-clock-wrapper ul.play li.flip-clock-active .down {
   z-index: 2;
   animation: turn 0.5s 0.5s linear both;
 }
 
-
 .flip-clock-wrapper ul.play li.flip-clock-before .up {
   z-index: 2;
   animation: turn2 0.5s linear both;
 }
-
 
 .flip-clock-wrapper ul li.flip-clock-active {
   z-index: 3;
@@ -275,7 +269,13 @@ export default {
 /* SHADOW */
 .flip-clock-wrapper ul.play li.flip-clock-before .up .shadow {
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, black 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.1)), color-stop(100%, black));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(0, 0, 0, 0.1)),
+    color-stop(100%, black)
+  );
   background: linear, top, rgba(0, 0, 0, 0.1) 0%, black 100%;
   background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, black 100%);
   background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, black 100%);
@@ -283,17 +283,20 @@ export default {
   animation: show 0.5s linear both;
 }
 
-
 /*DOWN*/
 .flip-clock-wrapper ul.play li.flip-clock-before .down .shadow {
   background: -moz-linear-gradient(top, black 0%, rgba(0, 0, 0, 0.1) 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, black), color-stop(100%, rgba(0, 0, 0, 0.1)));
+  background: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, black),
+    color-stop(100%, rgba(0, 0, 0, 0.1))
+  );
   background: linear, top, black 0%, rgba(0, 0, 0, 0.1) 100%;
   background: -o-linear-gradient(top, black 0%, rgba(0, 0, 0, 0.1) 100%);
   background: -ms-linear-gradient(top, black 0%, rgba(0, 0, 0, 0.1) 100%);
   background: linear, to bottom, black 0%, rgba(0, 0, 0, 0.1) 100%;
   animation: show 0.5s linear both;
 }
-
-
 </style>

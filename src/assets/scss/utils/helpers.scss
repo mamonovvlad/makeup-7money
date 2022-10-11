@@ -134,14 +134,3 @@
   align-items: center;
   gap: 20px;
 }
-
-.animate-right-enter-active,
-.animate-right-leave-active {
-  transition: var(--transition);
-}
-
-.animate-right-enter,
-.animate-right-leave-to {
-  transform: translateX(-100px);
-  opacity: 0;
-}
