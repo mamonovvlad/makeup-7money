@@ -243,7 +243,7 @@
                   >
                 </div>
               </div>
-              <div class="payment__details unverified-card">
+              <div class="payment__details unverified-card dn">
                 <the-steps :payment="true"></the-steps>
                 <h4>Порядок действий</h4>
                 <h5>
@@ -282,6 +282,51 @@
                   <button class="button button--transparent">
                     Я отправил на почту
                   </button>
+                </div>
+              </div>
+              <div class="payment__details qr-code">
+                <the-steps :payment="true"></the-steps>
+                <h4>Порядок действий</h4>
+                <div class="operation-info">
+                  <span>
+                    Совершите платеж на сумму: <strong>0.005 BTC</strong>
+                    <the-copy-text copy-text="0.005"></the-copy-text>
+                  </span>
+                  <span>
+                    На счет:
+                    <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
+                    <the-copy-text
+                      copy-text="3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU"
+                    ></the-copy-text>
+                  </span>
+                </div>
+                <p>
+                  После успешной оплаты, нажмите на кнопку «Я ОПЛАТИЛ», чтобы мы
+                  получили уведомление и начали проверку поступления средств.
+                  Выплату по заявке мы осуществляем после 1-го подтверждения от
+                  сети Bitcoin.
+                </p>
+                <p class="attention">
+                  Если в течении часа, после Вашей оплаты не будет 1го
+                  подтверждения от сети Bitcoin и курс изменился в меньшую
+                  сторону, наш сервис имеет право пересчитать сумму выплаты.
+                  Поэтому указывайте достаточную комиссию при переводе нам
+                  Bitcoin, давайте ценить время друг друга, а также Ваши и наши
+                  нервы. Какую комиссию указывать, вы сможете
+                  проконсультироваться в нашем online-чате!
+                </p>
+                <h5>QR адрес</h5>
+                <div class="code">
+                  <img src="http://qrcoder.ru/code/?ty&10&0" alt="qr" />
+                </div>
+                <div class="time-processing">
+                  <figure>
+                    <icon-time-processing></icon-time-processing>
+                  </figure>
+                  <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
+                </div>
+                <div class="buttons">
+                  <button class="button">Отменить операцию</button>
                 </div>
               </div>
             </div>

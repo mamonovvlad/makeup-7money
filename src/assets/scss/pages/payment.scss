@@ -3,7 +3,9 @@
   @include _768 {
     margin-bottom: 40px;
   }
-
+  & .code {
+    text-align: center;
+  }
   & .container > .stylish-wrapper {
     display: grid;
     grid-template-columns: 400px 1fr;
