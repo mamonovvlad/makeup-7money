@@ -111,7 +111,7 @@
                   >
                 </div>
               </div>
-              <div class="payment__details operation-status dn">
+              <div class="payment__details operation-status">
                 <div class="application-status__info">
                   <div class="block">
                     <div class="operation-info">
@@ -149,6 +149,10 @@
                 </div>
                 <div class="line"></div>
                 <div class="operation-info">
+                  <span>
+                    PerfectMoney Batch: <strong>486761691</strong>
+                    <the-copy-text copy-text="486761691"></the-copy-text>
+                  </span>
                   <span
                     >Выплата поступила в размере:
                     <strong>0.0284927 BTC</strong>
@@ -173,6 +177,21 @@
                     <strong>5-30 минут</strong>
                     после 1-го подтверждения
                   </span>
+                  <span>
+                    USDT отправлен на Ваш адрес, Ваш TXID:
+                    <a href="/" class="line-break">
+                      <strong>
+                        f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
+                      </strong>
+                    </a>
+                    <the-copy-text
+                      copy-text="f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74"
+                    >
+                    </the-copy-text>
+                  </span>
+                  <p class="attention line-break">
+                    f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
+                  </p>
                 </div>
                 <div class="leave-feedback">
                   <div class="wrapper">
@@ -202,6 +221,7 @@
                       >
                         Либо на нашем сайте
                       </a>
+                      <button class="button">Создать еще одну заявку</button>
                     </div>
                   </div>
                 </div>
@@ -284,7 +304,7 @@
                   </button>
                 </div>
               </div>
-              <div class="payment__details qr-code">
+              <div class="payment__details qr-code dn">
                 <the-steps :payment="true"></the-steps>
                 <h4>Порядок действий</h4>
                 <div class="operation-info">

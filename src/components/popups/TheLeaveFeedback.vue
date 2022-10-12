@@ -128,7 +128,6 @@ export default {
     @include _768 {
       max-width: 300px;
     }
-
     & .button {
       margin-top: 20px;
       margin-bottom: 10px;

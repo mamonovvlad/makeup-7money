@@ -3,9 +3,11 @@
   @include _768 {
     margin-bottom: 40px;
   }
+
   & .code {
     text-align: center;
   }
+
   & .container > .stylish-wrapper {
     display: grid;
     grid-template-columns: 400px 1fr;
@@ -52,6 +54,7 @@
     @include _768 {
       row-gap: 14px;
     }
+
     & p,
     & li {
       color: var(--quaternary);
@@ -59,13 +62,27 @@
 
     & .buttons {
       display: flex;
-      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px;
       @include _576 {
         flex-direction: column;
       }
 
       & .button {
         width: 100%;
+
+        &:first-child,
+        &:last-child {
+          width: calc(50% - 8px);
+          @include _576 {
+            width: 100%;
+          }
+        }
+
+        &:last-child {
+          order: -1;
+        }
       }
     }
 
