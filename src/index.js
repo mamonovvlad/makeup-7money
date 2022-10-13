@@ -4,6 +4,7 @@ import { createApp } from "vue";
 import vueDebounce from "vue-debounce";
 import store from "./store/store.js";
 import { mapMutations, mapActions, mapGetters } from "vuex";
+import { TippyPlugin } from "tippy.vue";
 //js src
 import { Captcha } from "./assets/js/captcha.js";
 import i18n from "./assets/js/multilanguage.js";
@@ -229,6 +230,7 @@ createApp({
 })
   .use(i18n)
   .use(store)
+  .use(TippyPlugin)
   .use(vueDebounce, {
     lock: false,
     listenTo: ["keyup", "paste"],

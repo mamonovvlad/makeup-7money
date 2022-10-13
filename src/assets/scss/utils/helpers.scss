@@ -3,12 +3,31 @@
 }
 
 [data-theme="dark"] {
+  .main__wrapper .stylish-wrapper,
+  .slider .active .item {
+    background: #252525d6;
+  }
+
   .background--large {
     background: transparent;
 
     &:before {
       display: none;
     }
+  }
+}
+
+.background-dark[data-theme="dark"] {
+  &:before {
+    content: "";
+    background: url("../images/background.png") no-repeat center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background-size: cover;
+    z-index: 0;
   }
 }
 

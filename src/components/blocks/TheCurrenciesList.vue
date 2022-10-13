@@ -9,31 +9,36 @@
       <li
         v-for="(currency, i) in currencies"
         :key="currency.id"
-        :class="{ 'active-currency': currency.id == currencyId }"
         :data-alias="currency.code"
         :data-group="currency.group.name"
         :data-id="currency.id"
-        class="item"
         @click="setActive(currencyName, currency.id)"
       >
-        <div class="name">
-          <span :class="currency.code"></span>
+        <div
+          class="item"
+          :class="{ 'active-currency': currency.id == currencyId }"
+          v-tippy
+        >
+          <div class="name">
+            <span :class="currency.code"></span>
+            <transition name="currencies-hide">
+              <p v-if="currenciesHide">
+                {{ currency.name_ru }}
+              </p>
+            </transition>
+          </div>
           <transition name="currencies-hide">
-            <p v-if="currenciesHide">
-              {{ currency.name_ru }}
-            </p>
+            <span class="price">
+              <span v-show="currenciesHide && activeIndex === 0">
+                {{ currency.rate }}
+              </span>
+              <span v-show="currenciesHide && activeIndex === 1">
+                {{ currency.amount }}
+              </span>
+            </span>
           </transition>
         </div>
-        <transition name="currencies-hide">
-          <span class="price">
-            <span v-show="currenciesHide && activeIndex === 0">
-              {{ currency.rate }}
-            </span>
-            <span v-show="currenciesHide && activeIndex === 1">
-              {{ currency.amount }}
-            </span>
-          </span>
-        </transition>
+        <tippy v-if="!currenciesHide" singleton>{{ currency.name_ru }}</tippy>
       </li>
     </ul>
   </div>
@@ -131,7 +136,7 @@ export default {
     & .item {
       display: flex;
       align-items: center;
-      padding: 8px 12px;
+      padding: 8px 10px;
       justify-content: space-between;
       border-radius: var(--radius-four);
       transition: var(--transition);
@@ -146,6 +151,7 @@ export default {
 
     & .active-currency {
       box-shadow: var(--shadow-inset);
+      background: var(--primary-transition);
     }
 
     & .name {
@@ -186,6 +192,10 @@ export default {
     &[data-filter="USD"] li[data-group="USD"] {
       display: flex;
     }
+  }
+
+  & .title--small {
+    position: absolute;
   }
 }
 </style>

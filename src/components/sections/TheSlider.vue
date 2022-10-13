@@ -1,18 +1,18 @@
 <template>
   <section class="slider" id="slider" v-if="showHideBlock">
-    <div class="wrapper" :class="{active: isActive === 0}">
+    <div class="wrapper" :class="{ active: isActive === 0 }">
       <the-title class="title" tag="button" @click="toggleBlock(0)">
         отзывы
       </the-title>
       <slot name="reviews"></slot>
     </div>
-    <div class="wrapper" :class="{active: isActive === 1}">
+    <div class="wrapper" :class="{ active: isActive === 1 }">
       <the-title class="title" tag="button" @click="toggleBlock(1)">
         новости
       </the-title>
       <slot name="news"></slot>
     </div>
-    <div class="wrapper" :class="{active: isActive === 2}">
+    <div class="wrapper" :class="{ active: isActive === 2 }">
       <the-title class="title" tag="button" @click="toggleBlock(2)">
         блог
       </the-title>
@@ -174,6 +174,7 @@ export default {
     & .item {
       box-shadow: var(--shadow);
       border-radius: var(--radius-ten);
+      background: var(--seventh);
       padding: 20px;
 
       &:after {

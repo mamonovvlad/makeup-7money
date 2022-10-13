@@ -12,7 +12,7 @@
 
   <body>
     <div id="app" v-cloak>
-      <div class="app" :data-theme="colorSpectrum">
+      <div class="app background-dark" :data-theme="colorSpectrum">
         <the-public-information>
           Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
           нужно всего лишь совершить обмен и оставить отзыв
@@ -683,7 +683,7 @@
           <the-links></the-links>
         </main>
         <the-footer></the-footer>
-        <the-lacks-window v-if="showLacks" @close="showLacks=false">
+        <the-lacks-window v-if="showLacks" @close="showLacks = false">
           <form class="form">
             <div class="items__wrapper">
               <div class="field">
