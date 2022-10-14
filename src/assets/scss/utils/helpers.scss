@@ -35,6 +35,10 @@
   display: none !important;
 }
 
+.scroll-y {
+  overflow-y: scroll;
+}
+
 .background {
   background: var(--secondary);
 }

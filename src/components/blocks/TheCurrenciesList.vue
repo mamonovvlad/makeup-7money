@@ -1,5 +1,11 @@
 <template>
-  <div class="currencies-list" ref="currenciesList">
+  <div
+    class="currencies-list"
+    ref="currenciesList"
+    :class="{
+      'scroll-y': currenciesHide,
+    }"
+  >
     <ul
       class="currencies__wrapper"
       ref="currenciesWrapper"
@@ -13,32 +19,31 @@
         :data-group="currency.group.name"
         :data-id="currency.id"
         @click="setActive(currencyName, currency.id)"
+        class="item"
+        :class="{ 'active-currency': currency.id == currencyId }"
       >
-        <div
-          class="item"
-          :class="{ 'active-currency': currency.id == currencyId }"
-          v-tippy
-        >
-          <div class="name">
-            <span :class="currency.code"></span>
-            <transition name="currencies-hide">
-              <p v-if="currenciesHide">
-                {{ currency.name_ru }}
-              </p>
-            </transition>
-          </div>
+        <div class="name">
+          <span :class="currency.code"></span>
           <transition name="currencies-hide">
-            <span class="price">
-              <span v-show="currenciesHide && activeIndex === 0">
-                {{ currency.rate }}
-              </span>
-              <span v-show="currenciesHide && activeIndex === 1">
-                {{ currency.amount }}
-              </span>
-            </span>
+            <p v-if="currenciesHide">
+              {{ currency.name_ru }}
+            </p>
           </transition>
         </div>
-        <tippy v-if="!currenciesHide" singleton>{{ currency.name_ru }}</tippy>
+        <transition name="currencies-hide">
+          <span class="price" v-if="sellCurrencyId !== null">
+            <span v-show="currenciesHide && activeIndex === 0">
+              {{ currency.rate }}
+            </span>
+            <span v-show="currenciesHide && activeIndex === 1">
+              {{ currency.amount }}
+            </span>
+          </span>
+        </transition>
+        <div v-if="!currenciesHide" class="tippy">
+          <div class="name" v-tippy></div>
+          <tippy :key="currency.id" singleton>{{ currency.name_ru }}</tippy>
+        </div>
       </li>
     </ul>
   </div>
@@ -56,7 +61,7 @@
 <script>
 import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
 import TheRefresh from "./TheRefresh.vue";
-import { mapMutations } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   props: {
@@ -95,6 +100,9 @@ export default {
     TheRefresh,
     TheShowMoreCurrencies,
   },
+  computed: {
+    ...mapGetters(["sellCurrencyId"]),
+  },
   methods: {
     ...mapMutations(["setActiveCurrency"]),
     setActive(currencyName, id) {
@@ -103,7 +111,7 @@ export default {
     toggle() {
       let currenciesList = this.$refs.currenciesList;
       let currenciesWrapper = this.$refs.currenciesWrapper;
-      if (currenciesList.clientHeight === 535) {
+      if (currenciesList.clientHeight === 520) {
         currenciesList.style.maxHeight =
           currenciesWrapper.clientHeight + 40 + "px";
         this.toggleText = false;
@@ -116,7 +124,7 @@ export default {
 
   updated() {
     let currenciesWrapper = this.$refs.currenciesWrapper;
-    this.isShow = currenciesWrapper.clientHeight >= 535;
+    this.isShow = currenciesWrapper.clientHeight >= 520;
   },
 };
 </script>
@@ -125,8 +133,7 @@ export default {
 .currencies {
   &-list {
     position: relative;
-    max-height: 535px;
-    overflow-y: scroll;
+    max-height: 520px;
     transition: var(--transition);
 
     &::-webkit-scrollbar {
@@ -136,12 +143,12 @@ export default {
     & .item {
       display: flex;
       align-items: center;
-      padding: 8px 10px;
+      padding: 8px 12px;
+      position: relative;
       justify-content: space-between;
       border-radius: var(--radius-four);
       transition: var(--transition);
       cursor: pointer;
-      position: relative;
       white-space: nowrap;
 
       &:hover {
@@ -177,6 +184,10 @@ export default {
   }
 
   &__wrapper {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 4px;
+
     &[data-filter="CASH"] li,
     &[data-filter="UAH"] li,
     &[data-filter="RUB"] li,
@@ -194,8 +205,17 @@ export default {
     }
   }
 
-  & .title--small {
+  & .tippy {
     position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 0;
+
+    & .name {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

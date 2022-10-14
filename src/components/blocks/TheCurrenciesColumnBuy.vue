@@ -42,7 +42,7 @@ export default {
   name: "TheCurrenciesColumn",
   data() {
     return {
-      index: 1,
+      index: 0,
       buttons: [
         {
           name: "Курсы",

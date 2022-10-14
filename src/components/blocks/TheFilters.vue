@@ -31,7 +31,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["getCurrencyGroups"]),
+    ...mapGetters(["getCurrencyGroups", "sellCurrencyId"]),
   },
   methods: {
     ...mapMutations(["setCurrencyGroup", "setResetCurrencyGroup"]),

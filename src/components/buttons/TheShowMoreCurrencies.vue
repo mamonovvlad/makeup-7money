@@ -15,7 +15,6 @@ export default {
   font-size: 14px;
   padding-top: 5px;
   color: var(--primary);
-  background: var(--seventh);
   font-weight: 600;
   width: 100%;
 }
