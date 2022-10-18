@@ -4,7 +4,7 @@
       <div class="wrapper" v-show="isActive">
         <slot name="check-status"></slot>
         <div class="countdown">
-          <h4>Осталось времени на оплату</h4>
+          <h4>{{ $t("timePayment") }}</h4>
           <div class="clock"></div>
         </div>
         <slot name="information"></slot>

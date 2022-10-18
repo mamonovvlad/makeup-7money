@@ -4,26 +4,26 @@
       <div v-if="loaded" class="contest-advantages__items">
         <div class="contest-advantages__item">
           <span class="counter-title">{{ days }}:</span>
-          <span class="counter-description">Дней</span>
+          <span class="counter-description">{{ $t("days") }}</span>
         </div>
         <div class="contest-advantages__item">
           <span class="counter-title">{{ hours }}:</span>
-          <span class="counter-description">Часов</span>
+          <span class="counter-description">{{ $t("days") }}</span>
         </div>
         <div class="contest-advantages__item">
           <span class="counter-title">{{ minutes }}:</span>
-          <span class="counter-description">Минут</span>
+          <span class="counter-description">{{ $t("minutes") }}</span>
         </div>
         <div class="contest-advantages__item">
           <span class="counter-title">{{ seconds }}</span>
-          <span class="counter-description">Секунд</span>
+          <span class="counter-description">{{ $t("seconds") }}</span>
         </div>
       </div>
     </transition>
-    <span v-if="!expired" class="description"
-      >Осталось до окончания конкурса</span
-    >
-    <span v-else class="description">Конкурса еще не начался</span>
+    <span v-if="!expired" class="description">
+      {{ $t("endContest") }}
+    </span>
+    <span v-else class="description">{{ $t("startContest") }}</span>
   </div>
 </template>
 
@@ -137,6 +137,7 @@ export default {
     }
   }
 }
+
 .counter-title {
   display: inline-flex;
   font-size: 60px;

@@ -1,26 +1,34 @@
 <template>
   <div class="switched">
-    <span @click="$emit('toggleText', 0)" :class="{active: this.number === 0}">
+    <span
+      @click="$emit('toggleText', 0)"
+      :class="{ active: this.number === 0 }"
+    >
       <slot name="first-title"></slot>
     </span>
     <input
       @click="$emit('toggleInput')"
-      :class="{'active--left':number === 0,'active--right': this.number === 1}"
+      :class="{
+        'active--left': number === 0,
+        'active--right': this.number === 1,
+      }"
       type="checkbox"
     />
-    <span @click="$emit('toggleText', 1)"  :class="{active: this.number === 1}">
-       <slot name="second-title"></slot>
+    <span
+      @click="$emit('toggleText', 1)"
+      :class="{ active: this.number === 1 }"
+    >
+      <slot name="second-title"></slot>
     </span>
-
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    number:{
+    number: {
       type: Number,
-      default: 0
+      default: 0,
     },
   },
   name: "TheSwitched",
@@ -34,7 +42,6 @@ export default {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   font-weight: normal;
 
   & span {
@@ -61,7 +68,7 @@ export default {
     margin: 0 15px;
 
     &:before {
-      content: '';
+      content: "";
       position: absolute;
       width: 19px;
       height: 19px;
@@ -70,7 +77,6 @@ export default {
       background: var(--gradient);
       transition: var(--transition);
     }
-
   }
 
   & .active {

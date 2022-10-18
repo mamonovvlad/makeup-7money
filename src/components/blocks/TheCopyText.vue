@@ -1,8 +1,10 @@
 <template>
-  <button class="copy" @click.prevent="copy(copyText)" v-if="copyText.length > 0">
-    <span v-if="isShow">
-      Скопировано
-    </span>
+  <button
+    class="copy"
+    @click.prevent="copy(copyText)"
+    v-if="copyText.length > 0"
+  >
+    <span v-if="isShow"> {{ $t("copied") }} </span>
     <icon-copy></icon-copy>
   </button>
 </template>

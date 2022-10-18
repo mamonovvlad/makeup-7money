@@ -2,9 +2,9 @@
   <div class="buttons">
     <the-authorization></the-authorization>
     <the-button tag="button" @click.native="openAuthorization">
-      <template #name> Зарегистрироваться</template>
+      <template #name>{{ $t("register") }}</template>
     </the-button>
-    <a href="/src/static">Вернуться на главную</a>
+    <a href="/src/static">{{ $t("return") }}</a>
   </div>
 </template>
 
@@ -40,6 +40,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

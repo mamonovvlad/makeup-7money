@@ -1,7 +1,12 @@
 <template>
-  <the-switched @toggleText="toggleText" @toggleInput="toggleInput" :number="number" class="switched--mobile">
-    <template #first-title>Учитывать скидку в сумме “Я получаю”</template>
-    <template #second-title>Учитывать скидку в сумме “Я отдаю”</template>
+  <the-switched
+    @toggleText="toggleText"
+    @toggleInput="toggleInput"
+    :number="number"
+    class="switched--mobile"
+  >
+    <template #first-title>{{ $t("getDiscount") }}</template>
+    <template #second-title>{{ $t("giveDiscount") }}</template>
   </the-switched>
 </template>
 
@@ -46,6 +51,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

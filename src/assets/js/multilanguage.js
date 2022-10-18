@@ -16,15 +16,10 @@ const i18n = createI18n({
       news: "Новости",
       posts: "Статьи",
       reviews: "Отзывы",
-      affiliateProgram: "Партнерская программа",
       agreement: "Соглашение",
       rules: "Правила",
       security: "Безопасность",
-      password: "Пароль",
       remind: "Забыли пароль?",
-      name: "Имя",
-      referralID: "Ссылка на ID реферала",
-      сonfirmPassword: "Подтвердите Пароль",
       footerText:
         "Лучший онлайн сервис обмена электронных и криптовалют 7money.co © 2016-2022",
       passwordRecovery: "Восстановление пароля",
@@ -34,34 +29,8 @@ const i18n = createI18n({
       dataInput: "Ввод данных",
       payment: "Оплата",
       completion: "Завершение",
-      verified: "Ваш E-mail не верифицирован",
-      verifiedText:
-        "Мы отправили на вашу E-mail письмо с кодом активации. Введите его чтоб продолжить операцию или перейдите по ссылке с письма.",
-      confirm: "Подтвердить",
-      emailNotReceived: "Мне не пришло письмо",
-      fraudWarning:
-        "ВНИМАНИЕ! Проверяйте домен сайта 365cash.co в адресной строке браузера. Участились случаи мошенничества!Теперь у нас есть официальный телеграм бот @Official365CashBot. Это единственный бот к которому мы имеем отношение, остерегайтесь мошенников",
       lacks: "Не хватает?",
-      lacksTextOne:
-        "Если текущая сумма резерва меньше, чем Вам нужно, то оставьте желаемое значение и Ваш электронный адрес и мы сообщим, когда будем иметь нужную сумму",
-      lacksTextTwo:
-        "В том случае, если Вы получили уведомление, но до Вашего визита резерв вновь уменьшился, то разместите заявку, пожалуйста снова.",
-      lacksThankYou: "Спасибо за выбор нашего сервиса!",
-      currency: "Валюта",
-      amount: "Сумма",
-      save: "Сохранить",
       partners: "Партнеры",
-      request: "Запросить",
-      nightModeTextOne: "Время работы с 9:00 до 00:00",
-      nightModeTextTwo:
-        "И в данный момент наши операторы отдыхают и видят сладкие сны:)Вы можете оставить заявку, и как только начнется   рабочий день - мы ее обработаем!!!",
-      unverifiedCardTextOne: "Верифицируйте вашу карту",
-      unverifiedCardTextTwo:
-        "Уважаемый клиент, ваша карта не верифицирована! Для нашей и Вашей безопасности от мошенников, Вам в созданной заявке будет предоставлена инструкция верификации карты (не волнуйтесь, все быстро и удобно). Верификацию нужно будет пройти всего 1 раз, все последующие обмены с участием верифицированной карты, будут осуществляться быстро и без необходимости проверки карты.",
-      codeMessage: "Сообщение с кодом успешно отправлено",
-      textCurrencyLoader: "Идет создание заявки",
-      verificationСode: "Неверный код верификации",
-      sendingCode: "Следующая отправка через",
       showMore: "Показать еще",
       hide: "Скрыть",
       nameKursExpert: "КурсЭксперт",
@@ -71,10 +40,32 @@ const i18n = createI18n({
       currencyReserves: "Резервы валют",
       course: "Курс",
       reserves: "Резервы",
-      //
-      lacksWindow_first: 'Если текущая сумма резерва меньше, чем Вам нужно, то оставьте желаемое значение и Ваш электронный адрес и мы сообщим, когда будем иметь нужную сумму.',
-      lacksWindow_second: 'В том случае, если Вы получили уведомление, но до Вашего визита резерв вновь уменьшился, то разместите заявку, пожалуйста снова.',
-      lacksWindow_third: 'Спасибо за выбор нашего сервиса!',
+      copied: "Скопировано",
+      //TheCounter
+      days: "Дней",
+      hours: "Часов",
+      minutes: "Минут",
+      seconds: "Секунд",
+      endContest: "Осталось до окончания конкурса",
+      startContest: "Конкурс еще не начался",
+      //TheDiscount
+      getDiscount: "Учитывать скидку в сумме “Я ПОЛУЧАЮ”",
+      giveDiscount: "Учитывать скидку в сумме “Я ОТДАЮ”",
+      //ThePaymentCounter
+      timePayment: "Осталось времени на оплату",
+      //TheShareSocialNetworks
+      shareSocialNetworks: "Поделиться с друзяьми в соц сетях:",
+      //TheErrorButtons
+      register: "Зарегистрироваться",
+      return: "Вернуться на главную",
+      //TheLacksWindow
+      lacksWindow_first:
+        "Если текущая сумма резерва меньше, чем Вам нужно, то оставьте желаемое значение и Ваш электронный адрес и мы сообщим, когда будем иметь нужную сумму.",
+      lacksWindow_second:
+        "В том случае, если Вы получили уведомление, но до Вашего визита резерв вновь уменьшился, то разместите заявку, пожалуйста снова.",
+      lacksWindow_third: "Спасибо за выбор нашего сервиса!",
+      //TheLeaveFeedback
+      leaveFeedback: "Оставить отзыв",
       //link
       passwordRecoveryAction: "/auth/request-password-reset",
       entranceAction: "/auth/login",
@@ -108,15 +99,10 @@ const i18n = createI18n({
       news: "Новини",
       posts: "Статті",
       reviews: "Відгуки",
-      affiliateProgram: "Партнерська програма",
       agreement: "Угода",
       rules: "Правила",
       security: "Безпека",
-      password: "Пароль",
       remind: "Забули пароль?",
-      name: "Ім'я",
-      referralID: "Посилання на ID реферала",
-      сonfirmPassword: "Підтвердіть пароль",
       footerText:
         "Кращий онлайн сервіс обміну електронних і криптовалюта 7money.co © 2016-2022",
       passwordRecovery: "Відновлення паролю",
@@ -126,35 +112,8 @@ const i18n = createI18n({
       dataInput: "Ввід данних",
       payment: "Оплата",
       completion: "Завершення",
-      verified: "Ваш E-mail НЕ верифікований",
-      verifiedText:
-        "Ми відправили на вашу E-mail лист з кодом активації. Введіть його щоб продовжити операцію або перейдіть за посиланням з листа.",
-      confirm: "Підтвердити",
-      emailNotReceived: "Мені не прийшов лист",
-      fraudWarning:
-        "УВАГА! Перевіряйте домен сайту 365cash.co в адресному рядку браузера. Почастішали випадки шахрайства! Тепер у нас є офіційний телеграм бот @ Official365CashBot. Це єдиний бот до якого ми маємо відношення, остерігайтеся шахраїв",
       lacks: "Не вистачає?",
-      lacksTextOne:
-        "Якщо поточна сума резерву менше, ніж Вам потрібно, то залиште бажане значення і Ваша електронна адреса і ми повідомимо, коли будемо мати потрібну суму",
-      lacksTextTwo:
-        "В тому випадку, якщо Ви отримали повідомлення, але до Вашого візиту резерв знову зменшився, то розмістіть заявку, будь ласка знову.",
-      lacksThankYou: "Дякуємо за вибір нашого сервісу!",
-      currency: "Валюта",
-      amount: "Сума",
-      save: "Зберегти",
       partners: "Партнери",
-      request: "Запитати",
-      nightModeTextOne:
-        "Час роботи з 8: 00 до 23: 00 (по Києву).з 9:00 до 00 :00 (за МСК)",
-      nightModeTextTwo:
-        "І в даний момент наші оператори відпочивають і бачать солодкі сни:)ви можете залишити заявку, і як тільки почнеться робочий день - ми її опрацюємо!!!",
-      unverifiedCardTextOne: "Верифицируйте вашу карту",
-      unverifiedCardTextTwo:
-        "Шановний клієнт, ваша карта не верифікована! Для нашої і вашої безпеки від шахраїв, Вам в створеній заявці буде надана інструкція верифікації карти (не хвилюйтеся, все швидко і зручно). Верифікацію потрібно буде пройти всього 1 раз, всі наступні обміни за участю верифікованої карти, будуть здійснюватися швидко і без необхідності перевірки карти.",
-      codeMessage: "Повідомлення з кодом успішно відправлено",
-      textCurrencyLoader: "Йде створення заявки",
-      verificationСode: "Невірний код верифікації",
-      sendingCode: "Наступна відправка через",
       showMore: "Показати ще",
       hide: "Заховати",
       nameKursExpert: "КурсЭксперт",
@@ -164,10 +123,32 @@ const i18n = createI18n({
       currencyReserves: "Резерви валют",
       course: "Курс",
       reserves: "Резерв",
-      //
-      lacksWindow_first: 'Якщо поточна сума резерву менше, ніж Вам потрібно, то залиште бажане значення і Вашу електронну адресу і ми повідомимо, коли будемо мати потрібну суму.',
-      lacksWindow_second: 'У тому випадку, якщо Ви отримали повідомлення, але до Вашого візиту резерв знову зменшився, то розмістіть заявку, будь ласка знову.',
-      lacksWindow_third: 'Дякуємо за вибір нашого сервісу!',
+      copied: "Скопійовано",
+      //TheCounter
+      days: "Днів",
+      hours: "Годин",
+      minutes: "Хвилин",
+      seconds: "Секунд",
+      endContest: "Залишилось до закінчення конкурсу",
+      startContest: "Конкурс ще не розпочався",
+      //TheDiscount
+      getDiscount: "Враховувати знижку в сумі “Я ОТРИМУЮ”",
+      giveDiscount: "Враховувати знижку в сумі “Я ВІДДАЮ”",
+      //ThePaymentCounter
+      timePayment: "Залишилося часу на оплату",
+      //TheShareSocialNetworks
+      shareSocialNetworks: "Поділитися з друзями в соціальних мережах:",
+      //TheErrorButtons
+      register: "Зареєструватися",
+      return: "Повернутися на головну",
+      //TheLacksWindow
+      lacksWindow_first:
+        "Якщо поточна сума резерву менше, ніж Вам потрібно, то залиште бажане значення і Вашу електронну адресу і ми повідомимо, коли будемо мати потрібну суму.",
+      lacksWindow_second:
+        "У тому випадку, якщо Ви отримали повідомлення, але до Вашого візиту резерв знову зменшився, то розмістіть заявку, будь ласка знову.",
+      lacksWindow_third: "Дякуємо за вибір нашого сервісу!",
+      //TheLeaveFeedback
+      leaveFeedback: "Залишити відгук",
       //link
       passwordRecoveryAction: "/ua/auth/request-password-reset",
       entranceAction: "/ua/auth/login",
@@ -201,15 +182,10 @@ const i18n = createI18n({
       news: "News",
       reviews: "Reviews",
       posts: "Posts",
-      affiliateProgram: "Affiliate Program",
       agreement: "Agreement",
       rules: "Rules",
       security: "Security",
-      password: "Password",
       remind: "Remind?",
-      name: "Name",
-      referralID: "Link or referral ID",
-      сonfirmPassword: "Confirm password",
       footerText:
         "The best online exchange service for electronic and cryptocurrencies 7money.co © 2016-2022",
       passwordRecovery: "Password recovery",
@@ -219,35 +195,8 @@ const i18n = createI18n({
       dataInput: "Data input",
       payment: "Payment",
       completion: "Completion",
-      verified: "Your email is not verified",
-      verifiedText:
-        "We have sent an email with an activation code to your E-mail. Enter it to continue the operation or follow the link from the letter.",
-      confirm: "Confirm",
-      emailNotReceived: "I did not receive a letter",
-      fraudWarning:
-        "ATTENTION! Check the 365cash.co website domain in the address bar of your browser. More cases of fraud! Now we have the official telegram bot @ Official365CashBot. This is the only bot to which we are concerned, beware of scammers",
       lacks: "Not enough?",
-      lacksTextOne:
-        "If the current reserve amount is lesser than you need, leave the desired sum and your email address and we will inform you about appearance of the given sum. ",
-      lacksTextTwo:
-        "If you received a notification, but the reserve was reduced before your visit, please place your request again. Thank you for choosing our service!",
-      lacksThankYou: "Thank you for choosing our service!",
-      currency: "Currency",
-      amount: "Amount",
-      save: "Save",
       partners: "Partners",
-      request: "Request",
-      nightModeTextOne:
-        "Working time: 8:00 to 23:00 (UTC+02). 9:00 to 00:00 (UTC+03).",
-      nightModeTextTwo:
-        "At this moment our operators sleep and have sweet dreams:)You can leave your order and as soon as the working day start we will process it!!!",
-      unverifiedCardTextOne: "Verify your card",
-      unverifiedCardTextTwo:
-        "Dear customer, your card is not verified! For our and your safety from fraudsters, you will be provided with an instruction for verifying the card in the created application (do not worry, everything is quick and convenient). Verification will need to be done only 1 time, all subsequent exchanges with the participation of the verified card will be carried out quickly and without the need to verify the card.",
-      codeMessage: "Code message sent successfully",
-      textCurrencyLoader: "Request creation in progress",
-      verificationСode: "Invalid verification code",
-      sendingCode: "Next dispatch via",
       showMore: "Show more",
       hide: "Hide",
       nameKursExpert: "KursExpert",
@@ -257,10 +206,32 @@ const i18n = createI18n({
       currencyReserves: "Currency reserves",
       course: "Course",
       reserves: "Reserves",
-      //
-      lacksWindow_first: 'If the current reserve amount is lesser than you need, leave the desired sum and your email address and we will inform you about appearance of the given sum.',
-      lacksWindow_second: 'If you received a notification, but the reserve was reduced before your visit, please place your request again.',
-      lacksWindow_third: 'Thank you for choosing our service!',
+      copied: "Copied",
+      //TheCounter
+      days: "Days",
+      hours: "Hours",
+      minutes: "Minutes",
+      seconds: "Seconds",
+      endContest: "Remaining until the end of the competition",
+      startContest: "Contest hasn't started yet",
+      //TheDiscount
+      getDiscount: "Consider discount in sum “I GET”",
+      giveDiscount: "Consider discount in sum “I GIVE”",
+      //ThePaymentCounter
+      timePayment: "Time left for payment",
+      //TheShareSocialNetworks
+      shareSocialNetworks: "Share with friends on social networks",
+      //TheErrorButtons
+      register: "Register now",
+      return: "Go back to the main page",
+      //TheLacksWindow
+      lacksWindow_first:
+        "If the current reserve amount is lesser than you need, leave the desired sum and your email address and we will inform you about appearance of the given sum.",
+      lacksWindow_second:
+        "If you received a notification, but the reserve was reduced before your visit, please place your request again.",
+      lacksWindow_third: "Thank you for choosing our service!",
+      //TheLeaveFeedback
+      leaveFeedback: "Leave feedback",
       //link
       passwordRecoveryAction: "/en/auth/request-password-reset",
       entranceAction: "/en/auth/login",

@@ -15,7 +15,7 @@
         target="_blank"
         href="//www.bestchange.ru/7money-exchanger.html"
       >
-        <template #name> Оставить отзыв </template>
+        <template #name>{{ $t("Leave feedback") }}</template>
       </the-button>
       <p>
         Либо на нашем
@@ -128,6 +128,7 @@ export default {
     @include _768 {
       max-width: 300px;
     }
+
     & .button {
       margin-top: 20px;
       margin-bottom: 10px;

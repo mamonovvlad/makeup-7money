@@ -3,7 +3,7 @@
     <div class="stylish-wrapper">
       <div class="text">
         <icon-share></icon-share>
-        <span>Поделиться с друзяьми в соц сетях: </span>
+        <span>{{ $t("shareSocialNetworks") }}:</span>
       </div>
       <the-social-network></the-social-network>
     </div>
@@ -65,7 +65,6 @@ export default {
   & .social-network {
     display: flex;
     column-gap: 20px;
-
   }
 }
 </style>
