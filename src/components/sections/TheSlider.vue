@@ -2,19 +2,19 @@
   <section class="slider" id="slider" v-if="showHideBlock">
     <div class="wrapper" :class="{ active: isActive === 0 }">
       <the-title class="title" tag="button" @click="toggleBlock(0)">
-        отзывы
+        {{ $t("reviews") }}
       </the-title>
       <slot name="reviews"></slot>
     </div>
     <div class="wrapper" :class="{ active: isActive === 1 }">
       <the-title class="title" tag="button" @click="toggleBlock(1)">
-        новости
+        {{ $t("news") }}
       </the-title>
       <slot name="news"></slot>
     </div>
     <div class="wrapper" :class="{ active: isActive === 2 }">
       <the-title class="title" tag="button" @click="toggleBlock(2)">
-        блог
+        {{ $t("posts") }}
       </the-title>
       <slot name="blog"></slot>
     </div>

@@ -8,7 +8,7 @@
     >
       <component :is="button.icon"></component>
     </button>
-    <div ref="canvasWrapper" class="canvas-wrapper"></div>
+    <div class="canvas-wrapper"></div>
   </div>
 </template>
 
@@ -46,13 +46,12 @@ export default {
       let x = e.clientX;
       let y = e.clientY;
       let canvasWrapper = document.querySelector(".canvas-wrapper");
+
       if (this.index !== idx) {
-        await html2canvas(document.documentElement, {
-          type: "view",
-        }).then(function (canvas) {
+        await html2canvas(document.documentElement).then(function (canvas) {
           const ctx = canvas.getContext("2d");
-          let startDate = Date.now();
           const { clientWidth, clientHeight } = document.body;
+          let startDate = Date.now();
           const finalRadius = Math.sqrt(
             clientWidth * clientWidth,
             clientHeight * clientHeight
@@ -75,14 +74,11 @@ export default {
         });
         this.index = idx;
         setTimeout(() => {
-          this.$refs.canvasWrapper.removeChild(
-            this.$refs.canvasWrapper.querySelector("canvas")
-          );
-          this.$refs.canvasWrapper.style.display = "none";
+          canvasWrapper.removeChild(canvasWrapper.querySelector("canvas"));
+          canvasWrapper.style.display = "none";
         }, duration);
 
         localStorage.setItem("theme", this.index);
-
         this.definitionTheme();
       }
     },

@@ -13,7 +13,8 @@
             :class="{ 'active--filters': index === idx }"
             @click="toggleInformation(idx)"
           >
-            {{ button.name }}
+            {{}}
+            {{ $t(`${button.name}`) }}
           </button>
         </div>
       </div>
@@ -45,10 +46,10 @@ export default {
       index: 0,
       buttons: [
         {
-          name: "Курсы",
+          name: "course",
         },
         {
-          name: "Резервы",
+          name: "reserves",
         },
       ],
     };

@@ -2,7 +2,7 @@
   <the-animation-border class="current-time">
     <div class="wrapper">
       <strong class="time">{{ currentTime }}</strong>
-      Курс:
+      {{ $t("course") }}:
       <strong class="course">{{ course.sell }} к {{ course.buy }}</strong>
     </div>
   </the-animation-border>
