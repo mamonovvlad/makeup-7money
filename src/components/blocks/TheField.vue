@@ -120,6 +120,15 @@ export default {
 
   & .form-group {
     position: relative;
+    padding: 10px 35px 10px 20px;
+    box-shadow: var(--shadow-inset);
+    border-radius: var(--radius-four);
+    background-color: var(--seventh);
+    transition: var(--transition);
+
+    &:hover {
+      box-shadow: var(--shadow);
+    }
 
     & span {
       position: absolute;
@@ -135,14 +144,11 @@ export default {
   & input,
   & textarea,
   & select {
-    box-shadow: var(--shadow-inset);
-    border-radius: var(--radius-four);
-    background-color: var(--seventh);
     font-size: 16px;
     width: 100%;
-    padding: 16px 35px 16px 20px;
+    height: 30px;
+    background: var(--transparent);
     color: var(--quaternary);
-    transition: var(--transition);
     @include _768 {
       font-size: 14px;
     }
@@ -150,10 +156,9 @@ export default {
     &::placeholder {
       color: var(--ternary);
     }
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
+  }
+  & select{
+    background-color: var(--seventh);
   }
 
   &-error {

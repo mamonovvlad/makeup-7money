@@ -83,7 +83,6 @@ createApp({
       csrfParam: null,
       ///
       showLacks: false,
-      isShowPopup: false,
       error: true,
     };
   },
@@ -214,12 +213,6 @@ createApp({
       button.setAttribute("disabled", "disabled");
       button.classList.add("disabled");
       this.error = true;
-    },
-    onFocus() {
-      this.isShowPopup = true;
-    },
-    onBlur() {
-      this.isShowPopup = false;
     },
   },
   mounted() {

@@ -254,9 +254,10 @@
                         </transition>
                       </div>
                     </div>
-                    <div class="line"></div>
+
                     <div class="items__wrapper">
                       <div class="item" v-if="isSellSource">
+                        {{currencyModel.isUahBank(sellCurrency.id)}}
                         <the-recovery-information
                           v-if="currencyModel.isUahBank(sellCurrency.id) && isShowPopup"
                         >
@@ -269,8 +270,6 @@
                           </label>
                           <span class="form-group">
                             <input
-                              @focus="onFocus"
-                              @blur="onBlur"
                               type="text"
                               id="orderform-sell_source"
                               name="OrderForm[sell_source]"
@@ -294,8 +293,6 @@
                           </label>
                           <span class="form-group">
                             <input
-                              @focus="onFocus"
-                              @blur="onBlur"
                               type="text"
                               id="orderform-buy_target"
                               name="OrderForm[buy_target]"
@@ -307,21 +304,14 @@
                         </div>
                       </div>
                     </div>
-                    <div class="line"></div>
                     <div class="items__wrapper">
                       <div class="item">
-                        <the-recovery-information v-if="isShowPopup">
-                          Внимание!!! Не указывайте "Логин" при создании кода в
-                          бирже. Такой код на нашем сайте применить невозможно!
-                        </the-recovery-information>
                         <div class="field">
                           <label for="orderform-first_name">
                             Имя держателя карты
                           </label>
                           <span class="form-group">
                             <input
-                              @focus="onFocus"
-                              @blur="onBlur"
                               type="text"
                               id="orderform-first_name"
                               name="OrderForm[first_name]"
@@ -350,7 +340,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="line"></div>
                     <div class="items__wrapper">
                       <div class="item">
                         <div class="field">
@@ -386,7 +375,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="line"></div>
                     <div class="items__wrapper">
                       <div class="item">
                         <div class="field">
@@ -422,13 +410,17 @@
                         </div>
                       </div>
                     </div>
-                    <div class="line"></div>
                     <div class="items__wrapper">
                       <div class="item">
                         <div class="field">
                           <label>Город</label>
                           <span class="form-group">
                             <select name="CreateOrder[course_id]">
+                              <option value="93">Киев</option>
+                              <option value="93">Киев</option>
+                              <option value="93">Киев</option>
+                              <option value="93">Киев</option>
+                              <option value="93">Киев</option>
                               <option value="93">Киев</option>
                             </select>
                           </span>
@@ -451,7 +443,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="line"></div>
                     <div class="animation-border">
                       <span
                         class="border"

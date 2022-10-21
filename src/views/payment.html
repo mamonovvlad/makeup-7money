@@ -1,168 +1,168 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Payment</title>
-    <meta name="csrf-param" content="_csrf" />
-    <meta name="csrf-token" content="He8Y" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Payment</title>
+  <meta name="csrf-param" content="_csrf" />
+  <meta name="csrf-token" content="He8Y" />
+</head>
 
-  <body>
-    <div id="app" v-cloak>
-      <div class="app" :data-theme="colorSpectrum">
-        <the-header class="background"></the-header>
-        <main class="payment">
-          <div class="container">
-            <div class="stylish-wrapper">
-              <the-payment-counter data-seconds="1800">
-                <template #check-status>
-                  <the-button tag="a" href="/">
-                    <template #name>
-                      Проверить статус операции в новом окне
-                    </template>
-                  </the-button>
+<body>
+<div id="app" v-cloak>
+  <div class="app" :data-theme="colorSpectrum">
+    <the-header class="background"></the-header>
+    <main class="payment">
+      <div class="container">
+        <div class="stylish-wrapper">
+          <the-payment-counter data-seconds="1800">
+            <template #check-status>
+              <the-button tag="a" href="/">
+                <template #name>
+                  Проверить статус операции в новом окне
                 </template>
-                <template #information>
-                  <div class="line"></div>
-                  <div class="info">
-                    <h4>Данные заявки</h4>
-                    <div class="info__wrapper">
-                      <span>Номер заявки:</span>
-                      <strong>2423812357</strong>
-                    </div>
-                    <div class="info__wrapper">
-                      <span>Создана:</span>
-                      <strong>16.03.2022 17:01:35</strong>
-                    </div>
-                    <div class="info__wrapper">
-                      <span>По курсу:</span>
-                      <strong>1.00000 = 62.2928</strong>
-                    </div>
-                    <div class="info__wrapper">
-                      <span>E-mail:</span>
-                      <strong>tolik.wwwww@ukr.net</strong>
-                    </div>
-                    <div class="info__wrapper">
-                      <span>Телефон:</span>
-                      <strong>+380687250152</strong>
-                    </div>
-                  </div>
-                  <div class="line"></div>
-                  <div class="info">
-                    <h4>Отдаю <span class="PMUSD"></span></h4>
-                    <div class="info__wrapper">
-                      <span>PerfectMoney USD:</span>
-                      <strong>80:21 USD</strong>
-                    </div>
-                    <div class="info__wrapper">
-                      <span>С кошелька:</span>
-                      <strong>234123581235</strong>
-                    </div>
-                  </div>
-                  <div class="line"></div>
-                  <div class="info">
-                    <h4>Получаю <span class="YAMRUB"></span></h4>
-                    <div class="info__wrapper">
-                      <span>Яндекс Деньги RUB:</span>
-                      <strong>5000.24 RUB</strong>
-                    </div>
-                    <div class="info__wrapper">
-                      <span>На кошелёк:</span>
-                      <strong>41124012409</strong>
-                    </div>
-                  </div>
-                </template>
-                <template #cancel-operation>
-                  <the-button
-                    href="/"
-                    class="close button--transparent"
-                    tag="a"
-                  >
-                    <template #name> Отменить операцию</template>
-                  </the-button>
-                </template>
-              </the-payment-counter>
-              <div class="payment__details procedure dn">
-                <the-steps :payment="true"></the-steps>
-                <h4>Порядок действий</h4>
-                <p>
-                  После нажатия на кнопку «Перейти к оплате» Вас перенаправит на
-                  мерчант платежной системы, для оплаты заявки. После успешной
-                  оплаты Вы сможете посмотреть статус платежа по вашей заявке.
-                </p>
-                <p class="attention">
-                  Практически всегда зачисление средств со стороны PerfectMoney
-                  происходит сразу, кроме случаев дополнительной проверки со
-                  стороны их Службы Безопасности (hold). Как только средства
-                  будут нами получены, заявка будет выполнена максимально
-                  быстро.
-                </p>
-                <div class="time-processing">
-                  <figure>
-                    <icon-time-processing></icon-time-processing>
-                  </figure>
-                  <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
+              </the-button>
+            </template>
+            <template #information>
+              <div class="line"></div>
+              <div class="info">
+                <h4>Данные заявки</h4>
+                <div class="info__wrapper">
+                  <span>Номер заявки:</span>
+                  <strong>2423812357</strong>
                 </div>
-                <div class="buttons">
-                  <a href="/" class="button" target="_blank"
-                    >Перейти к оплате</a
-                  >
+                <div class="info__wrapper">
+                  <span>Создана:</span>
+                  <strong>16.03.2022 17:01:35</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>По курсу:</span>
+                  <strong>1.00000 = 62.2928</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>E-mail:</span>
+                  <strong>tolik.wwwww@ukr.net</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>Телефон:</span>
+                  <strong>+380687250152</strong>
                 </div>
               </div>
-              <div class="payment__details operation-status">
-                <div class="application-status__info">
-                  <div class="block">
-                    <div class="operation-info">
-                      <h2 class="text--green">Завершена</h2>
-                      <span
-                        >Номер операции: <strong>AP0059aee775</strong>
+              <div class="line"></div>
+              <div class="info">
+                <h4>Отдаю <span class="PMUSD"></span></h4>
+                <div class="info__wrapper">
+                  <span>PerfectMoney USD:</span>
+                  <strong>80:21 USD</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>С кошелька:</span>
+                  <strong>234123581235</strong>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div class="info">
+                <h4>Получаю <span class="YAMRUB"></span></h4>
+                <div class="info__wrapper">
+                  <span>Яндекс Деньги RUB:</span>
+                  <strong>5000.24 RUB</strong>
+                </div>
+                <div class="info__wrapper">
+                  <span>На кошелёк:</span>
+                  <strong>41124012409</strong>
+                </div>
+              </div>
+            </template>
+            <template #cancel-operation>
+              <the-button
+                href="/"
+                class="close button--transparent"
+                tag="a"
+              >
+                <template #name> Отменить операцию</template>
+              </the-button>
+            </template>
+          </the-payment-counter>
+          <div class="payment__details procedure dn">
+            <the-steps :payment="true"></the-steps>
+            <h4>Порядок действий</h4>
+            <p>
+              После нажатия на кнопку «Перейти к оплате» Вас перенаправит на
+              мерчант платежной системы, для оплаты заявки. После успешной
+              оплаты Вы сможете посмотреть статус платежа по вашей заявке.
+            </p>
+            <p class="attention">
+              Практически всегда зачисление средств со стороны PerfectMoney
+              происходит сразу, кроме случаев дополнительной проверки со
+              стороны их Службы Безопасности (hold). Как только средства
+              будут нами получены, заявка будет выполнена максимально
+              быстро.
+            </p>
+            <div class="time-processing">
+              <figure>
+                <icon-time-processing></icon-time-processing>
+              </figure>
+              <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
+            </div>
+            <div class="buttons">
+              <a href="/" class="button" target="_blank"
+              >Перейти к оплате</a
+              >
+            </div>
+          </div>
+          <div class="payment__details operation-status">
+            <div class="application-status__info">
+              <div class="block">
+                <div class="operation-info">
+                  <h2 class="text--green">Завершена</h2>
+                  <span
+                  >Номер операции: <strong>AP0059aee775</strong>
                         <the-copy-text copy-text="AP0059aee775"></the-copy-text>
                       </span>
-                      <span
-                        >Дата заявки:
+                  <span
+                  >Дата заявки:
                         <strong>18 янв. 2021 г., 17:27:58</strong></span
-                      >
-                      <span
-                        >Статус операции:
+                  >
+                  <span
+                  >Статус операции:
                         <strong>Ваша Заявка оплачена</strong></span
-                      >
-                    </div>
-                    <div class="operations">
-                      <div class="items">
+                  >
+                </div>
+                <div class="operations">
+                  <div class="items">
                         <span class="name">
                           <span class="icon BTC"></span>
                           Отдаю:
                         </span>
-                        <strong> 0.0284927 BTC </strong>
-                      </div>
-                      <div class="items">
+                    <strong> 0.0284927 BTC </strong>
+                  </div>
+                  <div class="items">
                         <span class="name">
                           <span class="icon BTC"></span>
                           Получаю:
                         </span>
-                        <strong> 0.0284927 BTC </strong>
-                      </div>
-                    </div>
+                    <strong> 0.0284927 BTC </strong>
                   </div>
                 </div>
-                <div class="line"></div>
-                <div class="operation-info">
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="operation-info">
                   <span>
                     PerfectMoney Batch: <strong>486761691</strong>
                     <the-copy-text copy-text="486761691"></the-copy-text>
                   </span>
-                  <span
-                    >Выплата поступила в размере:
+              <span
+              >Выплата поступила в размере:
                     <strong>0.0284927 BTC</strong>
                   </span>
-                  <span
-                    >Подтверждения в сети Bitcoin:
+              <span
+              >Подтверждения в сети Bitcoin:
                     <strong>1 из 1 требуемого</strong>
                   </span>
-                  <span
-                    >Ваш TXID:
+              <span
+              >Ваш TXID:
                     <a href="/" class="line-break">
                       <strong>
                         f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
@@ -172,12 +172,12 @@
                       copy-text="f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74"
                     ></the-copy-text>
                   </span>
-                  <span>
+              <span>
                     Обычно выплата производится в течении
                     <strong>5-30 минут</strong>
                     после 1-го подтверждения
                   </span>
-                  <span>
+              <span>
                     USDT отправлен на Ваш адрес, Ваш TXID:
                     <a href="/" class="line-break">
                       <strong>
@@ -189,191 +189,194 @@
                     >
                     </the-copy-text>
                   </span>
-                  <p class="attention line-break">
-                    f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
+              <p class="attention line-break">
+                f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
+              </p>
+            </div>
+            <div class="leave-feedback">
+              <div class="wrapper">
+                <div class="info">
+                  <p>
+                    <strong class="text--black-white">Благодарим</strong>
+                    за использование нашего сервиса! Уважаемый клиент, если
+                    Вам понравилось обслуживание нашего сервиса, Вы можете
+                    <strong class="text--black-white">
+                      оставить отзыв здесь:
+                    </strong>
                   </p>
-                </div>
-                <div class="leave-feedback">
-                  <div class="wrapper">
-                    <div class="info">
-                      <p>
-                        <strong class="text--black-white">Благодарим</strong>
-                        за использование нашего сервиса! Уважаемый клиент, если
-                        Вам понравилось обслуживание нашего сервиса, Вы можете
-                        <strong class="text--black-white">
-                          оставить отзыв здесь:
-                        </strong>
-                      </p>
-                      <icon-thanks></icon-thanks>
-                    </div>
-                    <div class="buttons">
-                      <a
-                        href="//www.bestchange.ru/7money-exchanger.html"
-                        class="button"
-                        target="_blank"
-                      >
-                        Оставить отзыв на BESTCHANGE
-                      </a>
-                      <a
-                        href="/reviews"
-                        class="button button--transparent"
-                        target="_blank"
-                      >
-                        Либо на нашем сайте
-                      </a>
-                      <button class="button">Создать еще одну заявку</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="payment__details verified-card dn">
-                <the-steps :payment="true"></the-steps>
-                <h4>Порядок действий</h4>
-                <h5>Ваша карта верифицирована! Желаем вам выгодных обменов!</h5>
-                <p class="attention">
-                  Для оплаты нажмите на кнопку "Перейти к оплате". Вас направит
-                  на автоматический мерчант, где Вы сможете оплатить счет любой
-                  гривневой картой украинского банка, которая имеет защиту
-                  3D-Secure.
-                </p>
-                <p class="attention">
-                  Данный перевод является межбанковским платежом, и зачисления
-                  на нашу карту может занять от нескольких секунд до 5
-                  банковских рабочих дней. Как-то повлиять или ускорить этот
-                  процесс мы не можем, это специфика работы банковских структур.
-                  Будьте готовы что средства могут поступить в максимально
-                  оговоренный нами период времени.
-                </p>
-                <p class="attention">
-                  Внимание!!! Комиссию за использование автоматического мерчанта
-                  мы берем на себя и она включена в сумму оплаты. Ваш банк,
-                  эмитировавший карту, может взымать дополнительные комиссии за
-                  переводы согласно своих правил использования карты.
-                </p>
-
-                <div class="time-processing">
-                  <figure>
-                    <icon-time-processing></icon-time-processing>
-                  </figure>
-                  <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
+                  <icon-thanks></icon-thanks>
                 </div>
                 <div class="buttons">
-                  <a href="/" class="button" target="_blank"
-                    >Перейти к оплате</a
+                  <a
+                    href="//www.bestchange.ru/7money-exchanger.html"
+                    class="button"
+                    target="_blank"
                   >
+                    Оставить отзыв на BESTCHANGE
+                  </a>
+                  <a
+                    href="/reviews"
+                    class="button button--transparent"
+                    target="_blank"
+                  >
+                    Либо на нашем сайте
+                  </a>
+                  <button class="button">Создать еще одну заявку</button>
                 </div>
               </div>
-              <div class="payment__details unverified-card dn">
-                <the-steps :payment="true"></the-steps>
-                <h4>Порядок действий</h4>
-                <h5>
-                  Инструкция «Верификация платежной карты Visa/MasterCard UAH»
-                </h5>
-                <p>
-                  Верификацию нужно будет пройти всего 1 раз, все последующие
-                  обмены с участием верифицированной карты, будут осуществляться
-                  без необходимости проверки карты! Уважаемый клиент, для
-                  подтверждения вашей карты Вам нужно совершить несколько
-                  простых шагов:
-                </p>
-                <ul>
-                  <li>
-                    1. Вам нужно приложить карту, с которой осуществляете платеж
-                    к монитору (разрешается закрыть номер карты, кроме последних
-                    4-х цифр)
-                  </li>
-                  <li>
-                    2. Приложить к листочку Вашу карту и сделайте фото.
-                    ПРИМЕР(разрешается закрыть номер карты, кроме последних 4-х
-                    цифр)
-                  </li>
-                  <li>
-                    3. Отправьте фото нашему специалисту в online-чат (справа
-                    внизу), сообщив номер заявки. Либо отправьте фото на нашу
-                    почту hello@7money.co Если Вы отправили фото на почту
-                    нажмите кнопку «Я отправил на почту»
-                  </li>
-                </ul>
-                <p></p>
-                <div class="buttons">
-                  <button class="button button--transparent">
-                    Отменить операцию
-                  </button>
-                  <button class="button button--transparent">
-                    Я отправил на почту
-                  </button>
-                </div>
-              </div>
-              <div class="payment__details qr-code dn">
-                <the-steps :payment="true"></the-steps>
-                <h4>Порядок действий</h4>
-                <div class="operation-info">
+            </div>
+          </div>
+          <div class="payment__details verified-card dn">
+            <the-steps :payment="true"></the-steps>
+            <h4>Порядок действий</h4>
+            <h5>Ваша карта верифицирована! Желаем вам выгодных обменов!</h5>
+            <p class="attention">
+              Для оплаты нажмите на кнопку "Перейти к оплате". Вас направит
+              на автоматический мерчант, где Вы сможете оплатить счет любой
+              гривневой картой украинского банка, которая имеет защиту
+              3D-Secure.
+            </p>
+            <p class="attention">
+              Данный перевод является межбанковским платежом, и зачисления
+              на нашу карту может занять от нескольких секунд до 5
+              банковских рабочих дней. Как-то повлиять или ускорить этот
+              процесс мы не можем, это специфика работы банковских структур.
+              Будьте готовы что средства могут поступить в максимально
+              оговоренный нами период времени.
+            </p>
+            <p class="attention">
+              Внимание!!! Комиссию за использование автоматического мерчанта
+              мы берем на себя и она включена в сумму оплаты. Ваш банк,
+              эмитировавший карту, может взымать дополнительные комиссии за
+              переводы согласно своих правил использования карты.
+            </p>
+
+            <div class="time-processing">
+              <figure>
+                <icon-time-processing></icon-time-processing>
+              </figure>
+              <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
+            </div>
+            <div class="buttons">
+              <a href="/" class="button" target="_blank"
+              >Перейти к оплате</a
+              >
+            </div>
+          </div>
+          <div class="payment__details unverified-card dn">
+            <the-steps :payment="true"></the-steps>
+            <h4>Порядок действий</h4>
+            <h5>
+              Инструкция «Верификация платежной карты Visa/MasterCard UAH»
+            </h5>
+            <p>
+              Верификацию нужно будет пройти всего 1 раз, все последующие
+              обмены с участием верифицированной карты, будут осуществляться
+              без необходимости проверки карты! Уважаемый клиент, для
+              подтверждения вашей карты Вам нужно совершить несколько
+              простых шагов:
+            </p>
+            <ul>
+              <li>
+                1. Вам нужно приложить карту, с которой осуществляете платеж
+                к монитору (разрешается закрыть номер карты, кроме последних
+                4-х цифр)
+              </li>
+              <li>
+                2. Приложить к листочку Вашу карту и сделайте фото.
+                ПРИМЕР(разрешается закрыть номер карты, кроме последних 4-х
+                цифр)
+              </li>
+              <li>
+                3. Отправьте фото нашему специалисту в online-чат (справа
+                внизу), сообщив номер заявки. Либо отправьте фото на нашу
+                почту hello@7money.co Если Вы отправили фото на почту
+                нажмите кнопку «Я отправил на почту»
+              </li>
+            </ul>
+            <p></p>
+            <div class="buttons">
+              <button class="button button--transparent">
+                Отменить операцию
+              </button>
+              <button class="button button--transparent">
+                Я отправил на почту
+              </button>
+            </div>
+          </div>
+          <div class="payment__details qr-code dn">
+            <the-steps :payment="true"></the-steps>
+            <h4>Порядок действий</h4>
+            <div class="operation-info">
                   <span>
                     Совершите платеж на сумму: <strong>0.005 BTC</strong>
                     <the-copy-text copy-text="0.005"></the-copy-text>
                   </span>
-                  <span>
+              <span>
                     На счет:
                     <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
                     <the-copy-text
                       copy-text="3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU"
                     ></the-copy-text>
                   </span>
-                </div>
-                <p>
-                  После успешной оплаты, нажмите на кнопку «Я ОПЛАТИЛ», чтобы мы
-                  получили уведомление и начали проверку поступления средств.
-                  Выплату по заявке мы осуществляем после 1-го подтверждения от
-                  сети Bitcoin.
-                </p>
-                <p class="attention">
-                  Если в течении часа, после Вашей оплаты не будет 1го
-                  подтверждения от сети Bitcoin и курс изменился в меньшую
-                  сторону, наш сервис имеет право пересчитать сумму выплаты.
-                  Поэтому указывайте достаточную комиссию при переводе нам
-                  Bitcoin, давайте ценить время друг друга, а также Ваши и наши
-                  нервы. Какую комиссию указывать, вы сможете
-                  проконсультироваться в нашем online-чате!
-                </p>
-                <h5>QR адрес</h5>
-                <div class="code">
-                  <img src="http://qrcoder.ru/code/?ty&10&0" alt="qr" />
-                </div>
-                <div class="time-processing">
-                  <figure>
-                    <icon-time-processing></icon-time-processing>
-                  </figure>
-                  <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
-                </div>
-                <div class="buttons">
-                  <button class="button">Отменить операцию</button>
-                </div>
-              </div>
+            </div>
+            <p>
+              После успешной оплаты, нажмите на кнопку «Я ОПЛАТИЛ», чтобы мы
+              получили уведомление и начали проверку поступления средств.
+              Выплату по заявке мы осуществляем после 1-го подтверждения от
+              сети Bitcoin.
+            </p>
+            <p class="attention">
+              Если в течении часа, после Вашей оплаты не будет 1го
+              подтверждения от сети Bitcoin и курс изменился в меньшую
+              сторону, наш сервис имеет право пересчитать сумму выплаты.
+              Поэтому указывайте достаточную комиссию при переводе нам
+              Bitcoin, давайте ценить время друг друга, а также Ваши и наши
+              нервы. Какую комиссию указывать, вы сможете
+              проконсультироваться в нашем online-чате!
+            </p>
+            <h5>QR адрес</h5>
+            <div class="code">
+              <img src="http://qrcoder.ru/code/?ty&10&0" alt="qr" />
+            </div>
+            <div class="time-processing">
+              <figure>
+                <icon-time-processing></icon-time-processing>
+              </figure>
+              <p>Время обработки заявки занимает от 5 до 30-ти минут</p>
+            </div>
+            <div class="buttons">
+              <button class="button">Отменить операцию</button>
             </div>
           </div>
-        </main>
-        <the-footer></the-footer>
+        </div>
       </div>
-    </div>
-    <input type="hidden" id="login" value="0" />
-    <input type="hidden" id="language" value="ua" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const counter = document.querySelector(".counter");
-        let time = counter.getAttribute("data-seconds");
-        let clock = $(".clock").FlipClock({
-          clockFace: "DailyCounter",
-          autoStart: false,
-          callbacks: {
-            stop: function () {},
-          },
-        });
-        clock.setTime(+time); //Устанавливаем нужное время в секундах
-        clock.setCountdown(true); //Устанавливаем отсчет времени назад
-        clock.start(); //Запускаем отсчет
-      });
-    </script>
-  </body>
+    </main>
+    <the-footer></the-footer>
+  </div>
+</div>
+<input type="hidden" id="login" value="0" />
+<input type="hidden" id="language" value="ua" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const counter = document.querySelector(".counter");
+    console.log(counter);
+    let time = counter.getAttribute("data-seconds");
+
+    let clock = document.querySelector(".clock").FlipClock({
+      clockFace: "DailyCounter",
+      autoStart: false,
+      callbacks: {
+        stop: function() {
+        },
+      },
+    });
+    clock.setTime(+1800); //Устанавливаем нужное время в секундах
+    clock.setCountdown(true); //Устанавливаем отсчет времени назад
+    clock.start(); //Запускаем отсчет
+  });
+</script>
+</body>
 </html>
