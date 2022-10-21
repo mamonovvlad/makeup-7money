@@ -40,6 +40,7 @@ import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.v
 import TheCounter from "./components/blocks/TheCounter.vue";
 import TheCurrentTime from "./components/blocks/TheCurrentTime.vue";
 import TheInformation from "./components/sections/TheInformation.vue";
+import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
 //Buttons
 import TheButton from "./components/buttons/TheButton.vue";
 import TheCurrenciesList from "./components/blocks/TheCurrenciesList.vue";
@@ -116,6 +117,7 @@ createApp({
     TheCurrenciesColumnBuy,
     TheCounter,
     TheCurrentTime,
+    TheTimeProcessing,
     //Buttons
     TheButton,
     //Popups

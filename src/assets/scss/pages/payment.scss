@@ -92,4 +92,16 @@
       row-gap: 10px;
     }
   }
+
+  & .payment-instruction {
+    & .text_border {
+      margin-bottom: 16px;
+      border-radius: var(--radius-eigh);
+      padding: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
 }
