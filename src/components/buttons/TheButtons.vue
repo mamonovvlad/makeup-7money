@@ -148,7 +148,7 @@ export default {
     width: 100%;
     height: 100%;
     background: var(--seventh);
-    transition: var(--transition);
+    transition: all 0.3s ease;
   }
 
   & .btn {

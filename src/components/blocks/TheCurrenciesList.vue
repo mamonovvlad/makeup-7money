@@ -147,7 +147,7 @@ export default {
       position: relative;
       justify-content: space-between;
       border-radius: var(--radius-four);
-      transition: var(--transition);
+      transition: all 0.2s ease;
       cursor: pointer;
       white-space: nowrap;
 

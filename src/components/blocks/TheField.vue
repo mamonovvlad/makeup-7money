@@ -154,15 +154,13 @@ export default {
     }
 
     &::placeholder {
-      color: var(--ternary);
+      color: var(--eighth);
     }
   }
   & select{
     background-color: var(--seventh);
   }
 
-  &-error {
-  }
 }
 
 .help-block {

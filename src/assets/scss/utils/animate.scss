@@ -78,17 +78,19 @@
 }
 
 //default
+.animation-from-top-enter-active,
+.animation-from-top-leave-active {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
 .animation-from-right-enter-active,
 .animation-from-right-leave-active {
   transform: translateX(10px);
   opacity: 0;
 }
 
-.animation-from-top-enter-active,
-.animation-from-top-leave-active {
-  transform: translateY(-10px);
-  opacity: 0;
-}
+
 
 .fade-enter-active,
 .fade-leave-active {
