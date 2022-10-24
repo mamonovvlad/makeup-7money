@@ -21,6 +21,7 @@ import TheLinks from "./components/sections/TheLinks.vue";
 import TheSlider from "./components/sections/TheSlider.vue";
 import TheReserves from "./components/sections/TheCurrencyReserves.vue";
 import TheAchievements from "./components/sections/TheAchievements.vue";
+import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
 //Blocks
 import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
@@ -59,7 +60,6 @@ import IconMail from "./components/icons/IconMail.vue";
 import IconArrow from "./components/icons/IconArrow.vue";
 import IconChat from "./components/icons/IconChat.vue";
 import IconSuccessfulPayment from "./components/icons/IconSuccessfulPayment.vue";
-import IconCheckStatus from "./components/icons/IconCheckStatus.vue";
 import IconPersonalData from "./components/icons/IconPersonalData.vue";
 import IconHistory from "./components/icons/IconHistory.vue";
 import IconPartner from "./components/icons/IconPartner.vue";
@@ -97,6 +97,7 @@ createApp({
     TheFooter,
     TheInformation,
     TheLinks,
+    TheCheckStatus,
     //Blocks
     ThePublicInformation,
     ThePaymentCounter,
@@ -132,7 +133,6 @@ createApp({
     IconEngineeringWorks,
     IconErrorPayment,
     IconSuccessfulPayment,
-    IconCheckStatus,
     IconMail,
     IconArrow,
     IconChat,
