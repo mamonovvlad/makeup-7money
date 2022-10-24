@@ -3,7 +3,7 @@
     <div class="wrapper">
       <strong class="time">{{ currentTime }}</strong>
       {{ $t("course") }}:
-      <strong class="course">{{ course.sell }} к {{ course.buy }}</strong>
+<!--      <strong class="course">{{ course.sell }} к {{ course.buy }}</strong>-->
     </div>
   </the-animation-border>
 </template>

@@ -318,6 +318,7 @@ const store = createStore({
             this.commit("setGetUrl");
           }, 1000);
         }
+     
       }
     },
     setRefresh(state) {
@@ -411,7 +412,8 @@ const store = createStore({
     calculateForm(
       { state, commit, getters },
       [type = "default", refresh = false]
-    ) {
+    )
+    {
       document
         .querySelectorAll(".form-exchange .field-error")
         .forEach(function (el, i) {
@@ -439,6 +441,7 @@ const store = createStore({
           config
         )
         .then(function (response) {
+          console.log(response);
           commit("setCalculateForm", response, refresh);
         });
     },

@@ -68,6 +68,10 @@ const i18n = createI18n({
       leaveFeedback: "Оставить отзыв",
       //TheTimeProcessing
       timeProcessing: "Ваша заявка будет оплачена автоматически в порядке очереди, от 5 до 30-ти минут",
+      //TheCheckStatus
+      checkOperation: "Проверить статус операции",
+      transaction: "Номер операции",
+      check: "Проверить",
       //link
       passwordRecoveryAction: "/auth/request-password-reset",
       entranceAction: "/auth/login",
@@ -153,6 +157,10 @@ const i18n = createI18n({
       leaveFeedback: "Залишити відгук",
       //TheTimeProcessing
       timeProcessing: "Ваша заявка буде оплачена автоматично в порядку черги, від 5 до 30-ти хвилин",
+      //TheCheckStatus
+      checkOperation: "Перевірити статус операції",
+      transaction: "Номер операції",
+      check: "Перевірити",
       //link
       passwordRecoveryAction: "/ua/auth/request-password-reset",
       entranceAction: "/ua/auth/login",
@@ -238,6 +246,10 @@ const i18n = createI18n({
       leaveFeedback: "Leave feedback",
       //TheTimeProcessing
       timeProcessing: "Your order will be paid automatically according to the queue from 5 to 30 minutes",
+      //TheCheckStatus
+      checkOperation: "Check the status of the operation",
+      transaction: "Number of transaction",
+      check: "check",
       //link
       passwordRecoveryAction: "/en/auth/request-password-reset",
       entranceAction: "/en/auth/login",

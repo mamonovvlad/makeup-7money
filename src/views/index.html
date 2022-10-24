@@ -51,7 +51,7 @@
                     :data-input="true"
                   ></the-steps>
                   <!--Форма-->
-                  <form v-if="calculateData.max_buy_amount > calculateData.min_buy_amount"
+                  <form
                     action
                     class="form-exchange"
                   >
@@ -256,7 +256,6 @@
 
                     <div class="items__wrapper">
                       <div class="item" v-if="isSellSource">
-                        {{currencyModel.isUahBank(sellCurrency.id)}}
                         <the-recovery-information
                           v-if="currencyModel.isUahBank(sellCurrency.id) && isShowPopup"
                         >
@@ -281,7 +280,7 @@
                       </div>
                       <div class="item">
                         <the-recovery-information
-                          v-if="buyCurrency.id === currencyModel.PRIVAT_BANK_ID && isShowPopup"
+                          v-if="buyCurrency.id === currencyModel.PRIVAT_BANK_ID"
                         >
                           Внимание!!! Не указывайте "Логин" при создании кода в
                           бирже. Такой код на нашем сайте применить невозможно!
@@ -479,7 +478,7 @@
                       Обменять
                     </button>
                   </form>
-                  <strong v-else class="warning">
+                  <strong class="warning">
                     Выбранное вами направление обмена в данный момент недоступно
                   </strong>
                   <!--Конец Формы-->

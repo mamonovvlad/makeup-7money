@@ -72,8 +72,8 @@
       & .button {
         width: 100%;
 
-        &:first-child,
-        &:last-child {
+        &:nth-child(2),
+        &:nth-child(3) {
           width: calc(50% - 8px);
           @include _576 {
             width: 100%;

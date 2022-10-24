@@ -1,13 +1,13 @@
 <template>
   <main class="check-status">
     <the-title-big>
-      <template #title> Проверить статус операции</template>
+      <template #title>{{ $t("checkOperation") }}</template>
     </the-title-big>
     <div class="container">
       <div class="wrapper">
         <div class="stylish-wrapper">
           <the-title class="title" tag="h2">
-            Номер операции
+            {{ $t("transaction") }}
           </the-title>
           <div class="field">
             <span class="form-group">
@@ -21,7 +21,7 @@
             </span>
           </div>
           <the-button tag="button" @click.native="checkStatus">
-            <template #name> Проверить</template>
+            <template #name> {{ $t("check") }}</template>
           </the-button>
         </div>
         <icon-check-status></icon-check-status>
@@ -94,6 +94,7 @@ export default {
   }
 
   & .button {
+    text-transform: capitalize;
     width: 100%;
   }
 
