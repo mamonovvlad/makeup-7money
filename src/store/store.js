@@ -438,7 +438,6 @@ const store = createStore({
           config,
         )
         .then(function(response) {
-          console.log(response);
           commit("setCalculateForm", response, refresh);
         });
     },

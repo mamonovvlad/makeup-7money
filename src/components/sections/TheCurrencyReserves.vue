@@ -71,6 +71,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
 .currency-reserves {
   & .title {
     margin-bottom: 20px;
@@ -107,18 +108,22 @@ export default {
   }
 
   & .name {
+    padding-right: 6px;
     & span {
-      width: 16px;
+      min-width: 16px;
       height: 16px;
       margin-right: 5px;
       margin-bottom: 2px;
       background-size: cover;
     }
+    & p{
+      @include crop-height(1);
+    }
   }
 
   & .price {
     & p {
-      margin-right: 5px;
+      margin-right: 4px;
       color: var(--quaternary);
       font-weight: 600;
     }
