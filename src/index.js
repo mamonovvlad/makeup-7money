@@ -87,7 +87,7 @@ createApp({
       error: true,
     };
   },
-
+  
   components: {
     //Sections
     TheHeader,
@@ -188,7 +188,7 @@ createApp({
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",
-        document.getElementById("language").value
+        document.getElementById("language").value,
       );
       if (object[nameWithLang] !== undefined) {
         return object[nameWithLang];
@@ -219,12 +219,11 @@ createApp({
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
-    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
+    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
+    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
   },
 })
   .use(i18n)
-  .use(store)
   .use(TippyPlugin)
   .use(vueDebounce, {
     lock: false,
@@ -232,4 +231,5 @@ createApp({
     defaultTime: "1500ms",
     fireOnEmpty: false,
   })
+  .use(store)
   .mount("#app");

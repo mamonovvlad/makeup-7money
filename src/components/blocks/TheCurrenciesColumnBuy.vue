@@ -13,7 +13,6 @@
             :class="{ 'active--filters': index === idx }"
             @click="toggleInformation(idx)"
           >
-            {{}}
             {{ $t(`${button.name}`) }}
           </button>
         </div>

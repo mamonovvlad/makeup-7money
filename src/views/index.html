@@ -1,80 +1,82 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
-    <title>7money</title>
-    <meta content="_csrfferv" name="csrf-param" />
-    <meta content="He8fewfewfgewyfgweyufgewyuf" name="csrf-token" />
-    <meta content="7money" name="description" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+  <title>7money</title>
+  <meta content="_csrfferv" name="csrf-param" />
+  <meta content="He8fewfewfgewyfgweyufgewyuf" name="csrf-token" />
+  <meta content="7money" name="description" />
+</head>
 
-  <body>
-    <div id="app" v-cloak>
-      <div class="app background-dark" :data-theme="colorSpectrum">
-        <the-public-information>
-          Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
-          нужно всего лишь совершить обмен и оставить отзыв
-          <a href="/">подробнее тут</a>
-        </the-public-information>
-        <the-header class="background--large"></the-header>
-        <main class="container main__wrapper">
-          <input
-            id="inputHiddenLastSellId"
-            name="last_sell_id"
-            type="hidden"
-            value="1"
-          />
-          <input
-            id="inputHiddenLastBuyId"
-            name="last_buy_id"
-            type="hidden"
-            value="2"
-          />
-          <div class="currencies">
-            <the-currencies-column-sell></the-currencies-column-sell>
-            <the-currencies-column-buy></the-currencies-column-buy>
+<body>
+<div id="app" v-cloak>
+  <div class="app background-dark" :data-theme="colorSpectrum">
+    <the-public-information>
+      Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
+      нужно всего лишь совершить обмен и оставить отзыв
+      <a href="/">подробнее тут</a>
+    </the-public-information>
+    <the-header class="background--large"></the-header>
+    <main class="container main__wrapper">
+      <input
+        id="inputHiddenLastSellId"
+        name="last_sell_id"
+        type="hidden"
+        value=""
+      />
+      <input
+        id="inputHiddenLastBuyId"
+        name="last_buy_id"
+        type="hidden"
+        value=""
+      />
+      <div class="currencies">
+        <the-currencies-column-sell></the-currencies-column-sell>
+        <the-currencies-column-buy></the-currencies-column-buy>
 
-            <transition name="details-hide">
-              <div class="details" v-if="isDetails === true && calculateData">
-                <div class="details__wrapper stylish-wrapper">
-                  <div class="title__wrapper">
-                    <the-title tag="h1" class="subtitle">
-                      {{ calculateData.course_h1 }}
-                    </the-title>
-                    <the-current-time></the-current-time>
-                  </div>
-                  <the-steps
-                    @button="trashClick"
-                    :show-button="true"
-                    :data-input="true"
-                  ></the-steps>
-                  <!--Форма-->
-                  <form
-                    action
-                    class="form-exchange"
-                  >
-                    <input
-                      type="hidden"
-                      id="orderform-type"
-                      name="OrderForm[type]"
-                      :value="getType"
-                    />
-                    <input type="hidden" name="form" value="order" />
-                    <input
-                      type="hidden"
-                      id="selectCurrency"
-                      name="OrderForm[select]"
-                      value="sell"
-                    />
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-sell_amount">
-                            {{ $t("theGive") }}
-                          </label>
-                          <span class="form-group">
+        <transition name="details-hide">
+          <div class="details" v-if="isDetails === true && calculateData">
+            <div class="details__wrapper stylish-wrapper">
+              <div class="title__wrapper">
+                <the-title tag="h1" class="subtitle">
+                  {{ calculateData.course_h1 }}
+                </the-title>
+                <the-current-time></the-current-time>
+              </div>
+              <the-steps
+                @button="trashClick"
+                :show-button="true"
+                :data-input="true"
+              ></the-steps>
+              <!--Форма-->
+              <form
+                v-if="calculateData.max_buy_amount > calculateData.min_buy_amount"
+                action
+                class="form-exchange"
+              >
+                <input
+                  type="hidden"
+                  id="orderform-type"
+                  name="OrderForm[type]"
+                  :value="getType"
+
+                />
+                <input type="hidden" name="form" value="order" />
+                <input
+                  type="hidden"
+                  id="selectCurrency"
+                  name="OrderForm[select]"
+                  value="sell"
+                />
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-sell_amount">
+                        {{ $t("theGive") }}
+                      </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-sell_amount"
@@ -93,9 +95,9 @@
                             >
                             </span>
                           </span>
-                          <span class="help-block">Error</span>
-                        </div>
-                        <div class="min__max">
+                      <span class="help-block">Error</span>
+                    </div>
+                    <div class="min__max">
                           <span v-show="calculateData.min_sell_amount > 0">
                             Min:
                             <strong>
@@ -103,64 +105,64 @@
                               ${sellCurrency.symbol}` }}
                             </strong>
                           </span>
-                          <span v-show="calculateData.max_sell_amount > 0">
+                      <span v-show="calculateData.max_sell_amount > 0">
                             Max:
                             <strong>
                               {{ `${calculateData.max_sell_amount}
                               ${sellCurrency.symbol}` }}
                             </strong>
                           </span>
-                        </div>
-                        <transition name="fade">
-                          <div
-                            class="checkbox"
-                            v-if="sellCurrency.is_sell_verified"
-                          >
-                            <input
-                              type="checkbox"
-                              id="isSellVerified"
-                              name="OrderForm[is_verified]"
-                              value="1"
-                              @click="setIsVerified($event)"
-                            />
-                            <label class="label" for="isSellVerified">
+                    </div>
+                    <transition name="fade">
+                      <div
+                        class="checkbox"
+                        v-if="sellCurrency.is_sell_verified"
+                      >
+                        <input
+                          type="checkbox"
+                          id="isSellVerified"
+                          name="OrderForm[is_verified]"
+                          value="1"
+                          @click="setIsVerified($event)"
+                        />
+                        <label class="label" for="isSellVerified">
                               <span
                                 v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"
                               ></span>
-                            </label>
-                          </div>
-                        </transition>
-                        <transition name="fade">
-                          <p
-                            class="commission"
-                            v-if="sellCurrency.id === currencyModel.PRIVAT_BANK_ID"
-                          >
+                        </label>
+                      </div>
+                    </transition>
+                    <transition name="fade">
+                      <p
+                        class="commission"
+                        v-if="sellCurrency.id === currencyModel.PRIVAT_BANK_ID"
+                      >
                             <span
                               v-html="getValueByLanguage(sellCurrency, 'name_?')"
                             ></span>
-                            =
-                            <strong>
-                              {{ calculateData.sell_comission }}% ({{
-                              calculateData.sell_amount_comission }} {{
-                              sellCurrency.symbol }})
-                            </strong>
-                          </p>
-                        </transition>
-                        <transition name="fade">
-                          <div
-                            class="field"
-                            v-if="calculateData.sell_comission >0"
-                          >
-                            <label for="orderform-buy_amount_with_discount">
-                              С комиссией
-                              <span class="text--green">
+                        =
+                        <strong>
+                          {{ calculateData.sell_comission }}% ({{
+                            calculateData.sell_amount_comission }} {{
+                            sellCurrency.symbol }})
+                        </strong>
+                      </p>
+                    </transition>
+                    <transition name="fade">
+                      <div
+                        class="field"
+                        v-if="calculateData.sell_comission >0"
+                      >
+                        <label for="orderform-buy_amount_with_discount">
+                          С комиссией
+                          <span class="text--green">
                                 <span id="sell_commission_percent"
-                                  >{{ calculateData.sell_comission }}</span
+                                >{{ calculateData.sell_comission }}</span
                                 >% = {{ calculateData.sell_amount_comission }}
                                 {{ sellCurrency.symbol }}
                               </span>
-                            </label>
-                            <span class="form-group">
+                        </label>
+                        <span class="form-group">
                               <input
                                 type="text"
                                 id="orderform-sell_amount_with_comission"
@@ -170,36 +172,36 @@
                                 v-debounce="calculationFormSellAmountCommission"
                               />
                             </span>
-                          </div>
-                        </transition>
                       </div>
-                      <div class="item">
-                        <div class="field item__lacks">
-                          <label for="orderform-buy_amount">
-                            {{ $t("theGet") }}
-                            <div class="lacks">
-                              <span>{{ $t("lacks") }}</span>
-                              <div class="wrapper">
-                                <p>
-                                  Максимальная сумма получения {{
-                                  calculateData.max_buy_amount }} {{
-                                  buyCurrency.symbol }}
-                                  <strong>
-                                    {{ getValueByLanguage(buyCurrency, "name_?")
-                                    }}
-                                  </strong>
-                                </p>
-                                <the-button
-                                  type="button"
-                                  @click.native="showLacks = true"
-                                  tag="button"
-                                >
-                                  <template #name>{{ $t("lacks") }}</template>
-                                </the-button>
-                              </div>
-                            </div>
-                          </label>
-                          <span class="form-group">
+                    </transition>
+                  </div>
+                  <div class="item">
+                    <div class="field item__lacks">
+                      <label for="orderform-buy_amount">
+                        {{ $t("theGet") }}
+                        <div class="lacks">
+                          <span>{{ $t("lacks") }}</span>
+                          <div class="wrapper">
+                            <p>
+                              Максимальная сумма получения {{
+                                calculateData.max_buy_amount }} {{
+                                buyCurrency.symbol }}
+                              <strong>
+                                {{ getValueByLanguage(buyCurrency, "name_?")
+                                }}
+                              </strong>
+                            </p>
+                            <the-button
+                              type="button"
+                              @click.native="showLacks = true"
+                              tag="button"
+                            >
+                              <template #name>{{ $t("lacks") }}</template>
+                            </the-button>
+                          </div>
+                        </div>
+                      </label>
+                      <span class="form-group">
                             <input
                               class="item__lacks"
                               id="orderform-buy_amount"
@@ -216,30 +218,30 @@
                             >
                             </span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                        <div class="min__max">
+                      <span class="help-block"></span>
+                    </div>
+                    <div class="min__max">
                           <span v-show="calculateData.min_buy_amount > 0">
                             Min:
                             <strong>
                               {{ calculateData.min_buy_amount }} {{
-                              buyCurrency.symbol }}
+                                buyCurrency.symbol }}
                             </strong>
                           </span>
-                          <span v-show="calculateData.max_buy_amount > 0">
+                      <span v-show="calculateData.max_buy_amount > 0">
                             Max:
                             <strong>
                               {{ calculateData.max_buy_amount }} {{
-                              buyCurrency.symbol }}
+                                buyCurrency.symbol }}
                             </strong>
                           </span>
-                        </div>
-                        <transition name="fade">
-                          <div class="field">
-                            <label for="orderform-buy_amount_with_discount">
-                              Со скидкой
-                            </label>
-                            <span class="form-group">
+                    </div>
+                    <transition name="fade">
+                      <div class="field">
+                        <label for="orderform-buy_amount_with_discount">
+                          Со скидкой
+                        </label>
+                        <span class="form-group">
                               <input
                                 id="orderform-buy_amount_with_discount"
                                 name="OrderForm[buy_amount_with_discount]"
@@ -249,24 +251,24 @@
                                 v-debounce="calculationFormBuyAmountCommission"
                               />
                             </span>
-                          </div>
-                        </transition>
                       </div>
-                    </div>
+                    </transition>
+                  </div>
+                </div>
 
-                    <div class="items__wrapper">
-                      <div class="item" v-if="isSellSource">
-                        <the-recovery-information
-                          v-if="currencyModel.isUahBank(sellCurrency.id) && isShowPopup"
-                        >
-                          Внимание!!! Не указывайте "Логин" при создании кода в
-                          бирже. Такой код на нашем сайте применить невозможно!
-                        </the-recovery-information>
-                        <div class="field">
-                          <label for="orderform-sell_source">
-                            Заплатить с этой карты
-                          </label>
-                          <span class="form-group">
+                <div class="items__wrapper">
+                  <div class="item" v-if="isSellSource">
+                    <the-recovery-information
+                      v-if="currencyModel.isUahBank(sellCurrency.id) && isShowPopup"
+                    >
+                      Внимание!!! Не указывайте "Логин" при создании кода в
+                      бирже. Такой код на нашем сайте применить невозможно!
+                    </the-recovery-information>
+                    <div class="field">
+                      <label for="orderform-sell_source">
+                        Заплатить с этой карты
+                      </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-sell_source"
@@ -275,21 +277,21 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <the-recovery-information
-                          v-if="buyCurrency.id === currencyModel.PRIVAT_BANK_ID"
-                        >
-                          Внимание!!! Не указывайте "Логин" при создании кода в
-                          бирже. Такой код на нашем сайте применить невозможно!
-                        </the-recovery-information>
-                        <div class="field">
-                          <label for="orderform-buy_target">
-                            Зачислить на этот счёт
-                          </label>
-                          <span class="form-group">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <the-recovery-information
+                      v-if="buyCurrency.id === currencyModel.PRIVAT_BANK_ID"
+                    >
+                      Внимание!!! Не указывайте "Логин" при создании кода в
+                      бирже. Такой код на нашем сайте применить невозможно!
+                    </the-recovery-information>
+                    <div class="field">
+                      <label for="orderform-buy_target">
+                        Зачислить на этот счёт
+                      </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-buy_target"
@@ -298,17 +300,17 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
+                      <span class="help-block"></span>
                     </div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-first_name">
-                            Имя держателя карты
-                          </label>
-                          <span class="form-group">
+                  </div>
+                </div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-first_name">
+                        Имя держателя карты
+                      </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-first_name"
@@ -317,15 +319,15 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-first_name">
-                            Фамилия держателя карты
-                          </label>
-                          <span class="form-group">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-first_name">
+                        Фамилия держателя карты
+                      </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-last_name"
@@ -334,15 +336,15 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
+                      <span class="help-block"></span>
                     </div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-phone"> Номер телефона </label>
-                          <span class="form-group">
+                  </div>
+                </div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-phone"> Номер телефона </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-phone"
@@ -352,13 +354,13 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <div class="field">
-                          <label for="exchange_mail"> Электронная почта </label>
-                          <span class="form-group">
+                      <span class="help-block"></span>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="field">
+                      <label for="exchange_mail"> Электронная почта </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="exchange_mail"
@@ -369,17 +371,17 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
+                      <span class="help-block"></span>
                     </div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-buy_target">
-                            Зачислить на этот адрес
-                          </label>
-                          <span class="form-group">
+                  </div>
+                </div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-buy_target">
+                        Зачислить на этот адрес
+                      </label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-buy_target"
@@ -387,32 +389,32 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
-                      <div
-                        class="item"
-                        v-if="currencyModel.isCrypt(sellCurrency.id)"
-                      >
-                        <div class="checkbox">
-                          <input
-                            type="checkbox"
-                            id="orderform-of_exchange"
-                            name="OrderForm[of_exchange]"
-                            value="1"
-                            @click="setOfExchange($event)"
-                          />
-                          <label class="label" for="orderform-of_exchange">
-                            Отправляю с биржи
-                          </label>
-                        </div>
-                      </div>
+                      <span class="help-block"></span>
                     </div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label>Город</label>
-                          <span class="form-group">
+                  </div>
+                  <div
+                    class="item"
+                    v-if="currencyModel.isCrypt(sellCurrency.id)"
+                  >
+                    <div class="checkbox">
+                      <input
+                        type="checkbox"
+                        id="orderform-of_exchange"
+                        name="OrderForm[of_exchange]"
+                        value="1"
+                        @click="setOfExchange($event)"
+                      />
+                      <label class="label" for="orderform-of_exchange">
+                        Отправляю с биржи
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="items__wrapper">
+                  <div class="item">
+                    <div class="field">
+                      <label>Город</label>
+                      <span class="form-group">
                             <select name="CreateOrder[course_id]">
                               <option value="93">Киев</option>
                               <option value="93">Киев</option>
@@ -422,12 +424,12 @@
                               <option value="93">Киев</option>
                             </select>
                           </span>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-telegram">Telegram</label>
-                          <span class="form-group">
+                    </div>
+                  </div>
+                  <div class="item">
+                    <div class="field">
+                      <label for="orderform-telegram">Telegram</label>
+                      <span class="form-group">
                             <input
                               type="text"
                               id="orderform-telegram"
@@ -437,247 +439,247 @@
                             />
                             <span class="PMUSD"></span>
                           </span>
-                          <span class="help-block"></span>
-                        </div>
-                      </div>
+                      <span class="help-block"></span>
                     </div>
-                    <div class="animation-border">
+                  </div>
+                </div>
+                <div class="animation-border">
                       <span
                         class="border"
                         :class="{'border--red': error }"
                       ></span>
-                      <div class="box">
-                        <div class="checkbox" id="orderform-of_exchange">
-                          <input
-                            type="checkbox"
-                            name="OrderForm[agree]"
-                            id="orderform-agree"
-                            @click="confirmChecked"
-                          />
-                          <label class="label" for="orderform-agree">
+                  <div class="box">
+                    <div class="checkbox" id="orderform-of_exchange">
+                      <input
+                        type="checkbox"
+                        name="OrderForm[agree]"
+                        id="orderform-agree"
+                        @click="confirmChecked"
+                      />
+                      <label class="label" for="orderform-agree">
                             <span>
                               Нажимая на кнопку, я подтверждаю, что я
                               ознакомился и согласен с условиями
                               <a href="https://makeup.7money.co/page/security"
-                                >Безопасности</a
+                              >Безопасности</a
                               >
                               и
                               <a href="https://makeup.7money.co/page/agreement"
-                                >Соглашением сайта</a
+                              >Соглашением сайта</a
                               >
                             </span>
-                          </label>
-                        </div>
-                      </div>
+                      </label>
                     </div>
-                    <button
-                      id="order-submit"
-                      class="button disabled"
-                      disabled="disabled"
-                    >
-                      Обменять
-                    </button>
-                  </form>
-                  <strong class="warning">
-                    Выбранное вами направление обмена в данный момент недоступно
-                  </strong>
-                  <!--Конец Формы-->
+                  </div>
                 </div>
-                <the-information
-                  v-if="calculateData.course_seo_text"
-                  v-html="calculateData.course_seo_text"
+                <button
+                  id="order-submit"
+                  class="button disabled"
+                  disabled="disabled"
                 >
-                </the-information>
-              </div>
-            </transition>
-          </div>
-
-          <!--Success-->
-          <the-achievements>
-            <template #people>
-              <the-title class="title" tag="h4">8766</the-title>
-              <span>Человек нам доверяют</span>
-            </template>
-            <template #success>
-              <the-title class="title" tag="h4">7:03</the-title>
-              <span>Среднее время обмена</span>
-            </template>
-            <template #time>
-              <the-title class="title" tag="h4">116644</the-title>
-              <span>Успешных обменов</span>
-            </template>
-            <template #reviews>
-              <the-title class="title" tag="h4">689</the-title>
-              <span>Отзывов BESTCHANGE</span>
-            </template>
-          </the-achievements>
-          <!--Reserves-->
-          <the-reserves></the-reserves>
-          <!--End Reserves-->
-          <the-slider>
-            <template #reviews>
-              <div class="items">
-                <a href="/1" class="item" v-for="(info, idx) of 4" :key="idx">
-                  <div class="box">
-                    <h3>Гарик</h3>
-                    <span class="date">2 дня назад</span>
-                  </div>
-                  <p>
-                    Благодарен сервису за успешно и быстро проведенный обмен.
-                  </p>
-                </a>
-              </div>
-              <the-button tag="button">
-                <template #name> Читать</template>
-              </the-button>
-            </template>
-            <template #news>
-              <div class="items">
-                <a href="/1" class="item" v-for="(info, idx) of 4" :key="idx">
-                  <div class="box">
-                    <h3>Гарик</h3>
-                    <span class="date">2 дня назад</span>
-                  </div>
-                  <p>
-                    Благодарен сервису за успешно и быстро проведенный обмен.
-                  </p>
-                </a>
-              </div>
-              <the-button tag="button">
-                <template #name> Читать</template>
-              </the-button>
-            </template>
-            <template #blog>
-              <div class="items">
-                <a href="/1" class="item" v-for="(info, idx) of 4" :key="idx">
-                  <div class="box">
-                    <h3>Гарик</h3>
-                    <span class="date">2 дня назад</span>
-                  </div>
-                  <p>
-                    Благодарен сервису за успешно и быстро проведенный обмен.
-                  </p>
-                </a>
-              </div>
-              <the-button tag="button">
-                <template #name> Читать</template>
-              </the-button>
-            </template>
-          </the-slider>
-          <!--Info-->
-          <the-information v-if="$store.state.blockHide">
-            <h1>Криптообменник №1</h1>
-            <p>
-              Выбирая криптообменник, пользователь заинтересован в
-              предоставлении обширной экосистемы кошельков. Интерфейс системы
-              должен иметь конвертируемую криптовалюту, с возможностью быстрого
-              проведения транзакции. С учетом допустимой комиссии и начисленными
-              бонусами на каждую сделку. Сайт по покупке и продаже имеет
-              следующие преимущества:
-            </p>
-            <ul>
-              <li>
-                Проведение обмена криптовалют возможно без регистрации на сайте;
-              </li>
-              <li>В личном кабинете доступна история всех транзакций;</li>
-              <li>
-                Большая часть транзакций может быть выполнена без комиссий
-                банку.
-              </li>
-            </ul>
-            <h2>Направления обмена криптовалют на 7MONEY</h2>
-            <p>
-              Обменный пункт предлагает только ликвидные курсы. При выборе
-              направления, обратите внимание на резерв валют. Здесь указана
-              сумма допустимого предложения на текущий операционный день по
-              лучшему курсу в сети. В онлайн-обменнике криптовалют предоставлены
-              пары исходя из следующих параметров:
-            </p>
-            <ul>
-              <li>
-                Ликвидность курса – динамичный спрос и предложения по проводимым
-                транзакциям;
-              </li>
-              <li>
-                Актуальность направления - присутствуют все самые востребованные
-                монеты;
-              </li>
-            </ul>
-            <p>
-              Мы постоянно добавляем на сервис новые криптовалютные пары -
-              рекомендуем добавить сайт в закладки и следить за обновлениями,
-              также это поможет заходить на него с помощью одного клика.
-            </p>
-            <h2>7Money - сервис №1 по покупке и продаже криптовалюты</h2>
-            <strong
-              >Наш обменник крипты выделяется среди множества остальных такими
-              преимуществами:</strong
+                  Обменять
+                </button>
+              </form>
+              <strong v-else class="warning">
+                Выбранное вами направление обмена в данный момент недоступно
+              </strong>
+              <!--Конец Формы-->
+            </div>
+            <the-information
+              v-if="calculateData.course_seo_text"
+              v-html="calculateData.course_seo_text"
             >
-            <ul>
-              <li>
-                <strong>Автоматический обмен. </strong>Все транзакции проводятся
-                в автоматическом режиме - исключено влияние человеческого
-                фактора, система мгновенно рассматривает и обрабатывает заявки.
-              </li>
-              <li>
-                <strong>Оперативная поддержка клиентов. </strong>В период с 8:00
-                утра до 23:00 вечера мы готовы помочь в онлайн-чате по любым
-                вопросам, связанным с использованием сервиса.
-              </li>
-              <li>
-                <strong>Безопасность платежей. </strong>Наш сайт использует
-                SSL-сертификат, что гарантирует защиту от перехвата любых данных
-                интернет-хакерами, Ваши данные надежно защищены и полностью
-                конфиденциальны. Детальнее про безопасность обмена криптовалюты
-                на 7MONEY -
-                <a href="https://7money.co/page/security">по ссылке</a>.
-              </li>
-              <li>
-                <strong>Выгодные курсы обмена. </strong>На каждой странице
-                направления в правом верхнем углу отображается актуальный курс.
-                Обновление производится каждую минуту.
-              </li>
-              <li>
-                <strong>Программа лояльности. </strong>Зарегистрированные
-                пользователи получают доступ к уникальной системе лояльности –
-                стоимость каждой последующей сделки будет снижена для
-                пользователя сайта.
-              </li>
-            </ul>
-            <p>
-              В любой момент можно
-              <a href="https://7money.co/order/status"
-                >проверить статус операции</a
-              >
-              - просто введите № в соответствующее поле и Вы получите
-              необходимую информацию актуальную на текущий момент. Прочитать
-              отзывы про онлайн-обменник 7Money -
-              <a href="https://7money.co/reviews">можно тут</a>.
-            </p>
-            <h3>
-              Партнерская программа - зарабатывайте на обменах других
-              пользователей
-            </h3>
-            <p>
-              Если хотите получать дополнительный доход - можно настроить в
-              личном кабинете опцию реферальной программы. Вы можете получать
-              доход от курсового обмена привлеченных участников. Доход каждой
-              сделки может составлять до 25% от суммы комиссии. Предложение
-              действует неограниченный срок. Даже не инвестируя в актив, можно
-              зарабатывать значительные средства только от привлечения других
-              пользователей.
-            </p>
-          </the-information>
-          <!--links-->
-          <the-links></the-links>
-        </main>
-        <the-footer></the-footer>
-        <the-lacks-window v-if="showLacks" @close="showLacks = false">
-          <form class="form">
-            <div class="items__wrapper">
-              <div class="field">
-                <label>Город</label>
-                <span class="form-group">
+            </the-information>
+          </div>
+        </transition>
+      </div>
+
+      <!--Success-->
+      <the-achievements>
+        <template #people>
+          <the-title class="title" tag="h4">8766</the-title>
+          <span>Человек нам доверяют</span>
+        </template>
+        <template #success>
+          <the-title class="title" tag="h4">7:03</the-title>
+          <span>Среднее время обмена</span>
+        </template>
+        <template #time>
+          <the-title class="title" tag="h4">116644</the-title>
+          <span>Успешных обменов</span>
+        </template>
+        <template #reviews>
+          <the-title class="title" tag="h4">689</the-title>
+          <span>Отзывов BESTCHANGE</span>
+        </template>
+      </the-achievements>
+      <!--Reserves-->
+      <the-reserves></the-reserves>
+      <!--End Reserves-->
+      <the-slider>
+        <template #reviews>
+          <div class="items">
+            <a href="/1" class="item" v-for="(info, idx) of 4" :key="idx">
+              <div class="box">
+                <h3>Гарик</h3>
+                <span class="date">2 дня назад</span>
+              </div>
+              <p>
+                Благодарен сервису за успешно и быстро проведенный обмен.
+              </p>
+            </a>
+          </div>
+          <the-button tag="button">
+            <template #name> Читать</template>
+          </the-button>
+        </template>
+        <template #news>
+          <div class="items">
+            <a href="/1" class="item" v-for="(info, idx) of 4" :key="idx">
+              <div class="box">
+                <h3>Гарик</h3>
+                <span class="date">2 дня назад</span>
+              </div>
+              <p>
+                Благодарен сервису за успешно и быстро проведенный обмен.
+              </p>
+            </a>
+          </div>
+          <the-button tag="button">
+            <template #name> Читать</template>
+          </the-button>
+        </template>
+        <template #blog>
+          <div class="items">
+            <a href="/1" class="item" v-for="(info, idx) of 4" :key="idx">
+              <div class="box">
+                <h3>Гарик</h3>
+                <span class="date">2 дня назад</span>
+              </div>
+              <p>
+                Благодарен сервису за успешно и быстро проведенный обмен.
+              </p>
+            </a>
+          </div>
+          <the-button tag="button">
+            <template #name> Читать</template>
+          </the-button>
+        </template>
+      </the-slider>
+      <!--Info-->
+      <the-information v-if="$store.state.blockHide">
+        <h1>Криптообменник №1</h1>
+        <p>
+          Выбирая криптообменник, пользователь заинтересован в
+          предоставлении обширной экосистемы кошельков. Интерфейс системы
+          должен иметь конвертируемую криптовалюту, с возможностью быстрого
+          проведения транзакции. С учетом допустимой комиссии и начисленными
+          бонусами на каждую сделку. Сайт по покупке и продаже имеет
+          следующие преимущества:
+        </p>
+        <ul>
+          <li>
+            Проведение обмена криптовалют возможно без регистрации на сайте;
+          </li>
+          <li>В личном кабинете доступна история всех транзакций;</li>
+          <li>
+            Большая часть транзакций может быть выполнена без комиссий
+            банку.
+          </li>
+        </ul>
+        <h2>Направления обмена криптовалют на 7MONEY</h2>
+        <p>
+          Обменный пункт предлагает только ликвидные курсы. При выборе
+          направления, обратите внимание на резерв валют. Здесь указана
+          сумма допустимого предложения на текущий операционный день по
+          лучшему курсу в сети. В онлайн-обменнике криптовалют предоставлены
+          пары исходя из следующих параметров:
+        </p>
+        <ul>
+          <li>
+            Ликвидность курса – динамичный спрос и предложения по проводимым
+            транзакциям;
+          </li>
+          <li>
+            Актуальность направления - присутствуют все самые востребованные
+            монеты;
+          </li>
+        </ul>
+        <p>
+          Мы постоянно добавляем на сервис новые криптовалютные пары -
+          рекомендуем добавить сайт в закладки и следить за обновлениями,
+          также это поможет заходить на него с помощью одного клика.
+        </p>
+        <h2>7Money - сервис №1 по покупке и продаже криптовалюты</h2>
+        <strong
+        >Наш обменник крипты выделяется среди множества остальных такими
+          преимуществами:</strong
+        >
+        <ul>
+          <li>
+            <strong>Автоматический обмен. </strong>Все транзакции проводятся
+            в автоматическом режиме - исключено влияние человеческого
+            фактора, система мгновенно рассматривает и обрабатывает заявки.
+          </li>
+          <li>
+            <strong>Оперативная поддержка клиентов. </strong>В период с 8:00
+            утра до 23:00 вечера мы готовы помочь в онлайн-чате по любым
+            вопросам, связанным с использованием сервиса.
+          </li>
+          <li>
+            <strong>Безопасность платежей. </strong>Наш сайт использует
+            SSL-сертификат, что гарантирует защиту от перехвата любых данных
+            интернет-хакерами, Ваши данные надежно защищены и полностью
+            конфиденциальны. Детальнее про безопасность обмена криптовалюты
+            на 7MONEY -
+            <a href="https://7money.co/page/security">по ссылке</a>.
+          </li>
+          <li>
+            <strong>Выгодные курсы обмена. </strong>На каждой странице
+            направления в правом верхнем углу отображается актуальный курс.
+            Обновление производится каждую минуту.
+          </li>
+          <li>
+            <strong>Программа лояльности. </strong>Зарегистрированные
+            пользователи получают доступ к уникальной системе лояльности –
+            стоимость каждой последующей сделки будет снижена для
+            пользователя сайта.
+          </li>
+        </ul>
+        <p>
+          В любой момент можно
+          <a href="https://7money.co/order/status"
+          >проверить статус операции</a
+          >
+          - просто введите № в соответствующее поле и Вы получите
+          необходимую информацию актуальную на текущий момент. Прочитать
+          отзывы про онлайн-обменник 7Money -
+          <a href="https://7money.co/reviews">можно тут</a>.
+        </p>
+        <h3>
+          Партнерская программа - зарабатывайте на обменах других
+          пользователей
+        </h3>
+        <p>
+          Если хотите получать дополнительный доход - можно настроить в
+          личном кабинете опцию реферальной программы. Вы можете получать
+          доход от курсового обмена привлеченных участников. Доход каждой
+          сделки может составлять до 25% от суммы комиссии. Предложение
+          действует неограниченный срок. Даже не инвестируя в актив, можно
+          зарабатывать значительные средства только от привлечения других
+          пользователей.
+        </p>
+      </the-information>
+      <!--links-->
+      <the-links></the-links>
+    </main>
+    <the-footer></the-footer>
+    <the-lacks-window v-if="showLacks" @close="showLacks = false">
+      <form class="form">
+        <div class="items__wrapper">
+          <div class="field">
+            <label>Город</label>
+            <span class="form-group">
                   <select
                     name="ReserveNotification[currency_id]"
                     id="reservenotification-currency_id"
@@ -685,10 +687,10 @@
                     <option value="93">Киев</option>
                   </select>
                 </span>
-              </div>
-              <div class="field">
-                <label for="orderform-telegram">Email</label>
-                <span class="form-group">
+          </div>
+          <div class="field">
+            <label for="orderform-telegram">Email</label>
+            <span class="form-group">
                   <input
                     type="text"
                     id="reservenotification-email"
@@ -698,12 +700,12 @@
                     required
                   />
                 </span>
-              </div>
-            </div>
-            <div class="items__wrapper">
-              <div class="field">
-                <label for="reservenotification-amount">Сума</label>
-                <span class="form-group">
+          </div>
+        </div>
+        <div class="items__wrapper">
+          <div class="field">
+            <label for="reservenotification-amount">Сума</label>
+            <span class="form-group">
                   <input
                     type="text"
                     id="reservenotification-amount"
@@ -713,17 +715,17 @@
                     placeholder="62.3653"
                   />
                 </span>
-              </div>
-              <the-button tag="button" @click.native="">
-                <template #name>Сохранить</template>
-              </the-button>
-            </div>
-          </form>
-        </the-lacks-window>
-      </div>
-    </div>
-    <input id="login" type="hidden" value="0" />
-    <input id="language" type="hidden" value="en" />
-    <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
-  </body>
+          </div>
+          <the-button tag="button" @click.native="">
+            <template #name>Сохранить</template>
+          </the-button>
+        </div>
+      </form>
+    </the-lacks-window>
+  </div>
+</div>
+<input id="login" type="hidden" value="0" />
+<input id="language" type="hidden" value="en" />
+<script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
+</body>
 </html>

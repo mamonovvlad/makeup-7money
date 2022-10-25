@@ -126,13 +126,13 @@ const store = createStore({
       ) {
         return;
       }
-
+      
       let float = parseFloat(String(state.buy_amount).replace(/,/g, "."));
       if (float <= 0) {
         float = 0;
         state.buy_amount = float;
       }
-
+      
       if (state.buy_amount > 0) {
         this.dispatch("calculateForm", ["revert"]);
       }
@@ -150,7 +150,7 @@ const store = createStore({
     setDocumentTitle(state) {
       document.title = state.calculateData.course_title;
       document
-        .querySelector('meta[name="description"]')
+        .querySelector("meta[name=\"description\"]")
         .setAttribute("content", state.calculateData.course_description);
     },
     setDefinitionTheme(state, index) {
@@ -216,10 +216,10 @@ const store = createStore({
     },
     checkLastCurrencies() {
       let inputHiddenLastSellId = document.getElementById(
-        "inputHiddenLastSellId"
+        "inputHiddenLastSellId",
       );
       let inputHiddenLastBuyId = document.getElementById(
-        "inputHiddenLastBuyId"
+        "inputHiddenLastBuyId",
       );
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
         if (inputHiddenLastSellId.value > 0) {
@@ -255,7 +255,7 @@ const store = createStore({
       let self = this;
       let curFrom = params.get("cur_from");
       if (curFrom !== undefined) {
-        Object.values(state.sellCurrencies).forEach(function (sellCurrency) {
+        Object.values(state.sellCurrencies).forEach(function(sellCurrency) {
           if (sellCurrency.code === curFrom) {
             self.commit("setActiveCurrency", ["sell", sellCurrency.id]);
             return sellCurrency.code === curFrom;
@@ -269,8 +269,8 @@ const store = createStore({
       let params = new URLSearchParams(uri);
       let curTo = params.get("cur_to");
       if (curTo !== undefined) {
-        Object.values(state.buyCurrencies).forEach(async function (
-          buyCurrency
+        Object.values(state.buyCurrencies).forEach(async function(
+          buyCurrency,
         ) {
           if (buyCurrency.code === curTo) {
             self.commit("setActiveCurrency", [
@@ -286,7 +286,7 @@ const store = createStore({
     },
     setActiveCurrency(
       state,
-      [type, id, isCalculate = true, isTrash = true, isSetUrl = true]
+      [type, id, isCalculate = true, isTrash = true, isSetUrl = true],
     ) {
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
@@ -300,7 +300,7 @@ const store = createStore({
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);
       this.commit(`${type}HideBlock`);
-
+      
       if (state.sell_currency_id === null && state.buy_currency_id !== null) {
         this.dispatch("fetchSellCurrencies");
       }
@@ -318,7 +318,7 @@ const store = createStore({
             this.commit("setGetUrl");
           }, 1000);
         }
-     
+        
       }
     },
     setRefresh(state) {
@@ -368,7 +368,6 @@ const store = createStore({
       }
     },
     sellHideBlock(state) {
-      this.dispatch("fetchRateReserves", state.sell_currency_id);
       this.commit("hideBlocks");
       if (
         window.innerWidth <= 768 &&
@@ -385,7 +384,7 @@ const store = createStore({
     deleteAllHistory() {
       history.pushState(false, document.title, "/");
       document
-        .querySelector('meta[name="description"]')
+        .querySelector("meta[name=\"description\"]")
         .setAttribute("content", "");
     },
     setGetUrl(state) {
@@ -411,14 +410,12 @@ const store = createStore({
   actions: {
     calculateForm(
       { state, commit, getters },
-      [type = "default", refresh = false]
-    )
-    {
-      document
-        .querySelectorAll(".form-exchange .field-error")
-        .forEach(function (el, i) {
-          el.innerHTML = "";
-        });
+      [type = "default", refresh = false],
+    ) {
+      let helpBlock = document.querySelectorAll(".help-block");
+      helpBlock.forEach(function(el, i) {
+        el.innerHTML = "";
+      });
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -438,9 +435,9 @@ const store = createStore({
             lang: getters.getLanguage,
             refresh: refresh,
           }),
-          config
+          config,
         )
-        .then(function (response) {
+        .then(function(response) {
           console.log(response);
           commit("setCalculateForm", response, refresh);
         });
@@ -448,7 +445,7 @@ const store = createStore({
     fetchGroupsAndCurrencies({ state, commit, getters }) {
       return axios
         .get(state.proxy + getters.getLang + "/json/get-groups-and-currencies")
-        .then(function (response) {
+        .then(function(response) {
           commit("setGroupsAndCurrencies", response);
         });
     },
@@ -459,7 +456,7 @@ const store = createStore({
             sell_currency_id: state.sell_currency_id,
           },
         })
-        .then(function (response) {
+        .then(function(response) {
           commit("setBuyCurrencies", response);
         });
     },
@@ -470,7 +467,7 @@ const store = createStore({
             buy_currency_id: state.buy_currency_id,
           },
         })
-        .then(function (response) {
+        .then(function(response) {
           commit("setSellCurrencies", response);
         });
     },
@@ -482,15 +479,6 @@ const store = createStore({
       }
       let json = JSON.parse(data.innerHTML);
       commit("setGroupsAndCurrenciesFromPage", json);
-    },
-    fetchRateReserves({ commit, state }, id) {
-      axios
-        .get(
-          `${state.proxy2}/v1/course/rate-reserves?sell_currency_id=${id}&access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json`
-        )
-        .then((res) => {
-          commit("setRateReserves", res);
-        });
     },
   }, //Функции асинхронные
   getters: {
