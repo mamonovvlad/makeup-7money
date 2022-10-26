@@ -77,24 +77,24 @@
                         {{ $t("theGive") }}
                       </label>
                       <span class="form-group">
-                            <input
-                              type="text"
-                              id="orderform-sell_amount"
-                              name="OrderForm[sell_amount]"
-                              aria-invalid="true"
-                              v-model="$store.state.sell_amount"
-                              v-debounce="updateSellAmount"
-                              @input="calculationAmount('sell')"
-                              pattern="[0-9]"
-                            />
-                            <span
-                              :class="sellCurrency.code"
-                              class="icon"
-                              id="exchange-ddl-from"
-                              :data-alias="sellCurrency.code"
-                            >
-                            </span>
-                          </span>
+                        <input
+                          type="text"
+                          id="orderform-sell_amount"
+                          name="OrderForm[sell_amount]"
+                          aria-invalid="true"
+                          v-model="$store.state.sell_amount"
+                          v-debounce="updateSellAmount"
+                          @input="calculationAmount('sell')"
+                          pattern="[0-9]"
+                        />
+                        <span
+                          :class="sellCurrency.code"
+                          class="icon"
+                          id="exchange-ddl-from"
+                          :data-alias="sellCurrency.code"
+                        >
+                        </span>
+                      </span>
                       <span class="help-block">Error</span>
                     </div>
                     <div class="min__max">
@@ -345,15 +345,15 @@
                     <div class="field">
                       <label for="orderform-phone"> Номер телефона </label>
                       <span class="form-group">
-                            <input
-                              type="text"
-                              id="orderform-phone"
-                              name="OrderForm[phone]"
-                              placeholder="+380500123456"
-                              required
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
+                        <input
+                          type="text"
+                          id="orderform-phone"
+                          name="OrderForm[phone]"
+                          placeholder="+380500123456"
+                          required
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
                       <span class="help-block"></span>
                     </div>
                   </div>
@@ -361,16 +361,16 @@
                     <div class="field">
                       <label for="exchange_mail"> Электронная почта </label>
                       <span class="form-group">
-                            <input
-                              type="text"
-                              id="exchange_mail"
-                              name="OrderForm[email]"
-                              placeholder="you@gmail.com"
-                              required
-                              aria-required="true"
-                            />
-                            <span class="PMUSD"></span>
-                          </span>
+                        <input
+                          type="text"
+                          id="exchange_mail"
+                          name="OrderForm[email]"
+                          placeholder="you@gmail.com"
+                          required
+                          aria-required="true"
+                        />
+                        <span class="PMUSD"></span>
+                      </span>
                       <span class="help-block"></span>
                     </div>
                   </div>
