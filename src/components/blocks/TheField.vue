@@ -163,11 +163,4 @@ export default {
 
 }
 
-.help-block {
-  color: var(--red);
-  position: absolute;
-  left: 0;
-  bottom: -15px;
-  font-size: 11px;
-}
 </style>

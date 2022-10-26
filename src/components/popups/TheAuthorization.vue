@@ -210,7 +210,7 @@ export default {
           "X-Requested-With": "XMLHttpRequest",
         },
       };
-      document.querySelectorAll(".field-error").forEach(function(el, i) {
+      document.querySelectorAll(".help-block").forEach(function(el, i) {
         el.innerHTML = "";
       });
       axios.post(action, formData, config).then(function(response) {

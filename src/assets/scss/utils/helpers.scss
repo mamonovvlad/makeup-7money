@@ -85,6 +85,29 @@
   padding: 15px;
 }
 
+.field.has-error {
+  & .form-group {
+    background: var(--ninth);
+    box-shadow: var(--shadow-inset-error);
+
+    &:hover {
+      box-shadow: var(--shadow-error);
+    }
+  }
+}
+
+.help-block {
+  color: var(--red);
+  position: absolute;
+  right: 8px;
+  bottom: -4px;
+  font-size: 11px;
+  background: var(--white);
+  padding: 2px 4px;
+  border-radius: var(--radius-four);
+  box-shadow: var(--shadow);
+}
+
 .popup-wrapper {
   position: fixed;
   top: 50%;

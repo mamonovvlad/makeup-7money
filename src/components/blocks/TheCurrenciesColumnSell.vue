@@ -66,7 +66,7 @@ export default {
   &-column {
     position: relative;
     transition: var(--transition);
-    max-width: 320px;
+    max-width: 340px;
     height: max-content;
     padding: 16px;
     flex: 1;
