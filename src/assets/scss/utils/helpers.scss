@@ -31,7 +31,7 @@
   }
 }
 
-.dn {
+.d-none {
   display: none !important;
 }
 
@@ -83,17 +83,6 @@
   border: 1px dashed var(--red);
   border-radius: var(--radius-eigh);
   padding: 15px;
-}
-
-.field.has-error {
-  & .form-group {
-    background: var(--ninth);
-    box-shadow: var(--shadow-inset-error);
-
-    &:hover {
-      box-shadow: var(--shadow-error);
-    }
-  }
 }
 
 .help-block {
@@ -171,4 +160,3 @@
     z-index: 3;
   }
 }
-

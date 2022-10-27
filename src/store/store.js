@@ -17,7 +17,6 @@ const store = createStore({
     buyCurrencyGroup: {},
     buyCurrencyGroupId: null,
     rateReserves: {},
-    //form
     sell_currency_id: null,
     buy_currency_id: null,
     sell_amount: 0,
@@ -45,8 +44,35 @@ const store = createStore({
     //timer
     currentTime: 60,
     timer: null,
+    //
+    isShowWindow: false,
   }, //Хранения данных
   mutations: {
+    showRecoveryInformation() {
+      let itemsWrapper = document.querySelectorAll(".items__wrapper .item");
+
+      itemsWrapper.forEach((wrapper) => {
+        let windows = wrapper.querySelectorAll(".recovery-information");
+        let inputs = wrapper.querySelectorAll("input");
+        if (windows.length > 0) {
+          inputs.forEach((item) => {
+            item.addEventListener("focus", () => {
+              item.parentElement.parentElement
+                .querySelector(".recovery-information")
+                .classList.remove("d-none");
+            });
+            item.addEventListener("blur", () => {
+              item.parentElement.parentElement
+                .querySelector(".recovery-information")
+                .classList.add("d-none");
+            });
+          });
+        }
+
+        //   console.log(inp);
+        //   // console.log(item);
+      });
+    },
     calculationFormSellAmountCommission() {
       this.dispatch("calculateForm", ["default"]);
     },
@@ -96,7 +122,7 @@ const store = createStore({
       state.is_verified = !!e.target.checked;
       this.dispatch("calculateForm", ["revert"]);
     },
-    updateSellAmount(state, val) {
+    updateSellAmount(state) {
       state.type = "default";
       if (
         state.sell_amount.length <= 0 ||
@@ -117,7 +143,7 @@ const store = createStore({
         this.dispatch("calculateForm", ["default"]);
       }
     },
-    updateBuyAmount(state, val) {
+    updateBuyAmount(state) {
       state.type = "revert";
       if (
         state.buy_amount.length <= 0 ||
@@ -126,13 +152,13 @@ const store = createStore({
       ) {
         return;
       }
-      
+
       let float = parseFloat(String(state.buy_amount).replace(/,/g, "."));
       if (float <= 0) {
         float = 0;
         state.buy_amount = float;
       }
-      
+
       if (state.buy_amount > 0) {
         this.dispatch("calculateForm", ["revert"]);
       }
@@ -150,7 +176,7 @@ const store = createStore({
     setDocumentTitle(state) {
       document.title = state.calculateData.course_title;
       document
-        .querySelector("meta[name=\"description\"]")
+        .querySelector('meta[name="description"]')
         .setAttribute("content", state.calculateData.course_description);
     },
     setDefinitionTheme(state, index) {
@@ -177,8 +203,12 @@ const store = createStore({
       state.buy_amount = response.data.buy_amount;
       state.buy_amount_with_commission =
         response.data.buy_amount_with_comission;
-      if (refresh) state.sell_source = response.data.sell_source;
-      if (refresh) state.buy_target = response.data.buy_target;
+      if (refresh) {
+        state.sell_source = response.data.sell_source;
+      }
+      if (refresh) {
+        state.buy_target = response.data.buy_target;
+      }
       this.commit("setDocumentTitle");
     },
     setGroupsAndCurrencies(state, response) {
@@ -216,10 +246,10 @@ const store = createStore({
     },
     checkLastCurrencies() {
       let inputHiddenLastSellId = document.getElementById(
-        "inputHiddenLastSellId",
+        "inputHiddenLastSellId"
       );
       let inputHiddenLastBuyId = document.getElementById(
-        "inputHiddenLastBuyId",
+        "inputHiddenLastBuyId"
       );
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
         if (inputHiddenLastSellId.value > 0) {
@@ -251,11 +281,11 @@ const store = createStore({
     },
     checkQueryFromParameter(state) {
       let uri = window.location.search.substring(1);
-      let params = new URLSearchParams(uri);
+      let params = new global.URLSearchParams(uri);
       let self = this;
       let curFrom = params.get("cur_from");
       if (curFrom !== undefined) {
-        Object.values(state.sellCurrencies).forEach(function(sellCurrency) {
+        Object.values(state.sellCurrencies).forEach(function (sellCurrency) {
           if (sellCurrency.code === curFrom) {
             self.commit("setActiveCurrency", ["sell", sellCurrency.id]);
             return sellCurrency.code === curFrom;
@@ -266,11 +296,11 @@ const store = createStore({
     checkQueryToParameter(state) {
       let self = this;
       let uri = window.location.search.substring(1);
-      let params = new URLSearchParams(uri);
+      let params = new global.URLSearchParams(uri);
       let curTo = params.get("cur_to");
       if (curTo !== undefined) {
-        Object.values(state.buyCurrencies).forEach(async function(
-          buyCurrency,
+        Object.values(state.buyCurrencies).forEach(async function (
+          buyCurrency
         ) {
           if (buyCurrency.code === curTo) {
             self.commit("setActiveCurrency", [
@@ -286,7 +316,7 @@ const store = createStore({
     },
     setActiveCurrency(
       state,
-      [type, id, isCalculate = true, isTrash = true, isSetUrl = true],
+      [type, id, isCalculate = true, isTrash = true, isSetUrl = true]
     ) {
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
@@ -300,7 +330,7 @@ const store = createStore({
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);
       this.commit(`${type}HideBlock`);
-      
+
       if (state.sell_currency_id === null && state.buy_currency_id !== null) {
         this.dispatch("fetchSellCurrencies");
       }
@@ -318,7 +348,6 @@ const store = createStore({
             this.commit("setGetUrl");
           }, 1000);
         }
-        
       }
     },
     setRefresh(state) {
@@ -384,7 +413,7 @@ const store = createStore({
     deleteAllHistory() {
       history.pushState(false, document.title, "/");
       document
-        .querySelector("meta[name=\"description\"]")
+        .querySelector('meta[name="description"]')
         .setAttribute("content", "");
     },
     setGetUrl(state) {
@@ -410,10 +439,10 @@ const store = createStore({
   actions: {
     calculateForm(
       { state, commit, getters },
-      [type = "default", refresh = false],
+      [type = "default", refresh = false]
     ) {
       let helpBlock = document.querySelectorAll(".help-block");
-      helpBlock.forEach(function(el, i) {
+      helpBlock.forEach(function (el) {
         el.innerHTML = "";
       });
       const config = {
@@ -435,16 +464,17 @@ const store = createStore({
             lang: getters.getLanguage,
             refresh: refresh,
           }),
-          config,
+          config
         )
-        .then(function(response) {
+        .then(function (response) {
           commit("setCalculateForm", response, refresh);
+          commit("showRecoveryInformation");
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {
       return axios
         .get(state.proxy + getters.getLang + "/json/get-groups-and-currencies")
-        .then(function(response) {
+        .then(function (response) {
           commit("setGroupsAndCurrencies", response);
         });
     },
@@ -455,7 +485,7 @@ const store = createStore({
             sell_currency_id: state.sell_currency_id,
           },
         })
-        .then(function(response) {
+        .then(function (response) {
           commit("setBuyCurrencies", response);
         });
     },
@@ -466,7 +496,7 @@ const store = createStore({
             buy_currency_id: state.buy_currency_id,
           },
         })
-        .then(function(response) {
+        .then(function (response) {
           commit("setSellCurrencies", response);
         });
     },

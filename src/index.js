@@ -87,7 +87,7 @@ createApp({
       error: true,
     };
   },
-  
+
   components: {
     //Sections
     TheHeader,
@@ -170,6 +170,11 @@ createApp({
     isDetails() {
       return this.detailsHide;
     },
+    isCalculateData() {
+      return (
+        this.calculateData.max_buy_amount > this.calculateData.min_buy_amount
+      );
+    },
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
@@ -188,7 +193,7 @@ createApp({
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",
-        document.getElementById("language").value,
+        document.getElementById("language").value
       );
       if (object[nameWithLang] !== undefined) {
         return object[nameWithLang];
@@ -219,8 +224,8 @@ createApp({
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
-    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
-    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
 })
   .use(i18n)

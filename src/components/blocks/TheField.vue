@@ -130,7 +130,7 @@ export default {
       box-shadow: var(--shadow);
     }
 
-    & span {
+    & .icon {
       position: absolute;
       width: 20px;
       height: 20px;
@@ -138,6 +138,15 @@ export default {
       transform: translateY(-50%);
       background-size: cover;
       right: 10px;
+    }
+  }
+
+  & .has-error {
+    background: var(--ninth);
+    box-shadow: var(--shadow-inset-error);
+
+    &:hover {
+      box-shadow: var(--shadow-error);
     }
   }
 
@@ -157,10 +166,9 @@ export default {
       color: var(--eighth);
     }
   }
-  & select{
+
+  & select {
     background-color: var(--seventh);
   }
-
 }
-
 </style>
