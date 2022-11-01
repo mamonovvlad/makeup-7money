@@ -1,33 +1,31 @@
 <template>
-  <main class="check-status">
-    <the-title-big>
-      <template #title>{{ $t("checkOperation") }}</template>
-    </the-title-big>
-    <div class="container">
-      <div class="wrapper">
-        <div class="stylish-wrapper">
-          <the-title class="title" tag="h2">
-            {{ $t("transaction") }}
-          </the-title>
-          <div class="field">
-            <span class="form-group">
-              <input
-                id="operation"
-                type="text"
-                placeholder="AP12345678"
-                name="code"
-                v-model="value"
-              />
-            </span>
-          </div>
-          <the-button tag="button" @click.native="checkStatus">
-            <template #name> {{ $t("check") }}</template>
-          </the-button>
+  <the-title-big>
+    <template #title>{{ $t("checkOperation") }}</template>
+  </the-title-big>
+  <div class="container">
+    <div class="wrapper">
+      <div class="stylish-wrapper">
+        <the-title class="title" tag="h2">
+          {{ $t("transaction") }}
+        </the-title>
+        <div class="field">
+          <span class="form-group">
+            <input
+              id="operation"
+              type="text"
+              placeholder="AP12345678"
+              name="code"
+              v-model="value"
+            />
+          </span>
         </div>
-        <icon-check-status></icon-check-status>
+        <the-button tag="button" @click.native="checkStatus">
+          <template #name> {{ $t("check") }}</template>
+        </the-button>
       </div>
+      <icon-check-status></icon-check-status>
     </div>
-  </main>
+  </div>
 </template>
 
 <script>
@@ -54,7 +52,6 @@ export default {
       if (this.value !== null) {
         document.location.href = "/order/status/" + this.value;
       }
-
     },
   },
 };
