@@ -442,6 +442,12 @@ const store = createStore({
       [type = "default", refresh = false]
     ) {
       let helpBlock = document.querySelectorAll(".help-block");
+      let field = document.querySelectorAll(".field .form-group");
+      field.forEach(function (el) {
+        if (el.classList.contains("has-error")) {
+          el.classList.remove("has-error");
+        }
+      });
       helpBlock.forEach(function (el) {
         el.innerHTML = "";
       });

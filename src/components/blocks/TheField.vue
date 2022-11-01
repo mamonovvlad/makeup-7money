@@ -144,7 +144,9 @@ export default {
   & .has-error {
     background: var(--ninth);
     box-shadow: var(--shadow-inset-error);
-
+    & .help-block {
+      padding: 2px 4px;
+    }
     &:hover {
       box-shadow: var(--shadow-error);
     }
