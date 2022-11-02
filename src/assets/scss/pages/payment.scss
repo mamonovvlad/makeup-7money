@@ -61,27 +61,25 @@
     }
 
     & .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       @include _576 {
         flex-direction: column;
       }
 
       & .button {
-        width: 100%;
-
-        &:nth-child(2),
-        &:nth-child(3) {
-          width: calc(50% - 8px);
-          @include _576 {
-            width: 100%;
-          }
+        &:nth-child(1) {
+          grid-column-start: 1;
+          grid-column-end: 5;
         }
-
-        &:last-child {
-          order: -1;
+        &:nth-child(2) {
+          grid-column-start: 1;
+          grid-column-end: 3;
+        }
+        &:nth-child(3) {
+          grid-column-start: 3;
+          grid-column-end: 5;
         }
       }
     }
@@ -94,14 +92,13 @@
   }
 
   & .payment-instruction {
-    & .text_border {
-      margin-bottom: 16px;
-      border-radius: var(--radius-eigh);
-      padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
-      &:last-child {
-        margin-bottom: 0;
-      }
+    & .text_border {
+      border-radius: var(--radius-eigh);
+      padding: 10px;
     }
   }
 }
