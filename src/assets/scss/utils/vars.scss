@@ -10,8 +10,11 @@
   --red: #eb5757;
   --blue: #2f80ed;
   --font-family: "GothamPro";
-  --shadow-inset-error: inset -3px -3px 3px var(--red), inset 3px 3px 3px var(--red), 0 0 0 var(--red), 0 0 0 var(--red);
-  --shadow-error: inset 0 0 0 var(--red), inset 0 0 0 var(--red), -4px -2px 8px var(--red), 4px 2px 8px var(--red);
+  --shadow-inset-error: inset -3px -3px 3px var(--red),
+    inset 3px 3px 3px var(--red), 0 0 0 var(--red), 0 0 0 var(--red);
+  --shadow-error: inset 0 0 0 var(--red), inset 0 0 0 var(--red),
+    -4px -2px 8px var(--red), 4px 2px 8px var(--red);
+  --shadow-inset-autofill-error: inset 0 0 0 20px #e9c1c1;
 }
 
 //Light Theme
@@ -30,13 +33,13 @@
   --ninth: #e9c1c1;
   --shadow-inset-autofill: inset 0 0 0 20px #e8edf1;
   --shadow: inset 0 0 0 #ffffff, inset 0 0 0 rgba(136, 165, 191, 0.48),
-  -4px -2px 8px #ffffff, 4px 2px 8px rgba(136, 165, 191, 0.54);
+    -4px -2px 8px #ffffff, 4px 2px 8px rgba(136, 165, 191, 0.54);
   --shadow-inset: inset -3px -3px 3px #ffffff,
-  inset 3px 3px 3px rgba(136, 165, 191, 0.48), 0 0 0 #ffffff,
-  0 0 0 rgba(136, 165, 191, 0.54);
+    inset 3px 3px 3px rgba(136, 165, 191, 0.48), 0 0 0 #ffffff,
+    0 0 0 rgba(136, 165, 191, 0.54);
   --shadow-primary: -4px -2px 8px #beffd8, 4px 2px 8px rgba(136, 165, 191, 0.54);
   --shadow-primary-inset: inset -3px -3px 3px #16c85d, inset 3px 3px 3px #209e53,
-  0 0 0 #16c85d, 0 0 0 #209e53;
+    0 0 0 #16c85d, 0 0 0 #209e53;
 }
 
 //Dark Theme
@@ -55,10 +58,10 @@
   --ninth: #463030;
   --shadow-inset-autofill: inset 0 0 0 20px #252525;
   --shadow: inset 0 0 0 #515359, inset 0 0 0 #070707, -4px -2px 8px #515359,
-  4px 2px 8px #070707;
+    4px 2px 8px #070707;
   --shadow-inset: inset -3px -3px 3px #515359, inset 3px 3px 3px #070707,
-  0 0 0 #515359, 0 0 0 #070707;
+    0 0 0 #515359, 0 0 0 #070707;
   --shadow-primary: inset -3px -3px 3px #46fddb, inset 3px 3px 3px #34e2c1;
   --shadow-primary-inset: inset -3px -3px 3px #46fddb, inset 3px 3px 3px #34e2c1,
-  0 0 0 #46fddb, 0 0 0 #34e2c1;
+    0 0 0 #46fddb, 0 0 0 #34e2c1;
 }

@@ -115,7 +115,9 @@ h6 {
 // Default
 html {
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial,Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: system-ui, -apple-system, "BlinkMacSystemFont", "Segoe UI",
+    "Roboto", "Helvetica Neue", "Arial,Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 *,
@@ -184,25 +186,16 @@ select {
   border: none;
 }
 
-.field input:-webkit-autofill, .field input:-webkit-autofill:active, .field input:-webkit-autofill:focus, .field input:-webkit-autofill:hover {
-  -webkit-box-shadow: var(--shadow-inset-autofill);
-  -webkit-text-fill-color: var(--quaternary) !important;
-
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none
+  -webkit-appearance: none;
 }
-
 
 input[type="number"] {
-  -moz-appearance: textfield
+  -moz-appearance: textfield;
 }
 
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
-

@@ -144,11 +144,25 @@ export default {
   & .has-error {
     background: var(--ninth);
     box-shadow: var(--shadow-inset-error);
-    & .help-block {
-      padding: 2px 4px;
-    }
+
     &:hover {
       box-shadow: var(--shadow-error);
+    }
+
+    & input,
+    & textarea,
+    & select {
+      &::placeholder {
+        color: var(--red);
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:active,
+      &:-webkit-autofill:focus,
+      &:-webkit-autofill:hover {
+        -webkit-box-shadow: var(--shadow-inset-autofill-error);
+        -webkit-text-fill-color: var(--red) !important;
+      }
     }
   }
 
@@ -166,6 +180,14 @@ export default {
 
     &::placeholder {
       color: var(--eighth);
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:active,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:hover {
+      -webkit-box-shadow: var(--shadow-inset-autofill);
+      -webkit-text-fill-color: var(--quaternary) !important;
     }
   }
 
