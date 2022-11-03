@@ -26,7 +26,6 @@ import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
 import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
-import TheWarning from "./components/blocks/TheWarning.vue";
 import TheAccountNavigation from "./components/blocks/TheAccountNavigation.vue";
 import TheTitle from "./components/blocks/TheTitle.vue";
 import TheTitleBig from "./components/blocks/TheTitleBig.vue";
@@ -110,7 +109,6 @@ createApp({
     TheExchangeInformation,
     TheDiscount,
     TheAccountNavigation,
-    TheWarning,
     TheCurrenciesList,
     TheErrorButtons,
     TheCurrenciesColumnSell,
