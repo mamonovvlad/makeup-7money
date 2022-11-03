@@ -34,7 +34,6 @@ import TheSteps from "./components/blocks/TheSteps.vue";
 import TheAnswers from "./components/blocks/TheAnswers.vue";
 import TheField from "./components/blocks/TheField.vue";
 import TheExchangeInformation from "./components/blocks/TheExchangeInformation.vue";
-import TheCopyText from "./components/blocks/TheCopyText.vue";
 import TheDiscount from "./components/blocks/TheDiscount.vue";
 import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
 import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
@@ -45,13 +44,14 @@ import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
 //Buttons
 import TheButton from "./components/buttons/TheButton.vue";
 import TheCurrenciesList from "./components/blocks/TheCurrenciesList.vue";
+import TheClose from "./components/buttons/TheClose.vue";
 //404
 import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
-import TheLeaveFeedback from "./components/popups/TheLeaveFeedback.vue";
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
 //Icons
+import IconCopy from "./components/icons/IconCopy.vue";
 import IconPig from "./components/icons/IconPig.vue";
 import IconTimeProcessing from "./components/icons/IconTimeProcessing.vue";
 import IconEngineeringWorks from "./components/icons/IconEngineeringWorks.vue";
@@ -111,7 +111,6 @@ createApp({
     TheDiscount,
     TheAccountNavigation,
     TheWarning,
-    TheCopyText,
     TheCurrenciesList,
     TheErrorButtons,
     TheCurrenciesColumnSell,
@@ -121,11 +120,12 @@ createApp({
     TheTimeProcessing,
     //Buttons
     TheButton,
+    TheClose,
     //Popups
-    TheLeaveFeedback,
     TheRecoveryInformation,
     TheLacksWindow,
     //Icons
+    IconCopy,
     IconPig,
     IconThanks,
     IconTimeProcessing,
@@ -189,7 +189,9 @@ createApp({
       "setIsVerified",
       "setOfExchange",
       "trashClick",
+      "copyText",
     ]),
+
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",

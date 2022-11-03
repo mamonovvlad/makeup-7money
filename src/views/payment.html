@@ -113,7 +113,14 @@
                       <h2 class="text--green">Завершена</h2>
                       <span
                         >Номер операции: <strong>AP0059aee775</strong>
-                        <the-copy-text copy-text="AP0059aee775"></the-copy-text>
+                        <button
+                          data-copy="AP075"
+                          class="copy"
+                          @click="copyText($event)"
+                        >
+                          <span class="copied d-none"> {{ $t("copied") }}</span>
+                          <icon-copy></icon-copy>
+                        </button>
                       </span>
                       <span
                         >Дата заявки:
@@ -146,7 +153,14 @@
                 <div class="operation-info">
                   <span>
                     PerfectMoney Batch: <strong>486761691</strong>
-                    <the-copy-text copy-text="486761691"></the-copy-text>
+                    <button
+                      data-copy="AP075"
+                      class="copy"
+                      @click="copyText($event)"
+                    >
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
                   </span>
                   <span
                     >Выплата поступила в размере:
@@ -163,9 +177,14 @@
                         f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
                       </strong>
                     </a>
-                    <the-copy-text
-                      copy-text="f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74"
-                    ></the-copy-text>
+                    <button
+                      data-copy="AP075"
+                      class="copy"
+                      @click="copyText($event)"
+                    >
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
                   </span>
                   <span>
                     Обычно выплата производится в течении
@@ -179,10 +198,14 @@
                         f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
                       </strong>
                     </a>
-                    <the-copy-text
-                      copy-text="f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74"
+                    <button
+                      data-copy="AP075"
+                      class="copy"
+                      @click="copyText($event)"
                     >
-                    </the-copy-text>
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
                   </span>
                   <p class="attention line-break">
                     f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
@@ -302,14 +325,26 @@
                 <div class="operation-info">
                   <span>
                     Совершите платеж на сумму: <strong>0.005 BTC</strong>
-                    <the-copy-text copy-text="0.005"></the-copy-text>
+                    <button
+                      data-copy="AP075"
+                      class="copy"
+                      @click="copyText($event)"
+                    >
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
                   </span>
                   <span>
                     На счет:
                     <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
-                    <the-copy-text
-                      copy-text="3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU"
-                    ></the-copy-text>
+                    <button
+                      data-copy="AP075"
+                      class="copy"
+                      @click="copyText($event)"
+                    >
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
                   </span>
                 </div>
                 <p>

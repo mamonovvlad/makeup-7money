@@ -35,6 +35,10 @@
   display: none !important;
 }
 
+.d-flex {
+  display: flex;
+}
+
 .scroll-y {
   overflow-y: scroll;
 }
@@ -90,7 +94,6 @@
   position: absolute;
   right: 8px;
   bottom: -4px;
-  padding: 2px 4px;
   font-size: 11px;
   background: var(--white);
   border-radius: var(--radius-four);

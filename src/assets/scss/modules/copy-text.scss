@@ -1,0 +1,27 @@
+.copy {
+  position: relative;
+  height: 15px;
+  width: 15px;
+  color: var(--primary);
+  display: inline-flex;
+  margin-left: 5px;
+  &:before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  & span {
+    position: absolute;
+    width: max-content;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--radius-four);
+    box-shadow: var(--shadow);
+    background: var(--seventh);
+    color: var(--quaternary);
+    padding: 4px 6px;
+    z-index: 1;
+  }
+}

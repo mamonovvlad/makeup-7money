@@ -13,10 +13,10 @@
     <div id="app" v-cloak>
       <div class="app" :data-theme="colorSpectrum">
         <the-header class="background"></the-header>
-        <the-title-big>
-          <template #title> Статус операции AP0059aee775 </template>
-        </the-title-big>
         <main class="application-status">
+          <the-title-big>
+            <template #title> Статус операции AP0059aee775</template>
+          </the-title-big>
           <div class="container">
             <div class="wrapper">
               <div class="application-status__info">
@@ -25,17 +25,25 @@
                     <div class="operation-info">
                       <h2 class="text--green">Завершена</h2>
                       <span
-                        >Номер операции: <strong>AP0059aee775</strong
-                        ><the-copy-text copy-text="AP0059aee775"></the-copy-text
-                      ></span>
+                        >Номер операции:
+                        <strong>AP0059aee775</strong>
+                        <button
+                          data-copy="AP075"
+                          class="copy"
+                          @click="copyText($event)"
+                        >
+                          <span class="copied d-none"> {{ $t("copied") }}</span>
+                          <icon-copy></icon-copy>
+                        </button>
+                      </span>
                       <span
                         >Дата заявки:
-                        <strong>18 янв. 2021 г., 17:27:58</strong></span
-                      >
+                        <strong>18 янв. 2021 г., 17:27:58</strong>
+                      </span>
                       <span
                         >Статус операции:
-                        <strong>Ваша Заявка оплачена</strong></span
-                      >
+                        <strong>Ваша Заявка оплачена</strong>
+                      </span>
                     </div>
                     <div class="operations">
                       <div class="items">
@@ -70,12 +78,20 @@
                     >
                     <span
                       >Ваш TXID:
-                      <a href="/" class="line-break"
-                        ><strong
-                          >f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74</strong
-                        ></a
-                      ><the-copy-text copy-text="few"></the-copy-text
-                    ></span>
+                      <a href="/" class="line-break">
+                        <strong>
+                          f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
+                        </strong>
+                      </a>
+                      <button
+                        data-copy="A3434434075"
+                        class="copy"
+                        @click="copyText($event)"
+                      >
+                        <span class="copied d-none"> {{ $t("copied") }} </span>
+                        <icon-copy></icon-copy>
+                      </button>
+                    </span>
                     <span
                       >Обычно выплата производится в течении
                       <strong>5-30 минут</strong> после 1-го подтверждения</span
@@ -83,7 +99,33 @@
                   </div>
                 </div>
               </div>
-              <the-leave-feedback></the-leave-feedback>
+              <div class="leave-feedback">
+                <div class="stylish-wrapper">
+                  <the-close></the-close>
+                  <icon-thanks></icon-thanks>
+                  <p>
+                    <strong class="text--black-white">Благодарим</strong> за
+                    использование нашего сервиса! Уважаемый клиент, если Вам
+                    понравилось обслуживание нашего сервиса, Вы можете
+                    <strong class="text--black-white">
+                      оставить отзыв здесь:
+                    </strong>
+                  </p>
+                  <the-button
+                    tag="a"
+                    target="_blank"
+                    href="//www.bestchange.ru/7money-exchanger.html"
+                  >
+                    <template #name>{{ $t("Leave feedback") }}</template>
+                  </the-button>
+                  <p>
+                    Либо на нашем
+                    <a href="/reviews">
+                      <strong class="text--green">сайте</strong>
+                    </a>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </main>
@@ -92,5 +134,71 @@
     </div>
     <input type="hidden" id="login" value="0" />
     <input type="hidden" id="language" value="ru" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function getCookie(name) {
+          let matches = document.cookie.match(
+            new RegExp(
+              "(?:^|; )" +
+                name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+                "=([^;]*)"
+            )
+          );
+          return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+        function setCookie(name, value, options) {
+          options = options || {};
+
+          let expires = options.expires;
+
+          if (typeof expires == "number" && expires) {
+            let d = new Date();
+            d.setTime(d.getTime() + expires * 1000);
+            expires = options.expires = d;
+          }
+          if (expires && expires.toUTCString) {
+            options.expires = expires.toUTCString();
+          }
+
+          value = encodeURIComponent(value);
+
+          let updatedCookie = name + "=" + value;
+
+          for (let propName in options) {
+            updatedCookie += "; " + propName;
+            let propValue = options[propName];
+            if (propValue !== true) {
+              updatedCookie += "=" + propValue;
+            }
+          }
+
+          document.cookie = updatedCookie;
+        }
+
+        function deleteCookie(name) {
+          setCookie(name, "", {
+            expires: -1,
+            path: "/",
+          });
+        }
+
+        let close = document.querySelector(".leave-feedback .button-close");
+        if (close) {
+          close.addEventListener("click", function () {
+            document.querySelector(".leave-feedback").classList.add("d-none");
+            setCookie("leave-feedback", 1);
+            console.log("1");
+          });
+        }
+        if (window.innerWidth <= 992) {
+          if (getCookie("leave-feedback") === undefined) {
+            document.querySelector(".leave-feedback").classList.add("d-flex");
+          } else {
+            document.querySelector(".leave-feedback").classList.add("d-none");
+          }
+        }
+      });
+    </script>
   </body>
 </html>

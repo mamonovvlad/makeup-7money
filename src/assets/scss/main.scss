@@ -8,6 +8,7 @@
 @import "utils/helpers";
 
 //Импорты модули
+@import "modules/copy-text";
 @import "modules/pagination";
 @import "modules/icons";
 @import "modules/list-wrapper";
@@ -31,6 +32,8 @@
 @import "pages/payment";
 @import "pages/partner";
 
+//Импорты всплывающих окон
+@import "popups/leave-feedback";
 html {
   overflow: hidden;
 }

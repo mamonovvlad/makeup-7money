@@ -94,21 +94,32 @@
                   <div class="line"></div>
                   <div class="operation-info">
                     <span
-                      >Реферальная ссылка:<strong
-                        >https://7money.co/?rid=8856</strong
-                      ><the-copy-text
-                        copy-text="https://7money.co/?rid=8856"
-                      ></the-copy-text
-                    ></span>
+                      >Реферальная ссылка:<strong>
+                        https://7money.co/?rid=8856
+                      </strong>
+                      <button
+                        data-copy="AP075"
+                        class="copy"
+                        @click="copyText($event)"
+                      >
+                        <span class="copied d-none"> {{ $t("copied") }}</span>
+                        <icon-copy></icon-copy>
+                      </button>
+                    </span>
                     <span>
                       HTML код для добавления на сайт или форум:
                       <strong
                         >&lt;a href='https://7money.co/?rid=8856'
                         target='_blank'>Обмен валют&lt;/a&gt;</strong
                       >
-                      <the-copy-text
-                        copy-text="<a href='https://7money.co/?rid=8856' target'_blank'>Обмен валют</a>"
-                      ></the-copy-text>
+                      <button
+                        data-copy="AP075"
+                        class="copy"
+                        @click="copyText($event)"
+                      >
+                        <span class="copied d-none"> {{ $t("copied") }}</span>
+                        <icon-copy></icon-copy>
+                      </button>
                     </span>
                   </div>
                 </div>

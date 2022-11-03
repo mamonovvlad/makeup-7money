@@ -210,10 +210,10 @@ export default {
           "X-Requested-With": "XMLHttpRequest",
         },
       };
-      document.querySelectorAll(".help-block").forEach(function(el, i) {
+      document.querySelectorAll(".help-block").forEach(function (el, i) {
         el.innerHTML = "";
       });
-      axios.post(action, formData, config).then(function(response) {
+      axios.post(action, formData, config).then(function (response) {
         if (Object.keys(response.data).length) {
           let data = response.data;
           for (let k in data) {
@@ -241,8 +241,8 @@ export default {
     },
   },
   mounted() {
-    this.csrfToken = document.querySelector("meta[name=\"csrf-token\"]").content;
-    this.csrfParam = document.querySelector("meta[name=\"csrf-param\"]").content;
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
 };
 </script>
@@ -252,7 +252,12 @@ export default {
 
 .authorization {
   & .show-password {
+    width: 25px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
+    position: absolute;
+    right: 8px;
   }
 
   & .forgot {

@@ -48,6 +48,17 @@ const store = createStore({
     isShowWindow: false,
   }, //Хранения данных
   mutations: {
+    copyText(state, event) {
+      try {
+        navigator.clipboard.writeText(event.target.dataset.copy);
+        event.target.querySelector(".copied").classList.remove("d-none");
+        setTimeout(() => {
+          event.target.querySelector(".copied").classList.add("d-none");
+        }, 1500);
+      } catch (e) {
+        throw e;
+      }
+    },
     showRecoveryInformation() {
       let itemsWrapper = document.querySelectorAll(".items__wrapper .item");
 
