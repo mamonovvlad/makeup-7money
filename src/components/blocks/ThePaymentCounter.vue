@@ -33,7 +33,7 @@ export default {
       this.isActive = !this.isActive;
     },
     isShowNav() {
-      this.isActive = window.innerWidth > 768;
+      this.isActive = window.innerWidth > 992;
     }
   },
   mounted() {
@@ -53,7 +53,6 @@ export default {
   }
 
   & .wrapper {
-    transition: all 200ms ease;
     background: var(--secondary);
     padding: 20px;
     height: 100%;

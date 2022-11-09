@@ -79,9 +79,6 @@ const store = createStore({
             });
           });
         }
-
-        //   console.log(inp);
-        //   // console.log(item);
       });
     },
     calculationFormSellAmountCommission() {
@@ -130,7 +127,7 @@ const store = createStore({
       state.of_exchange = !!e.target.checked;
     },
     setIsVerified(state, e) {
-      state.is_verified = !!e.target.checked;
+      state.is_verified = e.target.checked ? 1 : 0;
       this.dispatch("calculateForm", ["revert"]);
     },
     updateSellAmount(state) {
@@ -409,6 +406,7 @@ const store = createStore({
     },
     sellHideBlock(state) {
       this.commit("hideBlocks");
+
       if (
         window.innerWidth <= 768 &&
         state.sell_currency_id !== null &&
@@ -465,8 +463,6 @@ const store = createStore({
         inputHiddenLastSellId.value = state.sell_currency_id;
         inputHiddenLastBuyId.value = state.buy_currency_id;
       }
-      console.log(inputHiddenLastSellId.value + " input Sell");
-      console.log(inputHiddenLastBuyId.value + " input Buy");
 
       field.forEach(function(el) {
         if (el.classList.contains("has-error")) {

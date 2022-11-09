@@ -121,20 +121,15 @@
                           @click="setIsVerified($event)"
                         />
                         <label class="label" for="isSellVerified">
-                              <span
-                                v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"
-                              ></span>
+                          <span v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"></span>
                         </label>
                       </div>
                     </transition>
                     <transition name="fade">
                       <p
                         class="commission"
-                        v-if="sellCurrency.id === currencyModel.PRIVAT_BANK_ID"
-                      >
-                            <span
-                              v-html="getValueByLanguage(sellCurrency, 'name_?')"
-                            ></span>
+                        v-if="sellCurrency.id === currencyModel.PRIVAT_BANK_ID">
+                        <span v-html="getValueByLanguage(sellCurrency, 'name_?')"></span>
                         =
                         <strong>
                           {{ calculateData.sell_comission }}% ({{

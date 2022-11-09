@@ -1,6 +1,6 @@
 <template>
   <div
-    class="currencies-column stylish-wrapper column--sell"
+    class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideSell }"
   >
     <template v-if="currenciesHideSell">

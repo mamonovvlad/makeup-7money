@@ -1,6 +1,6 @@
 <template>
   <div
-    class="currencies-column stylish-wrapper column--buy"
+    class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideBuy }"
   >
     <template v-if="currenciesHideBuy">
@@ -45,18 +45,18 @@ export default {
       index: 0,
       buttons: [
         {
-          name: "course",
+          name: "course"
         },
         {
-          name: "reserves",
-        },
-      ],
+          name: "reserves"
+        }
+      ]
     };
   },
   components: {
     TheTitle,
     TheFilters,
-    TheCurrenciesList,
+    TheCurrenciesList
   },
   computed: {
     ...mapGetters([
@@ -66,13 +66,13 @@ export default {
       "buyCurrencyId",
       "sellCurrencyId",
       "currenciesHideBuy",
-      "getRateReserves",
-    ]),
+      "getRateReserves"
+    ])
   },
   methods: {
     toggleInformation(idx) {
       this.index = idx;
-    },
-  },
+    }
+  }
 };
 </script>
