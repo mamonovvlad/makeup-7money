@@ -460,8 +460,13 @@ const store = createStore({
       let inputHiddenLastBuyId = document.getElementById(
         "inputHiddenLastBuyId"
       );
-      inputHiddenLastSellId.value = state.sell_currency_id;
-      inputHiddenLastBuyId.value = state.buy_currency_id;
+
+      if (inputHiddenLastSellId && inputHiddenLastBuyId) {
+        inputHiddenLastSellId.value = state.sell_currency_id;
+        inputHiddenLastBuyId.value = state.buy_currency_id;
+      }
+      console.log(inputHiddenLastSellId.value + " input Sell");
+      console.log(inputHiddenLastBuyId.value + " input Buy");
 
       field.forEach(function(el) {
         if (el.classList.contains("has-error")) {
