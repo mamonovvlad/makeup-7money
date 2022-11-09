@@ -45,7 +45,7 @@ const store = createStore({
     currentTime: 60,
     timer: null,
     //
-    isShowWindow: false,
+    isShowWindow: false
   }, //Хранения данных
   mutations: {
     copyText(state, event) {
@@ -187,7 +187,7 @@ const store = createStore({
     setDocumentTitle(state) {
       document.title = state.calculateData.course_title;
       document
-        .querySelector('meta[name="description"]')
+        .querySelector("meta[name=\"description\"]")
         .setAttribute("content", state.calculateData.course_description);
     },
     setDefinitionTheme(state, index) {
@@ -269,7 +269,7 @@ const store = createStore({
             parseInt(inputHiddenLastSellId.value),
             true,
             false,
-            false,
+            false
           ]);
         }
         if (inputHiddenLastBuyId.value > 0) {
@@ -278,7 +278,7 @@ const store = createStore({
             parseInt(inputHiddenLastBuyId.value),
             true,
             false,
-            false,
+            false
           ]);
         }
       }
@@ -296,7 +296,7 @@ const store = createStore({
       let self = this;
       let curFrom = params.get("cur_from");
       if (curFrom !== undefined) {
-        Object.values(state.sellCurrencies).forEach(function (sellCurrency) {
+        Object.values(state.sellCurrencies).forEach(function(sellCurrency) {
           if (sellCurrency.code === curFrom) {
             self.commit("setActiveCurrency", ["sell", sellCurrency.id]);
             return sellCurrency.code === curFrom;
@@ -310,7 +310,7 @@ const store = createStore({
       let params = new global.URLSearchParams(uri);
       let curTo = params.get("cur_to");
       if (curTo !== undefined) {
-        Object.values(state.buyCurrencies).forEach(async function (
+        Object.values(state.buyCurrencies).forEach(async function(
           buyCurrency
         ) {
           if (buyCurrency.code === curTo) {
@@ -318,7 +318,7 @@ const store = createStore({
               "buy",
               buyCurrency.id,
               true,
-              false,
+              false
             ]);
             return buyCurrency.code === curTo;
           }
@@ -424,7 +424,7 @@ const store = createStore({
     deleteAllHistory() {
       history.pushState(false, document.title, "/");
       document
-        .querySelector('meta[name="description"]')
+        .querySelector("meta[name=\"description\"]")
         .setAttribute("content", "");
     },
     setGetUrl(state) {
@@ -432,9 +432,9 @@ const store = createStore({
       if (store.getters.getLanguage !== "ru") {
         url += "/" + store.getters.getLanguage;
       }
-      if (state.calculateData.length === 0) {
+      if (state.calculateData !== "undefined" && state.calculateData.length === 0) {
         history.pushState(false, document.title, url);
-      } else {
+      } else if (state.sellCurrency.code !== "undefined") {
         url +=
           "/exchange/" +
           state.sellCurrency.code.toLowerCase() +
@@ -445,7 +445,7 @@ const store = createStore({
     },
     setRateReserves(state, res) {
       state.rateReserves = res.data;
-    },
+    }
   }, //Функция для изменения state
   actions: {
     calculateForm(
@@ -454,18 +454,27 @@ const store = createStore({
     ) {
       let helpBlock = document.querySelectorAll(".help-block");
       let field = document.querySelectorAll(".field .form-group");
-      field.forEach(function (el) {
+      let inputHiddenLastSellId = document.getElementById(
+        "inputHiddenLastSellId"
+      );
+      let inputHiddenLastBuyId = document.getElementById(
+        "inputHiddenLastBuyId"
+      );
+      inputHiddenLastSellId.value = state.sell_currency_id;
+      inputHiddenLastBuyId.value = state.buy_currency_id;
+
+      field.forEach(function(el) {
         if (el.classList.contains("has-error")) {
           el.classList.remove("has-error");
         }
       });
-      helpBlock.forEach(function (el) {
+      helpBlock.forEach(function(el) {
         el.innerHTML = "";
       });
       const config = {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
       };
       axios
         .post(
@@ -479,11 +488,11 @@ const store = createStore({
             type: type,
             city_id: state.city_id,
             lang: getters.getLanguage,
-            refresh: refresh,
+            refresh: refresh
           }),
           config
         )
-        .then(function (response) {
+        .then(function(response) {
           commit("setCalculateForm", response, refresh);
           commit("showRecoveryInformation");
         });
@@ -491,7 +500,7 @@ const store = createStore({
     fetchGroupsAndCurrencies({ state, commit, getters }) {
       return axios
         .get(state.proxy + getters.getLang + "/json/get-groups-and-currencies")
-        .then(function (response) {
+        .then(function(response) {
           commit("setGroupsAndCurrencies", response);
         });
     },
@@ -499,10 +508,10 @@ const store = createStore({
       axios
         .get(state.proxy + getters.getLang + "/json/get-buy-currencies", {
           params: {
-            sell_currency_id: state.sell_currency_id,
-          },
+            sell_currency_id: state.sell_currency_id
+          }
         })
-        .then(function (response) {
+        .then(function(response) {
           commit("setBuyCurrencies", response);
         });
     },
@@ -510,10 +519,10 @@ const store = createStore({
       axios
         .get(state.proxy + getters.getLang + "/json/get-sell-currencies", {
           params: {
-            buy_currency_id: state.buy_currency_id,
-          },
+            buy_currency_id: state.buy_currency_id
+          }
         })
-        .then(function (response) {
+        .then(function(response) {
           commit("setSellCurrencies", response);
         });
     },
@@ -525,7 +534,7 @@ const store = createStore({
       }
       let json = JSON.parse(data.innerHTML);
       commit("setGroupsAndCurrenciesFromPage", json);
-    },
+    }
   }, //Функции асинхронные
   getters: {
     getType(state) {
@@ -610,7 +619,7 @@ const store = createStore({
     },
     proxy(state) {
       return state.proxy;
-    },
-  }, // Получения state
+    }
+  } // Получения state
 });
 export default store;
