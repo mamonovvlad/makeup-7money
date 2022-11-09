@@ -33,7 +33,7 @@ import IconBurger from "../icons/IconBurger.vue";
 import TheLanguages from "../blocks/TheLanguages.vue";
 import TheAuthorizationButtons from "./TheAuthorizationButtons.vue";
 import TheSocialNetwork from "../blocks/TheSocialNetwork.vue";
-import TheBurger from "../blocks/TheBurger.vue";
+import TheBurger from "../popups/TheBurger.vue";
 
 export default {
   name: "TheButtons",
@@ -45,31 +45,31 @@ export default {
           id: 0,
           icon: "the-languages",
           className: "languages",
-          isActive: false,
+          isActive: false
         },
         {
           id: 1,
           icon: "icon-account",
           block: "the-authorization-buttons",
-          animate: "animation-from-top",
           className: "button__account",
           isActive: false,
+          animate: "fade"
         },
         {
           id: 2,
           icon: "icon-share",
           block: "the-social-network",
           className: "button__share",
-          isActive: false,
+          isActive: false
         },
         {
           id: 3,
           icon: "icon-burger",
           block: "the-burger",
-          animate: "animation-from-right",
           isActive: false,
-        },
-      ],
+          animate: "slide-fade"
+        }
+      ]
     };
   },
   components: {
@@ -79,7 +79,7 @@ export default {
     TheLanguages,
     TheAuthorizationButtons,
     TheSocialNetwork,
-    TheBurger,
+    TheBurger
   },
   methods: {
     indexTransfer(idx) {
@@ -113,11 +113,11 @@ export default {
           }
         }
       }
-    },
+    }
   },
   mounted() {
     document.addEventListener("click", this.hideMenu);
-  },
+  }
 };
 </script>
 
@@ -187,6 +187,7 @@ export default {
     row-gap: 15px;
     margin-top: 10px;
     transition: var(--transition);
+
     & img {
       height: 25px;
     }

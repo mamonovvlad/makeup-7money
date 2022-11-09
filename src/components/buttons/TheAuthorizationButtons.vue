@@ -52,7 +52,6 @@ export default {
   background-color: var(--seventh);
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
-  transition: all 200ms ease;
   padding: 15px;
   top: 70px;
   left: 0;

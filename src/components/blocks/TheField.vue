@@ -41,11 +41,9 @@
       </textarea>
       <slot name="icon"></slot>
     </span>
-    <transition name="animation-from-right">
       <div v-show="this.$slots.error && showError" class="help-block">
         <slot name="error"></slot>
       </div>
-    </transition>
   </div>
 </template>
 
