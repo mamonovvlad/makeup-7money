@@ -8,12 +8,10 @@
     >
       <component :is="button.icon"></component>
     </button>
-    <div class="canvas-wrapper"></div>
   </div>
 </template>
 
 <script>
-import html2canvas from "html2canvas";
 import IconSun from "../icons/IconSun.vue";
 import IconMoon from "../icons/IconMoon.vue";
 import { mapMutations } from "vuex";
@@ -40,44 +38,9 @@ export default {
   },
   methods: {
     ...mapMutations(["setDefinitionTheme"]),
-    //Написанно в перемешку
     async toggle(idx, e) {
-      let duration = 400;
-      let x = e.clientX;
-      let y = e.clientY;
-      let canvasWrapper = document.querySelector(".canvas-wrapper");
-
       if (this.index !== idx) {
-        await html2canvas(document.documentElement).then(function (canvas) {
-          const ctx = canvas.getContext("2d");
-          const { clientWidth, clientHeight } = document.body;
-          let startDate = Date.now();
-          const finalRadius = Math.sqrt(
-            clientWidth * clientWidth,
-            clientHeight * clientHeight
-          );
-          canvasWrapper.appendChild(canvas);
-          canvasWrapper.style.display = "block";
-          ctx.globalCompositeOperation = "destination-out";
-          ctx.fillColor = "white";
-
-          const render = () => {
-            const diff = Date.now() - startDate;
-            const progress = diff / duration;
-            const radius = finalRadius * progress;
-            ctx.beginPath();
-            ctx.arc(x, y, radius, 0, 2 * Math.PI);
-            ctx.fill();
-            if (progress < 1) requestAnimationFrame(render);
-          };
-          requestAnimationFrame(render);
-        });
         this.index = idx;
-        setTimeout(() => {
-          canvasWrapper.removeChild(canvasWrapper.querySelector("canvas"));
-          canvasWrapper.style.display = "none";
-        }, duration);
-
         localStorage.setItem("theme", this.index);
         this.definitionTheme();
       }
