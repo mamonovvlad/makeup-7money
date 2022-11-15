@@ -114,6 +114,7 @@ export default {
 .header {
   position: relative;
   padding: 30px 0;
+  background: var(--secondary);
   @include _576 {
     padding-top: 50px;
   }

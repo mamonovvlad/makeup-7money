@@ -43,13 +43,7 @@
   overflow-y: scroll;
 }
 
-.background {
-  background: var(--secondary);
-}
-
 .background--large {
-  background: var(--secondary);
-
   &:before {
     content: "";
     position: absolute;
