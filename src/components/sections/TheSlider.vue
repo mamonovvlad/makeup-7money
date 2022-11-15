@@ -120,22 +120,18 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 4px;
     }
 
     & h3 {
       font-weight: 500;
-      font-size: 12px;
-      @include crop-height(2);
+      font-size: 14px;
+      @include crop-height(1);
       color: var(--quaternary);
 
       &:hover {
         color: var(--primary);
       }
-    }
-
-    & .date,
-    & p {
-      font-size: 18px;
     }
 
     & .date {
@@ -144,7 +140,8 @@ export default {
     }
 
     & p {
-      display: none;
+      font-size: 12px;
+      @include crop-height(4);
     }
   }
 
@@ -182,7 +179,7 @@ export default {
       }
 
       & .box {
-        margin-bottom: 15px;
+        margin-bottom: 14px;
       }
 
       & h3 {
