@@ -258,8 +258,8 @@ export default {
     cursor: pointer;
     position: absolute;
     right: 8px;
+    color: var(--quaternary);
   }
-
   & .forgot {
     text-decoration: none;
   }

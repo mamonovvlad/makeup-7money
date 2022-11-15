@@ -94,7 +94,7 @@
   position: absolute;
   right: 8px;
   bottom: -4px;
-  font-size: 11px;
+  font-size: 10px;
   background: var(--white);
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
@@ -161,5 +161,12 @@
     height: 100%;
     opacity: 0.8;
     z-index: 3;
+  }
+}
+
+.news,
+.blog {
+  & .pagination {
+    margin-top: 20px;
   }
 }

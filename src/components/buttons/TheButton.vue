@@ -86,8 +86,14 @@ export default {
 }
 
 .disabled {
-  cursor: not-allowed;
-  background: var(--secondary);
-  color: var(--sixth);
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    cursor: not-allowed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

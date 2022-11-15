@@ -92,7 +92,6 @@ textarea {
 
 main {
   position: relative;
-  z-index: 1;
   flex-grow: 1;
 }
 
@@ -120,14 +119,4 @@ main {
   @include _576 {
     max-width: 320px;
   }
-}
-
-.canvas-wrapper {
-  position: fixed;
-  display: none;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10;
 }
