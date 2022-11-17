@@ -1,6 +1,6 @@
 <template>
   <div class="public-information">
-    <the-confetti></the-confetti>
+    <the-confetti v-if="animationConfetti"></the-confetti>
     <p>
       <slot></slot>
     </p>
@@ -10,6 +10,12 @@
 import TheConfetti from "./TheConfetti.vue";
 
 export default {
+  props: {
+    animationConfetti: {
+      type: Boolean,
+      default: false,
+    },
+  },
   components: {
     TheConfetti,
   },
