@@ -7,13 +7,17 @@
 </template>
 <style lang="scss">
 .public-information {
-  background: var(--light-green);
+  background: var(--black);
   text-align: center;
   padding: 5px;
 
   & p,
   & a {
     color: var(--white);
+  }
+
+  & svg {
+    width: 26px;
   }
 
   & a {

@@ -22,6 +22,19 @@ export default {
 </script>
 <style lang="scss">
 @import "../../assets/scss/utils/mixin";
+.button-inline {
+  display: inline-flex;
+  width: auto;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: var(--secondary);
+  background: var(--gradient);
+  @include _768 {
+    font-size: 12px;
+  }
+}
 
 .button {
   display: flex;

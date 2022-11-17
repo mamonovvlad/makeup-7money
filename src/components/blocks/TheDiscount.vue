@@ -12,8 +12,8 @@
 
 <script>
 import TheSwitched from "../buttons/TheSwitched.vue";
-
 let switched = document.getElementById("switched");
+
 export default {
   name: "TheDiscount",
   data() {
@@ -44,11 +44,37 @@ export default {
     editValue() {
       this.number = Number(switched.value);
     },
+
+    // if (switched && switched.value > 0) {
+    //   activeDisGive();
+    //    } else {
+    //   activeDisGet();
+    // }
+    // activeDisGet(setValue = false) {
+    //   if (!document.getElementById("switched")) {
+    //     return false;
+    //   }
+    //   if (setValue) document.getElementById("switched").value = 0;
+    // },
+    //
+    // activeDisGive(setValue = false) {
+    //   if (!document.getElementById("switched")) {
+    //     return false;
+    //   }
+    //   if (setValue) document.getElementById("switched").value = 1;
+    // },
+    //
+    // toggleSwitch() {
+    //   if (!switched) return;
+    //   if (switched.value > 0) {
+    //     document.getElementById("switched").value = 0;
+    //   } else {
+    //     document.getElementById("switched").value = 1;
+    //   }
+    // },
   },
   mounted() {
     this.editValue();
   },
 };
 </script>
-
-<style></style>

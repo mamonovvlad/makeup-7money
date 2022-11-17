@@ -251,7 +251,7 @@ const store = createStore({
       state[payload + "CurrencyGroup"] = {};
       state[payload + "CurrencyGroupId"] = null;
     },
-    checkLastCurrencies() {
+    checkLastCurrencies(state) {
       let inputHiddenLastSellId = document.getElementById(
         "inputHiddenLastSellId"
       );
@@ -259,7 +259,7 @@ const store = createStore({
         "inputHiddenLastBuyId"
       );
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
-        if (inputHiddenLastSellId.value > 0) {
+        if (inputHiddenLastSellId.value > 0 && window.innerWidth > 768) {
           this.commit("setActiveCurrency", [
             "sell",
             parseInt(inputHiddenLastSellId.value),
@@ -267,8 +267,13 @@ const store = createStore({
             false,
             false,
           ]);
+        } else if (
+          inputHiddenLastSellId.value.length === 0 &&
+          window.innerWidth < 768
+        ) {
+          state.currenciesHideSell = true;
         }
-        if (inputHiddenLastBuyId.value > 0) {
+        if (inputHiddenLastBuyId.value > 0 && window.innerWidth > 768) {
           this.commit("setActiveCurrency", [
             "buy",
             parseInt(inputHiddenLastBuyId.value),
@@ -276,6 +281,11 @@ const store = createStore({
             false,
             false,
           ]);
+        } else if (
+          inputHiddenLastSellId.value.length === 0 &&
+          window.innerWidth < 768
+        ) {
+          state.currenciesHideBuy = false;
         }
       }
     },
@@ -328,11 +338,6 @@ const store = createStore({
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
       // }
-      if (window.innerWidth <= 768) {
-        state.detailsHide = false;
-        state.currenciesHideSell = true;
-        state.currenciesHideBuy = false;
-      }
       this.commit("stopTimer");
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);

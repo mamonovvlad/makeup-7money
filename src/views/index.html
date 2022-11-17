@@ -14,9 +14,10 @@
     <div id="app" v-cloak>
       <div class="app background-dark" :data-theme="colorSpectrum">
         <the-public-information>
+          <icon-confetti></icon-confetti>
           Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
           нужно всего лишь совершить обмен и оставить отзыв
-          <a href="/">подробнее тут</a>
+          <a class="button-inline" href="/">подробнее тут</a>
         </the-public-information>
         <the-header class="background--large"></the-header>
         <main class="container main__wrapper">
@@ -35,7 +36,6 @@
           <div class="currencies">
             <the-currencies-column-sell></the-currencies-column-sell>
             <the-currencies-column-buy></the-currencies-column-buy>
-
             <transition name="details-hide">
               <div class="details" v-show="isDetails === true && calculateData">
                 <div class="details__wrapper stylish-wrapper">
@@ -700,7 +700,7 @@
       </div>
     </div>
     <input id="login" type="hidden" value="0" />
-    <input id="language" type="hidden" value="en" />
+    <input id="language" type="hidden" value="ru" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>
 </html>
