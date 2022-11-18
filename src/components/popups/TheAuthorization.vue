@@ -67,12 +67,15 @@
                 >
                   <component is="icon-eye"></component>
                 </span>
+                <the-question-information
+                  v-if="input.type === 'email'"
+                ></the-question-information>
               </template>
             </the-field>
           </template>
         </div>
 
-        <div class="captcha" v-if="indexActive === 1">
+        <div class="captcha" v-show="indexActive === 1">
           <div class="g-recaptcha"></div>
         </div>
         <button @click="$emit('open')" v-if="indexActive === 0" class="forgot">
@@ -92,6 +95,7 @@
 </template>
 
 <script>
+import TheQuestionInformation from "../blocks/TheQuestionInformation.vue";
 import TheClose from "../buttons/TheClose.vue";
 import TheSwitched from "../buttons/TheSwitched.vue";
 import TheButton from "../buttons/TheButton.vue";
@@ -178,6 +182,7 @@ export default {
     TheField,
     TheClose,
     IconEye,
+    TheQuestionInformation,
   },
   computed: {
     view() {
@@ -252,12 +257,12 @@ export default {
 
 .authorization {
   & .show-password {
-    width: 25px;
+    width: 22px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     position: absolute;
-    right: 8px;
+    right: 10px;
     color: var(--quaternary);
   }
   & .forgot {

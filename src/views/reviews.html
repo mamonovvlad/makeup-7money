@@ -20,53 +20,53 @@
           <div class="container">
             <form action="/reviews/create" method="post" class="reviews__form">
               <input type="hidden" :value="csrfToken" :name="csrfParam" />
-              <the-title tag="h2" class="subtitle"
-                >Опубликовать отзыв</the-title
-              >
+              <the-title tag="h2" class="subtitle">
+                Опубликовать отзыв
+              </the-title>
               <div class="field-list">
-                <label class="field">
-                  <input
-                    class="field"
-                    type="text"
-                    name="ReviewForm[name]"
-                    placeholder="Имя"
-                    required
-                  />
-                  <span class="help-block"
-                    >Текст отзыва не может быть пустым</span
-                  >
-                </label>
-                <label class="field">
-                  <input
-                    class="field"
-                    type="email"
-                    name="ReviewForm[email]"
-                    placeholder="Email"
-                    required
-                  />
-                  <span class="help-block"
-                    >Текст отзыва не может быть пустым</span
-                  >
-                </label>
-                <label class="field">
-                  <textarea
-                    name="ReviewForm[content]"
-                    placeholder="Ваш отзыв"
-                    aria-required="true"
-                    aria-invalid="false"
-                  >
-                  </textarea>
-                  <span class="help-block"
-                    >Текст отзыва не может быть пустым</span
-                  >
-                </label>
+                <div class="field">
+                  <label for="exchange_mail">Имя</label>
+                  <span class="form-group">
+                    <input
+                      type="text"
+                      name="ReviewForm[name]"
+                      placeholder="Имя"
+                      required
+                    />
+                    <span class="help-block"> </span>
+                  </span>
+                </div>
+                <div class="field">
+                  <label for="exchange_mail">Email</label>
+                  <span class="form-group">
+                    <input
+                      type="text"
+                      name="ReviewForm[email]"
+                      placeholder="Email"
+                      required
+                    />
+                    <span class="help-block"> </span>
+                  </span>
+                </div>
+                <div class="field">
+                  <label for="exchange_mail">Ваш отзыв</label>
+                  <span class="form-group">
+                    <input
+                      type="text"
+                      name="ReviewForm[content]"
+                      placeholder="Ваш отзыв"
+                      required
+                    />
+                    <span class="help-block"> </span>
+                  </span>
+                </div>
+                <div class="captcha">
+                  <div class="g-recaptcha"></div>
+                </div>
+                <the-button tag="button" type="submit">
+                  <template #name> Оставить отзыв</template>
+                </the-button>
               </div>
-              <div class="captcha">
-                <div class="g-recaptcha"></div>
-              </div>
-              <the-button tag="button" type="submit">
-                <template #name> Оставить отзыв</template>
-              </the-button>
             </form>
             <div class="list-wrapper">
               <div class="items">

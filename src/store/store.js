@@ -258,6 +258,11 @@ const store = createStore({
       let inputHiddenLastBuyId = document.getElementById(
         "inputHiddenLastBuyId"
       );
+      if (window.innerWidth < 768) {
+        state.currenciesHideSell = true;
+        state.currenciesHideBuy = false;
+      }
+
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
         if (inputHiddenLastSellId.value > 0 && window.innerWidth > 768) {
           this.commit("setActiveCurrency", [
@@ -267,12 +272,8 @@ const store = createStore({
             false,
             false,
           ]);
-        } else if (
-          inputHiddenLastSellId.value.length === 0 &&
-          window.innerWidth < 768
-        ) {
-          state.currenciesHideSell = true;
         }
+
         if (inputHiddenLastBuyId.value > 0 && window.innerWidth > 768) {
           this.commit("setActiveCurrency", [
             "buy",
@@ -281,11 +282,6 @@ const store = createStore({
             false,
             false,
           ]);
-        } else if (
-          inputHiddenLastSellId.value.length === 0 &&
-          window.innerWidth < 768
-        ) {
-          state.currenciesHideBuy = false;
         }
       }
     },

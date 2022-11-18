@@ -135,6 +135,7 @@ export default {
     }
 
     & .date {
+      white-space: nowrap;
       font-size: 18px;
       display: none;
     }

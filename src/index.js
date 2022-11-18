@@ -23,6 +23,7 @@ import TheReserves from "./components/sections/TheCurrencyReserves.vue";
 import TheAchievements from "./components/sections/TheAchievements.vue";
 import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
 //Blocks
+import TheQuestionInformation from "./components/blocks/TheQuestionInformation.vue";
 import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
@@ -99,6 +100,7 @@ createApp({
     TheLinks,
     TheCheckStatus,
     //Blocks
+    TheQuestionInformation,
     ThePublicInformation,
     ThePaymentCounter,
     TheShareSocialNetworks,
