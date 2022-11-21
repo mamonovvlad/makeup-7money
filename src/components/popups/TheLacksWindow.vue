@@ -1,13 +1,12 @@
 <template>
-  <div class="lacks-window  popup-wrapper">
+  <div class="lacks-window popup-wrapper">
     <div class="wrapper">
       <the-close @close="hideBlock"></the-close>
       <the-title class="subtitle" tag="h2">{{ $t("lacks") }}</the-title>
       <p>{{ $t("lacksWindow_first") }}</p>
       <p>{{ $t("lacksWindow_second") }}</p>
       <p>{{ $t("lacksWindow_third") }}</p>
-      <slot>
-      </slot>
+      <slot> </slot>
     </div>
   </div>
 </template>
@@ -27,12 +26,12 @@ export default {
       this.$emit("close");
     },
   },
-
 };
 </script>
 
 <style lang="scss">
 .lacks-window {
+  max-width: 500px;
   & .items__wrapper {
     align-items: flex-end;
 

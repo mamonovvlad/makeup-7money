@@ -1,26 +1,26 @@
 <template>
-    <div class="burger">
-      <div class="burger__wrapper">
-        <div class="buttons">
-          <the-toggle-theme></the-toggle-theme>
-          <the-burger-close @click="$emit('hideBurger')"></the-burger-close>
-        </div>
-        <nav>
-          <a :href="$t('menuNews')">{{ $t("news") }}</a>
-          <a :href="$t('menuFaq')">FAQ</a>
-          <a :href="$t('menuPosts')">{{ $t("posts") }}</a>
-          <a :href="$t('menuReviews')">{{ $t("reviews") }}</a>
-          <a :href="$t('menuAffiliateProgram')">{{ $t("affiliateProgram") }}</a>
-          <a :href="$t('menuStatus')">{{ $t("checkOpSt") }}</a>
-          <a :href="$t('menuAgreement')">{{ $t("agreement") }}</a>
-          <a :href="$t('menuRules')">{{ $t("rules") }}</a>
-          <a :href="$t('menuSecurity')">{{ $t("security") }}</a>
-          <a :href="$t('menuPartners')">{{ $t("partners") }}</a>
-          <a :href="$t('aboutLink')">{{ $t("about") }}</a>
-        </nav>
-        <the-social-network></the-social-network>
+  <div class="burger">
+    <div class="burger__wrapper">
+      <div class="buttons">
+        <the-toggle-theme></the-toggle-theme>
+        <the-burger-close @click="$emit('hideBurger')"></the-burger-close>
       </div>
+      <nav>
+        <a :href="$t('menuNews')">{{ $t("news") }}</a>
+        <a :href="$t('menuFaq')">FAQ</a>
+        <a :href="$t('menuPosts')">{{ $t("posts") }}</a>
+        <a :href="$t('menuReviews')">{{ $t("reviews") }}</a>
+        <a :href="$t('menuAffiliateProgram')">{{ $t("affiliateProgram") }}</a>
+        <a :href="$t('menuStatus')">{{ $t("checkOpSt") }}</a>
+        <a :href="$t('menuAgreement')">{{ $t("agreement") }}</a>
+        <a :href="$t('menuRules')">{{ $t("rules") }}</a>
+        <a :href="$t('menuSecurity')">{{ $t("security") }}</a>
+        <a :href="$t('menuPartners')">{{ $t("partners") }}</a>
+        <a :href="$t('aboutLink')">{{ $t("about") }}</a>
+      </nav>
+      <the-social-network></the-social-network>
     </div>
+  </div>
 </template>
 
 <script>
@@ -34,8 +34,8 @@ export default {
   components: {
     TheSocialNetwork,
     TheBurgerClose,
-    TheToggleTheme
-  }
+    TheToggleTheme,
+  },
 };
 </script>
 
@@ -46,12 +46,11 @@ export default {
   position: fixed;
   top: 0;
   right: 0;
+  left: -20px;
   bottom: 0;
   display: flex;
   justify-content: flex-end;
   background: var(--secondary-transparent);
-  width: 100%;
-  //z-index: 4;
 
   &__wrapper {
     display: flex;

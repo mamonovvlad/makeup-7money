@@ -81,7 +81,6 @@
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.4s ease;
-
 }
 
 .fade-enter-from,
@@ -89,12 +88,9 @@
   opacity: 0;
 }
 
-.slide-fade-enter-active {
-  transition: all 0.2s ease-out;
-}
-
+.slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.2s ease;
 }
 
 .slide-fade-enter-from,
@@ -107,7 +103,6 @@
 .animate-right-leave-active {
   transition: 0.4s ease-in-out;
 }
-
 
 .animate-right-enter-from,
 .animate-right-leave-to {
@@ -138,5 +133,3 @@
 .currencies-hide-leave-to {
   opacity: 0;
 }
-
-

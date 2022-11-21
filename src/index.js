@@ -50,6 +50,7 @@ import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
+import TheErrorMessage from "./components/popups/TheErrorMessage.vue";
 //Icons
 import IconConfetti from "./components/icons/IconConfetti.vue";
 import IconCopy from "./components/icons/IconCopy.vue";
@@ -125,6 +126,7 @@ createApp({
     //Popups
     TheRecoveryInformation,
     TheLacksWindow,
+    TheErrorMessage,
     //Icons
     IconConfetti,
     IconCopy,
