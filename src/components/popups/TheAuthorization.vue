@@ -1,5 +1,5 @@
 <template>
-  <div class="authorization popup-wrapper" v-if="view">
+  <div class="authorization popup-wrapper" v-show="view">
     <div class="wrapper">
       <the-close @close="close"></the-close>
       <the-switched

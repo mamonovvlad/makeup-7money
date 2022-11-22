@@ -41,9 +41,9 @@
       </textarea>
       <slot name="icon"></slot>
     </span>
-      <div v-show="this.$slots.error && showError" class="help-block">
-        <slot name="error"></slot>
-      </div>
+    <div v-show="this.$slots.error && showError" class="help-block">
+      <slot name="error"></slot>
+    </div>
   </div>
 </template>
 
@@ -168,12 +168,20 @@ export default {
     }
   }
 
+  & textarea {
+    height: 150px;
+  }
+
+  & input,
+  & select {
+    height: 30px;
+  }
+
   & input,
   & textarea,
   & select {
     font-size: 16px;
     width: 100%;
-    height: 30px;
     background: var(--transparent);
     color: var(--quaternary);
     @include _768 {

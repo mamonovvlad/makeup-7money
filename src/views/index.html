@@ -15,9 +15,11 @@
       <div class="app background-dark" :data-theme="colorSpectrum">
         <the-public-information :animation-confetti="true">
           <icon-confetti></icon-confetti>
-          Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
-          нужно всего лишь совершить обмен и оставить отзыв
-          <a class="button-inline" href="/">подробнее тут</a>
+          <p>
+            Дорогие друзья, мы проводим небольшой конкурс и разыгрываем 100$,
+            нужно всего лишь совершить обмен и оставить отзыв
+            <a class="button-inline" href="/">подробнее тут</a>
+          </p>
         </the-public-information>
         <the-header class="background--large"></the-header>
         <main class="container main__wrapper">
@@ -39,6 +41,7 @@
             <transition name="details-hide">
               <div class="details" v-show="isDetails === true && calculateData">
                 <div class="details__wrapper stylish-wrapper">
+                  <the-preloader :is-show="false"></the-preloader>
                   <div class="title__wrapper">
                     <the-title tag="h1" class="subtitle">
                       {{ calculateData.course_h1 }}
@@ -651,11 +654,6 @@
         </main>
         <the-footer></the-footer>
         <!--Popups-->
-        <the-error-message>
-          Ошибка создания платежа! Обратитесь, пожалуйста, в поддержку, или
-          попробуйте позднее.
-        </the-error-message>
-
         <the-lacks-window v-if="showLacks" @close="showLacks = false">
           <form class="form">
             <div class="field">

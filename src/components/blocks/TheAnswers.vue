@@ -6,9 +6,9 @@
       :class="{ active: i === index }"
       class="answer"
     >
-      <div class="answer__title">
+      <div class="answer__title" @click="openAnswer(i)">
         <h2>{{ faq.question_ru }}</h2>
-        <button class="arrow" @click="openAnswer(i)">
+        <button class="arrow">
           <icon-arrow></icon-arrow>
         </button>
       </div>
@@ -95,14 +95,22 @@ export default {
   & .arrow {
     position: absolute;
     right: 0;
-    top: 50%;
-    transform: translateY(-50%) rotate(-90deg);
+    top: 0;
+    transform: rotate(-90deg);
     width: 25px;
     height: 25px;
+
+    & svg {
+      transition: var(--transition);
+    }
   }
   & .active {
     box-shadow: var(--shadow-inset);
     color: var(--quaternary);
+
+    & .arrow svg {
+      transform: rotate(180deg);
+    }
   }
 }
 </style>

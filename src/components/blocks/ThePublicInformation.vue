@@ -1,9 +1,7 @@
 <template>
   <div class="public-information">
     <the-confetti v-if="animationConfetti"></the-confetti>
-    <p>
-      <slot></slot>
-    </p>
+    <slot></slot>
   </div>
 </template>
 <script>
@@ -27,14 +25,18 @@ export default {
   background: var(--black);
   text-align: center;
   padding: 5px;
-
   & p,
   & a {
     color: var(--white);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
   }
 
   & svg {
-    width: 26px;
+    max-width: 25px;
+    min-height: 25px;
+    margin-right: 8px;
   }
 
   & a {

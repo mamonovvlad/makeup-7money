@@ -48,6 +48,25 @@ const store = createStore({
     isShowWindow: false,
   }, //Хранения данных
   mutations: {
+    captcha() {
+      let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
+      let language = document.getElementById("language");
+      let gRecaptcha = document.querySelectorAll(".g-recaptcha");
+      if (gRecaptcha) {
+        if (language.value === "ru") {
+          document
+            .querySelector(".g-recaptcha")
+            .setAttribute("data-lang", "ru");
+        } else {
+          document
+            .querySelector(".g-recaptcha")
+            .setAttribute("data-lang", "en");
+        }
+        gRecaptcha.forEach((item) => {
+          item.setAttribute("data-sitekey", captcha);
+        });
+      }
+    },
     copyText(state, event) {
       try {
         navigator.clipboard.writeText(event.target.dataset.copy);
@@ -258,10 +277,6 @@ const store = createStore({
       let inputHiddenLastBuyId = document.getElementById(
         "inputHiddenLastBuyId"
       );
-      if (window.innerWidth < 768) {
-        state.currenciesHideSell = true;
-        state.currenciesHideBuy = false;
-      }
 
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
         if (inputHiddenLastSellId.value > 0 && window.innerWidth > 768) {
@@ -272,6 +287,8 @@ const store = createStore({
             false,
             false,
           ]);
+        } else if (window.innerWidth < 768) {
+          state.currenciesHideSell = true;
         }
 
         if (inputHiddenLastBuyId.value > 0 && window.innerWidth > 768) {
@@ -280,8 +297,10 @@ const store = createStore({
             parseInt(inputHiddenLastBuyId.value),
             true,
             false,
-            false,
+            fals,
           ]);
+        } else if (window.innerWidth < 768) {
+          state.currenciesHideBuy = false;
         }
       }
     },
@@ -466,15 +485,6 @@ const store = createStore({
         inputHiddenLastSellId.value = state.sell_currency_id;
         inputHiddenLastBuyId.value = state.buy_currency_id;
       }
-
-      field.forEach(function (el) {
-        if (el.classList.contains("has-error")) {
-          el.classList.remove("has-error");
-        }
-      });
-      helpBlock.forEach(function (el) {
-        el.innerHTML = "";
-      });
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -499,6 +509,14 @@ const store = createStore({
         .then(function (response) {
           commit("setCalculateForm", response, refresh);
           commit("showRecoveryInformation");
+          field.forEach(function (el) {
+            if (el.classList.contains("has-error")) {
+              el.classList.remove("has-error");
+            }
+          });
+          helpBlock.forEach(function (el) {
+            el.innerHTML = "";
+          });
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {

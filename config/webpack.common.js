@@ -72,7 +72,7 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset",
         generator: {
-          filename: "source/fonts/[hash][ext][query]",
+          filename: "source/fonts/[name][ext][query]",
         },
       },
       {
@@ -80,7 +80,7 @@ module.exports = {
         test: /\.(png|jpg|jpeg|svg|ico)$/,
         type: "asset",
         generator: {
-          filename: "source/images/[ext][query]",
+          filename: "source/images/[name][ext][query]",
         },
       },
       {

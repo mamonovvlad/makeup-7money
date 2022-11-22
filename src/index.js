@@ -6,7 +6,6 @@ import store from "./store/store.js";
 import { mapMutations, mapActions, mapGetters } from "vuex";
 import { TippyPlugin } from "tippy.vue";
 //js src
-import { Captcha } from "./assets/js/captcha.js";
 import i18n from "./assets/js/multilanguage.js";
 import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/main.js";
@@ -41,6 +40,7 @@ import TheCounter from "./components/blocks/TheCounter.vue";
 import TheCurrentTime from "./components/blocks/TheCurrentTime.vue";
 import TheInformation from "./components/sections/TheInformation.vue";
 import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
+import ThePreloader from "./components/blocks/ThePreloader.vue";
 //Buttons
 import TheButton from "./components/buttons/TheButton.vue";
 import TheCurrenciesList from "./components/blocks/TheCurrenciesList.vue";
@@ -50,7 +50,6 @@ import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
-import TheErrorMessage from "./components/popups/TheErrorMessage.vue";
 //Icons
 import IconConfetti from "./components/icons/IconConfetti.vue";
 import IconCopy from "./components/icons/IconCopy.vue";
@@ -79,7 +78,6 @@ import IconThanks from "./components/icons/IconThanks.vue";
 createApp({
   data() {
     return {
-      captcha: Captcha,
       currencyModel: CurrencyModel,
       support: Support,
       csrfToken: null,
@@ -120,13 +118,13 @@ createApp({
     TheCounter,
     TheCurrentTime,
     TheTimeProcessing,
+    ThePreloader,
     //Buttons
     TheButton,
     TheClose,
     //Popups
     TheRecoveryInformation,
     TheLacksWindow,
-    TheErrorMessage,
     //Icons
     IconConfetti,
     IconCopy,
@@ -194,6 +192,7 @@ createApp({
       "setOfExchange",
       "trashClick",
       "copyText",
+      "captcha",
     ]),
 
     getValueByLanguage(object, field) {
@@ -230,6 +229,7 @@ createApp({
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
+    this.captcha();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
