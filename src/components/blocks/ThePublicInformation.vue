@@ -25,10 +25,14 @@ export default {
   background: var(--black);
   text-align: center;
   padding: 5px;
+
+  & p {
+    display: inline-block;
+  }
+
   & p,
   & a {
     color: var(--white);
-    display: inline-flex;
     align-items: center;
     gap: 10px;
   }

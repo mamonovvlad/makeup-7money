@@ -61,7 +61,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   height: 100vh;
-  overflow-y: auto;
+  overflow-x: hidden;
   font-family: var(--font-family);
   @include _768 {
     font-size: 12px;

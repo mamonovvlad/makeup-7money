@@ -127,7 +127,6 @@ const store = createStore({
           let res = state.sell_amount * state.course.sell;
           state.buy_amount = res.toFixed(2);
         } else if (val === "buy") {
-          console.log("w");
           let res = state.buy_amount / state.course.sell;
           state.sell_amount = res.toFixed(2);
         }
@@ -142,7 +141,7 @@ const store = createStore({
       }
     },
     setOfExchange(state, e) {
-      state.of_exchange = !!e.target.checked;
+      state.of_exchange = e.target.checked ? 1 : 0;
     },
     setIsVerified(state, e) {
       state.is_verified = e.target.checked ? 1 : 0;
@@ -159,7 +158,7 @@ const store = createStore({
       }
       let float = state.sell_amount;
       if (typeof state.sell_amount === "string") {
-        float = parseFloat(String(state.sell_amount).replace(/,/g, "."));
+        float = parseFloat(state.sell_amount.replace(/,/g, "."));
         if (float <= 0) {
           float = 0;
         }
@@ -179,12 +178,11 @@ const store = createStore({
         return;
       }
 
-      let float = parseFloat(String(state.buy_amount).replace(/,/g, "."));
+      let float = parseFloat(state.buy_amount.replace(/,/g, "."));
       if (float <= 0) {
         float = 0;
-        state.buy_amount = float;
       }
-
+      state.buy_amount = float;
       if (state.buy_amount > 0) {
         this.dispatch("calculateForm", ["revert"]);
       }
@@ -279,7 +277,7 @@ const store = createStore({
       );
 
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
-        if (inputHiddenLastSellId.value > 0 && window.innerWidth > 768) {
+        if (inputHiddenLastSellId.value > 0 && window.innerWidth >= 768) {
           this.commit("setActiveCurrency", [
             "sell",
             parseInt(inputHiddenLastSellId.value),
@@ -287,19 +285,19 @@ const store = createStore({
             false,
             false,
           ]);
-        } else if (window.innerWidth < 768) {
+        } else if (window.innerWidth <= 768) {
           state.currenciesHideSell = true;
         }
 
-        if (inputHiddenLastBuyId.value > 0 && window.innerWidth > 768) {
+        if (inputHiddenLastBuyId.value > 0 && window.innerWidth >= 768) {
           this.commit("setActiveCurrency", [
             "buy",
             parseInt(inputHiddenLastBuyId.value),
             true,
             false,
-            fals,
+            false,
           ]);
-        } else if (window.innerWidth < 768) {
+        } else if (window.innerWidth <= 768) {
           state.currenciesHideBuy = false;
         }
       }
@@ -480,7 +478,14 @@ const store = createStore({
       let inputHiddenLastBuyId = document.getElementById(
         "inputHiddenLastBuyId"
       );
-
+      field.forEach(function (el) {
+        if (el.classList.contains("has-error")) {
+          el.classList.remove("has-error");
+        }
+      });
+      helpBlock.forEach(function (el) {
+        el.innerHTML = "";
+      });
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
         inputHiddenLastSellId.value = state.sell_currency_id;
         inputHiddenLastBuyId.value = state.buy_currency_id;
@@ -509,14 +514,6 @@ const store = createStore({
         .then(function (response) {
           commit("setCalculateForm", response, refresh);
           commit("showRecoveryInformation");
-          field.forEach(function (el) {
-            if (el.classList.contains("has-error")) {
-              el.classList.remove("has-error");
-            }
-          });
-          helpBlock.forEach(function (el) {
-            el.innerHTML = "";
-          });
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {
