@@ -48,6 +48,31 @@ const store = createStore({
     isShowWindow: false,
   }, //Хранения данных
   mutations: {
+    inputCurrencyId(state) {
+      let inputHiddenLastSellId = document.getElementById(
+        "inputHiddenLastSellId"
+      );
+      let inputHiddenLastBuyId = document.getElementById(
+        "inputHiddenLastBuyId"
+      );
+
+      if (inputHiddenLastSellId && inputHiddenLastBuyId) {
+        inputHiddenLastSellId.value = state.sell_currency_id;
+        inputHiddenLastBuyId.value = state.buy_currency_id;
+      }
+    },
+    clearError() {
+      let helpBlock = document.querySelectorAll(".help-block");
+      let field = document.querySelectorAll(".field .form-group");
+      field.forEach(function (el) {
+        if (el.classList.contains("has-error")) {
+          el.classList.remove("has-error");
+        }
+      });
+      helpBlock.forEach(function (el) {
+        el.innerHTML = "";
+      });
+    },
     captcha() {
       let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
       let language = document.getElementById("language");
@@ -355,7 +380,7 @@ const store = createStore({
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
       // }
-      this.commit("stopTimer");
+      this.commit("stopTimer", "state");
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);
       this.commit(`${type}HideBlock`);
@@ -474,26 +499,9 @@ const store = createStore({
       { state, commit, getters },
       [type = "default", refresh = false]
     ) {
-      let helpBlock = document.querySelectorAll(".help-block");
-      let field = document.querySelectorAll(".field .form-group");
-      let inputHiddenLastSellId = document.getElementById(
-        "inputHiddenLastSellId"
-      );
-      let inputHiddenLastBuyId = document.getElementById(
-        "inputHiddenLastBuyId"
-      );
-      field.forEach(function (el) {
-        if (el.classList.contains("has-error")) {
-          el.classList.remove("has-error");
-        }
-      });
-      helpBlock.forEach(function (el) {
-        el.innerHTML = "";
-      });
-      if (inputHiddenLastSellId && inputHiddenLastBuyId) {
-        inputHiddenLastSellId.value = state.sell_currency_id;
-        inputHiddenLastBuyId.value = state.buy_currency_id;
-      }
+      commit("inputCurrencyId");
+      commit("clearError");
+
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
