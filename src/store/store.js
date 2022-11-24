@@ -124,19 +124,21 @@ const store = createStore({
     calculationAmount(state, val) {
       if (Number(state.course.sell) !== 1) {
         if (val === "sell") {
-          let res = state.sell_amount * state.course.sell;
-          state.buy_amount = res.toFixed(2);
+          let res = state.sell_amount / state.course.sell;
+          state.buy_amount = +res.toFixed(7);
+          //+
         } else if (val === "buy") {
-          let res = state.buy_amount / state.course.sell;
-          state.sell_amount = res.toFixed(2);
+          let res = state.buy_amount * state.course.sell;
+          state.sell_amount = +res.toFixed(7);
         }
       } else {
+        console.log("2");
         if (val === "sell") {
           let res = state.sell_amount * state.course.buy;
-          state.buy_amount = res.toFixed(2);
+          state.buy_amount = +res.toFixed(7);
         } else if (val === "buy") {
           let res = state.buy_amount / state.course.buy;
-          state.sell_amount = res.toFixed(2);
+          state.sell_amount = +res.toFixed(7);
         }
       }
     },
@@ -177,10 +179,12 @@ const store = createStore({
       ) {
         return;
       }
-
-      let float = parseFloat(state.buy_amount.replace(/,/g, "."));
-      if (float <= 0) {
-        float = 0;
+      let float = state.buy_amount;
+      if (typeof state.buy_amount === "string") {
+        let float = parseFloat(state.buy_amount.replace(/,/g, "."));
+        if (float <= 0) {
+          float = 0;
+        }
       }
       state.buy_amount = float;
       if (state.buy_amount > 0) {

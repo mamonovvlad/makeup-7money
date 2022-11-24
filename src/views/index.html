@@ -151,7 +151,7 @@
                             class="field"
                             v-if="calculateData.sell_comission >0"
                           >
-                            <label for="orderform-buy_amount_with_discount">
+                            <label for="orderform-sell_amount_with_comission">
                               С комиссией
                               <span class="text--green">
                                 <span id="sell_commission_percent"
@@ -167,6 +167,24 @@
                                 name="OrderForm[sell_amount_with_comission]"
                                 v-model="$store.state.sell_amount_with_commission"
                                 @input="calculationAmountCommission('sell')"
+                                v-debounce="calculationFormSellAmountCommission"
+                              />
+                            </span>
+                          </div>
+                        </transition>
+                        <transition name="fade">
+                          <div class="field">
+                            <label for="orderform-buy_amount_with_discount">
+                              Со скидкой
+                            </label>
+                            <span class="form-group">
+                              <input
+                                id="orderform-buy_amount_with_discount"
+                                disabled="disabled"
+                                name="OrderForm[buy_amount_with_discount]"
+                                placeholder="787"
+                                readonly="readonly"
+                                type="text"
                               />
                             </span>
                           </div>
@@ -237,7 +255,7 @@
                         <transition name="fade">
                           <div class="field">
                             <label for="orderform-buy_amount_with_discount">
-                              Со скидкой
+                              С комиссией
                             </label>
                             <span class="form-group">
                               <input
@@ -246,6 +264,24 @@
                                 type="text"
                                 v-model="$store.state.buy_amount_with_commission"
                                 @input="calculationAmountCommission('buy')"
+                                v-debounce="calculationFormBuyAmountCommission"
+                              />
+                            </span>
+                          </div>
+                        </transition>
+                        <transition name="fade">
+                          <div class="field">
+                            <label for="orderform-sell_amount_with_discount">
+                              Со скидкой
+                            </label>
+                            <span class="form-group">
+                              <input
+                                id="orderform-sell_amount_with_discount"
+                                disabled="disabled"
+                                name="OrderForm[sell_amount_with_discount]"
+                                placeholder="787"
+                                readonly="readonly"
+                                type="text"
                               />
                             </span>
                           </div>
