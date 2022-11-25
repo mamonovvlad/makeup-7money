@@ -228,11 +228,13 @@ createApp({
     },
     hideLines() {
       let itemsWrapper = document.querySelectorAll(".items__wrapper");
-      itemsWrapper.forEach((item) => {
-        if (item.innerHTML === "") {
-          item.classList.add("d-none");
-        }
-      });
+      if (itemsWrapper) {
+        itemsWrapper.forEach((item) => {
+          if (item.innerHTML === "") {
+            item.classList.add("d-none");
+          }
+        });
+      }
     },
   },
   mounted() {
