@@ -55,7 +55,6 @@ const store = createStore({
       let inputHiddenLastBuyId = document.getElementById(
         "inputHiddenLastBuyId"
       );
-
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
         inputHiddenLastSellId.value = state.sell_currency_id;
         inputHiddenLastBuyId.value = state.buy_currency_id;
