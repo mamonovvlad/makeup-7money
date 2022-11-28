@@ -37,7 +37,6 @@ import IconReviews from "../icons/IconReviews.vue";
 import TheTitle from "../blocks/TheTitle.vue";
 import { mapGetters } from "vuex";
 
-
 export default {
   name: "Achievements",
   computed: {
@@ -79,7 +78,9 @@ export default {
     display: flex;
     align-items: center;
     padding: 30px;
-
+    @include _1200 {
+      padding: 20px;
+    }
     &:hover {
       background: var(--primary);
 
@@ -93,6 +94,9 @@ export default {
 
   & .text {
     margin-left: 20px;
+    @include _1200 {
+      margin-left: 14px;
+    }
   }
 
   & svg {

@@ -55,10 +55,10 @@ export default {
 
 .slider {
   display: flex;
-  gap: 20px;
+  gap: 16px;
 
   & .button {
-    margin-top: 20px;
+    margin-top: 13px;
     width: 0;
     opacity: 0;
     position: absolute;
@@ -89,10 +89,13 @@ export default {
   }
 
   & .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding: 10px 20px;
-    display: block;
     text-decoration: none;
     position: relative;
+    height: 100px;
 
     &:after {
       content: "";
@@ -142,7 +145,7 @@ export default {
 
     & p {
       font-size: 12px;
-      @include crop-height(4);
+      @include crop-height(3);
     }
   }
 
@@ -165,15 +168,17 @@ export default {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
-      grid-gap: 20px;
+      grid-gap: 16px;
       background: var(--transparent);
     }
 
     & .item {
+      display: block;
       box-shadow: var(--shadow);
       border-radius: var(--radius-ten);
       background: var(--seventh);
       padding: 20px;
+      height: 160px;
 
       &:after {
         display: none;
@@ -193,7 +198,6 @@ export default {
       }
 
       & p {
-        display: block;
         font-size: 18px;
         @include crop-height(4);
       }

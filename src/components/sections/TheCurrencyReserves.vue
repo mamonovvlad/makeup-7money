@@ -87,7 +87,9 @@ export default {
     padding: 0 20px;
     border-right: 2px solid var(--secondary);
     transition: var(--transition);
-
+    @include _1200 {
+      padding: 0 12px;
+    }
     &:last-child {
       margin-right: 0;
       border-right: 0;
@@ -113,10 +115,10 @@ export default {
       min-width: 16px;
       height: 16px;
       margin-right: 5px;
-      margin-bottom: 2px;
       background-size: cover;
+      border-radius: var(--radius-four);
     }
-    & p{
+    & p {
       @include crop-height(1);
     }
   }
