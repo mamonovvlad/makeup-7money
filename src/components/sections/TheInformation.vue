@@ -12,12 +12,16 @@ export default {
 
 <style lang="scss">
 .information {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
   padding: 20px;
   color: var(--quaternary);
 
   & ol,
   ul {
     margin-left: 30px;
+    list-style: disc;
   }
 
   & h1,
@@ -26,13 +30,8 @@ export default {
     font-weight: 600;
   }
 
-  & h1,
-  h2,
-  h3,
-  p,
-  ol,
-  ul {
-    margin-bottom: 10px;
+  & strong {
+    font-weight: 500;
   }
 
   & a {

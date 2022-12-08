@@ -61,6 +61,7 @@ export default {
     padding: 6px;
     cursor: pointer;
     transition: box-shadow 400ms ease;
+    font-weight: 500;
   }
 }
 

@@ -68,7 +68,8 @@ const i18n = createI18n({
       //TheLeaveFeedback
       leaveFeedback: "Оставить отзыв",
       //TheTimeProcessing
-      timeProcessing: "Ваша заявка будет оплачена автоматически в порядке очереди, от 5 до 30-ти минут",
+      timeProcessing:
+        "Ваша заявка будет оплачена автоматически в порядке очереди, от 5 до 30-ти минут",
       //TheCheckStatus
       checkOperation: "Проверить статус операции",
       transaction: "Номер операции",
@@ -158,7 +159,8 @@ const i18n = createI18n({
       //TheLeaveFeedback
       leaveFeedback: "Залишити відгук",
       //TheTimeProcessing
-      timeProcessing: "Ваша заявка буде оплачена автоматично в порядку черги, від 5 до 30-ти хвилин",
+      timeProcessing:
+        "Ваша заявка буде оплачена автоматично в порядку черги, від 5 до 30-ти хвилин",
       //TheCheckStatus
       checkOperation: "Перевірити статус операції",
       transaction: "Номер операції",
@@ -192,7 +194,7 @@ const i18n = createI18n({
       checkOpSt: "Check operation status",
       schedule: "Schedule:",
       affiliateProgram: "Affiliate Program",
-      workingHours: "Every day, 09:00 - 00:00:",
+      workingHours: "Every day, 09:00 - 00:00",
       time: "Time on site",
       news: "News",
       reviews: "Reviews",
@@ -248,7 +250,8 @@ const i18n = createI18n({
       //TheLeaveFeedback
       leaveFeedback: "Leave feedback",
       //TheTimeProcessing
-      timeProcessing: "Your order will be paid automatically according to the queue from 5 to 30 minutes",
+      timeProcessing:
+        "Your order will be paid automatically according to the queue from 5 to 30 minutes",
       //TheCheckStatus
       checkOperation: "Check the status of the operation",
       transaction: "Number of transaction",

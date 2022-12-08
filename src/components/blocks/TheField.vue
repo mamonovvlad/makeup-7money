@@ -196,8 +196,9 @@ export default {
     &:-webkit-autofill:active,
     &:-webkit-autofill:focus,
     &:-webkit-autofill:hover {
-      -webkit-box-shadow: var(--shadow-inset-autofill);
+      -webkit-box-shadow: var(--shadow-inset-autofill) !important;
       -webkit-text-fill-color: var(--quaternary) !important;
+      -webkit-background-clip: text;
     }
   }
 

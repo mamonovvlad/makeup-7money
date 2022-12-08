@@ -20,19 +20,28 @@ export default {
 };
 </script>
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
+
 .public-information {
   position: relative;
   background: var(--black);
   text-align: center;
   padding: 5px;
+  font-size: 16px;
+  @include _992 {
+    font-size: 14px;
+  }
+  @include _768 {
+    font-size: 12px;
+  }
 
   & p {
     display: inline-block;
+    color: var(--white);
   }
 
   & p,
   & a {
-    color: var(--white);
     align-items: center;
     gap: 10px;
   }
@@ -45,6 +54,7 @@ export default {
 
   & a {
     font-weight: 600;
+    color: var(--sixth);
   }
 }
 </style>

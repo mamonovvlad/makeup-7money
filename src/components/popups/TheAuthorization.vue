@@ -7,8 +7,8 @@
         @toggleInput="toggleInput"
         :number="indexActive"
       >
-        <template #first-title>Вход</template>
-        <template #second-title>Регистрация</template>
+        <template #first-title>{{ $t("logIn") }}</template>
+        <template #second-title>{{ $t("signUp") }}</template>
       </the-switched>
       <form
         method="post"
@@ -222,6 +222,7 @@ export default {
         if (Object.keys(response.data).length) {
           let data = response.data;
           for (let k in data) {
+            console.log(k);
             if (document.querySelector(".field-" + k)) {
               document.querySelector(".field-" + k).innerHTML = data[k][0];
             }
