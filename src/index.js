@@ -225,21 +225,10 @@ createApp({
       button.classList.add("disabled");
       this.error = true;
     },
-    hideLines() {
-      let itemsWrapper = document.querySelectorAll(".items__wrapper");
-      if (itemsWrapper) {
-        itemsWrapper.forEach((item) => {
-          if (item.innerHTML === "") {
-            item.classList.add("d-none");
-          }
-        });
-      }
-    },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
     this.captcha();
-    this.hideLines();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },

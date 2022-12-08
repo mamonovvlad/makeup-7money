@@ -48,6 +48,16 @@ const store = createStore({
     isShowWindow: false,
   }, //Хранения данных
   mutations: {
+    hideLines() {
+      let itemsWrapper = document.querySelectorAll(".items__wrapper");
+      if (itemsWrapper) {
+        itemsWrapper.forEach((item) => {
+          if (item.lastElementChild === null) {
+            item.classList.add("d-none");
+          }
+        });
+      }
+    },
     inputCurrencyId(state) {
       let inputHiddenLastSellId = document.getElementById(
         "inputHiddenLastSellId"
@@ -500,6 +510,7 @@ const store = createStore({
     ) {
       commit("inputCurrencyId");
       commit("clearError");
+      commit("hideLines");
 
       const config = {
         headers: {

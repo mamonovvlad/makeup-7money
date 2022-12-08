@@ -172,6 +172,7 @@ export default {
 
       & p {
         margin-left: 5px;
+        font-weight: 500;
       }
     }
 

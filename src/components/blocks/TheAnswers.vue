@@ -6,7 +6,6 @@
       :class="{ active: i === index }"
       class="answer"
     >
-      {{ lang }}
       <div class="answer__title" @click="openAnswer(i)">
         <h2 v-if="lang === 'en'">{{ faq.question_en }}</h2>
         <h2 v-else-if="lang === 'ua'">{{ faq.question_ua }}</h2>
