@@ -108,7 +108,7 @@ export default {
     setActive(currencyName, id) {
       this.setActiveCurrency([currencyName, id]);
     },
-    toggle() {
+    toggle(e) {
       let currenciesList = this.$refs.currenciesList;
       let currenciesWrapper = this.$refs.currenciesWrapper;
       if (currenciesList.clientHeight === 520) {
@@ -121,7 +121,6 @@ export default {
       }
     },
   },
-
   updated() {
     let currenciesWrapper = this.$refs.currenciesWrapper;
     this.isShow = currenciesWrapper.clientHeight >= 520;

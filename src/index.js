@@ -194,7 +194,6 @@ createApp({
       "copyText",
       "captcha",
     ]),
-
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",

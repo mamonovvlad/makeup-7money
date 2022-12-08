@@ -6,13 +6,29 @@
       :class="{ active: i === index }"
       class="answer"
     >
+      {{ lang }}
       <div class="answer__title" @click="openAnswer(i)">
-        <h2>{{ faq.question_ru }}</h2>
+        <h2 v-if="lang === 'en'">{{ faq.question_en }}</h2>
+        <h2 v-else-if="lang === 'ua'">{{ faq.question_ua }}</h2>
+        <h2 v-else>{{ faq.question_ru }}</h2>
         <button class="arrow">
           <icon-arrow></icon-arrow>
         </button>
       </div>
       <div
+        v-if="lang === 'en'"
+        class="answer__text"
+        v-show="i === index"
+        v-html="faq.answer_en"
+      ></div>
+      <div
+        v-else-if="lang === 'ua'"
+        class="answer__text"
+        v-show="i === index"
+        v-html="faq.answer_ua"
+      ></div>
+      <div
+        v-else
         class="answer__text"
         v-show="i === index"
         v-html="faq.answer_ru"
@@ -20,7 +36,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import { mapGetters } from "vuex";
@@ -40,6 +55,9 @@ export default {
   },
   computed: {
     ...mapGetters(["getLang", "proxy"]),
+    lang() {
+      return this.getLang.split("/").join("");
+    },
   },
   methods: {
     openAnswer(i) {
