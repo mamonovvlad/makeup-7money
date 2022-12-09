@@ -32,7 +32,7 @@
               :autocomplete="input.autocomplete"
               :show-error="input.error"
             >
-              <template #label>{{ input.label }}</template>
+              <template #label>{{ $t(`${input.label}`) }}</template>
               <template #icon>
                 <span
                   class="show-password"
@@ -58,7 +58,7 @@
               :show-error="input.error"
               :required="input.required"
             >
-              <template #label>{{ input.label }}</template>
+              <template #label>{{ $t(`${input.label}`) }}</template>
               <template #icon>
                 <span
                   class="show-password"
@@ -105,23 +105,22 @@ import axios from "axios";
 
 let registration = [
   {
-    label: "Имя*",
-    placeholder: "Имя",
+    label: "name",
     type: "text",
     id: "registration_name",
     name: "SignupForm[first_name]",
     required: true,
   },
   {
-    label: "Email*",
+    label: "Email",
     placeholder: "user@gmail.com",
     type: "email",
     id: "registration_mail",
     name: "SignupForm[email]",
-    required: true,
+    required: tru,
   },
   {
-    label: "Пароль*",
+    label: "password",
     placeholder: "••••••••••",
     type: "password",
     id: "registration_password",
@@ -130,20 +129,20 @@ let registration = [
     className: "password",
   },
   {
-    label: "Подтвердите Пароль*",
+    label: "confirmPassword",
     placeholder: "••••••••••",
     type: "password",
     id: "registration_сonfirm_password",
     name: "SignupForm[сonfirm_password]",
     // required: true,
-    className: "password",
+    className: "password,
   },
   {
-    label: "Ссылка на ID реферала",
+    label: "referralLink",
     type: "text",
     id: "registration_link",
-    name: "SignupForm[referred_by]",
-  },
+    name: "SignupForm[referred_by]"
+  }
 ];
 let entrance = [
   {
@@ -154,14 +153,14 @@ let entrance = [
     name: "LoginForm[email]",
   },
   {
-    label: "Пароль",
+    label: "password",
     placeholder: "•••••••••",
     type: "password",
     id: "entrance_password",
     name: "LoginForm[password]",
     className: "password",
-    autocomplete: "on",
-  },
+    autocomplete: "off"
+  }
 ];
 export default {
   inject: ["isAuthorization"],
@@ -191,6 +190,17 @@ export default {
     indexActive() {
       return (this.index = this.isAuthorization.index);
     },
+    getHost() {
+      let windowHost = window.location.host;
+      if (
+        windowHost === "makeup.7money.co" ||
+        windowHost === "7money.co" ||
+        windowHost === "obmen.loc"
+      ) {
+        return "";
+      }
+      return "http://obmen.loc"; // 'http://proxy.local:8888'
+    }
   },
   methods: {
     toggleInput() {
@@ -209,6 +219,7 @@ export default {
     validate(e) {
       let action = e.target.action;
       let formData = new FormData(e.target);
+      console.log(e);
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -221,6 +232,7 @@ export default {
       axios.post(action, formData, config).then(function (response) {
         if (Object.keys(response.data).length) {
           let data = response.data;
+          console.log(data);
           for (let k in data) {
             console.log(k);
             if (document.querySelector(".field-" + k)) {

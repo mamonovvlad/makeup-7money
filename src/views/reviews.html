@@ -24,48 +24,40 @@
                 Опубликовать отзыв
               </the-title>
               <div class="field-list">
-                <div class="items__wrapper">
-                  <div class="item">
-                    <div class="field">
-                      <label for="exchange_mail">Имя</label>
-                      <span class="form-group">
-                        <input
-                          type="text"
-                          name="ReviewForm[name]"
-                          placeholder="Имя"
-                          required
-                        />
-                        <span class="help-block"> </span>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="item">
-                    <div class="field">
-                      <label for="exchange_mail">Email</label>
-                      <span class="form-group">
-                        <input
-                          type="text"
-                          name="ReviewForm[email]"
-                          placeholder="Email"
-                          required
-                        />
-                        <span class="help-block"> </span>
-                      </span>
-                    </div>
-                  </div>
+                <div class="field">
+                  <label for="exchange_mail">Имя</label>
+                  <span class="form-group">
+                    <input
+                      type="text"
+                      name="ReviewForm[name]"
+                      placeholder="Имя"
+                      required
+                    />
+                    <span class="help-block"> </span>
+                  </span>
                 </div>
-                <div class="items__wrapper">
-                  <div class="field">
-                    <label for="exchange_mail">Ваш отзыв</label>
-                    <span class="form-group">
-                      <textarea
-                        name="ReviewForm[content]"
-                        placeholder="Ваш отзыв"
-                        required
-                      ></textarea>
-                      <span class="help-block"> </span>
-                    </span>
-                  </div>
+                <div class="field">
+                  <label for="exchange_mail">Email</label>
+                  <span class="form-group">
+                    <input
+                      type="text"
+                      name="ReviewForm[email]"
+                      placeholder="Email"
+                      required
+                    />
+                    <span class="help-block"> </span>
+                  </span>
+                </div>
+                <div class="field">
+                  <label for="exchange_mail">Ваш отзыв</label>
+                  <span class="form-group">
+                    <textarea
+                      name="ReviewForm[content]"
+                      placeholder="Ваш отзыв"
+                      required
+                    ></textarea>
+                    <span class="help-block"> </span>
+                  </span>
                 </div>
                 <div class="captcha">
                   <div class="g-recaptcha"></div>
@@ -97,13 +89,13 @@
                 </div>
               </div>
               <div class="buttons">
-                <the-button tag="button">
-                  <template #image>
-                    <icon-refresh></icon-refresh>
-                  </template>
-                  <template #name>Показать ещё (15)</template>
-                </the-button>
-
+                <a
+                  class="button"
+                  href="//www.bestchange.ru/7money-exchanger.html"
+                  target="_blank"
+                >
+                  Смотреть отзывы на BestChange
+                </a>
                 <ul class="pagination">
                   <li class="prev">
                     <a href="#">

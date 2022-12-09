@@ -12,15 +12,12 @@ export default {
 
 <style lang="scss">
 .information {
-  display: flex;
-  flex-direction: column;
-  row-gap: 10px;
   padding: 20px;
   color: var(--quaternary);
 
   & ol,
   ul {
-    margin-left: 30px;
+    margin: 10px 0 10px 30px;
     list-style: disc;
   }
 
@@ -28,6 +25,15 @@ export default {
   h2,
   h3 {
     font-weight: 600;
+  }
+
+  & h1,
+  h2,
+  h3,
+  p,
+  ol,
+  ul {
+    margin-bottom: 10px;
   }
 
   & strong {

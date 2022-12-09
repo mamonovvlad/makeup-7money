@@ -168,6 +168,7 @@ export default {
         width: 20px;
         height: 20px;
         background-size: contain;
+        border-radius: var(--radius-ten);
       }
 
       & p {

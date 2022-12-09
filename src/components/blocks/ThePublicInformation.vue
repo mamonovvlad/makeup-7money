@@ -53,6 +53,12 @@ export default {
   }
 
   & a {
+    display: inline-flex;
+    width: auto;
+    text-decoration: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background: var(--gradient);
     font-weight: 600;
     color: var(--sixth);
   }
