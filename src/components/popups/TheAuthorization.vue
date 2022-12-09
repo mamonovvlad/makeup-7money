@@ -13,7 +13,9 @@
       <form
         method="post"
         :action="`${
-          indexActive === 0 ? $t('entranceAction') : $t('registrationAction')
+          indexActive === 0
+            ? `${this.getHost}${$t('entranceAction')}`
+            : $t('registrationAction')
         }`"
         @submit.prevent="validate"
       >
@@ -81,7 +83,7 @@
         <button @click="$emit('open')" v-if="indexActive === 0" class="forgot">
           {{ $t("remind") }}
         </button>
-        <the-button tag="button" type="submit">
+        <the-button tag="button">
           <template #name v-if="indexActive === 0">
             {{ $t("logIn") }}
           </template>
@@ -117,7 +119,7 @@ let registration = [
     type: "email",
     id: "registration_mail",
     name: "SignupForm[email]",
-    required: tru,
+    required: true,
   },
   {
     label: "password",
@@ -135,14 +137,14 @@ let registration = [
     id: "registration_сonfirm_password",
     name: "SignupForm[сonfirm_password]",
     // required: true,
-    className: "password,
+    className: "password",
   },
   {
     label: "referralLink",
     type: "text",
     id: "registration_link",
-    name: "SignupForm[referred_by]"
-  }
+    name: "SignupForm[referred_by]",
+  },
 ];
 let entrance = [
   {
@@ -159,8 +161,8 @@ let entrance = [
     id: "entrance_password",
     name: "LoginForm[password]",
     className: "password",
-    autocomplete: "off"
-  }
+    autocomplete: "off",
+  },
 ];
 export default {
   inject: ["isAuthorization"],
@@ -200,7 +202,7 @@ export default {
         return "";
       }
       return "http://obmen.loc"; // 'http://proxy.local:8888'
-    }
+    },
   },
   methods: {
     toggleInput() {
@@ -219,7 +221,7 @@ export default {
     validate(e) {
       let action = e.target.action;
       let formData = new FormData(e.target);
-      console.log(e);
+      console.log(formData);
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -229,7 +231,11 @@ export default {
       document.querySelectorAll(".help-block").forEach(function (el, i) {
         el.innerHTML = "";
       });
+      console.log(action);
+
+      console.log(config);
       axios.post(action, formData, config).then(function (response) {
+        console.log(response);
         if (Object.keys(response.data).length) {
           let data = response.data;
           console.log(data);
