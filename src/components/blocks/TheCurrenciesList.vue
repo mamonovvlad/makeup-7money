@@ -118,6 +118,9 @@ export default {
       } else {
         currenciesList.style.maxHeight = "";
         this.toggleText = true;
+        document.querySelector(".header").scrollIntoView({
+          behavior: "smooth",
+        });
       }
     },
   },

@@ -54,9 +54,8 @@ export default {
 
   & a {
     display: inline-flex;
-    width: auto;
     text-decoration: none;
-    padding: 6px 10px;
+    padding: 4px 10px 6px;
     border-radius: 4px;
     background: var(--gradient);
     font-weight: 600;

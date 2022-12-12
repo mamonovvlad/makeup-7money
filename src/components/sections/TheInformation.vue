@@ -17,7 +17,7 @@ export default {
 
   & ol,
   ul {
-    margin: 10px 0 10px 30px;
+    margin: 12px 0 12px 30px;
     list-style: disc;
   }
 
@@ -26,14 +26,16 @@ export default {
   h3 {
     font-weight: 600;
   }
-
+  & li {
+    margin: 6px 0;
+  }
   & h1,
   h2,
   h3,
   p,
   ol,
   ul {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
   }
 
   & strong {

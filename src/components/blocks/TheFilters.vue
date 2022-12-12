@@ -54,6 +54,8 @@ export default {
   margin: 30px 0 0;
   @include _768 {
     margin: 20px 0 0;
+    flex-wrap: wrap;
+    row-gap: 6px;
   }
 
   & li {

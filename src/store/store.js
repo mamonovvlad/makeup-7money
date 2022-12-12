@@ -146,13 +146,13 @@ const store = createStore({
         let res =
           sell_commission -
           (sell_commission * sell_percent) / (100 + sell_percent);
-        state.sell_amount = res.toFixed(2);
+        state.sell_amount = res;
       } else if (val === "buy") {
         let buy_commission = Number(state.buy_amount_with_commission);
         let buy_percent = Number(state.buy_percent);
         let res =
           buy_commission + (buy_commission * buy_percent) / (100 + buy_percent);
-        state.buy_amount = res.toFixed(2);
+        state.buy_amount = res;
       }
     },
     calculationAmount(state, val) {
@@ -160,13 +160,11 @@ const store = createStore({
         if (val === "sell") {
           let res = state.sell_amount / state.course.sell;
           state.buy_amount = +res.toFixed(7);
-          //+
         } else if (val === "buy") {
           let res = state.buy_amount * state.course.sell;
           state.sell_amount = +res.toFixed(7);
         }
       } else {
-        console.log("2");
         if (val === "sell") {
           let res = state.sell_amount * state.course.buy;
           state.buy_amount = +res.toFixed(7);
@@ -306,7 +304,7 @@ const store = createStore({
       state[payload + "CurrencyGroup"] = {};
       state[payload + "CurrencyGroupId"] = null;
     },
-    checkLastCurrencies(state) {
+    checkLastCurrencies() {
       let inputHiddenLastSellId = document.getElementById(
         "inputHiddenLastSellId"
       );
@@ -323,8 +321,6 @@ const store = createStore({
             false,
             false,
           ]);
-        } else if (window.innerWidth <= 768) {
-          state.currenciesHideSell = true;
         }
 
         if (inputHiddenLastBuyId.value > 0 && window.innerWidth >= 768) {
@@ -335,8 +331,6 @@ const store = createStore({
             false,
             false,
           ]);
-        } else if (window.innerWidth <= 768) {
-          state.currenciesHideBuy = false;
         }
       }
     },
@@ -388,7 +382,7 @@ const store = createStore({
     ) {
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
-      // }
+      // };
       this.commit("stopTimer", "state");
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);
@@ -511,7 +505,6 @@ const store = createStore({
       commit("inputCurrencyId");
       commit("clearError");
       commit("hideLines");
-
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -567,8 +560,12 @@ const store = createStore({
           commit("setSellCurrencies", response);
         });
     },
-    fetchGroupsAndCurrenciesFromPage({ commit }) {
+    fetchGroupsAndCurrenciesFromPage({ commit, state }) {
       let data = document.getElementById("preloadGroupsAndCurrencies");
+      if (window.innerWidth <= 768) {
+        state.currenciesHideBuy = false;
+      }
+
       if (!data) {
         this.dispatch("fetchGroupsAndCurrencies");
         return true;
