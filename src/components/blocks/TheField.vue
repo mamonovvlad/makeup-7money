@@ -127,16 +127,15 @@ export default {
     &:hover {
       box-shadow: var(--shadow);
     }
+  }
 
-    & .icon {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      background-size: cover;
-      right: 10px;
-    }
+  & .icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    bottom: 15px;
+    background-size: cover;
+    right: 10px;
   }
 
   & .has-error {

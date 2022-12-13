@@ -14,10 +14,14 @@
         method="post"
         :action="`${
           indexActive === 0
-            ? `${this.getHost}${$t('entranceAction')}`
+            ? `${$t('entranceAction')}`
             : $t('registrationAction')
         }`"
-        @submit.prevent="validate"
+        @submit.prevent="
+          `${
+            indexActive === 0 ? validate($event) : validateRegistration($event)
+          }`
+        "
       >
         <input type="hidden" :value="csrfToken" :name="csrfParam" />
         <div class="inputs">
@@ -136,7 +140,7 @@ let registration = [
     type: "password",
     id: "registration_сonfirm_password",
     name: "SignupForm[сonfirm_password]",
-    // required: true,
+    required: true,
     className: "password",
   },
   {
@@ -231,11 +235,7 @@ export default {
       document.querySelectorAll(".help-block").forEach(function (el, i) {
         el.innerHTML = "";
       });
-      console.log(action);
-
-      console.log(config);
       axios.post(action, formData, config).then(function (response) {
-        console.log(response);
         if (Object.keys(response.data).length) {
           let data = response.data;
           console.log(data);
@@ -263,8 +263,75 @@ export default {
         }
       });
     },
+    validateRegistration(e) {
+      let action = e.target.action;
+      let formData = new FormData(e.target);
+      const config = {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+      };
+      document.querySelectorAll(".help-block").forEach(function (el, i) {
+        el.innerHTML = "";
+      });
+      axios.post(action, formData, config).then(function (response) {
+        if (Object.keys(response.data).length) {
+          let data = response.data;
+          for (let k in data) {
+            if (document.querySelector(".help-" + k)) {
+              document.querySelector(".help-" + k).innerHTML = data[k][0];
+            }
+          }
+        } else {
+          e.target.submit();
+        }
+      });
+    },
+    getReferral() {
+      let paramsString = window.location.search;
+      let searchParams = new URLSearchParams(paramsString);
+      if (searchParams.has("rid")) {
+        let value;
+        let name = "_rid";
+        for (let rid of searchParams.entries()) {
+          // name = rid[0];
+          value = rid[1];
+        }
+        this.setCookie(name, value, 1);
+      }
+      this.getCookies();
+    },
+    setCookie(name, value, days, path = "/") {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      document.cookie =
+        name +
+        "=" +
+        encodeURIComponent(value) +
+        "; expires=" +
+        expires +
+        "; path=" +
+        path;
+    },
+    getCookies() {
+      let name = "_rid";
+      if (document.cookie.length > 0) {
+        let cookieStart = document.cookie.indexOf(name + "=");
+        if (cookieStart !== -1) {
+          cookieStart = cookieStart + name.length + 1;
+          let cookieEnd = document.cookie.indexOf(";", cookieStart);
+          if (cookieEnd === -1) {
+            cookieEnd = document.cookie.length;
+          }
+          this.referralId = unescape(
+            document.cookie.substring(cookieStart, cookieEnd)
+          );
+        }
+      }
+    },
   },
   mounted() {
+    this.getReferral();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
@@ -284,6 +351,7 @@ export default {
     right: 10px;
     color: var(--quaternary);
   }
+
   & .forgot {
     text-decoration: none;
   }

@@ -1,0 +1,62 @@
+public function calculate(bool $min_amount = true): ?bool
+    {
+        if (!$this->is_profile && $min_amount === true) {
+            $this->setMinAmounts();
+
+            if ($this->sell_amount < $this->min_sell_amount) {
+                $this->sell_amount = $this->min_sell_amount;
+            }
+
+            if ($this->buy_amount < $this->min_buy_amount) {
+                $this->buy_amount = $this->min_buy_amount;
+            }
+        }
+
+        $sellCurrency = $this->getActiveSellCurrency();
+        $buyCurrency = $this->getActiveBuyCurrency();
+
+        if ($sellCurrency === $buyCurrency) {
+            return false;
+        }
+
+        if ($sellCurrency->id === $buyCurrency->id) {
+            return false;
+        }
+
+        $course = $this->getCourse();
+
+        if (!$course) {
+            return false;
+        }
+
+        if ($this->sell_currency_id === 1) {
+            $this->sell_source = strtoupper($this->sell_source);
+        }
+
+        if ($min_amount === true) {
+            if ($course->min_sell_amount > 0 && $this->sell_amount < $course->min_sell_amount) {
+                $this->addError('sell_amount',
+                    Yii::t('exchange', 'min_sell_amount', $course->min_sell_amount . $sellCurrency->symbol));
+            } elseif ($this->sell_amount < $sellCurrency->min_amount) {
+                $this->addError('sell_amount',
+                    Yii::t('exchange', 'min_sell_amount', $sellCurrency->min_amount . $sellCurrency->symbol));
+            }
+        }
+
+        if (!$this->is_profile && !empty($sellCurrency->max_amount) && $this->sell_amount > $sellCurrency->max_amount && $min_amount === true) {
+            $this->addError('sell_amount',
+                Yii::t('exchange', 'max_sell_amount', $sellCurrency->max_amount . $sellCurrency->symbol));
+        }
+
+        if ($this->sell_currency_id && $this->buy_currency_id && $course) {
+            if ($this->type === 'default') {
+                $this->calculateDefault();
+            }
+
+            if ($this->type === 'revert') {
+                $this->calculateRevert();
+            }
+        }
+
+        return false;
+    }

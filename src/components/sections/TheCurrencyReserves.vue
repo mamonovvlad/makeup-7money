@@ -116,7 +116,7 @@ export default {
       height: 16px;
       margin-right: 5px;
       background-size: cover;
-      border-radius: var(--radius-four);
+      border-radius: var(--radius-ten);
     }
     & p {
       @include crop-height(1);

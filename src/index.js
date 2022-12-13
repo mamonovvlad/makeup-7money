@@ -8,7 +8,7 @@ import { TippyPlugin } from "tippy.vue";
 //js src
 import i18n from "./assets/js/multilanguage.js";
 import { Support } from "./assets/js/support.js";
-import { CurrencyModel } from "./assets/js/main.js";
+import { CurrencyModel } from "./assets/js/currency-model.js";
 
 //Style
 import "./assets/scss/main.scss";
@@ -183,16 +183,17 @@ createApp({
     ...mapMutations([
       "callbackTimerFinish",
       "updateSellAmount",
+      "updateBuyAmount",
       "calculationAmount",
       "calculationAmountCommission",
       "calculationFormSellAmountCommission",
       "calculationFormBuyAmountCommission",
-      "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
       "trashClick",
       "copyText",
       "captcha",
+      "calculateDefault",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(

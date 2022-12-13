@@ -1,7 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
 import qs from "querystring-es3";
-
+import { CurrencyModel } from "../assets/js/currency-model.js";
 const store = createStore({
   state: {
     proxy: process.env.PROXY,
@@ -48,6 +48,112 @@ const store = createStore({
     isShowWindow: false,
   }, //Хранения данных
   mutations: {
+    calculateDefault(state) {
+      let sellNumbers = 2;
+      let buyNumbers = 2;
+
+      // console.log(state.calculateData);
+      let sellComission = state.sellCurrency.sell_comission;
+      let sellMaxComission = state.sellCurrency.sell_max_comission;
+      let buyComission = state.buyCurrency.buy_comission;
+      let buyMaxComission = state.buyCurrency.buy_max_comission;
+
+      if (
+        state.sellCurrency.is_sell_verified === 1 &&
+        state.is_verified === 1
+      ) {
+        for (let item of state.allCurrencies) {
+          switch (state.sellCurrency.id) {
+            case Number(item.id):
+              sellComission = item.sell_verified_comission;
+              break;
+          }
+        }
+      }
+
+      if (state.buyCurrency.is_buy_verified === 1 && state.is_verified === 1) {
+        for (let item of state.allCurrencies) {
+          switch (state.buyCurrency.id) {
+            case Number(item.id):
+              console.log(item);
+              buyComission = item.buy_verified_comission;
+              break;
+          }
+        }
+      }
+
+      for (let id of CurrencyModel.CRYPT_IDS) {
+        switch (state.sellCurrency.id) {
+          case id:
+            sellNumbers = 7;
+            break;
+        }
+        switch (state.buyCurrency.id) {
+          case id:
+            buyNumbers = 7;
+            break;
+        }
+      }
+
+      let operatorCalculationSell = spaceship(
+        Number(state.course.sell),
+        Number(state.course.buy)
+      );
+      let operatorCalculationBuy = spaceship(
+        Number(state.course.buy),
+        Number(state.course.sell)
+      );
+      let buyAmount;
+      if (operatorCalculationSell === 0 && operatorCalculationBuy === 0) {
+        state.buy_amount = state.sell_amount;
+      } else if (operatorCalculationSell === 0) {
+        buyAmount = (state.sell_amount * state.course.buy).toFixed(buyNumbers);
+        if (buyAmount <= 0) {
+          buyAmount = state.sell_amount * state.course.buy;
+        }
+        state.buy_amount = buyAmount;
+      } else if (operatorCalculationBuy === 0) {
+        buyAmount = 0;
+        if (state.course.sell !== 0) {
+          buyAmount = (state.sell_amount / state.course.sell).toFixed(
+            buyNumbers
+          );
+        }
+
+        if (buyAmount === 0 && state.course.sell !== 0) {
+          buyAmount = state.sell_amount / state.course.sell;
+        }
+        state.buy_amount = buyAmount;
+      }
+
+      // this.dispatch("calculateForm", ["default"]);
+
+      function spaceship(val1, val2) {
+        console.log(val1);
+        console.log(val2);
+        if (val1 === null || val2 === null || typeof val1 !== typeof val2) {
+          console.log("null");
+          return null;
+        }
+        if (typeof val1 === "string") {
+          console.log("st");
+          console.log(val1.localeCompare(val2));
+          return val1.localeCompare(val2);
+        } else {
+          if (val1 > val2) {
+            console.log("1");
+            return 1;
+          } else if (val1 < val2) {
+            console.log("-1");
+            return -1;
+          }
+          console.log("0");
+          return 0;
+        }
+      }
+    },
+    ////////////////////////////////////////////
+
     hideLines() {
       let itemsWrapper = document.querySelectorAll(".items__wrapper");
       if (itemsWrapper) {
@@ -136,6 +242,7 @@ const store = createStore({
     calculationFormSellAmountCommission() {
       this.dispatch("calculateForm", ["default"]);
     },
+
     calculationFormBuyAmountCommission() {
       this.dispatch("calculateForm", ["default"]);
     },
@@ -181,27 +288,29 @@ const store = createStore({
       state.is_verified = e.target.checked ? 1 : 0;
       this.dispatch("calculateForm", ["revert"]);
     },
-    updateSellAmount(state) {
-      state.type = "default";
-      if (
-        state.sell_amount.length <= 0 ||
-        state.sell_amount === 0 ||
-        state.sell_amount === ""
-      ) {
-        return;
-      }
-      let float = state.sell_amount;
-      if (typeof state.sell_amount === "string") {
-        float = parseFloat(state.sell_amount.replace(/,/g, "."));
-        if (float <= 0) {
-          float = 0;
-        }
-      }
-      state.sell_amount = float;
-      if (state.sell_amount > 0) {
-        this.dispatch("calculateForm", ["default"]);
-      }
-    },
+
+    // updateSellAmount(state) {
+    //   state.type = "default";
+    //   if (
+    //     state.sell_amount.length <= 0 ||
+    //     state.sell_amount === 0 ||
+    //     state.sell_amount === ""
+    //   ) {
+    //     return;
+    //   }
+    //   let float = state.sell_amount;
+    //   if (typeof state.sell_amount === "string") {
+    //     float = parseFloat(state.sell_amount.replace(/,/g, "."));
+    //     if (float <= 0) {
+    //       float = 0;
+    //     }
+    //   }
+    //   state.sell_amount = float;
+    //   if (state.sell_amount > 0) {
+    //     this.dispatch("calculateForm", ["default"]);
+    //   }
+    // },
+
     updateBuyAmount(state) {
       state.type = "revert";
       if (
@@ -223,6 +332,7 @@ const store = createStore({
         this.dispatch("calculateForm", ["revert"]);
       }
     },
+
     startTimer(state) {
       clearTimeout(state.timer);
       state.timer = setInterval(() => {

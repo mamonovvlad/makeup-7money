@@ -79,19 +79,19 @@
                               id="orderform-sell_amount"
                               name="OrderForm[sell_amount]"
                               aria-invalid="true"
+                              maxlength="10"
                               v-model="$store.state.sell_amount"
-                              v-debounce="updateSellAmount"
-                              @input="calculationAmount('sell')"
+                              @input="calculateDefault"
                               pattern="[0-9]"
                             />
-                            <span
-                              :class="sellCurrency.code"
-                              class="icon"
-                              id="exchange-ddl-from"
-                              :data-alias="sellCurrency.code"
-                            >
-                            </span>
                             <span class="help-block">Error</span>
+                          </span>
+                          <span
+                            :class="sellCurrency.code"
+                            class="icon"
+                            id="exchange-ddl-from"
+                            :data-alias="sellCurrency.code"
+                          >
                           </span>
                         </div>
                         <div class="min__max">
@@ -223,14 +223,16 @@
                               v-debounce="updateBuyAmount"
                               @input="calculationAmount('buy')"
                             />
-                            <span
-                              :class="buyCurrency.code"
-                              id="exchange-ddl-to"
-                              class="icon"
-                              :data-alias="buyCurrency.code"
+                            <span class="help-block"
+                              >ewfwefewfewfewffewfewwef</span
                             >
-                            </span>
-                            <span class="help-block"></span>
+                          </span>
+                          <span
+                            :class="buyCurrency.code"
+                            id="exchange-ddl-to"
+                            class="icon"
+                            :data-alias="buyCurrency.code"
+                          >
                           </span>
                         </div>
                         <div class="min__max">

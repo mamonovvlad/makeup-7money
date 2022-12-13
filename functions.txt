@@ -1,0 +1,355 @@
+
+    public function calculateDefault(): void
+    {
+        $course = $this->getCourse();
+        /**
+         * @var Currency $sellCurrency
+         * @var Currency $buyCurrency
+         */
+        $sellCurrency = $course->sellCurrency;
+        $buyCurrency = $course->buyCurrency;
+
+        $sellComission = $sellCurrency->sell_comission;
+        $sellMaxComission = $sellCurrency->sell_max_comission;
+        $buyComission = $buyCurrency->buy_comission;
+        $buyMaxComission = $buyCurrency->buy_max_comission;
+
+        if (((int)$sellCurrency->is_sell_verified === 1) && (int)$this->is_verified === 1) {
+            $sellComission = $sellCurrency->sell_verified_comission;
+        }
+
+        if (((int)$buyCurrency->is_buy_verified === 1) && (int)$this->is_verified === 1) {
+            $buyComission = $buyCurrency->buy_verified_comission;
+        }
+
+        $sellNumbers = 2;
+        $buyNumbers = 2;
+
+        if (in_array($sellCurrency->id, self::CRYPT_IDS, true)) {
+            $sellNumbers = 7;
+        }
+
+        if (in_array($buyCurrency->id, self::CRYPT_IDS, true)) {
+            $buyNumbers = 7;
+        }
+
+        if ((bool)$this->withCustomCourse === true) {
+            $customCourse = $this->customCourse;
+            [$courseSell, $courseBuy] = explode(':', $customCourse);
+        } else {
+            $courseSell = $course->sell;
+            $courseBuy = $course->buy;
+        }
+
+        if (($courseSell <=> 1) === 0 && ($courseBuy <=> 1) === 0) {
+            $this->buy_amount = $this->sell_amount;
+        } elseif (($courseSell <=> 1) === 0) {
+            $buyAmount = round((float)$this->sell_amount * $courseBuy, $buyNumbers);
+            if ($buyAmount <= 0) {
+                $buyAmount = ((float)$this->sell_amount * $courseBuy);
+            }
+            $this->buy_amount = $buyAmount;
+        } elseif (($courseBuy <=> 1) === 0) {
+            $buyAmount = 0;
+            if ($courseSell !== 0) {
+                $buyAmount = round((float)$this->sell_amount / $courseSell, $buyNumbers);
+            }
+
+            if ($buyAmount === 0 and $courseSell !== 0) {
+                $buyAmount = ((float)$this->sell_amount / $courseSell);
+            }
+            $this->buy_amount = $buyAmount;
+        }
+
+        $type = 'sell';
+        if ((!Yii::$app->user->isGuest || $this->user_id > 0) && !$this->is_profile) {
+            $user = null;
+
+            if ($this->user_id > 0) {
+                $user = User::findOne($this->user_id);
+            } else if (!Yii::$app->user->isGuest) {
+                $user = User::findOne(Yii::$app->user->id);
+            }
+
+            if ($user) {
+                $amount = new Amount();
+                $program = new ProgramLoyalty();
+
+                $amount->setUser($user);
+
+                $program->setAmount($amount);
+                $program->setSell($this->sell_amount);
+                $program->setBuy($this->buy_amount);
+
+                if (in_array($sellCurrency->id, [4, 25], true)
+                    || (isset($user->fee_type) && !$user->fee_type)) {
+                    $type = 'buy';
+                    $program->setType(ProgramLoyalty::TYPE_BUY);
+                }
+
+                if (in_array($buyCurrency->id, [4, 25], true)) {
+                    $type = 'sell';
+                    $program->setType(ProgramLoyalty::TYPE_SELL);
+                }
+
+                $program->setCourse($course);
+                $program->calculate();
+
+                $this->sell_amount_with_discount = $program->getSellAmountWithDiscount();
+
+                if ($type === 'buy') {
+                    $this->buy_amount_with_discount = $program->getBuyAmountWithDiscount();
+                }
+            }
+        }
+
+        $this->sell_amount_with_comission = $this->sell_amount_with_discount ?? $this->sell_amount;
+        $this->buy_amount_with_comission = $this->buy_amount_with_discount ?? $this->buy_amount;
+        if ($sellComission) {
+            $sellAmountComission = $this->parseCommission($this->sell_amount, $sellComission, $sellNumbers);
+
+            if ($sellMaxComission > 0 && $sellAmountComission > $sellMaxComission) {
+                $sellAmountComission = $sellMaxComission;
+            }
+
+            $this->sell_amount_comission = $sellAmountComission;
+
+            if ($this->sell_amount_with_discount > 0) {
+                $sellDiscountComission = $this->parseCommission($this->sell_amount_with_discount, $sellComission, $sellNumbers);
+
+                if ($sellMaxComission > 0 && $sellDiscountComission > $sellMaxComission) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount_with_discount + $sellMaxComission, $sellNumbers
+                    );
+                } else if (in_array($sellCurrency->id, Currency::UAH_BANK_IDS, true)) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount_with_discount - $sellDiscountComission, $sellNumbers
+                    );
+                } else {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount_with_discount + $sellDiscountComission, $sellNumbers
+                    );
+                }
+            } else {
+                if ($sellMaxComission > 0 && $sellAmountComission > $sellMaxComission) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount + $sellMaxComission, $sellNumbers
+                    );
+                } else if (in_array($sellCurrency->id, Currency::UAH_BANK_IDS, true)) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount - $sellAmountComission, $sellNumbers
+                    );
+                } else {
+                    if ($sellComission > 0) {
+                        $this->sell_amount_with_comission = round(
+                            (float)$this->sell_amount + $sellAmountComission, $sellNumbers
+                        );
+                    } else {
+                        $this->sell_amount_with_comission = round(
+                            (float)$this->sell_amount - $sellAmountComission, $sellNumbers
+                        );
+                    }
+                }
+            }
+        }
+
+        if ($buyComission) {
+            $buyAmountComission = $this->parseCommission($this->buy_amount, $buyComission, $buyNumbers);
+
+            if ($buyMaxComission > 0 && $buyAmountComission > $buyMaxComission) {
+                $buyAmountComission = $buyMaxComission;
+            }
+
+            $this->buy_amount_comission = $buyAmountComission;
+
+            if ($buyComission > 0) {
+                $this->buy_amount_with_comission = round((float)$this->buy_amount + $buyAmountComission, $buyNumbers);
+            } else {
+                $this->buy_amount_with_comission = round((float)$this->buy_amount - $buyAmountComission, $buyNumbers);
+            }
+        }
+    }
+
+    private function parseCommission(?float $amount, ?float $percent, int $numbers)
+    {
+        $amount = (float)$amount;
+        // sell_amount_with_comission - (sell_amount_with_comission * percent / (100 + percent))
+        if ($percent > 0) {
+            return round(($amount * $percent) / 100, $numbers);
+        }
+
+        if ($percent < 0) {
+            if (in_array((int)$this->sell_currency_id, Currency::UAH_BANK_IDS, true)
+                || in_array((int)$this->buy_currency_id, Currency::UAH_BANK_IDS, true)) {
+                $calcAmount = $amount;
+                $calcAmount -= 5;
+
+                return $amount - round($calcAmount * 100 / (100 + abs($percent)), $numbers);
+            }
+
+            return $amount - round($amount * 100 / (100 + abs($percent)), $numbers);
+        }
+
+        return 0;
+    }
+
+    /**
+     * @throws NotFoundHttpException
+     */
+    public function calculateRevert(): void
+    {
+        $course = $this->getCourse();
+        /**
+         * @var Currency $sellCurrency
+         * @var Currency $buyCurrency
+         */
+        $sellCurrency = $course->sellCurrency;
+        $buyCurrency = $course->buyCurrency;
+
+        $sellComission = $sellCurrency->sell_comission;
+        $sellMaxComission = $sellCurrency->sell_max_comission;
+        $buyComission = $buyCurrency->buy_comission;
+        $buyMaxComission = $buyCurrency->buy_max_comission;
+
+        $sellNumbers = 2;
+        $buyNumbers = 2;
+
+        if (in_array($sellCurrency->id, self::CRYPT_IDS, true)) {
+            $sellNumbers = 7;
+        }
+
+        if (in_array($buyCurrency->id, self::CRYPT_IDS, true)) {
+            $buyNumbers = 7;
+        }
+
+        if ($this->withCustomCourse === true) {
+            $customCourse = $this->customCourse;
+            [$courseSell, $courseBuy] = explode(':', $customCourse);
+        } else {
+            $courseSell = $course->sell;
+            $courseBuy = $course->buy;
+        }
+
+        if (($courseSell <=> 1) === 0 && ($courseBuy <=> 1) === 0) {
+            $this->sell_amount = (float)$this->buy_amount;
+        } elseif (($courseSell <=> 1) === 0) {
+            $sellAmount = round((float)$this->buy_amount / $courseBuy, $sellNumbers);
+            $this->sell_amount = $sellAmount;
+        } elseif (($courseBuy <=> 1) === 0) {
+            $sellAmount = round($courseSell * (float)$this->buy_amount, $sellNumbers);
+            $this->sell_amount = $sellAmount;
+        }
+
+        if (((int)$sellCurrency->is_sell_verified === 1) && (int)$this->is_verified === 1) {
+            $sellComission = $sellCurrency->sell_verified_comission;
+        }
+
+        if (((int)$buyCurrency->is_buy_verified === 1) && (int)$this->is_verified === 1) {
+            $buyComission = $buyCurrency->buy_verified_comission;
+        }
+
+        $type = 'sell';
+
+        if ((!Yii::$app->user->isGuest || $this->user_id > 0) && !$this->is_profile) {
+            $user = null;
+
+            if ($this->user_id > 0) {
+                $user = User::findOne($this->user_id);
+            } else if (!Yii::$app->user->isGuest) {
+                $user = User::findOne(Yii::$app->user->id);
+            }
+
+            if ($user) {
+                $amount = new Amount();
+                $program = new ProgramLoyalty();
+
+                $amount->setUser($user);
+
+                $program->setAmount($amount);
+                $program->setSell($this->sell_amount);
+                $program->setBuy($this->buy_amount);
+
+                if (in_array($sellCurrency->id, [4, 25], true)
+                    || (isset($user->fee_type) && !$user->fee_type)) {
+                    $type = 'buy';
+                    $program->setType(ProgramLoyalty::TYPE_BUY);
+                }
+
+                if (in_array($buyCurrency->id, [4, 25], true)) {
+                    $type = 'sell';
+                    $program->setType(ProgramLoyalty::TYPE_SELL);
+                }
+
+                $program->setCourse($course);
+                $program->calculate();
+
+                $this->sell_amount_with_discount = $program->getSellAmountWithDiscount();
+
+                if ($type === 'buy') {
+                    $this->buy_amount_with_discount = $program->getBuyAmountWithDiscount();
+                }
+            }
+        }
+
+        $this->sell_amount_with_comission = $this->sell_amount_with_discount ?? $this->sell_amount;
+        $this->buy_amount_with_comission = $this->buy_amount_with_discount ?? $this->buy_amount;
+
+        if ($sellComission) {
+            $sellAmountComission = $this->parseCommission($this->sell_amount, $sellComission, $sellNumbers);
+
+            if ($sellMaxComission > 0 && $sellAmountComission > $sellMaxComission) {
+                $sellAmountComission = $sellMaxComission;
+            }
+
+            $this->sell_amount_comission = $sellAmountComission;
+
+            if ($this->sell_amount_with_discount > 0) {
+                $sellDiscountComission = $this->parseCommission($this->sell_amount_with_discount, $sellComission, $sellNumbers);
+
+                if ($sellMaxComission > 0 && $sellDiscountComission > $sellMaxComission) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount_with_discount + $sellMaxComission, $sellNumbers
+                    );
+                } else if (in_array($sellCurrency->id, Currency::UAH_BANK_IDS, true)) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount_with_discount - $sellDiscountComission, $sellNumbers
+                    );
+                } else {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount_with_discount + $sellDiscountComission, $sellNumbers
+                    );
+                }
+            } else {
+                if ($sellMaxComission > 0 && $sellAmountComission > $sellMaxComission) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount + $sellMaxComission, $sellNumbers
+                    );
+                } else if (in_array($sellCurrency->id, Currency::UAH_BANK_IDS, true)) {
+                    $this->sell_amount_with_comission = round(
+                        (float)$this->sell_amount - $sellAmountComission, $sellNumbers
+                    );
+                } else {
+                    if ($sellComission > 0) {
+                        $this->sell_amount_with_comission = round(
+                            (float)$this->sell_amount + $sellAmountComission, $sellNumbers
+                        );
+                    } else {
+                        $this->sell_amount_with_comission = round(
+                            (float)$this->sell_amount - $sellAmountComission, $sellNumbers
+                        );
+                    }
+                }
+            }
+        }
+
+        if ($buyComission) {
+            $buyAmountComission = $this->parseCommission($this->buy_amount, $buyComission, $buyNumbers);
+
+            if ($buyMaxComission > 0 && $buyAmountComission > $buyMaxComission) {
+                $buyAmountComission = $buyMaxComission;
+            }
+
+            $this->buy_amount_comission = $buyAmountComission;
+            $this->buy_amount_with_comission = round((float)$this->buy_amount - $buyAmountComission, $buyNumbers);
+        }
+    }
