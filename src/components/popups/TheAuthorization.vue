@@ -118,7 +118,7 @@ let registration = [
     required: true,
   },
   {
-    label: "Email",
+    label: "email",
     placeholder: "user@gmail.com",
     type: "email",
     id: "registration_mail",
@@ -152,7 +152,7 @@ let registration = [
 ];
 let entrance = [
   {
-    label: "E-mail",
+    label: "email",
     placeholder: "user@gmail.com",
     type: "email",
     id: "entrance_mail",

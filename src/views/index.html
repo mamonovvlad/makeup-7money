@@ -220,12 +220,9 @@
                               name="OrderForm[buy_amount]"
                               aria-invalid="false"
                               v-model="$store.state.buy_amount"
-                              v-debounce="updateBuyAmount"
-                              @input="calculationAmount('buy')"
+                              @input="calculateRevert"
                             />
-                            <span class="help-block"
-                              >ewfwefewfewfewffewfewwef</span
-                            >
+                            <span class="help-block"></span>
                           </span>
                           <span
                             :class="buyCurrency.code"

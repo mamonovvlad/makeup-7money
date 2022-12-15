@@ -30,6 +30,7 @@ public function calculate(bool $min_amount = true): ?bool
         }
 
         if ($this->sell_currency_id === 1) {
+        ФФ
             $this->sell_source = strtoupper($this->sell_source);
         }
 
