@@ -81,7 +81,8 @@
                               aria-invalid="true"
                               maxlength="10"
                               v-model="$store.state.sell_amount"
-                              @input="calculateDefault"
+                              @blur="updateSellAmount"
+                              @input="calculate('default')"
                               pattern="[0-9]"
                             />
                             <span class="help-block">Error</span>
@@ -146,10 +147,7 @@
                           </p>
                         </transition>
                         <transition name="fade">
-                          <div
-                            class="field"
-                            v-if="calculateData.sell_comission >0"
-                          >
+                          <div class="field">
                             <label for="orderform-sell_amount_with_comission">
                               С комиссией
                               <span class="text--green">
@@ -165,8 +163,6 @@
                                 id="orderform-sell_amount_with_comission"
                                 name="OrderForm[sell_amount_with_comission]"
                                 v-model="$store.state.sell_amount_with_commission"
-                                @input="calculationAmountCommission('sell')"
-                                v-debounce="calculationFormSellAmountCommission"
                               />
                             </span>
                           </div>
@@ -220,7 +216,8 @@
                               name="OrderForm[buy_amount]"
                               aria-invalid="false"
                               v-model="$store.state.buy_amount"
-                              @input="calculateRevert"
+                              @blur="updateBuyAmount"
+                              @input="calculate('revert')"
                             />
                             <span class="help-block"></span>
                           </span>
@@ -259,8 +256,6 @@
                                 name="OrderForm[buy_amount_with_discount]"
                                 type="text"
                                 v-model="$store.state.buy_amount_with_commission"
-                                @input="calculationAmountCommission('buy')"
-                                v-debounce="calculationFormBuyAmountCommission"
                               />
                             </span>
                           </div>

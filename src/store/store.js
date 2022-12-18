@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import axios from "axios";
 import qs from "querystring-es3";
 import { CurrencyModel } from "../assets/js/currency-model.js";
+import { logPlugin } from "@babel/preset-env/lib/debug";
 const store = createStore({
   state: {
     proxy: process.env.PROXY,
@@ -51,13 +52,42 @@ const store = createStore({
     buyNumbers: 2,
   }, //Хранения данных
   mutations: {
-    calculate(state) {},
+    calculate(state, type) {
+      if (state.sell_currency_id === state.buy_currency_id) {
+        return false;
+      }
+
+      if (!state.course) {
+        return false;
+      }
+
+      if (state.sell_currency_id === 1) {
+        state.sell_source = state.sell_source.toUpperCase();
+      }
+
+      if (state.sell_currency_id && state.buy_currency_id && state.course) {
+        if (type === "default") {
+          this.commit("calculateDefault");
+        }
+
+        if (type === "revert") {
+          this.commit("calculateRevert");
+        }
+      }
+
+      return false;
+    },
+    ////////////////////////////////////////
     currencyModelIsCrypt(state) {
       if (CurrencyModel.isCrypt(state.sell_currency_id) === true) {
         state.sellNumbers = 7;
+      } else {
+        state.sellNumbers = 2;
       }
       if (CurrencyModel.isCrypt(state.buy_currency_id) === true) {
         state.buyNumbers = 7;
+      } else {
+        state.buyNumbers = 2;
       }
     },
     checkVerified(state) {
@@ -86,7 +116,6 @@ const store = createStore({
     operatorCalculation(state, type) {
       let buyAmount;
       let sellAmount;
-
       let operatorCalculationSell = spaceship(Number(state.course.sell), 1);
       let operatorCalculationBuy = spaceship(Number(state.course.buy), 1);
 
@@ -101,7 +130,7 @@ const store = createStore({
             buyAmount =
               parseFloat(state.sell_amount) * parseFloat(state.course.buy);
           }
-          state.buy_amount = buyAmount;
+          state.buy_amount = isNaN(buyAmount) === true ? "" : buyAmount;
         } else if (operatorCalculationBuy === 0) {
           buyAmount = 0;
           if (state.course.sell !== 0) {
@@ -113,7 +142,7 @@ const store = createStore({
             buyAmount =
               parseFloat(state.sell_amount) / parseFloat(state.course.sell);
           }
-          state.buy_amount = buyAmount;
+          state.buy_amount = isNaN(buyAmount) === true ? "" : buyAmount;
         }
       } else if (type === "buy") {
         if (operatorCalculationSell === 0 && operatorCalculationBuy === 0) {
@@ -122,12 +151,13 @@ const store = createStore({
           sellAmount = (
             parseFloat(state.buy_amount) / parseFloat(state.course.buy)
           ).toFixed(state.sellNumbers);
-          state.sell_amount = sellAmount;
+
+          state.sell_amount = isNaN(sellAmount) === true ? "" : sellAmount;
         } else if (operatorCalculationBuy === 0) {
           sellAmount = (
             parseFloat(state.course.sell) * parseFloat(state.buy_amount)
           ).toFixed(state.sellNumbers);
-          state.sell_amount = sellAmount;
+          state.sell_amount = isNaN(sellAmount) === true ? "" : sellAmount;
         }
       }
 
@@ -159,137 +189,65 @@ const store = createStore({
           state.sellCurrency.sell_comission,
           state.sellNumbers
         );
-
         sellAmountComission = parseFloat(sellAmountComission);
 
-        if (type === "sell") {
+        if (
+          state.sellCurrency.sell_max_comission > 0 &&
+          sellAmountComission > state.sellCurrency.sell_max_comission
+        ) {
+          sellAmountComission = state.sellCurrency.sell_max_comission;
+        }
+        state.calculateData.sell_amount_comission = sellAmountComission;
+
+        if (state.calculateData.sell_amount_with_discount > 0) {
+          let sellDiscountComission = parseCommission(
+            state.calculateData.sell_amount_with_discount,
+            state.sellCurrency.sell_comission,
+            state.sellNumbers
+          );
+          sellDiscountComission = parseFloat(sellDiscountComission);
+
+          if (
+            state.sellCurrency.sell_max_comission > 0 &&
+            sellDiscountComission > state.sellCurrency.sell_max_comission
+          ) {
+            state.calculateData.sell_amount_with_comission = (
+              parseFloat(state.calculateData.sell_amount_with_discount) +
+              parseFloat(state.sellCurrency.sell_max_comission)
+            ).toFixed(state.sellNumbers);
+          } else if (CurrencyModel.isUahBank(state.sell_currency_id) === true) {
+            state.calculateData.sell_amount_with_comission = (
+              parseFloat(state.calculateData.sell_amount_with_discount) -
+              sellDiscountComission
+            ).toFixed(state.sellNumbers);
+          } else {
+            state.calculateData.sell_amount_with_comission = (
+              parseFloat(state.calculateData.sell_amount_with_discount) +
+              sellDiscountComission
+            ).toFixed(state.sellNumbers);
+          }
+        } else {
           if (
             state.sellCurrency.sell_max_comission > 0 &&
             sellAmountComission > state.sellCurrency.sell_max_comission
           ) {
-            sellAmountComission = state.sellCurrency.sell_max_comission;
-          }
-          state.calculateData.sell_amount_comission = sellAmountComission;
-          if (state.calculateData.sell_amount_with_discount > 0) {
-            let sellDiscountComission = parseCommission(
-              state.calculateData.sell_amount_with_discount,
-              state.sellCurrency.sell_comission,
-              state.sellNumbers
-            );
-            sellDiscountComission = parseFloat(sellDiscountComission);
-
-            if (
-              state.sellCurrency.sell_max_comission > 0 &&
-              sellDiscountComission > state.sellCurrency.sell_max_comission
-            ) {
-              state.calculateData.sell_amount_comission = (
-                parseFloat(state.calculateData.sell_amount_with_discount) +
-                parseFloat(state.sellCurrency.sell_max_comission)
-              ).toFixed(state.sellNumbers);
-            } else if (
-              CurrencyModel.isUahBank(state.sellCurrencies.id) === true
-            ) {
-              state.calculateData.sell_amount_comission = (
-                parseFloat(state.calculateData.sell_amount_with_discount) -
-                sellDiscountComission
+            state.calculateData.sell_amount_with_comission = (
+              parseFloat(state.sell_amount) +
+              parseFloat(state.sellCurrency.sell_max_comission)
+            ).toFixed(state.sellNumbers);
+          } else if (CurrencyModel.isUahBank(state.sell_currency_id) === true) {
+            state.calculateData.sell_amount_with_comission = (
+              parseFloat(state.sell_amount) - sellAmountComission
+            ).toFixed(state.sellNumbers);
+          } else {
+            if (state.sellCurrency.sell_comission > 0) {
+              state.calculateData.sell_amount_with_comission = (
+                parseFloat(state.sell_amount) + sellAmountComission
               ).toFixed(state.sellNumbers);
             } else {
-              state.calculateData.sell_amount_comission = (
-                parseFloat(state.calculateData.sell_amount_with_discount) +
-                sellDiscountComission
-              ).toFixed(state.sellNumbers);
-            }
-          } else {
-            if (
-              state.sellCurrency.sell_max_comission > 0 &&
-              sellAmountComission > state.sellCurrency.sell_max_comission
-            ) {
-              state.calculateData.sell_amount_with_comission = (
-                parseFloat(state.sell_amount) +
-                parseFloat(state.sellCurrency.sell_max_comission)
-              ).toFixed(state.sellNumbers);
-            } else if (
-              CurrencyModel.isUahBank(state.sellCurrencies.id) === true
-            ) {
               state.calculateData.sell_amount_with_comission = (
                 parseFloat(state.sell_amount) - sellAmountComission
               ).toFixed(state.sellNumbers);
-            } else {
-              if (state.sellCurrency.sell_comission > 0) {
-                state.calculateData.sell_amount_with_comission = (
-                  parseFloat(state.sell_amount) + sellAmountComission
-                ).toFixed(state.sellNumbers);
-              } else {
-                state.calculateData.sell_amount_with_comission = (
-                  parseFloat(state.sell_amount) - sellAmountComission
-                ).toFixed(state.sellNumbers);
-              }
-            }
-          }
-        } else if (type === "buy") {
-          if (
-            state.sellCurrency.sell_max_comission > 0 &&
-            sellAmountComission > state.sellCurrency.sell_max_comission
-          ) {
-            sellAmountComission = state.sellCurrency.sell_max_comission;
-          }
-          state.calculateData.sell_amount_comission = sellAmountComission;
-
-          if (state.calculateData.sell_amount_with_discount > 0) {
-            let sellDiscountComission = parseCommission(
-              state.calculateData.sell_amount_with_discount,
-              state.sellCurrency.sell_comission,
-              state.sellNumbers
-            );
-
-            sellDiscountComission = parseFloat(sellDiscountComission);
-
-            if (
-              state.sellCurrency.sell_max_comission > 0 &&
-              sellDiscountComission > state.sellCurrency.sell_max_comission
-            ) {
-              state.calculateData.sell_amount_with_comission = (
-                parseFloat(state.calculateData.sell_amount_with_discount) +
-                parseFloat(state.sellCurrency.sell_max_comission)
-              ).toFixed(state.sellNumbers);
-            } else if (
-              CurrencyModel.isUahBank(state.sellCurrencies.id) === true
-            ) {
-              state.calculateData.sell_amount_with_comission = (
-                parseFloat(state.calculateData.sell_amount_with_discount) -
-                sellDiscountComission
-              ).toFixed(state.sellNumbers);
-            } else {
-              state.calculateData.sell_amount_with_comission = (
-                parseFloat(state.calculateData.sell_amount_with_discount) +
-                sellDiscountComission
-              ).toFixed(state.sellNumbers);
-            }
-          } else {
-            if (
-              state.sellCurrency.sell_max_comission > 0 &&
-              sellAmountComission > state.sellCurrency.sell_max_comission
-            ) {
-              state.calculateData.sell_amount_with_comission = (
-                parseFloat(state.sell_amount) +
-                parseFloat(state.sellCurrency.sell_max_comission)
-              ).toFixed(state.sellNumbers);
-            } else if (
-              CurrencyModel.isUahBank(state.sellCurrencies.id) === true
-            ) {
-              state.calculateData.sell_amount_with_comission = (
-                parseFloat(state.sell_amount) - sellAmountComission
-              ).toFixed(state.sellNumbers);
-            } else {
-              if (state.sellCurrency.sell_comission > 0) {
-                state.calculateData.sell_amount_with_comission = (
-                  parseFloat(state.sell_amount) + sellAmountComission
-                ).toFixed(state.sellNumbers);
-              } else {
-                state.calculateData.sell_amount_with_comission = (
-                  parseFloat(state.sell_amount) - sellAmountComission
-                ).toFixed(state.sellNumbers);
-              }
             }
           }
         }
@@ -303,35 +261,23 @@ const store = createStore({
         );
         buyAmountComission = parseFloat(buyAmountComission);
 
+        if (
+          state.buyCurrency.buy_max_comission > 0 &&
+          buyAmountComission > state.buyCurrency.buy_max_comission
+        ) {
+          buyAmountComission = state.buyCurrency.buy_max_comission;
+        }
+        state.calculateData.buy_amount_comission = buyAmountComission;
         if (type === "sell") {
-          if (
-            state.buyCurrency.buy_max_comission > 0 &&
-            buyAmountComission > state.buyCurrency.buy_max_comission
-          ) {
-            buyAmountComission = state.buyCurrency.buy_max_comission;
-          }
-          state.calculateData.buy_amount_comission = buyAmountComission;
-
           if (state.buyCurrency.buy_comission > 0) {
-            state.calculateData.buy_amount_comission = (
+            state.calculateData.buy_amount_with_comission = (
               parseFloat(state.buy_amount) + buyAmountComission
             ).toFixed(state.buyNumbers);
           } else {
-            state.calculateData.buy_amount_comission = (
+            state.calculateData.buy_amount_with_comission = (
               parseFloat(state.buy_amount) - buyAmountComission
             ).toFixed(state.buyNumbers);
           }
-        } else if (type === "buy") {
-          if (
-            state.buyCurrency.buy_max_comission > 0 &&
-            buyAmountComission > state.buyCurrency.buy_max_comission
-          ) {
-            buyAmountComission = state.buyCurrency.buy_max_comission;
-          }
-          state.calculateData.buy_amount_comission = buyAmountComission;
-          state.calculateData.buy_amount_with_comission = (
-            parseFloat(state.buy_amount) - buyAmountComission
-          ).toFixed(state.buyNumbers);
         }
       }
 
@@ -362,10 +308,10 @@ const store = createStore({
             ((amount * 100) / (100 + Math.abs(percent))).toFixed(numbers)
           );
         }
-
         return 0;
       }
     },
+    ////////////////////////////////////////
     calculateDefault() {
       this.commit("currencyModelIsCrypt");
       this.commit("checkVerified");
@@ -382,6 +328,51 @@ const store = createStore({
       //Commission
       this.commit("calculateCommission", "buy");
     },
+    ////////////////////////////////////////
+    updateSellAmount(state) {
+      state.type = "default";
+      if (
+        state.sell_amount.length <= 0 ||
+        state.sell_amount === 0 ||
+        state.sell_amount === ""
+      ) {
+        return;
+      }
+      let float = state.sell_amount;
+      if (typeof state.sell_amount === "string") {
+        float = parseFloat(state.sell_amount.replace(/,/g, "."));
+        if (float <= 0) {
+          float = 0;
+        }
+      }
+      state.sell_amount = float;
+      if (state.sell_amount > 0) {
+        this.dispatch("calculateForm", ["default"]);
+      }
+    },
+
+    updateBuyAmount(state) {
+      state.type = "revert";
+      if (
+        state.buy_amount.length <= 0 ||
+        state.buy_amount === 0 ||
+        state.buy_amount === ""
+      ) {
+        return;
+      }
+      let float = state.buy_amount;
+      if (typeof state.buy_amount === "string") {
+        let float = parseFloat(state.buy_amount.replace(/,/g, "."));
+        if (float <= 0) {
+          float = 0;
+        }
+      }
+      state.buy_amount = float;
+      if (state.buy_amount > 0) {
+        this.dispatch("calculateForm", ["revert"]);
+      }
+    },
+
     hideLines() {
       let itemsWrapper = document.querySelectorAll(".items__wrapper");
       if (itemsWrapper) {
@@ -467,48 +458,6 @@ const store = createStore({
         }
       });
     },
-    calculationFormSellAmountCommission() {
-      this.dispatch("calculateForm", ["default"]);
-    },
-
-    calculationFormBuyAmountCommission() {
-      this.dispatch("calculateForm", ["default"]);
-    },
-    calculationAmountCommission(state, val) {
-      if (val === "sell") {
-        let sell_commission = Number(state.sell_amount_with_commission);
-        let sell_percent = Number(state.sell_percent);
-        let res =
-          sell_commission -
-          (sell_commission * sell_percent) / (100 + sell_percent);
-        state.sell_amount = res;
-      } else if (val === "buy") {
-        let buy_commission = Number(state.buy_amount_with_commission);
-        let buy_percent = Number(state.buy_percent);
-        let res =
-          buy_commission + (buy_commission * buy_percent) / (100 + buy_percent);
-        state.buy_amount = res;
-      }
-    },
-    calculationAmount(state, val) {
-      if (Number(state.course.sell) !== 1) {
-        if (val === "sell") {
-          let res = state.sell_amount / state.course.sell;
-          state.buy_amount = +res.toFixed(7);
-        } else if (val === "buy") {
-          let res = state.buy_amount * state.course.sell;
-          state.sell_amount = +res.toFixed(7);
-        }
-      } else {
-        if (val === "sell") {
-          let res = state.sell_amount * state.course.buy;
-          state.buy_amount = +res.toFixed(7);
-        } else if (val === "buy") {
-          let res = state.buy_amount / state.course.buy;
-          state.sell_amount = +res.toFixed(7);
-        }
-      }
-    },
     setOfExchange(state, e) {
       state.of_exchange = e.target.checked ? 1 : 0;
     },
@@ -516,51 +465,6 @@ const store = createStore({
       state.is_verified = e.target.checked ? 1 : 0;
       this.dispatch("calculateForm", ["revert"]);
     },
-
-    // updateSellAmount(state) {
-    //   state.type = "default";
-    //   if (
-    //     state.sell_amount.length <= 0 ||
-    //     state.sell_amount === 0 ||
-    //     state.sell_amount === ""
-    //   ) {
-    //     return;
-    //   }
-    //   let float = state.sell_amount;
-    //   if (typeof state.sell_amount === "string") {
-    //     float = parseFloat(state.sell_amount.replace(/,/g, "."));
-    //     if (float <= 0) {
-    //       float = 0;
-    //     }
-    //   }
-    //   state.sell_amount = float;
-    //   if (state.sell_amount > 0) {
-    //     this.dispatch("calculateForm", ["default"]);
-    //   }
-    // },
-
-    updateBuyAmount(state) {
-      state.type = "revert";
-      if (
-        state.buy_amount.length <= 0 ||
-        state.buy_amount === 0 ||
-        state.buy_amount === ""
-      ) {
-        return;
-      }
-      let float = state.buy_amount;
-      if (typeof state.buy_amount === "string") {
-        let float = parseFloat(state.buy_amount.replace(/,/g, "."));
-        if (float <= 0) {
-          float = 0;
-        }
-      }
-      state.buy_amount = float;
-      if (state.buy_amount > 0) {
-        this.dispatch("calculateForm", ["revert"]);
-      }
-    },
-
     startTimer(state) {
       clearTimeout(state.timer);
       state.timer = setInterval(() => {

@@ -353,3 +353,6 @@
             $this->buy_amount_with_comission = round((float)$this->buy_amount - $buyAmountComission, $buyNumbers);
         }
     }
+
+
+

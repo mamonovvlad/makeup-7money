@@ -182,19 +182,14 @@ createApp({
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
     ...mapMutations([
       "callbackTimerFinish",
-      // "updateSellAmount",
-      // "updateBuyAmount",
-      "calculationAmount",
-      "calculationAmountCommission",
-      "calculationFormSellAmountCommission",
-      "calculationFormBuyAmountCommission",
+      "updateSellAmount",
+      "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
       "trashClick",
       "copyText",
       "captcha",
-      "calculateDefault",
-      "calculateRevert",
+      "calculate",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
