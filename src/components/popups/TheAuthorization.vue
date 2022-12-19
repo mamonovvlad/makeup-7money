@@ -37,6 +37,7 @@
               :name="input.name"
               :autocomplete="input.autocomplete"
               :show-error="input.error"
+              :error-name="input.errorName"
             >
               <template #label>{{ $t(`${input.label}`) }}</template>
               <template #icon>
@@ -84,7 +85,12 @@
         <div class="captcha" v-show="indexActive === 1">
           <div class="g-recaptcha"></div>
         </div>
-        <button @click="$emit('open')" v-if="indexActive === 0" class="forgot">
+        <button
+          type="button"
+          @click="$emit('open')"
+          v-if="indexActive === 0"
+          class="forgot"
+        >
           {{ $t("remind") }}
         </button>
         <the-button tag="button">
@@ -115,6 +121,7 @@ let registration = [
     type: "text",
     id: "registration_name",
     name: "SignupForm[first_name]",
+    errorName: "help-signupform-first_name",
     required: true,
   },
   {
@@ -123,6 +130,7 @@ let registration = [
     type: "email",
     id: "registration_mail",
     name: "SignupForm[email]",
+    errorName: "help-signupform-email",
     required: true,
   },
   {
@@ -132,6 +140,7 @@ let registration = [
     id: "registration_password",
     name: "SignupForm[password]",
     required: true,
+    errorName: "help-signupform-password",
     className: "password",
   },
   {
@@ -140,6 +149,7 @@ let registration = [
     type: "password",
     id: "registration_сonfirm_password",
     name: "SignupForm[сonfirm_password]",
+    errorName: "help-signupform-confirm_password",
     required: true,
     className: "password",
   },
@@ -148,6 +158,7 @@ let registration = [
     type: "text",
     id: "registration_link",
     name: "SignupForm[referred_by]",
+    errorName: "help-signupform-referred_by",
   },
 ];
 let entrance = [
@@ -165,6 +176,7 @@ let entrance = [
     id: "entrance_password",
     name: "LoginForm[password]",
     className: "password",
+    errorName: "help-loginform-password",
     autocomplete: "off",
   },
 ];
@@ -196,17 +208,6 @@ export default {
     indexActive() {
       return (this.index = this.isAuthorization.index);
     },
-    getHost() {
-      let windowHost = window.location.host;
-      if (
-        windowHost === "makeup.7money.co" ||
-        windowHost === "7money.co" ||
-        windowHost === "obmen.loc"
-      ) {
-        return "";
-      }
-      return "http://obmen.loc"; // 'http://proxy.local:8888'
-    },
   },
   methods: {
     toggleInput() {
@@ -225,7 +226,6 @@ export default {
     validate(e) {
       let action = e.target.action;
       let formData = new FormData(e.target);
-      console.log(formData);
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -238,12 +238,16 @@ export default {
       axios.post(action, formData, config).then(function (response) {
         if (Object.keys(response.data).length) {
           let data = response.data;
-          console.log(data);
+          let field = document.querySelectorAll(
+            ".authorization .field .form-group"
+          );
           for (let k in data) {
-            console.log(k);
-            if (document.querySelector(".field-" + k)) {
-              document.querySelector(".field-" + k).innerHTML = data[k][0];
-            }
+            field.forEach((item) => {
+              if (document.querySelector(".help-" + k)) {
+                item.classList.add("has-error");
+                document.querySelector(".help-" + k).innerHTML = data[k][0];
+              }
+            });
           }
         } else {
           e.target.submit();
@@ -278,10 +282,16 @@ export default {
       axios.post(action, formData, config).then(function (response) {
         if (Object.keys(response.data).length) {
           let data = response.data;
+          let field = document.querySelectorAll(
+            ".authorization .field .form-group"
+          );
           for (let k in data) {
-            if (document.querySelector(".help-" + k)) {
-              document.querySelector(".help-" + k).innerHTML = data[k][0];
-            }
+            field.forEach((item) => {
+              if (document.querySelector(".help-" + k)) {
+                item.classList.add("has-error");
+                document.querySelector(".help-" + k).innerHTML = data[k][0];
+              }
+            });
           }
         } else {
           e.target.submit();

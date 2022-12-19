@@ -7,7 +7,6 @@
       <input
         v-if="!textarea && !select"
         @input="$emit('update:modelValue', $event.target.value)"
-        class="field"
         :value="modelValue"
         :id="nameId"
         :type="nameType"
@@ -40,10 +39,10 @@
       >
       </textarea>
       <slot name="icon"></slot>
+      <span class="help-block" :class="errorName">
+        <slot name="error"></slot>
+      </span>
     </span>
-    <div v-show="this.$slots.error && showError" class="help-block">
-      <slot name="error"></slot>
-    </div>
   </div>
 </template>
 
@@ -67,6 +66,9 @@ export default {
       type: String,
     },
     nameId: {
+      type: String,
+    },
+    errorName: {
       type: String,
     },
     modelValue: {
@@ -161,7 +163,7 @@ export default {
       &:-webkit-autofill:active,
       &:-webkit-autofill:focus,
       &:-webkit-autofill:hover {
-        -webkit-box-shadow: var(--shadow-inset-autofill-error);
+        -webkit-box-shadow: var(--shadow-inset-autofill-error) !important;
         -webkit-text-fill-color: var(--red) !important;
       }
     }

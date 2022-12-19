@@ -2,7 +2,6 @@ import { createStore } from "vuex";
 import axios from "axios";
 import qs from "querystring-es3";
 import { CurrencyModel } from "../assets/js/currency-model.js";
-import { logPlugin } from "@babel/preset-env/lib/debug";
 const store = createStore({
   state: {
     proxy: process.env.PROXY,
