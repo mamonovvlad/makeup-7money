@@ -96,7 +96,7 @@ const store = createStore({
         state.is_verified === 1
       ) {
         for (let item of state.allCurrencies) {
-          switch (state.sellCurrency.id) {
+          switch (state.sell_currency_id) {
             case Number(item.id):
               state.sellCurrency.sell_comission = item.sell_verified_comission;
               break;
@@ -105,7 +105,7 @@ const store = createStore({
       }
       if (state.buyCurrency.is_buy_verified === 1 && state.is_verified === 1) {
         for (let item of state.allCurrencies) {
-          switch (state.buyCurrency.id) {
+          switch (state.buy_currency_id) {
             case Number(item.id):
               state.buyCurrency.buy_comission = item.buy_verified_comission;
               break;
@@ -151,7 +151,6 @@ const store = createStore({
           sellAmount = (
             parseFloat(state.buy_amount) / parseFloat(state.course.buy)
           ).toFixed(state.sellNumbers);
-
           state.sell_amount = isNaN(sellAmount) === true ? "" : sellAmount;
         } else if (operatorCalculationBuy === 0) {
           sellAmount = (
@@ -241,6 +240,7 @@ const store = createStore({
             ).toFixed(state.sellNumbers);
           } else {
             if (state.sellCurrency.sell_comission > 0) {
+              console.log("4");
               state.calculateData.sell_amount_with_comission = (
                 parseFloat(state.sell_amount) + sellAmountComission
               ).toFixed(state.sellNumbers);
@@ -350,7 +350,6 @@ const store = createStore({
         this.dispatch("calculateForm", ["default"]);
       }
     },
-
     updateBuyAmount(state) {
       state.type = "revert";
       if (

@@ -14,7 +14,8 @@
     width: 15px;
     height: 15px;
     background-size: cover;
-    vertical-align: middle;
+    vertical-align: bottom;
+    margin-right: 4px;
   }
 
   & .head,
@@ -34,7 +35,7 @@
     }
 
     & td {
-      font-weight: 600;
+      font-weight: 500;
       font-size: 18px;
     }
   }
@@ -67,7 +68,9 @@
         border-width: 0;
       }
     }
-
+    & strong {
+      font-weight: 500;
+    }
     & td {
       display: flex;
       flex-direction: column;
@@ -139,7 +142,7 @@
   &--referral-applications {
     & .head,
     & .body tr {
-      grid-template-columns: 100px 100px 1fr 80px 90px;
+      grid-template-columns: 116px 100px 1fr 80px 90px;
     }
 
     & .body tr {

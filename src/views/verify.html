@@ -65,139 +65,139 @@
                 </template>
               </the-account-navigation>
               <div class="wrapper-account change-password">
-                <the-title tag="h2" class="subtitle"
-                  >Верификация заявок
+                <the-title tag="h2" class="subtitle">
+                  Верификация заявок
                 </the-title>
-                <div class="stylish-wrapper">
-                  <div class="field-list">
-                    <the-field
-                      name-placeholder="APEHGF5H6"
-                      name-id="1"
-                      name="1"
-                      type="text"
-                      :required="true"
-                      :show-error="true"
-                    >
-                      <template #label>Поиск по коду заявки</template>
-                      <template #error
-                        >Пароль обязателен для заполнения!
-                      </template>
-                    </the-field>
-                    <the-field
-                      name-placeholder="2435445345432354"
-                      name-id="2"
-                      name="2"
-                      type="text"
-                      :required="true"
-                    >
-                      <template #label>Поиск по номеру карты</template>
-                    </the-field>
-                    <the-field
-                      name-placeholder="email@gmail.com"
-                      name-id="3"
-                      name="ChangePasswordForm[confirm_new_password]"
-                      type="password"
-                      :required="true"
-                    >
-                      <template #label>Поиск по email</template>
-                    </the-field>
-                    <the-field
-                      name-placeholder="127.0.0.0"
-                      name-id="4"
-                      name="4"
-                      type="text"
-                      :required="true"
-                    >
-                      <template #label>Поиск по ip</template>
-                    </the-field>
+                <div id="verify" class="verify">
+                  <div class="stylish-wrapper">
+                    <div class="field-list">
+                      <the-field
+                        name-placeholder="APEHGF5H6"
+                        name-id="1"
+                        name="1"
+                        type="text"
+                        :required="true"
+                        :show-error="true"
+                      >
+                        <template #label>Поиск по коду заявки</template>
+                        <template #error
+                          >Пароль обязателен для заполнения!
+                        </template>
+                      </the-field>
+                      <the-field
+                        name-placeholder="2435445345432354"
+                        name-id="2"
+                        name="2"
+                        type="text"
+                        :required="true"
+                      >
+                        <template #label>Поиск по номеру карты</template>
+                      </the-field>
+                      <the-field
+                        name-placeholder="email@gmail.com"
+                        name-id="3"
+                        name="ChangePasswordForm[confirm_new_password]"
+                        type="password"
+                        :required="true"
+                      >
+                        <template #label>Поиск по email</template>
+                      </the-field>
+                      <the-field
+                        name-placeholder="127.0.0.0"
+                        name-id="4"
+                        name="4"
+                        type="text"
+                        :required="true"
+                      >
+                        <template #label>Поиск по ip</template>
+                      </the-field>
+                    </div>
                   </div>
-                </div>
-                <the-title tag="h2" class="subtitle"
-                  >История верификаций
-                </the-title>
-                <table class="table table--auto">
-                  <thead>
-                    <tr class="head">
-                      <td>Заявка №</td>
-                      <td>Карта</td>
-                      <td>Статус верификации</td>
-                      <td>Действия</td>
-                    </tr>
-                  </thead>
-                  <tbody class="body">
-                    <tr>
-                      <td class="text--blue">
-                        AP242f967ea8 29 мар. 2022 г., 15:19:51
-                      </td>
-                      <td>
-                        <span>СБЕРБАНК RUB</span>
-                        <span>4279380683026399</span>
-                      </td>
-                      <td class="text--green">Новая</td>
-                      <td>
-                        <a href="" class="text--green">Новая</a>
-                        <a href="" class="text--red">Отклонить</a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td class="text--blue">
-                        AP242f967ea8 29 мар. 2022 г., 15:19:51
-                      </td>
-                      <td>
-                        <span>СБЕРБАНК RUB</span>
-                        <span>4279380683026399</span>
-                      </td>
-                      <td class="text--red">Отклонено</td>
-                      <td>
-                        <a href="" class="text--green">Новая</a>
-                        <a href="" class="text--red">Отклонить</a>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="buttons">
-                  <ul class="pagination">
-                    <li class="prev">
-                      <a href="#">
-                        <svg
-                          width="10"
-                          height="18"
-                          viewBox="0 0 10 18"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M9.63388 17.3844C9.14573 17.8725 8.35427 17.8725 7.86612 17.3844L0.366117 9.88437C-0.122038 9.39622 -0.122038 8.60476 0.366117 8.1166L7.86612 0.616606C8.35427 0.128448 9.14573 0.128448 9.63388 0.616606C10.122 1.10476 10.122 1.89622 9.63388 2.38437L3.01777 9.00049L9.63388 15.6166C10.122 16.1048 10.122 16.8962 9.63388 17.3844Z"
-                            fill="#7F848C"
-                          />
-                        </svg>
-                      </a>
-                    </li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li class="next">
-                      <a href="#">
-                        <svg
-                          class="arrow--right"
-                          width="10"
-                          height="18"
-                          viewBox="0 0 10 18"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
-                            d="M9.63388 17.3844C9.14573 17.8725 8.35427 17.8725 7.86612 17.3844L0.366117 9.88437C-0.122038 9.39622 -0.122038 8.60476 0.366117 8.1166L7.86612 0.616606C8.35427 0.128448 9.14573 0.128448 9.63388 0.616606C10.122 1.10476 10.122 1.89622 9.63388 2.38437L3.01777 9.00049L9.63388 15.6166C10.122 16.1048 10.122 16.8962 9.63388 17.3844Z"
-                            fill="#7F848C"
-                          />
-                        </svg>
-                      </a>
-                    </li>
-                  </ul>
+                  <h2 class="subtitle">История верификаций</h2>
+                  <table class="table table--auto">
+                    <thead>
+                      <tr class="head">
+                        <td>Заявка №</td>
+                        <td>Карта</td>
+                        <td>Статус верификации</td>
+                        <td>Действия</td>
+                      </tr>
+                    </thead>
+                    <tbody class="body">
+                      <tr>
+                        <td class="text--blue">
+                          AP242f967ea8 29 мар. 2022 г., 15:19:51
+                        </td>
+                        <td>
+                          <span>СБЕРБАНК RUB</span>
+                          <span>4279380683026399</span>
+                        </td>
+                        <td class="text--green">Новая</td>
+                        <td>
+                          <a href="" class="text--green">Новая</a>
+                          <a href="" class="text--red">Отклонить</a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="text--blue">
+                          AP242f967ea8 29 мар. 2022 г., 15:19:51
+                        </td>
+                        <td>
+                          <span>СБЕРБАНК RUB</span>
+                          <span>4279380683026399</span>
+                        </td>
+                        <td class="text--red">Отклонено</td>
+                        <td>
+                          <a href="" class="text--green">Новая</a>
+                          <a href="" class="text--red">Отклонить</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div class="buttons">
+                    <ul class="pagination">
+                      <li class="prev">
+                        <a href="#">
+                          <svg
+                            width="10"
+                            height="18"
+                            viewBox="0 0 10 18"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M9.63388 17.3844C9.14573 17.8725 8.35427 17.8725 7.86612 17.3844L0.366117 9.88437C-0.122038 9.39622 -0.122038 8.60476 0.366117 8.1166L7.86612 0.616606C8.35427 0.128448 9.14573 0.128448 9.63388 0.616606C10.122 1.10476 10.122 1.89622 9.63388 2.38437L3.01777 9.00049L9.63388 15.6166C10.122 16.1048 10.122 16.8962 9.63388 17.3844Z"
+                              fill="#7F848C"
+                            />
+                          </svg>
+                        </a>
+                      </li>
+                      <li class="active"><a href="#">1</a></li>
+                      <li><a href="#">2</a></li>
+                      <li><a href="#">3</a></li>
+                      <li class="next">
+                        <a href="#">
+                          <svg
+                            class="arrow--right"
+                            width="10"
+                            height="18"
+                            viewBox="0 0 10 18"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M9.63388 17.3844C9.14573 17.8725 8.35427 17.8725 7.86612 17.3844L0.366117 9.88437C-0.122038 9.39622 -0.122038 8.60476 0.366117 8.1166L7.86612 0.616606C8.35427 0.128448 9.14573 0.128448 9.63388 0.616606C10.122 1.10476 10.122 1.89622 9.63388 2.38437L3.01777 9.00049L9.63388 15.6166C10.122 16.1048 10.122 16.8962 9.63388 17.3844Z"
+                              fill="#7F848C"
+                            />
+                          </svg>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
