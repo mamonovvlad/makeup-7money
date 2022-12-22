@@ -145,6 +145,7 @@ export default {
 
     & p {
       font-size: 12px;
+      line-height: 17px;
       @include crop-height(3);
     }
   }
@@ -198,6 +199,7 @@ export default {
       }
 
       & p {
+        line-height: 19.6px;
         font-size: 18px;
         @include crop-height(4);
       }

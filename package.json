@@ -15,8 +15,6 @@
   "author": "Mamonov Vlad",
   "license": "MIT",
   "dependencies": {
-    "tippy.vue": "^3.2.1",
-    "v-debounce": "^0.2.0",
     "vue": "^3.2.31",
     "vuex": "^4.0.2"
   },

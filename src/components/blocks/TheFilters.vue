@@ -51,9 +51,11 @@ export default {
 .filters {
   display: flex;
   justify-content: space-between;
-  margin: 30px 0 0;
+  margin: 22px 0 0;
+  padding-bottom: 10px;
+  overflow: hidden;
   @include _768 {
-    margin: 20px 0 0;
+    margin: 12px 0 0;
     flex-wrap: wrap;
     row-gap: 6px;
   }

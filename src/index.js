@@ -1,11 +1,12 @@
-import { createApp } from "vue";
+import { createApp, defineAsyncComponent } from "vue";
 
 //Js
-import vueDebounce from "vue-debounce";
-import store from "./store/store.js";
+// import vueDebounce from "vue-debounce";
 import { mapMutations, mapActions, mapGetters } from "vuex";
-import { TippyPlugin } from "tippy.vue";
+import store from "./store/store.js";
+
 //js src
+
 import i18n from "./assets/js/multilanguage.js";
 import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/currency-model.js";
@@ -15,16 +16,40 @@ import "./assets/scss/main.scss";
 
 //Sections
 import TheHeader from "./components/sections/TheHeader.vue";
-import TheFooter from "./components/sections/TheFooter.vue";
-import TheLinks from "./components/sections/TheLinks.vue";
-import TheSlider from "./components/sections/TheSlider.vue";
-import TheReserves from "./components/sections/TheCurrencyReserves.vue";
-import TheAchievements from "./components/sections/TheAchievements.vue";
-import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
+
+const TheFooter = defineAsyncComponent(() =>
+  import("./components/sections/TheFooter.vue")
+);
+const TheLinks = defineAsyncComponent(() =>
+  import("./components/sections/TheLinks.vue")
+);
+const TheSlider = defineAsyncComponent(() =>
+  import("./components/sections/TheSlider.vue")
+);
+const TheReserves = defineAsyncComponent(() =>
+  import("./components/sections/TheCurrencyReserves.vue")
+);
+const TheAchievements = defineAsyncComponent(() =>
+  import("./components/sections/TheAchievements.vue")
+);
+const TheCheckStatus = defineAsyncComponent(() =>
+  import("./components/sections/TheCheckStatus.vue")
+);
 //Blocks
-import TheQuestionInformation from "./components/blocks/TheQuestionInformation.vue";
-import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
+const ThePublicInformation = defineAsyncComponent(() =>
+  import("./components/blocks/ThePublicInformation.vue")
+);
+const TheCurrenciesColumnSell = defineAsyncComponent(() =>
+  import("./components/blocks/TheCurrenciesColumnSell.vue")
+);
+const TheCurrenciesColumnBuy = defineAsyncComponent(() =>
+  import("./components/blocks/TheCurrenciesColumnBuy.vue")
+);
+const TheQuestionInformation = defineAsyncComponent(() =>
+  import("./components/blocks/TheQuestionInformation.vue")
+);
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
+
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
 import TheAccountNavigation from "./components/blocks/TheAccountNavigation.vue";
 import TheTitle from "./components/blocks/TheTitle.vue";
@@ -34,8 +59,6 @@ import TheAnswers from "./components/blocks/TheAnswers.vue";
 import TheField from "./components/blocks/TheField.vue";
 import TheExchangeInformation from "./components/blocks/TheExchangeInformation.vue";
 import TheDiscount from "./components/blocks/TheDiscount.vue";
-import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
-import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
 import TheCounter from "./components/blocks/TheCounter.vue";
 import TheCurrentTime from "./components/blocks/TheCurrentTime.vue";
 import TheInformation from "./components/sections/TheInformation.vue";
@@ -49,7 +72,10 @@ import TheClose from "./components/buttons/TheClose.vue";
 import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
-import TheLacksWindow from "./components/popups/TheLacksWindow.vue";
+
+const TheLacksWindow = defineAsyncComponent(() => {
+  import("./components/popups/TheLacksWindow.vue");
+});
 //Icons
 import IconConfetti from "./components/icons/IconConfetti.vue";
 import IconCopy from "./components/icons/IconCopy.vue";
@@ -82,6 +108,7 @@ createApp({
       support: Support,
       csrfToken: null,
       csrfParam: null,
+      isShowPreloader: true,
       ///
       showLacks: false,
       error: true,
@@ -191,6 +218,11 @@ createApp({
       "captcha",
       "calculate",
     ]),
+    showPreloader() {
+      setTimeout(() => {
+        this.isShowPreloader = false;
+      }, 1000);
+    },
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",
@@ -224,19 +256,20 @@ createApp({
     },
   },
   mounted() {
+    this.showPreloader();
     this.fetchGroupsAndCurrenciesFromPage();
     this.captcha();
+    this.copyText();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
 })
   .use(i18n)
-  .use(TippyPlugin)
-  .use(vueDebounce, {
-    lock: false,
-    listenTo: ["keyup", "paste"],
-    defaultTime: "1500ms",
-    fireOnEmpty: false,
-  })
+  // .use(vueDebounce, {
+  //   lock: false,
+  //   listenTo: ["keyup", "paste"],
+  //   defaultTime: "1500ms",
+  //   fireOnEmpty: false,
+  // })
   .use(store)
   .mount("#app");

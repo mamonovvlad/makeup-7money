@@ -370,17 +370,6 @@ const store = createStore({
         this.dispatch("calculateForm", ["revert"]);
       }
     },
-
-    hideLines() {
-      let itemsWrapper = document.querySelectorAll(".items__wrapper");
-      if (itemsWrapper) {
-        itemsWrapper.forEach((item) => {
-          if (item.lastElementChild === null) {
-            item.classList.add("d-none");
-          }
-        });
-      }
-    },
     inputCurrencyId(state) {
       let inputHiddenLastSellId = document.getElementById(
         "inputHiddenLastSellId"
@@ -408,31 +397,36 @@ const store = createStore({
     captcha() {
       let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
       let language = document.getElementById("language");
-      let gRecaptcha = document.querySelectorAll(".g-recaptcha");
-      if (gRecaptcha) {
+      let gRecaptchas = document.querySelectorAll(".g-recaptcha");
+      let gRecaptcha = document.querySelector(".g-recaptcha");
+      if (gRecaptcha && language) {
         if (language.value === "ru") {
-          document
-            .querySelector(".g-recaptcha")
-            .setAttribute("data-lang", "ru");
+          gRecaptcha.setAttribute("data-lang", "ru");
         } else {
-          document
-            .querySelector(".g-recaptcha")
-            .setAttribute("data-lang", "en");
+          gRecaptcha.setAttribute("data-lang", "en");
         }
-        gRecaptcha.forEach((item) => {
+        gRecaptchas.forEach((item) => {
           item.setAttribute("data-sitekey", captcha);
         });
       }
     },
-    copyText(state, event) {
+    copyText() {
       try {
-        navigator.clipboard.writeText(event.target.dataset.copy);
-        event.target.querySelector(".copied").classList.remove("d-none");
-        setTimeout(() => {
-          event.target.querySelector(".copied").classList.add("d-none");
-        }, 1500);
-      } catch (e) {
-        throw e;
+        let copy = document.querySelectorAll(".copy");
+        if (copy.length > 0) {
+          copy.forEach((el) => {
+            el.addEventListener("click", (event) => {
+              console.log(el);
+              navigator.clipboard.writeText(event.target.dataset.copy);
+              event.target.querySelector(".copied").classList.remove("d-none");
+              setTimeout(() => {
+                event.target.querySelector(".copied").classList.add("d-none");
+              }, 1500);
+            });
+          });
+        }
+      } catch (err) {
+        throw err;
       }
     },
     showRecoveryInformation() {
@@ -744,7 +738,7 @@ const store = createStore({
     ) {
       commit("inputCurrencyId");
       commit("clearError");
-      commit("hideLines");
+
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",

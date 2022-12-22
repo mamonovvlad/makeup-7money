@@ -30,7 +30,13 @@
                     <h4>Данные заявки</h4>
                     <div class="info__wrapper">
                       <span>Номер заявки:</span>
-                      <strong>2423812357</strong>
+                      <strong>
+                        2423812357
+                        <button data-copy="2423812357" class="copy">
+                          <span class="copied d-none"> {{ $t("copied") }}</span>
+                          <icon-copy></icon-copy>
+                        </button>
+                      </strong>
                     </div>
                     <div class="info__wrapper">
                       <span>Создана:</span>
@@ -113,11 +119,7 @@
                       <h2 class="text--green">Завершена</h2>
                       <span
                         >Номер операции: <strong>AP0059aee775</strong>
-                        <button
-                          data-copy="AP075"
-                          class="copy"
-                          @click="copyText($event)"
-                        >
+                        <button data-copy="AP075" class="copy">
                           <span class="copied d-none"> {{ $t("copied") }}</span>
                           <icon-copy></icon-copy>
                         </button>
@@ -153,11 +155,7 @@
                 <div class="operation-info">
                   <span>
                     PerfectMoney Batch: <strong>486761691</strong>
-                    <button
-                      data-copy="AP075"
-                      class="copy"
-                      @click="copyText($event)"
-                    >
+                    <button data-copy="AP075" class="copy">
                       <span class="copied d-none"> {{ $t("copied") }}</span>
                       <icon-copy></icon-copy>
                     </button>
@@ -177,11 +175,7 @@
                         f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
                       </strong>
                     </a>
-                    <button
-                      data-copy="AP075"
-                      class="copy"
-                      @click="copyText($event)"
-                    >
+                    <button data-copy="AP075" class="copy">
                       <span class="copied d-none"> {{ $t("copied") }}</span>
                       <icon-copy></icon-copy>
                     </button>
@@ -198,11 +192,7 @@
                         f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
                       </strong>
                     </a>
-                    <button
-                      data-copy="AP075"
-                      class="copy"
-                      @click="copyText($event)"
-                    >
+                    <button data-copy="AP075" class="copy">
                       <span class="copied d-none"> {{ $t("copied") }}</span>
                       <icon-copy></icon-copy>
                     </button>
@@ -244,7 +234,7 @@
                   </div>
                 </div>
               </div>
-              <div class="payment__details verified-card">
+              <div class="payment__details verified-card d-none">
                 <the-steps :payment="true"></the-steps>
                 <h4>Порядок действий</h4>
                 <h5>Ваша карта верифицирована! Желаем вам выгодных обменов!</h5>
@@ -284,98 +274,93 @@
                   <button class="button">Отменить операцию</button>
                 </div>
               </div>
-            </div>
-            <div class="payment__details unverified-card d-none">
-              <the-steps :payment="true"></the-steps>
-              <h4>Порядок действий</h4>
-              <h5>
-                Инструкция «Верификация платежной карты Visa/MasterCard UAH»
-              </h5>
-              <p>
-                Верификацию нужно будет пройти всего 1 раз, все последующие
-                обмены с участием верифицированной карты, будут осуществляться
-                без необходимости проверки карты! Уважаемый клиент, для
-                подтверждения вашей карты Вам нужно совершить несколько простых
-                шагов:
-              </p>
-              <ul>
-                <li>
-                  1. Вам нужно приложить карту, с которой осуществляете платеж к
-                  монитору (разрешается закрыть номер карты, кроме последних 4-х
-                  цифр)
-                </li>
-                <li>
-                  2. Приложить к листочку Вашу карту и сделайте фото.
-                  ПРИМЕР(разрешается закрыть номер карты, кроме последних 4-х
-                  цифр)
-                </li>
-                <li>
-                  3. Отправьте фото нашему специалисту в online-чат (справа
-                  внизу), сообщив номер заявки. Либо отправьте фото на нашу
-                  почту hello@7money.co Если Вы отправили фото на почту нажмите
-                  кнопку «Я отправил на почту»
-                </li>
-              </ul>
-              <p></p>
-              <div class="buttons">
-                <button class="button button--transparent">
-                  Отменить операцию
-                </button>
-                <button class="button button--transparent">
-                  Я отправил на почту
-                </button>
-              </div>
-            </div>
-            <div class="payment__details qr-code d-none">
-              <the-steps :payment="true"></the-steps>
-              <h4>Порядок действий</h4>
-              <div class="operation-info">
-                <span>
-                  Совершите платеж на сумму: <strong>0.005 BTC</strong>
-                  <button
-                    data-copy="AP075"
-                    class="copy"
-                    @click="copyText($event)"
-                  >
-                    <span class="copied d-none"> {{ $t("copied") }}</span>
-                    <icon-copy></icon-copy>
+              <div class="payment__details unverified-card d-none">
+                <the-steps :payment="true"></the-steps>
+                <h4>Порядок действий</h4>
+                <h5>
+                  Инструкция «Верификация платежной карты Visa/MasterCard UAH»
+                </h5>
+                <p>
+                  Верификацию нужно будет пройти всего 1 раз, все последующие
+                  обмены с участием верифицированной карты, будут осуществляться
+                  без необходимости проверки карты! Уважаемый клиент, для
+                  подтверждения вашей карты Вам нужно совершить несколько
+                  простых шагов:
+                </p>
+                <ul>
+                  <li>
+                    1. Вам нужно приложить карту, с которой осуществляете платеж
+                    к монитору (разрешается закрыть номер карты, кроме последних
+                    4-х цифр)
+                  </li>
+                  <li>
+                    2. Приложить к листочку Вашу карту и сделайте фото.
+                    ПРИМЕР(разрешается закрыть номер карты, кроме последних 4-х
+                    цифр)
+                  </li>
+                  <li>
+                    3. Отправьте фото нашему специалисту в online-чат (справа
+                    внизу), сообщив номер заявки. Либо отправьте фото на нашу
+                    почту hello@7money.co Если Вы отправили фото на почту
+                    нажмите кнопку «Я отправил на почту»
+                  </li>
+                </ul>
+                <p></p>
+                <div class="buttons">
+                  <button class="button button--transparent">
+                    Отменить операцию
                   </button>
-                </span>
-                <span>
-                  На счет:
-                  <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
-                  <button
-                    data-copy="AP075"
-                    class="copy"
-                    @click="copyText($event)"
-                  >
-                    <span class="copied d-none"> {{ $t("copied") }}</span>
-                    <icon-copy></icon-copy>
+                  <button class="button button--transparent">
+                    Я отправил на почту
                   </button>
-                </span>
+                </div>
               </div>
-              <p>
-                После успешной оплаты, нажмите на кнопку «Я ОПЛАТИЛ», чтобы мы
-                получили уведомление и начали проверку поступления средств.
-                Выплату по заявке мы осуществляем после 1-го подтверждения от
-                сети Bitcoin.
-              </p>
-              <p class="attention">
-                Если в течении часа, после Вашей оплаты не будет 1го
-                подтверждения от сети Bitcoin и курс изменился в меньшую
-                сторону, наш сервис имеет право пересчитать сумму выплаты.
-                Поэтому указывайте достаточную комиссию при переводе нам
-                Bitcoin, давайте ценить время друг друга, а также Ваши и наши
-                нервы. Какую комиссию указывать, вы сможете проконсультироваться
-                в нашем online-чате!
-              </p>
-              <h5>QR адрес</h5>
-              <div class="code">
-                <img src="http://qrcoder.ru/code/?ty&10&0" alt="qr" />
-              </div>
-              <the-time-processing></the-time-processing>
-              <div class="buttons">
-                <button class="button">Отменить операцию</button>
+              <div class="payment__details qr-code">
+                <the-steps :payment="true"></the-steps>
+                <h4>Порядок действий</h4>
+                <div class="operation-info">
+                  <span>
+                    Совершите платеж на сумму: <strong>0.005 BTC</strong>
+                    <button data-copy="5" class="copy">
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
+                  </span>
+                  <span>
+                    На счет:
+                    <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
+                    <button
+                      data-copy="3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU"
+                      class="copy"
+                    >
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
+                  </span>
+                </div>
+                <p>
+                  После успешной оплаты, нажмите на кнопку «Я ОПЛАТИЛ», чтобы мы
+                  получили уведомление и начали проверку поступления средств.
+                  Выплату по заявке мы осуществляем после 1-го подтверждения от
+                  сети Bitcoin.
+                </p>
+                <p class="attention">
+                  Если в течении часа, после Вашей оплаты не будет 1го
+                  подтверждения от сети Bitcoin и курс изменился в меньшую
+                  сторону, наш сервис имеет право пересчитать сумму выплаты.
+                  Поэтому указывайте достаточную комиссию при переводе нам
+                  Bitcoin, давайте ценить время друг друга, а также Ваши и наши
+                  нервы. Какую комиссию указывать, вы сможете
+                  проконсультироваться в нашем online-чате!
+                </p>
+                <h5>QR адрес</h5>
+                <div class="code">
+                  <img src="http://qrcoder.ru/code/?ty&10&0" alt="qr" />
+                </div>
+                <the-time-processing></the-time-processing>
+                <div class="buttons">
+                  <button class="button">Отменить операцию</button>
+                </div>
               </div>
             </div>
           </div>

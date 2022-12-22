@@ -12,13 +12,11 @@
 
 <script>
 import TheSwitched from "../buttons/TheSwitched.vue";
-let switched = document.getElementById("switched");
 export default {
   name: "TheDiscount",
   data() {
     return {
       number: 0,
-      switched,
     };
   },
   components: {
@@ -40,9 +38,13 @@ export default {
       this.switchedValue();
     },
     switchedValue() {
+      let switched = document.getElementById("switched");
+      console.log(switched);
       switched.value = this.number;
     },
     editValue() {
+      let switched = document.getElementById("switched");
+      console.log(switched);
       if (switched && switched.value > 0) {
         this.toggleText(1);
       } else {

@@ -3,11 +3,12 @@
     class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideSell }"
   >
-    <template v-if="currenciesHideSell">
-      <the-title tag="h2" class="subtitle">{{ $t("theGive") }}</the-title>
-      <the-filters :group-id="getSellCurrencyGroupId" type="sell"></the-filters>
+    <div v-if="currenciesHideSell">
+      <the-title tag="h2" class="subtitle">{{ $t("theGive") }} </the-title>
+      <the-filters :group-id="getSellCurrencyGroupId" type="sell">
+      </the-filters>
       <div class="line"></div>
-    </template>
+    </div>
 
     <the-currencies-list
       :currencies-hide="currenciesHideSell"
@@ -22,10 +23,14 @@
 </template>
 
 <script>
-import TheTitle from "./TheTitle.vue";
-import TheRefresh from "./TheRefresh.vue";
-import TheCurrenciesList from "./TheCurrenciesList.vue";
-import TheFilters from "./TheFilters.vue";
+import { defineAsyncComponent } from "vue";
+
+const TheTitle = defineAsyncComponent(() => import("./TheTitle.vue"));
+const TheRefresh = defineAsyncComponent(() => import("./TheRefresh.vue"));
+const TheCurrenciesList = defineAsyncComponent(() =>
+  import("./TheCurrenciesList.vue")
+);
+const TheFilters = defineAsyncComponent(() => import("./TheFilters.vue"));
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
@@ -65,19 +70,19 @@ export default {
 
   &-column {
     position: relative;
-    transition: var(--transition);
+    transition: all 0.5s ease;
     max-width: 340px;
     height: max-content;
     padding: 16px;
     flex: 1;
 
     & .line {
-      margin: 10px 0;
+      margin-bottom: 10px;
     }
   }
 
   &-hide {
-    transition: var(--transition);
+    transition: all 0.5s ease;
     min-width: 76px;
     max-width: 76px;
     flex: 2;

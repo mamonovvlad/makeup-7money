@@ -136,23 +136,14 @@
 //index
 .details-hide-enter-active,
 .details-hide-leave-active {
-  max-width: 100%;
-  opacity: 1;
-  transition: var(--transition);
+  transition: all 0.5s ease;
+  width: 100%;
 }
 
-.details-hide-enter,
+.details-hide-enter-from,
 .details-hide-leave-to {
-  max-width: 0;
   opacity: 0;
-}
-
-.currencies-hide-enter-active,
-.currencies-hide-leave-active {
-  transition: 0.4s ease-in-out;
-}
-
-.currencies-hide-enter,
-.currencies-hide-leave-to {
-  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  right: 0;
 }

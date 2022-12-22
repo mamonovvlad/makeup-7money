@@ -22,6 +22,12 @@ export default {
 </script>
 <style lang="scss">
 @import "../../assets/scss/utils/mixin";
+
+$fuschia: #ff0081;
+$button-bg: $fuschia;
+$button-text-color: #fff;
+$baby-blue: #f8faff;
+
 .button-inline {
   display: inline-flex;
   width: auto;

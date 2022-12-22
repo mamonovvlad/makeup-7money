@@ -24,26 +24,23 @@
       >
         <div class="name">
           <span :class="currency.code"></span>
-          <transition name="currencies-hide">
-            <p v-if="currenciesHide">
-              {{ currency.name_ru }}
-            </p>
-          </transition>
+          <p v-if="currenciesHide">
+            {{ currency.name_ru }}
+          </p>
         </div>
-        <transition name="currencies-hide">
-          <span class="price" v-if="sellCurrencyId !== null">
-            <span v-show="currenciesHide && activeIndex === 0">
-              {{ currency.rate }}
-            </span>
-            <span v-show="currenciesHide && activeIndex === 1">
-              {{ currency.amount }}
-            </span>
+        <span class="price" v-if="sellCurrencyId !== null">
+          <span v-show="currenciesHide && activeIndex === 0">
+            {{ currency.rate }}
           </span>
-        </transition>
-        <div v-if="!currenciesHide" class="tippy">
-          <div class="name" v-tippy></div>
-          <tippy :key="currency.id" singleton>{{ currency.name_ru }}</tippy>
-        </div>
+          <span v-show="currenciesHide && activeIndex === 1">
+            {{ currency.amount }}
+          </span>
+        </span>
+        <transition name="fade"
+          ><span v-if="!currenciesHide" class="tippy">{{
+            currency.name_ru
+          }}</span></transition
+        >
       </li>
     </ul>
   </div>
@@ -59,8 +56,12 @@
 </template>
 
 <script>
-import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
-import TheRefresh from "./TheRefresh.vue";
+import { defineAsyncComponent } from "vue";
+
+const TheShowMoreCurrencies = defineAsyncComponent(() =>
+  import("../buttons/TheShowMoreCurrencies.vue")
+);
+const TheRefresh = defineAsyncComponent(() => import("./TheRefresh.vue"));
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
@@ -143,10 +144,10 @@ export default {
     }
 
     & .item {
+      position: relative;
       display: flex;
       align-items: center;
       padding: 8px 12px;
-      position: relative;
       justify-content: space-between;
       border-radius: var(--radius-four);
       transition: all 0.2s ease;
@@ -155,6 +156,11 @@ export default {
 
       &:hover {
         box-shadow: var(--shadow-inset);
+        & .tippy {
+          top: -24px;
+          opacity: 1;
+          z-index: 1;
+        }
       }
     }
 
@@ -211,15 +217,16 @@ export default {
 
   & .tippy {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    z-index: 0;
-
-    & .name {
-      width: 100%;
-      height: 100%;
-    }
+    box-shadow: var(--shadow);
+    top: -12px;
+    left: 50%;
+    transition: opacity 0.5s ease, top 0.5s ease;
+    transform: translateX(-50%);
+    background: var(--seventh);
+    padding: 4px 6px;
+    border-radius: var(--radius-four);
+    opacity: 0;
+    z-index: -1;
   }
 }
 </style>

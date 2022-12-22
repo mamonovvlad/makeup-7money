@@ -1,19 +1,9 @@
 <template>
-  <div class="preloader" v-if="isShow">
+  <div class="preloader">
     <div class="loader"></div>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    isShow: {
-      type: Boolean,
-      default: false,
-    },
-  },
-};
-</script>
 <style lang="scss">
 .preloader {
   position: absolute;
@@ -21,8 +11,8 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--secondary-transparent);
-  z-index: 2;
+  background: var(--secondary);
+  z-index: 7;
 
   & .loader {
     display: block;

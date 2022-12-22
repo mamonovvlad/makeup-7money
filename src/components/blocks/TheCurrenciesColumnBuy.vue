@@ -3,23 +3,26 @@
     class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideBuy }"
   >
-    <template v-if="currenciesHideBuy">
+    <div v-if="currenciesHideBuy">
       <div class="title__wrapper">
         <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
-        <div class="buttons" v-if="sellCurrencyId !== null">
-          <button
-            v-for="(button, idx) in buttons"
-            :key="idx"
-            :class="{ 'active--filters': index === idx }"
-            @click="toggleInformation(idx)"
-          >
-            {{ $t(`${button.name}`) }}
-          </button>
-        </div>
+        <transition name="fade">
+          <div class="buttons" v-if="sellCurrencyId !== null">
+            <button
+              v-for="(button, idx) in buttons"
+              :key="idx"
+              :class="{ 'active--filters': index === idx }"
+              @click="toggleInformation(idx)"
+            >
+              {{ $t(`${button.name}`) }}
+            </button>
+          </div>
+        </transition>
       </div>
       <the-filters :group-id="getBuyCurrencyGroupId" type="buy"></the-filters>
       <div class="line"></div>
-    </template>
+    </div>
+
     <the-currencies-list
       :currencies-hide="currenciesHideBuy"
       :currency-group="getBuyCurrencyGroup.name"
@@ -33,9 +36,13 @@
 </template>
 
 <script>
-import TheTitle from "./TheTitle.vue";
-import TheFilters from "./TheFilters.vue";
-import TheCurrenciesList from "./TheCurrenciesList.vue";
+import { defineAsyncComponent } from "vue";
+
+const TheTitle = defineAsyncComponent(() => import("./TheTitle.vue"));
+const TheFilters = defineAsyncComponent(() => import("./TheFilters.vue"));
+const TheCurrenciesList = defineAsyncComponent(() =>
+  import("./TheCurrenciesList.vue")
+);
 import { mapGetters } from "vuex";
 
 export default {
@@ -45,18 +52,18 @@ export default {
       index: 0,
       buttons: [
         {
-          name: "course"
+          name: "course",
         },
         {
-          name: "reserves"
-        }
-      ]
+          name: "reserves",
+        },
+      ],
     };
   },
   components: {
     TheTitle,
     TheFilters,
-    TheCurrenciesList
+    TheCurrenciesList,
   },
   computed: {
     ...mapGetters([
@@ -66,13 +73,13 @@ export default {
       "buyCurrencyId",
       "sellCurrencyId",
       "currenciesHideBuy",
-      "getRateReserves"
-    ])
+      "getRateReserves",
+    ]),
   },
   methods: {
     toggleInformation(idx) {
       this.index = idx;
-    }
-  }
+    },
+  },
 };
 </script>

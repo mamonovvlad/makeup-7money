@@ -26,7 +26,6 @@
 <script>
 import TheSocialNetwork from "../blocks/TheSocialNetwork.vue";
 import TheToggleTheme from "../buttons/TheToggleTheme.vue";
-//Buttons
 import TheBurgerClose from "../buttons/TheBurgerClose.vue";
 
 export default {

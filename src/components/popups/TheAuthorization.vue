@@ -114,6 +114,7 @@ import TheButton from "../buttons/TheButton.vue";
 import TheField from "../blocks/TheField.vue";
 import IconEye from "../icons/IconEye.vue";
 import axios from "axios";
+import { mapMutations } from "vuex";
 
 let registration = [
   {
@@ -210,6 +211,7 @@ export default {
     },
   },
   methods: {
+    ...mapMutations(["captcha"]),
     toggleInput() {
       if (this.isAuthorization.index === 0) {
         this.isAuthorization.index = 1;
@@ -243,7 +245,10 @@ export default {
           );
           for (let k in data) {
             field.forEach((item) => {
-              if (document.querySelector(".help-" + k)) {
+              if (
+                document.querySelector(".help-" + k) &&
+                item.querySelector(".help-" + k)
+              ) {
                 item.classList.add("has-error");
                 document.querySelector(".help-" + k).innerHTML = data[k][0];
               }
@@ -287,7 +292,10 @@ export default {
           );
           for (let k in data) {
             field.forEach((item) => {
-              if (document.querySelector(".help-" + k)) {
+              if (
+                document.querySelector(".help-" + k) &&
+                item.querySelector(".help-" + k)
+              ) {
                 item.classList.add("has-error");
                 document.querySelector(".help-" + k).innerHTML = data[k][0];
               }
@@ -344,6 +352,7 @@ export default {
     this.getReferral();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
+    this.captcha();
   },
 };
 </script>
