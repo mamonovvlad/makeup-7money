@@ -137,13 +137,13 @@
 .details-hide-enter-active,
 .details-hide-leave-active {
   transition: all 0.5s ease;
-  width: 100%;
+  width: 100% !important;
 }
 
 .details-hide-enter-from,
 .details-hide-leave-to {
   opacity: 0;
-  width: 0;
+  width: 0 !important;
   overflow: hidden;
   right: 0;
 }

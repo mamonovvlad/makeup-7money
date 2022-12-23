@@ -31,7 +31,10 @@ export default {
 
 <style lang="scss">
 .lacks-window {
-  max-width: 500px;
+  & .wrapper {
+    max-width: 500px;
+  }
+
   & .items__wrapper {
     align-items: flex-end;
 

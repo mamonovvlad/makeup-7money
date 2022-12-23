@@ -376,7 +376,6 @@ export default {
   }
 
   & .wrapper {
-    padding: 30px;
     overflow: hidden;
     background: var(--seventh);
   }
@@ -387,6 +386,9 @@ export default {
     & span {
       font-weight: 600;
       font-size: 24px;
+      @include _576 {
+        font-size: 20px;
+      }
     }
   }
 

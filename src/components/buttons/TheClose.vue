@@ -18,9 +18,9 @@ export default {
 <style lang="scss">
 .button-close {
   position: absolute;
-  width: 15px;
-  top: 10px;
-  right: 10px;
+  width: 14px;
+  top: 8px;
+  right: 8px;
   background: transparent;
 }
 </style>

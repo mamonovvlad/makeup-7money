@@ -23,11 +23,9 @@ export default {
     TheSwitched,
   },
   methods: {
-    toggleText(idx, setValue = false) {
-      if (setValue) {
-        this.number = idx;
-        this.switchedValue();
-      }
+    toggleText(idx) {
+      this.number = idx;
+      this.switchedValue();
     },
     toggleInput() {
       if (this.number === 0) {
@@ -39,12 +37,11 @@ export default {
     },
     switchedValue() {
       let switched = document.getElementById("switched");
-      console.log(switched);
       switched.value = this.number;
+      switched.setAttribute("data-value", this.number);
     },
     editValue() {
       let switched = document.getElementById("switched");
-      console.log(switched);
       if (switched && switched.value > 0) {
         this.toggleText(1);
       } else {

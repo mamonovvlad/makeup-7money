@@ -1,5 +1,5 @@
 <template>
-  <div class="authorization popup-wrapper password-recovery">
+  <div class="popup-wrapper password-recovery">
     <div class="wrapper">
       <the-close @close="hideBlock"></the-close>
       <h3>
@@ -11,11 +11,11 @@
 
         <the-field
           name-type="mail"
-          name-id="passwordRecovery_mail" name="PasswordResetRequestForm[email]"
-          name-placeholder="tolik.wwwww@ukr.net">
-          <template #label>
-            E-mail
-          </template>
+          name-id="passwordRecovery_mail"
+          name="PasswordResetRequestForm[email]"
+          name-placeholder="tolik.wwwww@ukr.net"
+        >
+          <template #label> E-mail</template>
         </the-field>
         <the-button tag="button" type="submit">
           <template #name>
@@ -55,13 +55,20 @@ export default {
 
 <style lang="scss">
 .password-recovery {
-  max-width: 425px;
+  & .wrapper {
+    max-width: 425px;
+  }
 
   & h3 {
     font-weight: 600;
     font-size: 24px;
     color: var(--quaternary);
     margin-bottom: 10px;
+  }
+
+  & .button {
+    margin-top: 20px;
+    width: 100%;
   }
 
   & form {

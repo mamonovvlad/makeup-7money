@@ -36,6 +36,9 @@ const TheCheckStatus = defineAsyncComponent(() =>
   import("./components/sections/TheCheckStatus.vue")
 );
 //Blocks
+const TheCustomSelect = defineAsyncComponent(() =>
+  import("./components/blocks/TheCustomSelect.vue")
+);
 const ThePublicInformation = defineAsyncComponent(() =>
   import("./components/blocks/ThePublicInformation.vue")
 );
@@ -73,9 +76,12 @@ import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 
-const TheLacksWindow = defineAsyncComponent(() => {
-  import("./components/popups/TheLacksWindow.vue");
-});
+const TheNightMode = defineAsyncComponent(() =>
+  import("./components/popups/TheNightMode.vue")
+);
+const TheLacksWindow = defineAsyncComponent(() =>
+  import("./components/popups/TheLacksWindow.vue")
+);
 //Icons
 import IconConfetti from "./components/icons/IconConfetti.vue";
 import IconCopy from "./components/icons/IconCopy.vue";
@@ -126,6 +132,7 @@ createApp({
     TheLinks,
     TheCheckStatus,
     //Blocks
+    TheCustomSelect,
     TheQuestionInformation,
     ThePublicInformation,
     ThePaymentCounter,
@@ -152,6 +159,7 @@ createApp({
     //Popups
     TheRecoveryInformation,
     TheLacksWindow,
+    TheNightMode,
     //Icons
     IconConfetti,
     IconCopy,
