@@ -371,15 +371,19 @@ const store = createStore({
       }
     },
     inputCurrencyId(state) {
-      let inputHiddenLastSellId = document.getElementById(
-        "inputHiddenLastSellId"
+      let inputHiddenLastSellId = document.querySelectorAll(
+        ".inp-sell_currency_id"
       );
-      let inputHiddenLastBuyId = document.getElementById(
-        "inputHiddenLastBuyId"
+      let inputHiddenLastBuyId = document.querySelectorAll(
+        ".inp-buy_currency_id"
       );
       if (inputHiddenLastSellId && inputHiddenLastBuyId) {
-        inputHiddenLastSellId.value = state.sell_currency_id;
-        inputHiddenLastBuyId.value = state.buy_currency_id;
+        inputHiddenLastSellId.forEach((el) => {
+          el.value = state.sell_currency_id;
+        });
+        inputHiddenLastBuyId.forEach((el) => {
+          el.value = state.buy_currency_id;
+        });
       }
     },
     clearError() {
@@ -628,12 +632,14 @@ const store = createStore({
       if (state.sell_currency_id !== null && state.buy_currency_id === null) {
         this.dispatch("fetchBuyCurrencies");
       }
+
       if (
         isCalculate &&
         state.sell_currency_id !== null &&
         state.buy_currency_id !== null
       ) {
         this.dispatch("calculateForm", [store.getters.getType, true]);
+        this.commit("inputCurrencyId");
         if (isSetUrl) {
           setTimeout(() => {
             this.commit("setGetUrl");
@@ -736,7 +742,6 @@ const store = createStore({
       { state, commit, getters },
       [type = "default", refresh = false]
     ) {
-      commit("inputCurrencyId");
       commit("clearError");
 
       const config = {

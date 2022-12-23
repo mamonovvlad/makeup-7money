@@ -136,6 +136,7 @@ export default {
     width: 20px;
     height: 20px;
     bottom: 15px;
+    border-radius: var(--radius-ten);
     background-size: cover;
     right: 10px;
   }

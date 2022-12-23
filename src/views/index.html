@@ -24,14 +24,14 @@
         <main class="container main__wrapper">
           <input
             id="inputHiddenLastSellId"
+            class="inp-sell_currency_id"
             name="last_sell_id"
-            value=""
             type="hidden"
           />
           <input
             id="inputHiddenLastBuyId"
+            class="inp-buy_currency_id"
             name="last_buy_id"
-            value=""
             type="hidden"
           />
           <div class="currencies">
@@ -53,6 +53,20 @@
                   ></the-steps>
                   <!--Форма-->
                   <form class="form-exchange" v-show="isCalculateData === true">
+                    <input
+                      type="hidden"
+                      id="orderform-sell_currency_id"
+                      class="form-control inp-sell_currency_id"
+                      name="OrderForm[sell_currency_id]"
+                      value=""
+                    />
+                    <input
+                      type="hidden"
+                      id="orderform-buy_currency_id"
+                      class="form-control inp-buy_currency_id"
+                      name="OrderForm[buy_currency_id]"
+                      value=""
+                    />
                     <input
                       type="hidden"
                       id="orderform-type"
@@ -78,7 +92,6 @@
                               id="orderform-sell_amount"
                               name="OrderForm[sell_amount]"
                               aria-invalid="true"
-                              maxlength="10"
                               v-model="$store.state.sell_amount"
                               @blur="updateSellAmount"
                               @input="calculate('default')"
@@ -667,6 +680,7 @@
     </div>
     <input id="login" type="hidden" value="0" />
     <input id="language" type="hidden" value="ru" />
+    <input id="id" type="hidden" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>
 </html>
