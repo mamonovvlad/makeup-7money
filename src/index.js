@@ -1,4 +1,4 @@
-import { createApp, defineAsyncComponent } from "vue";
+import { createApp } from "vue";
 
 //Js
 // import vueDebounce from "vue-debounce";
@@ -16,41 +16,18 @@ import "./assets/scss/main.scss";
 
 //Sections
 import TheHeader from "./components/sections/TheHeader.vue";
-
-const TheFooter = defineAsyncComponent(() =>
-  import("./components/sections/TheFooter.vue")
-);
-const TheLinks = defineAsyncComponent(() =>
-  import("./components/sections/TheLinks.vue")
-);
-const TheSlider = defineAsyncComponent(() =>
-  import("./components/sections/TheSlider.vue")
-);
-const TheReserves = defineAsyncComponent(() =>
-  import("./components/sections/TheCurrencyReserves.vue")
-);
-const TheAchievements = defineAsyncComponent(() =>
-  import("./components/sections/TheAchievements.vue")
-);
-const TheCheckStatus = defineAsyncComponent(() =>
-  import("./components/sections/TheCheckStatus.vue")
-);
+import TheFooter from "./components/sections/TheFooter.vue";
+import TheLinks from "./components/sections/TheLinks.vue";
+import TheSlider from "./components/sections/TheSlider.vue";
+import TheReserves from "./components/sections/TheCurrencyReserves.vue";
+import TheAchievements from "./components/sections/TheAchievements.vue";
+import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
 //Blocks
-const TheCustomSelect = defineAsyncComponent(() =>
-  import("./components/blocks/TheCustomSelect.vue")
-);
-const ThePublicInformation = defineAsyncComponent(() =>
-  import("./components/blocks/ThePublicInformation.vue")
-);
-const TheCurrenciesColumnSell = defineAsyncComponent(() =>
-  import("./components/blocks/TheCurrenciesColumnSell.vue")
-);
-const TheCurrenciesColumnBuy = defineAsyncComponent(() =>
-  import("./components/blocks/TheCurrenciesColumnBuy.vue")
-);
-const TheQuestionInformation = defineAsyncComponent(() =>
-  import("./components/blocks/TheQuestionInformation.vue")
-);
+import TheCustomSelect from "./components/blocks/TheCustomSelect.vue";
+import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
+import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
+import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
+import TheQuestionInformation from "./components/blocks/TheQuestionInformation.vue";
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
 
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
@@ -76,12 +53,8 @@ import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
 
-const TheNightMode = defineAsyncComponent(() =>
-  import("./components/popups/TheNightMode.vue")
-);
-const TheLacksWindow = defineAsyncComponent(() =>
-  import("./components/popups/TheLacksWindow.vue")
-);
+import TheNightMode from "./components/popups/TheNightMode.vue";
+import TheLacksButton from "./components/popups/TheLacksButton.vue";
 //Icons
 import IconConfetti from "./components/icons/IconConfetti.vue";
 import IconCopy from "./components/icons/IconCopy.vue";
@@ -116,7 +89,6 @@ createApp({
       csrfParam: null,
       isShowPreloader: true,
       ///
-      showLacks: false,
       error: true,
     };
   },
@@ -158,7 +130,7 @@ createApp({
     TheClose,
     //Popups
     TheRecoveryInformation,
-    TheLacksWindow,
+    TheLacksButton,
     TheNightMode,
     //Icons
     IconConfetti,
@@ -226,11 +198,6 @@ createApp({
       "captcha",
       "calculate",
     ]),
-    showPreloader() {
-      setTimeout(() => {
-        this.isShowPreloader = false;
-      }, 1000);
-    },
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
         "?",
@@ -264,7 +231,6 @@ createApp({
     },
   },
   mounted() {
-    this.showPreloader();
     this.fetchGroupsAndCurrenciesFromPage();
     this.captcha();
     this.copyText();
@@ -273,11 +239,5 @@ createApp({
   },
 })
   .use(i18n)
-  // .use(vueDebounce, {
-  //   lock: false,
-  //   listenTo: ["keyup", "paste"],
-  //   defaultTime: "1500ms",
-  //   fireOnEmpty: false,
-  // })
   .use(store)
   .mount("#app");

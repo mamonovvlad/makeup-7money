@@ -23,14 +23,10 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
-
-const TheTitle = defineAsyncComponent(() => import("./TheTitle.vue"));
-const TheRefresh = defineAsyncComponent(() => import("./TheRefresh.vue"));
-const TheCurrenciesList = defineAsyncComponent(() =>
-  import("./TheCurrenciesList.vue")
-);
-const TheFilters = defineAsyncComponent(() => import("./TheFilters.vue"));
+import TheTitle from "./TheTitle.vue";
+import TheRefresh from "./TheRefresh.vue";
+import TheCurrenciesList from "./TheCurrenciesList.vue";
+import TheFilters from "./TheFilters.vue";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {

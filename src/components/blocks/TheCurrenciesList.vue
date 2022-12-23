@@ -56,12 +56,8 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
-
-const TheShowMoreCurrencies = defineAsyncComponent(() =>
-  import("../buttons/TheShowMoreCurrencies.vue")
-);
-const TheRefresh = defineAsyncComponent(() => import("./TheRefresh.vue"));
+import TheShowMoreCurrencies from "../buttons/TheShowMoreCurrencies.vue";
+import TheRefresh from "./TheRefresh.vue";
 import { mapGetters, mapMutations } from "vuex";
 
 export default {

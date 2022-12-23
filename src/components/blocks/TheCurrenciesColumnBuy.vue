@@ -36,13 +36,9 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
-
-const TheTitle = defineAsyncComponent(() => import("./TheTitle.vue"));
-const TheFilters = defineAsyncComponent(() => import("./TheFilters.vue"));
-const TheCurrenciesList = defineAsyncComponent(() =>
-  import("./TheCurrenciesList.vue")
-);
+import TheTitle from "./TheTitle.vue";
+import TheFilters from "./TheFilters.vue";
+import TheCurrenciesList from "./TheCurrenciesList.vue";
 import { mapGetters } from "vuex";
 
 export default {

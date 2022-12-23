@@ -38,7 +38,6 @@ export default {
     switchedValue() {
       let switched = document.getElementById("switched");
       switched.value = this.number;
-      switched.setAttribute("data-value", this.number);
     },
     editValue() {
       let switched = document.getElementById("switched");

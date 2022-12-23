@@ -33,23 +33,13 @@
 </template>
 
 <script>
-import { defineAsyncComponent } from "vue";
-
 import TheToggleTheme from "../buttons/TheToggleTheme.vue";
-const TheLogo = defineAsyncComponent(() => import("../blocks/TheLogo.vue"));
+import TheLogo from "../blocks/TheLogo.vue";
 //Buttons
-const TheButton = defineAsyncComponent(() =>
-  import("../buttons/TheButton.vue")
-);
-const TheButtons = defineAsyncComponent(() =>
-  import("../buttons/TheButtons.vue")
-);
-const TheAuthorization = defineAsyncComponent(() =>
-  import("../popups/TheAuthorization.vue")
-);
-const ThePasswordRecovery = defineAsyncComponent(() =>
-  import("../popups/ThePasswordRecovery.vue")
-);
+import TheButton from "../buttons/TheButton.vue";
+import TheButtons from "../buttons/TheButtons.vue";
+import TheAuthorization from "../popups/TheAuthorization.vue";
+import ThePasswordRecovery from "../popups/ThePasswordRecovery.vue";
 
 export default {
   name: "TheHeader",
