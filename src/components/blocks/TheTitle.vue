@@ -29,7 +29,7 @@ export default {
 .subtitle {
   transition: var(--transition);
   color: var(--quaternary);
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .heading {

@@ -54,7 +54,7 @@ export default {
 
   & h3 {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 16px;
     color: var(--quaternary);
     @include _768 {

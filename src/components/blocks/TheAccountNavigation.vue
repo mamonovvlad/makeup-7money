@@ -78,7 +78,6 @@ export default {
       row-gap: 15px;
     }
 
-
     & a {
       display: flex;
       border-radius: var(--radius-four);
@@ -96,7 +95,7 @@ export default {
     & .active {
       box-shadow: var(--shadow);
       color: var(--quaternary);
-      font-weight: 600;
+      font-weight: 500;
 
       & svg {
         color: var(--primary);
@@ -120,7 +119,6 @@ export default {
     z-index: 2;
   }
 
-
   & a {
     font-size: 18px;
     text-decoration: none;
@@ -138,7 +136,6 @@ export default {
       padding: 10px;
     }
   }
-
 
   & .buttons {
     text-transform: uppercase;
@@ -164,8 +161,5 @@ export default {
       }
     }
   }
-
 }
-
-
 </style>

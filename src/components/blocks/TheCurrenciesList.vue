@@ -185,7 +185,7 @@ export default {
     & .price {
       color: var(--quaternary);
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 500;
     }
   }
 

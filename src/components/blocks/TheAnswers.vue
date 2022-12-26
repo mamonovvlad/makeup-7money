@@ -5,8 +5,9 @@
       :key="i"
       :class="{ active: i === index }"
       class="answer"
+      @click="openAnswer(i)"
     >
-      <div class="answer__title" @click="openAnswer(i)">
+      <div class="answer__title">
         <h2 v-if="lang === 'en'">{{ faq.question_en }}</h2>
         <h2 v-else-if="lang === 'ua'">{{ faq.question_ua }}</h2>
         <h2 v-else>{{ faq.question_ru }}</h2>

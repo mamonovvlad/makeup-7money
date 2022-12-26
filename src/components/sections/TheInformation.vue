@@ -24,7 +24,7 @@ export default {
   & h1,
   h2,
   h3 {
-    font-weight: 600;
+    font-weight: 500;
   }
   & li {
     margin: 6px 0;

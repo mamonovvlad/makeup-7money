@@ -15,7 +15,7 @@ export default {
   font-size: 14px;
   padding-top: 5px;
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 500;
   width: 100%;
 }
 </style>

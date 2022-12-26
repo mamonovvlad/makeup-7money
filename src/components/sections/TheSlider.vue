@@ -191,7 +191,7 @@ export default {
 
       & h3 {
         font-size: 24px;
-        font-weight: 600;
+        font-weight: 500;
       }
 
       & .date {

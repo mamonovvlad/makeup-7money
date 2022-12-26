@@ -207,5 +207,12 @@ export default {
   & select {
     background-color: var(--seventh);
   }
+  & .discount {
+    background: var(--secondary);
+    box-shadow: none;
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 </style>

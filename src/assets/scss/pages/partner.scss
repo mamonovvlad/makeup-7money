@@ -2,7 +2,7 @@
   & .text {
     & h3 {
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 500;
       color: var(--quaternary);
       margin-bottom: 16px;
     }
@@ -38,7 +38,7 @@
     }
 
     & span {
-      font-weight: 600;
+      font-weight: 500;
       color: var(--primary);
       font-size: 32px;
       width: 100%;
@@ -55,7 +55,6 @@
   @include _992 {
     flex-direction: column;
     width: 100%;
-
   }
 
   & .block {
@@ -89,7 +88,7 @@
     }
 
     & span {
-      font-weight: 600;
+      font-weight: 500;
       font-size: 48px;
       @include _768 {
         font-size: 36px;

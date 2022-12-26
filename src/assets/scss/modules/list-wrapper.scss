@@ -16,7 +16,7 @@
     text-decoration: none;
 
     & span {
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 6px;
       display: block;
     }
@@ -24,7 +24,7 @@
     & h4 {
       font-size: 24px;
       color: var(--quaternary);
-      font-weight: 600;
+      font-weight: 500;
       margin-bottom: 6px;
       @include _768 {
         font-size: 18px;

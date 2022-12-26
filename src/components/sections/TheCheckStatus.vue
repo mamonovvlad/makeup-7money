@@ -33,6 +33,7 @@ import TheTitleBig from "../blocks/TheTitleBig.vue";
 import TheTitle from "../blocks/TheTitle.vue";
 import IconCheckStatus from "../icons/IconCheckStatus.vue";
 import TheButton from "../buttons/TheButton.vue";
+import { mapGetters } from "vuex";
 
 export default {
   name: "TheCheckStatus",
@@ -47,10 +48,19 @@ export default {
     IconCheckStatus,
     TheButton,
   },
+  computed: {
+    ...mapGetters(["getLang"]),
+  },
   methods: {
     checkStatus() {
       if (this.value !== null) {
-        document.location.href = "/order/status/" + this.value;
+        if (this.getLang === "/en") {
+          document.location.href = "/en/order/status/" + this.value;
+        } else if (this.getLang === "/ua") {
+          document.location.href = "/ua/order/status/" + this.value;
+        } else {
+          document.location.href = "/order/status/" + this.value;
+        }
       }
     },
   },

@@ -94,7 +94,7 @@ export default {
     text-decoration: none;
     text-transform: uppercase;
     height: 26px;
-    font-weight: 600;
+    font-weight: 500;
     order: 1;
     font-size: 20px;
     @include _768 {

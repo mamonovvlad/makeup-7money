@@ -58,7 +58,7 @@ export default {
     padding: 4px 10px 6px;
     border-radius: 4px;
     background: var(--gradient);
-    font-weight: 600;
+    font-weight: 500;
     color: var(--sixth);
   }
 }

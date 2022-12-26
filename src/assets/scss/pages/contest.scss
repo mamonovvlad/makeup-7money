@@ -20,7 +20,7 @@
   &__terms {
     padding: 12px 20px;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--quaternary);
     background: var(--secondary);
     @include _768 {
@@ -43,7 +43,7 @@
   }
 
   & span {
-    font-weight: 600;
+    font-weight: 500;
     margin-right: 5px;
     color: var(--quaternary);
   }
@@ -51,7 +51,7 @@
 
 .contest-motivation {
   font-size: 26px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--quaternary);
   @include _768 {
     font-size: 20px;
@@ -65,5 +65,5 @@
 
 .contest-title,
 h1 {
-  font-weight: 600;
+  font-weight: 500;
 }

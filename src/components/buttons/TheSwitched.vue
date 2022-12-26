@@ -49,7 +49,7 @@ export default {
   & span {
     cursor: pointer;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     @include _768 {
       font-size: 14px;
     }

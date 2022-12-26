@@ -74,7 +74,7 @@ export default {
   a {
     background-color: var(--transparent);
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 500;
     display: block;
     text-decoration: none;
     width: max-content;

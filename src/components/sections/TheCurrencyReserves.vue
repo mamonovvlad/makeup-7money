@@ -115,6 +115,7 @@ export default {
       min-width: 16px;
       height: 16px;
       margin-right: 5px;
+      margin-bottom: 2px;
       background-size: cover;
       border-radius: var(--radius-ten);
     }
@@ -127,7 +128,7 @@ export default {
     & p {
       margin-right: 4px;
       color: var(--quaternary);
-      font-weight: 600;
+      font-weight: 500;
     }
 
     & span {

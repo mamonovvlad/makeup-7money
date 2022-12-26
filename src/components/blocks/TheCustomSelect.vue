@@ -1,54 +1,28 @@
 <template>
-  <div class="form-group">
-    <div class="custom-select" :class="{ active: isShow }">
-      <button type="button" @click="showSelect" class="fa-select" data-value="">
-        What do you want to eat for dinner?
+  <div class="form-group" @click="showSelect">
+    <div class="custom-select" ref="customSelect" :class="{ active: isShow }">
+      <button type="button" class="select" ref="select" data-value="">
+        <span ref="name">What do you want to eat for dinner?</span>
         <icon-arrow></icon-arrow>
       </button>
-      <ul class="fa-options">
-        <li rel="Steak">Steak</li>
-        <li rel="Fried rice">Fried rice</li>
-        <li rel="Hamburger">Hamburger</li>
-        <li rel="Hot pot">Hot pot</li>
-        <li rel="Risotto">Risotto</li>
-        <li rel="BBQ">BBQ</li>
-        <li rel="Pizza">Pizza</li>
-        <li rel="Fried chicken">Fried chicken</li>
-        <li rel="Dumplings">Dumplings</li>
-        <li rel="Dog food">Dog food</li>
+      <ul class="options">
+        <li @click="selectOptions" v-for="option in options">
+          {{ option }}
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
-// const selects = document.getElementsByClassName("fa-select");
-// const options = document.querySelectorAll(".fa-options li");
-//
-// for (let i = 0; i < selects.length; i++) {
-//   selects[i].addEventListener("click", function () {
-//     this.classList.toggle("active");
-//   });
-// }
-//
-// options.forEach((option) => {
-//   option.addEventListener("click", () => {
-//     const text = option.innerText;
-//     const value = option.getAttribute("rel");
-//     const selectDOM = option.parentNode.previousSibling.previousSibling;
-//
-//     selectDOM.classList.remove("active");
-//     selectDOM.innerText = text;
-//     selectDOM.setAttribute("data-value", value);
-//   });
-// });
-
+let options = ["Киев", "Львов", "Житомир", "Киев", "Львов", "Житомир"];
 import IconArrow from "../icons/IconArrow.vue";
 export default {
   name: "TheCustomSelect",
   components: { IconArrow },
   data() {
     return {
+      options,
       isShow: false,
     };
   },
@@ -56,28 +30,32 @@ export default {
     showSelect() {
       this.isShow = !this.isShow;
     },
+    selectOptions(event) {
+      const text = event.target.innerText;
+      this.$refs.customSelect.classList.remove("active");
+      this.$refs.name.innerText = text;
+      this.$refs.select.setAttribute("data-value", text);
+    },
   },
 };
 </script>
 
 <style lang="scss">
-$select-height: 40px;
-$main-color: #3759af;
-
 .custom-select {
-  .fa-select {
+  & .select {
     height: 30px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     & svg {
       transition: var(--transition);
       transform: rotate(90deg);
     }
   }
 
-  .fa-options {
+  & .options {
     margin-top: 6px;
     width: 100%;
     height: 0;
@@ -93,24 +71,24 @@ $main-color: #3759af;
 
     li {
       cursor: pointer;
-      padding: 6px;
-      margin: 6px 10px;
+      padding: 10px;
       transition: var(--transition);
-      border-radius: var(--radius-four);
 
       &:hover {
-        box-shadow: var(--shadow);
+        background: var(--primary);
+        color: var(--sixth);
       }
     }
   }
 
   &.active {
-    & .fa-select svg {
+    & .select svg {
       transform: rotateZ(270deg);
     }
 
-    & .fa-options {
-      height: 160px;
+    & .options {
+      height: max-content;
+      max-height: 160px;
     }
   }
 }

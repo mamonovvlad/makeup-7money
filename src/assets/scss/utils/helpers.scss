@@ -114,12 +114,14 @@
     margin-left: 10px;
     margin-right: 10px;
     position: relative;
+    min-width: 380px;
     border-radius: var(--radius-four);
     background: var(--seventh);
     box-shadow: var(--shadow);
     outline: 1px solid var(--ternary);
     @include _576 {
-      padding: 20px;
+      padding: 16px;
+      min-width: 300px;
     }
   }
 }

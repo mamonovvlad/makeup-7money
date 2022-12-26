@@ -72,7 +72,7 @@ export default {
 .active--filters {
   box-shadow: var(--shadow);
   color: var(--primary);
-  font-weight: 600;
+  font-weight: 500;
   border-radius: var(--radius-four);
 }
 </style>

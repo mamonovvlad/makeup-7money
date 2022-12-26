@@ -15,7 +15,6 @@
 export default {
   name: "TheTitleBig",
 };
-
 </script>
 
 <style lang="scss">
@@ -31,7 +30,7 @@ export default {
   }
 
   & h1 {
-    font-weight: bold;
+    font-weight: 500;
     font-size: 64px;
     @include _1200 {
       font-size: 32px;

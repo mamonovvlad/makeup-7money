@@ -111,7 +111,7 @@ export default {
     flex-direction: column;
 
     & .counter-description {
-      font-weight: 600;
+      font-weight: 500;
       color: var(--quaternary);
     }
   }
@@ -128,7 +128,7 @@ export default {
     margin-top: 10px;
     padding: 12px 20px;
     border-radius: 10px;
-    font-weight: 600;
+    font-weight: 500;
     color: var(--quaternary);
     background: var(--secondary);
     display: block;
@@ -142,7 +142,7 @@ export default {
   display: inline-flex;
   font-size: 60px;
   line-height: 60px;
-  font-weight: 600;
+  font-weight: 500;
   color: var(--quaternary);
   @include _992 {
     font-size: 50px;
