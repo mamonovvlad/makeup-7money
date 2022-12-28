@@ -376,7 +376,6 @@ export default {
   }
 
   & .wrapper {
-    overflow: hidden;
     background: var(--seventh);
   }
 

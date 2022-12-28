@@ -675,12 +675,34 @@
         </main>
         <the-footer></the-footer>
         <!--Popups-->
-        <!--        <the-night-mode></the-night-mode>-->
+        <the-night-mode></the-night-mode>
+        <!--        <the-notification>-->
+        <!--          Предложение действует неограниченный срок. Даже-->
+        <!--        </the-notification>-->
       </div>
     </div>
     <input id="login" type="hidden" value="0" />
     <input id="language" type="hidden" value="ru" />
     <input id="id" type="hidden" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
+      integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      function generate(text, type, layout) {
+        new Noty({
+          text: text,
+          type: "type",
+          dismissQueue: true,
+          layout: layout,
+        }).show();
+      }
+
+      generate("Some notification text", "new", "topRight");
+    </script>
   </body>
 </html>

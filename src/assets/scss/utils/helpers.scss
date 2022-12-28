@@ -98,21 +98,20 @@
 .popup-wrapper {
   position: fixed;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  overflow: hidden;
+  overflow-y: scroll;
   background: var(--secondary-transparent);
   transition: background 0.9s ease;
   z-index: 3;
 
   & .wrapper {
     padding: 30px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 10px;
     position: relative;
     min-width: 380px;
     border-radius: var(--radius-four);

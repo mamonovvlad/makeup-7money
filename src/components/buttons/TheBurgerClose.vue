@@ -23,7 +23,7 @@ export default {
   min-height: 50px;
   background: var(--transparent);
   border-radius: var(--radius-four);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-secondary);
   transition: var(--transition);
   @include _768 {
     width: 40px;
@@ -31,7 +31,7 @@ export default {
   }
 
   &:hover {
-    box-shadow: var(--shadow-inset);
+    box-shadow: var(--shadow-secondary-inset);
   }
 
   & span {
@@ -45,7 +45,7 @@ export default {
     }
 
     &:nth-child(2) {
-      transform: rotate(45deg)
+      transform: rotate(45deg);
     }
   }
 }

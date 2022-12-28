@@ -1,5 +1,5 @@
 <template>
-  <div class="night-mode popup-wrapper" ref="nightMode">
+  <div class="night-mode popup-wrapper" v-if="isShow" ref="nightMode">
     <div class="wrapper">
       <the-close @close="isCloseNightMode"> </the-close>
       <icon-night-mode></icon-night-mode>
@@ -18,18 +18,52 @@
 <script>
 import TheClose from "../buttons/TheClose.vue";
 import IconNightMode from "../icons/IconNightMode.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "TheNightMode",
+  data() {
+    return {
+      // isShow: false,
+    };
+  },
   components: {
     TheClose,
     IconNightMode,
   },
+  computed: {
+    ...mapState(["time"]),
+
+    isShow() {
+      let a = this.dateFilter(this.time, "time");
+      if (a >= "00:00" && a <= "09:00") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
   methods: {
+    dateFilter(value, format = "date") {
+      const options = {};
+      if (format.includes("time")) {
+        options.hour = "2-digit";
+        options.minute = "2-digit";
+        options.timeZone = "Europe/Moscow";
+        options.timeZoneName = "short";
+      }
+      let time = new Intl.DateTimeFormat("ru-RU", options).format(
+        new Date(value)
+      );
+      let dateArray = time.split("");
+      dateArray.splice(time.indexOf("GMT"));
+      return dateArray.join("");
+    },
     isCloseNightMode() {
       this.$refs.nightMode.classList.add("d-none");
     },
   },
+  mounted() {},
 };
 </script>
 
@@ -37,6 +71,8 @@ export default {
 @import "../../assets/scss/utils/mixin";
 
 .night-mode {
+  align-items: center;
+
   & .wrapper {
     max-width: 1000px;
     display: flex;

@@ -49,6 +49,9 @@ const store = createStore({
     ////////
     sellNumbers: 2,
     buyNumbers: 2,
+    //Time
+    time: new Date(),
+    interval: null,
   }, //Хранения данных
   mutations: {
     calculate(state, type) {
@@ -454,6 +457,11 @@ const store = createStore({
         }
       });
     },
+    updateTime(state) {
+      state.interval = setInterval(() => {
+        state.time = new Date();
+      }, 1000);
+    },
     setOfExchange(state, e) {
       state.of_exchange = e.target.checked ? 1 : 0;
     },
@@ -812,6 +820,11 @@ const store = createStore({
       let json = JSON.parse(data.innerHTML);
       commit("setGroupsAndCurrenciesFromPage", json);
     },
+    // startData({ state, commit }) {
+    //   state.interval = setInterval(() => {
+    //     commit("updateTime");
+    //   }, 1000);
+    // },
   }, //Функции асинхронные
   getters: {
     getType(state) {

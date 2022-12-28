@@ -17,11 +17,16 @@
     inset 3px 3px 3px var(--red), 0 0 0 var(--red), 0 0 0 var(--red);
   --shadow-error: inset 0 0 0 var(--red), inset 0 0 0 var(--red),
     -4px -2px 8px var(--red), 4px 2px 8px var(--red);
+  --shadow-secondary: inset 0 0 0 #1b2027, inset 0 0 0 #3e4551,
+    4px 2px 6px #1b2027, -4px -2px 6px #3e4551;
+  --shadow-secondary-inset: inset 2px 2px 3px #1b2027,
+    inset -1px -1px 3px #3e4551, 0 0 0 #1b2027, 0 0 0 #3e4551;
 }
 
 //Light Theme
 [data-theme="light"] {
   --gradient: linear-gradient(96.02deg, #00b047 0%, #4cd784 100%);
+  --gradient-secondary: linear-gradient(134.83deg, #363c46, #1d2531);
   --primary: #00b047;
   --primary-transition: rgba(0, 176, 71, 0.3);
   --secondary: #d9e1e8;
@@ -48,6 +53,7 @@
 //Dark Theme
 [data-theme="dark"] {
   --gradient: linear-gradient(90.59deg, #00f9c9 0%, #1ee3bf 100%);
+  --gradient-secondary: linear-gradient(134.83deg, #36393d, #2a2d30);
   --primary: #00f9c9;
   --primary-transition: rgba(0, 249, 201, 0.3);
   --secondary: #1a1a1a;

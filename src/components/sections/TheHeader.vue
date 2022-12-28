@@ -10,10 +10,7 @@
               {{ $t("schedule") }}
               <span>{{ $t("workingHours") }}</span>
             </p>
-            <p>
-              {{ $t("time") }}
-              <span>{{ dateFilter(new Date(), "time") }}</span>
-            </p>
+            <the-time></the-time>
           </div>
         </div>
         <div class="block">
@@ -35,6 +32,7 @@
 <script>
 import TheToggleTheme from "../buttons/TheToggleTheme.vue";
 import TheLogo from "../blocks/TheLogo.vue";
+import TheTime from "../blocks/TheTime.vue";
 //Buttons
 import TheButton from "../buttons/TheButton.vue";
 import TheButtons from "../buttons/TheButtons.vue";
@@ -53,17 +51,6 @@ export default {
     };
   },
   methods: {
-    //Формат даты
-    dateFilter(value, format = "date") {
-      const options = {};
-      if (format.includes("time")) {
-        options.hour = "2-digit";
-        options.minute = "2-digit";
-        options.timeZone = "Europe/Moscow";
-        options.timeZoneName = "short";
-      }
-      return new Intl.DateTimeFormat("ru-RU", options).format(new Date(value));
-    },
     //Показать окно "Забыли пароль?"
     openPasswordRecovery() {
       this.isPasswordRecovery = true;
@@ -94,6 +81,7 @@ export default {
     TheToggleTheme,
     TheAuthorization,
     ThePasswordRecovery,
+    TheTime,
   },
   mounted() {
     this.activeAccount();

@@ -52,7 +52,7 @@ import TheClose from "./components/buttons/TheClose.vue";
 import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
-
+import TheNotification from "./components/popups/TheNotification.vue";
 import TheNightMode from "./components/popups/TheNightMode.vue";
 import TheLacksButton from "./components/popups/TheLacksButton.vue";
 //Icons
@@ -132,6 +132,7 @@ createApp({
     TheRecoveryInformation,
     TheLacksButton,
     TheNightMode,
+    TheNotification,
     //Icons
     IconConfetti,
     IconCopy,

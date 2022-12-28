@@ -54,7 +54,7 @@ export default {
   &__wrapper {
     display: flex;
     flex-direction: column;
-    background: var(--secondary);
+    background: var(--gradient-secondary);
     box-shadow: var(--shadow);
     height: 100%;
     max-width: 500px;
@@ -77,6 +77,7 @@ export default {
       font-size: 20px;
       padding: 14px 20px;
       text-decoration: none;
+      border-radius: var(--radius-four);
       width: max-content;
       transition: var(--transition);
       @include _768 {
@@ -85,7 +86,7 @@ export default {
       }
 
       &:hover {
-        box-shadow: var(--shadow);
+        box-shadow: var(--shadow-secondary);
         color: var(--primary);
       }
     }
