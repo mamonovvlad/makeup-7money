@@ -2,9 +2,7 @@
   <div
     class="currencies-list"
     ref="currenciesList"
-    :class="{
-      'scroll-y': currenciesHide,
-    }"
+    :class="{ 'scroll-y': currenciesHide }"
   >
     <ul
       class="currencies__wrapper"
@@ -129,6 +127,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
 .currencies {
   &-list {
     position: relative;
@@ -223,6 +222,12 @@ export default {
     border-radius: var(--radius-four);
     opacity: 0;
     z-index: -1;
+  }
+
+  & .scroll-y {
+    @include _768 {
+      overflow: hidden;
+    }
   }
 }
 </style>
