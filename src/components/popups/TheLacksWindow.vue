@@ -82,8 +82,8 @@
           </span>
         </div>
         <button type="submit" class="button">{{ $t("save") }}</button>
-        <input id="lang_id" type="hidden" />
-        <input id="course_id" type="hidden" />
+        <input id="lang_id" type="hidden" :value="lid" />
+        <input id="course_id" type="hidden" :value="calculateData.course.id" />
       </form>
     </div>
   </div>
@@ -128,6 +128,9 @@ export default {
     //     return this.calculateData.sellCurrency.name_ru;
     //   }
     // },
+    lid() {
+      return document.getElementById("lid").getAttribute("value");
+    },
     isCash() {
       return (
         CurrencyModel.isCash(this.calculateData.buy_currency_id) === true ||
