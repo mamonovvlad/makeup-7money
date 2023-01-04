@@ -15,25 +15,28 @@
         <div class="field">
           <label>{{ $t("theGive") }}</label>
           <span class="form-group input--disabled">
-            <input type="text" v-model="calculateData.sell_amount" />
+            <input
+              type="text"
+              name="ReserveNotification[sell_amount]"
+              v-model="calculateData.sell_amount"
+            />
           </span>
         </div>
         <div class="field">
           <label>{{ $t("theGet") }}</label>
           <span class="form-group input--disabled">
-            <input type="text" v-model="calculateData.buy_amount" />
+            <input
+              type="text"
+              name="ReserveNotification[buy_amount]"
+              v-model="calculateData.buy_amount"
+            />
           </span>
         </div>
         <div class="field" v-if="isCash">
           <label>{{ $t("city") }}</label>
+
           <div class="custom-select">
-            <button
-              type="button"
-              class="select form-group"
-              @click="openSelect"
-              data-value=""
-              data-id=""
-            >
+            <button type="button" class="select form-group" @click="openSelect">
               <span class="select-name">
                 <template
                   v-if="selectName !== null && selectName !== undefined"
@@ -43,6 +46,12 @@
                 <template v-else> {{ $t("city") }} </template>
               </span>
               <icon-arrow></icon-arrow>
+              <input
+                type="hidden"
+                class="select-value"
+                name="ReserveNotification[city_id]"
+                :value="calculateData.primary_city_id"
+              />
             </button>
             <ul class="options">
               <li
@@ -82,8 +91,18 @@
           </span>
         </div>
         <button type="submit" class="button">{{ $t("save") }}</button>
-        <input id="lang_id" type="hidden" :value="lid" />
-        <input id="course_id" type="hidden" :value="calculateData.course.id" />
+        <input
+          id="lang_id"
+          name="ReserveNotification[lang_id]"
+          type="hidden"
+          :value="lid"
+        />
+        <input
+          id="course_id"
+          name="ReserveNotification[course_id]"
+          type="hidden"
+          :value="calculateData.course.id"
+        />
       </form>
     </div>
   </div>

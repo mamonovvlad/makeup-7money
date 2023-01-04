@@ -423,8 +423,6 @@
                               type="button"
                               class="select form-group"
                               @click="openSelect"
-                              data-value=""
-                              data-id=""
                             >
                               <span class="select-name">
                                 <template
@@ -435,6 +433,11 @@
                                 <template v-else> {{ $t("city") }} </template>
                               </span>
                               <icon-arrow></icon-arrow>
+                              <input
+                                type="hidden"
+                                class="select-value"
+                                :value="calculateData.primary_city_id"
+                              />
                             </button>
                             <ul class="options">
                               <li
@@ -456,8 +459,6 @@
                               type="button"
                               class="select form-group"
                               @click="openSelect"
-                              data-value=""
-                              data-id=""
                             >
                               <span class="select-name">
                                 <template
@@ -468,6 +469,11 @@
                                 <template v-else> {{ $t("city") }} </template>
                               </span>
                               <icon-arrow></icon-arrow>
+                              <input
+                                type="hidden"
+                                class="select-value"
+                                :value="calculateData.primary_city_id"
+                              />
                             </button>
                             <ul class="options">
                               <li

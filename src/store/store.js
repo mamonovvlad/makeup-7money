@@ -394,6 +394,8 @@ const store = createStore({
     clearError() {
       let helpBlock = document.querySelectorAll(".help-block");
       let field = document.querySelectorAll(".field .form-group");
+      // let fieldInput = document.querySelectorAll(".field .form-group input");
+
       field.forEach(function (el) {
         if (el.classList.contains("has-error")) {
           el.classList.remove("has-error");
@@ -402,6 +404,9 @@ const store = createStore({
       helpBlock.forEach(function (el) {
         el.innerHTML = "";
       });
+      // fieldInput.forEach(function (el) {
+      //   el.value = "";
+      // });
     },
     captcha() {
       let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
@@ -446,13 +451,9 @@ const store = createStore({
       e.target.parentNode.parentNode.querySelector(
         ".select .select-name"
       ).innerText = text;
-
       e.target.parentNode.parentNode
-        .querySelector(".select")
-        .setAttribute("data-value", text);
-      e.target.parentNode.parentNode
-        .querySelector(".select")
-        .setAttribute("data-id", e.target.getAttribute("value"));
+        .querySelector(".select-value")
+        .setAttribute("value", e.target.getAttribute("value"));
     },
     selectName(state) {
       state.selectName =
