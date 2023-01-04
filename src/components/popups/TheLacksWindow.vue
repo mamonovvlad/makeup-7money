@@ -12,6 +12,7 @@
         method="post"
         class="form"
       >
+        <input type="hidden" :value="csrfToken" :name="csrfParam" />
         <div class="field">
           <label>{{ $t("theGive") }}</label>
           <span class="form-group input--disabled">
@@ -119,6 +120,8 @@ export default {
 
   data() {
     return {
+      csrfToken: null,
+      csrfParam: null,
       CurrencyModel,
     };
   },
@@ -162,6 +165,10 @@ export default {
     hideBlock() {
       this.$emit("close");
     },
+  },
+  mounted() {
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
 };
 </script>
