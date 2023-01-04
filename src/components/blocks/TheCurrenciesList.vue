@@ -212,12 +212,12 @@ export default {
 
   & .tippy {
     position: absolute;
-    box-shadow: var(--shadow);
     top: -12px;
     left: 50%;
     transition: opacity 0.5s ease, top 0.5s ease;
     transform: translateX(-50%);
-    background: var(--seventh);
+    background: var(--ternary);
+    color: var(--sixth);
     padding: 4px 6px;
     border-radius: var(--radius-four);
     opacity: 0;

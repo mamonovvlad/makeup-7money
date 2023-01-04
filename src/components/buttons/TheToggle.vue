@@ -45,8 +45,8 @@ export default {
   display: none;
   justify-content: center;
   align-items: center;
-  width: 46px;
-  height: 46px;
+  width: 56px;
+  height: 56px;
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
   background: var(--secondary);

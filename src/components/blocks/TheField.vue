@@ -181,7 +181,8 @@ export default {
 
   & input,
   & textarea,
-  & select {
+  & select,
+  & .select {
     font-size: 16px;
     width: 100%;
     background: var(--transparent);
@@ -207,7 +208,8 @@ export default {
   & select {
     background-color: var(--seventh);
   }
-  & .discount {
+  & .discount,
+  & .input--disabled {
     background: var(--secondary);
     box-shadow: none;
     &:hover {

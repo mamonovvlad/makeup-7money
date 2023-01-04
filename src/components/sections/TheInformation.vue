@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss">
 .information {
+  line-height: 19.6px;
   padding: 20px;
   color: var(--quaternary);
 
@@ -27,7 +28,7 @@ export default {
     font-weight: 500;
   }
   & li {
-    margin: 6px 0;
+    margin: 4px 0;
   }
   & h1,
   h2,

@@ -169,6 +169,7 @@ createApp({
       "calculateData",
       "detailsHide",
       "course",
+      "selectName",
     ]),
     isSellSource() {
       return (
@@ -198,6 +199,8 @@ createApp({
       "copyText",
       "captcha",
       "calculate",
+      "openSelect",
+      "selectOptions",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(

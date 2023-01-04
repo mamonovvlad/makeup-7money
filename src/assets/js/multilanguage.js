@@ -5,6 +5,10 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
+      save: "Сохранить",
+      direction: "Направление",
+      city: "Город",
+      amount: "Сумма",
       logIn: "Вход",
       signUp: "Регистрация",
       logout: "Выход",
@@ -101,6 +105,10 @@ const i18n = createI18n({
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
     },
     ua: {
+      save: "Зберегти",
+      direction: "Напрям",
+      city: "Город",
+      amount: "Сума",
       logIn: "Вхід",
       signUp: "Реєстрація",
       logout: "Вихід",
@@ -197,6 +205,10 @@ const i18n = createI18n({
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
     },
     en: {
+      save: "Save",
+      direction: "Direction",
+      city: "City",
+      amount: "Amount",
       logIn: "Log in",
       signUp: "Sign up",
       logout: "Logout",

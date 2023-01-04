@@ -59,11 +59,11 @@ export default {
     height: 100%;
     max-width: 500px;
     width: 100%;
-    padding: 30px 20px;
+    padding: 20px 20px 46px 20px;
     row-gap: 40px;
     overflow: auto;
     @include _768 {
-      padding: 25px 10px;
+      padding: 16px 16px 46px 16px;
       max-width: 320px;
     }
   }

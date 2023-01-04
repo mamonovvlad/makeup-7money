@@ -90,6 +90,7 @@
         display: flex;
         align-items: center;
         column-gap: 4px;
+        white-space: nowrap;
         @include _1200 {
           font-size: 16px;
         }

@@ -52,6 +52,8 @@ const store = createStore({
     //Time
     time: new Date(),
     interval: null,
+    //Custom select
+    selectName: null,
   }, //Хранения данных
   mutations: {
     calculate(state, type) {
@@ -423,7 +425,6 @@ const store = createStore({
         if (copy.length > 0) {
           copy.forEach((el) => {
             el.addEventListener("click", (event) => {
-              console.log(el);
               navigator.clipboard.writeText(event.target.dataset.copy);
               event.target.querySelector(".copied").classList.remove("d-none");
               setTimeout(() => {
@@ -435,6 +436,27 @@ const store = createStore({
       } catch (err) {
         throw err;
       }
+    },
+    openSelect(state, e) {
+      e.target.parentNode.classList.toggle("active");
+    },
+    selectOptions(state, e) {
+      const text = e.target.innerText;
+      e.target.parentNode.parentNode.classList.remove("active");
+      e.target.parentNode.parentNode.querySelector(
+        ".select .select-name"
+      ).innerText = text;
+
+      e.target.parentNode.parentNode
+        .querySelector(".select")
+        .setAttribute("data-value", text);
+      e.target.parentNode.parentNode
+        .querySelector(".select")
+        .setAttribute("data-id", e.target.getAttribute("value"));
+    },
+    selectName(state) {
+      state.selectName =
+        state.calculateData.dropDownCities[state.calculateData.primary_city_id];
     },
     showRecoveryInformation() {
       let itemsWrapper = document.querySelectorAll(".items__wrapper .item");
@@ -751,7 +773,6 @@ const store = createStore({
       [type = "default", refresh = false]
     ) {
       commit("clearError");
-
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -776,6 +797,7 @@ const store = createStore({
         .then(function (response) {
           commit("setCalculateForm", response, refresh);
           commit("showRecoveryInformation");
+          commit("selectName");
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {
@@ -909,6 +931,9 @@ const store = createStore({
     },
     proxy(state) {
       return state.proxy;
+    },
+    selectName(state) {
+      return state.selectName;
     },
   }, // Получения state
 });

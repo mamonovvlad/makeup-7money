@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -187,6 +187,7 @@
                                 id=""
                                 disabled="disabled"
                                 name="OrderForm[buy_amount_with_discount]"
+                                v-model="calculateData.buy_amount_with_discount"
                                 placeholder="787"
                                 readonly="readonly"
                                 type="text"
@@ -264,6 +265,7 @@
                                 name="OrderForm[sell_amount_with_discount]"
                                 placeholder="787"
                                 readonly="readonly"
+                                v-model="calculateData.sell_amount_with_discount"
                                 type="text"
                               />
                             </span>
@@ -403,7 +405,7 @@
                             id="orderform-of_exchange"
                             name="OrderForm[of_exchange]"
                             value="1"
-                            @click="setOfExchange($event)"
+                            @click="setOfExchange"
                           />
                           <label class="label" for="orderform-of_exchange">
                             Отправляю с биржи
@@ -415,71 +417,123 @@
                     <div class="items__wrapper">
                       <div class="item">
                         <div class="field">
-                          <label>Город</label>
-                          <the-custom-select></the-custom-select>
-                          <!--                            <select name="CreateOrder[course_id]">-->
-                          <!--                              <option value="93">Киев</option>-->
-                          <!--                              <option value="93">Киев</option>-->
-                          <!--                              <option value="93">Киев</option>-->
-                          <!--                              <option value="93">Киев</option>-->
-                          <!--                              <option value="93">Киев</option>-->
-                          <!--                              <option value="93">Киев</option>-->
-                          <!--                            </select>-->
+                          <label> {{ $t("city") }}</label>
+                          <div class="custom-select">
+                            <button
+                              type="button"
+                              class="select form-group"
+                              @click="openSelect"
+                              data-value=""
+                              data-id=""
+                            >
+                              <span class="select-name">
+                                <template
+                                  v-if="selectName !== null && selectName !== undefined"
+                                >
+                                  {{ selectName }}
+                                </template>
+                                <template v-else> {{ $t("city") }} </template>
+                              </span>
+                              <icon-arrow></icon-arrow>
+                            </button>
+                            <ul class="options">
+                              <li
+                                @click="selectOptions"
+                                v-for="(option, id) in calculateData.dropDownCities"
+                                :value="id"
+                              >
+                                {{ option }}
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="field">
+                          <label> {{ $t("city") }}</label>
+                          <div class="custom-select">
+                            <button
+                              type="button"
+                              class="select form-group"
+                              @click="openSelect"
+                              data-value=""
+                              data-id=""
+                            >
+                              <span class="select-name">
+                                <template
+                                  v-if="selectName !== null && selectName !== undefined"
+                                >
+                                  {{ selectName }}
+                                </template>
+                                <template v-else> {{ $t("city") }} </template>
+                              </span>
+                              <icon-arrow></icon-arrow>
+                            </button>
+                            <ul class="options">
+                              <li
+                                @click="selectOptions"
+                                v-for="(option, id) in calculateData.dropDownCities"
+                                :value="id"
+                              >
+                                {{ option }}
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                       <div class="item">
                         <div class="field">
                           <label for="orderform-telegram">Telegram</label>
-                          <the-custom-select></the-custom-select>
-                          <!--                          <span class="form-group">-->
-                          <!--                            <input-->
-                          <!--                              type="text"-->
-                          <!--                              id="orderform-telegram"-->
-                          <!--                              name="OrderForm[telegram]"-->
-                          <!--                              placeholder="@username"-->
-                          <!--                              required-->
-                          <!--                            />-->
-                          <!--                          </span>-->
+                          <span class="form-group">
+                            <input
+                              type="text"
+                              id="orderform-telegram"
+                              name="OrderForm[telegram]"
+                              placeholder="@username"
+                              required
+                            />
+                          </span>
                         </div>
                       </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="animation-border">
-                      <span
-                        class="border"
-                        :class="{'border--red': error }"
-                      ></span>
-                      <div class="box">
-                        <div class="checkbox" id="orderform-of_exchange">
-                          <input
-                            type="checkbox"
-                            name="OrderForm[agree]"
-                            id="orderform-agree"
-                            @click="confirmChecked"
-                          />
-                          <label class="label" for="orderform-agree">
-                            <span>
-                              Нажимая на кнопку, я подтверждаю, что я
-                              ознакомился и согласен с условиями
-                              <a href="https://makeup.7money.co/page/security"
-                                >Безопасности</a
-                              >
-                              и
-                              <a href="https://makeup.7money.co/page/agreement"
-                                >Соглашением сайта</a
-                              >
-                            </span>
-                          </label>
+                      <div class="line"></div>
+                      <div class="animation-border">
+                        <span
+                          class="border"
+                          :class="{'border--red': error }"
+                        ></span>
+                        <div class="box">
+                          <div class="checkbox" id="orderform-of_exchange">
+                            <input
+                              type="checkbox"
+                              name="OrderForm[agree]"
+                              id="orderform-agree"
+                              @click="confirmChecked"
+                            />
+                            <label class="label" for="orderform-agree">
+                              <span>
+                                Нажимая на кнопку, я подтверждаю, что я
+                                ознакомился и согласен с условиями
+                                <a href="https://makeup.7money.co/page/security"
+                                  >Безопасности</a
+                                >
+                                и
+                                <a
+                                  href="https://makeup.7money.co/page/agreement"
+                                  >Соглашением сайта</a
+                                >
+                              </span>
+                            </label>
+                          </div>
                         </div>
                       </div>
+                      <button
+                        id="order-submit"
+                        class="button disabled"
+                        disabled="disabled"
+                      >
+                        Обменять
+                      </button>
                     </div>
-                    <button
-                      id="order-submit"
-                      class="button disabled"
-                      disabled="disabled"
-                    >
-                      Обменять
-                    </button>
                   </form>
                   <strong v-show="isCalculateData === false" class="warning">
                     Выбранное вами направление обмена в данный момент недоступно

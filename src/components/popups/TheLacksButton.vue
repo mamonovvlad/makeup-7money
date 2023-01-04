@@ -15,57 +15,6 @@
     </div>
   </div>
   <the-lacks-window v-if="showLacks" @close="showLacks = false">
-    <form class="form">
-      <div class="field">
-        <label>Валюта</label>
-        <span class="form-group">
-          <select
-            name="ReserveNotification[currency_id]"
-            id="reservenotification-currency_id"
-          >
-            <option value="93">USD</option>
-          </select>
-        </span>
-      </div>
-      <div class="field">
-        <label>Город</label>
-        <span class="form-group">
-          <select
-            name="ReserveNotification[currency_id]"
-            id="reservenotification-currency_id"
-          >
-            <option value="93">Киев</option>
-          </select>
-        </span>
-      </div>
-      <div class="field">
-        <label for="orderform-telegram">Email</label>
-        <span class="form-group">
-          <input
-            type="text"
-            id="reservenotification-email"
-            name="ReserveNotification[email]"
-            placeholder="@username"
-            aria-required="true"
-            required
-          />
-        </span>
-      </div>
-      <div class="field">
-        <label for="reservenotification-amount">Сума</label>
-        <span class="form-group">
-          <input
-            type="text"
-            id="reservenotification-amount"
-            name="ReserveNotification[amount]"
-            required="required"
-            aria-required="true"
-            placeholder="62.3653"
-          />
-        </span>
-      </div>
-      <button type="submit" class="button">Сохранить</button>
-    </form>
   </the-lacks-window>
 </template>
 

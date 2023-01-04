@@ -24,7 +24,7 @@
     gap: 10px;
     padding: 20px;
     @include _768 {
-      padding: 20px 15px;
+      padding: 10px 14px;
     }
   }
 
@@ -41,8 +41,6 @@
   }
 
   & .body {
-    font-size: 14px;
-
     & .arrow {
       transform: rotate(-90deg);
       margin: 0 auto;
