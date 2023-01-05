@@ -31,6 +31,7 @@
       cursor: pointer;
       padding: 10px;
       font-weight: 400;
+      margin: 4px;
       border-radius: var(--radius-four);
       transition: var(--transition);
 
@@ -48,7 +49,6 @@
     & .options {
       height: max-content;
       max-height: 160px;
-      padding: 6px;
     }
   }
 }
