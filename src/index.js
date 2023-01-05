@@ -170,6 +170,8 @@ createApp({
       "detailsHide",
       "course",
       "selectName",
+      "sellAmountWithDiscount",
+      "buyAmountWithDiscount",
     ]),
     isSellSource() {
       return (

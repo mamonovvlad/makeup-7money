@@ -188,7 +188,7 @@
                                 id=""
                                 disabled="disabled"
                                 name="OrderForm[buy_amount_with_discount]"
-                                v-model="calculateData.buy_amount_with_discount"
+                                v-model="buyAmountWithDiscount"
                                 placeholder="787"
                                 readonly="readonly"
                                 type="text"
@@ -266,7 +266,7 @@
                                 name="OrderForm[sell_amount_with_discount]"
                                 placeholder="787"
                                 readonly="readonly"
-                                v-model="calculateData.sell_amount_with_discount"
+                                v-model="sellAmountWithDiscount"
                                 type="text"
                               />
                             </span>
@@ -742,10 +742,10 @@
         <!--        </the-notification>-->
       </div>
     </div>
-    <input id="login" type="hidden" value="0" />
+    <input id="login" type="hidden" value="1" />
+    <input type="hidden" id="uid" value="1" />
     <input id="language" type="hidden" value="ru" />
     <input type="hidden" id="lid" value="1" />
-    <input id="id" type="hidden" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
 
     <script

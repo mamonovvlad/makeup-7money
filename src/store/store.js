@@ -25,6 +25,8 @@ const store = createStore({
     buy_percent: 0,
     sell_amount_with_commission: 0,
     buy_amount_with_commission: 0,
+    sell_amount_with_discount: 0,
+    buy_amount_with_discount: 0,
     sell_source: "",
     buy_target: "",
     is_verified: 0,
@@ -244,7 +246,6 @@ const store = createStore({
             ).toFixed(state.sellNumbers);
           } else {
             if (state.sellCurrency.sell_comission > 0) {
-              console.log("4");
               state.calculateData.sell_amount_with_comission = (
                 parseFloat(state.sell_amount) + sellAmountComission
               ).toFixed(state.sellNumbers);
@@ -315,6 +316,12 @@ const store = createStore({
         return 0;
       }
     },
+    // calculateLogin(state) {
+    //   // https://7money.co/json/calculate-discount?user_id=1&course_id=155&sell_amount=1000&buy_amount=1000
+    //   if (document.getElementById("login").value === 1) {
+    //     console.log("1");
+    //   }
+    // },
     ////////////////////////////////////////
     calculateDefault() {
       this.commit("currencyModelIsCrypt");
@@ -352,6 +359,11 @@ const store = createStore({
       state.sell_amount = float;
       if (state.sell_amount > 0) {
         this.dispatch("calculateForm", ["default"]);
+        //login
+        let uid = document.getElementById("uid").value;
+        if (document.getElementById("login").value === "1") {
+          this.dispatch("fetchCalculateDiscount", uid);
+        }
       }
     },
     updateBuyAmount(state) {
@@ -373,6 +385,11 @@ const store = createStore({
       state.buy_amount = float;
       if (state.buy_amount > 0) {
         this.dispatch("calculateForm", ["revert"]);
+        //login
+        let uid = document.getElementById("uid").value;
+        if (document.getElementById("login").value === "1") {
+          this.dispatch("fetchCalculateDiscount", uid);
+        }
       }
     },
     inputCurrencyId(state) {
@@ -430,11 +447,15 @@ const store = createStore({
         if (copy.length > 0) {
           copy.forEach((el) => {
             el.addEventListener("click", (event) => {
-              navigator.clipboard.writeText(event.target.dataset.copy);
-              event.target.querySelector(".copied").classList.remove("d-none");
-              setTimeout(() => {
-                event.target.querySelector(".copied").classList.add("d-none");
-              }, 1500);
+              let text = event.target.getAttribute("data-copy");
+              navigator.clipboard.writeText(text).then(function () {
+                event.target
+                  .querySelector(".copied")
+                  .classList.remove("d-none");
+                setTimeout(() => {
+                  event.target.querySelector(".copied").classList.add("d-none");
+                }, 1500);
+              });
             });
           });
         }
@@ -514,6 +535,11 @@ const store = createStore({
       } else {
         state.theme = "dark";
       }
+    },
+    calculateDiscount(state, res) {
+      console.log(res);
+      state.sell_amount_with_discount = res.data.sell_amount_with_discount;
+      state.buy_amount_with_discount = res.data.buy_amount_with_discount;
     },
     setCalculateForm(state, response, refresh) {
       state.sell_percent = response.data.sell_percent;
@@ -843,11 +869,21 @@ const store = createStore({
       let json = JSON.parse(data.innerHTML);
       commit("setGroupsAndCurrenciesFromPage", json);
     },
-    // startData({ state, commit }) {
-    //   state.interval = setInterval(() => {
-    //     commit("updateTime");
-    //   }, 1000);
-    // },
+    fetchCalculateDiscount({ state, getters, commit }, uid) {
+      axios
+        .get(
+          `${state.proxy}/json/calculate-discount?user_id=${uid}&course_id=${state.calculateData.course.id}&sell_amount=${state.sell_amount}&buy_amount=${state.buy_amount}`
+          // {
+          //   params: {
+          //     sell_amount_with_discount: state.sell_amount_with_discount,
+          //     buy_amount_with_discount: state.buy_amount_with_discount,
+          //   },
+          // }
+        )
+        .then((res) => {
+          commit("calculateDiscount", res);
+        });
+    },
   }, //Функции асинхронные
   getters: {
     getType(state) {
@@ -935,6 +971,12 @@ const store = createStore({
     },
     selectName(state) {
       return state.selectName;
+    },
+    sellAmountWithDiscount(state) {
+      return state.sell_amount_with_discount;
+    },
+    buyAmountWithDiscount(state) {
+      return state.buy_amount_with_discount;
     },
   }, // Получения state
 });
