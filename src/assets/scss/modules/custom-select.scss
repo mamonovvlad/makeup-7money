@@ -23,7 +23,7 @@
     overflow: auto;
     box-shadow: var(--shadow-inset);
     border-radius: var(--radius-four);
-    background-color: var(--seventh);
+    background-color: var(--secondary);
     transition: var(--transition);
     z-index: 2;
 
@@ -31,6 +31,7 @@
       cursor: pointer;
       padding: 10px;
       font-weight: 400;
+      border-radius: var(--radius-four);
       transition: var(--transition);
 
       &:hover {
@@ -47,6 +48,7 @@
     & .options {
       height: max-content;
       max-height: 160px;
+      padding: 6px;
     }
   }
 }

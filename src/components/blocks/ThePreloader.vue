@@ -1,17 +1,22 @@
 <template>
   <div class="preloader">
     <div class="loader"></div>
+    <div class="description">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <style lang="scss">
+@import "../../assets/scss/utils/mixin";
 .preloader {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--secondary);
+  display: none;
+  background: var(--secondary-transparent);
   z-index: 7;
 
   & .loader {
@@ -51,6 +56,18 @@
       border: 3px solid transparent;
       border-top-color: var(--primary);
       animation: spin 1.5s linear infinite;
+    }
+  }
+  & .description {
+    position: relative;
+    text-align: center;
+    top: 50%;
+    color: var(--primary);
+    font-size: 18px;
+    margin-top: 10px;
+    font-weight: 500;
+    @include _576 {
+      font-size: 16px;
     }
   }
 }
