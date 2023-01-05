@@ -359,11 +359,6 @@ const store = createStore({
       state.sell_amount = float;
       if (state.sell_amount > 0) {
         this.dispatch("calculateForm", ["default"]);
-        //login
-        let uid = document.getElementById("uid").value;
-        if (document.getElementById("login").value === "1") {
-          this.dispatch("fetchCalculateDiscount", uid);
-        }
       }
     },
     updateBuyAmount(state) {
@@ -385,11 +380,6 @@ const store = createStore({
       state.buy_amount = float;
       if (state.buy_amount > 0) {
         this.dispatch("calculateForm", ["revert"]);
-        //login
-        let uid = document.getElementById("uid").value;
-        if (document.getElementById("login").value === "1") {
-          this.dispatch("fetchCalculateDiscount", uid);
-        }
       }
     },
     inputCurrencyId(state) {
@@ -565,6 +555,11 @@ const store = createStore({
         state.buy_target = response.data.buy_target;
       }
       this.commit("setDocumentTitle");
+      //login
+      let uid = document.getElementById("uid").value;
+      if (document.getElementById("login").value === "1") {
+        this.dispatch("fetchCalculateDiscount", uid);
+      }
     },
     setGroupsAndCurrencies(state, response) {
       state.currencyGroups = response.data.groups;
@@ -675,6 +670,7 @@ const store = createStore({
       state,
       [type, id, isCalculate = true, isTrash = true, isSetUrl = true]
     ) {
+      ``;
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
       // };
@@ -873,12 +869,6 @@ const store = createStore({
       axios
         .get(
           `${state.proxy}/json/calculate-discount?user_id=${uid}&course_id=${state.calculateData.course.id}&sell_amount=${state.sell_amount}&buy_amount=${state.buy_amount}`
-          // {
-          //   params: {
-          //     sell_amount_with_discount: state.sell_amount_with_discount,
-          //     buy_amount_with_discount: state.buy_amount_with_discount,
-          //   },
-          // }
         )
         .then((res) => {
           commit("calculateDiscount", res);
