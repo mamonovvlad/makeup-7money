@@ -71,46 +71,61 @@
                 <div id="verify" class="verify">
                   <div class="stylish-wrapper">
                     <div class="field-list">
-                      <the-field
-                        name-placeholder="APEHGF5H6"
-                        name-id="1"
-                        name="1"
-                        type="text"
-                        :required="true"
-                        :show-error="true"
-                      >
-                        <template #label>Поиск по коду заявки</template>
-                        <template #error
-                          >Пароль обязателен для заполнения!
-                        </template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="2435445345432354"
-                        name-id="2"
-                        name="2"
-                        type="text"
-                        :required="true"
-                      >
-                        <template #label>Поиск по номеру карты</template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="email@gmail.com"
-                        name-id="3"
-                        name="ChangePasswordForm[confirm_new_password]"
-                        type="password"
-                        :required="true"
-                      >
-                        <template #label>Поиск по email</template>
-                      </the-field>
-                      <the-field
-                        name-placeholder="127.0.0.0"
-                        name-id="4"
-                        name="4"
-                        type="text"
-                        :required="true"
-                      >
-                        <template #label>Поиск по ip</template>
-                      </the-field>
+                      <div class="field">
+                        <label for="orderform-sell_amount">
+                          Поиск по коду заявки
+                        </label>
+                        <span class="form-group">
+                          <input
+                            type="text"
+                            id=""
+                            name=""
+                            placeholder="APEHGF5H6"
+                          />
+                          <span class="help-block"></span>
+                        </span>
+                      </div>
+                      <div class="field">
+                        <label for="orderform-sell_amount">
+                          Поиск по номеру карты
+                        </label>
+                        <span class="form-group">
+                          <input
+                            type="text"
+                            id=""
+                            name=""
+                            placeholder="2435445345432354"
+                          />
+                          <span class="help-block"></span>
+                        </span>
+                      </div>
+                      <div class="field">
+                        <label for="orderform-sell_amount">
+                          Поиск по номеру карты
+                        </label>
+                        <span class="form-group">
+                          <input
+                            id=""
+                            name="ChangePasswordForm[confirm_new_password]"
+                            type="password"
+                            :required="true"
+                            placeholder="email@gmail.com"
+                          />
+                          <span class="help-block"></span>
+                        </span>
+                      </div>
+                      <div class="field">
+                        <label for="orderform-sell_amount"> Поиск по ip </label>
+                        <span class="form-group">
+                          <input
+                            id=""
+                            name=""
+                            type="text"
+                            placeholder="127.0.0.0"
+                          />
+                          <span class="help-block"></span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <h2 class="subtitle">История верификаций</h2>

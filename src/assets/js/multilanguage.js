@@ -31,7 +31,7 @@ const i18n = createI18n({
       security: "Безопасность",
       remind: "Забыли пароль?",
       footerText:
-        "Лучший онлайн сервис обмена электронных и криптовалют 7money.co © 2016-2022",
+        "Лучший онлайн сервис обмена электронных и криптовалют 7money.co © 2016-2023",
       passwordRecovery: "Восстановление пароля",
       send: "Отправить",
       recoveryText:
@@ -131,7 +131,7 @@ const i18n = createI18n({
       security: "Безпека",
       remind: "Забули пароль?",
       footerText:
-        "Кращий онлайн сервіс обміну електронних і криптовалюта 7money.co © 2016-2022",
+        "Кращий онлайн сервіс обміну електронних і криптовалюта 7money.co © 2016-2023",
       passwordRecovery: "Відновлення паролю",
       send: "Відправити",
       recoveryText:
@@ -231,7 +231,7 @@ const i18n = createI18n({
       security: "Security",
       remind: "Remind?",
       footerText:
-        "The best online exchange service for electronic and cryptocurrencies 7money.co © 2016-2022",
+        "The best online exchange service for electronic and cryptocurrencies 7money.co © 2016-2023",
       passwordRecovery: "Password recovery",
       send: "Send",
       recoveryText:
