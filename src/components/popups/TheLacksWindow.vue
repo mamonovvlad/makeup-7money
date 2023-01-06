@@ -20,7 +20,8 @@
             <input
               type="text"
               maxlength="8"
-              name="ReserveNotification[buy_amount]"
+              id="reservenotification-amount"
+              name="ReserveNotification[amount]"
               v-model="calculateData.buy_amount"
             />
           </span>
@@ -67,19 +68,6 @@
               placeholder="@username"
               aria-required="true"
               required
-            />
-          </span>
-        </div>
-        <div class="field" v-if="isCash">
-          <label for="reservenotification-amount">{{ $t("amount") }}</label>
-          <span class="form-group">
-            <input
-              type="text"
-              id="reservenotification-amount"
-              name="ReserveNotification[amount]"
-              required="required"
-              aria-required="true"
-              placeholder="62.3653"
             />
           </span>
         </div>

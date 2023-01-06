@@ -21,7 +21,7 @@
   & .head,
   & .body tr {
     display: grid;
-    gap: 10px;
+    gap: 12px 10px;
     padding: 20px;
     @include _768 {
       padding: 10px 14px;
