@@ -527,7 +527,6 @@ const store = createStore({
       }
     },
     calculateDiscount(state, res) {
-      console.log(res);
       state.sell_amount_with_discount = res.data.sell_amount_with_discount;
       state.buy_amount_with_discount = res.data.buy_amount_with_discount;
     },

@@ -13,21 +13,13 @@
         class="form"
       >
         <input type="hidden" :value="csrfToken" :name="csrfParam" />
+        <p>{{ nameSellCurrency }} --- {{ nameBuyCurrency }}</p>
         <div class="field">
-          <label>{{ $t("theGive") }}</label>
-          <span class="form-group input--disabled">
+          <label>Сумма которой не хватает: {{ nameBuyCurrency }}</label>
+          <span class="form-group">
             <input
               type="text"
-              name="ReserveNotification[sell_amount]"
-              v-model="calculateData.sell_amount"
-            />
-          </span>
-        </div>
-        <div class="field">
-          <label>{{ $t("theGet") }}</label>
-          <span class="form-group input--disabled">
-            <input
-              type="text"
+              maxlength="8"
               name="ReserveNotification[buy_amount]"
               v-model="calculateData.buy_amount"
             />
@@ -132,24 +124,24 @@ export default {
   },
   computed: {
     ...mapGetters(["calculateData", "getLang", "selectName"]),
-    // nameBuyCurrency() {
-    //   if (this.getLang === "/en") {
-    //     return this.calculateData.buyCurrency.name_en;
-    //   } else if (this.getLang === "/ua") {
-    //     return this.calculateData.buyCurrency.name_ua;
-    //   } else {
-    //     return this.calculateData.buyCurrency.name_ru;
-    //   }
-    // },
-    // nameSellCurrency() {
-    //   if (this.getLang === "/en") {
-    //     return this.calculateData.sellCurrency.name_en;
-    //   } else if (this.getLang === "/ua") {
-    //     return this.calculateData.sellCurrency.name_ua;
-    //   } else {
-    //     return this.calculateData.sellCurrency.name_ru;
-    //   }
-    // },
+    nameBuyCurrency() {
+      if (this.getLang === "/en") {
+        return this.calculateData.buyCurrency.name_en;
+      } else if (this.getLang === "/ua") {
+        return this.calculateData.buyCurrency.name_ua;
+      } else {
+        return this.calculateData.buyCurrency.name_ru;
+      }
+    },
+    nameSellCurrency() {
+      if (this.getLang === "/en") {
+        return this.calculateData.sellCurrency.name_en;
+      } else if (this.getLang === "/ua") {
+        return this.calculateData.sellCurrency.name_ua;
+      } else {
+        return this.calculateData.sellCurrency.name_ru;
+      }
+    },
     lid() {
       return document.getElementById("lid").getAttribute("value");
     },
