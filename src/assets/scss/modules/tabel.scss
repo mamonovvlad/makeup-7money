@@ -14,7 +14,7 @@
     width: 15px;
     height: 15px;
     background-size: cover;
-    vertical-align: bottom;
+    vertical-align: text-top;
     margin-right: 4px;
   }
 
@@ -68,6 +68,7 @@
     }
     & strong {
       font-weight: 500;
+      line-height: 19.6px;
     }
     & td {
       display: flex;

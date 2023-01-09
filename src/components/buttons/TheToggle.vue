@@ -41,7 +41,7 @@ export default {
 .button--toggle {
   position: fixed;
   right: 10px;
-  top: 100px;
+  top: 210px;
   display: none;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@ export default {
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
   background: var(--secondary);
-  z-index: 2;
+  z-index: 1;
 
   & .ham {
     cursor: pointer;
