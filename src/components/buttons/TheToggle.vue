@@ -1,5 +1,6 @@
 <template>
   <button class="button--toggle" @click="isToggleClass">
+    <icon-arrow-long></icon-arrow-long>
     <svg
       class="ham hamRotate ham1"
       viewBox="0 0 100 100"
@@ -20,18 +21,22 @@
 </template>
 
 <script>
+import IconArrowLong from "../icons/IconArrowLong.vue";
 export default {
   name: "TheToggle",
   data() {
     return {
-      isActive: false,
+      isActive: false
     };
+  },
+  components: {
+    IconArrowLong
   },
   methods: {
     isToggleClass() {
       this.isActive = !this.isActive;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -45,12 +50,12 @@ export default {
   display: none;
   justify-content: center;
   align-items: center;
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
-  background: var(--secondary);
-  z-index: 1;
+  background: var(--tenth);
+  z-index: 2;
 
   & .ham {
     cursor: pointer;
@@ -89,6 +94,28 @@ export default {
 
   & .ham1.active .bottom {
     stroke-dashoffset: -138px;
+  }
+
+  & .arrow-long {
+    position: absolute;
+    top: -60px;
+    width: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--tenth);
+    animation: animate 2s ease-in infinite;
+  }
+}
+
+@keyframes animate {
+  0% {
+    top: -60px;
+  }
+  50% {
+    top: -46px;
+  }
+  100% {
+    top: -60px;
   }
 }
 </style>

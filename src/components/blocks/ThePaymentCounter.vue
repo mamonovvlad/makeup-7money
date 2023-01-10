@@ -56,6 +56,7 @@ export default {
     background: var(--secondary);
     padding: 20px;
     height: 100%;
+    overflow-y: scroll;
     @include _992 {
       position: fixed;
       top: 0;
@@ -276,11 +277,11 @@ export default {
 .flip-clock-wrapper ul.play li.flip-clock-before .up .shadow {
   background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, black 100%);
   background: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0%, rgba(0, 0, 0, 0.1)),
-      color-stop(100%, black)
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, rgba(0, 0, 0, 0.1)),
+    color-stop(100%, black)
   );
   background: linear, top, rgba(0, 0, 0, 0.1) 0%, black 100%;
   background: -o-linear-gradient(top, rgba(0, 0, 0, 0.1) 0%, black 100%);
@@ -293,11 +294,11 @@ export default {
 .flip-clock-wrapper ul.play li.flip-clock-before .down .shadow {
   background: -moz-linear-gradient(top, black 0%, rgba(0, 0, 0, 0.1) 100%);
   background: -webkit-gradient(
-      linear,
-      left top,
-      left bottom,
-      color-stop(0%, black),
-      color-stop(100%, rgba(0, 0, 0, 0.1))
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, black),
+    color-stop(100%, rgba(0, 0, 0, 0.1))
   );
   background: linear, top, black 0%, rgba(0, 0, 0, 0.1) 100%;
   background: -o-linear-gradient(top, black 0%, rgba(0, 0, 0, 0.1) 100%);
