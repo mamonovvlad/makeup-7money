@@ -22,14 +22,9 @@ import { mapState } from "vuex";
 
 export default {
   name: "TheNightMode",
-  data() {
-    return {
-      // isShow: false,
-    };
-  },
   components: {
     TheClose,
-    IconNightMode,
+    IconNightMode
   },
   computed: {
     ...mapState(["time"]),
@@ -41,7 +36,7 @@ export default {
       } else {
         return false;
       }
-    },
+    }
   },
   methods: {
     dateFilter(value, format = "date") {
@@ -61,9 +56,9 @@ export default {
     },
     isCloseNightMode() {
       this.$refs.nightMode.classList.add("d-none");
-    },
+    }
   },
-  mounted() {},
+  mounted() {}
 };
 </script>
 

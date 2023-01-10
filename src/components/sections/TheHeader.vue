@@ -5,13 +5,7 @@
         <div class="block">
           <the-logo></the-logo>
           <the-toggle-theme></the-toggle-theme>
-          <div class="time">
-            <p>
-              {{ $t("schedule") }}
-              <span>{{ $t("workingHours") }}</span>
-            </p>
-            <the-time></the-time>
-          </div>
+          <the-time></the-time>
         </div>
         <div class="block">
           <the-button tag="a" :href="$t('checkStatus')">
@@ -46,8 +40,8 @@ export default {
       isPasswordRecovery: false,
       isAuthorization: {
         index: -1,
-        isOpen: false,
-      },
+        isOpen: false
+      }
     };
   },
   methods: {
@@ -72,7 +66,7 @@ export default {
       if (login.value === "1") {
         buttonAccount.classList.add("account--active");
       }
-    },
+    }
   },
   components: {
     TheLogo,
@@ -81,16 +75,16 @@ export default {
     TheToggleTheme,
     TheAuthorization,
     ThePasswordRecovery,
-    TheTime,
+    TheTime
   },
   mounted() {
     this.activeAccount();
   },
   provide() {
     return {
-      isAuthorization: this.isAuthorization,
+      isAuthorization: this.isAuthorization
     };
-  },
+  }
 };
 </script>
 
@@ -132,21 +126,6 @@ export default {
       @include _768 {
         display: none;
       }
-    }
-  }
-
-  & .time {
-    line-height: 140%;
-    @include _1200 {
-      font-size: 12px;
-    }
-    @include _576 {
-      position: absolute;
-      top: -40px;
-    }
-
-    & span {
-      color: var(--quaternary);
     }
   }
 }
