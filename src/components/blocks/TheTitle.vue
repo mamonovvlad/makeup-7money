@@ -27,7 +27,6 @@ export default {
 .heading,
 .title,
 .subtitle {
-  transition: var(--transition);
   color: var(--quaternary);
   font-weight: 500;
 }

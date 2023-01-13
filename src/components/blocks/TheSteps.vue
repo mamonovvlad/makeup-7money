@@ -1,22 +1,20 @@
 <template>
   <div class="steps">
-
-    <div class="step" :class="{active: dataInput}">
+    <div class="step" :class="{ active: dataInput }">
       <button v-if="showButton" @click="$emit('button')">
         <icon-arrow></icon-arrow>
       </button>
       <icon-data-input></icon-data-input>
       <span>{{ $t("dataInput") }}</span>
     </div>
-    <div class="step" :class="{active: payment}">
+    <div class="step" :class="{ active: payment }">
       <icon-payment></icon-payment>
       <span>{{ $t("payment") }}</span>
     </div>
-    <div class="step" :class="{active: completion}">
+    <div class="step" :class="{ active: completion }">
       <icon-completion></icon-completion>
       <span>{{ $t("completion") }}</span>
     </div>
-
   </div>
 </template>
 
@@ -66,12 +64,13 @@ export default {
   border-radius: var(--radius-eigh);
   padding: 15px 40px;
   overflow: hidden;
+  z-index: 0;
   @include _768 {
     padding: 15px 20px;
   }
 
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     left: 60px;
     right: 60px;

@@ -1,9 +1,8 @@
 <template>
   <div class="animation-border">
-    <span class="border" :class="{'border--red': borderRed }"></span>
+    <span class="border" :class="{ 'border--red': borderRed }"></span>
     <div class="box">
-      <slot>
-      </slot>
+      <slot> </slot>
     </div>
   </div>
 </template>
@@ -36,7 +35,15 @@ export default {
     height: 100%;
     width: 100%;
     transform: translate(-50%, -50%);
-    background: linear-gradient(90deg, var(--seventh) 20%, var(--seventh) 40%, var(--primary) 50%, var(--primary) 55%, var(--seventh) 70%, var(--seventh));
+    background: linear-gradient(
+      90deg,
+      var(--seventh) 20%,
+      var(--seventh) 40%,
+      var(--primary) 50%,
+      var(--primary) 55%,
+      var(--seventh) 70%,
+      var(--seventh)
+    );
     background-size: 200% auto;
   }
 
@@ -44,7 +51,6 @@ export default {
     position: relative;
     border-radius: var(--radius-four);
     background: var(--seventh);
-    z-index: 1;
   }
 
   & .checkbox {
@@ -52,7 +58,15 @@ export default {
   }
 
   .border--red {
-    background: linear-gradient(90deg, var(--seventh) 20%, var(--seventh) 40%, var(--red) 50%, var(--red) 55%, var(--seventh) 70%, var(--seventh));
+    background: linear-gradient(
+      90deg,
+      var(--seventh) 20%,
+      var(--seventh) 40%,
+      var(--red) 50%,
+      var(--red) 55%,
+      var(--seventh) 70%,
+      var(--seventh)
+    );
     background-size: 200% auto;
   }
 }

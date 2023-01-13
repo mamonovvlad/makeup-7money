@@ -23,6 +23,7 @@ import TheReserves from "./components/sections/TheCurrencyReserves.vue";
 import TheAchievements from "./components/sections/TheAchievements.vue";
 import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
 //Blocks
+import TheTitleDetails from "./components/blocks/TheTitleDetails.vue";
 import TheCustomSelect from "./components/blocks/TheCustomSelect.vue";
 import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
 import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell.vue";
@@ -40,7 +41,6 @@ import TheField from "./components/blocks/TheField.vue";
 import TheExchangeInformation from "./components/blocks/TheExchangeInformation.vue";
 import TheDiscount from "./components/blocks/TheDiscount.vue";
 import TheCounter from "./components/blocks/TheCounter.vue";
-import TheCurrentTime from "./components/blocks/TheCurrentTime.vue";
 import TheInformation from "./components/sections/TheInformation.vue";
 import TheTimeProcessing from "./components/blocks/TheTimeProcessing.vue";
 import ThePreloader from "./components/blocks/ThePreloader.vue";
@@ -52,7 +52,6 @@ import TheClose from "./components/buttons/TheClose.vue";
 import TheErrorButtons from "./components/buttons/TheErrorButtons.vue";
 //Popups
 import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.vue";
-import TheNotification from "./components/popups/TheNotification.vue";
 import TheNightMode from "./components/popups/TheNightMode.vue";
 import TheLacksButton from "./components/popups/TheLacksButton.vue";
 //Icons
@@ -104,6 +103,7 @@ createApp({
     TheLinks,
     TheCheckStatus,
     //Blocks
+    TheTitleDetails,
     TheCustomSelect,
     TheQuestionInformation,
     ThePublicInformation,
@@ -122,7 +122,6 @@ createApp({
     TheCurrenciesColumnSell,
     TheCurrenciesColumnBuy,
     TheCounter,
-    TheCurrentTime,
     TheTimeProcessing,
     ThePreloader,
     //Buttons
@@ -132,7 +131,6 @@ createApp({
     TheRecoveryInformation,
     TheLacksButton,
     TheNightMode,
-    TheNotification,
     //Icons
     IconConfetti,
     IconCopy,
@@ -172,6 +170,7 @@ createApp({
       "selectName",
       "sellAmountWithDiscount",
       "buyAmountWithDiscount",
+      "selectCity",
     ]),
     isSellSource() {
       return (

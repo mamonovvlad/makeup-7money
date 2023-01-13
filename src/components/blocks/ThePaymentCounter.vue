@@ -8,37 +8,55 @@
           <div class="clock"></div>
         </div>
         <slot name="information"></slot>
-        <slot name="cancel-operation"></slot>
+        <the-button
+          @click="isShowWindow = true"
+          type="button"
+          class="close button--transparent"
+          tag="button"
+        >
+          <template #name> Отменить операцию</template>
+        </the-button>
       </div>
     </transition>
     <the-toggle @click.native="isToggleNav"></the-toggle>
+    <the-question-window
+      v-if="isShowWindow"
+      @windowHide="windowHide"
+    ></the-question-window>
   </div>
 </template>
 
 <script>
+import TheButton from "../buttons/TheButton.vue";
 import TheToggle from "../buttons/TheToggle.vue";
-
+import TheQuestionWindow from "../popups/TheQuestionWindow.vue";
 export default {
   name: "ThePaymentCounter",
   data() {
     return {
-      isActive: false
+      isActive: false,
+      isShowWindow: false,
     };
   },
   components: {
-    TheToggle
+    TheToggle,
+    TheQuestionWindow,
+    TheButton,
   },
   methods: {
+    windowHide() {
+      this.isShowWindow = false;
+    },
     isToggleNav() {
       this.isActive = !this.isActive;
     },
     isShowNav() {
       this.isActive = window.innerWidth > 992;
-    }
+    },
   },
   mounted() {
     this.isShowNav();
-  }
+  },
 };
 </script>
 
@@ -52,7 +70,7 @@ export default {
     }
   }
 
-  & .wrapper {
+  & > .wrapper {
     background: var(--secondary);
     padding: 20px;
     height: 100%;

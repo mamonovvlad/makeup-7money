@@ -45,7 +45,7 @@ export default {
           id: 0,
           icon: "the-languages",
           className: "languages",
-          isActive: false
+          isActive: false,
         },
         {
           id: 1,
@@ -53,23 +53,23 @@ export default {
           block: "the-authorization-buttons",
           className: "button__account",
           isActive: false,
-          animate: "fade"
+          animate: "fade",
         },
         {
           id: 2,
           icon: "icon-share",
           block: "the-social-network",
           className: "button__share",
-          isActive: false
+          isActive: false,
         },
         {
           id: 3,
           icon: "icon-burger",
           block: "the-burger",
           isActive: false,
-          animate: "slide-fade"
-        }
-      ]
+          animate: "slide-fade",
+        },
+      ],
     };
   },
   components: {
@@ -79,7 +79,7 @@ export default {
     TheLanguages,
     TheAuthorizationButtons,
     TheSocialNetwork,
-    TheBurger
+    TheBurger,
   },
   methods: {
     indexTransfer(idx) {
@@ -113,11 +113,11 @@ export default {
           }
         }
       }
-    }
+    },
   },
   mounted() {
     document.addEventListener("click", this.hideMenu);
-  }
+  },
 };
 </script>
 
@@ -128,7 +128,6 @@ export default {
   position: relative;
   width: 50px;
   height: 50px;
-  z-index: 2;
   @include _768 {
     width: 40px;
     height: 40px;
@@ -213,9 +212,11 @@ export default {
 
     & .button__share {
       height: 300px;
+      z-index: 1;
     }
 
     & .languages {
+      z-index: 1;
       height: 130px;
       @include _768 {
         height: 115px;

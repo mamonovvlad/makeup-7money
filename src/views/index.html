@@ -40,12 +40,7 @@
             <transition name="details-hide">
               <div class="details" v-show="isDetails === true && calculateData">
                 <div class="details__wrapper stylish-wrapper">
-                  <div class="title__wrapper">
-                    <the-title tag="h1" class="subtitle">
-                      {{ calculateData.course_h1 }}
-                    </the-title>
-                    <the-current-time></the-current-time>
-                  </div>
+                  <the-title-details></the-title-details>
                   <the-steps
                     @button="trashClick"
                     :show-button="true"
@@ -443,7 +438,7 @@
                             <ul class="options">
                               <li
                                 @click="selectOptions"
-                                v-for="(option, id) in calculateData.dropDownCities"
+                                v-for="(option, id) in selectCity"
                                 :value="id"
                               >
                                 {{ option }}
@@ -737,9 +732,6 @@
         <the-footer></the-footer>
         <!--Popups-->
         <the-night-mode></the-night-mode>
-        <!--        <the-notification>-->
-        <!--          Предложение действует неограниченный срок. Даже-->
-        <!--        </the-notification>-->
       </div>
     </div>
     <input id="login" type="hidden" value="1" />
@@ -747,24 +739,5 @@
     <input id="language" type="hidden" value="ru" />
     <input type="hidden" id="lid" value="1" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
-
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"
-      integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script>
-      function generate(text, type, layout) {
-        new Noty({
-          text: text,
-          type: "type",
-          dismissQueue: true,
-          layout: layout,
-        }).show();
-      }
-
-      generate("Some notification text", "new", "topRight");
-    </script>
   </body>
 </html>

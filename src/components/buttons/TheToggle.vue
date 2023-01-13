@@ -1,6 +1,6 @@
 <template>
   <button class="button--toggle" @click="isToggleClass">
-    <icon-arrow-long></icon-arrow-long>
+    <the-animate-arrow v-show="isShowArrow"></the-animate-arrow>
     <svg
       class="ham hamRotate ham1"
       viewBox="0 0 100 100"
@@ -21,22 +21,24 @@
 </template>
 
 <script>
-import IconArrowLong from "../icons/IconArrowLong.vue";
+import TheAnimateArrow from "../blocks/TheAnimateArrow.vue";
 export default {
   name: "TheToggle",
   data() {
     return {
-      isActive: false
+      isActive: false,
+      isShowArrow: true,
     };
   },
   components: {
-    IconArrowLong
+    TheAnimateArrow,
   },
   methods: {
     isToggleClass() {
       this.isActive = !this.isActive;
-    }
-  }
+      this.isShowArrow = false;
+    },
+  },
 };
 </script>
 
@@ -54,7 +56,7 @@ export default {
   height: 50px;
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
-  background: var(--tenth);
+  background: var(--primary);
   z-index: 2;
 
   & .ham {
@@ -75,7 +77,7 @@ export default {
   & .line {
     fill: none;
     transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-    stroke: var(--primary);
+    stroke: var(--secondary);
     stroke-width: 5.5;
     stroke-linecap: round;
   }
@@ -94,28 +96,6 @@ export default {
 
   & .ham1.active .bottom {
     stroke-dashoffset: -138px;
-  }
-
-  & .arrow-long {
-    position: absolute;
-    top: -60px;
-    width: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--tenth);
-    animation: animate 2s ease-in infinite;
-  }
-}
-
-@keyframes animate {
-  0% {
-    top: -60px;
-  }
-  50% {
-    top: -46px;
-  }
-  100% {
-    top: -60px;
   }
 }
 </style>

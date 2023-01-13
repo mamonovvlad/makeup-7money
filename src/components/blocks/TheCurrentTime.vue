@@ -1,7 +1,12 @@
 <template>
   <the-animation-border class="current-time">
     <div class="wrapper">
-      <strong class="time">{{ currentTime }}</strong>
+      <div class="time">
+        <transition name="fade" mode="out-in">
+          <strong v-if="updateText">Обновлен</strong>
+          <strong v-else>{{ currentTime }}</strong>
+        </transition>
+      </div>
       {{ $t("course") }}:
       <strong class="course">{{ course.sell }} к {{ course.buy }}</strong>
     </div>
@@ -18,6 +23,9 @@ export default {
   },
   computed: {
     ...mapGetters(["currentTime", "course"]),
+    updateText() {
+      return this.currentTime < 60 && this.currentTime > 56;
+    },
   },
   methods: {
     ...mapMutations(["startTimer", "stopTimer", "callbackTimerFinish"]),
@@ -49,14 +57,17 @@ export default {
     align-items: center;
     column-gap: 10px;
     padding: 6px 10px;
+    transition: 300ms ease;
   }
 
   & .course {
     color: var(--quaternary);
     margin-left: auto;
+    width: 100%;
   }
 
   & .time {
+    position: relative;
     font-size: 16px;
     color: var(--primary);
   }

@@ -50,7 +50,7 @@ export default {
   display: flex;
   justify-content: flex-end;
   background: var(--secondary-transparent);
-
+  z-index: 3;
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -102,9 +102,13 @@ export default {
   }
 
   & .toggle__theme {
+    box-shadow: var(--shadow-secondary);
     display: none;
     @include _768 {
       display: block;
+    }
+    & .active {
+      box-shadow: var(--shadow-secondary-inset);
     }
   }
 

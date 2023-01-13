@@ -56,6 +56,7 @@ const store = createStore({
     interval: null,
     //Custom select
     selectName: null,
+    selectCity: null,
   }, //Хранения данных
   mutations: {
     calculate(state, type) {
@@ -414,6 +415,17 @@ const store = createStore({
       // fieldInput.forEach(function (el) {
       //   el.value = "";
       // });
+    },
+    sortCity(state) {
+      if (state.calculateData.dropDownCities) {
+        state.selectCity = Object.values(
+          state.calculateData.dropDownCities
+        ).sort(function (a, b) {
+          let textA = a.toUpperCase();
+          let textB = b.toUpperCase();
+          return textA < textB ? -1 : textA > textB ? 1 : 0;
+        });
+      }
     },
     captcha() {
       let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
@@ -820,6 +832,7 @@ const store = createStore({
           commit("setCalculateForm", response, refresh);
           commit("showRecoveryInformation");
           commit("selectName");
+          commit("sortCity");
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {
@@ -966,6 +979,9 @@ const store = createStore({
     },
     buyAmountWithDiscount(state) {
       return state.buy_amount_with_discount;
+    },
+    selectCity(state) {
+      return state.selectCity;
     },
   }, // Получения state
 });

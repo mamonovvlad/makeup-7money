@@ -40,8 +40,8 @@ export default {
       isPasswordRecovery: false,
       isAuthorization: {
         index: -1,
-        isOpen: false
-      }
+        isOpen: false,
+      },
     };
   },
   methods: {
@@ -66,7 +66,7 @@ export default {
       if (login.value === "1") {
         buttonAccount.classList.add("account--active");
       }
-    }
+    },
   },
   components: {
     TheLogo,
@@ -75,16 +75,16 @@ export default {
     TheToggleTheme,
     TheAuthorization,
     ThePasswordRecovery,
-    TheTime
+    TheTime,
   },
   mounted() {
     this.activeAccount();
   },
   provide() {
     return {
-      isAuthorization: this.isAuthorization
+      isAuthorization: this.isAuthorization,
     };
-  }
+  },
 };
 </script>
 

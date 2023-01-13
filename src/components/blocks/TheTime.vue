@@ -10,8 +10,10 @@
         <span>{{ dateFilter(time, "time") }}</span>
       </div>
       <p v-else class="animate-block description">
-        <template v-if="toggleText">Сейчас мы работаем</template>
-        <template v-else>Сейчас мы не работаем</template>
+        <template v-if="toggleText">
+          Сейчас мы не работаем <span>😴</span></template
+        >
+        <template v-else>Сейчас мы работаем <span>👨‍💻</span></template>
       </p>
     </Transition>
   </div>
@@ -24,7 +26,7 @@ export default {
   name: "TheTime",
   data() {
     return {
-      isShow: true
+      isShow: true,
     };
   },
   computed: {
@@ -36,7 +38,7 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   methods: {
     ...mapMutations(["updateTime"]),
@@ -70,7 +72,7 @@ export default {
       setInterval(() => {
         this.isShow === true ? (this.isShow = false) : (this.isShow = true);
       }, 10000);
-    }
+    },
   },
   mounted() {
     this.updateTime();
@@ -78,7 +80,7 @@ export default {
   },
   beforeDestroy() {
     clearInterval(this.interval);
-  }
+  },
 };
 </script>
 
@@ -113,6 +115,12 @@ export default {
     color: var(--quaternary);
     @include _768 {
       font-size: 14px;
+    }
+    & span {
+      font-size: 22px;
+      @include _768 {
+        font-size: 18px;
+      }
     }
   }
 }
