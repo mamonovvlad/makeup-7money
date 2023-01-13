@@ -19,10 +19,19 @@
       </div>
     </transition>
     <the-toggle @click.native="isToggleNav"></the-toggle>
-    <the-question-window
-      v-if="isShowWindow"
-      @windowHide="windowHide"
-    ></the-question-window>
+    <the-question-window v-if="isShowWindow">
+      <the-button
+        tag="a"
+        @click="cancelOperation"
+        :href="cancelOperation"
+        class="button"
+      >
+        <template #name> Да </template>
+      </the-button>
+      <the-button tag="button" type="button" @click="windowHide" class="button">
+        <template #name> Нет </template>
+      </the-button>
+    </the-question-window>
   </div>
 </template>
 
@@ -30,6 +39,7 @@
 import TheButton from "../buttons/TheButton.vue";
 import TheToggle from "../buttons/TheToggle.vue";
 import TheQuestionWindow from "../popups/TheQuestionWindow.vue";
+import { mapGetters } from "vuex";
 export default {
   name: "ThePaymentCounter",
   data() {
@@ -42,6 +52,15 @@ export default {
     TheToggle,
     TheQuestionWindow,
     TheButton,
+  },
+  computed: {
+    ...mapGetters(["getLang"]),
+    cancelOperation() {
+      let applicationNumber = document
+        .querySelector(".application-number")
+        .getAttribute("data-number");
+      return `${this.getLang}/order/cancel/${applicationNumber}`;
+    },
   },
   methods: {
     windowHide() {

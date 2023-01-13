@@ -3,10 +3,7 @@
     <div class="wrapper">
       <h4>Вы уверены?</h4>
       <div class="buttons">
-        <button type="submit" class="button">Да</button>
-        <button type="button" @click="$emit('windowHide')" class="button">
-          Нет
-        </button>
+        <slot></slot>
       </div>
     </div>
   </div>
@@ -14,11 +11,6 @@
 
 <script>
 export default {
-  props: {
-    isHide: {
-      type: Boolean,
-    },
-  },
   name: "TheQuestionWindow",
 };
 </script>
@@ -32,7 +24,8 @@ export default {
     align-items: center;
     justify-content: space-between;
     column-gap: 10px;
-    & button {
+    & button,
+    & a {
       height: 40px;
     }
   }
