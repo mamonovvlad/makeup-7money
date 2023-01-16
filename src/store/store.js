@@ -800,6 +800,8 @@ const store = createStore({
       { state, commit, getters },
       [type = "default", refresh = false]
     ) {
+      console.log(type);
+      console.log(refresh);
       commit("clearError");
       const config = {
         headers: {

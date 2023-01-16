@@ -49,6 +49,8 @@ export default {
           if (input.querySelector("input").value.length >= 20) {
             input.querySelector(".tippy").innerText =
               input.querySelector("input").value;
+          } else {
+            input.querySelector(".tippy").classList.add("d-none");
           }
         });
       }
