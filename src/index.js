@@ -202,6 +202,7 @@ createApp({
       "calculate",
       "openSelect",
       "selectOptions",
+      "characterCountCheck",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(

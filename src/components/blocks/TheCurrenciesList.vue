@@ -34,11 +34,11 @@
             {{ currency.amount }}
           </span>
         </span>
-        <transition name="fade"
-          ><span v-if="!currenciesHide" class="tippy">{{
+        <transition name="fade">
+          <span v-if="!currenciesHide" class="tippy">{{
             currency.name_ru
-          }}</span></transition
-        >
+          }}</span>
+        </transition>
       </li>
     </ul>
   </div>
@@ -208,20 +208,6 @@ export default {
     &[data-filter="USD"] li[data-group="USD"] {
       display: flex;
     }
-  }
-
-  & .tippy {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transition: opacity 0.5s ease, top 0.5s ease;
-    transform: translateX(-50%);
-    background: var(--ternary);
-    color: var(--sixth);
-    padding: 4px 6px;
-    border-radius: var(--radius-four);
-    opacity: 0;
-    z-index: -1;
   }
 
   & .scroll-y {

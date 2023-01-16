@@ -317,12 +317,6 @@ const store = createStore({
         return 0;
       }
     },
-    // calculateLogin(state) {
-    //   // https://7money.co/json/calculate-discount?user_id=1&course_id=155&sell_amount=1000&buy_amount=1000
-    //   if (document.getElementById("login").value === 1) {
-    //     console.log("1");
-    //   }
-    // },
     ////////////////////////////////////////
     calculateDefault() {
       this.commit("currencyModelIsCrypt");

@@ -40,9 +40,23 @@ export default {
     isShowNav() {
       this.isActive = window.innerWidth > 768;
     },
+    characterCountCheck(state) {
+      let inputs = document.querySelectorAll(
+        ".profile-accounts .field .form-group"
+      );
+      if (inputs) {
+        inputs.forEach((input) => {
+          if (input.querySelector("input").value.length >= 20) {
+            input.querySelector(".tippy").innerText =
+              input.querySelector("input").value;
+          }
+        });
+      }
+    },
   },
   mounted() {
     this.isShowNav();
+    this.characterCountCheck();
   },
 };
 </script>

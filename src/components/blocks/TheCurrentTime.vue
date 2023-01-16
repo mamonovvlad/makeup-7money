@@ -2,13 +2,15 @@
   <the-animation-border class="current-time">
     <div class="wrapper">
       <div class="time">
-        <transition name="fade" mode="out-in">
-          <strong v-if="updateText">Обновлен</strong>
-          <strong v-else>{{ currentTime }}</strong>
-        </transition>
+        <strong>{{ currentTime }}</strong>
+        {{ $t("course") }}:
+        <strong class="course">
+          <transition name="fade" mode="out-in">
+            <span v-if="updateText">{{ $t("updated") }}</span>
+          </transition>
+          {{ course.sell }} к {{ course.buy }}
+        </strong>
       </div>
-      {{ $t("course") }}:
-      <strong class="course">{{ course.sell }} к {{ course.buy }}</strong>
     </div>
   </the-animation-border>
 </template>
@@ -46,8 +48,6 @@ export default {
 @import "../../assets/scss/utils/mixin";
 
 .current-time {
-  max-width: max-content;
-  width: 100%;
   @include _768 {
     align-self: flex-end;
   }
@@ -57,19 +57,26 @@ export default {
     align-items: center;
     column-gap: 10px;
     padding: 6px 10px;
-    transition: 300ms ease;
   }
 
   & .course {
+    position: relative;
     color: var(--quaternary);
     margin-left: auto;
     width: 100%;
+    min-width: 86px;
+    & span {
+      position: absolute;
+      background: var(--seventh);
+      width: 100%;
+    }
   }
 
   & .time {
     position: relative;
     font-size: 16px;
     color: var(--primary);
+    column-gap: 10px;
   }
 }
 </style>

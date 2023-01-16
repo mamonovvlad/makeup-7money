@@ -1,5 +1,4 @@
 .personal-area {
-
   & h2 {
     margin-top: 60px;
     margin-bottom: 20px;
@@ -62,10 +61,8 @@
     align-items: flex-end;
     @include _992 {
       grid-template-columns: repeat(1, 1fr);
-
     }
   }
-
 }
 
 .accounts {
@@ -76,6 +73,15 @@
 
     & .button {
       width: 100%;
+    }
+  }
+  & .form-group {
+    &:hover {
+      & .tippy {
+        top: -24px;
+        opacity: 1;
+        z-index: 1;
+      }
     }
   }
 }
