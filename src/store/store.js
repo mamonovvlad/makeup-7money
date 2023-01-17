@@ -34,6 +34,7 @@ const store = createStore({
     city_id: null,
     // calculate data
     course: {},
+    fixedCourse: {},
     sellCurrency: {},
     buyCurrency: {},
     calculateData: {},
@@ -64,7 +65,7 @@ const store = createStore({
         return false;
       }
 
-      if (!state.course) {
+      if (!state.fixedCourse) {
         return false;
       }
 
@@ -72,7 +73,11 @@ const store = createStore({
         state.sell_source = state.sell_source.toUpperCase();
       }
 
-      if (state.sell_currency_id && state.buy_currency_id && state.course) {
+      if (
+        state.sell_currency_id &&
+        state.buy_currency_id &&
+        state.fixedCourse
+      ) {
         if (type === "default") {
           this.commit("calculateDefault");
         }
@@ -123,31 +128,35 @@ const store = createStore({
     operatorCalculation(state, type) {
       let buyAmount;
       let sellAmount;
-      let operatorCalculationSell = spaceship(Number(state.course.sell), 1);
-      let operatorCalculationBuy = spaceship(Number(state.course.buy), 1);
+      let operatorCalculationSell = spaceship(
+        Number(state.fixedCourse.sell),
+        1
+      );
+      let operatorCalculationBuy = spaceship(Number(state.fixedCourse.buy), 1);
 
       if (type === "sell") {
         if (operatorCalculationSell === 0 && operatorCalculationBuy === 0) {
           state.buy_amount = state.sell_amount;
         } else if (operatorCalculationSell === 0) {
-          buyAmount = (
-            parseFloat(state.sell_amount) * parseFloat(state.course.buy)
+          buyAmount = +(
+            parseFloat(state.sell_amount) * parseFloat(state.fixedCourse.buy)
           ).toFixed(state.buyNumbers);
           if (buyAmount <= 0) {
             buyAmount =
-              parseFloat(state.sell_amount) * parseFloat(state.course.buy);
+              parseFloat(state.sell_amount) * parseFloat(state.fixedCourse.buy);
           }
           state.buy_amount = isNaN(buyAmount) === true ? "" : buyAmount;
         } else if (operatorCalculationBuy === 0) {
           buyAmount = 0;
-          if (state.course.sell !== 0) {
-            buyAmount = (
-              parseFloat(state.sell_amount) / parseFloat(state.course.sell)
+          if (state.fixedCourse.sell !== 0) {
+            buyAmount = +(
+              parseFloat(state.sell_amount) / parseFloat(state.fixedCourse.sell)
             ).toFixed(state.buyNumbers);
           }
-          if (buyAmount === 0 && state.course.sell !== 0) {
+          if (buyAmount === 0 && state.fixedCourse.sell !== 0) {
             buyAmount =
-              parseFloat(state.sell_amount) / parseFloat(state.course.sell);
+              parseFloat(state.sell_amount) /
+              parseFloat(state.fixedCourse.sell);
           }
           state.buy_amount = isNaN(buyAmount) === true ? "" : buyAmount;
         }
@@ -155,13 +164,13 @@ const store = createStore({
         if (operatorCalculationSell === 0 && operatorCalculationBuy === 0) {
           state.sell_amount = state.buy_amount;
         } else if (operatorCalculationSell === 0) {
-          sellAmount = (
-            parseFloat(state.buy_amount) / parseFloat(state.course.buy)
+          sellAmount = +(
+            parseFloat(state.buy_amount) / parseFloat(state.fixedCourse.buy)
           ).toFixed(state.sellNumbers);
           state.sell_amount = isNaN(sellAmount) === true ? "" : sellAmount;
         } else if (operatorCalculationBuy === 0) {
-          sellAmount = (
-            parseFloat(state.course.sell) * parseFloat(state.buy_amount)
+          sellAmount = +(
+            parseFloat(state.fixedCourse.sell) * parseFloat(state.buy_amount)
           ).toFixed(state.sellNumbers);
           state.sell_amount = isNaN(sellAmount) === true ? "" : sellAmount;
         }
@@ -396,7 +405,6 @@ const store = createStore({
     clearError() {
       let helpBlock = document.querySelectorAll(".help-block");
       let field = document.querySelectorAll(".field .form-group");
-      // let fieldInput = document.querySelectorAll(".field .form-group input");
 
       field.forEach(function (el) {
         if (el.classList.contains("has-error")) {
@@ -406,9 +414,6 @@ const store = createStore({
       helpBlock.forEach(function (el) {
         el.innerHTML = "";
       });
-      // fieldInput.forEach(function (el) {
-      //   el.value = "";
-      // });
     },
     sortCity(state) {
       if (state.calculateData.dropDownCities) {
@@ -546,6 +551,7 @@ const store = createStore({
       state.sellCurrency = response.data.sellCurrency;
       state.buyCurrency = response.data.buyCurrency;
       state.course = response.data.course;
+      state.fixedCourse = response.data.fixed_course;
       state.calculateData = response.data;
       state.sell_amount = response.data.sell_amount;
       state.sell_amount_with_commission =
@@ -675,7 +681,6 @@ const store = createStore({
       state,
       [type, id, isCalculate = true, isTrash = true, isSetUrl = true]
     ) {
-      ``;
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
       // };
