@@ -796,12 +796,7 @@ const store = createStore({
     },
   }, //Функция для изменения state
   actions: {
-    calculateForm(
-      { state, commit, getters },
-      [type = "default", refresh = false]
-    ) {
-      console.log(type);
-      console.log(refresh);
+    calculateForm({ state, commit, getters }, [type = "default", refresh = 0]) {
       commit("clearError");
       const config = {
         headers: {
