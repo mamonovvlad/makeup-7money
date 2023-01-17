@@ -679,7 +679,7 @@ const store = createStore({
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
       // };
-      this.commit("stopTimer", "state");
+      this.commit("stopTimer");
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);
       this.commit(`${type}HideBlock`);
@@ -717,7 +717,7 @@ const store = createStore({
       }
     },
     callbackTimerFinish() {
-      this.dispatch("calculateForm", [store.getters.getType]);
+      this.dispatch("calculateForm", ["default", true]);
     },
     trashClick(state) {
       state.detailsHide = false;
