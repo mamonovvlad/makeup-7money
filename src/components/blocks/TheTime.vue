@@ -1,5 +1,5 @@
 <template>
-  <div class="time">
+  <div class="time-information">
     <Transition name="slide-up">
       <div class="animate-block" v-if="isShow">
         <p>
@@ -11,9 +11,9 @@
       </div>
       <p v-else class="animate-block description">
         <template v-if="toggleText">
-          Сейчас мы не работаем <span>😴</span></template
-        >
-        <template v-else>Сейчас мы работаем <span>👨‍💻</span></template>
+          {{ $t("notWorking") }}<span>😴</span>
+        </template>
+        <template v-else>{{ $t("working") }}<span>👨‍💻</span></template>
       </p>
     </Transition>
   </div>
@@ -87,7 +87,7 @@ export default {
 <style lang="scss">
 @import "../../assets/scss/utils/mixin";
 
-.time {
+.time-information {
   display: flex;
   align-items: center;
   line-height: 140%;

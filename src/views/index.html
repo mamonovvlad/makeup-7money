@@ -46,7 +46,7 @@
                     :show-button="true"
                     :data-input="true"
                   ></the-steps>
-                  <the-preloader> Идет создании заявки </the-preloader>
+                  <the-preloader>{{$t('preloader')}}</the-preloader>
                   <!--Форма-->
                   <form class="form-exchange" v-show="isCalculateData === true">
                     <input
@@ -304,6 +304,7 @@
                               id="orderform-sell_target"
                               name="OrderForm[sell_target]"
                               placeholder="0000 0000 0000 0000"
+                              :value="calculateData.sell_source ? calculateData.buy_target : ''"
                             />
                           </span>
                         </div>

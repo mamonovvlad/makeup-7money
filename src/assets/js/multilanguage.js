@@ -5,6 +5,9 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
+      working: "Сейчас мы работаем",
+      notWorking: "Сейчас мы не работаем",
+      preloader: "Идет создание заявки",
       updated: "Обновлено",
       save: "Сохранить",
       direction: "Направление",
@@ -106,6 +109,9 @@ const i18n = createI18n({
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
     },
     ua: {
+      working: "Зараз ми працюємо",
+      notWorking: "Зараз ми не працюємо",
+      preloader: "Йде створення заявки",
       updated: "Оновлено",
       save: "Зберегти",
       direction: "Напрям",
@@ -207,6 +213,9 @@ const i18n = createI18n({
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
     },
     en: {
+      working: "Now we are working",
+      notWorking: "We are not working now",
+      preloader: "Request creation in progress",
       updated: "Updated",
       save: "Save",
       direction: "Direction",
