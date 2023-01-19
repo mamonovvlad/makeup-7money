@@ -4,11 +4,11 @@
       <the-close @close="isCloseNightMode"> </the-close>
       <icon-night-mode></icon-night-mode>
       <div>
-        <h3>Время работы с 9:00 до 00:00 часовой пояс (GMT+3)</h3>
+        <h3>
+          <slot name="title"></slot>
+        </h3>
         <p>
-          И в данный момент наши операторы отдыхают и видят сладкие сны:) Вы
-          можете оставить заявку, и как только начнется рабочий день - мы ее
-          обработаем!!!
+          <slot name="description"></slot>
         </p>
       </div>
     </div>
@@ -24,7 +24,7 @@ export default {
   name: "TheNightMode",
   components: {
     TheClose,
-    IconNightMode
+    IconNightMode,
   },
   computed: {
     ...mapState(["time"]),
@@ -36,7 +36,7 @@ export default {
       } else {
         return false;
       }
-    }
+    },
   },
   methods: {
     dateFilter(value, format = "date") {
@@ -56,9 +56,9 @@ export default {
     },
     isCloseNightMode() {
       this.$refs.nightMode.classList.add("d-none");
-    }
+    },
   },
-  mounted() {}
+  mounted() {},
 };
 </script>
 

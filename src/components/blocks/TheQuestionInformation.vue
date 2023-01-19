@@ -2,9 +2,7 @@
   <div class="question-information">
     <icon-question></icon-question>
     <the-recovery-information>
-      Для сохранения ваших операций, авторизуйтесь в личном кабинете клиента.
-      Также регистрация упростит создание заявок, вы сможете заранее ввести Ваши
-      реквизиты для автозаполнения и создания заявки.
+      {{ $t("questionInfo") }}
     </the-recovery-information>
   </div>
 </template>

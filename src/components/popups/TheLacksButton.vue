@@ -3,7 +3,7 @@
     <span>{{ $t("lacks") }}</span>
     <div class="wrapper">
       <p>
-        Максимальная сумма получения {{ calculateData.max_buy_amount }}
+        {{ $t("maximumAmount") }} {{ calculateData.max_buy_amount }}
         {{ buyCurrency.symbol }}
         <strong>
           {{ getValueByLanguage(buyCurrency, "name_?") }}

@@ -14,7 +14,7 @@
           class="close button--transparent"
           tag="button"
         >
-          <template #name> Отменить операцию</template>
+          <template #name>{{ $t("cancelOperation") }}</template>
         </the-button>
       </div>
     </transition>
@@ -26,10 +26,10 @@
         :href="cancelOperation"
         class="button"
       >
-        <template #name> Да </template>
+        <template #name>{{ $t("yes") }}</template>
       </the-button>
       <the-button tag="button" type="button" @click="windowHide" class="button">
-        <template #name> Нет </template>
+        <template #name>{{ $t("no") }}</template>
       </the-button>
     </the-question-window>
   </div>

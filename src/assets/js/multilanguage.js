@@ -5,6 +5,13 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
+      areYouSure: "Вы уверены?",
+      maximumAmount: "Максимальная сумма получения",
+      questionInfo:
+        "Для сохранения ваших операций, авторизуйтесь в личном кабинете клиента.Также регистрация упростит создание заявок, вы сможете заранее ввести Ваши реквизиты для автозаполнения и создания заявки.",
+      yes: "Да",
+      no: "Нет",
+      cancelOperation: "Отменить операцию",
       working: "Сейчас мы работаем",
       notWorking: "Сейчас мы не работаем",
       preloader: "Идет создание заявки",
@@ -73,6 +80,7 @@ const i18n = createI18n({
       register: "Зарегистрироваться",
       return: "Вернуться на главную",
       //TheLacksWindow
+      lacksLabel: "Сумма которой не хватает:",
       lacksWindow_first:
         "Если текущая сумма резерва меньше, чем Вам нужно, то оставьте желаемое значение и Ваш электронный адрес и мы сообщим, когда будем иметь нужную сумму.",
       lacksWindow_second:
@@ -109,6 +117,13 @@ const i18n = createI18n({
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
     },
     ua: {
+      areYouSure: "Ви впевнені?",
+      maximumAmount: "Максимальна сума отримання",
+      questionInfo:
+        "Для збереження ваших операцій, авторизуйтесь в особистому кабінеті клієнта. Також реєстрація спростить створення заявок, ви зможете заздалегідь ввести ваші реквізити для автозаповнення та створення заявки.",
+      yes: "Так",
+      no: "Ні",
+      cancelOperation: "Скасувати операцію",
       working: "Зараз ми працюємо",
       notWorking: "Зараз ми не працюємо",
       preloader: "Йде створення заявки",
@@ -177,6 +192,7 @@ const i18n = createI18n({
       register: "Зареєструватися",
       return: "Повернутися на головну",
       //TheLacksWindow
+      lacksLabel: "Сума якої не вистачає:",
       lacksWindow_first:
         "Якщо поточна сума резерву менше, ніж Вам потрібно, то залиште бажане значення і Вашу електронну адресу і ми повідомимо, коли будемо мати потрібну суму.",
       lacksWindow_second:
@@ -213,6 +229,13 @@ const i18n = createI18n({
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
     },
     en: {
+      areYouSure: "Are you sure?",
+      maximumAmount: "Maximum amount received",
+      questionInfo:
+        "To save your transactions, log in to the client's personal account. Also, registration will simplify the creation of applications, you will be able to enter your details for autofill and creating an application.",
+      yes: "Yes",
+      no: "No",
+      cancelOperation: "Cancel the operation",
       working: "Now we are working",
       notWorking: "We are not working now",
       preloader: "Request creation in progress",
@@ -281,6 +304,7 @@ const i18n = createI18n({
       register: "Register now",
       return: "Go back to the main page",
       //TheLacksWindow
+      lacksLabel: "The amount that is missing:",
       lacksWindow_first:
         "If the current reserve amount is lesser than you need, leave the desired sum and your email address and we will inform you about appearance of the given sum.",
       lacksWindow_second:

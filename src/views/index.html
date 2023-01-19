@@ -298,13 +298,13 @@
                           <label for="orderform-sell_target">
                             Зачислить на этот счёт
                           </label>
+
                           <span class="form-group">
                             <input
                               type="text"
                               id="orderform-sell_target"
                               name="OrderForm[sell_target]"
                               placeholder="0000 0000 0000 0000"
-                              :value="calculateData.sell_source ? calculateData.buy_target : ''"
                             />
                           </span>
                         </div>
@@ -732,12 +732,21 @@
         </main>
         <the-footer></the-footer>
         <!--Popups-->
-        <the-night-mode></the-night-mode>
+        <the-night-mode>
+          <template #title>
+            Время работы с 9:00 до 00:00 часовой пояс (GMT+3)
+          </template>
+          <template #description>
+            И в данный момент наши операторы отдыхают и видят сладкие сны:) Вы
+            можете оставить заявку, и как только начнется рабочий день - мы ее
+            обработаем!!!)
+          </template>
+        </the-night-mode>
       </div>
     </div>
     <input id="login" type="hidden" value="1" />
     <input type="hidden" id="uid" value="1" />
-    <input id="language" type="hidden" value="ru" />
+    <input id="language" type="hidden" value="en" />
     <input type="hidden" id="lid" value="1" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>

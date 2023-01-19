@@ -15,7 +15,7 @@
         <input type="hidden" :value="csrfToken" :name="csrfParam" />
         <p>{{ nameSellCurrency }} --- {{ nameBuyCurrency }}</p>
         <div class="field">
-          <label>Сумма которой не хватает: {{ nameBuyCurrency }}</label>
+          <label>{{ $t("lacksLabel") }} {{ nameBuyCurrency }}</label>
           <span class="form-group">
             <input
               type="text"
