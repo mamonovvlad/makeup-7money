@@ -1,5 +1,5 @@
 <template>
-  <div class="title__wrapper">
+  <div class="elements__wrapper">
     <the-title tag="h1" class="subtitle">
       {{ calculateData.course_h1 }}
     </the-title>

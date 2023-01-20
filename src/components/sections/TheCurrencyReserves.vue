@@ -14,7 +14,7 @@
           </div>
           <div class="price">
             <p>{{ Number(currency.amount).toFixed(2) }}</p>
-            <span>{{ currency.code }}</span>
+            <span>{{ currency.symbol }}</span>
           </div>
         </div>
       </div>

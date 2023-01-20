@@ -733,7 +733,7 @@ const store = createStore({
       state.sell_currency_id = null;
       state.buy_currency_id = null;
       this.commit("deleteAllHistory");
-      if (window.innerWidth < 768) {
+      if (window.innerWidth <= 768) {
         state.detailsHide = false;
         state.currenciesHideSell = true;
         state.currenciesHideBuy = false;

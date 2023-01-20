@@ -4,12 +4,7 @@
       <the-close @close="isCloseNightMode"> </the-close>
       <icon-night-mode></icon-night-mode>
       <div>
-        <h3>
-          <slot name="title"></slot>
-        </h3>
-        <p>
-          <slot name="description"></slot>
-        </p>
+        <slot></slot>
       </div>
     </div>
   </div>

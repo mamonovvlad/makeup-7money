@@ -1,13 +1,12 @@
 import { createApp } from "vue";
 
 //Js
-// import vueDebounce from "vue-debounce";
 import { mapMutations, mapActions, mapGetters } from "vuex";
 import store from "./store/store.js";
 
 //js src
-
 import i18n from "./assets/js/multilanguage.js";
+import Vue3TouchEvents from "vue3-touch-events";
 import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/currency-model.js";
 
@@ -196,13 +195,11 @@ createApp({
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
-      "trashClick",
       "copyText",
       "captcha",
       "calculate",
       "openSelect",
       "selectOptions",
-      "characterCountCheck",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
@@ -245,5 +242,6 @@ createApp({
   },
 })
   .use(i18n)
+  .use(Vue3TouchEvents)
   .use(store)
   .mount("#app");

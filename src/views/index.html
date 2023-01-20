@@ -41,11 +41,7 @@
               <div class="details" v-show="isDetails === true && calculateData">
                 <div class="details__wrapper stylish-wrapper">
                   <the-title-details></the-title-details>
-                  <the-steps
-                    @button="trashClick"
-                    :show-button="true"
-                    :data-input="true"
-                  ></the-steps>
+                  <the-steps :show-button="true" :data-input="true"></the-steps>
                   <the-preloader>{{$t('preloader')}}</the-preloader>
                   <!--Форма-->
                   <form class="form-exchange" v-show="isCalculateData === true">
@@ -733,14 +729,12 @@
         <the-footer></the-footer>
         <!--Popups-->
         <the-night-mode>
-          <template #title>
-            Время работы с 9:00 до 00:00 часовой пояс (GMT+3)
-          </template>
-          <template #description>
+          <h3>Время работы с 9:00 до 00:00 часовой пояс (GMT+3)</h3>
+          <p>
             И в данный момент наши операторы отдыхают и видят сладкие сны:) Вы
             можете оставить заявку, и как только начнется рабочий день - мы ее
             обработаем!!!)
-          </template>
+          </p>
         </the-night-mode>
       </div>
     </div>

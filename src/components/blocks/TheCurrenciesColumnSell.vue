@@ -99,7 +99,7 @@ export default {
   }
 }
 
-.title__wrapper {
+.elements__wrapper {
   & .buttons {
     display: flex;
     column-gap: 10px;

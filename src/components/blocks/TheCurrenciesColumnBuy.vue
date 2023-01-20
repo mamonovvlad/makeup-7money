@@ -1,11 +1,19 @@
 <template>
   <div
+    v-touch:swipe.left="swipe"
+    v-touch:swipe.right="swipe"
     class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideBuy }"
   >
     <div v-if="currenciesHideBuy">
-      <div class="title__wrapper">
-        <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
+      <div class="elements__wrapper">
+        <div class="elements__wrapper">
+          <the-big-button
+            @click="trashClick"
+            v-if="showButton"
+          ></the-big-button>
+          <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
+        </div>
         <transition name="fade">
           <div class="buttons" v-if="sellCurrencyId !== null">
             <button
@@ -36,11 +44,11 @@
 </template>
 
 <script>
+import TheBigButton from "../buttons/TheBigButton.vue";
 import TheTitle from "./TheTitle.vue";
 import TheFilters from "./TheFilters.vue";
 import TheCurrenciesList from "./TheCurrenciesList.vue";
-import { mapGetters } from "vuex";
-
+import { mapGetters, mapMutations } from "vuex";
 export default {
   name: "TheCurrenciesColumn",
   data() {
@@ -60,6 +68,7 @@ export default {
     TheTitle,
     TheFilters,
     TheCurrenciesList,
+    TheBigButton,
   },
   computed: {
     ...mapGetters([
@@ -71,8 +80,17 @@ export default {
       "currenciesHideBuy",
       "getRateReserves",
     ]),
+    showButton() {
+      return window.innerWidth <= 768;
+    },
   },
   methods: {
+    ...mapMutations(["trashClick"]),
+    swipe() {
+      if (window.innerWidth <= 768) {
+        this.trashClick();
+      }
+    },
     toggleInformation(idx) {
       this.index = idx;
     },

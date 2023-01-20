@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "vue": "^3.2.31",
+    "vue3-touch-events": "^4.1.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

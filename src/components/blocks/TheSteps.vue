@@ -1,9 +1,7 @@
 <template>
   <div class="steps">
     <div class="step" :class="{ active: dataInput }">
-      <button v-if="showButton" @click="$emit('button')">
-        <icon-arrow></icon-arrow>
-      </button>
+      <the-big-button v-if="showButton" @click="trashClick"></the-big-button>
       <icon-data-input></icon-data-input>
       <span>{{ $t("dataInput") }}</span>
     </div>
@@ -23,7 +21,8 @@ import IconDataInput from "../icons/IconDataInput.vue";
 import IconPayment from "../icons/IconPayment.vue";
 import IconCompletion from "../icons/IconCompletion.vue";
 import IconArrow from "../icons/IconArrow.vue";
-
+import TheBigButton from "../buttons/TheBigButton.vue";
+import { mapMutations } from "vuex";
 export default {
   props: {
     dataInput: {
@@ -49,6 +48,10 @@ export default {
     IconPayment,
     IconCompletion,
     IconArrow,
+    TheBigButton,
+  },
+  methods: {
+    ...mapMutations(["trashClick"]),
   },
 };
 </script>
@@ -114,18 +117,7 @@ export default {
   }
 
   & button {
-    border-radius: var(--radius-four);
-    min-width: 40px;
-    height: 40px;
-    transition: var(--transition);
-    outline: none;
-    box-shadow: var(--shadow);
     margin-right: 10px;
-    background: transparent;
-
-    &:hover {
-      box-shadow: var(--shadow-inset);
-    }
   }
 }
 </style>
