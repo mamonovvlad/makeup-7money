@@ -73,6 +73,7 @@ export default {
   }
 
   & .time {
+    display: flex;
     position: relative;
     font-size: 16px;
     color: var(--primary);

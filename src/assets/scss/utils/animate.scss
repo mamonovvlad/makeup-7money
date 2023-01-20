@@ -138,6 +138,10 @@
 .details-hide-leave-active {
   transition: all 0.5s ease;
   width: 100% !important;
+  @include _768 {
+    width: auto !important;
+    transition: all 0.4s ease;
+  }
 }
 
 .details-hide-enter-from,
@@ -146,7 +150,11 @@
   width: 0 !important;
   overflow: hidden;
   right: 0;
+  @include _768 {
+    right: auto;
+  }
 }
+
 .slide-up-enter-active,
 .slide-up-leave-active {
   transition: all 0.25s ease-out;
