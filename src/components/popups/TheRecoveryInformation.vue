@@ -22,6 +22,7 @@ export default {
   border-radius: var(--radius-four);
   border: 1px solid var(--primary);
   display: block;
+  font-size: 12px;
   z-index: 1;
 
   & .arrow {
@@ -53,6 +54,11 @@ export default {
       transform: rotate(45deg);
       right: 3px;
     }
+  }
+  & p,
+  & span,
+  & strong {
+    color: var(--quaternary);
   }
 }
 </style>
