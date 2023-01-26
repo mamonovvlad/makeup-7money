@@ -58,6 +58,8 @@ const store = createStore({
     //Custom select
     selectName: null,
     selectCity: null,
+    sellValue: "",
+    buyValue: "",
   }, //Хранения данных
   mutations: {
     calculate(state, type) {
@@ -481,6 +483,7 @@ const store = createStore({
       state.selectName =
         state.calculateData.dropDownCities[state.calculateData.primary_city_id];
     },
+
     showRecoveryInformation() {
       let itemsWrapper = document.querySelectorAll(".items__wrapper .item");
       itemsWrapper.forEach((wrapper) => {
@@ -541,7 +544,7 @@ const store = createStore({
       state.sell_amount_with_discount = res.data.sell_amount_with_discount;
       state.buy_amount_with_discount = res.data.buy_amount_with_discount;
     },
-    setCalculateForm(state, response, refresh) {
+    setCalculateForm(state, [response, refresh, refreshValue]) {
       state.sell_percent = response.data.sell_percent;
       state.buy_percent = response.data.buy_percent;
       state.sellCurrencies = response.data.sellCurrencies;
@@ -561,10 +564,13 @@ const store = createStore({
         response.data.buy_amount_with_comission;
       if (refresh) {
         state.sell_source = response.data.sell_source;
-      }
-      if (refresh) {
         state.buy_target = response.data.buy_target;
       }
+      if (refreshValue) {
+        state.sellValue = response.data.sell_source;
+        state.buyValue = response.data.buy_target;
+      }
+
       this.commit("setDocumentTitle");
       //login
       let uid = document.getElementById("uid").value;
@@ -701,7 +707,7 @@ const store = createStore({
         state.sell_currency_id !== null &&
         state.buy_currency_id !== null
       ) {
-        this.dispatch("calculateForm", [store.getters.getType, true]);
+        this.dispatch("calculateForm", [store.getters.getType, true, true]);
         this.commit("inputCurrencyId");
         if (isSetUrl) {
           setTimeout(() => {
@@ -799,10 +805,22 @@ const store = createStore({
     setRateReserves(state, res) {
       state.rateReserves = res.data;
     },
+    clearInput() {
+      let autofill = document.querySelectorAll(".autofill");
+      autofill.forEach((inp) => {
+        inp.value = "";
+      });
+    },
   }, //Функция для изменения state
   actions: {
-    calculateForm({ state, commit, getters }, [type = "default", refresh = 0]) {
+    calculateForm(
+      { state, commit, getters },
+      [type = "default", refresh = 0, refreshValue = false]
+    ) {
       commit("clearError");
+      if (refreshValue) {
+        commit("clearInput");
+      }
       const config = {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -825,7 +843,7 @@ const store = createStore({
           config
         )
         .then(function (response) {
-          commit("setCalculateForm", response, refresh);
+          commit("setCalculateForm", [response, refresh, refreshValue]);
           commit("showRecoveryInformation");
           commit("selectName");
           commit("sortCity");

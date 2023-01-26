@@ -170,7 +170,38 @@ createApp({
       "sellAmountWithDiscount",
       "buyAmountWithDiscount",
       "selectCity",
+      "sellValue",
+      "buyValue",
     ]),
+    autofillInputSell() {
+      let res;
+      if (
+        this.calculateData.sell_source !== undefined &&
+        this.calculateData.sell_source !== null
+      ) {
+        let autofillSell = document.querySelectorAll(".autofill-sell");
+        autofillSell.forEach((inp) => {
+          if (
+            inp.value.length === 0 ||
+            this.calculateData.sell_source !== inp.value
+          ) {
+            console.log("1");
+            res = this.calculateData.sell_source;
+          } else {
+            console.log("2");
+            res = inp.value;
+          }
+        });
+        return res;
+      } else {
+        console.log("13");
+        let autofillSell = document.querySelectorAll(".autofill-sell");
+        autofillSell.forEach((inp) => {
+          res = inp.value;
+        });
+        return res;
+      }
+    },
     isSellSource() {
       return (
         ![28, 41, 42, 46, 49].includes(this.sellCurrency.id) &&

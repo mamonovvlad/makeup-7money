@@ -277,14 +277,16 @@
                         </the-recovery-information>
                         <div class="field">
                           <label for="orderform-sell_source">
-                            Заплатить с этой карты
+                            Заплатить с этой карты 65
                           </label>
                           <span class="form-group">
                             <input
+                              class="autofill"
                               type="text"
                               id="orderform-sell_source"
                               name="OrderForm[sell_source]"
                               placeholder="0000 0000 0000 0000"
+                              v-model="sellValue"
                             />
                           </span>
                         </div>
