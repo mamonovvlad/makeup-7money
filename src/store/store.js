@@ -58,8 +58,6 @@ const store = createStore({
     //Custom select
     selectName: null,
     selectCity: null,
-    sellValue: "",
-    buyValue: "",
   }, //Хранения данных
   mutations: {
     calculate(state, type) {
@@ -544,7 +542,7 @@ const store = createStore({
       state.sell_amount_with_discount = res.data.sell_amount_with_discount;
       state.buy_amount_with_discount = res.data.buy_amount_with_discount;
     },
-    setCalculateForm(state, [response, refresh, refreshValue]) {
+    setCalculateForm(state, [response, refreshValue]) {
       state.sell_percent = response.data.sell_percent;
       state.buy_percent = response.data.buy_percent;
       state.sellCurrencies = response.data.sellCurrencies;
@@ -562,13 +560,9 @@ const store = createStore({
       state.buy_amount = response.data.buy_amount;
       state.buy_amount_with_commission =
         response.data.buy_amount_with_comission;
-      if (refresh) {
+      if (refreshValue) {
         state.sell_source = response.data.sell_source;
         state.buy_target = response.data.buy_target;
-      }
-      if (refreshValue) {
-        state.sellValue = response.data.sell_source;
-        state.buyValue = response.data.buy_target;
       }
 
       this.commit("setDocumentTitle");
@@ -843,7 +837,7 @@ const store = createStore({
           config
         )
         .then(function (response) {
-          commit("setCalculateForm", [response, refresh, refreshValue]);
+          commit("setCalculateForm", [response, refreshValue]);
           commit("showRecoveryInformation");
           commit("selectName");
           commit("sortCity");
