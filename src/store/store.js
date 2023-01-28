@@ -58,8 +58,32 @@ const store = createStore({
     //Custom select
     selectName: null,
     selectCity: null,
+    borderActive: false,
   }, //Хранения данных
   mutations: {
+    confirmChecked() {
+      let checkBox = document.getElementById("orderform-agree");
+      if (checkBox && checkBox.checked === true) {
+        this.commit("enabled");
+      } else {
+        this.commit("disabled");
+      }
+    },
+    enabled(state) {
+      let button = document.getElementById("order-submit");
+      button.removeAttribute("disabled");
+      button.classList.remove("disabled");
+      state.borderActive = false;
+    },
+    disabled(state) {
+      let button = document.getElementById("order-submit");
+      let checkBox = document.getElementById("orderform-agree");
+      checkBox.checked = false;
+      button.setAttribute("disabled", "disabled");
+      button.classList.add("disabled");
+      state.borderActive = true;
+    },
+
     calculate(state, type) {
       if (state.sell_currency_id === state.buy_currency_id) {
         return false;
@@ -684,6 +708,7 @@ const store = createStore({
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
       // };
+      this.commit("disabled");
       this.commit("stopTimer");
       state[type + "_currency_id"] = id;
       this.commit(`${type}HideBlock`);
@@ -711,6 +736,8 @@ const store = createStore({
       }
     },
     setRefresh(state) {
+      this.commit("clearError");
+      this.commit("disabled");
       if (!state.calculateData || state.calculateData.isBackExchange !== 1) {
         return false;
       }
@@ -718,7 +745,7 @@ const store = createStore({
       state.buy_currency_id = state.sell_currency_id;
       state.sell_currency_id = tempId;
       if (state.sell_currency_id !== null && state.buy_currency_id !== null) {
-        this.dispatch("calculateForm", [store.getters.getType, true]);
+        this.dispatch("calculateForm", [store.getters.getType, true, true]);
       }
     },
     callbackTimerFinish() {
@@ -812,6 +839,7 @@ const store = createStore({
       [type = "default", refresh = 0, refreshValue = false]
     ) {
       commit("clearError");
+      console.log(refreshValue);
       if (refreshValue) {
         commit("clearInput");
       }
@@ -990,6 +1018,9 @@ const store = createStore({
     },
     selectCity(state) {
       return state.selectCity;
+    },
+    isBorderActive(state) {
+      return state.borderActive;
     },
   }, // Получения state
 });

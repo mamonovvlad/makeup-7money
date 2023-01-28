@@ -22,7 +22,7 @@
     <the-question-window v-if="isShowWindow">
       <the-button
         tag="a"
-        @click="cancelOperation"
+        @click="showPreloader"
         :href="cancelOperation"
         class="button"
       >
@@ -32,6 +32,9 @@
         <template #name>{{ $t("no") }}</template>
       </the-button>
     </the-question-window>
+    <the-preloader
+      :style="[isShowPreloader === true ? 'display:block' : '']"
+    ></the-preloader>
   </div>
 </template>
 
@@ -39,6 +42,7 @@
 import TheButton from "../buttons/TheButton.vue";
 import TheToggle from "../buttons/TheToggle.vue";
 import TheQuestionWindow from "../popups/TheQuestionWindow.vue";
+import ThePreloader from "./ThePreloader.vue";
 import { mapGetters } from "vuex";
 export default {
   name: "ThePaymentCounter",
@@ -46,12 +50,14 @@ export default {
     return {
       isActive: false,
       isShowWindow: false,
+      isShowPreloader: false,
     };
   },
   components: {
     TheToggle,
     TheQuestionWindow,
     TheButton,
+    ThePreloader,
   },
   computed: {
     ...mapGetters(["getLang"]),
@@ -63,6 +69,9 @@ export default {
     },
   },
   methods: {
+    showPreloader() {
+      this.isShowPreloader = true;
+    },
     windowHide() {
       this.isShowWindow = false;
     },

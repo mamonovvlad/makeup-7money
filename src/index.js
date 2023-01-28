@@ -85,9 +85,6 @@ createApp({
       support: Support,
       csrfToken: null,
       csrfParam: null,
-      isShowPreloader: true,
-      ///
-      error: true,
     };
   },
 
@@ -170,6 +167,7 @@ createApp({
       "sellAmountWithDiscount",
       "buyAmountWithDiscount",
       "selectCity",
+      "isBorderActive",
     ]),
     isSellSource() {
       return (
@@ -200,6 +198,7 @@ createApp({
       "calculate",
       "openSelect",
       "selectOptions",
+      "confirmChecked",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
@@ -212,26 +211,6 @@ createApp({
       return "undefined " + nameWithLang;
     },
     //Закрыть окно "Забыли пароль?"
-    confirmChecked() {
-      let checkBox = document.getElementById("orderform-agree");
-      if (checkBox && checkBox.checked === true) {
-        this.enabled();
-      } else {
-        this.disabled();
-      }
-    },
-    enabled() {
-      let button = document.getElementById("order-submit");
-      button.removeAttribute("disabled");
-      button.classList.remove("disabled");
-      this.error = false;
-    },
-    disabled() {
-      let button = document.getElementById("order-submit");
-      button.setAttribute("disabled", "disabled");
-      button.classList.add("disabled");
-      this.error = true;
-    },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
