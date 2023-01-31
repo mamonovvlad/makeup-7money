@@ -83,7 +83,6 @@ const store = createStore({
       button.classList.add("disabled");
       state.borderActive = true;
     },
-
     calculate(state, type) {
       if (state.sell_currency_id === state.buy_currency_id) {
         return false;
@@ -221,6 +220,8 @@ const store = createStore({
         state.calculateData.sell_amount_with_discount ?? state.sell_amount;
       state.calculateData.buy_amount_with_comission =
         state.calculateData.buy_amount_with_discount ?? state.buy_amount;
+      let buyCommission;
+      let sellCommission;
 
       if (state.sellCurrency.sell_comission) {
         let sellAmountComission = parseCommission(
@@ -250,43 +251,57 @@ const store = createStore({
             state.sellCurrency.sell_max_comission > 0 &&
             sellDiscountComission > state.sellCurrency.sell_max_comission
           ) {
-            state.calculateData.sell_amount_with_comission = (
+            sellCommission = +(
               parseFloat(state.calculateData.sell_amount_with_discount) +
               parseFloat(state.sellCurrency.sell_max_comission)
             ).toFixed(state.sellNumbers);
+            state.calculateData.sell_amount_with_comission =
+              isNaN(sellCommission) === true ? "" : sellCommission;
           } else if (CurrencyModel.isUahBank(state.sell_currency_id) === true) {
-            state.calculateData.sell_amount_with_comission = (
+            sellCommission = +(
               parseFloat(state.calculateData.sell_amount_with_discount) -
               sellDiscountComission
             ).toFixed(state.sellNumbers);
+            state.calculateData.sell_amount_with_comission =
+              isNaN(sellCommission) === true ? "" : sellCommission;
           } else {
-            state.calculateData.sell_amount_with_comission = (
+            sellCommission = +(
               parseFloat(state.calculateData.sell_amount_with_discount) +
               sellDiscountComission
             ).toFixed(state.sellNumbers);
+            state.calculateData.sell_amount_with_comission =
+              isNaN(sellCommission) === true ? "" : sellCommission;
           }
         } else {
           if (
             state.sellCurrency.sell_max_comission > 0 &&
             sellAmountComission > state.sellCurrency.sell_max_comission
           ) {
-            state.calculateData.sell_amount_with_comission = (
+            sellCommission = +(
               parseFloat(state.sell_amount) +
               parseFloat(state.sellCurrency.sell_max_comission)
             ).toFixed(state.sellNumbers);
+            state.calculateData.sell_amount_with_comission =
+              isNaN(sellCommission) === true ? "" : sellCommission;
           } else if (CurrencyModel.isUahBank(state.sell_currency_id) === true) {
-            state.calculateData.sell_amount_with_comission = (
+            sellCommission = +(
               parseFloat(state.sell_amount) - sellAmountComission
             ).toFixed(state.sellNumbers);
+            state.calculateData.sell_amount_with_comission =
+              isNaN(sellCommission) === true ? "" : sellCommission;
           } else {
             if (state.sellCurrency.sell_comission > 0) {
-              state.calculateData.sell_amount_with_comission = (
+              sellCommission = +(
                 parseFloat(state.sell_amount) + sellAmountComission
               ).toFixed(state.sellNumbers);
+              state.calculateData.sell_amount_with_comission =
+                isNaN(sellCommission) === true ? "" : sellCommission;
             } else {
-              state.calculateData.sell_amount_with_comission = (
+              sellCommission = +(
                 parseFloat(state.sell_amount) - sellAmountComission
               ).toFixed(state.sellNumbers);
+              state.calculateData.sell_amount_with_comission =
+                isNaN(sellCommission) === true ? "" : sellCommission;
             }
           }
         }
@@ -309,13 +324,17 @@ const store = createStore({
         state.calculateData.buy_amount_comission = buyAmountComission;
         if (type === "sell") {
           if (state.buyCurrency.buy_comission > 0) {
-            state.calculateData.buy_amount_with_comission = (
+            buyCommission = +(
               parseFloat(state.buy_amount) + buyAmountComission
             ).toFixed(state.buyNumbers);
+            state.calculateData.buy_amount_with_comission =
+              isNaN(buyCommission) === true ? "" : buyCommission;
           } else {
-            state.calculateData.buy_amount_with_comission = (
+            buyCommission = +(
               parseFloat(state.buy_amount) - buyAmountComission
             ).toFixed(state.buyNumbers);
+            state.calculateData.buy_amount_with_comission =
+              isNaN(buyCommission) === true ? "" : buyCommission;
           }
         }
       }
@@ -839,7 +858,6 @@ const store = createStore({
       [type = "default", refresh = 0, refreshValue = false]
     ) {
       commit("clearError");
-      console.log(refreshValue);
       if (refreshValue) {
         commit("clearInput");
       }
