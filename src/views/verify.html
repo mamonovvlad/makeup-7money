@@ -78,8 +78,8 @@
                         <span class="form-group">
                           <input
                             type="text"
-                            id=""
-                            name=""
+                            id="code"
+                            name="code"
                             placeholder="APEHGF5H6"
                           />
                           <span class="help-block"></span>
@@ -91,9 +91,8 @@
                         </label>
                         <span class="form-group">
                           <input
-                            type="text"
-                            id=""
-                            name=""
+                            id="sell_source"
+                            name="sell_source"
                             placeholder="2435445345432354"
                           />
                           <span class="help-block"></span>
@@ -101,14 +100,13 @@
                       </div>
                       <div class="field">
                         <label for="orderform-sell_amount">
-                          Поиск по номеру карты
+                          Поиск по email
                         </label>
                         <span class="form-group">
                           <input
-                            id=""
-                            name="ChangePasswordForm[confirm_new_password]"
-                            type="password"
-                            :required="true"
+                            type="text"
+                            id="email"
+                            name="email"
                             placeholder="email@gmail.com"
                           />
                           <span class="help-block"></span>
@@ -118,10 +116,10 @@
                         <label for="orderform-sell_amount"> Поиск по ip </label>
                         <span class="form-group">
                           <input
-                            id=""
-                            name=""
                             type="text"
-                            placeholder="127.0.0.0"
+                            id="ip"
+                            name="ip"
+                            placeholder="123.321.123.321"
                           />
                           <span class="help-block"></span>
                         </span>
@@ -223,5 +221,20 @@
     </div>
     <input type="hidden" id="login" value="0" />
     <input type="hidden" id="language" value="en" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(document).on("blur", "#code,#sell_source,#email,#ip", function (e) {
+        let name = $(this).attr("name");
+        let value = $(this).val();
+        console.log(name, "name");
+        console.log(value, "value");
+        console.log("----------------");
+        // $('#filter_link').attr('href', '/profile/verify?' + name + '=' + value).click();
+      });
+    </script>
   </body>
 </html>

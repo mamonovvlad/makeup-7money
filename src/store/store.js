@@ -113,6 +113,27 @@ const store = createStore({
       return false;
     },
     ////////////////////////////////////////
+    calculationAmountCommission(state, val) {
+      this.commit("currencyModelIsCrypt");
+      if (val === "sell") {
+        let sell_commission = Number(
+          state.calculateData.sell_amount_with_comission
+        );
+        let sell_percent = Number(state.calculateData.sell_percent);
+        let res =
+          sell_commission -
+          (sell_commission * sell_percent) / (100 + sell_percent);
+        state.sell_amount = res.toFixed(state.sellNumbers);
+      } else if (val === "buy") {
+        let buy_commission = Number(
+          state.calculateData.buy_amount_with_comission
+        );
+        let buy_percent = Number(state.calculateData.buy_percent);
+        let res =
+          buy_commission + (buy_commission * buy_percent) / (100 + buy_percent);
+        state.buy_amount = res.toFixed(state.buyNumbers);
+      }
+    },
     currencyModelIsCrypt(state) {
       if (CurrencyModel.isCrypt(state.sell_currency_id) === true) {
         state.sellNumbers = 7;

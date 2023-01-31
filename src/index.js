@@ -196,6 +196,7 @@ createApp({
       "copyText",
       "captcha",
       "calculate",
+      "calculationAmountCommission",
       "openSelect",
       "selectOptions",
       "confirmChecked",

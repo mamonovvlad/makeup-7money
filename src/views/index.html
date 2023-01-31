@@ -168,6 +168,8 @@
                                 type="text"
                                 id="orderform-sell_amount_with_comission"
                                 name="OrderForm[sell_amount_with_comission]"
+                                @input="calculationAmountCommission('sell')"
+                                @blur="updateSellAmount"
                                 v-model="calculateData.sell_amount_with_comission"
                               />
                             </span>
@@ -220,16 +222,15 @@
                           <span v-show="calculateData.min_buy_amount > 0">
                             Min:
                             <strong>
-                              {{ calculateData.min_buy_amount }} {{
-                              buyCurrency.symbol }}
+                              {{ calculateData.min_buy_amount }}
+                              {{buyCurrency.symbol }}
                             </strong>
                           </span>
                           <span v-show="calculateData.max_buy_amount > 0">
                             Max:
                             <strong>
-                              {{isNaN(calculateData.max_buy_amount ) === true ?
-                              0 : calculateData.max_buy_amount }} {{
-                              buyCurrency.symbol }}
+                              {{calculateData.max_buy_amount }}
+                              {{buyCurrency.symbol }}
                             </strong>
                           </span>
                         </div>
@@ -243,6 +244,7 @@
                                 id="orderform-buy_amount_with_discount"
                                 name="OrderForm[buy_amount_with_discount]"
                                 type="text"
+                                @input="calculationAmountCommission('buy')"
                                 v-model="calculateData.buy_amount_with_comission"
                               />
                             </span>
