@@ -221,20 +221,5 @@
     </div>
     <input type="hidden" id="login" value="0" />
     <input type="hidden" id="language" value="en" />
-    <script
-      src="https://code.jquery.com/jquery-3.6.3.min.js"
-      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      $(document).on("blur", "#code,#sell_source,#email,#ip", function (e) {
-        let name = $(this).attr("name");
-        let value = $(this).val();
-        console.log(name, "name");
-        console.log(value, "value");
-        console.log("----------------");
-        // $('#filter_link').attr('href', '/profile/verify?' + name + '=' + value).click();
-      });
-    </script>
   </body>
 </html>
