@@ -122,7 +122,7 @@ let registration = [
     type: "text",
     id: "registration_name",
     name: "SignupForm[first_name]",
-    errorName: "help-signupform-first_name",
+    errorName: "signupform-first_name",
     required: true,
   },
   {
@@ -131,7 +131,7 @@ let registration = [
     type: "email",
     id: "registration_mail",
     name: "SignupForm[email]",
-    errorName: "help-signupform-email",
+    errorName: "signupform-email",
     required: true,
   },
   {
@@ -141,7 +141,7 @@ let registration = [
     id: "registration_password",
     name: "SignupForm[password]",
     required: true,
-    errorName: "help-signupform-password",
+    errorName: "signupform-password",
     className: "password",
   },
   {
@@ -150,7 +150,7 @@ let registration = [
     type: "password",
     id: "registration_confirm_password",
     name: "SignupForm[confirm_password]",
-    errorName: "help-signupform-confirm_password",
+    errorName: "signupform-confirm_password",
     required: true,
     className: "password",
   },
@@ -159,7 +159,7 @@ let registration = [
     type: "text",
     id: "registration_link",
     name: "SignupForm[referred_by]",
-    errorName: "help-signupform-referred_by",
+    errorName: "signupform-referred_by",
   },
 ];
 let entrance = [
@@ -177,7 +177,7 @@ let entrance = [
     id: "entrance_password",
     name: "LoginForm[password]",
     className: "password",
-    errorName: "help-loginform-password",
+    errorName: "loginform-password",
     autocomplete: "off",
   },
 ];
