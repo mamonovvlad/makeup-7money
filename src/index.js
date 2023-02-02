@@ -29,7 +29,7 @@ import TheCurrenciesColumnSell from "./components/blocks/TheCurrenciesColumnSell
 import TheCurrenciesColumnBuy from "./components/blocks/TheCurrenciesColumnBuy.vue";
 import TheQuestionInformation from "./components/blocks/TheQuestionInformation.vue";
 import ThePaymentCounter from "./components/blocks/ThePaymentCounter.vue";
-
+import TheRecentExchanges from "./components/sections/TheRecentExchanges.vue";
 import TheShareSocialNetworks from "./components/blocks/TheShareSocialNetworks.vue";
 import TheAccountNavigation from "./components/blocks/TheAccountNavigation.vue";
 import TheTitle from "./components/blocks/TheTitle.vue";
@@ -120,6 +120,7 @@ createApp({
     TheCounter,
     TheTimeProcessing,
     ThePreloader,
+    TheRecentExchanges,
     //Buttons
     TheButton,
     TheClose,

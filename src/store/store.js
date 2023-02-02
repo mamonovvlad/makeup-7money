@@ -784,6 +784,7 @@ const store = createStore({
       let tempId = state.buy_currency_id;
       state.buy_currency_id = state.sell_currency_id;
       state.sell_currency_id = tempId;
+      this.commit("inputCurrencyId");
       if (state.sell_currency_id !== null && state.buy_currency_id !== null) {
         this.dispatch("calculateForm", [store.getters.getType, true, true]);
       }
