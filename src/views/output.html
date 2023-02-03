@@ -65,9 +65,17 @@
                 </template>
               </the-account-navigation>
               <div class="wrapper-account">
-                <the-title tag="h2" class="subtitle"
-                  >Вывести вознаграждение</the-title
-                >
+                <the-title tag="h2" class="subtitle">
+                  Вывести вознаграждение
+                </the-title>
+                <div class="attention">
+                  Спасибо, что вы с нами, время поступления денег на счёт от 1
+                  часа до 1 дня! Спасибо за терпение! =)<br />
+                  P.S. обратите внимание на резервы Perfect Money USD, если
+                  желаемая вами сумма получения выплат ниже наших резервов
+                  Perfect Money USD, вам придется подождать пока сумма получения
+                  не будет равна или превышать сумму наших счетов
+                </div>
                 <p class="balance">Баланс: 0.157319 PerfectMoney USD</p>
                 <form action="/profile/output" method="post">
                   <input type="hidden" :value="csrfToken" :name="csrfParam" />

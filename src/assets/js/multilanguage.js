@@ -5,6 +5,7 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
+      aml: "Aml Политика",
       areYouSure: "Вы уверены?",
       maximumAmount: "Максимальная сумма получения",
       questionInfo:
@@ -115,8 +116,10 @@ const i18n = createI18n({
       linkLogo: "/",
       checkStatus: "/order/status",
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
+      amlLink: "/page/aml",
     },
     ua: {
+      aml: "Aml Політика",
       areYouSure: "Ви впевнені?",
       maximumAmount: "Максимальна сума отримання",
       questionInfo:
@@ -227,8 +230,10 @@ const i18n = createI18n({
       linkLogo: "/ua",
       checkStatus: "/ua/order/status",
       footerLink: "https://www.bestchange.ru/7money-exchanger.html",
+      amlLink: "/ua/page/aml",
     },
     en: {
+      aml: "Aml Policy",
       areYouSure: "Are you sure?",
       maximumAmount: "Maximum amount received",
       questionInfo:
@@ -339,6 +344,7 @@ const i18n = createI18n({
       linkLogo: "/en",
       checkStatus: "/en/order/status",
       footerLink: "https://www.bestchange.com/7money-exchanger.html",
+      amlLink: "/en/page/aml",
     },
   },
 });

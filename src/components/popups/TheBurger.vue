@@ -17,6 +17,7 @@
         <a :href="$t('menuSecurity')">{{ $t("security") }}</a>
         <a :href="$t('menuPartners')">{{ $t("partners") }}</a>
         <a :href="$t('aboutLink')">{{ $t("about") }}</a>
+        <a :href="$t('amlLink')">{{ $t("aml") }}</a>
       </nav>
       <the-social-network></the-social-network>
     </div>
