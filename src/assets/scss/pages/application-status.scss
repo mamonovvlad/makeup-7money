@@ -121,7 +121,9 @@
   }
 
   & > span {
-    line-height: 140%;
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
   & strong {
