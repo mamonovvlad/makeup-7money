@@ -1,7 +1,7 @@
 <template>
   <div class="question-window popup-wrapper">
     <div class="wrapper">
-      <h4>Вы уверены?</h4>
+      <h4>{{ $t("areYouSure") }}</h4>
       <div class="buttons">
         <slot></slot>
       </div>

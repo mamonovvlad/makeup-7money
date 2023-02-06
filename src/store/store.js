@@ -61,6 +61,20 @@ const store = createStore({
     borderActive: false,
   }, //Хранения данных
   mutations: {
+    viewPassword(state, idx) {
+      console.log("1");
+      let pas = document.querySelectorAll(".password");
+      pas.forEach((item) => {
+        if (item.getAttribute("data-idx") === String(idx)) {
+          let inp = item.querySelector("input");
+          if (inp.getAttribute("type") === "password") {
+            inp.setAttribute("type", "text");
+          } else {
+            inp.setAttribute("type", "password");
+          }
+        }
+      });
+    },
     confirmChecked() {
       let checkBox = document.getElementById("orderform-agree");
       if (checkBox && checkBox.checked === true) {

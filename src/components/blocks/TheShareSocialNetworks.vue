@@ -65,6 +65,9 @@ export default {
   & .social-network {
     display: flex;
     column-gap: 20px;
+    & img {
+      width: 25px;
+    }
   }
 }
 </style>

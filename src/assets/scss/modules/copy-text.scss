@@ -1,10 +1,11 @@
 .copy {
   position: relative;
-  height: 15px;
-  width: 15px;
+  height: 13px;
+  width: 13px;
   color: var(--primary);
   display: inline-flex;
-  margin-left: 5px;
+  margin-left: 4px;
+  font-size: 12px;
   &:before {
     content: "";
     position: absolute;

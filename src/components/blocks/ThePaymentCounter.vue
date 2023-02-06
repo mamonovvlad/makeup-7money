@@ -98,16 +98,21 @@ export default {
     }
   }
 
+  & .copy span {
+    transform: translateX(-80%);
+  }
+
   & > .wrapper {
     background: var(--secondary);
     padding: 20px;
     height: 100%;
-    overflow-y: scroll;
     @include _992 {
       position: fixed;
       top: 0;
       left: 0;
       bottom: 0;
+      overflow-y: scroll;
+      overflow-x: hidden;
       z-index: 2;
     }
   }
@@ -121,7 +126,6 @@ export default {
   }
 
   & .line {
-    border-color: var(--fifth);
     margin: 20px 0;
   }
 
@@ -171,17 +175,13 @@ export default {
       }
     }
 
-    & .flip {
-      box-shadow: var(--shadow);
-    }
-
     & .inn {
-      color: var(--quaternary);
+      color: var(--secondary);
     }
 
     & .inn,
     & .flip {
-      background: var(--secondary);
+      background: var(--quaternary);
     }
   }
 

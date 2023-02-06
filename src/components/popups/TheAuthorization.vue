@@ -212,7 +212,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["captcha"]),
+    ...mapMutations(["captcha", "viewPassword"]),
     toggleInput() {
       if (this.isAuthorization.index === 0) {
         this.isAuthorization.index = 1;
@@ -257,19 +257,6 @@ export default {
           }
         } else {
           e.target.submit();
-        }
-      });
-    },
-    viewPassword(idx) {
-      let pas = document.querySelectorAll(".password");
-      pas.forEach((item) => {
-        if (item.getAttribute("data-idx") === String(idx)) {
-          let inp = item.querySelector("input");
-          if (inp.getAttribute("type") === "password") {
-            inp.setAttribute("type", "text");
-          } else {
-            inp.setAttribute("type", "password");
-          }
         }
       });
     },
@@ -362,16 +349,6 @@ export default {
 @import "../../assets/scss/utils/mixin";
 
 .authorization {
-  & .show-password {
-    width: 22px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    color: var(--quaternary);
-  }
-
   & .forgot {
     text-decoration: none;
   }
@@ -428,5 +405,14 @@ export default {
       height: 76px;
     }
   }
+}
+.show-password {
+  width: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  color: var(--quaternary);
 }
 </style>

@@ -12,7 +12,6 @@
     display: grid;
     grid-template-columns: 400px 1fr;
     column-gap: 20px;
-    overflow: hidden;
     background: var(--seventh);
     @include _1200 {
       grid-template-columns: 330px 1fr;
