@@ -20,7 +20,8 @@
             <a href="/">подробнее тут</a>
           </p>
         </the-public-information>
-        <the-header class="background--large"></the-header>
+        <the-header></the-header>
+        <div class="background--large"></div>
         <main class="container main__wrapper">
           <input
             id="inputHiddenLastSellId"
@@ -37,525 +38,525 @@
           <div class="currencies">
             <the-currencies-column-sell></the-currencies-column-sell>
             <the-currencies-column-buy></the-currencies-column-buy>
-            <transition name="details-hide">
-              <div class="details" v-show="isDetails === true && calculateData">
-                <div class="details__wrapper stylish-wrapper">
-                  <the-title-details></the-title-details>
-                  <the-steps :show-button="true" :data-input="true"></the-steps>
-                  <the-preloader>{{$t('preloader')}}</the-preloader>
-                  <!--Форма-->
-                  <form class="form-exchange" v-show="isCalculateData === true">
-                    <input
-                      type="hidden"
-                      id="orderform-sell_currency_id"
-                      class="form-control inp-sell_currency_id"
-                      name="OrderForm[sell_currency_id]"
-                      value=""
-                    />
-                    <input
-                      type="hidden"
-                      id="orderform-buy_currency_id"
-                      class="form-control inp-buy_currency_id"
-                      name="OrderForm[buy_currency_id]"
-                      value=""
-                    />
-                    <input
-                      type="hidden"
-                      id="orderform-type"
-                      name="OrderForm[type]"
-                      :value="getType"
-                    />
-                    <input type="hidden" name="form" value="order" />
-                    <input
-                      type="hidden"
-                      id="selectCurrency"
-                      name="OrderForm[select]"
-                      value="sell"
-                    />
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-sell_amount">
-                            {{ $t("theGive") }}
-                          </label>
-                          <span class="form-group has-error">
-                            <input
-                              type="text"
-                              id="orderform-sell_amount"
-                              name="OrderForm[sell_amount]"
-                              aria-invalid="true"
-                              v-model="$store.state.sell_amount"
-                              @blur="updateSellAmount"
-                              @input="calculate('default')"
-                              pattern="[0-9]"
-                            />
-                            <span class="help-block">Error</span>
-                          </span>
-                          <span
-                            :class="sellCurrency.code"
-                            class="icon"
-                            id="exchange-ddl-from"
-                            :data-alias="sellCurrency.code"
-                          >
-                          </span>
-                        </div>
-                        <div class="min__max">
-                          <span v-show="calculateData.min_sell_amount > 0">
-                            Min:
-                            <strong>
-                              {{ `${calculateData.min_sell_amount}
-                              ${sellCurrency.symbol}` }}
-                            </strong>
-                          </span>
-                          <span v-show="calculateData.max_sell_amount > 0">
-                            Max:
-                            <strong>
-                              {{ `${calculateData.max_sell_amount}
-                              ${sellCurrency.symbol}` }}
-                            </strong>
-                          </span>
-                        </div>
-                        <transition name="fade">
-                          <div
-                            class="checkbox"
-                            v-if="sellCurrency.is_sell_verified"
-                          >
-                            <input
-                              type="checkbox"
-                              id="isSellVerified"
-                              name="OrderForm[is_verified]"
-                              value="1"
-                              @click="setIsVerified($event)"
-                            />
-                            <label class="label" for="isSellVerified">
-                              <span
-                                v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"
-                              ></span>
-                            </label>
-                          </div>
-                        </transition>
-                        <transition name="fade">
-                          <p
-                            class="commission"
-                            v-if="sellCurrency.id === currencyModel.PRIVAT_BANK_ID"
-                          >
-                            <span
-                              v-html="getValueByLanguage(sellCurrency, 'name_?')"
-                            ></span>
-                            =
-                            <strong>
-                              {{ calculateData.sell_comission }}% ({{
-                              calculateData.sell_amount_comission }} {{
-                              sellCurrency.symbol }})
-                            </strong>
-                          </p>
-                        </transition>
-                        <transition name="fade">
-                          <div class="field">
-                            <label for="orderform-sell_amount_with_comission">
-                              С комиссией
-                              <span class="text--green">
-                                <span id="sell_commission_percent"
-                                  >{{ calculateData.sell_comission }}</span
-                                >% =
-                                {{isNaN(calculateData.sell_amount_comission) ===
-                                true ? 0 : calculateData.sell_amount_comission
-                                }} {{ sellCurrency.symbol }}
-                              </span>
-                            </label>
-                            <span class="form-group">
-                              <input
-                                type="text"
-                                id="orderform-sell_amount_with_comission"
-                                name="OrderForm[sell_amount_with_comission]"
-                                @input="calculationAmountCommission('sell')"
-                                @blur="updateSellAmount"
-                                v-model="calculateData.sell_amount_with_comission"
-                              />
-                            </span>
-                          </div>
-                        </transition>
-                        <transition name="fade">
-                          <div class="field">
-                            <label for=""> Со скидкой </label>
-                            <span class="form-group discount">
-                              <input
-                                id=""
-                                disabled="disabled"
-                                name="OrderForm[buy_amount_with_discount]"
-                                v-model="buyAmountWithDiscount"
-                                placeholder="787"
-                                readonly="readonly"
-                                type="text"
-                              />
-                            </span>
-                          </div>
-                        </transition>
-                      </div>
-                      <div class="item">
-                        <div class="field item__lacks">
-                          <label for="orderform-buy_amount">
-                            {{ $t("theGet") }}
-                            <the-lacks-button></the-lacks-button>
-                          </label>
-                          <span class="form-group">
-                            <input
-                              class="item__lacks"
-                              id="orderform-buy_amount"
-                              name="OrderForm[buy_amount]"
-                              aria-invalid="false"
-                              v-model="$store.state.buy_amount"
-                              @blur="updateBuyAmount"
-                              @input="calculate('revert')"
-                            />
-                            <span class="help-block"></span>
-                          </span>
-                          <span
-                            :class="buyCurrency.code"
-                            id="exchange-ddl-to"
-                            class="icon"
-                            :data-alias="buyCurrency.code"
-                          >
-                          </span>
-                        </div>
-                        <div class="min__max">
-                          <span v-show="calculateData.min_buy_amount > 0">
-                            Min:
-                            <strong>
-                              {{ calculateData.min_buy_amount }}
-                              {{buyCurrency.symbol }}
-                            </strong>
-                          </span>
-                          <span v-show="calculateData.max_buy_amount > 0">
-                            Max:
-                            <strong>
-                              {{calculateData.max_buy_amount }}
-                              {{buyCurrency.symbol }}
-                            </strong>
-                          </span>
-                        </div>
-                        <transition name="fade">
-                          <div class="field">
-                            <label for="orderform-buy_amount_with_discount">
-                              С комиссией
-                            </label>
-                            <span class="form-group">
-                              <input
-                                id="orderform-buy_amount_with_discount"
-                                name="OrderForm[buy_amount_with_discount]"
-                                type="text"
-                                @input="calculationAmountCommission('buy')"
-                                @blur="updateBuyAmount"
-                                v-model="calculateData.buy_amount_with_comission"
-                              />
-                            </span>
-                          </div>
-                        </transition>
-                        <transition name="fade">
-                          <div class="field">
-                            <label for="orderform-sell_amount_with_discount">
-                              Со скидкой
-                            </label>
-                            <span class="form-group discount">
-                              <input
-                                id="orderform-sell_amount_with_discount"
-                                disabled="disabled"
-                                name="OrderForm[sell_amount_with_discount]"
-                                placeholder="787"
-                                readonly="readonly"
-                                v-model="sellAmountWithDiscount"
-                                type="text"
-                              />
-                            </span>
-                          </div>
-                        </transition>
-                      </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="items__wrapper">
-                      <div class="item" v-if="isSellSource">
-                        <the-recovery-information
-                          class="d-none"
-                          v-show="currencyModel.isUahBank(sellCurrency.id)"
+            <div
+              class="details"
+              :class="{'details-animate':isDetails === true && calculateData }"
+              v-show="isDetails === true && calculateData"
+            >
+              <div class="details__wrapper stylish-wrapper">
+                <the-title-details></the-title-details>
+                <the-steps :show-button="true" :data-input="true"></the-steps>
+                <the-preloader>{{$t('preloader')}}</the-preloader>
+                <!--Форма-->
+                <form class="form-exchange" v-show="isCalculateData === true">
+                  <input
+                    type="hidden"
+                    id="orderform-sell_currency_id"
+                    class="form-control inp-sell_currency_id"
+                    name="OrderForm[sell_currency_id]"
+                    value=""
+                  />
+                  <input
+                    type="hidden"
+                    id="orderform-buy_currency_id"
+                    class="form-control inp-buy_currency_id"
+                    name="OrderForm[buy_currency_id]"
+                    value=""
+                  />
+                  <input
+                    type="hidden"
+                    id="orderform-type"
+                    name="OrderForm[type]"
+                    :value="getType"
+                  />
+                  <input type="hidden" name="form" value="order" />
+                  <input
+                    type="hidden"
+                    id="selectCurrency"
+                    name="OrderForm[select]"
+                    value="sell"
+                  />
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <div class="field">
+                        <label for="orderform-sell_amount">
+                          {{ $t("theGive") }}
+                        </label>
+                        <span class="form-group has-error">
+                          <input
+                            type="text"
+                            id="orderform-sell_amount"
+                            name="OrderForm[sell_amount]"
+                            aria-invalid="true"
+                            v-model="$store.state.sell_amount"
+                            @blur="updateSellAmount"
+                            @input="calculate('default')"
+                            pattern="[0-9]"
+                          />
+                          <span class="help-block">Error</span>
+                        </span>
+                        <span
+                          :class="sellCurrency.code"
+                          class="icon"
+                          id="exchange-ddl-from"
+                          :data-alias="sellCurrency.code"
                         >
-                          Внимание!!! Не указывайте "Логин" при создании кода в
-                          бирже. Такой код на нашем сайте применить невозможно!
-                        </the-recovery-information>
-                        <div class="field">
-                          <label for="orderform-sell_source">
-                            Заплатить с этой карты 65
-                          </label>
-                          <span class="form-group">
-                            <input
-                              class="autofill"
-                              type="text"
-                              id="orderform-sell_source"
-                              name="OrderForm[sell_source]"
-                              placeholder="0000 0000 0000 0000"
-                            />
-                          </span>
-                        </div>
+                        </span>
                       </div>
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-sell_target">
-                            Зачислить на этот счёт
-                          </label>
-
-                          <span class="form-group">
-                            <input
-                              class="autofill"
-                              type="text"
-                              id="orderform-sell_target"
-                              name="OrderForm[sell_target]"
-                              placeholder="0000 0000 0000 0000"
-                            />
-                          </span>
-                        </div>
+                      <div class="min__max">
+                        <span v-show="calculateData.min_sell_amount > 0">
+                          Min:
+                          <strong>
+                            {{ `${calculateData.min_sell_amount}
+                            ${sellCurrency.symbol}` }}
+                          </strong>
+                        </span>
+                        <span v-show="calculateData.max_sell_amount > 0">
+                          Max:
+                          <strong>
+                            {{ `${calculateData.max_sell_amount}
+                            ${sellCurrency.symbol}` }}
+                          </strong>
+                        </span>
                       </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-first_name">
-                            Имя держателя карты
-                          </label>
-                          <span class="form-group">
-                            <input
-                              class="autofill"
-                              type="text"
-                              id="orderform-first_name"
-                              name="OrderForm[first_name]"
-                              placeholder="Василий"
-                            />
-                          </span>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-first_name">
-                            Фамилия держателя карты
-                          </label>
-                          <span class="form-group">
-                            <input
-                              class="autofill"
-                              type="text"
-                              id="orderform-last_name"
-                              name="OrderForm[last_name]"
-                              placeholder="Петров"
-                            />
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-phone"> Номер телефона </label>
-                          <span class="form-group">
-                            <input
-                              type="text"
-                              id="orderform-phone"
-                              name="OrderForm[phone]"
-                              placeholder="+380500123456"
-                              required
-                            />
-                          </span>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <div class="field">
-                          <label for="exchange_mail"> Электронная почта </label>
-                          <span class="form-group">
-                            <input
-                              type="text"
-                              id="exchange_mail"
-                              name="OrderForm[email]"
-                              placeholder="you@gmail.com"
-                              required
-                              aria-required="true"
-                            />
-                            <the-question-information></the-question-information>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-buy_target">
-                            Зачислить на этот адрес
-                          </label>
-                          <span class="form-group">
-                            <input
-                              type="text"
-                              id="orderform-buy_target"
-                              name="OrderForm[buy_target]"
-                            />
-                          </span>
-                        </div>
-                      </div>
-                      <div
-                        class="item"
-                        v-if="currencyModel.isCrypt(sellCurrency.id)"
-                      >
-                        <div class="checkbox">
+                      <transition name="fade">
+                        <div
+                          class="checkbox"
+                          v-if="sellCurrency.is_sell_verified"
+                        >
                           <input
                             type="checkbox"
-                            id="orderform-of_exchange"
-                            name="OrderForm[of_exchange]"
+                            id="isSellVerified"
+                            name="OrderForm[is_verified]"
                             value="1"
-                            @click="setOfExchange"
+                            @click="setIsVerified($event)"
                           />
-                          <label class="label" for="orderform-of_exchange">
-                            Отправляю с биржи
+                          <label class="label" for="isSellVerified">
+                            <span
+                              v-html="getValueByLanguage(sellCurrency, 'sell_verified_text_?')"
+                            ></span>
+                          </label>
+                        </div>
+                      </transition>
+                      <transition name="fade">
+                        <p
+                          class="commission"
+                          v-if="sellCurrency.id === currencyModel.PRIVAT_BANK_ID"
+                        >
+                          <span
+                            v-html="getValueByLanguage(sellCurrency, 'name_?')"
+                          ></span>
+                          =
+                          <strong>
+                            {{ calculateData.sell_comission }}% ({{
+                            calculateData.sell_amount_comission }} {{
+                            sellCurrency.symbol }})
+                          </strong>
+                        </p>
+                      </transition>
+                      <transition name="fade">
+                        <div class="field">
+                          <label for="orderform-sell_amount_with_comission">
+                            С комиссией
+                            <span class="text--green">
+                              <span id="sell_commission_percent"
+                                >{{ calculateData.sell_comission }}</span
+                              >% = {{isNaN(calculateData.sell_amount_comission)
+                              === true ? 0 : calculateData.sell_amount_comission
+                              }} {{ sellCurrency.symbol }}
+                            </span>
+                          </label>
+                          <span class="form-group">
+                            <input
+                              type="text"
+                              id="orderform-sell_amount_with_comission"
+                              name="OrderForm[sell_amount_with_comission]"
+                              @input="calculationAmountCommission('sell')"
+                              @blur="updateSellAmount"
+                              v-model="calculateData.sell_amount_with_comission"
+                            />
+                          </span>
+                        </div>
+                      </transition>
+                      <transition name="fade">
+                        <div class="field">
+                          <label for=""> Со скидкой </label>
+                          <span class="form-group discount">
+                            <input
+                              id=""
+                              disabled="disabled"
+                              name="OrderForm[buy_amount_with_discount]"
+                              v-model="buyAmountWithDiscount"
+                              placeholder="787"
+                              readonly="readonly"
+                              type="text"
+                            />
+                          </span>
+                        </div>
+                      </transition>
+                    </div>
+                    <div class="item">
+                      <div class="field item__lacks">
+                        <label for="orderform-buy_amount">
+                          {{ $t("theGet") }}
+                          <the-lacks-button></the-lacks-button>
+                        </label>
+                        <span class="form-group">
+                          <input
+                            class="item__lacks"
+                            id="orderform-buy_amount"
+                            name="OrderForm[buy_amount]"
+                            aria-invalid="false"
+                            v-model="$store.state.buy_amount"
+                            @blur="updateBuyAmount"
+                            @input="calculate('revert')"
+                          />
+                          <span class="help-block"></span>
+                        </span>
+                        <span
+                          :class="buyCurrency.code"
+                          id="exchange-ddl-to"
+                          class="icon"
+                          :data-alias="buyCurrency.code"
+                        >
+                        </span>
+                      </div>
+                      <div class="min__max">
+                        <span v-show="calculateData.min_buy_amount > 0">
+                          Min:
+                          <strong>
+                            {{ calculateData.min_buy_amount }}
+                            {{buyCurrency.symbol }}
+                          </strong>
+                        </span>
+                        <span v-show="calculateData.max_buy_amount > 0">
+                          Max:
+                          <strong>
+                            {{calculateData.max_buy_amount }}
+                            {{buyCurrency.symbol }}
+                          </strong>
+                        </span>
+                      </div>
+                      <transition name="fade">
+                        <div class="field">
+                          <label for="orderform-buy_amount_with_discount">
+                            С комиссией
+                          </label>
+                          <span class="form-group">
+                            <input
+                              id="orderform-buy_amount_with_discount"
+                              name="OrderForm[buy_amount_with_discount]"
+                              type="text"
+                              @input="calculationAmountCommission('buy')"
+                              @blur="updateBuyAmount"
+                              v-model="calculateData.buy_amount_with_comission"
+                            />
+                          </span>
+                        </div>
+                      </transition>
+                      <transition name="fade">
+                        <div class="field">
+                          <label for="orderform-sell_amount_with_discount">
+                            Со скидкой
+                          </label>
+                          <span class="form-group discount">
+                            <input
+                              id="orderform-sell_amount_with_discount"
+                              disabled="disabled"
+                              name="OrderForm[sell_amount_with_discount]"
+                              placeholder="787"
+                              readonly="readonly"
+                              v-model="sellAmountWithDiscount"
+                              type="text"
+                            />
+                          </span>
+                        </div>
+                      </transition>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="items__wrapper">
+                    <div class="item" v-if="isSellSource">
+                      <the-recovery-information
+                        class="d-none"
+                        v-show="currencyModel.isUahBank(sellCurrency.id)"
+                      >
+                        Внимание!!! Не указывайте "Логин" при создании кода в
+                        бирже. Такой код на нашем сайте применить невозможно!
+                      </the-recovery-information>
+                      <div class="field">
+                        <label for="orderform-sell_source">
+                          Заплатить с этой карты 65
+                        </label>
+                        <span class="form-group">
+                          <input
+                            class="autofill"
+                            type="text"
+                            id="orderform-sell_source"
+                            name="OrderForm[sell_source]"
+                            placeholder="0000 0000 0000 0000"
+                          />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="field">
+                        <label for="orderform-sell_target">
+                          Зачислить на этот счёт
+                        </label>
+
+                        <span class="form-group">
+                          <input
+                            class="autofill"
+                            type="text"
+                            id="orderform-sell_target"
+                            name="OrderForm[sell_target]"
+                            placeholder="0000 0000 0000 0000"
+                          />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <div class="field">
+                        <label for="orderform-first_name">
+                          Имя держателя карты
+                        </label>
+                        <span class="form-group">
+                          <input
+                            class="autofill"
+                            type="text"
+                            id="orderform-first_name"
+                            name="OrderForm[first_name]"
+                            placeholder="Василий"
+                          />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="field">
+                        <label for="orderform-first_name">
+                          Фамилия держателя карты
+                        </label>
+                        <span class="form-group">
+                          <input
+                            class="autofill"
+                            type="text"
+                            id="orderform-last_name"
+                            name="OrderForm[last_name]"
+                            placeholder="Петров"
+                          />
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <div class="field">
+                        <label for="orderform-phone"> Номер телефона </label>
+                        <span class="form-group">
+                          <input
+                            type="text"
+                            id="orderform-phone"
+                            name="OrderForm[phone]"
+                            placeholder="+380500123456"
+                            required
+                          />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="field">
+                        <label for="exchange_mail"> Электронная почта </label>
+                        <span class="form-group">
+                          <input
+                            type="text"
+                            id="exchange_mail"
+                            name="OrderForm[email]"
+                            placeholder="you@gmail.com"
+                            required
+                            aria-required="true"
+                          />
+                          <the-question-information></the-question-information>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <div class="field">
+                        <label for="orderform-buy_target">
+                          Зачислить на этот адрес
+                        </label>
+                        <span class="form-group">
+                          <input
+                            type="text"
+                            id="orderform-buy_target"
+                            name="OrderForm[buy_target]"
+                          />
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="item"
+                      v-if="currencyModel.isCrypt(sellCurrency.id)"
+                    >
+                      <div class="checkbox">
+                        <input
+                          type="checkbox"
+                          id="orderform-of_exchange"
+                          name="OrderForm[of_exchange]"
+                          value="1"
+                          @click="setOfExchange"
+                        />
+                        <label class="label" for="orderform-of_exchange">
+                          Отправляю с биржи
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="line"></div>
+                  <div class="items__wrapper">
+                    <div class="item">
+                      <div class="field">
+                        <label> {{ $t("city") }}</label>
+                        <div class="custom-select">
+                          <button
+                            type="button"
+                            class="select form-group"
+                            @click="openSelect"
+                          >
+                            <span class="select-name">
+                              <template
+                                v-if="selectName !== null && selectName !== undefined"
+                              >
+                                {{ selectName }}
+                              </template>
+                              <template v-else> {{ $t("city") }} </template>
+                            </span>
+                            <icon-arrow></icon-arrow>
+                            <input
+                              type="hidden"
+                              class="select-value"
+                              :value="calculateData.primary_city_id"
+                            />
+                          </button>
+                          <ul class="options">
+                            <li
+                              @click="selectOptions"
+                              v-for="(option, id) in selectCity"
+                              :value="id"
+                            >
+                              {{ option }}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="field">
+                        <label> {{ $t("city") }}</label>
+                        <div class="custom-select">
+                          <button
+                            type="button"
+                            class="select form-group"
+                            @click="openSelect"
+                          >
+                            <span class="select-name">
+                              <template
+                                v-if="selectName !== null && selectName !== undefined"
+                              >
+                                {{ selectName }}
+                              </template>
+                              <template v-else> {{ $t("city") }} </template>
+                            </span>
+                            <icon-arrow></icon-arrow>
+                            <input
+                              type="hidden"
+                              class="select-value"
+                              :value="calculateData.primary_city_id"
+                            />
+                          </button>
+                          <ul class="options">
+                            <li
+                              @click="selectOptions"
+                              v-for="(option, id) in calculateData.dropDownCities"
+                              :value="id"
+                            >
+                              {{ option }}
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="field">
+                        <label for="orderform-telegram">Telegram</label>
+                        <span class="form-group">
+                          <input
+                            type="text"
+                            id="orderform-telegram"
+                            name="OrderForm[telegram]"
+                            placeholder="@username"
+                            required
+                          />
+                        </span>
+                      </div>
+                    </div>
+                    <div class="line"></div>
+                    <div class="animation-border">
+                      <span
+                        class="border"
+                        :class="{'border--red': isBorderActive }"
+                      ></span>
+                      <div class="box">
+                        <div class="checkbox" id="orderform-of_exchange">
+                          <input
+                            type="checkbox"
+                            name="OrderForm[agree]"
+                            id="orderform-agree"
+                            @click="confirmChecked"
+                          />
+                          <label class="label" for="orderform-agree">
+                            <span>
+                              Нажимая на кнопку, я подтверждаю, что я
+                              ознакомился и согласен с условиями
+                              <a href="https://makeup.7money.co/page/security"
+                                >Безопасности</a
+                              >
+                              и
+                              <a href="https://makeup.7money.co/page/agreement"
+                                >Соглашением сайта</a
+                              >
+                            </span>
                           </label>
                         </div>
                       </div>
                     </div>
-                    <div class="line"></div>
-                    <div class="items__wrapper">
-                      <div class="item">
-                        <div class="field">
-                          <label> {{ $t("city") }}</label>
-                          <div class="custom-select">
-                            <button
-                              type="button"
-                              class="select form-group"
-                              @click="openSelect"
-                            >
-                              <span class="select-name">
-                                <template
-                                  v-if="selectName !== null && selectName !== undefined"
-                                >
-                                  {{ selectName }}
-                                </template>
-                                <template v-else> {{ $t("city") }} </template>
-                              </span>
-                              <icon-arrow></icon-arrow>
-                              <input
-                                type="hidden"
-                                class="select-value"
-                                :value="calculateData.primary_city_id"
-                              />
-                            </button>
-                            <ul class="options">
-                              <li
-                                @click="selectOptions"
-                                v-for="(option, id) in selectCity"
-                                :value="id"
-                              >
-                                {{ option }}
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <div class="field">
-                          <label> {{ $t("city") }}</label>
-                          <div class="custom-select">
-                            <button
-                              type="button"
-                              class="select form-group"
-                              @click="openSelect"
-                            >
-                              <span class="select-name">
-                                <template
-                                  v-if="selectName !== null && selectName !== undefined"
-                                >
-                                  {{ selectName }}
-                                </template>
-                                <template v-else> {{ $t("city") }} </template>
-                              </span>
-                              <icon-arrow></icon-arrow>
-                              <input
-                                type="hidden"
-                                class="select-value"
-                                :value="calculateData.primary_city_id"
-                              />
-                            </button>
-                            <ul class="options">
-                              <li
-                                @click="selectOptions"
-                                v-for="(option, id) in calculateData.dropDownCities"
-                                :value="id"
-                              >
-                                {{ option }}
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="item">
-                        <div class="field">
-                          <label for="orderform-telegram">Telegram</label>
-                          <span class="form-group">
-                            <input
-                              type="text"
-                              id="orderform-telegram"
-                              name="OrderForm[telegram]"
-                              placeholder="@username"
-                              required
-                            />
-                          </span>
-                        </div>
-                      </div>
-                      <div class="line"></div>
-                      <div class="animation-border">
-                        <span
-                          class="border"
-                          :class="{'border--red': isBorderActive }"
-                        ></span>
-                        <div class="box">
-                          <div class="checkbox" id="orderform-of_exchange">
-                            <input
-                              type="checkbox"
-                              name="OrderForm[agree]"
-                              id="orderform-agree"
-                              @click="confirmChecked"
-                            />
-                            <label class="label" for="orderform-agree">
-                              <span>
-                                Нажимая на кнопку, я подтверждаю, что я
-                                ознакомился и согласен с условиями
-                                <a href="https://makeup.7money.co/page/security"
-                                  >Безопасности</a
-                                >
-                                и
-                                <a
-                                  href="https://makeup.7money.co/page/agreement"
-                                  >Соглашением сайта</a
-                                >
-                              </span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <button
-                        id="order-submit"
-                        class="button disabled"
-                        disabled="disabled"
-                      >
-                        Обменять
-                      </button>
-                    </div>
-                  </form>
-                  <strong v-show="isCalculateData === false" class="warning">
-                    Выбранное вами направление обмена в данный момент недоступно
-                  </strong>
-                  <!--Конец Формы-->
-                </div>
-                <the-information
-                  v-if="calculateData.course_seo_text"
-                  v-html="calculateData.course_seo_text"
-                >
-                </the-information>
+                    <button
+                      id="order-submit"
+                      class="button disabled"
+                      disabled="disabled"
+                    >
+                      Обменять
+                    </button>
+                  </div>
+                </form>
+                <strong v-show="isCalculateData === false" class="warning">
+                  Выбранное вами направление обмена в данный момент недоступно
+                </strong>
+                <!--Конец Формы-->
               </div>
-            </transition>
+              <the-information
+                v-if="calculateData.course_seo_text"
+                v-html="calculateData.course_seo_text"
+              >
+              </the-information>
+            </div>
           </div>
           <!--Success-->
           <the-achievements>

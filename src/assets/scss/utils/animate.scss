@@ -1,3 +1,12 @@
+@keyframes animate-details {
+  0% {
+    right: 0;
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
 @keyframes button {
   0% {
     left: -40px;
@@ -131,28 +140,6 @@
 .animate-right-leave-to {
   transform: translateX(-10px);
   opacity: 0;
-}
-
-//index
-.details-hide-enter-active,
-.details-hide-leave-active {
-  transition: all 0.5s ease;
-  width: 100% !important;
-  @include _768 {
-    width: auto !important;
-    transition: all 0.4s ease;
-  }
-}
-
-.details-hide-enter-from,
-.details-hide-leave-to {
-  opacity: 0;
-  width: 0 !important;
-  overflow: hidden;
-  right: 0;
-  @include _768 {
-    right: auto;
-  }
 }
 
 .slide-up-enter-active,

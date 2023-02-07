@@ -121,12 +121,12 @@
   }
 
   & > span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
+    line-height: 19.6px;
   }
 
   & strong {
+    display: contents;
+    word-break: break-all;
     color: var(--quaternary);
   }
 

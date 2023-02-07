@@ -9,11 +9,7 @@
   }
 
   .background--large {
-    background: transparent;
-
-    &:before {
-      display: none;
-    }
+    display: none;
   }
 }
 
@@ -43,6 +39,9 @@
     background-size: cover;
     z-index: 0;
   }
+  & .header {
+    background: transparent;
+  }
 }
 
 .d-none {
@@ -59,6 +58,7 @@
 }
 
 .background--large {
+  position: relative;
   &:before {
     content: "";
     position: absolute;
@@ -69,8 +69,14 @@
     z-index: 0;
   }
 }
+.status--in-progress {
+  color: var(--light-green);
+}
 
-.status-completed,
+.status--new {
+  color: var(--grey);
+}
+.status--completed,
 .text--green {
   color: var(--primary);
 }
@@ -83,7 +89,7 @@
   color: var(--blue);
 }
 
-.status-failed,
+.status--failed,
 .text--red {
   color: var(--red);
 }

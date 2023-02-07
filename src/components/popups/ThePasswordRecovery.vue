@@ -50,6 +50,10 @@ export default {
       this.$emit("close");
     },
   },
+  mounted() {
+    this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+    this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
+  },
 };
 </script>
 
