@@ -12,10 +12,16 @@ export default {
 
 <style lang="scss">
 .show-more__currencies {
+  padding: 8px;
   font-size: 14px;
-  padding-top: 5px;
   color: var(--primary);
   font-weight: 500;
   width: 100%;
+  transition: var(--transition);
+  border-radius: 0 0 var(--radius-four) var(--radius-four);
+  &:hover {
+    background: var(--primary);
+    color: var(--secondary);
+  }
 }
 </style>

@@ -3,7 +3,7 @@
     class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideSell }"
   >
-    <div v-if="currenciesHideSell">
+    <div class="information-block" v-if="currenciesHideSell">
       <the-title tag="h2" class="subtitle">{{ $t("theGive") }} </the-title>
       <the-filters :group-id="getSellCurrencyGroupId" type="sell">
       </the-filters>
@@ -69,11 +69,15 @@ export default {
     transition: all 0.5s ease;
     max-width: 340px;
     height: max-content;
-    padding: 16px;
     flex: 1;
 
     & .line {
+      border: 1px solid var(--secondary);
       margin-bottom: 10px;
+    }
+    & .information-block {
+      overflow: hidden;
+      padding: 16px 16px 0 16px;
     }
   }
 

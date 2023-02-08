@@ -3,14 +3,21 @@
   flex-direction: column;
   row-gap: 20px;
   width: 100%;
+
   &-animate {
     @media (min-width: 769px) {
       animation: animate-details 500ms ease-in-out;
     }
   }
+
+  & .line {
+    border: 1px solid var(--secondary);
+  }
+
   & .warning {
     color: var(--quaternary);
   }
+
   &__wrapper {
     position: relative;
     display: flex;

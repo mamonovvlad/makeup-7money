@@ -13,7 +13,7 @@
           name-type="mail"
           name-id="passwordRecovery_mail"
           name="PasswordResetRequestForm[email]"
-          name-placeholder="tolik.wwwww@ukr.net"
+          name-placeholder="user@gmail.com"
         >
           <template #label> E-mail</template>
         </the-field>

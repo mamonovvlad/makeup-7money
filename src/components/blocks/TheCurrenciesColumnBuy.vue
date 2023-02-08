@@ -5,7 +5,7 @@
     class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideBuy }"
   >
-    <div v-if="currenciesHideBuy">
+    <div class="information-block" v-if="currenciesHideBuy">
       <div class="elements__wrapper">
         <div class="elements__wrapper">
           <the-big-button

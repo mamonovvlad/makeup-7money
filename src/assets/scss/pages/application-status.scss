@@ -121,11 +121,12 @@
   }
 
   & > span {
-    line-height: 19.6px;
+    & svg {
+      vertical-align: bottom;
+    }
   }
 
   & strong {
-    display: contents;
     word-break: break-all;
     color: var(--quaternary);
   }

@@ -53,7 +53,6 @@ export default {
   justify-content: space-between;
   margin: 22px 0 0;
   padding-bottom: 10px;
-  overflow: hidden;
   @include _768 {
     margin: 12px 0 0;
     flex-wrap: wrap;
@@ -66,6 +65,12 @@ export default {
     cursor: pointer;
     transition: box-shadow 400ms ease;
     font-weight: 500;
+    &:hover {
+      box-shadow: var(--shadow);
+      color: var(--primary);
+      font-weight: 500;
+      border-radius: var(--radius-four);
+    }
   }
 }
 

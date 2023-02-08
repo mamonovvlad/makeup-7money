@@ -137,7 +137,6 @@ export default {
     &::-webkit-scrollbar {
       width: 4px;
     }
-
     & .item {
       position: relative;
       display: flex;
@@ -158,7 +157,10 @@ export default {
         }
       }
     }
-
+    & .active {
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
     & .active-currency {
       box-shadow: var(--shadow-inset);
       background: var(--primary-transition);
@@ -192,7 +194,9 @@ export default {
     display: flex;
     flex-direction: column;
     grid-gap: 4px;
-
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 8px;
     &[data-filter="CASH"] li,
     &[data-filter="UAH"] li,
     &[data-filter="RUB"] li,

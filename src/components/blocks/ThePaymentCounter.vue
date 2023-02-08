@@ -201,6 +201,7 @@ export default {
     font-weight: 700;
     border-radius: var(--radius-four);
     overflow: hidden;
+    z-index: 1;
   }
 
   & li {

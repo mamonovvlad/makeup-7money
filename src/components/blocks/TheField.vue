@@ -146,7 +146,7 @@ export default {
     box-shadow: var(--shadow-inset-error);
 
     & .help-block {
-      padding: 2px 4px;
+      padding: 0 4px;
     }
 
     &:hover {
