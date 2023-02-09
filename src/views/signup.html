@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Восстановления пароля</title>
+    <title>Вход</title>
     <meta name="csrf-param" content="_csrf" />
     <meta name="csrf-token" content="He8Y" />
   </head>
@@ -21,13 +21,51 @@
         <div class="line"></div>
         <main>
           <the-title-big>
-            <template #title>Восстановления пароля</template>
-            <template #description>Пожалуйста, введите новый пароль:</template>
+            <template #title>Регистрация</template>
+            <template #description>
+              Пожалуйста, заполните следующие поля для регистрации:
+            </template>
           </the-title-big>
           <div class="container">
             <form action="" method="post">
               <input type="hidden" :value="csrfToken" :name="csrfParam" />
               <div class="small-wrapper">
+                <div class="field">
+                  <label for="entrance_mail">Имя</label>
+                  <div class="form-group">
+                    <input type="text" placeholder="Name" />
+                    <span class="help-block"></span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label for="registration_mail">Email</label>
+                  <span class="form-group">
+                    <input placeholder="user@gmail.com" />
+                    <div class="question-information">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 32 32"
+                      >
+                        <path
+                          d="M13.774 26.028a2.06 2.06 1080 1 0 4.12 0 2.06 2.06 1080 1 0-4.12 0zm5.69-7.776c2.898-1.596 4.37-3.91 4.37-6.876 0-5.094-4.018-7.376-8-7.376-3.878 0-8 2.818-8 8.042a2 2 0 1 0 4 0c0-2.778 2.074-4.042 4-4.042 1.494 0 4 .438 4 3.376 0 1.042-.274 2.258-2.298 3.374-1.376.754-3.702 2.712-3.702 5.25a2 2 0 1 0 4 0c0-.372.79-1.286 1.63-1.748z"
+                          fill="currentColor"
+                        ></path>
+                      </svg>
+                      <div class="recovery-information">
+                        <p>
+                          Для сохранения ваших операций, авторизуйтесь в личном
+                          кабинете клиента.Также регистрация упростит создание
+                          заявок, вы сможете заранее ввести Ваши реквизиты для
+                          автозаполнения и создания заявки.
+                        </p>
+                        <div class="arrow"></div>
+                      </div>
+                    </div>
+                    <span class="help-block"></span>
+                  </span>
+                </div>
                 <div class="field password" data-idx="0">
                   <label for="changepasswordform-password">Пароль:</label>
                   <div class="form-group">
@@ -66,14 +104,14 @@
                   </div>
                 </div>
                 <div class="field password" data-idx="1">
-                  <label for="changepasswordform-new_password"
-                    >Подтвердите новый пароль</label
+                  <label for="changepasswordform-password"
+                    >Подтвердите Пароль:</label
                   >
                   <div class="form-group">
                     <input
                       type="password"
-                      id="changepasswordform-new_password"
-                      name="ChangePasswordForm[new_password]"
+                      id="changepasswordform-password"
+                      name="ChangePasswordForm[password]"
                       placeholder="Введите новый пароль"
                       required
                     />
@@ -101,8 +139,29 @@
                         ></path>
                       </svg>
                     </span>
-                    <div class="help-block">Error</div>
+                    <div class="help-block"></div>
                   </div>
+                </div>
+                <div class="field">
+                  <label for="registration_link">Ссылка на ID реферала</label>
+                  <span class="form-group">
+                    <input
+                      id="registration_link"
+                      type="text"
+                      name="SignupForm[referred_by]"
+                      autocomplete="off"
+                      aria-invalid="false"
+                      aria-required="false"
+                    />
+                    <span class="help-block"></span>
+                  </span>
+                </div>
+                <div class="captcha">
+                  <div
+                    class="g-recaptcha"
+                    data-lang="ru"
+                    data-sitekey="6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf"
+                  ></div>
                 </div>
                 <button class="button" type="submit">Сохранить</button>
               </div>
