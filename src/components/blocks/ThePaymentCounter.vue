@@ -5,7 +5,7 @@
         <slot name="check-status"></slot>
         <div class="countdown">
           <h4>{{ $t("timePayment") }}</h4>
-          <div class="clock"></div>
+          <slot name="clock"></slot>
         </div>
         <slot name="information"></slot>
         <the-button
@@ -189,6 +189,11 @@ export default {
     & h4 {
       text-align: center;
       margin-top: 15px;
+    }
+
+    & .attention {
+      color: var(--quaternary);
+      margin-top: 10px;
     }
   }
 }

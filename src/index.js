@@ -22,6 +22,7 @@ import TheReserves from "./components/sections/TheCurrencyReserves.vue";
 import TheAchievements from "./components/sections/TheAchievements.vue";
 import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
 //Blocks
+import TheConfetti from "./components/blocks/TheConfetti.vue";
 import TheTitleDetails from "./components/blocks/TheTitleDetails.vue";
 import TheCustomSelect from "./components/blocks/TheCustomSelect.vue";
 import ThePublicInformation from "./components/blocks/ThePublicInformation.vue";
@@ -99,6 +100,7 @@ createApp({
     TheLinks,
     TheCheckStatus,
     //Blocks
+    TheConfetti,
     TheTitleDetails,
     TheCustomSelect,
     TheQuestionInformation,

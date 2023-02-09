@@ -17,13 +17,21 @@
         <main class="payment">
           <div class="container">
             <div class="stylish-wrapper">
-              <the-payment-counter data-seconds="1800">
+              <the-payment-counter data-seconds="6">
                 <template #check-status>
                   <the-button tag="a" href="/" target="_blank">
                     <template #name>
                       Проверить статус операции в новом окне
                     </template>
                   </the-button>
+                </template>
+                <template #clock>
+                  <div class="clock"></div>
+                  <div class="attention d-none">
+                    Уважаемый клиент время на оплату истекло, если вы отправили
+                    средства по истечению таймера, Ваша заявка будет пересчитана
+                    по актуальному курсу на данный момент
+                  </div>
                 </template>
                 <template #information>
                   <div class="line"></div>
@@ -375,7 +383,10 @@
           clockFace: "DailyCounter",
           autoStart: false,
           callbacks: {
-            stop: function () {},
+            stop: function () {
+              document.querySelector(".clock").classList.add("d-none");
+              document.querySelector(".attention").classList.remove("d-none");
+            },
           },
         });
         clock.setTime(+time); //Устанавливаем нужное время в секундах
