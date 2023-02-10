@@ -158,7 +158,7 @@ export default {
       opacity: 1;
       position: relative;
       z-index: 1;
-      transition: width 0.4s, opacity 0.4s ease-in-out;
+      transition: width 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
     }
 
     & .title {

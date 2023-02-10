@@ -14,13 +14,15 @@
           <component
             :is="button.block"
             @open="indexTransfer"
-            @hideBurger="hideBurger(idx)"
             v-show="button.isActive"
           >
           </component>
         </transition>
       </span>
     </div>
+    <transition name="slide-fade">
+      <the-burger @hideBurger="isBurger = false" v-if="isBurger"></the-burger>
+    </transition>
   </div>
 </template>
 
@@ -40,6 +42,7 @@ export default {
   data() {
     return {
       index: null,
+      isBurger: false,
       buttons: [
         {
           id: 0,
@@ -65,9 +68,6 @@ export default {
         {
           id: 3,
           icon: "icon-burger",
-          block: "the-burger",
-          isActive: false,
-          animate: "slide-fade",
         },
       ],
     };
@@ -89,20 +89,17 @@ export default {
       for (let i = 0; i < this.buttons.length; i++) {
         this.buttons[i].isActive = false;
       }
-
       if (this.index === idx) {
         this.buttons[idx].isActive = false;
         this.index = null;
+      } else if (idx === 3) {
+        this.isBurger = true;
       } else {
         this.buttons[idx].isActive = true;
         this.index = idx;
       }
     },
 
-    hideBurger(idx) {
-      this.buttons[idx].isActive = false;
-      this.index = null;
-    },
     hideMenu(e) {
       let target = e.target;
       if (!target.classList.contains("btn")) {
@@ -135,7 +132,7 @@ export default {
 
   &:hover {
     & .icon {
-      box-shadow: var(--shadow-inset);
+      box-shadow: var(--shadow-primary-inset);
     }
   }
 
@@ -148,6 +145,7 @@ export default {
     height: 100%;
     background: var(--seventh);
     transition: all 0.3s ease;
+    z-index: 1;
   }
 
   & .btn {
@@ -212,7 +210,9 @@ export default {
 
     & .button__share {
       height: 300px;
-      z-index: 1;
+      @include _768 {
+        height: 285px;
+      }
     }
 
     & .languages {

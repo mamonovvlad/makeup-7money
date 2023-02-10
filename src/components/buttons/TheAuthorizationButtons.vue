@@ -52,10 +52,10 @@ export default {
   background-color: var(--seventh);
   border-radius: var(--radius-four);
   box-shadow: var(--shadow);
-  padding: 15px;
+  padding: 8px;
   top: 70px;
   left: 0;
-  text-align: left;
+  width: max-content;
   z-index: 1;
   @include _768 {
     top: 55px;
@@ -71,16 +71,24 @@ export default {
   }
 
   & button,
-  a {
+  & a {
     background-color: var(--transparent);
     font-size: 18px;
     font-weight: 500;
     display: block;
     text-decoration: none;
-    width: max-content;
     line-height: 140%;
+    width: 100%;
+    padding: 2px 8px;
+    transition: var(--transition);
+    border-radius: var(--radius-four);
+    text-align: left;
     @include _768 {
       font-size: 16px;
+    }
+
+    &:hover {
+      box-shadow: var(--shadow-inset);
     }
   }
 }

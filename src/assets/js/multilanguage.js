@@ -76,7 +76,7 @@ const i18n = createI18n({
       //ThePaymentCounter
       timePayment: "Осталось времени на оплату",
       //TheShareSocialNetworks
-      shareSocialNetworks: "Поделиться с друзяьми в соц сетях:",
+      shareSocialNetworks: "Наши социальные сети:",
       //TheErrorButtons
       register: "Зарегистрироваться",
       return: "Вернуться на главную",
@@ -190,7 +190,7 @@ const i18n = createI18n({
       //ThePaymentCounter
       timePayment: "Залишилося часу на оплату",
       //TheShareSocialNetworks
-      shareSocialNetworks: "Поділитися з друзями в соціальних мережах:",
+      shareSocialNetworks: "Наші соціальні мережі:",
       //TheErrorButtons
       register: "Зареєструватися",
       return: "Повернутися на головну",
@@ -304,7 +304,7 @@ const i18n = createI18n({
       //ThePaymentCounter
       timePayment: "Time left for payment",
       //TheShareSocialNetworks
-      shareSocialNetworks: "Share with friends on social networks",
+      shareSocialNetworks: "Our social networks:",
       //TheErrorButtons
       register: "Register now",
       return: "Go back to the main page",

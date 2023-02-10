@@ -62,7 +62,6 @@ const store = createStore({
   }, //Хранения данных
   mutations: {
     viewPassword(state, idx) {
-      console.log("1");
       let pas = document.querySelectorAll(".password");
       pas.forEach((item) => {
         if (item.getAttribute("data-idx") === String(idx)) {

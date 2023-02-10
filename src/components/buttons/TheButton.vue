@@ -58,13 +58,17 @@ $baby-blue: #f8faff;
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  transition: var(--transition);
+  box-shadow: var(--shadow-primary);
   @include _1200 {
     font-size: 16px;
   }
   @include _768 {
     font-size: 14px;
   }
-
+  &:hover {
+    box-shadow: var(--shadow-primary-inset);
+  }
   &:after {
     content: "";
     position: absolute;
@@ -95,6 +99,12 @@ $baby-blue: #f8faff;
     background: transparent;
     border: 2px solid var(--ternary);
     color: var(--ternary);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    &:hover,
+    &:active {
+      box-shadow: var(--shadow-inset);
+    }
   }
 
   &--border {

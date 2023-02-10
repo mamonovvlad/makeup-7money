@@ -164,6 +164,15 @@
   flex-direction: column;
   gap: 15px;
   color: var(--quaternary);
+
+  & ul {
+    margin-left: 20px;
+    list-style: disc;
+
+    & li {
+      line-height: 19.6px;
+    }
+  }
 }
 
 .elements__wrapper {
