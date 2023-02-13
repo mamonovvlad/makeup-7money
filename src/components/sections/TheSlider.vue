@@ -67,8 +67,9 @@ export default {
 
   & .wrapper {
     position: relative;
-    min-width: 190px;
+    transition: var(--transition);
     flex: 1;
+    min-width: 190px;
 
     & .title {
       text-transform: capitalize;
@@ -86,6 +87,7 @@ export default {
   & .items {
     border-radius: var(--radius-eigh);
     background: var(--secondary);
+    width: 190px;
   }
 
   & .item {
@@ -96,6 +98,7 @@ export default {
     text-decoration: none;
     position: relative;
     height: 100px;
+    overflow: hidden;
 
     &:after {
       content: "";
@@ -171,6 +174,7 @@ export default {
       grid-template-rows: 1fr 1fr;
       grid-gap: 16px;
       background: var(--transparent);
+      width: 100%;
     }
 
     & .item {
