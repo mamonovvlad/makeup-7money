@@ -116,13 +116,11 @@ $baby-blue: #f8faff;
 
 .disabled {
   position: relative;
-  &:after {
-    content: "";
-    position: absolute;
-    cursor: not-allowed;
-    top: 0;
-    width: 100%;
-    height: 100%;
+  background: var(--ternary);
+  box-shadow: var(--shadow);
+  cursor: not-allowed;
+  &:hover {
+    box-shadow: var(--shadow-inset);
   }
 }
 </style>

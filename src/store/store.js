@@ -82,6 +82,20 @@ const store = createStore({
         this.commit("disabled");
       }
     },
+    scrollToError() {
+      let checkBox = document.getElementById("orderform-agree");
+      if (checkBox && checkBox.checked === true) {
+        let hasErrors = document.querySelectorAll(".has-error");
+        if (hasErrors || hasErrors.length !== 0) {
+          hasErrors.forEach((error) => {
+            error.scrollIntoView({
+              behavior: "smooth",
+            });
+          });
+        }
+      }
+    },
+
     enabled(state) {
       let button = document.getElementById("order-submit");
       button.removeAttribute("disabled");

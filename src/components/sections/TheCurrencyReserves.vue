@@ -85,7 +85,7 @@ export default {
 
   & .block {
     padding: 0 20px;
-    border-right: 2px solid var(--secondary);
+    border-right: 2px solid var(--eleventh);
     transition: var(--transition);
     @include _1200 {
       padding: 0 12px;

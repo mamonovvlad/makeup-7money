@@ -84,14 +84,12 @@
                         </label>
                         <span class="form-group has-error">
                           <input
-                            type="text"
+                            type="number"
                             id="orderform-sell_amount"
                             name="OrderForm[sell_amount]"
-                            aria-invalid="true"
                             v-model="$store.state.sell_amount"
                             @blur="updateSellAmount"
                             @input="calculate('default')"
-                            pattern="[0-9]"
                           />
                           <span class="help-block">Error</span>
                         </span>
@@ -525,13 +523,13 @@
                             <span>
                               Нажимая на кнопку, я подтверждаю, что я
                               ознакомился и согласен с условиями
-                              <a href="https://makeup.7money.co/page/security"
-                                >Безопасности</a
-                              >
+                              <a href="https://makeup.7money.co/page/security">
+                                Безопасности
+                              </a>
                               и
-                              <a href="https://makeup.7money.co/page/agreement"
-                                >Соглашением сайта</a
-                              >
+                              <a href="https://makeup.7money.co/page/agreement">
+                                Соглашением сайта
+                              </a>
                             </span>
                           </label>
                         </div>
@@ -541,6 +539,7 @@
                       id="order-submit"
                       class="button disabled"
                       disabled="disabled"
+                      @click="scrollToError"
                     >
                       Обменять
                     </button>

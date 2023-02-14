@@ -72,7 +72,6 @@ export default {
     flex: 1;
 
     & .line {
-      border: 1px solid var(--secondary);
       margin-bottom: 10px;
     }
     & .information-block {

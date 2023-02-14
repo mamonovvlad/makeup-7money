@@ -1,3 +1,10 @@
+[data-theme="dark"] {
+  .contest-rules__terms,
+  .contest-advantages .description {
+    background: var(--light-green);
+  }
+}
+
 .contest-advantages,
 .contest-rules {
   margin-bottom: 20px;

@@ -204,6 +204,7 @@ createApp({
       "selectOptions",
       "confirmChecked",
       "viewPassword",
+      "scrollToError",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
