@@ -48,6 +48,7 @@ export default {
   name: "ThePaymentCounter",
   data() {
     return {
+      updateKey: 0,
       isActive: false,
       isShowWindow: false,
       isShowPreloader: false,

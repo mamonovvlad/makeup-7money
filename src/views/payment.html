@@ -17,7 +17,13 @@
         <main class="payment">
           <div class="container">
             <div class="stylish-wrapper">
-              <the-payment-counter data-seconds="1800">
+              <the-payment-counter
+                class="counter-info"
+                data-seconds="1800"
+                data-time="1800"
+                data-created="1800"
+                data-start-seconds="1800"
+              >
                 <template #check-status>
                   <the-button tag="a" href="/" target="_blank">
                     <template #name>
@@ -377,21 +383,32 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const counter = document.querySelector(".counter");
-        let time = counter.getAttribute("data-seconds");
-        let clock = $(".clock").FlipClock({
-          clockFace: "DailyCounter",
-          autoStart: false,
-          callbacks: {
-            stop: function () {
-              document.querySelector(".clock").classList.add("d-none");
-              document.querySelector(".attention").classList.remove("d-none");
+        function counter() {
+          const counter = document.querySelector(".counter-info");
+          let time = counter.getAttribute("data-seconds");
+          let clock = $(".clock").FlipClock({
+            clockFace: "DailyCounter",
+            autoStart: false,
+            callbacks: {
+              stop: function () {
+                document.querySelector(".clock").classList.add("d-none");
+                document.querySelector(".attention").classList.remove("d-none");
+              },
             },
-          },
+          });
+          clock.setTime(+time); //Устанавливаем нужное время в секундах
+          clock.setCountdown(true); //Устанавливаем отсчет времени назад
+          clock.start(); //Запускаем отсчет
+        }
+        counter();
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) {
+            console.log("Вкладка не активна");
+          } else {
+            console.log("1");
+            counter();
+          }
         });
-        clock.setTime(+time); //Устанавливаем нужное время в секундах
-        clock.setCountdown(true); //Устанавливаем отсчет времени назад
-        clock.start(); //Запускаем отсчет
       });
     </script>
   </body>
