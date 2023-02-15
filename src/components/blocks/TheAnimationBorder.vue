@@ -69,5 +69,16 @@ export default {
     );
     background-size: 200% auto;
   }
+  .border--disabled {
+    background: linear-gradient(
+      90deg,
+      var(--red) 20%,
+      var(--red) 40%,
+      var(--red) 50%,
+      var(--red) 55%,
+      var(--red) 70%,
+      var(--red)
+    );
+  }
 }
 </style>

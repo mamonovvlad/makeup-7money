@@ -93,12 +93,16 @@ const store = createStore({
             });
           });
         }
+      } else {
+        document
+          .querySelector(".form-exchange .animation-border .border")
+          .classList.add("border--disabled");
       }
     },
 
     enabled(state) {
       let button = document.getElementById("order-submit");
-      button.removeAttribute("disabled");
+      button.setAttribute("type", "submit");
       button.classList.remove("disabled");
       state.borderActive = false;
     },
@@ -106,7 +110,7 @@ const store = createStore({
       let button = document.getElementById("order-submit");
       let checkBox = document.getElementById("orderform-agree");
       checkBox.checked = false;
-      button.setAttribute("disabled", "disabled");
+      button.setAttribute("type", "button");
       button.classList.add("disabled");
       state.borderActive = true;
     },

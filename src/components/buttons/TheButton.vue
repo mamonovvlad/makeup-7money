@@ -120,7 +120,18 @@ $baby-blue: #f8faff;
   box-shadow: var(--shadow);
   color: var(--quaternary);
   cursor: not-allowed;
+  //&:before {
+  //  content: "";
+  //  position: absolute;
+  //  width: 100%;
+  //  height: 100%;
+  //  background: transparent;
+  //  z-index: 3;
+  //}
   &:hover {
+    box-shadow: var(--shadow-inset);
+  }
+  &:active {
     box-shadow: var(--shadow-inset);
   }
 }
