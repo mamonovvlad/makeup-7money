@@ -116,8 +116,9 @@ $baby-blue: #f8faff;
 
 .disabled {
   position: relative;
-  background: var(--ternary);
+  background: var(--twelfth);
   box-shadow: var(--shadow);
+  color: var(--quaternary);
   cursor: not-allowed;
   &:hover {
     box-shadow: var(--shadow-inset);

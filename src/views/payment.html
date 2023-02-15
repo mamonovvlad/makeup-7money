@@ -17,13 +17,7 @@
         <main class="payment">
           <div class="container">
             <div class="stylish-wrapper">
-              <the-payment-counter
-                class="counter-info"
-                data-seconds="1800"
-                data-time="1800"
-                data-created="1800"
-                data-start-seconds="1800"
-              >
+              <the-payment-counter data-seconds="10">
                 <template #check-status>
                   <the-button tag="a" href="/" target="_blank">
                     <template #name>
@@ -33,7 +27,7 @@
                 </template>
                 <template #clock>
                   <div class="clock"></div>
-                  <div class="attention d-none">
+                  <div class="clock-end attention d-none">
                     Уважаемый клиент время на оплату истекло, если вы отправили
                     средства по истечению таймера, Ваша заявка будет пересчитана
                     по актуальному курсу на данный момент
@@ -383,9 +377,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flipclock/0.7.8/flipclock.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        function counter() {
-          const counter = document.querySelector(".counter-info");
-          let time = counter.getAttribute("data-seconds");
+        const counter = document.querySelector(".counter");
+        let time = counter.getAttribute("data-seconds");
+        function timer() {
           let clock = $(".clock").FlipClock({
             clockFace: "DailyCounter",
             autoStart: false,
@@ -400,15 +394,28 @@
           clock.setCountdown(true); //Устанавливаем отсчет времени назад
           clock.start(); //Запускаем отсчет
         }
-        counter();
+
+        //Перезагрузка страницы
+        if (window.performance) {
+          startTimer();
+        }
+
         document.addEventListener("visibilitychange", function () {
-          if (document.hidden) {
-            console.log("Вкладка не активна");
-          } else {
-            console.log("1");
-            counter();
+          if (!document.hidden) {
+            location.reload();
+            startTimer();
           }
         });
+        function startTimer() {
+          if (time === "0") {
+            document.querySelector(".clock").classList.add("d-none");
+            document.querySelector(".clock-end").classList.remove("d-none");
+          } else {
+            timer();
+          }
+        }
+
+        startTimer();
       });
     </script>
   </body>
