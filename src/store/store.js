@@ -439,7 +439,7 @@ const store = createStore({
       this.commit("calculateCommission", "buy");
     },
     ////////////////////////////////////////
-    updateSellAmount(state) {
+    updateSellAmount(state, city = null) {
       state.type = "default";
       if (
         state.sell_amount.length <= 0 ||
@@ -512,6 +512,7 @@ const store = createStore({
     },
     sortCity(state) {
       if (state.calculateData.dropDownCities) {
+        state.city_id = Object.keys(state.calculateData.dropDownCities)[0];
         state.selectCity = Object.values(
           state.calculateData.dropDownCities
         ).sort(function (a, b) {
@@ -572,6 +573,11 @@ const store = createStore({
       e.target.parentNode.parentNode
         .querySelector(".select-value")
         .setAttribute("value", e.target.getAttribute("value"));
+      state.city_id = e.target.parentNode.parentNode
+        .querySelector(".select .select-value")
+        .getAttribute("value");
+      this.commit("updateSellAmount");
+      // this.commit("updateBuyAmount");
     },
     selectName(state) {
       state.selectName =
