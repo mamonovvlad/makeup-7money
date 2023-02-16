@@ -543,21 +543,22 @@ const store = createStore({
         if (copy.length > 0) {
           copy.forEach((el) => {
             el.addEventListener("click", (event) => {
-              let text = event.target.getAttribute("data-copy");
-              navigator.clipboard.writeText(text).then(function () {
-                event.target
-                  .querySelector(".copied")
-                  .classList.remove("d-none");
-                setTimeout(() => {
-                  event.target.querySelector(".copied").classList.add("d-none");
-                }, 1500);
-              });
+              this.commit("copy", event);
             });
           });
         }
       } catch (err) {
         throw err;
       }
+    },
+    copy(state, event) {
+      let text = event.target.getAttribute("data-copy");
+      navigator.clipboard.writeText(text).then(function () {
+        event.target.querySelector(".copied").classList.remove("d-none");
+        setTimeout(() => {
+          event.target.querySelector(".copied").classList.add("d-none");
+        }, 1500);
+      });
     },
     openSelect(state, e) {
       e.target.parentNode.classList.toggle("active");

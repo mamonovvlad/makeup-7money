@@ -23,11 +23,6 @@ export default {
 <style lang="scss">
 @import "../../assets/scss/utils/mixin";
 
-$fuschia: #ff0081;
-$button-bg: $fuschia;
-$button-text-color: #fff;
-$baby-blue: #f8faff;
-
 .button-inline {
   display: inline-flex;
   width: auto;
@@ -120,14 +115,6 @@ $baby-blue: #f8faff;
   box-shadow: var(--shadow);
   color: var(--quaternary);
   cursor: not-allowed;
-  //&:before {
-  //  content: "";
-  //  position: absolute;
-  //  width: 100%;
-  //  height: 100%;
-  //  background: transparent;
-  //  z-index: 3;
-  //}
   &:hover {
     box-shadow: var(--shadow-inset);
   }
