@@ -67,7 +67,7 @@ export default {
 @import "../../assets/scss/utils/mixin";
 
 .side-panel {
-  border-right: 2px solid var(--secondary);
+  border-right: 2px solid var(--eleventh);
   @include _768 {
     border-width: 0;
   }

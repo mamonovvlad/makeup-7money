@@ -65,7 +65,7 @@
               type="text"
               id="reservenotification-email"
               name="ReserveNotification[email]"
-              placeholder="@username"
+              placeholder="example@gmail.com"
               aria-required="true"
               required
             />
