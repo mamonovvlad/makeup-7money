@@ -85,6 +85,7 @@ export default {
   }
 
   &__links {
+    row-gap: 6px;
     margin-bottom: 40px;
     @include _992 {
       margin-bottom: 20px;
@@ -92,20 +93,6 @@ export default {
     @include _768 {
       margin-bottom: 0;
       row-gap: 15px;
-    }
-
-    & a {
-      display: flex;
-      border-radius: var(--radius-four);
-
-      & svg {
-        width: 17px;
-        margin-right: 10px;
-        color: var(--ternary);
-        @include _768 {
-          margin-right: 0;
-        }
-      }
     }
 
     & .active {
@@ -138,8 +125,27 @@ export default {
   & a {
     font-size: 18px;
     text-decoration: none;
-    padding: 14px 20px;
+    padding: 12px 20px;
     white-space: nowrap;
+    display: flex;
+    border-radius: var(--radius-four);
+    transition: var(--transition);
+    & svg {
+      width: 17px;
+      transition: var(--transition);
+      margin-right: 10px;
+      color: var(--ternary);
+      @include _768 {
+        margin-right: 0;
+      }
+    }
+    &:hover {
+      box-shadow: var(--shadow);
+      color: var(--quaternary);
+      & svg {
+        color: var(--primary);
+      }
+    }
     @include _1200 {
       font-size: 16px;
     }
