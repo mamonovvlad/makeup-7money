@@ -3,9 +3,14 @@
 }
 
 [data-theme="dark"] {
-  .main__wrapper .stylish-wrapper,
-  .slider .active .item {
-    background: #252525d6;
+  &.transparency {
+    & .stylish-wrapper,
+    & .slider .active .item {
+      background: #252525d6;
+    }
+    & .footer {
+      background: #1a1a1ad1;
+    }
   }
 
   .background--large {
@@ -175,6 +180,15 @@
   }
 }
 
+.captcha-wrapper {
+  display: flex;
+  justify-content: center;
+  & .captcha {
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
 .elements__wrapper {
   display: flex;
   align-items: center;
@@ -183,6 +197,7 @@
 }
 
 .information-wrapper,
+.captcha-wrapper,
 .list-wrapper {
   padding: 60px 0;
   @include _768 {

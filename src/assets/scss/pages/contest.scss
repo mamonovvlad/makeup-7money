@@ -1,5 +1,6 @@
 [data-theme="dark"] {
   .contest-rules__terms,
+  .contest-rules span,
   .contest-advantages .description {
     background: var(--light-green);
   }
@@ -40,7 +41,7 @@
   & ul {
     display: flex;
     flex-direction: column;
-    row-gap: 15px;
+    row-gap: 10px;
   }
 
   & li {
@@ -52,8 +53,18 @@
 
   & span {
     font-weight: 500;
-    margin-right: 5px;
     color: var(--quaternary);
+    background: var(--secondary);
+    width: 24px;
+    height: 24px;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    @include _768 {
+      font-size: 14px;
+    }
   }
 }
 

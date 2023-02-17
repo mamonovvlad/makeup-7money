@@ -1,7 +1,7 @@
 <template>
   <section class="links stylish-wrapper" v-if="showHideBlock">
     <div class="items" :class="{ active: showLinks }">
-      <a v-for="(link,idx) in links" :key="idx" :href="link.url">
+      <a v-for="(link, idx) in links" :key="idx" :href="link.url">
         <span v-if="getLanguage === 'en'">{{ link.name_en }}</span>
         <span v-else-if="getLanguage === 'ua'">{{ link.name_ua }}</span>
         <span v-else>{{ link.name_ru }}</span>
@@ -36,9 +36,14 @@ export default {
   },
   methods: {
     getLinks() {
-      axios.get(process.env.PROXY2 + "/v1/course/links?access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json").then((res) => {
-        this.links = res.data;
-      });
+      axios
+        .get(
+          process.env.PROXY2 +
+            "/v1/course/links?access-token=EFjko3OineBf8RQCth33wpC0dZqM4CyO&_format=json"
+        )
+        .then((res) => {
+          this.links = res.data;
+        });
     },
   },
   mounted() {
@@ -54,7 +59,7 @@ export default {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 20px 20px 10px;
+  padding: 20px 20px 4px;
 
   & .items {
     display: grid;
@@ -79,14 +84,17 @@ export default {
   }
 
   & button {
-    max-width: max-content;
+    border-radius: var(--radius-four);
+    padding: 4px 10px;
+    min-width: 100px;
     align-self: center;
     margin-top: 5px;
     background-color: var(--transparent);
     transition: var(--transition);
 
     &:hover {
-      color: var(--primary);
+      background: var(--primary);
+      color: var(--secondary);
     }
   }
 

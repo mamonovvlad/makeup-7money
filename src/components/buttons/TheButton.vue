@@ -101,12 +101,6 @@ export default {
       box-shadow: var(--shadow-inset);
     }
   }
-
-  &--border {
-    color: var(--primary);
-    background: transparent;
-    border: 2px solid var(--primary);
-  }
 }
 
 .disabled {
