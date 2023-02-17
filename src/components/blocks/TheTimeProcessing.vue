@@ -3,10 +3,10 @@
     <figure>
       <icon-time-processing></icon-time-processing>
     </figure>
-    <p>
-      {{ $t("timeProcessing") }}
-      {{ $t("attention") }}
-    </p>
+    <div>
+      <p>{{ $t("timeProcessing") }}</p>
+      <p>{{ $t("attention") }}</p>
+    </div>
   </div>
 </template>
 

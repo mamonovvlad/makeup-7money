@@ -8,7 +8,7 @@
         </div>
         <div class="contest-advantages__item">
           <span class="counter-title">{{ hours }}:</span>
-          <span class="counter-description">{{ $t("days") }}</span>
+          <span class="counter-description">{{ $t("hours") }}</span>
         </div>
         <div class="contest-advantages__item">
           <span class="counter-title">{{ minutes }}:</span>

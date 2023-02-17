@@ -65,6 +65,7 @@ export default {
 
   & .wrapper {
     max-width: 1000px;
+    width: 100%;
     display: flex;
     align-items: center;
   }
