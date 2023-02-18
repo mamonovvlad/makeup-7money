@@ -420,38 +420,20 @@
                   <div class="line"></div>
                   <div class="items__wrapper">
                     <div class="item">
+                      <label> {{ $t("city") }}</label>
                       <div class="field">
-                        <label> {{ $t("city") }}</label>
-                        <div class="custom-select">
-                          <button
-                            type="button"
-                            class="select form-group"
-                            @click="openSelect"
+                        <div class="form-group">
+                          <select
+                            name="OrderForm[city_id]"
+                            id="orderform-city_id"
+                            @change="setCityId($event)"
                           >
-                            <span class="select-name">
-                              <template
-                                v-if="selectName !== null && selectName !== undefined"
-                              >
-                                {{ selectName }}
-                              </template>
-                              <template v-else> {{ $t("city") }} </template>
-                            </span>
-                            <icon-arrow></icon-arrow>
-                            <input
-                              type="hidden"
-                              class="select-value"
-                              :value="calculateData.primary_city_id"
-                            />
-                          </button>
-                          <ul class="options">
-                            <li
-                              @click="selectOptions"
-                              v-for="(option, id) in selectCity"
-                              :value="id"
+                            <option
+                              v-for="(option) in calculateData.dropDownCities"
                             >
                               {{ option }}
-                            </li>
-                          </ul>
+                            </option>
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -473,11 +455,7 @@
                               <template v-else> {{ $t("city") }} </template>
                             </span>
                             <icon-arrow></icon-arrow>
-                            <input
-                              type="hidden"
-                              class="select-value"
-                              :value="calculateData.primary_city_id"
-                            />
+                            <input type="hidden" class="select-value" />
                           </button>
                           <ul class="options">
                             <li

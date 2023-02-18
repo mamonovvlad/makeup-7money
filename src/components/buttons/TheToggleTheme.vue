@@ -76,6 +76,11 @@ export default {
     height: 40px;
     transition: var(--transition);
     background: var(--transparent);
+    @include _768 {
+      padding: 10px;
+      width: 44px;
+      height: 44px;
+    }
   }
 
   & .active {

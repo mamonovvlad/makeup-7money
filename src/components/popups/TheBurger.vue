@@ -61,7 +61,7 @@ export default {
     max-width: 500px;
     width: 100%;
     padding: 20px 20px 46px 20px;
-    row-gap: 40px;
+    row-gap: 30px;
     overflow: auto;
     @include _768 {
       padding: 16px 16px 46px 16px;
@@ -115,7 +115,7 @@ export default {
 
   & .social-network {
     display: flex;
-    padding: 0 20px;
+    flex-wrap: wrap;
     column-gap: 20px;
 
     & a {

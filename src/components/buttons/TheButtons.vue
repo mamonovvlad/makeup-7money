@@ -109,6 +109,9 @@ export default {
             this.index = null;
           }
         }
+        if (!target.classList.contains("burger__wrapper")) {
+          this.isBurger = false;
+        }
       }
     },
   },
@@ -133,6 +136,11 @@ export default {
   &:hover {
     & .icon {
       box-shadow: var(--shadow-primary-inset);
+    }
+    @include _768 {
+      & .icon {
+        box-shadow: unset;
+      }
     }
   }
 

@@ -187,6 +187,16 @@ createApp({
         this.calculateData.max_buy_amount > this.calculateData.min_buy_amount
       );
     },
+    getSelectedOption(sel) {
+      let opt;
+      for (let i = 0, len = sel.options.length; i < len; i++) {
+        opt = sel.options[i];
+        if (opt.selected === true) {
+          break;
+        }
+      }
+      return opt;
+    },
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
@@ -196,16 +206,13 @@ createApp({
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
-      "copyText",
       "captcha",
       "calculate",
       "calculationAmountCommission",
-      "openSelect",
-      "selectOptions",
       "confirmChecked",
       "viewPassword",
       "scrollToError",
-      "copy",
+      "setCityId",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
@@ -217,12 +224,12 @@ createApp({
       }
       return "undefined " + nameWithLang;
     },
+
     //Закрыть окно "Забыли пароль?"
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
     this.captcha();
-    this.copyText();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },

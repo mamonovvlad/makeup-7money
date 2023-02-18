@@ -26,8 +26,8 @@ export default {
   box-shadow: var(--shadow-secondary);
   transition: var(--transition);
   @include _768 {
-    width: 40px;
-    min-height: 40px;
+    width: 44px;
+    min-height: 44px;
   }
 
   &:hover {

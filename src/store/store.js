@@ -510,18 +510,6 @@ const store = createStore({
         el.innerHTML = "";
       });
     },
-    sortCity(state) {
-      if (state.calculateData.dropDownCities) {
-        state.city_id = Object.keys(state.calculateData.dropDownCities)[0];
-        state.selectCity = Object.values(
-          state.calculateData.dropDownCities
-        ).sort(function (a, b) {
-          let textA = a.toUpperCase();
-          let textB = b.toUpperCase();
-          return textA < textB ? -1 : textA > textB ? 1 : 0;
-        });
-      }
-    },
     captcha() {
       let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
       let language = document.getElementById("language");
@@ -538,29 +526,8 @@ const store = createStore({
         });
       }
     },
-    copyText() {
-      try {
-        let copy = document.querySelectorAll(".copy");
-        if (copy.length > 0) {
-          copy.forEach((el) => {
-            el.addEventListener("click", (event) => {
-              this.commit("copy", event);
-            });
-          });
-        }
-      } catch (err) {
-        throw err;
-      }
-    },
-    copy(state, event) {
-      let text = event.target.getAttribute("data-copy");
-      navigator.clipboard.writeText(text).then(function () {
-        event.target.querySelector(".copied").classList.remove("d-none");
-        setTimeout(() => {
-          event.target.querySelector(".copied").classList.add("d-none");
-        }, 1500);
-      });
-    },
+
+    ////
     openSelect(state, e) {
       e.target.parentNode.classList.toggle("active");
     },
@@ -573,17 +540,41 @@ const store = createStore({
       e.target.parentNode.parentNode
         .querySelector(".select-value")
         .setAttribute("value", e.target.getAttribute("value"));
+
       state.city_id = e.target.parentNode.parentNode
         .querySelector(".select .select-value")
         .getAttribute("value");
-      this.commit("updateSellAmount");
-      // this.commit("updateBuyAmount");
     },
     selectName(state) {
       state.selectName =
         state.calculateData.dropDownCities[state.calculateData.primary_city_id];
     },
-
+    sortCity(state) {
+      if (state.calculateData.dropDownCities) {
+        state.selectCity = Object.values(
+          state.calculateData.dropDownCities
+        ).sort(function (a, b) {
+          let textA = a.toUpperCase();
+          let textB = b.toUpperCase();
+          return textA < textB ? -1 : textA > textB ? 1 : 0;
+        });
+      }
+    },
+    /////
+    setCityId(state, e) {
+      let opt;
+      let target = e.target;
+      for (let i = 0, len = target.options.length; i < len; i++) {
+        opt = target.options[i];
+        if (opt.selected === true) {
+          break;
+        }
+      }
+      state.city_id = parseInt(opt.value);
+      state.currentTime = 60;
+      this.dispatch("calculateForm", [store.getters.getType, true, true]);
+    },
+    /////
     showRecoveryInformation() {
       let itemsWrapper = document.querySelectorAll(".items__wrapper .item");
       itemsWrapper.forEach((wrapper) => {

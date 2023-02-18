@@ -76,7 +76,10 @@
                   Perfect Money USD, вам придется подождать пока сумма получения
                   не будет равна или превышать сумму наших счетов
                 </div>
-                <p class="balance">Баланс: 0.157319 PerfectMoney USD</p>
+                <p class="balance">
+                  Баланс: <span class="text--green">0.157319</span> PerfectMoney
+                  USD
+                </p>
                 <form action="/profile/output" method="post">
                   <input type="hidden" :value="csrfToken" :name="csrfParam" />
                   <div class="stylish-wrapper">
