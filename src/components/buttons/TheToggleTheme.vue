@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       buttons,
-      index: 0,
+      index: "0",
     };
   },
   components: {
@@ -48,9 +48,9 @@ export default {
 
     definitionTheme() {
       if (localStorage.getItem("theme") === "0") {
-        this.index = 0;
+        this.index = "0";
       } else {
-        this.index = 1;
+        this.index = "1";
       }
       this.setDefinitionTheme(this.index);
     },

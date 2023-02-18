@@ -11,7 +11,11 @@
   }
 
   & .warning {
-    color: var(--quaternary);
+    font-size: 16px;
+    color: var(--red);
+    @include _768 {
+      font-size: 14px;
+    }
   }
 
   &__wrapper {

@@ -29,6 +29,7 @@ export default {
 
   & figure {
     max-width: 45px;
+    min-width: 45px;
     margin-right: 15px;
     @include _768 {
       display: none;

@@ -625,7 +625,7 @@ const store = createStore({
         .setAttribute("content", state.calculateData.course_description);
     },
     setDefinitionTheme(state, index) {
-      if (index === 0) {
+      if (index === "0") {
         state.theme = "light";
       } else {
         state.theme = "dark";

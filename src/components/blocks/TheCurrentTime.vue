@@ -61,10 +61,12 @@ export default {
 
   & .course {
     position: relative;
+    display: flex;
     color: var(--quaternary);
-    margin-left: auto;
+    justify-content: flex-end;
+    flex-wrap: nowrap;
     width: 100%;
-    min-width: 86px;
+    min-width: 94px;
     & span {
       position: absolute;
       background: var(--seventh);
