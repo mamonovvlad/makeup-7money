@@ -28,34 +28,16 @@
         </div>
         <div class="field" v-if="isCash">
           <label>{{ $t("city") }}</label>
-
-          <div class="custom-select">
-            <button type="button" class="select form-group" @click="openSelect">
-              <span class="select-name">
-                <template
-                  v-if="selectName !== null && selectName !== undefined"
-                >
-                  {{ selectName }}
-                </template>
-                <template v-else> {{ $t("city") }} </template>
-              </span>
-              <icon-arrow></icon-arrow>
-              <input
-                type="hidden"
-                class="select-value"
-                name="ReserveNotification[city_id]"
-                :value="calculateData.primary_city_id"
-              />
-            </button>
-            <ul class="options">
-              <li
-                @click="selectOptions"
-                v-for="(option, id) in calculateData.dropDownCities"
+          <div class="form-group">
+            <select name="OrderForm[city_id]" id="orderform-city_id">
+              <option
+                v-for="(city, id) in calculateData.dropDownCities"
+                :selected="calculateData.primary_city_id === id"
                 :value="id"
               >
-                {{ option }}
-              </li>
-            </ul>
+                {{ city }}
+              </option>
+            </select>
           </div>
         </div>
         <div class="field">
@@ -141,7 +123,6 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["openSelect", "selectOptions"]),
     hideBlock() {
       this.$emit("close");
     },
