@@ -6,12 +6,12 @@
         <the-burger-close @click="$emit('hideBurger')"></the-burger-close>
       </div>
       <nav>
+        <a class="button" :href="$t('menuStatus')">{{ $t("checkOpSt") }}</a>
         <a :href="$t('menuNews')">{{ $t("news") }}</a>
         <a :href="$t('menuFaq')">FAQ</a>
         <a :href="$t('menuPosts')">{{ $t("posts") }}</a>
         <a :href="$t('menuReviews')">{{ $t("reviews") }}</a>
         <a :href="$t('menuAffiliateProgram')">{{ $t("affiliateProgram") }}</a>
-        <a :href="$t('menuStatus')">{{ $t("checkOpSt") }}</a>
         <a :href="$t('menuAgreement')">{{ $t("agreement") }}</a>
         <a :href="$t('menuRules')">{{ $t("rules") }}</a>
         <a :href="$t('menuSecurity')">{{ $t("security") }}</a>
@@ -73,7 +73,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-
+    row-gap: 4px;
     & a {
       font-size: 20px;
       padding: 14px 20px;
@@ -89,6 +89,13 @@ export default {
       &:hover {
         box-shadow: var(--shadow-secondary);
         color: var(--primary);
+      }
+    }
+    & .button {
+      color: var(--sixth);
+      &:hover {
+        box-shadow: var(--shadow-primary-inset);
+        color: var(--sixth);
       }
     }
   }

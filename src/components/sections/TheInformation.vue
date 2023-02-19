@@ -46,5 +46,9 @@ export default {
   & a {
     color: var(--primary);
   }
+  & iframe {
+    width: 100%;
+    border-radius: var(--radius-four);
+  }
 }
 </style>

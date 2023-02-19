@@ -105,6 +105,8 @@ export default {
 
   & > .wrapper {
     background: var(--secondary);
+    max-width: 400px;
+    width: 100%;
     padding: 20px;
     height: 100%;
     @include _992 {

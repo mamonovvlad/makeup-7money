@@ -49,6 +49,10 @@
     & strong {
       color: var(--quaternary);
     }
+    & a {
+      color: var(--primary);
+      font-weight: 500;
+    }
   }
 
   & span {

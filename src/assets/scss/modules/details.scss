@@ -1,3 +1,9 @@
+[data-theme="dark"] {
+  .details .warning {
+    background: var(--light-green);
+  }
+}
+
 .details {
   display: flex;
   flex-direction: column;
@@ -12,7 +18,11 @@
 
   & .warning {
     font-size: 16px;
-    color: var(--red);
+    color: var(--quaternary);
+    background: var(--secondary);
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
     @include _768 {
       font-size: 14px;
     }
@@ -90,6 +100,10 @@
   & .min__max {
     display: flex;
     justify-content: space-between;
+
+    & span {
+      white-space: nowrap;
+    }
 
     & strong {
       color: var(--quaternary);

@@ -3,7 +3,7 @@
     <button
       v-for="(button, idx) in buttons"
       :key="button.id"
-      :class="{ active: index === idx }"
+      :class="{ active: index === String(idx) }"
       @click="toggle(idx, $event)"
     >
       <component :is="button.icon"></component>
