@@ -5,7 +5,6 @@
     </figure>
     <div>
       <p>{{ $t("timeProcessing") }}</p>
-      <p>{{ $t("attention") }}</p>
     </div>
   </div>
 </template>

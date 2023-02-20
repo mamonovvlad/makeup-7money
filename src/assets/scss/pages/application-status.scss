@@ -118,6 +118,8 @@
   }
   & .icon {
     color: var(--primary);
+    max-width: 21px;
+    width: 100%;
   }
   & > span {
     & svg {
@@ -125,8 +127,11 @@
     }
   }
 
+  & span {
+    line-height: 16px;
+  }
+
   & strong {
-    word-break: break-all;
     color: var(--quaternary);
   }
 

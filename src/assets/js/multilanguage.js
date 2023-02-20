@@ -5,8 +5,6 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
-      attention:
-        "Внимание: Одновременно не может существовать более одной заявки, все прошлые заявки будут перезагружены в последнюю созданную.",
       aml: "Aml Политика",
       areYouSure: "Вы уверены?",
       maximumAmount: "Максимальная сумма получения",
@@ -121,8 +119,6 @@ const i18n = createI18n({
       amlLink: "/page/aml",
     },
     ua: {
-      attention:
-        "Увага: одночасно не може існувати більше однієї заявки, всі минулі заявки будуть перезавантажені в останню створену.",
       aml: "Aml Політика",
       areYouSure: "Ви впевнені?",
       maximumAmount: "Максимальна сума отримання",
@@ -237,8 +233,6 @@ const i18n = createI18n({
       amlLink: "/ua/page/aml",
     },
     en: {
-      attention:
-        "Attention: More than one application cannot exist at the same time, all past applications will be reloaded into the last created one.",
       aml: "Aml Policy",
       areYouSure: "Are you sure?",
       maximumAmount: "Maximum amount received",

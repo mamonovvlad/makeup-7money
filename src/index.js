@@ -169,7 +169,6 @@ createApp({
       "selectName",
       "sellAmountWithDiscount",
       "buyAmountWithDiscount",
-      "selectCity",
       "isBorderActive",
     ]),
     isSellSource() {
@@ -183,19 +182,17 @@ createApp({
       return this.detailsHide;
     },
     isCalculateData() {
-      return (
-        this.calculateData.max_buy_amount > this.calculateData.min_buy_amount
-      );
-    },
-    getSelectedOption(sel) {
-      let opt;
-      for (let i = 0, len = sel.options.length; i < len; i++) {
-        opt = sel.options[i];
-        if (opt.selected === true) {
-          break;
+      if (Object.keys(this.calculateData).length > 0) {
+        if (
+          this.calculateData.max_buy_amount > this.calculateData.min_buy_amount
+        ) {
+          return true;
+        } else if (
+          this.calculateData.max_buy_amount < this.calculateData.min_buy_amount
+        ) {
+          return false;
         }
       }
-      return opt;
     },
   },
   methods: {

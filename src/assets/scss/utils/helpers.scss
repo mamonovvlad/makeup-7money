@@ -56,7 +56,9 @@
 .d-flex {
   display: flex;
 }
-
+.text-nowrap {
+  white-space: nowrap;
+}
 .scroll-y {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -180,9 +182,22 @@
   }
 }
 
+.text-wrapper {
+  display: flex;
+  align-items: flex-end;
+  column-gap: 6px;
+  & .crop {
+    @include crop-height(1);
+  }
+  & .copy {
+    margin-bottom: 3px;
+  }
+}
+
 .captcha-wrapper {
   display: flex;
   justify-content: center;
+
   & .captcha {
     width: 100%;
     max-width: 400px;

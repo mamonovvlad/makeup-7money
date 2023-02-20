@@ -1,7 +1,7 @@
 .copy {
   position: relative;
-  height: 13px;
-  width: 13px;
+  min-width: 13px;
+  max-width: 13px;
   color: var(--primary);
   display: inline-flex;
   margin-left: 4px;
