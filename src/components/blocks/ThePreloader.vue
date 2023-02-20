@@ -29,7 +29,7 @@
     margin: -75px 0 0 -75px;
     border-radius: 50%;
     border: 3px solid transparent;
-    border-top-color: var(--primary);
+    border-top-color: var(--light-green);
     animation: spin 2s linear infinite;
 
     &:before {
@@ -41,7 +41,7 @@
       bottom: 5px;
       border-radius: 50%;
       border: 3px solid transparent;
-      border-top-color: var(--primary);
+      border-top-color: var(--light-pink);
       animation: spin 3s linear infinite;
     }
 
@@ -54,7 +54,7 @@
       bottom: 15px;
       border-radius: 50%;
       border: 3px solid transparent;
-      border-top-color: var(--primary);
+      border-top-color: var(--pink);
       animation: spin 1.5s linear infinite;
     }
   }
