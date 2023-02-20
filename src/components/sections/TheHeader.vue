@@ -116,7 +116,7 @@ export default {
       column-gap: 10px;
     }
 
-    & .button {
+    & > .button {
       @include _1200 {
         display: none;
       }

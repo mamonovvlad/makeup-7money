@@ -1,7 +1,5 @@
 <template>
   <div
-    v-touch:swipe.left="swipe"
-    v-touch:swipe.right="swipe"
     class="currencies-column stylish-wrapper"
     :class="{ 'currencies-hide': !currenciesHideBuy }"
   >
@@ -86,11 +84,6 @@ export default {
   },
   methods: {
     ...mapMutations(["trashClick"]),
-    swipe() {
-      if (window.innerWidth <= 768) {
-        this.trashClick();
-      }
-    },
     toggleInformation(idx) {
       this.index = idx;
     },

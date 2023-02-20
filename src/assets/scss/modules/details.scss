@@ -108,6 +108,11 @@
 
     & strong {
       color: var(--quaternary);
+      & span {
+        @include _576 {
+          display: none;
+        }
+      }
     }
   }
 }
