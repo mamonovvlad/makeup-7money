@@ -47,8 +47,8 @@
                 <the-title-details></the-title-details>
                 <the-steps :show-button="true" :data-input="true"></the-steps>
                 <the-preloader>{{$t('preloader')}}</the-preloader>
-                <!--Форма-->
-                <form class="form-exchange" v-show="isCalculateData === true">
+                <!--Форма-->{{$store.state.isWarningForm}}
+                <form class="form-exchange" v-show="$store.state.isWarningForm">
                   <input
                     type="hidden"
                     id="orderform-sell_currency_id"
@@ -518,7 +518,7 @@
                     </button>
                   </div>
                 </form>
-                <strong v-show="isCalculateData === false" class="warning">
+                <strong v-show="!$store.state.isWarningForm" class="warning">
                   Выбранное вами направление обмена в данный момент недоступно
                 </strong>
                 <!--Конец Формы-->

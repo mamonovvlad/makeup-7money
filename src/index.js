@@ -181,19 +181,6 @@ createApp({
     isDetails() {
       return this.detailsHide;
     },
-    isCalculateData() {
-      if (Object.keys(this.calculateData).length > 0) {
-        if (
-          this.calculateData.max_buy_amount > this.calculateData.min_buy_amount
-        ) {
-          return true;
-        } else if (
-          this.calculateData.max_buy_amount < this.calculateData.min_buy_amount
-        ) {
-          return false;
-        }
-      }
-    },
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),

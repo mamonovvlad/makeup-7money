@@ -59,6 +59,7 @@ const store = createStore({
     selectName: null,
     selectCity: null,
     borderActive: false,
+    isWarningForm: false,
   }, //Хранения данных
   mutations: {
     viewPassword(state, idx) {
@@ -789,7 +790,6 @@ const store = createStore({
       if (state.sell_currency_id !== null && state.buy_currency_id === null) {
         this.dispatch("fetchBuyCurrencies");
       }
-
       if (
         isCalculate &&
         state.sell_currency_id !== null &&
@@ -902,6 +902,13 @@ const store = createStore({
         inp.value = "";
       });
     },
+    showWarningForm(state) {
+      if (Object.keys(state.calculateData).length > 0) {
+        state.isWarningForm =
+          state.calculateData.max_buy_amount >
+          state.calculateData.min_buy_amount;
+      }
+    },
   }, //Функция для изменения state
   actions: {
     calculateForm(
@@ -938,6 +945,7 @@ const store = createStore({
           commit("showRecoveryInformation");
           commit("selectName");
           commit("sortCity");
+          commit("showWarningForm");
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {

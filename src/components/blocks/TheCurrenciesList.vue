@@ -35,7 +35,7 @@
           </span>
         </span>
         <transition name="fade">
-          <span v-if="!currenciesHide" class="tippy">{{
+          <span v-show="!currenciesHide" class="tippy">{{
             currency.name_ru
           }}</span>
         </transition>
@@ -147,14 +147,8 @@ export default {
       transition: all 0.2s ease;
       cursor: pointer;
       white-space: nowrap;
-
       &:hover {
         box-shadow: var(--shadow-inset);
-        & .tippy {
-          top: -24px;
-          opacity: 1;
-          z-index: 1;
-        }
       }
     }
     & .active {

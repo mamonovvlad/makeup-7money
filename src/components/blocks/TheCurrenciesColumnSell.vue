@@ -92,6 +92,17 @@ export default {
     & .currencies-list {
       max-height: 100%;
     }
+
+    & .item:hover {
+      & .tippy {
+        top: -24px;
+        opacity: 1;
+        z-index: 1;
+        @include _992 {
+          display: none;
+        }
+      }
+    }
   }
 
   & .buttons {

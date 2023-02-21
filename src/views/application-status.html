@@ -345,7 +345,6 @@
           );
           return matches ? decodeURIComponent(matches[1]) : undefined;
         }
-
         function setCookie(name, value, options) {
           options = options || {};
 
@@ -374,7 +373,6 @@
 
           document.cookie = updatedCookie;
         }
-
         function deleteCookie(name) {
           setCookie(name, "", {
             expires: -1,
@@ -382,13 +380,10 @@
           });
         }
 
-        let close = document.querySelector(".leave-feedback .button-close");
-        if (close) {
-          close.addEventListener("click", function () {
-            document.querySelector(".leave-feedback").classList.add("d-none");
-            setCookie("leave-feedback", 1);
-          });
-        }
+        $(document).on("click", ".leave-feedback .button-close", function () {
+          document.querySelector(".leave-feedback").classList.add("d-none");
+          setCookie("leave-feedback", 1);
+        });
 
         if (window.innerWidth <= 992) {
           if (getCookie("leave-feedback") === undefined) {
