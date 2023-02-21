@@ -6,7 +6,6 @@ import store from "./store/store.js";
 
 //js src
 import i18n from "./assets/js/multilanguage.js";
-import Vue3TouchEvents from "vue3-touch-events";
 import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/currency-model.js";
 
@@ -208,8 +207,6 @@ createApp({
       }
       return "undefined " + nameWithLang;
     },
-
-    //Закрыть окно "Забыли пароль?"
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
@@ -219,6 +216,5 @@ createApp({
   },
 })
   .use(i18n)
-  .use(Vue3TouchEvents)
   .use(store)
   .mount("#app");

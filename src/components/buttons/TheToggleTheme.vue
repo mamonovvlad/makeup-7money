@@ -3,7 +3,7 @@
     <button
       v-for="(button, idx) in buttons"
       :key="button.id"
-      :class="{ active: index === String(idx) }"
+      :class="{ active: index === idx }"
       @click="toggle(idx, $event)"
     >
       <component :is="button.icon"></component>
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       buttons,
-      index: "0",
+      index: 0,
     };
   },
   components: {
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     ...mapMutations(["setDefinitionTheme"]),
-    async toggle(idx, e) {
+    async toggle(idx) {
       if (this.index !== idx) {
         this.index = idx;
         localStorage.setItem("theme", this.index);
@@ -47,11 +47,19 @@ export default {
     },
 
     definitionTheme() {
-      if (localStorage.getItem("theme") === "0") {
-        this.index = "0";
-      } else {
-        this.index = "1";
+      if (localStorage.getItem("theme") !== null) {
+        if (localStorage.getItem("theme") === "0") {
+          this.index = 0;
+        } else {
+          this.index = 1;
+        }
+      } else if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        this.index = 1;
       }
+
       this.setDefinitionTheme(this.index);
     },
   },

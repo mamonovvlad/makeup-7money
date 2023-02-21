@@ -16,7 +16,6 @@
   "license": "MIT",
   "dependencies": {
     "vue": "^3.2.31",
-    "vue3-touch-events": "^4.1.0",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
@@ -32,7 +31,6 @@
     "querystring-es3": "^0.2.1",
     "sass": "^1.53.0",
     "sass-loader": "^8.0.2",
-    "vue-debounce": "^2.6.0",
     "vue-i18n": "^9.1.10",
     "vue-loader": "^17.0.0",
     "vue-style-loader": "^4.1.3",

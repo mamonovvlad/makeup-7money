@@ -59,7 +59,7 @@ const store = createStore({
     selectName: null,
     selectCity: null,
     borderActive: false,
-    isWarningForm: false,
+    isWarningForm: true,
   }, //Хранения данных
   mutations: {
     viewPassword(state, idx) {
@@ -626,7 +626,7 @@ const store = createStore({
         .setAttribute("content", state.calculateData.course_description);
     },
     setDefinitionTheme(state, index) {
-      if (index === "0") {
+      if (index === 0) {
         state.theme = "light";
       } else {
         state.theme = "dark";
@@ -637,6 +637,9 @@ const store = createStore({
       state.buy_amount_with_discount = res.data.buy_amount_with_discount;
     },
     setCalculateForm(state, [response, refreshValue]) {
+      console.log(response);
+      state.isWarningForm =
+        +response.data.max_buy_amount > +response.data.min_buy_amount;
       state.sell_percent = response.data.sell_percent;
       state.buy_percent = response.data.buy_percent;
       state.sellCurrencies = response.data.sellCurrencies;
@@ -658,7 +661,6 @@ const store = createStore({
         state.sell_source = response.data.sell_source;
         state.buy_target = response.data.buy_target;
       }
-
       this.commit("setDocumentTitle");
       //login
       let uid = document.getElementById("uid").value;
@@ -902,13 +904,6 @@ const store = createStore({
         inp.value = "";
       });
     },
-    showWarningForm(state) {
-      if (Object.keys(state.calculateData).length > 0) {
-        state.isWarningForm =
-          state.calculateData.max_buy_amount >
-          state.calculateData.min_buy_amount;
-      }
-    },
   }, //Функция для изменения state
   actions: {
     calculateForm(
@@ -945,7 +940,7 @@ const store = createStore({
           commit("showRecoveryInformation");
           commit("selectName");
           commit("sortCity");
-          commit("showWarningForm");
+          console.log(state.isWarningForm, "2");
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {
