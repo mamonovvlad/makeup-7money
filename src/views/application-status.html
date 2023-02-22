@@ -161,7 +161,7 @@
                       Подтверждения в сети Bitcoin:
                       <strong>1 из 1 требуемого</strong>
                     </span>
-                    <span>
+                    <span class="text-wrapper">
                       <svg
                         class="icon"
                         width="21"
@@ -175,9 +175,15 @@
                           fill="currentColor"
                         />
                       </svg>
-                      Ваш TXID:
+                      <span class="text-nowrap">
+                        <span class="short-text"> Ваш TXID: </span>
+                        <span class="long-text">
+                          Bitcoin отправлен на Ваш адрес, Ваш TXID:
+                        </span>
+                      </span>
+
                       <a href="/" class="line-break">
-                        <strong>
+                        <strong class="crop">
                           f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
                         </strong>
                       </a>
@@ -207,6 +213,61 @@
                           </defs>
                         </svg>
                       </button>
+                    </span>
+                    <span class="">
+                      <svg
+                        class="icon"
+                        width="21"
+                        height="21"
+                        viewBox="0 0 21 21"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M17.0622 8.69779H16.2162H16.216V5.71801C16.216 2.56514 13.6509 0 10.498 0C7.3452 0 4.78006 2.56514 4.78006 5.71805V8.69783H3.9339C3.265 8.69783 2.72266 9.24009 2.72266 9.90903V10.6459V19.052V19.7888C2.72266 20.4577 3.26496 21 3.9339 21H10.498H17.0622C17.7311 21 18.2734 20.4577 18.2734 19.7888V19.052V10.6459V9.90903C18.2734 9.24005 17.7311 8.69779 17.0622 8.69779ZM11.7872 17.3739H9.20885L9.67032 15.175C9.23876 14.9003 8.95049 14.4208 8.95049 13.8714C8.95049 13.0167 9.6434 12.3239 10.498 12.3239C11.3527 12.3239 12.0455 13.0167 12.0455 13.8714C12.0455 14.4208 11.7573 14.9003 11.3258 15.1749L11.7872 17.3739ZM14.1758 8.69779H10.498H6.8205H6.82029V5.71801C6.82029 3.68991 8.47001 2.04023 10.498 2.04023C12.5261 2.04023 14.1758 3.68995 14.1758 5.71801V8.69779Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                      <span class=""> Ваш TXID:</span>
+
+                      <span class="">
+                        <a href="/" class="crop-text">
+                          <strong class="line-break">
+                            f2baab4e213c04a5c52abf6f4a9caf5308f2f317858f53f52a79ee40508e3b74
+                          </strong>
+                        </a>
+                        <button data-copy="A3434434075" class="copy">
+                          <span class="copied d-none">
+                            {{ $t("copied") }}
+                          </span>
+                          <svg
+                            viewBox="0 0 21 21"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12.7559 21H4.92188C3.11254 21 1.64062 19.5281 1.64062 17.7188V6.60352C1.64062 4.79418 3.11254 3.32227 4.92188 3.32227H12.7559C14.5652 3.32227 16.0371 4.79418 16.0371 6.60352V17.7188C16.0371 19.5281 14.5652 21 12.7559 21ZM4.92188 4.96289C4.01729 4.96289 3.28125 5.69893 3.28125 6.60352V17.7188C3.28125 18.6233 4.01729 19.3594 4.92188 19.3594H12.7559C13.6604 19.3594 14.3965 18.6233 14.3965 17.7188V6.60352C14.3965 5.69893 13.6604 4.96289 12.7559 4.96289H4.92188ZM19.3184 15.668V3.28125C19.3184 1.47192 17.8464 0 16.0371 0H6.93164C6.47855 0 6.11133 0.367218 6.11133 0.820312C6.11133 1.27341 6.47855 1.64062 6.93164 1.64062H16.0371C16.9417 1.64062 17.6777 2.37666 17.6777 3.28125V15.668C17.6777 16.1211 18.045 16.4883 18.498 16.4883C18.9511 16.4883 19.3184 16.1211 19.3184 15.668Z"
+                              fill="currentColor"
+                            ></path>
+                            <defs>
+                              <linearGradient
+                                id="paint0_linear"
+                                x1="1.64063"
+                                y1="0"
+                                x2="21.0292"
+                                y2="1.72049"
+                                gradientUnits="userSpaceOnUse"
+                              >
+                                <stop stop-color="currentColor"></stop>
+                                <stop
+                                  offset="1"
+                                  stop-color="currentColor"
+                                ></stop>
+                              </linearGradient>
+                            </defs>
+                          </svg>
+                        </button>
+                      </span>
                     </span>
                     <span>
                       <svg
@@ -373,6 +434,7 @@
 
           document.cookie = updatedCookie;
         }
+
         function deleteCookie(name) {
           setCookie(name, "", {
             expires: -1,
@@ -380,10 +442,12 @@
           });
         }
 
-        $(document).on("click", ".leave-feedback .button-close", function () {
-          document.querySelector(".leave-feedback").classList.add("d-none");
-          setCookie("leave-feedback", 1);
-        });
+        document
+          .querySelector(".leave-feedback .button-close")
+          .addEventListener("click", function () {
+            document.querySelector(".leave-feedback").classList.add("d-none");
+            setCookie("leave-feedback", 1);
+          });
 
         if (window.innerWidth <= 992) {
           if (getCookie("leave-feedback") === undefined) {
