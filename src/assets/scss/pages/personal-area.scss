@@ -76,13 +76,4 @@
       width: 100%;
     }
   }
-  & .form-group {
-    &:hover {
-      & .tippy {
-        top: -24px;
-        opacity: 1;
-        z-index: 1;
-      }
-    }
-  }
 }

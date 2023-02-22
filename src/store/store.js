@@ -637,7 +637,6 @@ const store = createStore({
       state.buy_amount_with_discount = res.data.buy_amount_with_discount;
     },
     setCalculateForm(state, [response, refreshValue]) {
-      console.log(response);
       state.isWarningForm =
         +response.data.max_buy_amount > +response.data.min_buy_amount;
       state.sell_percent = response.data.sell_percent;
@@ -904,6 +903,39 @@ const store = createStore({
         inp.value = "";
       });
     },
+    characterCountCheck(state) {
+      // let inputs = document.querySelectorAll(".field .form-group input");
+      // if (inputs) {
+      //   inputs.forEach((input) => {
+      //     input.addEventListener("mouseover", () => {
+      //       if (input.value.length >= 20) {
+      //         input.insertAdjacentHTML(
+      //           "afterend",
+      //           `<span class="tippy" ></span>`
+      //         );
+      //         console.log(11111111);
+      //       }
+      //       input.addEventListener("mouseout", () => {});
+      //     });
+      //////////////////////////////////////////
+      // if (
+      //   input.value.length >= 20 &&
+      //   input.parentNode.querySelector(".tippy")
+      // ) {
+      //   input.parentNode.querySelector(".tippy").innerText = input.value;
+      //   input.addEventListener("mouseover", () => {
+      //     input.parentNode.querySelector(".tippy").style.cssText = `
+      //       top: -24px;
+      //       opacity: 1;
+      //       z-index: 1;`;
+      //   });
+      //   input.addEventListener("mouseout", () => {
+      //     input.parentNode.querySelector(".tippy").removeAttribute("style");
+      //   });
+      // }
+      // });
+      // }
+    },
   }, //Функция для изменения state
   actions: {
     calculateForm(
@@ -940,7 +972,6 @@ const store = createStore({
           commit("showRecoveryInformation");
           commit("selectName");
           commit("sortCity");
-          console.log(state.isWarningForm, "2");
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {

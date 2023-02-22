@@ -196,6 +196,7 @@ createApp({
       "viewPassword",
       "scrollToError",
       "setCityId",
+      "characterCountCheck",
     ]),
     getValueByLanguage(object, field) {
       let nameWithLang = field.replace(
@@ -210,6 +211,7 @@ createApp({
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
+    this.characterCountCheck();
     this.captcha();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;

@@ -65,7 +65,7 @@ export default {
     color: var(--quaternary);
     justify-content: flex-end;
     flex-wrap: nowrap;
-    margin-left: auto;
+    margin: 0 auto;
     min-width: 94px;
     & span {
       position: absolute;
