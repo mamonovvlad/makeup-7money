@@ -1,5 +1,8 @@
 <template>
   <div class="toggle__theme">
+    <transition name="fade">
+      <span v-if="isShowInformation">Не сменить ли тему? 🤔</span>
+    </transition>
     <button
       v-for="(button, idx) in buttons"
       :key="button.id"
@@ -30,6 +33,7 @@ export default {
     return {
       buttons,
       index: 0,
+      isShowInformation: false,
     };
   },
   components: {
@@ -62,9 +66,18 @@ export default {
 
       this.setDefinitionTheme(this.index);
     },
+    showInformation() {
+      setTimeout(() => {
+        this.isShowInformation = true;
+      }, 1000);
+      setTimeout(() => {
+        this.isShowInformation = false;
+      }, 10000);
+    },
   },
   mounted() {
     this.definitionTheme();
+    this.showInformation();
   },
 };
 </script>
@@ -77,6 +90,16 @@ export default {
   border-radius: var(--radius-eigh);
   box-shadow: var(--shadow);
   overflow: hidden;
+
+  & span {
+    position: absolute;
+    left: 80px;
+    top: -24px;
+    background: var(--gradient);
+    padding: 2px 6px;
+    border-radius: var(--radius-four);
+    color: var(--sixth);
+  }
 
   & button {
     padding: 8px;

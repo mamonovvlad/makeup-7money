@@ -904,37 +904,32 @@ const store = createStore({
       });
     },
     characterCountCheck(state) {
-      // let inputs = document.querySelectorAll(".field .form-group input");
-      // if (inputs) {
-      //   inputs.forEach((input) => {
-      //     input.addEventListener("mouseover", () => {
-      //       if (input.value.length >= 20) {
-      //         input.insertAdjacentHTML(
-      //           "afterend",
-      //           `<span class="tippy" ></span>`
-      //         );
-      //         console.log(11111111);
-      //       }
-      //       input.addEventListener("mouseout", () => {});
-      //     });
-      //////////////////////////////////////////
-      // if (
-      //   input.value.length >= 20 &&
-      //   input.parentNode.querySelector(".tippy")
-      // ) {
-      //   input.parentNode.querySelector(".tippy").innerText = input.value;
-      //   input.addEventListener("mouseover", () => {
-      //     input.parentNode.querySelector(".tippy").style.cssText = `
-      //       top: -24px;
-      //       opacity: 1;
-      //       z-index: 1;`;
-      //   });
-      //   input.addEventListener("mouseout", () => {
-      //     input.parentNode.querySelector(".tippy").removeAttribute("style");
-      //   });
-      // }
-      // });
-      // }
+      let inputs = document.querySelectorAll(".field .form-group input");
+      if (inputs) {
+        inputs.forEach((input) => {
+          input.addEventListener("mouseover", () => {
+            if (input.value.length >= 20) {
+              input.insertAdjacentHTML(
+                "afterend",
+                `<span class="tippy" ></span>`
+              );
+              input.parentNode.querySelector(".tippy").innerText = input.value;
+              input.parentNode.querySelector(".tippy").style.cssText = `
+                top: -24px;
+                opacity: 1;
+                z-index: 1;`;
+            }
+          });
+          input.addEventListener("mouseout", () => {
+            if (
+              input.value.length >= 20 &&
+              input.parentNode.querySelector(".tippy")
+            ) {
+              input.parentNode.querySelector(".tippy").remove();
+            }
+          });
+        });
+      }
     },
   }, //Функция для изменения state
   actions: {

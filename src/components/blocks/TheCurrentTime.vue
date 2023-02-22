@@ -77,6 +77,7 @@ export default {
   & .time {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     position: relative;
     font-size: 16px;
     color: var(--primary);
