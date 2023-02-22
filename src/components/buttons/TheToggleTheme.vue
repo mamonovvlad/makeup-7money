@@ -1,7 +1,7 @@
 <template>
   <div class="toggle__theme">
     <transition name="fade">
-      <span v-if="isShowInformation">Не сменить ли тему? 🤔</span>
+      <span v-if="isShowInformation">{{ $t("changeTheme") }}🤔</span>
     </transition>
     <button
       v-for="(button, idx) in buttons"

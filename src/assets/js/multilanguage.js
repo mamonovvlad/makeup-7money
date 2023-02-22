@@ -5,6 +5,7 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
+      changeTheme: "Не сменить ли тему?",
       aml: "Aml Политика",
       areYouSure: "Вы уверены?",
       maximumAmount: "Максимальная сумма получения",
@@ -119,6 +120,7 @@ const i18n = createI18n({
       amlLink: "/page/aml",
     },
     ua: {
+      changeTheme: "Чи не змінити тему?",
       aml: "Aml Політика",
       areYouSure: "Ви впевнені?",
       maximumAmount: "Максимальна сума отримання",
@@ -233,6 +235,7 @@ const i18n = createI18n({
       amlLink: "/ua/page/aml",
     },
     en: {
+      changeTheme: "Why not change the subject?",
       aml: "Aml Policy",
       areYouSure: "Are you sure?",
       maximumAmount: "Maximum amount received",
