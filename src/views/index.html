@@ -48,6 +48,7 @@
                 <the-steps :show-button="true" :data-input="true"></the-steps>
                 <the-preloader>{{$t('preloader')}}</the-preloader>
                 <!--Форма-->
+
                 <form class="form-exchange" v-show="$store.state.isWarningForm">
                   <input
                     type="hidden"
@@ -727,7 +728,7 @@
     </div>
     <input id="login" type="hidden" value="0" />
     <input type="hidden" id="uid" value="1" />
-    <input id="language" type="hidden" value="en" />
+    <input id="language" type="hidden" value="ru" />
     <input type="hidden" id="lid" value="1" />
     <script async src="//www.google.com/recaptcha/api.js?hl=ru"></script>
   </body>

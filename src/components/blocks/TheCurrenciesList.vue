@@ -23,7 +23,13 @@
         <div class="name">
           <span :class="currency.code"></span>
           <p v-if="currenciesHide">
-            {{ currency.name_ru }}
+            <template v-if="this.getLanguage === 'en'">
+              {{ currency.name_en }}
+            </template>
+            <template v-else-if="this.getLanguage === 'ua'">
+              {{ currency.name_ua }}
+            </template>
+            <template v-else> {{ currency.name_ru }}</template>
           </p>
         </div>
         <span class="price" v-if="sellCurrencyId !== null">
@@ -35,9 +41,15 @@
           </span>
         </span>
         <transition name="fade">
-          <span v-show="!currenciesHide" class="tippy">{{
-            currency.name_ru
-          }}</span>
+          <span v-show="!currenciesHide" class="tippy">
+            <template v-if="this.getLanguage === 'en'">
+              {{ currency.name_en }}
+            </template>
+            <template v-else-if="this.getLanguage === 'ua'">
+              {{ currency.name_ua }}
+            </template>
+            <template v-else> {{ currency.name_ru }}</template>
+          </span>
         </transition>
       </li>
     </ul>
@@ -96,7 +108,10 @@ export default {
     TheShowMoreCurrencies,
   },
   computed: {
-    ...mapGetters(["sellCurrencyId"]),
+    ...mapGetters(["sellCurrencyId", "getLanguage"]),
+    // languageDefinition() {
+    //   if(getLanguage)
+    // },
   },
   methods: {
     ...mapMutations(["setActiveCurrency"]),

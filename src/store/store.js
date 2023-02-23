@@ -84,14 +84,18 @@ const store = createStore({
       }
     },
     scrollToError() {
-      let checkBox = document.getElementById("orderform-agree");
+      const checkBox = document.getElementById("orderform-agree");
       if (checkBox && checkBox.checked === true) {
         let hasErrors = document.querySelectorAll(".has-error");
-        if (hasErrors || hasErrors.length !== 0) {
+        if (hasErrors.length !== 0) {
           hasErrors.forEach((error) => {
             error.scrollIntoView({
               behavior: "smooth",
             });
+          });
+        } else {
+          document.addEventListener("submit", () => {
+            this.commit("disabled");
           });
         }
       } else {

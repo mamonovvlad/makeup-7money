@@ -115,7 +115,7 @@
                   >
                 </div>
               </div>
-              <div class="payment__details operation-status">
+              <div class="payment__details operation-status d-none">
                 <div class="application-status__info">
                   <div class="block">
                     <div class="operation-info">
@@ -485,7 +485,7 @@
                   </button>
                 </div>
               </div>
-              <div class="payment__details qr-code d-none">
+              <div class="payment__details qr-code">
                 <the-steps :payment="true"></the-steps>
                 <h4>Порядок действий</h4>
                 <div class="operation-info">
@@ -531,7 +531,7 @@
                 <div class="buttons">
                   <button class="button">Отменить операцию</button>
                   <div class="buttons-small">
-                    <button class="button button--transparent">
+                    <a class="button button--transparent">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="-76.79115 -52.55 665.5233 315.3"
@@ -541,8 +541,8 @@
                           fill="currentColor"
                         />
                       </svg>
-                    </button>
-                    <button class="button button--transparent">
+                    </a>
+                    <a class="button button--transparent">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         class="main-header__logo-image"
@@ -570,7 +570,7 @@
                           d="M71.997 28.505a39.09 39.09 0 0127.62 10.8l20.55-20.55A69.18 69.18 0 0071.997.005a72 72 0 00-64.33 39.67l23.91 18.55c5.7-17.06 21.64-29.72 40.42-29.72z"
                         />
                       </svg>
-                    </button>
+                    </a>
                   </div>
                 </div>
               </div>
