@@ -54,6 +54,7 @@ import TheRecoveryInformation from "./components/popups/TheRecoveryInformation.v
 import TheNightMode from "./components/popups/TheNightMode.vue";
 import TheLacksButton from "./components/popups/TheLacksButton.vue";
 //Icons
+import IconSuccess from "./components/icons/IconSuccess.vue";
 import IconConfetti from "./components/icons/IconConfetti.vue";
 import IconCopy from "./components/icons/IconCopy.vue";
 import IconPig from "./components/icons/IconPig.vue";
@@ -130,6 +131,7 @@ createApp({
     TheLacksButton,
     TheNightMode,
     //Icons
+    IconSuccess,
     IconConfetti,
     IconCopy,
     IconPig,

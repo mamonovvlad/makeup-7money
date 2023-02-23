@@ -139,7 +139,7 @@ export default {
     }
     @include _768 {
       & .icon {
-        box-shadow: unset;
+        box-shadow: var(--shadow);
       }
     }
   }

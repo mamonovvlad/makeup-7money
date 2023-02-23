@@ -2,7 +2,7 @@
   <section class="recent-exchanges" v-if="showHideBlock">
     <the-title class="title" tag="h2">Последние обмены</the-title>
     <div class="wrapper">
-      <div class="stylish-wrapper">
+      <div class="data-exchange stylish-wrapper">
         <div class="item">
           <div class="info">
             <div class="name">
@@ -28,7 +28,7 @@
         </div>
         <p>Меньше минуты</p>
       </div>
-      <div class="stylish-wrapper">
+      <div class="data-exchange stylish-wrapper">
         <div class="item">
           <div class="info">
             <div class="name">
@@ -54,7 +54,7 @@
         </div>
         <p>Меньше минуты</p>
       </div>
-      <div class="stylish-wrapper">
+      <div class="data-exchange stylish-wrapper">
         <div class="item">
           <div class="info">
             <div class="name">
@@ -110,36 +110,44 @@ export default {
   & .title {
     margin-bottom: 10px;
   }
-  & .stylish-wrapper {
-    padding: 20px;
+
+  & .wrapper {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
   }
+}
+
+.data-exchange {
+  padding: 20px;
+
   & .item {
     display: flex;
     align-items: center;
     gap: 10px;
     font-size: 18px;
     margin-bottom: 10px;
+
     & svg {
       color: var(--primary);
     }
   }
+
   & .info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
-  & .wrapper {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
+
   & .name {
     margin-bottom: 10px;
   }
+
   & .name,
   & .price strong {
     color: var(--quaternary);
   }
+
   & .price span {
     margin-right: 10px;
   }

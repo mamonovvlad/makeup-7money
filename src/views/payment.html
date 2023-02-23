@@ -485,9 +485,34 @@
                   </button>
                 </div>
               </div>
-              <div class="payment__details qr-code">
+              <div class="payment__details qr-code payment-instruction">
                 <the-steps :payment="true"></the-steps>
                 <h4>Порядок действий</h4>
+                <div class="data-exchange stylish-wrapper">
+                  <div class="item">
+                    <div class="info">
+                      <div class="name">
+                        <span class="BTC"></span>
+                        <strong>Bitcoin</strong>
+                      </div>
+                      <div class="price">
+                        <span>BTC:</span>
+                        <strong>0.50</strong>
+                      </div>
+                    </div>
+                    <icon-success></icon-success>
+                    <div class="info">
+                      <div class="name">
+                        <span class="BTC"></span>
+                        <strong>Bitcoin</strong>
+                      </div>
+                      <div class="price">
+                        <span>BTC:</span>
+                        <strong>0.50</strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <div class="operation-info">
                   <span>
                     Совершите платеж на сумму: <strong>0.000005 BTC</strong>
@@ -496,17 +521,19 @@
                       <icon-copy></icon-copy>
                     </button>
                   </span>
-                  <span>
+                  <p>
                     На счет:
-                    <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
-                    <button
-                      data-copy="3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU"
-                      class="copy"
-                    >
-                      <span class="copied d-none"> {{ $t("copied") }}</span>
-                      <icon-copy></icon-copy>
-                    </button>
-                  </span>
+                    <span>
+                      <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
+                      <button
+                        data-copy="3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU"
+                        class="copy"
+                      >
+                        <span class="copied d-none"> {{ $t("copied") }}</span>
+                        <icon-copy></icon-copy>
+                      </button>
+                    </span>
+                  </p>
                 </div>
                 <p>
                   После успешной оплаты, нажмите на кнопку «Я ОПЛАТИЛ», чтобы мы

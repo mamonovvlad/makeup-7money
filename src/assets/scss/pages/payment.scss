@@ -89,6 +89,10 @@
     flex-direction: column;
     gap: 10px;
 
+    & p span strong {
+      word-break: break-all;
+    }
+
     & .text_border {
       border-radius: var(--radius-eigh);
       padding: 10px;
