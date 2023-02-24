@@ -187,9 +187,6 @@ export default {
     width: 100%;
     background: var(--transparent);
     color: var(--quaternary);
-    @include _768 {
-      font-size: 14px;
-    }
 
     &::placeholder {
       color: var(--eighth);
