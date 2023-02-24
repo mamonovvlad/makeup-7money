@@ -210,22 +210,10 @@ createApp({
       }
       return "undefined " + nameWithLang;
     },
-    changingText() {
-      if (window.innerWidth > 768) {
-        document.querySelectorAll(".short-text").forEach((item) => {
-          item.classList.add("d-none");
-        });
-      } else {
-        document.querySelectorAll(".long-text").forEach((item) => {
-          item.classList.add("d-none");
-        });
-      }
-    },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
     this.characterCountCheck();
-    this.changingText();
     this.captcha();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;

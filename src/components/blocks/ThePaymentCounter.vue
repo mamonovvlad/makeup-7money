@@ -141,6 +141,7 @@ export default {
       display: flex;
       justify-content: space-between;
       column-gap: 10px;
+      align-items: center;
 
       & span {
         white-space: nowrap;

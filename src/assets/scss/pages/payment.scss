@@ -68,9 +68,12 @@
         width: 100%;
       }
       &-small {
-        display: flex;
+        display: none;
         width: 100%;
-        gap: 10px;
+        column-gap: 10px;
+        @include _1024 {
+          display: flex;
+        }
       }
       & svg {
         height: 36px;

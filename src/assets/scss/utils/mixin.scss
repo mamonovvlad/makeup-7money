@@ -5,7 +5,6 @@
   overflow: hidden;
 }
 
-
 @mixin font-face(
   $font-family,
   $file-path,
@@ -22,7 +21,6 @@
   }
 }
 
-
 @mixin _1440 {
   @media (max-width: 1440px) {
     @content;
@@ -31,6 +29,11 @@
 
 @mixin _1200 {
   @media (max-width: 1200px) {
+    @content;
+  }
+}
+@mixin _1024 {
+  @media (max-width: 1024px) {
     @content;
   }
 }

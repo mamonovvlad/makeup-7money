@@ -182,18 +182,6 @@
   }
 }
 
-.text-wrapper {
-  display: flex;
-  align-items: flex-end;
-  column-gap: 6px;
-  & .crop {
-    @include crop-height(1);
-  }
-  & .copy {
-    margin-bottom: 3px;
-  }
-}
-
 .captcha-wrapper {
   display: flex;
   justify-content: center;
