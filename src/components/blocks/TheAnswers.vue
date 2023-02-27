@@ -91,7 +91,7 @@ export default {
     cursor: pointer;
     box-shadow: var(--shadow);
     transition: var(--transition);
-
+    background: var(--seventh);
     &__title {
       position: relative;
       padding-right: 26px;

@@ -115,7 +115,7 @@
                   >
                 </div>
               </div>
-              <div class="payment__details operation-status">
+              <div class="payment__details operation-status d-none">
                 <div class="application-status__info">
                   <div class="block">
                     <div class="operation-info">
@@ -443,35 +443,32 @@
                   </button>
                 </div>
               </div>
-              <div class="payment__details qr-code d-none">
+              <div class="payment__details qr-code">
                 <the-steps :payment="true"></the-steps>
-                <div class="data-exchange stylish-wrapper">
-                  <div class="item">
-                    <div class="info">
-                      <div class="name">
-                        <span class="BTC"></span>
-                        <strong>Bitcoin</strong>
-                      </div>
-                      <div class="price">
-                        <span>BTC:</span>
-                        <strong>0.50</strong>
-                      </div>
-                    </div>
-                    <icon-success></icon-success>
-                    <div class="info">
-                      <div class="name">
-                        <span class="BTC"></span>
-                        <strong>Bitcoin</strong>
-                      </div>
-                      <div class="price">
-                        <span>BTC:</span>
-                        <strong>0.50</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <h4>Порядок действий</h4>
-                <div class="operation-info payment-instruction">
+                <div class="payment-instruction">
+                  <span>
+                    Совершите платеж на сумму: <strong>0.000005 BTC</strong>
+                    <button data-copy="5" class="copy" @click="copy($event)">
+                      <span class="copied d-none"> {{ $t("copied") }}</span>
+                      <icon-copy></icon-copy>
+                    </button>
+                  </span>
+                  <p>
+                    На счет:
+                    <span>
+                      <strong>3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU</strong>
+                      <button
+                        data-copy="3FeK64hbBX3SafMHvc7DA5nitDWN7rqEgU"
+                        class="copy"
+                      >
+                        <span class="copied d-none"> {{ $t("copied") }}</span>
+                        <icon-copy></icon-copy>
+                      </button>
+                    </span>
+                  </p>
+                </div>
+                <div class="payment-instruction convex-block">
                   <span>
                     Совершите платеж на сумму: <strong>0.000005 BTC</strong>
                     <button data-copy="5" class="copy" @click="copy($event)">
@@ -510,7 +507,10 @@
                 </p>
                 <h5>QR адрес</h5>
                 <div class="code">
-                  <img src="http://qrcoder.ru/code/?ty&10&0" alt="qr" />
+                  <img
+                    data-src="/qr/qr_AP3f933dd82b_only_address.png"
+                    src="http://qrcoder.ru/code/?ty&10&0"
+                  />
                 </div>
                 <the-time-processing></the-time-processing>
                 <div class="buttons">
@@ -573,6 +573,12 @@
       document.addEventListener("DOMContentLoaded", () => {
         const counter = document.querySelector(".counter");
         let time = counter.getAttribute("data-seconds");
+        const imageCode = document.querySelector(".image-code");
+        if (imageCode) {
+          let image = imageCode.querySelector("img");
+          let src = image.getAttribute("data-src");
+          image.setAttribute("src", src);
+        }
         function timer() {
           let clock = $(".clock").FlipClock({
             clockFace: "DailyCounter",

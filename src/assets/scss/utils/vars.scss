@@ -27,6 +27,7 @@
 
 //Light Theme
 [data-theme="light"] {
+  --background-main: none;
   --gradient: linear-gradient(96.02deg, #00b047 0%, #4cd784 100%);
   --gradient-secondary: linear-gradient(134.83deg, #363c46, #1d2531);
   --primary: #00b047;
@@ -58,17 +59,18 @@
 
 //Dark Theme
 [data-theme="dark"] {
+  --background-main: #252525 url("../images/main-fon.png") no-repeat center;
   --gradient: linear-gradient(90.59deg, #00f9c9 0%, #1ee3bf 100%);
   --gradient-secondary: linear-gradient(134.83deg, #36393d, #2a2d30);
   --primary: #00f9c9;
   --primary-transition: rgba(0, 249, 201, 0.3);
-  --secondary: #1a1a1a;
+  --secondary: #1a1a1ad1;
   --secondary-transparent: rgba(26, 26, 26, 0.65);
   --ternary: #d9e1e8;
   --quaternary: #ffffff;
   --fifth: #170d2b;
   --sixth: #363c46;
-  --seventh: #252525;
+  --seventh: #252525d6;
   --eighth: #706f74;
   --ninth: #463030;
   --tenth: #575757;

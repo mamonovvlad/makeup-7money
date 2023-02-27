@@ -21,7 +21,7 @@
         :class="{ 'active-currency': currency.id == currencyId }"
       >
         <div class="name">
-          <span :class="currency.code"></span>
+          <span class="currency-icon" :class="currency.code"></span>
           <p v-if="currenciesHide">
             <template v-if="this.getLanguage === 'en'">
               {{ currency.name_en }}
@@ -179,13 +179,6 @@ export default {
       display: flex;
       align-items: center;
 
-      & span {
-        width: 20px;
-        height: 20px;
-        background-size: contain;
-        border-radius: var(--radius-ten);
-      }
-
       & p {
         margin-left: 5px;
         font-weight: 500;
@@ -228,5 +221,11 @@ export default {
       overflow: hidden;
     }
   }
+}
+.currency-icon {
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  border-radius: var(--radius-ten);
 }
 </style>

@@ -82,6 +82,7 @@ export default {
     & .active {
       box-shadow: var(--shadow);
       color: var(--quaternary);
+      background: var(--seventh);
       font-weight: 500;
 
       & svg {
@@ -126,6 +127,7 @@ export default {
     &:hover {
       box-shadow: var(--shadow);
       color: var(--quaternary);
+      background: var(--seventh);
       & svg {
         color: var(--primary);
       }

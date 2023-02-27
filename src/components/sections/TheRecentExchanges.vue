@@ -6,7 +6,7 @@
         <div class="item">
           <div class="info">
             <div class="name">
-              <span class="BTC"></span>
+              <span class="currency-icon BTC"></span>
               <strong>Bitcoin</strong>
             </div>
             <div class="price">
@@ -17,7 +17,7 @@
           <icon-success></icon-success>
           <div class="info">
             <div class="name">
-              <span class="BTC"></span>
+              <span class="currency-icon BTC"></span>
               <strong>Bitcoin</strong>
             </div>
             <div class="price">
@@ -32,7 +32,7 @@
         <div class="item">
           <div class="info">
             <div class="name">
-              <span class="BTC"></span>
+              <span class="currency-icon BTC"></span>
               <strong>Bitcoin</strong>
             </div>
             <div class="price">
@@ -43,7 +43,7 @@
           <icon-success></icon-success>
           <div class="info">
             <div class="name">
-              <span class="BTC"></span>
+              <span class="currency-icon BTC"></span>
               <strong>Bitcoin</strong>
             </div>
             <div class="price">
@@ -58,7 +58,7 @@
         <div class="item">
           <div class="info">
             <div class="name">
-              <span class="BTC"></span>
+              <span class="currency-icon BTC"></span>
               <strong>Bitcoin</strong>
             </div>
             <div class="price">
@@ -69,7 +69,7 @@
           <icon-success></icon-success>
           <div class="info">
             <div class="name">
-              <span class="BTC"></span>
+              <span class="currency-icon BTC"></span>
               <strong>Bitcoin</strong>
             </div>
             <div class="price">
@@ -126,9 +126,8 @@ export default {
     align-items: center;
     gap: 10px;
     font-size: 18px;
-    margin-bottom: 10px;
-
     & svg {
+      width: 40px;
       color: var(--primary);
     }
   }
@@ -136,11 +135,13 @@ export default {
   & .info {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
   }
 
   & .name {
-    margin-bottom: 10px;
+    display: flex;
+    column-gap: 6px;
+    margin-bottom: 6px;
+    font-size: 16px;
   }
 
   & .name,
@@ -148,8 +149,11 @@ export default {
     color: var(--quaternary);
   }
 
-  & .price span {
-    margin-right: 10px;
+  & .price {
+    font-size: 14px;
+    & span {
+      margin-right: 6px;
+    }
   }
 }
 </style>

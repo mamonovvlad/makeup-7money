@@ -6,7 +6,6 @@ import store from "./store/store.js";
 
 //js src
 import i18n from "./assets/js/multilanguage.js";
-import { Support } from "./assets/js/support.js";
 import { CurrencyModel } from "./assets/js/currency-model.js";
 
 //Style
@@ -83,7 +82,6 @@ createApp({
   data() {
     return {
       currencyModel: CurrencyModel,
-      support: Support,
       csrfToken: null,
       csrfParam: null,
     };
