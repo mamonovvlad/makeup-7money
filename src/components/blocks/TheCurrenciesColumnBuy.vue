@@ -4,14 +4,9 @@
     :class="{ 'currencies-hide': !currenciesHideBuy }"
   >
     <div class="information-block" v-if="currenciesHideBuy">
+      <the-step-back v-if="showStepBack"></the-step-back>
       <div class="elements__wrapper">
-        <div class="elements__wrapper">
-          <the-big-button
-            @click="trashClick"
-            v-if="showButton"
-          ></the-big-button>
-          <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
-        </div>
+        <the-title tag="h2" class="subtitle">{{ $t("theGet") }}</the-title>
         <transition name="fade">
           <div class="buttons" v-if="sellCurrencyId !== null">
             <button
@@ -42,6 +37,7 @@
 </template>
 
 <script>
+import TheStepBack from "./TheStepBack.vue";
 import TheBigButton from "../buttons/TheBigButton.vue";
 import TheTitle from "./TheTitle.vue";
 import TheFilters from "./TheFilters.vue";
@@ -67,6 +63,7 @@ export default {
     TheFilters,
     TheCurrenciesList,
     TheBigButton,
+    TheStepBack,
   },
   computed: {
     ...mapGetters([
@@ -76,14 +73,12 @@ export default {
       "buyCurrencyId",
       "sellCurrencyId",
       "currenciesHideBuy",
-      "getRateReserves",
     ]),
-    showButton() {
-      return window.innerWidth <= 768;
+    showStepBack() {
+      return window.innerWidth <= 992 && this.sellCurrencyId !== null;
     },
   },
   methods: {
-    ...mapMutations(["trashClick"]),
     toggleInformation(idx) {
       this.index = idx;
     },

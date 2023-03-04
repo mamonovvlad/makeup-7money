@@ -649,6 +649,7 @@ const store = createStore({
       state.sell_currency_id = response.data.sell_currency_id;
       state.buyCurrencies = response.data.buyCurrencies;
       state.buy_currency_id = response.data.buy_currency_id;
+      state.buy_currency_id = response.data.buy_currency_id;
       state.sellCurrency = response.data.sellCurrency;
       state.buyCurrency = response.data.buyCurrency;
       state.course = response.data.course;

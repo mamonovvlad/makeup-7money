@@ -32,7 +32,7 @@ export default {
 }
 
 .heading {
-  font-size: 72px;
+  font-size: 60px;
   @include _768 {
     font-size: 24px;
   }
