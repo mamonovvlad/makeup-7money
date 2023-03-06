@@ -10,16 +10,9 @@ module.exports = merge(common, {
   mode: "production",
   devtool: false,
   plugins: [
-    
     new webpack.DefinePlugin({
-        'process.env.PROXY':`'${process.env.PROXY_PROD}'`,
-        'process.env.PROXY2': `'${process.env.PROXY2_PROD}'`,
+      "process.env.PROXY": `'${process.env.PROXY_PROD}'`,
+      "process.env.PROXY2": `'${process.env.PROXY2_PROD}'`,
     }),
-  
   ],
 });
-
-
-
-
-

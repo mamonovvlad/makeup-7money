@@ -116,6 +116,7 @@ module.exports = {
           minify: {
             collapseWhitespace: false,
           },
+          scriptLoading: "defer",
         })
     ),
 
