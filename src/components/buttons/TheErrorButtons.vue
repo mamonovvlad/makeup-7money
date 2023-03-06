@@ -11,6 +11,7 @@
 <script>
 import TheButton from "./TheButton.vue";
 import TheAuthorization from "../popups/TheAuthorization.vue";
+import { mapMutations } from "vuex";
 
 export default {
   name: "TheErrorButtons",
@@ -27,7 +28,10 @@ export default {
     TheAuthorization,
   },
   methods: {
+    ...mapMutations(["captcha"]),
+
     openAuthorization() {
+      this.captcha();
       this.isAuthorization.isOpen = true;
       this.isAuthorization.index = 1;
     },

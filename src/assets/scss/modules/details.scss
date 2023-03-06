@@ -11,9 +11,7 @@
   width: 100%;
 
   &-animate {
-    @media (min-width: 769px) {
-      animation: animate-details 500ms ease-in-out;
-    }
+    animation: animate-details 500ms ease-in-out;
   }
 
   & .warning {

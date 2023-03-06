@@ -212,7 +212,7 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["captcha", "viewPassword"]),
+    ...mapMutations(["viewPassword"]),
     toggleInput() {
       if (this.isAuthorization.index === 0) {
         this.isAuthorization.index = 1;
@@ -340,7 +340,6 @@ export default {
     this.getReferral();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
-    this.captcha();
   },
 };
 </script>

@@ -88,11 +88,17 @@ export default {
     @include _992 {
       display: none;
     }
-
+    @include _768 {
+      height: 0;
+      display: flex;
+      overflow: hidden;
+      min-width: 0;
+      max-width: 0;
+      transition: width 0.5s ease;
+    }
     & .currencies-list {
       max-height: 100%;
     }
-
     & .item:hover {
       & .tippy {
         top: -24px;

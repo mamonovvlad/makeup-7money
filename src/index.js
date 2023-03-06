@@ -189,7 +189,6 @@ createApp({
       "updateBuyAmount",
       "setIsVerified",
       "setOfExchange",
-      "captcha",
       "calculate",
       "calculationAmountCommission",
       "confirmChecked",
@@ -212,7 +211,6 @@ createApp({
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
     this.characterCountCheck();
-    this.captcha();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
