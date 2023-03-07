@@ -5,7 +5,6 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  z-index: 1;
   @include _768 {
     padding: 40px 0;
     font-size: 14px;
@@ -59,7 +58,6 @@
     transform: translate(0, -50%);
     max-width: 700px;
     width: 100%;
-    z-index: -1;
     @include _768 {
       position: relative;
       top: auto;
@@ -67,8 +65,7 @@
       max-width: 400px;
       transform: translateY(0%);
       margin: 0 auto;
-      z-index: 0
+      z-index: 0;
     }
   }
-
 }
