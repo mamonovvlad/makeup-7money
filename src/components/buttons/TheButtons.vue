@@ -36,7 +36,6 @@ import TheLanguages from "../blocks/TheLanguages.vue";
 import TheAuthorizationButtons from "./TheAuthorizationButtons.vue";
 import TheSocialNetwork from "../blocks/TheSocialNetwork.vue";
 import TheBurger from "../popups/TheBurger.vue";
-import { mapMutations } from "vuex";
 
 export default {
   name: "TheButtons",
@@ -83,9 +82,7 @@ export default {
     TheBurger,
   },
   methods: {
-    ...mapMutations(["captcha"]),
     indexTransfer(idx) {
-      this.captcha();
       this.$emit("authorization", idx);
     },
     openMenu(idx) {

@@ -5,16 +5,8 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
-
 export default {
   name: "TheCaptcha",
-  methods: {
-    ...mapMutations(["captcha"]),
-  },
-  mounted() {
-    this.captcha();
-  },
 };
 </script>
 

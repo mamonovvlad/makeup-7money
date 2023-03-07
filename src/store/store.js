@@ -515,7 +515,7 @@ const store = createStore({
         el.innerHTML = "";
       });
     },
-    captcha() {
+    captcha(state) {
       let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
       let language = document.getElementById("language");
       let gRecaptchas = document.querySelectorAll(".g-recaptcha");
@@ -524,7 +524,7 @@ const store = createStore({
       if (!elementRecaptcha) {
         document.body.insertAdjacentHTML(
           "beforeend",
-          `<script data-grecaptcha="true"  defer src="//www.google.com/recaptcha/api.js?hl=ru"></script>`
+          `<script data-grecaptcha="true"  defer src="//www.google.com/recaptcha/api.js?hl=${store.getters.getLanguage}"></script>`
         );
       }
 
