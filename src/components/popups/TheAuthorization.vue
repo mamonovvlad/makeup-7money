@@ -84,7 +84,10 @@
         </div>
 
         <div class="captcha" v-show="indexActive === 1">
-          <div class="g-recaptcha"></div>
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf"
+          ></div>
         </div>
         <button
           type="button"
