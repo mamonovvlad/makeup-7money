@@ -520,13 +520,13 @@ const store = createStore({
       let language = document.getElementById("language");
       let gRecaptchas = document.querySelectorAll(".g-recaptcha");
       let gRecaptcha = document.querySelector(".g-recaptcha");
-      let elementRecaptcha = document.body.querySelector("[data-grecaptcha]");
-      if (!elementRecaptcha) {
-        document.body.insertAdjacentHTML(
-          "beforeend",
-          `<script data-grecaptcha="true"  defer src="//www.google.com/recaptcha/api.js?hl=${store.getters.getLanguage}"></script>`
-        );
-      }
+      // let elementRecaptcha = document.body.querySelector("[data-grecaptcha]");
+      // if (!elementRecaptcha) {
+      //   document.body.insertAdjacentHTML(
+      //     "beforeend",
+      //     `<script data-grecaptcha="true"  defer src="//www.google.com/recaptcha/api.js?hl=${store.getters.getLanguage}"></script>`
+      //   );
+      // }
 
       if (gRecaptcha && language) {
         if (language.value === "ru") {
