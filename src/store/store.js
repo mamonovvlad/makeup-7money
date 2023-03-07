@@ -515,19 +515,11 @@ const store = createStore({
         el.innerHTML = "";
       });
     },
-    captcha(state) {
+    captcha() {
       let captcha = "6LcIdggUAAAAABRu2Ize9tt04x7hhkHh2KLRgoAf";
       let language = document.getElementById("language");
       let gRecaptchas = document.querySelectorAll(".g-recaptcha");
       let gRecaptcha = document.querySelector(".g-recaptcha");
-      let elementRecaptcha = document.body.querySelector("[data-grecaptcha]");
-      if (!elementRecaptcha) {
-        document.body.insertAdjacentHTML(
-          "beforeend",
-          `<script data-grecaptcha="true"  defer src="//www.google.com/recaptcha/api.js?hl=${store.getters.getLanguage}"></script>`
-        );
-      }
-
       if (gRecaptcha && language) {
         if (language.value === "ru") {
           gRecaptcha.setAttribute("data-lang", "ru");
@@ -539,7 +531,6 @@ const store = createStore({
         });
       }
     },
-
     openSelect(state, e) {
       e.target.parentNode.classList.toggle("active");
     },

@@ -20,7 +20,6 @@ import TheReserves from "./components/sections/TheCurrencyReserves.vue";
 import TheAchievements from "./components/sections/TheAchievements.vue";
 import TheCheckStatus from "./components/sections/TheCheckStatus.vue";
 //Blocks
-import TheCaptcha from "./components/blocks/TheCaptcha.vue";
 import TheConfetti from "./components/blocks/TheConfetti.vue";
 import TheTitleDetails from "./components/blocks/TheTitleDetails.vue";
 import TheCustomSelect from "./components/blocks/TheCustomSelect.vue";
@@ -99,7 +98,6 @@ createApp({
     TheLinks,
     TheCheckStatus,
     //Blocks
-    TheCaptcha,
     TheConfetti,
     TheTitleDetails,
     TheCustomSelect,
@@ -192,6 +190,7 @@ createApp({
       "setIsVerified",
       "setOfExchange",
       "calculate",
+      "captcha",
       "calculationAmountCommission",
       "confirmChecked",
       "viewPassword",
@@ -212,6 +211,7 @@ createApp({
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
+    this.captcha();
     this.characterCountCheck();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
