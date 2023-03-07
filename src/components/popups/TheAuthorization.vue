@@ -381,30 +381,6 @@ export default {
   }
 }
 
-.captcha {
-  padding: 12px 10px;
-  border-radius: var(--radius-four);
-  text-align: center;
-  background: var(--secondary);
-
-  .g-recaptcha {
-    position: relative !important;
-    overflow: hidden !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    max-width: 302px !important;
-    width: 100% !important;
-    height: auto !important;
-    background: #d3d3d3 !important;
-    margin: 0 auto;
-
-    & iframe {
-      border: 0;
-      width: 100%;
-      height: 76px;
-    }
-  }
-}
 .show-password {
   width: 22px;
   top: 50%;
