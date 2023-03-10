@@ -211,7 +211,9 @@ createApp({
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
-    this.captcha();
+    setTimeout(() => {
+      this.captcha();
+    }, 5000);
     this.characterCountCheck();
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
