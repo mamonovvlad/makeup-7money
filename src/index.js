@@ -208,11 +208,36 @@ createApp({
       }
       return "undefined " + nameWithLang;
     },
+    addLinkJivosite() {
+      let widget_id = "nYOG7mbRoi";
+      let s = document.createElement("script");
+      s.type = "text/javascript";
+      s.async = true;
+      s.src = "//code.jivosite.com/script/widget/" + widget_id;
+      let ss = document.getElementsByTagName("script")[0];
+      ss.parentNode.insertBefore(s, ss);
+    },
+    startJivosite() {
+      let d = document;
+      let w = window;
+      if (d.readyState === "complete") {
+        this.addLinkJivosite();
+      } else {
+        if (w.attachEvent) {
+          w.attachEvent("onload", this.addLinkJivosite);
+        } else {
+          w.addEventListener("load", this.addLinkJivosite, false);
+        }
+      }
+    },
   },
   mounted() {
     this.fetchGroupsAndCurrenciesFromPage();
     this.captcha();
     this.characterCountCheck();
+    setTimeout(() => {
+      this.startJivosite();
+    }, 5000);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },
