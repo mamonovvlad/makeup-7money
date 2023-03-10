@@ -75,7 +75,7 @@ export default {
       "currenciesHideBuy",
     ]),
     showStepBack() {
-      return window.innerWidth <= 992 && this.sellCurrencyId !== null;
+      return window.innerWidth <= 768 && this.sellCurrencyId !== null;
     },
   },
   methods: {

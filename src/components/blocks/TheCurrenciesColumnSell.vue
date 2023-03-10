@@ -63,7 +63,9 @@ export default {
   display: flex;
   justify-content: center;
   column-gap: 20px;
-
+  @include _768 {
+    column-gap: 0;
+  }
   &-column {
     position: relative;
     transition: all 0.5s ease;
