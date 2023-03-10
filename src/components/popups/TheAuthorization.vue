@@ -335,9 +335,18 @@ export default {
         }
       }
     },
+    addScriptLink() {
+      const script = document.createElement("script");
+      script.src = "//www.google.com/recaptcha/api.js?hl=ru";
+      script.defer = true;
+      document.body.append(script);
+    },
   },
   mounted() {
     this.getReferral();
+    setTimeout(() => {
+      this.addScriptLink();
+    }, 5000);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
   },

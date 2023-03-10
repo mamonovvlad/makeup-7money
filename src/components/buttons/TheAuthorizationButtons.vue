@@ -59,6 +59,8 @@ export default {
   z-index: 1;
   @include _768 {
     top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &:after {
@@ -68,6 +70,10 @@ export default {
     top: -24px;
     border: 10px solid rgba(0, 0, 0, 0);
     border-bottom: 14px solid var(--seventh);
+    @include _768 {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 
   & button,
