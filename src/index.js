@@ -81,6 +81,7 @@ import IconThanks from "./components/icons/IconThanks.vue";
 createApp({
   data() {
     return {
+      fired: false,
       currencyModel: CurrencyModel,
       csrfToken: null,
       csrfParam: null,
@@ -235,11 +236,16 @@ createApp({
     this.fetchGroupsAndCurrenciesFromPage();
     this.captcha();
     this.characterCountCheck();
-    setTimeout(() => {
-      this.startJivosite();
-    }, 5000);
     this.csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     this.csrfParam = document.querySelector('meta[name="csrf-param"]').content;
+    document.addEventListener("scroll", () => {
+      if (this.fired === false) {
+        this.fired = true;
+        setTimeout(() => {
+          this.startJivosite();
+        }, 5000);
+      }
+    });
   },
 })
   .use(i18n)
