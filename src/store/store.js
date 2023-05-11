@@ -585,15 +585,21 @@ const store = createStore({
         let inputs = wrapper.querySelectorAll("input");
         if (windows.length > 0) {
           inputs.forEach((item) => {
+            let information =
+              item.parentElement.parentElement.parentElement.querySelectorAll(
+                ".recovery-information"
+              );
             item.addEventListener("focus", () => {
-              item.parentElement.parentElement.parentElement
-                .querySelector(".recovery-information")
-                .classList.remove("d-none");
+              information.forEach((info) => {
+                info.classList.remove("d-none");
+              });
             });
             item.addEventListener("blur", () => {
-              item.parentElement.parentElement.parentElement
-                .querySelector(".recovery-information")
-                .classList.add("d-none");
+              item.addEventListener("focus", () => {
+                information.forEach((info) => {
+                  info.classList.add("d-none");
+                });
+              });
             });
           });
         }
