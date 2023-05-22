@@ -91,6 +91,7 @@
                             v-model="$store.state.sell_amount"
                             @blur="updateSellAmount"
                             @input="calculate('default')"
+                            pattern="/[^0-9A-Z !\\'#$%&'()*+,\-.\/:;<=>?@\[\]^_`{|}~]*/g"
                           />
                           <span class="help-block">Error</span>
                         </span>
@@ -432,7 +433,8 @@
                             @change="setCityId($event)"
                           >
                             <option
-                              v-for="(option) in calculateData.dropDownCities"
+                              v-for="(option,id) in filterCity"
+                              :value="id"
                             >
                               {{ option }}
                             </option>
@@ -459,7 +461,7 @@
                           <ul class="options">
                             <li
                               @click="selectOptions"
-                              v-for="(option, id) in calculateData.dropDownCities"
+                              v-for="(option, id) in filterCity"
                               :value="id"
                             >
                               {{ option }}
@@ -502,6 +504,10 @@
                               ознакомился и согласен с условиями
                               <a href="https://makeup.7money.co/page/security">
                                 Безопасности
+                              </a>
+                              и
+                              <a href="https://makeup.7money.co/page/agreement">
+                                Aml политика
                               </a>
                               и
                               <a href="https://makeup.7money.co/page/agreement">

@@ -242,6 +242,10 @@
 
 .depressed-block {
   box-shadow: var(--shadow-inset);
+
+  & p span strong {
+    word-break: break-all;
+  }
 }
 .convex-block {
   box-shadow: var(--shadow);

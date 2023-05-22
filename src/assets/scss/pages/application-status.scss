@@ -22,7 +22,6 @@
 
     & strong {
       font-size: 16px;
-      word-break: break-all;
       @include _768 {
         font-size: 14px;
       }

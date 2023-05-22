@@ -181,6 +181,19 @@ createApp({
     isDetails() {
       return this.detailsHide;
     },
+    filterCity() {
+      if (this.calculateData.dropDownCities) {
+        console.log(this.calculateData);
+        let res = Object.values(this.calculateData.dropDownCities).sort(
+          function (a, b) {
+            let textA = a.toUpperCase();
+            let textB = b.toUpperCase();
+            return textA < textB ? -1 : textA > textB ? 1 : 0;
+          }
+        );
+        return res;
+      }
+    },
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
