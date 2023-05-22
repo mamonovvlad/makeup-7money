@@ -37,7 +37,12 @@
             {{ currency.rate }}
           </span>
           <span v-show="currenciesHide && activeIndex === 1">
-            {{ currency.amount }}
+            <template v-if="currency.symbol === 'RUB' && currency.id !== '24'">
+              {{ currencyRub }}
+            </template>
+            <template v-else>
+              {{ currency.amount }}
+            </template>
           </span>
         </span>
         <transition name="fade">
@@ -109,9 +114,13 @@ export default {
   },
   computed: {
     ...mapGetters(["sellCurrencyId", "getLanguage"]),
-    // languageDefinition() {
-    //   if(getLanguage)
-    // },
+    currencyRub() {
+      for (let currency of this.currencies) {
+        if (currency.symbol === "RUB" && currency.id === "11") {
+          return currency.amount;
+        }
+      }
+    },
   },
   methods: {
     ...mapMutations(["setActiveCurrency"]),
