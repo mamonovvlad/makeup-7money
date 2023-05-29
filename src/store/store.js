@@ -34,6 +34,8 @@ const store = createStore({
     city_id: null,
     // calculate data
     course: {},
+    countries: {},
+    availableCities: {},
     fixedCourse: {},
     sellCurrency: {},
     buyCurrency: {},
@@ -56,10 +58,10 @@ const store = createStore({
     time: new Date(),
     interval: null,
     //Custom select
-    selectName: null,
-    selectCity: null,
     borderActive: false,
     isWarningForm: true,
+    //select
+    countriesId: 0,
   }, //Хранения данных
   mutations: {
     viewPassword(state, idx) {
@@ -531,38 +533,6 @@ const store = createStore({
         });
       }
     },
-    openSelect(state, e) {
-      e.target.parentNode.classList.toggle("active");
-    },
-    selectOptions(state, e) {
-      const text = e.target.innerText;
-      e.target.parentNode.parentNode.classList.remove("active");
-      e.target.parentNode.parentNode.querySelector(
-        ".select .select-name"
-      ).innerText = text;
-      e.target.parentNode.parentNode
-        .querySelector(".select-value")
-        .setAttribute("value", e.target.getAttribute("value"));
-
-      state.city_id = e.target.parentNode.parentNode
-        .querySelector(".select .select-value")
-        .getAttribute("value");
-    },
-    selectName(state) {
-      state.selectName =
-        state.calculateData.dropDownCities[state.calculateData.primary_city_id];
-    },
-    sortCity(state) {
-      if (state.calculateData.dropDownCities) {
-        state.selectCity = Object.values(
-          state.calculateData.dropDownCities
-        ).sort(function (a, b) {
-          let textA = a.toUpperCase();
-          let textB = b.toUpperCase();
-          return textA < textB ? -1 : textA > textB ? 1 : 0;
-        });
-      }
-    },
     /////
     setCityId(state, e) {
       let opt;
@@ -576,6 +546,17 @@ const store = createStore({
       state.city_id = parseInt(opt.value);
       state.currentTime = 60;
       this.dispatch("calculateForm", [store.getters.getType, true, true]);
+    },
+    setCountriesId(state, e) {
+      let opt;
+      let target = e.target;
+      for (let i = 0, len = target.options.length; i < len; i++) {
+        opt = target.options[i];
+        if (opt.selected === true) {
+          break;
+        }
+      }
+      state.countriesId = parseInt(opt.value);
     },
     /////
     showRecoveryInformation() {
@@ -645,6 +626,8 @@ const store = createStore({
       state.buy_amount_with_discount = res.data.buy_amount_with_discount;
     },
     setCalculateForm(state, [response, refreshValue]) {
+      state.availableCities = response.data.availableCities;
+      state.countries = response.data.countries;
       state.isWarningForm =
         +response.data.max_buy_amount > +response.data.min_buy_amount;
       state.sell_percent = response.data.sell_percent;
@@ -788,6 +771,7 @@ const store = createStore({
       // if (type === "sell" && isTrash) {
       //   this.commit("trashClick");
       // };
+
       this.commit("disabled");
       this.commit("stopTimer");
       state[type + "_currency_id"] = id;
@@ -800,6 +784,12 @@ const store = createStore({
       if (state.sell_currency_id !== null && state.buy_currency_id === null) {
         this.dispatch("fetchBuyCurrencies");
       }
+      // if (
+      //   +state.sell_currency_id === +state.buy_currency_id &&
+      //   +state.buy_currency_id === +state.buy_currency_id
+      // ) {
+      //   this.commit("trashClick");
+      // }
       if (
         isCalculate &&
         state.sell_currency_id !== null &&
@@ -890,11 +880,11 @@ const store = createStore({
         url += "/" + store.getters.getLanguage;
       }
       if (
-        state.calculateData !== "undefined" &&
+        state.calculateData !== undefined &&
         state.calculateData.length === 0
       ) {
         history.pushState(false, document.title, url);
-      } else if (state.sellCurrency.code !== "undefined") {
+      } else if (state.sellCurrency !== undefined) {
         url +=
           "/exchange/" +
           state.sellCurrency.code.toLowerCase() +
@@ -972,10 +962,12 @@ const store = createStore({
           config
         )
         .then(function (response) {
-          commit("setCalculateForm", [response, refreshValue]);
-          commit("showRecoveryInformation");
-          commit("selectName");
-          commit("sortCity");
+          if (typeof response.data === "object") {
+            commit("setCalculateForm", [response, refreshValue]);
+            commit("showRecoveryInformation");
+          } else {
+            commit("trashClick");
+          }
         });
     },
     fetchGroupsAndCurrencies({ state, commit, getters }) {
@@ -1105,6 +1097,15 @@ const store = createStore({
     detailsHide(state) {
       return state.detailsHide;
     },
+    countries(state) {
+      return state.countries;
+    },
+    availableCities(state) {
+      return state.availableCities;
+    },
+    countriesId(state) {
+      return state.countriesId;
+    },
     blockHide(state) {
       return state.blockHide;
     },
@@ -1114,17 +1115,11 @@ const store = createStore({
     proxy(state) {
       return state.proxy;
     },
-    selectName(state) {
-      return state.selectName;
-    },
     sellAmountWithDiscount(state) {
       return state.sell_amount_with_discount;
     },
     buyAmountWithDiscount(state) {
       return state.buy_amount_with_discount;
-    },
-    selectCity(state) {
-      return state.selectCity;
     },
     isBorderActive(state) {
       return state.borderActive;

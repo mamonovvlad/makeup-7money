@@ -302,7 +302,7 @@
                     <div class="item">
                       <div class="field">
                         <label for="orderform-sell_target">
-                          Зачислить на этот счёт324
+                          Зачислить на этот счёт
                         </label>
                         <span class="form-group">
                           <input
@@ -424,19 +424,21 @@
                   <div class="line"></div>
                   <div class="items__wrapper">
                     <div class="item">
-                      <label> {{ $t("city") }}</label>
                       <div class="field">
+                        <label>{{$t('countries')}}</label>
                         <div class="form-group">
                           <select
-                            name="OrderForm[city_id]"
-                            id="orderform-city_id"
-                            @change="setCityId($event)"
+                            class="countries"
+                            name="OrderForm[countries_id]"
+                            id="orderform-countries_id"
+                            @change="setCountriesId($event)"
                           >
                             <option
-                              v-for="(option,id) in filterCity"
-                              :value="id"
+                              v-for="option in filterCountries"
+                              :key="option.id"
+                              :value="option.id"
                             >
-                              {{ option }}
+                              {{ option.value}}
                             </option>
                           </select>
                         </div>
@@ -445,28 +447,23 @@
                     <div class="item">
                       <div class="field">
                         <label> {{ $t("city") }}</label>
-                        <div class="custom-select">
-                          <button type="button" class="select form-group">
-                            <span class="select-name">
-                              <template
-                                v-if="selectName !== null && selectName !== undefined"
-                              >
-                                {{ selectName }}
-                              </template>
-                              <template v-else> {{ $t("city") }} </template>
-                            </span>
-                            <icon-arrow></icon-arrow>
-                            <input type="hidden" class="select-value" />
-                          </button>
-                          <ul class="options">
-                            <li
-                              @click="selectOptions"
-                              v-for="(option, id) in filterCity"
-                              :value="id"
+                        <div class="form-group">
+                          <select
+                            name="OrderForm[city_id]"
+                            id="orderform-city_id"
+                            @change="setCityId($event)"
+                          >
+                            <option
+                              v-for="option in filterCity"
+                              :key="option.id"
+                              :value="option.id"
                             >
-                              {{ option }}
-                            </li>
-                          </ul>
+                              {{ option.value }}
+                            </option>
+                            <option v-if="filterCity.length === 0">
+                              {{$t('suitableCities')}}
+                            </option>
+                          </select>
                         </div>
                       </div>
                     </div>

@@ -2,7 +2,7 @@
   <the-animation-border class="current-time">
     <div class="wrapper">
       <div class="time">
-        <strong>{{ currentTime }}</strong>
+        <strong class="time-current">{{ currentTime }}</strong>
         {{ $t("course") }}:
         <strong class="course">
           <transition name="fade" mode="out-in">
@@ -82,6 +82,10 @@ export default {
     font-size: 16px;
     color: var(--primary);
     column-gap: 10px;
+    &-current {
+      width: 20px;
+      text-align: right;
+    }
   }
 }
 </style>

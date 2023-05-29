@@ -5,6 +5,8 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
+      countries: "Страны",
+      suitableCities: "Нет подходящих городов",
       changeTheme: "Не сменить ли тему?",
       aml: "Aml Политика",
       areYouSure: "Вы уверены?",
@@ -120,6 +122,8 @@ const i18n = createI18n({
       amlLink: "/page/aml",
     },
     ua: {
+      countries: "Страны",
+      suitableCities: "Немає відповідних міст",
       changeTheme: "Чи не змінити тему?",
       aml: "Aml Політика",
       areYouSure: "Ви впевнені?",
@@ -235,6 +239,8 @@ const i18n = createI18n({
       amlLink: "/ua/page/aml",
     },
     en: {
+      countries: "Countries",
+      suitableCities: "There are no suitable cities",
       changeTheme: "Why not change the subject?",
       aml: "Aml Policy",
       areYouSure: "Are you sure?",

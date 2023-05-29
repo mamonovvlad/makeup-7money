@@ -47,7 +47,6 @@ export default {
     ...mapGetters(["calculateData"]),
     selectOption() {
       for (let option in this.arr.dropDownCities) {
-        console.log(option);
         return option;
       }
     },
@@ -55,13 +54,6 @@ export default {
   methods: {
     showSelect() {
       this.isShow = !this.isShow;
-    },
-    selectOptions(event) {
-      const text = event.target.innerText;
-      this.$refs.customSelect.classList.remove("active");
-      this.$refs.selectName.innerText = text;
-      this.$refs.select.setAttribute("data-value", text);
-      this.$refs.select.setAttribute("data-id", text);
     },
   },
 };

@@ -93,7 +93,7 @@ export default {
     IconArrow,
   },
   computed: {
-    ...mapGetters(["calculateData", "getLang", "selectName"]),
+    ...mapGetters(["calculateData", "getLang"]),
     nameBuyCurrency() {
       if (this.getLang === "/en") {
         return this.calculateData.buyCurrency.name_en;

@@ -166,7 +166,9 @@ createApp({
       "calculateData",
       "detailsHide",
       "course",
-      "selectName",
+      "countries",
+      "countriesId",
+      "availableCities",
       "sellAmountWithDiscount",
       "buyAmountWithDiscount",
       "isBorderActive",
@@ -181,18 +183,60 @@ createApp({
     isDetails() {
       return this.detailsHide;
     },
-    filterCity() {
-      if (this.calculateData.dropDownCities) {
-        console.log(this.calculateData);
-        let res = Object.values(this.calculateData.dropDownCities).sort(
-          function (a, b) {
-            let textA = a.toUpperCase();
-            let textB = b.toUpperCase();
-            return textA < textB ? -1 : textA > textB ? 1 : 0;
+    filterCountries() {
+      let countries = [];
+      let name;
+      Object.entries(this.countries).forEach((item) => {
+        Object.entries(this.availableCities).forEach((city, index) => {
+          if (+city[1].country_id === +item[1].id) {
+            if (this.getLang === "/en") {
+              name = item[1].name_en;
+            } else if (this.getLang === "/ua") {
+              name = item[1].name_ua;
+            } else {
+              name = item[1].name_ru;
+            }
+            countries.push({
+              id: item[1].id,
+              value: name,
+            });
           }
-        );
-        return res;
+        });
+      });
+
+      const ids = countries.map(({ id }) => id);
+      countries = countries.filter(
+        ({ id }, index) => !ids.includes(id, index + 1)
+      );
+
+      countries = countries.sort((a, b) => a.value.localeCompare(b.value));
+      if (countries.length > 0) {
+        store.state.countriesId = +countries[0].id;
       }
+
+      return countries;
+    },
+    filterCity() {
+      let res = [];
+      let name;
+      let cities = Object.entries(this.availableCities).filter(
+        (item) => item[1].country_id === this.countriesId
+      );
+      for (let item of cities) {
+        if (this.getLang === "/en") {
+          name = item[1].name_en;
+        } else if (this.getLang === "/ua") {
+          name = item[1].name_ua;
+        } else {
+          name = item[1].name_ru;
+        }
+        res.push({
+          id: item[1].id,
+          value: name,
+        });
+      }
+
+      return res.sort((a, b) => a.value.localeCompare(b.value));
     },
   },
   methods: {
@@ -210,6 +254,7 @@ createApp({
       "viewPassword",
       "scrollToError",
       "setCityId",
+      "setCountriesId",
       "characterCountCheck",
     ]),
     getValueByLanguage(object, field) {
