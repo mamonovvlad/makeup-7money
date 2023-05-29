@@ -203,17 +203,14 @@ createApp({
           }
         });
       });
-
-      const ids = countries.map(({ id }) => id);
-      countries = countries.filter(
-        ({ id }, index) => !ids.includes(id, index + 1)
-      );
-
-      countries = countries.sort((a, b) => a.value.localeCompare(b.value));
       if (countries.length > 0) {
+        const ids = countries.map(({ id }) => id);
+        countries = countries.filter(
+          ({ id }, index) => !ids.includes(id, index + 1)
+        );
+        countries = countries.sort((a, b) => a.value.localeCompare(b.value));
         store.state.countriesId = +countries[0].id;
       }
-
       return countries;
     },
     filterCity() {
