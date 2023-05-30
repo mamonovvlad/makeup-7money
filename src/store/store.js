@@ -612,6 +612,8 @@ const store = createStore({
       }
       state.countriesId = +parseInt(opt.value);
       this.commit("filterCity");
+      state.currentTime = 60;
+      this.dispatch("calculateForm", [store.getters.getType]);
     },
     /////
     showRecoveryInformation() {
