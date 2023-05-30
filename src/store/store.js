@@ -61,7 +61,9 @@ const store = createStore({
     borderActive: false,
     isWarningForm: true,
     //select
-    countriesId: 0,
+    countriesId: null,
+    sortCountries: [],
+    sortCities: [],
   }, //Хранения данных
   mutations: {
     viewPassword(state, idx) {
@@ -534,6 +536,58 @@ const store = createStore({
       }
     },
     /////
+    filterCity(state) {
+      state.sortCities = [];
+      let name;
+      let cities = Object.entries(state.availableCities).filter(
+        (item) => +item[1].country_id === +state.countriesId
+      );
+      for (let item of cities) {
+        if (store.getters.getLanguage === "en") {
+          name = item[1].name_en;
+        } else if (store.getters.getLanguage === "ua") {
+          name = item[1].name_ua;
+        } else {
+          name = item[1].name_ru;
+        }
+        state.sortCities.push({
+          id: item[1].id,
+          value: name,
+        });
+      }
+      state.sortCities = state.sortCities.sort((a, b) =>
+        a.value.localeCompare(b.value)
+      );
+    },
+    filterCountries(state) {
+      let name;
+      state.sortCountries = [];
+      Object.entries(state.countries).forEach((item) => {
+        Object.entries(state.availableCities).forEach((city, index) => {
+          if (+city[1].country_id === +item[1].id) {
+            if (store.getters.getLanguage === "en") {
+              name = item[1].name_en;
+            } else if (store.getters.getLanguage === "ua") {
+              name = item[1].name_ua;
+            } else {
+              name = item[1].name_ru;
+            }
+            state.sortCountries.push({
+              id: item[1].id,
+              value: name,
+            });
+          }
+        });
+      });
+
+      const ids = state.sortCountries.map(({ id }) => id);
+      state.sortCountries = state.sortCountries.filter(
+        ({ id }, index) => !ids.includes(id, index + 1)
+      );
+      state.sortCountries = state.sortCountries.sort((a, b) =>
+        a.value.localeCompare(b.value)
+      );
+    },
     setCityId(state, e) {
       let opt;
       let target = e.target;
@@ -545,18 +599,19 @@ const store = createStore({
       }
       state.city_id = parseInt(opt.value);
       state.currentTime = 60;
-      this.dispatch("calculateForm", [store.getters.getType, true, true]);
+      this.dispatch("calculateForm", [store.getters.getType]);
     },
     setCountriesId(state, e) {
       let opt;
       let target = e.target;
-      for (let i = 0, len = target.options.length; i < len; i++) {
+      for (let i = 0; i < target.options.length; i++) {
         opt = target.options[i];
         if (opt.selected === true) {
           break;
         }
       }
-      state.countriesId = parseInt(opt.value);
+      state.countriesId = +parseInt(opt.value);
+      this.commit("filterCity");
     },
     /////
     showRecoveryInformation() {
@@ -965,6 +1020,10 @@ const store = createStore({
           if (typeof response.data === "object") {
             commit("setCalculateForm", [response, refreshValue]);
             commit("showRecoveryInformation");
+            commit("filterCountries");
+            if (state.countriesId === null || refreshValue)
+              state.countriesId = +state.sortCountries[0].id;
+            commit("filterCity");
           } else {
             commit("trashClick");
           }
@@ -1105,6 +1164,12 @@ const store = createStore({
     },
     countriesId(state) {
       return state.countriesId;
+    },
+    sortCountries(state) {
+      return state.sortCountries;
+    },
+    sortCities(state) {
+      return state.sortCities;
     },
     blockHide(state) {
       return state.blockHide;

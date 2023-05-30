@@ -166,9 +166,9 @@ createApp({
       "calculateData",
       "detailsHide",
       "course",
-      "countries",
       "countriesId",
-      "availableCities",
+      "sortCountries",
+      "sortCities",
       "sellAmountWithDiscount",
       "buyAmountWithDiscount",
       "isBorderActive",
@@ -183,58 +183,6 @@ createApp({
     isDetails() {
       return this.detailsHide;
     },
-    filterCountries() {
-      let countries = [];
-      let name;
-      Object.entries(this.countries).forEach((item) => {
-        Object.entries(this.availableCities).forEach((city, index) => {
-          if (+city[1].country_id === +item[1].id) {
-            if (this.getLang === "/en") {
-              name = item[1].name_en;
-            } else if (this.getLang === "/ua") {
-              name = item[1].name_ua;
-            } else {
-              name = item[1].name_ru;
-            }
-            countries.push({
-              id: item[1].id,
-              value: name,
-            });
-          }
-        });
-      });
-      if (countries.length > 0) {
-        const ids = countries.map(({ id }) => id);
-        countries = countries.filter(
-          ({ id }, index) => !ids.includes(id, index + 1)
-        );
-        countries = countries.sort((a, b) => a.value.localeCompare(b.value));
-        store.state.countriesId = +countries[0].id;
-      }
-      return countries;
-    },
-    filterCity() {
-      let res = [];
-      let name;
-      let cities = Object.entries(this.availableCities).filter(
-        (item) => item[1].country_id === this.countriesId
-      );
-      for (let item of cities) {
-        if (this.getLang === "/en") {
-          name = item[1].name_en;
-        } else if (this.getLang === "/ua") {
-          name = item[1].name_ua;
-        } else {
-          name = item[1].name_ru;
-        }
-        res.push({
-          id: item[1].id,
-          value: name,
-        });
-      }
-
-      return res.sort((a, b) => a.value.localeCompare(b.value));
-    },
   },
   methods: {
     ...mapActions(["fetchGroupsAndCurrenciesFromPage"]),
@@ -246,12 +194,12 @@ createApp({
       "setOfExchange",
       "calculate",
       "captcha",
+      "setCountriesId",
+      "setCityId",
       "calculationAmountCommission",
       "confirmChecked",
       "viewPassword",
       "scrollToError",
-      "setCityId",
-      "setCountriesId",
       "characterCountCheck",
     ]),
     getValueByLanguage(object, field) {

@@ -91,7 +91,6 @@
                             v-model="$store.state.sell_amount"
                             @blur="updateSellAmount"
                             @input="calculate('default')"
-                            pattern="/[^0-9A-Z !\\'#$%&'()*+,\-.\/:;<=>?@\[\]^_`{|}~]*/g"
                           />
                           <span class="help-block">Error</span>
                         </span>
@@ -434,9 +433,10 @@
                             @change="setCountriesId($event)"
                           >
                             <option
-                              v-for="option in filterCountries"
+                              v-for="option in sortCountries"
                               :key="option.id"
                               :value="option.id"
+                              :selected="countriesId === +option.id"
                             >
                               {{ option.value}}
                             </option>
@@ -454,13 +454,13 @@
                             @change="setCityId($event)"
                           >
                             <option
-                              v-for="option in filterCity"
+                              v-for="option in sortCities"
                               :key="option.id"
                               :value="option.id"
                             >
                               {{ option.value }}
                             </option>
-                            <option v-if="filterCity.length === 0">
+                            <option v-if="sortCities.length === 0">
                               {{$t('suitableCities')}}
                             </option>
                           </select>
