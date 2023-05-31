@@ -558,7 +558,6 @@ const store = createStore({
       state.sortCities = state.sortCities.sort((a, b) =>
         a.value.localeCompare(b.value)
       );
-      state.city_id = state.sortCities[0].id;
     },
     filterCountries(state) {
       let name;
