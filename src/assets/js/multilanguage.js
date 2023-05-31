@@ -5,6 +5,7 @@ const i18n = createI18n({
   fallbackLocale: "en",
   messages: {
     ru: {
+      linkBest: "https://www.bestchange.ru/7money-exchanger.html",
       chooseCity: "Выберите город",
       countries: "Страны",
       suitableCities: "Нет подходящих городов",
@@ -123,6 +124,7 @@ const i18n = createI18n({
       amlLink: "/page/aml",
     },
     ua: {
+      linkBest: "https://www.bestchange.net/7money-exchanger.html",
       chooseCity: "Виберіть місто",
       countries: "Страны",
       suitableCities: "Немає відповідних міст",
@@ -241,6 +243,7 @@ const i18n = createI18n({
       amlLink: "/ua/page/aml",
     },
     en: {
+      linkBest: "https://www.bestchange.ru/7money-exchanger.html",
       chooseCity: "Choose city",
       countries: "Countries",
       suitableCities: "There are no suitable cities",
