@@ -450,8 +450,9 @@
                             name="OrderForm[city_id]"
                             id="orderform-city_id"
                             @change="setCityId($event)"
+                            required
                           >
-                            <option>{{ $t('chooseCity')}}</option>
+                            <option value="">{{ $t('chooseCity')}}</option>
                             <option
                               v-for="option in sortCities"
                               :key="option.id"
@@ -459,7 +460,7 @@
                             >
                               {{ option.value }}
                             </option>
-                            <option v-if="sortCities.length === 0">
+                            <option value="" v-if="sortCities.length === 0">
                               {{$t('suitableCities')}}
                             </option>
                           </select>
