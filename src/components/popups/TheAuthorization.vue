@@ -65,6 +65,7 @@
               :show-error="input.error"
               :required="input.required"
               :error-name="input.errorName"
+              :model-value="input.defaultValue"
             >
               <template #label>{{ $t(`${input.label}`) }}</template>
               <template #icon>
@@ -108,6 +109,10 @@
 </template>
 
 <script>
+function getRid() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("rid") ?? null;
+}
 import TheQuestionInformation from "../blocks/TheQuestionInformation.vue";
 import TheClose from "../buttons/TheClose.vue";
 import TheSwitched from "../buttons/TheSwitched.vue";
@@ -161,6 +166,7 @@ let registration = [
     id: "registration_link",
     name: "SignupForm[referred_by]",
     errorName: "help-signupform-referred_by",
+    defaultValue: getRid(),
   },
 ];
 let entrance = [
