@@ -10,7 +10,7 @@ export const CurrencyModel = {
   RUB_BANK_IDS: [13, 14, 15, 16, 17, 18],
   UAH_BANK_IDS: [3, 5, 26, 35, 43, 44, 45],
   CRYPT_IDS: [4, 10, 19, 20, 21, 22, 25, 28, 39, 42, 46, 49],
-  CASH_IDS: [30, 31, 32, 33, 36, 37, 48, 54, 55],
+  CASH_IDS: [30, 31, 32, 33, 36, 37, 48, 54, 55, 56],
   VERIFY_IDS: [3, 26, 35],
 
   isBank(id) {
